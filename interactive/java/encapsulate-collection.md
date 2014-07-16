@@ -1,0 +1,398 @@
+encapsulate-collection:java
+
+###
+
+1. Создайте методы для добавления и удаления элементов коллекции.
+
+2. Присвойте полю пустую коллекцию в качестве начального значения.
+
+3. Найдите вызовы сеттера поля коллекции. Измените сеттер так, чтобы он использовал операции добавления и удаления элементов.
+
+4. Найдите вызовы геттера коллекции, ведущие к изменению коллекции. Поменяйте этот код так, чтобы там использовались новые методы добавления и удаления элементов коллекции.
+
+5. Измените геттер, чтобы он возвращал представление коллекции, доступное только для чтения.
+
+6. Обследуйте клиентский код, использующий коллекцию, в поисках кода, который бы лучше смотрелся внутри самого класса коллекции.
+
+###
+
+```
+class Course {
+  public Course(String name, boolean isAdvanced) {
+    // ...
+  }
+  public boolean isAdvanced() {
+    // ...
+  }
+}
+
+class Person {
+  private Set courses;
+
+  public Set getCourses() {
+    return courses;
+  }
+  public void setCourses(Set arg) {
+    courses = arg;
+  }
+}
+
+// Клиентский код
+Person kent = new Person();
+Set s = new HashSet();
+s.add(new Course("Smalltalk Programming", false));
+s.add(new Course("Appreciating Single Malts", true));
+kent.setCourses(s);
+Assert.equals(2, kent.getCourses().size());
+Course refact = new Course("Refactoring", true);
+kent.getCourses().add(refact);
+kent.getCourses().add(new Course("Brutal Sarcasm", false));
+Assert.equals(4, kent.getCourses().size());
+kent.getCourses().remove(refact);
+Assert.equals(3, kent.getCourses().size());
+
+Iterator iter = kent.getCourses().iterator();
+int count = 0;
+while (iter.hasNext()) {
+  Course each = (Course) iter.next();
+  if (each.isAdvanced()) {
+    count++;
+  }
+}
+System.out.print("Advanced courses: " + count);
+```
+
+###
+
+```
+class Course {
+  public Course(String name, boolean isAdvanced) {
+    // ...
+  }
+  public boolean isAdvanced() {
+    // ...
+  }
+}
+
+class Person {
+  private Set courses = new HashSet();
+
+  public Set getCourses() {
+    return Collections.unmodifiableSet(courses);;
+  }
+  public void initializeCourses(Set arg) {
+    Assert.isTrue(courses.isEmpty());
+    courses.addAll(arg);
+  }
+  public void addCourse(Course arg) {
+    courses.add(arg);
+  }
+  public void removeCourse(Course arg) {
+    courses.remove(arg);
+  }
+  int numberOfAdvancedCourses() {
+    Iterator iter = getCourses().iterator();
+    int count = 0;
+    while (iter.hasNext()) {
+      Course each = (Course) iter.next();
+      if (each.isAdvanced()) {
+        count++;
+      }
+    }
+    return count;
+  }
+  public int numberOfCourses() {
+    return courses.size();
+  }
+}
+
+// Клиентский код
+Person kent = new Person();
+kent.addCourse(new Course("Smalltalk Programming", false));
+kent.addCourse(new Course("Appreciating Single Malts", true));
+Assert.equals(2, kent.numberOfCourses());
+Course refact = new Course("Refactoring", true);
+kent.addCourse(refact);
+kent.addCourse(new Course("Brutal Sarcasm", false));
+Assert.equals(4, kent.numberOfCourses());
+kent.removeCourse(refact);
+Assert.equals(3, kent.numberOfCourses());
+
+System.out.print("Advanced courses: " + kent.numberOfAdvancedCourses());
+```
+
+
+###
+
+Set step 1
+
+# Давайте рассмотрим <i>Инкапсуляцию коллекции</i> на примере каталога обучающих курсов.
+
+Select "class |||Course|||"
+
+# Класс курсов довольно прост.
+
+Select "class |||Person|||"
+
+# Кроме того есть еще класс посетителей курсов.
+
+Go to "Person kent = |||new Person();"
+
+# При таком интерфейсе клиенты добавляют курсы с помощью следующего кода.
+
+Go to the end of "class Person"
+
+# Итак, первым делом нужно надлежащие методы модификации для этой коллекции.
+
+Print:
+```
+
+  public void addCourse(Course arg) {
+    courses.add(arg);
+  }
+  public void removeCourse(Course arg) {
+    courses.remove(arg);
+  }
+```
+
+Set step 2
+
+Go to "private Set courses|||"
+
+# Кроме того, облегчим также себе жизнь, проинициализировав поле:
+
+Print " = new HashSet()"
+
+Set step 3
+
+Select "void |||setCourses|||"
+
+# Теперь посмотрим на пользователей сеттера <code>setCourses</code>. Если клиентов много и сеттер интенсивно используется, необходимо заменить тело метода так, чтобы в нем использовались операции добавления и удаления.
+
+Select "kent.setCourses(s)"
+
+# Сложность этой процедуры зависит от способа использования сеттера коллекции. В простейшем из них клиент инициализирует значения с помощью сеттера, т.е. до применения метода курсов не существует.
+
+Select:
+```
+  public void setCourses(Set arg) {
+|||    courses = arg;|||
+  }
+```
+
+# В этом случае нужно изменить тело сеттера так, чтобы в нем использовался метод добавления.
+
+Print:
+```
+    Assert.isTrue(courses.isEmpty());
+    Iterator iter = arg.iterator();
+    while (iter.hasNext()) {
+      addCourse((Course) iter.next());
+    }
+```
+
+Select "void |||setCourses|||"
+
+# После такой модификации стоит с помощью  <a href="/rename-method">переименования метода</a> сделать намерения более ясными.
+
+Select "setCourses"
+
+Print "initializeCourses"
+
+# В общем случае мы должены сначала прибегнуть к методу удаления и убрать все элементы, а затем добавлять новые. Однако это происходит редко (как и бывает с общими случаями).
+
+# Если я знаю, что другого поведения при добавлении элементов во время инициализации нет, можно убрать цикл и применить addAll.
+
+
+Select:
+```
+    Iterator iter = arg.iterator();
+    while (iter.hasNext()) {
+      addCourse((Course) iter.next());
+    }
+```
+
+Wait 500ms
+
+Print:
+```
+    courses.addAll(arg);
+```
+
+# Стоит упомянуть, что мы не могу просто присвоить значение множеству, даже если предыдущее множество было пустым. Если клиент соберется модифицировать множество после того, как передаст его, это станет нарушением инкапсуляции. Поэтому, мы должены создать копию.
+
+Go to "Set s = |||new HashSet();"
+
+# Если клиенты просто создают множество и пользуются методом установки, я могу заставить их пользоваться методами добавления и удаления непосредственно и полностью убрать вызов метода инициализации.
+
+Select:
+```
+Set s = new HashSet();
+
+```
+
+Remove selected
+
+Select:
+```
+|||s.add|||(new Course("Smalltalk Programming", false));
+|||s.add|||(new Course("Appreciating Single Malts", true));
+```
+
+Wait 1000ms
+
+Print "kent.addCourse"
+
+Select:
+```
+
+kent.initializeCourses(s);
+```
+
+Remove selected
+
+Set step 4
+
+
+Select "getCourses().add"
++ Select "getCourses().remove"
+
+# Теперь нужно рассмотреть, кто использует геттер коллекции. В первую очередь нам должны интересовать случаи модификации коллекции с его помощью.
+
+# Такие вызовы следует заменять вызовами метода добавления или удаления курсов.
+
+Select "getCourses().add"
+
+Print "addCourse"
+
+Wait 500ms
+
+Select "getCourses().remove"
+
+Wait 500ms
+
+Print "removeCourse"
+
+Set step 5
+
+Select:
+```
+return |||courses|||;
+```
+
+# Последним штрихом следует изменить тело геттера так, чтобы он возвращал значение, доступную только для чтения (другими словами неизменяемое представление коллекции).
+
+
+Print:
+```
+Collections.unmodifiableSet(courses);
+```
+
+#C Запустим компиляцию, чтобы убедиться в отсутствии ошибок.
+
+#S Отлично, все работает!
+
+Select:
+```
+private Set |||courses|||
+```
+
+# После этого коллекцию можно считать полностью инкапсулированой. Никто не сможет изменить её элементы, кроме как через методы <code>Person</code>.
+
+Set step 6
+
+Select:
+```
+Iterator iter = kent.getCourses().iterator();
+int count = 0;
+while (iter.hasNext()) {
+  Course each = (Course) iter.next();
+  if (each.isAdvanced()) {
+    count++;
+  }
+}
+
+```
+
+# После того, как для класса <code>Person</code> был создан корректный интерфейс, мы можем заняться перемещением релевантного кода в этот класс. Вот пример такого кода.
+
+# Применим <a href="/extract-method">извлечение метода</a> к этому коду, чтобы переместить его в <code>Person</code>.
+
+Go to the end of "class Person"
+
+Print:
+```
+
+  int numberOfAdvancedCourses() {
+    Iterator iter = getCourses().iterator();
+    int count = 0;
+    while (iter.hasNext()) {
+      Course each = (Course) iter.next();
+      if (each.isAdvanced()) {
+        count++;
+      }
+    }
+    return count;
+  }
+```
+
+Select:
+```
+Iterator iter = kent.getCourses().iterator();
+int count = 0;
+while (iter.hasNext()) {
+  Course each = (Course) iter.next();
+  if (each.isAdvanced()) {
+    count++;
+  }
+}
+
+```
+
+Remove selected
+
+Select:
+```
+System.out.print("Advanced courses: " + |||count|||);
+```
+
+Print "kent.numberOfAdvancedCourses()"
+
+
+
+Select:
+```
+kent.getCourses().size()
+```
+
+# Часто встречается такой код.
+
+Go to the end of "Person"
+
+# Его можно заменить более читабельной версией.
+
+Print:
+```
+
+  public int numberOfCourses() {
+    return courses.size();
+  }
+```
+
+Select:
+```
+kent.getCourses().size()
+```
+
+Print:
+```
+kent.numberOfCourses()
+```
+
+#C Запускаем финальную компиляцию.
+
+#S Отлично, все работает!
+
+Set final step
+
+#Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.

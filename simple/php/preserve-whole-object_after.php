@@ -1,0 +1,1 @@
+$withinPlan = $plan->withinRange($daysTempRange);
