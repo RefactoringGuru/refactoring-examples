@@ -1,4 +1,4 @@
-java--java--java--java--change-unidirectional-association-to-bidirectional:java
+change-unidirectional-association-to-bidirectional:php
 
 ###
 
@@ -19,13 +19,13 @@ java--java--java--java--change-unidirectional-association-to-bidirectional:java
 ```
 class Order {
   // ...
-  private Customer customer;
+  private $customer; // Customer
 
-  public Customer getCustomer() {
-    return customer;
+  public function getCustomer() {
+    return $this->customer;
   }
-  public void setCustomer(Customer arg) {
-    customer = arg;
+  public function setCustomer(Customer $arg) {
+    $this->customer = $arg;
   }
 }
 
@@ -39,20 +39,20 @@ class Customer {
 ```
 class Order {
   // ...
-  private Customer customer;
+  private $customer; // Customer
 
-  public Customer getCustomer() {
-    return customer;
+  public function getCustomer() {
+    return $this->customer;
   }
-  public void setCustomer(Customer arg) {
+  public function setCustomer(Customer $arg) {
     // Remove order from old customer.
-    if (customer != null) {
-      customer.friendOrders().remove(this);
+    if (isset($this->customer)) {
+      $this->customer->friendOrders()->remove($this);
     }
-    customer = arg;
+    $this->customer = $arg;
     // Add order to new customer.
-    if (customer != null) {
-      customer.friendOrders().add(this);
+    if (isset($this->customer)) {
+      $this->customer->friendOrders()->add($this);
     }
   }
 }
@@ -79,7 +79,7 @@ Set step 1
 
 Select:
 ```
-private Customer customer;
+private $customer;
 ```
 
 # Изначально, в классе заказов есть ссылка на объект покупателя.
@@ -95,7 +95,7 @@ Go to the end of "Customer"
 Print:
 ```
 
-  private Set orders = new HashSet();
+  private $orders = array();
 ```
 
 Set step 2
@@ -118,8 +118,8 @@ Print:
 
 
   // Should be used in Order class only.
-  Set friendOrders() {
-    return orders;
+  public function friendOrders() {
+    return $orders;
   }
 ```
 
@@ -135,8 +135,8 @@ Print:
 ```
 
     // Remove order from old customer.
-    if (customer != null) {
-      customer.friendOrders().remove(this);
+    if ($this->customer != null) {
+      $this->customer->friendOrders()->remove($this);
     }
 ```
 
@@ -148,8 +148,8 @@ Print:
 ```
 
     // Add order to new customer.
-    if (customer != null) {
-      customer.friendOrders().add(this);
+    if ($this->customer != null) {
+      $this->customer->friendOrders()->add($this);
     }
 ```
 
@@ -175,12 +175,12 @@ Go to the end of "Customer"
 Print:
 ```
 
-  void addOrder(Order arg) {
-    arg.setCustomer(this);
+  public function addOrder(Order $arg) {
+    $arg->setCustomer($this);
   }
 ```
 
-#C Запускаем финальную компиляцию и тестирование.
+#C Запускаем финальное тестирование.
 
 #S Отлично, все работает!
 

@@ -17,7 +17,7 @@ change-bidirectional-association-to-unidirectional:php
 ```
 class Order {
   // ...
-  private Customer $customer;
+  private $customer; // Customer
 
   public function getCustomer() {
     return $this->customer;
@@ -113,7 +113,7 @@ Select name of "getPriceFor"
 
 # А также метод получения цены со скидкой в классе заказа.
 
-Select "private |||Customer||| $customer;"
+Select "private |||$customer|||; // Customer"
 
 # Итак, недавно к нам поступили новые требования, указывающие, что заказы должны появляться, только если покупатель уже создан. Это позволяет нам откзаться от двусторонней связи между классами и избавиться от связи от заказа к покупателю.
 
@@ -159,7 +159,6 @@ Select body of "getCustomer"
 
 Print:
 ```
-
     foreach (Customer::getInstances() as $customer) {
       if ($customer->containsOrder($this)) {
         return $customer;
@@ -228,7 +227,7 @@ Set step 4
 
 Select:
 ```
-  private Customer $customer;
+  private $customer; // Customer
 
 
 ```
