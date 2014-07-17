@@ -86,7 +86,7 @@ Set step 1
 
 Select "private int |||type|||"
 
-# Начнем с <a href="/self-encapsulate-field">самоинкапсуляции поля</a> типа служащего.
+# Начнём с <a href="/self-encapsulate-field">самоинкапсуляции поля</a> типа служащего.
 
 Go to before "public Employee"
 
@@ -126,7 +126,7 @@ Set step 3
 
 Select "ENGINEER"
 
-# Теперь можно приступить к преобразованию <code>Engineer</code> в подкласс. Сначала создается сам подкласс.
+# Теперь можно приступить к преобразованию <code>Engineer</code> в подкласс. Сначала создаётся сам подкласс.
 
 Go to the end of file
 
@@ -171,7 +171,7 @@ Print:
 
 Go to the end of file
 
-# Продолжаем поочередно, пока все коды не будут заменены подклассами.
+# Продолжаем поочерёдно, пока все коды не будут заменены подклассами.
 
 Print:
 ```

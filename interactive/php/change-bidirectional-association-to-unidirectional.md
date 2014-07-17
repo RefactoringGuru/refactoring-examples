@@ -1,4 +1,4 @@
-change-bidirectional-association-to-unidirectional:java
+change-bidirectional-association-to-unidirectional:php
 
 ###
 
@@ -17,43 +17,43 @@ change-bidirectional-association-to-unidirectional:java
 ```
 class Order {
   // ...
-  private Customer customer;
+  private Customer $customer;
 
-  public Customer getCustomer() {
-    return customer;
+  public function getCustomer() {
+    return $this->customer;
   }
-  public void setCustomer(Customer arg) {
+  public function setCustomer(Customer $arg) {
     // Remove order from old customer.
-    if (customer != null) {
-      customer.friendOrders().remove(this);
+    if ($this->customer != null) {
+      $this->customer->friendOrders()->remove($this);
     }
-    customer = arg;
+    $this->customer = $arg;
     // Add order to new customer.
-    if (customer != null) {
-      customer.friendOrders().add(this);
+    if ($this->customer != null) {
+      $this->customer->friendOrders()->add($this);
     }
   }
 
-  double getDiscountedPrice() {
-    return getGrossPrice() * (1 - getCustomer().getDiscount());
+  public function getDiscountedPrice() {
+    return $this->getGrossPrice() * (1 - $this->getCustomer()->getDiscount());
   }
 }
 
 class Customer {
   // ...
-  private Set orders = new HashSet();
+  private $orders = array();
 
   // Should be used in Order class only.
-  Set friendOrders() {
-    return orders;
+  public function friendOrders() {
+    return $orders;
   }
-  void addOrder(Order arg) {
-    arg.setCustomer(this);
+  public function addOrder(Order $arg) {
+    $arg->setCustomer($this);
   }
 
-  double getPriceFor(Order order) {
-     Assert.isTrue(orders.contains(order));
-     return order.getDiscountedPrice();
+  public function getPriceFor(Order $order) {
+     assert(array_search($order, $this->orders, TRUE), "Order can not be found");
+     return $order->getDiscountedPrice();
   }
 }
 ```
@@ -63,33 +63,31 @@ class Customer {
 ```
 class Order {
   // ...
-  public Customer getCustomer() {
-    Iterator iter = Customer.getInstances().iterator();
-    while (iter.hasNext()) {
-      Customer each = (Customer)iter.next();
-      if (each.containsOrder(this)) {
-        return each;
+  public function getCustomer() {
+    foreach (Customer::getInstances() as $customer) {
+      if ($customer->containsOrder($this)) {
+        return $customer;
       }
     }
     return null;
   }
 
-  double getDiscountedPrice() {
-    return getGrossPrice() * (1 - getCustomer().getDiscount());
+  public function getDiscountedPrice() {
+    return $this->getGrossPrice() * (1 - $this->getCustomer()->getDiscount());
   }
 }
 
 class Customer {
   // ...
-  private Set orders = new HashSet();
+  private $orders = array();
 
-  void addOrder(Order arg) {
-    orders.add(arg);
+  public function addOrder(Order $arg) {
+    $this->orders[] = $arg;
   }
 
-  double getPriceFor(Order order) {
-     Assert.isTrue(orders.contains(order));
-     return order.getDiscountedPrice();
+  public function getPriceFor(Order $order) {
+     assert(array_search($order, $this->orders, TRUE), "Order can not be found");
+     return $order->getDiscountedPrice();
   }
 }
 ```
@@ -115,11 +113,11 @@ Select name of "getPriceFor"
 
 # А также метод получения цены со скидкой в классе заказа.
 
-Select "private |||Customer||| customer;"
+Select "private |||Customer||| $customer;"
 
 # Итак, недавно к нам поступили новые требования, указывающие, что заказы должны появляться, только если покупатель уже создан. Это позволяет нам откзаться от двусторонней связи между классами и избавиться от связи от заказа к покупателю.
 
-Select "|||getCustomer()|||.getDiscount()"
+Select "|||$this->getCustomer()|||->getDiscount()"
 
 #+ Самое трудное в данном рефакторинге – проверка возможности его осуществления. Необходимо убедиться в безопасности, а выполнить сам рефакторинг довольно легко. Проблема заключается в том, зависит ли код заказа от наличия поля покупателя. В этом случае, чтобы удалить поле, надо предоставить альтернативный способ получения объекта покупателя.
 
@@ -129,30 +127,29 @@ Set step 2
 
 Go to parameters of "getDiscountedPrice"
 
-Print "Customer customer"
+Print "Customer $customer"
 
 Wait 500ms
 
-Select "|||getCustomer()|||.getDiscount()"
+Select "|||$this->getCustomer()|||->getDiscount()"
 
 Wait 500ms
 
-Print "customer"
-
+Print "$customer"
 
 Select:
 ```
-     return order.getDiscountedPrice();
+     return $order->getDiscountedPrice();
 ```
 
 # Особенно хорошо это действует, когда поведение вызывается клиентским кодом, в котором присутствует объект покупателя, который можно передать в качестве аргумента.
 
 Go to:
 ```
-     return order.getDiscountedPrice(|||);
+     return $order->getDiscountedPrice(|||);
 ```
 
-Print "this"
+Print "$this"
 
 Wait 1000ms
 
@@ -162,11 +159,10 @@ Select body of "getCustomer"
 
 Print:
 ```
-    Iterator iter = Customer.getInstances().iterator();
-    while (iter.hasNext()) {
-      Customer each = (Customer)iter.next();
-      if (each.containsOrder(this)) {
-        return each;
+
+    foreach (Customer::getInstances() as $customer) {
+      if ($customer->containsOrder($this)) {
+        return $customer;
       }
     }
     return null;
@@ -178,14 +174,16 @@ Select parameters of "getDiscountedPrice"
 
 Remove selected
 
-Select "|||customer|||.getDiscount()"
+Select "|||$customer|||->getDiscount()"
 
 Wait 500ms
 
-Print "getCustomer()"
+Print "$this->getCustomer()"
 
+Wait 500ms
 
-Select "getDiscountedPrice(|||this|||);"
+Select "getDiscountedPrice(|||$this|||);"
+
 Remove selected
 
 Select name of "getCustomer"
@@ -217,7 +215,7 @@ Select body of "addOrder"
 
 Type:
 ```
-    orders.add(arg);
+    $this->orders[] = $arg;
 ```
 
 Select whole "setCustomer"
@@ -230,7 +228,7 @@ Set step 4
 
 Select:
 ```
-  private Customer customer;
+  private Customer $customer;
 
 
 ```
@@ -239,7 +237,7 @@ Select:
 
 Remove selected
 
-#C Запускаем финальную компиляцию и тестирование.
+#C Запускаем финальное тестирование.
 
 #S Отлично, все работает!
 
