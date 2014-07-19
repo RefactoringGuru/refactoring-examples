@@ -23,7 +23,7 @@ extract-method:java
 
 ```
 class Example {
-  
+
 }
 ```
 
@@ -96,6 +96,20 @@ Select "private int field;" in "class Example"
 Select "doSomething()" in "int someMethod"
 ```
 
+It is also possible to target certain parts of method or class, for example;
+
+```
+Select "interval" in parameters of "doSomething"
+Select "interval" in body of "doSomething"
+Select "interval" in whole "doSomething"
+Select name of "doSomething"
+Select visibility of "doSomething"
+Select type of "doSomething"
+Select parameters of "doSomething"
+Select body of "doSomething"
+Select whole of "doSomething"
+```
+
 4. To select multiline text, use this syntax. Remember, you can still pass item number or `` in "Something"`` to target specific selection.
 
 <pre><code>
@@ -126,7 +140,7 @@ Select "something"
 
 This command is used to move cursor to specific location. Mostly useful to target the Print action. It can also serve as target for popover (however, selecting text is more preferable way to do this). Note that using this command will deselect selected text.
 
-There are multiple ways to use this action. 
+There are multiple ways to use this action.
 
 1. Simple goto action. Scripts searches for the text, then puts cursor at the position of ``|||``.
 ```
