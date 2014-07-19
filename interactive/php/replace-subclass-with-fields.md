@@ -1,4 +1,4 @@
-replace-subclass-with-fields:java
+replace-subclass-with-fields:php
 
 ###
 
@@ -24,62 +24,64 @@ replace-subclass-with-fields:java
 
 ```
 abstract class Person {
-  abstract boolean isMale();
-  abstract char getCode();
+  abstract function isMale();
+  abstract function getCode();
 }
 
 class Male extends Person {
-  boolean isMale() {
+  function isMale() {
     return true;
   }
-  char getCode() {
+  function getCode() {
     return 'M';
   }
 }
 class Female extends Person {
-  boolean isMale() {
+  function isMale() {
     return false;
   }
-  char getCode() {
+  function getCode() {
     return 'F';
   }
 }
 
 // Клиентский код
-Person kent = new Male();
-System.out.print("Person's gender is: " + kent.getCode());
+$kent = new Male();
+print("Person's gender is: " . $kent->getCode());
+
 ```
 
 ###
 
 ```
 class Person {
-  static Person createMale(){
+  static function createMale(){
     return new Person(true, 'M');
   }
-  static Person createFemale() {
+  static function createFemale() {
     return new Person(false, 'F');
   }
-  protected Person(boolean isMale, char code) {
-    this.isMale = isMale;
-    this.code = code;
+  protected Person($isMale, $code) {
+    $this->isMale = $isMale;
+    $this->code = $code;
   }
 
-  private final boolean isMale;
-  private final char code;
+  private $isMale;
+  private $code;
 
-  boolean isMale() {
-    return isMale;
+  function isMale() {
+    return $this->isMale;
   }
-  boolean getCode() {
-    return code;
+  function getCode() {
+    return $this->code;
   }
 }
 
 
 // Клиентский код
-Person kent = Person.createMale();
-System.out.print("Person's gender is: " + kent.getCode());
+$kent = Person::createMale();
+print("Person's gender is: " . $kent->getCode());
+
 ```
 
 ###
@@ -102,21 +104,21 @@ Go to the beginning of "Person"
 Print:
 ```
 
-  static Person createMale() {
+  static function createMale() {
     return new Male();
   }
-  static Person createFemale() {
+  static function createFemale() {
     return new Female();
   }
 ```
 
 Set step 2
 
-Select "Person kent = |||new Male()|||"
+Select "$kent = |||new Male()|||"
 
 # После этого следует заменить все вызовы конструкторов подклассов вызовами соответствующих фабричных методов.
 
-Print "Person.createMale()"
+Print "Person::createMale()"
 
 # После замены всех этих вызовов, в коде не должно остаться упоминаний подклассов.
 
@@ -130,8 +132,8 @@ Print:
 ```
 
 
-  private final boolean isMale;
-  private final char code;
+  private $isMale;
+  private $code;
 
 ```
 
@@ -144,9 +146,9 @@ Go to after "createFemale"
 Print:
 ```
 
-  protected Person(boolean isMale, char code) {
-    this.isMale = isMale;
-    this.code = code;
+  protected Person($isMale, $code) {
+    $this->isMale = $isMale;
+    $this->code = $code;
   }
 ```
 
@@ -159,8 +161,8 @@ Go to the start of "Male"
 Print:
 ```
 
-  Male() {
-    super(true, 'M');
+  function __construct() {
+    parent::__construct(true, 'M');
   }
 ```
 
@@ -169,25 +171,25 @@ Go to the start of "Female"
 Print:
 ```
 
-  Female() {
-    super(false, 'F');
+  function __construct() {
+    parent::__construct(false, 'F');
   }
 ```
 
-#C После этого можно выполнить компиляцию и тестирование.
+#C После этого можно выполнить тестирование.
 
 #S Всё отлично, можно продолжать.
 
 Set step 6
 
-Select "  abstract boolean isMale();"
+Select "  abstract function isMale();"
 
 # Поля создаются и инициализируются, но пока они не используются. Теперь мы можем  ввести поля в игру, поместив в родительском классе методы доступа и удалив методы подклассов.
 
 Print:
 ```
-  boolean isMale() {
-    return isMale;
+  function isMale() {
+    return $this->isMale;
   }
 ```
 
@@ -195,10 +197,10 @@ Wait 500ms
 
 Select:
 ```
-
-  boolean isMale() {
+  function isMale() {
     return true;
   }
+
 ```
 
 Remove selected
@@ -207,20 +209,20 @@ Wait 500ms
 
 Select:
 ```
-
-  boolean isMale() {
+  function isMale() {
     return false;
   }
+
 ```
 
 Remove selected
 
-Select "  abstract char getCode();"
+Select "  abstract function getCode();"
 
 Print:
 ```
-  boolean getCode() {
-    return code;
+  function getCode() {
+    return $this->code;
   }
 ```
 
@@ -228,10 +230,10 @@ Wait 500ms
 
 Select:
 ```
-
-  char getCode() {
+  function getCode() {
     return 'M';
   }
+
 ```
 
 Remove selected
@@ -240,10 +242,10 @@ Wait 500ms
 
 Select:
 ```
-
-  char getCode() {
+  function getCode() {
     return 'F';
   }
+
 ```
 
 Remove selected
@@ -254,10 +256,10 @@ Select "|||abstract||| class Person"
 
 + Select:
 ```
-  static Person createMale() {
+  static function createMale() {
     return |||new Male()|||;
   }
-  static Person createFemale() {
+  static function createFemale() {
     return |||new Female()|||;
   }
 ```
@@ -272,7 +274,7 @@ Wait 500ms
 
 Select:
 ```
-  static Person createMale() {
+  static function createMale() {
     return |||new Male()|||;
   }
 ```
@@ -289,14 +291,14 @@ Select whole "Male"
 
 Remove selected
 
-#C Проведём компиляцию и тестирование, чтобы убедиться, что никакой другой код не сломался.
+#C Проведём тестирование, чтобы убедиться, что никакой другой код не сломался.
 
 #S Всё хорошо, можно проделать ту же операцию с классом <code>Female</code>
 
 
 Select:
 ```
-  static Person createFemale() {
+  static function createFemale() {
     return |||new Female()|||;
   }
 ```
@@ -311,7 +313,7 @@ Select whole "Female"
 
 Remove selected
 
-#C Запускаем финальную компиляцию и тестирование.
+#C Запускаем финальное тестирование.
 
 #S Отлично, все работает!
 

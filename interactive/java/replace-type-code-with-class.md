@@ -14,6 +14,8 @@ replace-type-code-with-class:java
 
 6. Удалите константы закодированного типа из исходного класса.
 
+
+
 ###
 
 ```
@@ -92,7 +94,6 @@ if (parent.getBloodGroup() == BloodGroup.AB()) {
 }
 child.setBloodGroup(parent.getBloodGroup());
 ```
-
 
 ###
 
@@ -326,7 +327,7 @@ if (parent.getBloodGroup() == BloodGroup.AB()|||.getCode()|||) {
 Remove selected
 
 
-Set step
+Set step 6
 Select:
 ```
   public static final int О = BloodGroup.O().getCode();

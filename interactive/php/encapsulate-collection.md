@@ -1,4 +1,4 @@
-encapsulate-collection:java
+encapsulate-collection:php
 
 ###
 
@@ -20,107 +20,108 @@ encapsulate-collection:java
 
 ```
 class Course {
-  public Course(String name, boolean isAdvanced) {
+  public __construct($name, $isAdvanced) {
     // ...
   }
-  public boolean isAdvanced() {
+  public function isAdvanced() {
     // ...
   }
 }
 
 class Person {
-  private Set courses;
+  private $courses; // SplObjectStorage
 
-  public Set getCourses() {
-    return courses;
+  public function getCourses() {
+    return $this->courses;
   }
-  public void setCourses(Set arg) {
-    courses = arg;
+  public function setCourses(SplObjectStorage $arg) {
+    $this->courses = $arg;
   }
 }
 
 // Клиентский код
-Person kent = new Person();
-Set s = new HashSet();
-s.add(new Course("Smalltalk Programming", false));
-s.add(new Course("Appreciating Single Malts", true));
-kent.setCourses(s);
-Assert.equals(2, kent.getCourses().size());
-Course refact = new Course("Refactoring", true);
-kent.getCourses().add(refact);
-kent.getCourses().add(new Course("Brutal Sarcasm", false));
-Assert.equals(4, kent.getCourses().size());
-kent.getCourses().remove(refact);
-Assert.equals(3, kent.getCourses().size());
+$kent = new Person();
+$s = new SplObjectStorage();
+$s->attach(new Course("Smalltalk Programming", false));
+$s->attach(new Course("Appreciating Single Malts", true));
+$kent->setCourses($s);
+assert(2 === $kent->getCourses()->count());
+$refact = new Course("Refactoring", true);
+$kent->getCourses()->attach($refact);
+$kent->getCourses()->attach(new Course("Brutal Sarcasm", false));
+assert(4 === $kent->getCourses()->count());
+$kent->getCourses()->detach($refact);
+assert(3 === $kent->getCourses()->count());
 
-Iterator iter = kent.getCourses().iterator();
-int count = 0;
-while (iter.hasNext()) {
-  Course each = (Course) iter.next();
-  if (each.isAdvanced()) {
-    count++;
+$count = 0;
+foreach ($kent->getCourses() as $course) {
+  if ($course->isAdvanced()) {
+    $count++;
   }
 }
-System.out.print("Advanced courses: " + count);
+print("Advanced courses: " . $count);
+
 ```
 
 ###
 
 ```
 class Course {
-  public Course(String name, boolean isAdvanced) {
+  public __construct($name, $isAdvanced) {
     // ...
   }
-  public boolean isAdvanced() {
+  public function isAdvanced() {
     // ...
   }
 }
 
 class Person {
-  private Set courses = new HashSet();
+  private $courses; // SplObjectStorage
 
-  public Set getCourses() {
-    return Collections.unmodifiableSet(courses);
+  public __construct() {
+    $this->courses = new SplObjectStorage();
   }
-  public void initializeCourses(Set arg) {
-    Assert.isTrue(courses.isEmpty());
-    courses.addAll(arg);
+  public function getCourses() {
+    return clone $this->courses;
   }
-  public void addCourse(Course arg) {
-    courses.add(arg);
+  public function initializeCourses(SplObjectStorage $arg) {
+    assert($this->courses->count() > 0, "Courses are not empty");
+    $this->courses->addAll($arg);
   }
-  public void removeCourse(Course arg) {
-    courses.remove(arg);
+  public function addCourse($arg) {
+    $this->courses->attach($arg);
   }
-  public int numberOfAdvancedCourses() {
-    Iterator iter = getCourses().iterator();
-    int count = 0;
-    while (iter.hasNext()) {
-      Course each = (Course) iter.next();
-      if (each.isAdvanced()) {
-        count++;
+  public function removeCourse($arg) {
+    $this->courses->detach($arg);
+  }
+  public function numberOfAdvancedCourses() {
+    $count = 0;
+    foreach ($this->courses as $course) {
+      if ($course->isAdvanced()) {
+        $count++;
       }
     }
-    return count;
+    return $count;
   }
-  public int numberOfCourses() {
-    return courses.size();
+  public function numberOfCourses() {
+    return $this->courses->count();
   }
 }
 
 // Клиентский код
-Person kent = new Person();
-kent.addCourse(new Course("Smalltalk Programming", false));
-kent.addCourse(new Course("Appreciating Single Malts", true));
-Assert.equals(2, kent.numberOfCourses());
-Course refact = new Course("Refactoring", true);
-kent.addCourse(refact);
-kent.addCourse(new Course("Brutal Sarcasm", false));
-Assert.equals(4, kent.numberOfCourses());
-kent.removeCourse(refact);
-Assert.equals(3, kent.numberOfCourses());
+$kent = new Person();
+$kent->addCourse(new Course("Smalltalk Programming", false));
+$kent->addCourse(new Course("Appreciating Single Malts", true));
+assert(2 === $kent->numberOfCourses());
+$refact = new Course("Refactoring", true);
+$kent->addCourse($refact);
+$kent->addCourse(new Course("Brutal Sarcasm", false));
+assert(4 === $kent->numberOfCourses());
+kent.removeCourse($refact);
+assert(3 === $kent->numberOfCourses());
 
-System.out.print("Advanced courses: " + kent.numberOfAdvancedCourses());
+print("Advanced courses: " . $kent->numberOfAdvancedCourses());
+
 ```
 
 ###
@@ -137,7 +138,7 @@ Select name of "Person"
 
 # Кроме того, есть ещё класс посетителей курсов.
 
-Go to "Person kent = |||new Person();"
+Go to "$kent = |||new Person();"
 
 # При таком интерфейсе клиенты добавляют курсы с помощью следующего кода.
 
@@ -148,21 +149,27 @@ Go to the end of "class Person"
 Print:
 ```
 
-  public void addCourse(Course arg) {
-    courses.add(arg);
+  public function addCourse($arg) {
+    $this->courses->attach($arg);
   }
-  public void removeCourse(Course arg) {
-    courses.remove(arg);
+  public function removeCourse($arg) {
+    $this->courses->detach($arg);
   }
 ```
 
 Set step 2
 
-Go to "private Set courses|||"
+Go to before "getCourses"
 
 # Кроме того, облегчим также себе жизнь, проинициализировав поле:
 
-Print " = new HashSet()"
+Print:
+```
+
+  public __construct() {
+    $this->courses = new SplObjectStorage();
+  }
+```
 
 Set step 3
 
@@ -170,7 +177,7 @@ Select name of "setCourses"
 
 # Теперь посмотрим на пользователей сеттера <code>setCourses</code>. Если клиентов много и сеттер интенсивно используется, необходимо заменить тело метода так, чтобы в нем использовались операции добавления и удаления.
 
-Select "kent.setCourses(s)"
+Select "$kent->setCourses($s)"
 
 # Сложность этой процедуры зависит от способа использования сеттера коллекции. В простейшем из них клиент инициализирует значения с помощью сеттера, т.е. до применения метода курсов не существует.
 
@@ -180,10 +187,9 @@ Select body of "setCourses"
 
 Print:
 ```
-    Assert.isTrue(courses.isEmpty());
-    Iterator iter = arg.iterator();
-    while (iter.hasNext()) {
-      addCourse((Course) iter.next());
+    assert($this->courses->count() > 0, "Courses are not empty");
+    foreach ($arg as $item) {
+      $this->courses->attach($item);
     }
 ```
 
@@ -202,9 +208,8 @@ Print "initializeCourses"
 
 Select:
 ```
-    Iterator iter = arg.iterator();
-    while (iter.hasNext()) {
-      addCourse((Course) iter.next());
+    foreach ($arg as $item) {
+      $this->courses->attach($item);
     }
 ```
 
@@ -212,35 +217,36 @@ Wait 500ms
 
 Print:
 ```
-    courses.addAll(arg);
+    $this->courses->addAll($arg);
 ```
 
 # Стоит упомянуть, что мы не можем просто присвоить значение множеству, даже если предыдущее множество было пустым. Если клиент соберётся модифицировать множество после того, как передаст его, это станет нарушением инкапсуляции. Поэтому мы должны создать копию.
 
 Select:
 ```
-Set s = new HashSet();
+$s = new SplObjectStorage();
 
 ```
 
 # Если клиенты просто создают множество и пользуются методом установки, я могу заставить их пользоваться методами добавления и удаления непосредственно и полностью убрать вызов метода инициализации.
 
+
 Remove selected
 
 Select:
 ```
-|||s.add|||(new Course("Smalltalk Programming", false));
-|||s.add|||(new Course("Appreciating Single Malts", true));
+|||$s->attach|||(new Course("Smalltalk Programming", false));
+|||$s->attach|||(new Course("Appreciating Single Malts", true));
 ```
 
 Wait 1000ms
 
-Print "kent.addCourse"
+Print "$kent->addCourse"
 
 Select:
 ```
 
-kent.initializeCourses(s);
+$kent->initializeCourses($s);
 ```
 
 Remove selected
@@ -248,20 +254,20 @@ Remove selected
 Set step 4
 
 
-Select "getCourses().add"
-+ Select "getCourses().remove"
+Select "getCourses()->attach"
++ Select "getCourses()->detach"
 
 # Теперь нужно рассмотреть, кто использует геттер коллекции. В первую очередь нам должны интересовать случаи модификации коллекции с его помощью.
 
 # Такие вызовы следует заменять вызовами метода добавления или удаления курсов.
 
-Select "getCourses().add"
+Select "getCourses()->attach"
 
 Print "addCourse"
 
 Wait 500ms
 
-Select "getCourses().remove"
+Select "getCourses()->detach"
 
 Wait 500ms
 
@@ -271,24 +277,24 @@ Set step 5
 
 Select:
 ```
-return |||courses|||;
+return |||$this->courses|||;
 ```
 
-# Последним штрихом следует изменить тело геттера так, чтобы он возвращал значение, доступное только для чтения (другими словами неизменяемое представление коллекции).
+# Последним штрихом следует изменить тело геттера так, чтобы он возвращал значение, доступное только для чтения (другими словами неизменяемое представление коллекции). Для этого подойдёт простая копия коллекции.
 
 
 Print:
 ```
-Collections.unmodifiableSet(courses)
+clone $this->courses;
 ```
 
-#C Запустим компиляцию, чтобы убедиться в отсутствии ошибок.
+#C Запустим тестирование, чтобы убедиться в отсутствии ошибок.
 
 #S Отлично, все работает!
 
 Select:
 ```
-private Set |||courses|||
+private |||$courses|||
 ```
 
 # После этого коллекцию можно считать полностью инкапсулированной. Никто не сможет изменить её элементы, кроме как через методы <code>Person</code>.
@@ -297,12 +303,10 @@ Set step 6
 
 Select:
 ```
-Iterator iter = kent.getCourses().iterator();
-int count = 0;
-while (iter.hasNext()) {
-  Course each = (Course) iter.next();
-  if (each.isAdvanced()) {
-    count++;
+$count = 0;
+foreach ($kent->getCourses() as $course) {
+  if ($course->isAdvanced()) {
+    $count++;
   }
 }
 
@@ -317,27 +321,23 @@ Go to the end of "class Person"
 Print:
 ```
 
-  public int numberOfAdvancedCourses() {
-    Iterator iter = getCourses().iterator();
-    int count = 0;
-    while (iter.hasNext()) {
-      Course each = (Course) iter.next();
-      if (each.isAdvanced()) {
-        count++;
+  public function numberOfAdvancedCourses() {
+    $count = 0;
+    foreach ($this->courses as $course) {
+      if ($course->isAdvanced()) {
+        $count++;
       }
     }
-    return count;
+    return $count;
   }
 ```
 
 Select:
 ```
-Iterator iter = kent.getCourses().iterator();
-int count = 0;
-while (iter.hasNext()) {
-  Course each = (Course) iter.next();
-  if (each.isAdvanced()) {
-    count++;
+$count = 0;
+foreach ($kent->getCourses() as $course) {
+  if ($course->isAdvanced()) {
+    $count++;
   }
 }
 
@@ -347,12 +347,12 @@ Remove selected
 
 Select:
 ```
-System.out.print("Advanced courses: " + |||count|||);
+print("Advanced courses: " . |||$count|||);
 ```
 
-Print "kent.numberOfAdvancedCourses()"
+Print "$kent->numberOfAdvancedCourses()"
 
-Select "kent.getCourses().size()"
+Select "$kent->getCourses()->count()"
 
 # Часто встречается такой код.
 
@@ -363,14 +363,14 @@ Go to the end of "Person"
 Print:
 ```
 
-  public int numberOfCourses() {
-    return courses.size();
+  public function numberOfCourses() {
+    return $this->courses->count();
   }
 ```
 
-Select "kent.getCourses().size()"
+Select "$kent->getCourses()->count()"
 
-Print "kent.numberOfCourses()"
+Print "$kent->numberOfCourses()"
 
 #C Запускаем финальную компиляцию.
 

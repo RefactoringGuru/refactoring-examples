@@ -12,6 +12,8 @@ duplicate-observed-data:java
 
 5. Переместите необходимые поля из класса GUI в класс предметной области. При этом, изменяйте методы доступа в классе интерфейса так, чтобы они обращались к полям класса предметной области.
 
+
+
 ###
 
 ```
@@ -228,7 +230,7 @@ class Interval extends Observable {
 
 Set step 1
 
-Select "IntervalWindow"
+Select name of "class IntervalWindow"
 
 # Давайте рассмотрим <i>Дублирование видимых данных</i> на примере класса для создания окна редактирования интервала чисел.
 
@@ -238,18 +240,18 @@ Select 1st "lengthField"
 
 #< Окно состоит из трёх полей — стартовое значение (Start), конечное значение (End) и результирующая длина (length). <br/><img src="/images/refactoring/gui-window.png">
 
-Select "public void |||focusLost|||(java.awt.event.FocusEvent event) {"
+Select name of "focusLost"
 
 #V+ Перерасчёты новых значений происходят при потере фокуса элементом. При изменении полей <code>Start</code> или <code>End</code> вычисляется <code>length</code>; при изменении поля <code>length</code> вычисляется <code>End</code>.
 
-Select "void |||StartField_FocusLost|||"
-+ Select "void |||EndField_FocusLost|||"
-+ Select "void |||LengthField_FocusLost|||"
+Select name of "StartField_FocusLost"
++ Select name of "EndField_FocusLost"
++ Select name of "LengthField_FocusLost"
 
 #V= Но, конкретные вычисления происходят в служебных методах, относящихся к каждому из полей.
 
-Select "void |||calculateLength|||"
-+ Select "void |||calculateEnd|||"
+Select name of "calculateLength"
++ Select name of "calculateEnd"
 
 # Эти методы вызывают вычисление новой длины (<code>calculateLength</code>) или нового конечного значения (<code>calculateEnd</code>) в зависимости от того, что поменялось в окне.
 
@@ -284,7 +286,7 @@ Print:
 
 Set step 2
 
-Select "public |||IntervalWindow|||()"
+Select name of "public IntervalWindow"
 
 # Затем надо создать код инициализации этого поля, а также сделать класс окна наблюдателем предметного класса. Весь этот код стоит поместить в конструктор <code>IntervalWindow</code>.
 
@@ -378,7 +380,7 @@ Type "setEnd"
 
 Set step 4
 
-Select "void |||EndField_FocusLost|||"
+Select name of "EndField_FocusLost"
 
 # В нашем случае, в отличие от обычной само-инкапсуляции, сам пользователь может поменять значение поля <code>End</code> в окне, поэтому нам нужно позаботиться о том, чтобы такое изменение сохранилось.
 
@@ -398,7 +400,7 @@ Select "setEnd(|||endField.getText()|||);"
 
 Set step 5
 
-Select "class |||Interval||| "
+Select name of "Interval"
 
 # Отлично, после того, как поле <code>End</code> полностью инкапсулировано, мы можем добавить соответствующее поле в класс предметной области.
 
@@ -600,24 +602,12 @@ Print:
     startField.setText(subject.getStart());
 ```
 
-Select "void |||calculateEnd|||"
-+ Select "void |||calculateLength|||"
+Select name of "calculateEnd"
++ Select name of "calculateLength"
 
 # После всех этих изменений, методы <code>calculateEnd()</code> и <code>calculateLength()</code> можно перенести в класс интервала.
 
-Select:
-```
-    void calculateLength() {
-      try {
-        int start = Integer.parseInt(getStart());
-        int end = Integer.parseInt(getEnd());
-        int length = end - start;
-        setLength(String.valueOf(length));
-      } catch (NumberFormatException e) {
-        throw new RuntimeException ("Unexpected Number Format Error");
-      }
-    }
-```
+Select whole "calculateLength"
 
 Remove selected
 
@@ -644,22 +634,7 @@ Select "calculateLength()" in "SymFocus"
 Print "subject.calculateLength()"
 
 
-Select:
-```
-
-
-    void calculateEnd() {
-      try {
-        int start = Integer.parseInt(getStart());
-        int length = Integer.parseInt(getLength());
-        int end = start + length;
-        setEnd(String.valueOf(end));
-      } catch (NumberFormatException e) {
-        throw new RuntimeException ("Unexpected Number Format Error");
-      }
-    }
-
-```
+Select whole "calculateEnd"
 
 Remove selected
 
@@ -685,8 +660,14 @@ Select "calculateEnd()" in "SymFocus"
 Print "subject.calculateEnd()"
 
 
-Select "class |||Interval||| "
+Select name of "Interval"
 
 # В итоге мы получим класс предметной области, содержащий все поведения и вычисления над исходными данными, причём отдельно от кода пользовательского интерфейса.
+
+#C Запускаем финальную компиляцию и тестирование.
+
+#S Отлично, все работает!
+
+Set final step
 
 #Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
