@@ -1,4 +1,4 @@
-replace-type-code-with-class:java
+replace-type-code-with-class:php
 
 ###
 
@@ -20,79 +20,79 @@ replace-type-code-with-class:java
 
 ```
 class Person {
-  public static final int О = 0;
-  public static final int A = 1;
-  public static final int B = 2;
-  public static final int AB = 3;
+  public static $О = 0;
+  public static $A = 1;
+  public static $B = 2;
+  public static $AB = 3;
 
-  private int bloodGroup;
+  private $bloodGroup; // int
 
-  public Person(int code) {
-    bloodGroup = code;
+  public function __construct($code) {
+    $this->bloodGroup = $code;
   }
-  public void setBloodGroup(int code) {
-    bloodGroup = code;
+  public function setBloodGroup($code) {
+    $this->bloodGroup = $code;
   }
-  public int getBloodGroup() {
-    return bloodGroup;
+   public function getBloodGroup() {
+    return $this->bloodGroup;
   }
 }
 
 // Somewhere in client code.
-Person parent = new Person(Person.O);
-if (parent.getBloodGroup() == Person.AB) {
+$parent = new Person(Person::$O);
+if ($parent->getBloodGroup() == Person::$AB) {
   // ...
 }
-child.setBloodGroup(parent.getBloodGroup());
+$child->setBloodGroup($parent->getBloodGroup());
 ```
 
 ###
 
 ```
 class Person {
-  private BloodGroup bloodGroup;
+  private $bloodGroup; // BloodGroup
 
   public Person(BloodGroup bloodGroup) {
-    bloodGroup = bloodGroup;
+    $this->bloodGroup = $bloodGroup;
   }
-  public void setBloodGroup(BloodGroup bloodGroup) {
-    bloodGroup = bloodGroup;
+  public function __construct(BloodGroup $bloodGroup) {
+    $this->bloodGroup = $bloodGroup;
   }
-  public int getBloodGroup() {
-    return bloodGroup;
+  public function getBloodGroup() {
+    return $this->bloodGroup;
   }
 }
 
 class BloodGroup {
-  private final int code;
+  private $code;
 
-  private BloodGroup(int code) {
-    this.code = code;
+  private function __construct($arg) {
+    $this->code = $arg;
   }
-  public int getCode() {
-    return this.code;
+  public function getCode() {
+    return $this->code;
   }
 
-  public static BloodGroup O() {
+  public static function O() {
     return new BloodGroup(0);
   }
-  public static BloodGroup A() {
+  public static function A() {
     return new BloodGroup(1);
   }
-  public static BloodGroup B() {
+  public static function B() {
     return new BloodGroup(2);
   }
-  public static BloodGroup AB() {
+  public static function AB() {
     return new BloodGroup(3);
   }
 }
 
 // Somewhere in client code.
-Person parent = new Person(BloodGroup.O());
-if (parent.getBloodGroup() == BloodGroup.AB()) {
+$parent = new Person(BloodGroup::O());
+if ($parent->getBloodGroup() == BloodGroup::AB()) {
   // ...
 }
-child.setBloodGroup(parent.getBloodGroup());
+$child->setBloodGroup($parent->getBloodGroup());
 ```
 
 ###
@@ -103,10 +103,10 @@ Set step 1
 
 Select:
 ```
-  public static final int |||О = 0|||;
-  public static final int |||A = 1|||;
-  public static final int |||B = 2|||;
-  public static final int |||AB = 3|||;
+  public static |||$О = 0|||;
+  public static |||$A = 1|||;
+  public static |||$B = 2|||;
+  public static |||$AB = 3|||;
 ```
 
 # Группы крови закодированы в четырёх константах этого класса.
@@ -132,13 +132,13 @@ Go to the end of "BloodGroup"
 Type:
 ```
 
-  private final int code;
+  private $code;
 
-  private BloodGroup(int code) {
-    this.code = code;
+  private function __construct($arg) {
+    $this->code = $arg;
   }
-  public int getCode() {
-    return this.code;
+  public function getCode() {
+    return $this->code;
   }
 ```
 
@@ -152,22 +152,21 @@ Print:
 ```
 
 
-  public static BloodGroup O() {
+  public static function O() {
     return new BloodGroup(0);
   }
-  public static BloodGroup A() {
+  public static function A() {
     return new BloodGroup(1);
   }
-  public static BloodGroup B() {
+  public static function B() {
     return new BloodGroup(2);
   }
-  public static BloodGroup AB() {
+  public static function AB() {
     return new BloodGroup(3);
   }
 ```
 
-
-#C Можем провести компиляцию и тестирование, чтобы убедиться в правильности кода.
+#C Можем запустить тестирование, чтобы убедиться в правильности кода.
 
 #S Всё хорошо, можем продолжать.
 
@@ -175,7 +174,7 @@ Set step 4
 
 Select:
 ```
-  private |||int||| bloodGroup;
+  private $bloodGroup; // |||int|||
 ```
 
 # Теперь в исходном классе, заменим тип закодированного поля на <code>BloodGroup</code>.
@@ -189,11 +188,11 @@ BloodGroup
 
 Select:
 ```
-  public Person(int code) {
-    bloodGroup = |||code|||;
+  public function __construct($code) {
+    $this->bloodGroup = |||$code|||;
   }
-  public void setBloodGroup(int code) {
-    bloodGroup = |||code|||;
+  public function setBloodGroup($code) {
+    $this->bloodGroup = |||$code|||;
   }
 ```
 
@@ -201,126 +200,88 @@ Select:
 
 Type:
 ```
-new BloodGroup(code)
+new BloodGroup($code)
 ```
 
 Go to:
 ```
-return bloodGroup|||;
+return $this->bloodGroup|||;
 ```
 
 # Затем, изменяем геттер поля так, чтобы он вызывал геттер класса <code>BloodGroup</code>
 
-Print ".getCode()"
+Print "->getCode()"
 
 Set step 5
 
 Select:
 ```
-  public static final int |||О = 0|||;
-  public static final int |||A = 1|||;
-  public static final int |||B = 2|||;
-  public static final int |||AB = 3|||;
+  public static |||$О = 0|||;
+  public static |||$A = 1|||;
+  public static |||$B = 2|||;
+  public static |||$AB = 3|||;
 ```
 
-# Настала пора заменить любые упоминания значений закодированного типа вызовами соответствующих статических методов <i>класса типа</i>.
+# Тепперь настала пора заменить любые упоминания значений закодированного типа вызовами соответствующих статических методов <i>класса типа</i> <code>BloodGroup</code>.
 
-# Сперва заменяем значения всех констант старого закодированного типа вызовами соответствующих методов класса <code>BloodGroup</code>.
-
-Select "public static final int О = |||0|||;"
-Print "BloodGroup.O().getCode()"
-
-Select "public static final int A = |||1|||;"
-Print "BloodGroup.A().getCode()"
-
-Select "public static final int B = |||2|||;"
-Print "BloodGroup.B().getCode()"
-
-Select "public static final int AB = |||3|||;"
-Print "BloodGroup.AB().getCode()"
-
-#^ Сейчас по-сути, все использования констант делегируются в методы <code>BlodGroup</code>.
-
-Select "new Person(|||Person.O|||);"
-
-# Тем не менее, мы пойдём дальше и избавимся от прямых обращений к константам класса <code>Person</code> в остальном коде, заменяя их вызовами методов класса <code>BloodGroup</code>.
-
-Type "BloodGroup.O().getCode()"
+Select "new Person(|||Person::$O|||);"
 
 Wait 500ms
 
-Select "parent.getBloodGroup() == |||Person.AB|||"
+Type "BloodGroup::O()->getCode()"
 
 Wait 500ms
 
-Type "BloodGroup.AB().getCode()"
+Select "$parent->getBloodGroup() == |||Person::$AB|||"
 
-#C После всех замен, стоит запустить компиляцию и тестирование.
+Wait 500ms
+
+Type "BloodGroup::AB()->getCode()"
+
+#C После всех замен, стоит запустить тесты.
 
 #S Всё работает, отлично!
 
-Select:
+Select parameters in "__construct"
++ Select parameters in "setBloodGroup"
++ Select:
 ```
-  public Person(|||int code|||) {
-    bloodGroup = new BloodGroup(code);
-  }
-  public void setBloodGroup(|||int code|||) {
-    bloodGroup = new BloodGroup(code);
-  }
-  public int getBloodGroup() {
-    return bloodGroup|||.getCode()|||;
-  }
+return $this->bloodGroup|||->getCode()|||;
 ```
 
 # После всех замен, нужно постараться вообще избавиться от использования числовых кодов <code>BloodGroup</code> и использовать объекты вместо этого. Давайте попробуем сделать это в классе <code>Person</code>.
 
-Select:
-```
-  public Person(|||int code|||) {
-    bloodGroup = new BloodGroup(code);
-  }
-  public void setBloodGroup(|||int code|||) {
-    bloodGroup = new BloodGroup(code);
-  }
-```
+Select parameters in "__construct"
++ Select parameters in "setBloodGroup"
 
 Wait 500ms
 
-Print "BloodGroup bloodGroup"
+Print "BloodGroup $bloodGroup"
 
 Wait 500ms
 
 Select:
 ```
-  public Person(BloodGroup bloodGroup) {
-    bloodGroup = |||new BloodGroup(code)|||;
-  }
-  public void setBloodGroup(BloodGroup bloodGroup) {
-    bloodGroup = |||new BloodGroup(code)|||;
-  }
+new BloodGroup($code)
 ```
 
 Wait 500ms
 
-Print "bloodGroup"
+Print "$bloodGroup"
 
 Wait 500ms
 
 Select:
 ```
-  public int getBloodGroup() {
-    return bloodGroup|||.getCode()|||;
-  }
+return $this->bloodGroup|||->getCode()|||;
 ```
 
 Remove selected
 
 Select:
 ```
-Person parent = new Person(BloodGroup.O()|||.getCode()|||);
-if (parent.getBloodGroup() == BloodGroup.AB()|||.getCode()|||) {
-  // ...
-}
+$parent = new Person(BloodGroup::O()|||->getCode()|||);
+if ($parent->getBloodGroup() == BloodGroup::AB()|||->getCode()|||) {
 ```
 
 # После этих изменений, вероятно, сломается клиентский код, но это просто исправить, избавившить от кодов и там.
@@ -331,10 +292,10 @@ Remove selected
 Set step 6
 Select:
 ```
-  public static final int О = BloodGroup.O().getCode();
-  public static final int A = BloodGroup.A().getCode();
-  public static final int B = BloodGroup.B().getCode();
-  public static final int AB = BloodGroup.AB().getCode();
+  public static $О = 0;
+  public static $A = 1;
+  public static $B = 2;
+  public static $AB = 3;
 
 
 ```
@@ -343,7 +304,7 @@ Select:
 
 Remove selected
 
-#C Запускаем финальную компиляцию.
+#C Запускаем финальное тестирование.
 
 #S Отлично, все работает!
 

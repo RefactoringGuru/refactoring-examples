@@ -1,4 +1,4 @@
-replace-type-code-with-subclasses:java
+replace-type-code-with-subclasses:php
 
 ###
 
@@ -21,27 +21,27 @@ replace-type-code-with-subclasses:java
 ```
 class Employee {
   // ...
-  static final int ENGINEER = 0;
-  static final int SALESMAN = 1;
-  static final int MANAGER = 2;
+  static $ENGINEER = 0;
+  static $SALESMAN = 1;
+  static $MANAGER = 2;
   
-  public int type;
+  public $type;
 
-  public Employee(int arg) {
-    type = arg;
+  public function __construct($arg) {
+    $this->type = $arg;
   }
 
-  public int monthlySalary;
-  public int commission;
-  public int bonus;
-  public int payAmount() {
-    switch (type) {
-      case ENGINEER:
-        return monthlySalary;
-      case SALESMAN:
-        return monthlySalary + commission;
-      case MANAGER:
-        return monthlySalary + bonus;
+  public $monthlySalary;
+  public $commission;
+  public $bonus;
+  public function payAmount() {
+    switch ($this->type) {
+      case self::$ENGINEER:
+        return $this->monthlySalary;
+      case self::$SALESMAN:
+        return $this->monthlySalary + $this->commission;
+      case self::$MANAGER:
+        return $this->monthlySalary + $this->bonus;
       default:
         throw new RuntimeException("Incorrect Employee Code");
     }
@@ -54,57 +54,57 @@ class Employee {
 ```
 class Employee {
   // ...
-  static final int ENGINEER = 0;
-  static final int SALESMAN = 1;
-  static final int MANAGER = 2;
+  static $ENGINEER = 0;
+  static $SALESMAN = 1;
+  static $MANAGER = 2;
 
-  abstract public int getType();
+  abstract public function getType();
 
-  static Employee create(int type) {
-    switch (type) {
-      case ENGINEER:
+  static function create($type) {
+    switch ($type) {
+      case self::$ENGINEER:
         return new Engineer();
-      case SALESMAN:
+      case self::SALESMAN:
         return new Salesman();
-      case MANAGER:
+      case self::MANAGER:
         return new Manger();
       default:
-        return new Employee(type);
+        return new Employee($type);
     }
   }
-  private Employee(int arg) {
-    type = arg;
+  private function __construct($arg) {
+    $this->type = $arg;
   }
 
-  public int monthlySalary;
-  public int payAmount() {
-    return monthlySalary;
+  public $monthlySalary;
+  public function payAmount() {
+    return $this->monthlySalary;
   }  
 }
 
 class Engineer extends Employee {
-  public int getType() {
-    return Employee.ENGINEER;
+  public function getType() {
+    return Employee::$ENGINEER;
   }
 }
 
 class Salesman extends Employee {
-  public int commission;
-  public int getType() {
-    return Employee.SALESMAN;
+  public $commission;
+  public function getType() {
+    return Employee::$SALESMAN;
   }
-  public int payAmount() {
-    return monthlySalary + commission;
+  public function payAmount() {
+    return $this->monthlySalary + $this->commission;
   }
 }
 
 class Manager extends Employee {
-  public int bonus;
-  public int getType() {
-    return Employee.MANAGER;
+  public $bonus;
+  public function getType() {
+    return Employee::$MANAGER;
   }
-  public int payAmount() {
-    return monthlySalary + bonus;
+  public function payAmount() {
+    return $this->monthlySalary + $this->bonus;
   }
 }
 ```
@@ -115,49 +115,46 @@ Set step 1
 
 # Рассмотрим рефакторинг <i>Замена кодирования типа подклассами</i> на примере класса зарплаты служащего. У нас есть несколько типов служащих, в зависимости от чего, вычисляется размер зарплаты.
 
-Select "public int |||type|||"
+Select "public |||$type|||"
 + Select name of "payAmount"
 
 # Начнём с <a href="/self-encapsulate-field">самоинкапсуляции поля</a> типа служащего.
 
-Select "|||public||| int type"
-
-Wait 500ms
-
+Select "|||public||| $type"
 Print "private"
 
-Go to before "public Employee"
+Go to before "__construct"
 
 Print:
 ```
 
-  public int getType() {
-    return type;
+  public function getType() {
+    return $this->type;
   }
 
 ```
 
-Select "switch (|||type|||)"
+Select "switch (|||$this->type|||)"
 
-Print "getType()"
+Print "$this->getType()"
 
 Set step 2
 
-Go to before "public Employee"
+Go to before "__construct"
 
 # Поскольку конструктор <code>Employee</code> использует код типа в качестве параметра, надо заменить его фабричным методом.
 
 Print:
 ```
 
-  static Employee create(int type) {
-    return new Employee(type);
+  static function create($type) {
+    return new Employee($type);
   }
 ```
 
 Wait 500ms
 
-Select "|||public||| Employee"
+Select visibility of "__construct"
 
 Wait 500ms
 
@@ -165,7 +162,7 @@ Print "private"
 
 Set step 3
 
-Select "ENGINEER"
+Select "$ENGINEER"
 
 # Теперь можно приступить к преобразованию <code>Engineer</code> в подкласс. Сначала создаётся сам подкласс.
 
@@ -186,8 +183,8 @@ Go to the end of "Engineer"
 Print:
 ```
 
-  public int getType() {
-    return Employee.ENGINEER;
+  public function getType() {
+    return Employee::$ENGINEER;
   }
 ```
 
@@ -197,11 +194,11 @@ Select body of "create"
 
 Print:
 ```
-    switch (type) {
-      case ENGINEER:
+    switch ($type) {
+      case self::$ENGINEER:
         return new Engineer();
       default:
-        return new Employee(type);
+        return new Employee($type);
     }
 ```
 
@@ -214,22 +211,22 @@ Print:
 
 
 class Salesman extends Employee {
-  public int getType() {
-    return Employee.SALESMAN;
+  public function getType() {
+    return Employee::$SALESMAN;
   }
 }
 ```
 
 Go to:
 ```
-      case ENGINEER:
+      case self::$ENGINEER:
         return new Engineer();|||
 ```
 
 Print:
 ```
 
-      case SALESMAN:
+      case self::$SALESMAN:
         return new Salesman();
 ```
 
@@ -242,28 +239,28 @@ Print:
 
 
 class Manager extends Employee {
-  public int getType() {
-    return Employee.MANAGER;
+  public function getType() {
+    return Employee::$MANAGER;
   }
 }
 ```
 
 Go to:
 ```
-      case SALESMAN:
+      case self::$SALESMAN:
         return new Salesman();|||
 ```
 
 Print:
 ```
 
-      case MANAGER:
-        return new Manger();
+      case self::$MANAGER:
+        return new Manager();
 ```
 
 Select:
 ```
-  private int type;
+  private $type;
 
 
 ```
@@ -277,8 +274,8 @@ Remove selected
 
 Go to:
 ```
-  |||public int getType() {
-    return type;
+  |||public function getType() {
+    return $this->type;
   }
 ```
 
@@ -288,14 +285,14 @@ Print "abstract "
 
 Select:
 ```
-  abstract public int getType()||| {
-    return type;
+  abstract public function getType()||| {
+    return $this->type;
   }|||
 ```
 
 Print ";"
 
-Select "switch (type) {" in "create"
+Select "switch ($type) {" in "create"
 
 # Обратите внимание, что мы создали еще один большой оператор <code>switch</code>. Вообще <a href="/smells/switch-statements">это плохо</a>, но после завершения рефакторинга он будет единственным оставшимся в коде.
 
@@ -305,9 +302,9 @@ Set step 5
 
 Select:
 ```
-  public int monthlySalary;
-  public int commission;
-  public int bonus;
+  public $monthlySalary;
+  public $commission;
+  public $bonus;
 ```
 + Select name of "payAmount"
 
@@ -315,7 +312,7 @@ Select:
 
 Select:
 ```
-  public int commission;
+  public $commission;
 
 ```
 
@@ -326,13 +323,13 @@ Go to the start of "Salesman"
 Print:
 ```
 
-  public int commission;
+  public $commission;
 ```
 
 Select:
 ```
-      case SALESMAN:
-        return monthlySalary + commission;
+      case self::$SALESMAN:
+        return $this->monthlySalary + $this->commission;
 
 ```
 
@@ -343,8 +340,8 @@ Go to the end of "Salesman"
 Print:
 ```
 
-  public int payAmount() {
-    return monthlySalary + commission;
+  public function payAmount() {
+    return $this->monthlySalary + $this->commission;
   }
 ```
 
@@ -352,7 +349,7 @@ Wait 500ms
 
 Select:
 ```
-  public int bonus;
+  public $bonus;
 
 ```
 
@@ -365,13 +362,13 @@ Go to the start of "Manager"
 Print:
 ```
 
-  public int bonus;
+  public $bonus;
 ```
 
 Select:
 ```
-      case MANAGER:
-        return monthlySalary + bonus;
+      case self::$MANAGER:
+        return $this->monthlySalary + $this->bonus;
 
 ```
 
@@ -383,8 +380,8 @@ Go to the end of "Manager"
 Print:
 ```
 
-  public int payAmount() {
-    return monthlySalary + bonus;
+  public function payAmount() {
+    return $this->monthlySalary + $this->bonus;
   }
 ```
 
@@ -396,12 +393,12 @@ Select body of "payAmount"
 
 Print:
 ```
-    return monthlySalary;
+    return $this->monthlySalary;
 ```
 
 
 
-#C Запускаем финальную компиляцию.
+#C Запускаем финальное тестирование.
 
 #S Отлично, все работает!
 

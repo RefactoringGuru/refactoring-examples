@@ -372,7 +372,7 @@ Select "$kent->getCourses()->count()"
 
 Print "$kent->numberOfCourses()"
 
-#C Запускаем финальную компиляцию.
+#C Запускаем финальное тестирование.
 
 #S Отлично, все работает!
 
