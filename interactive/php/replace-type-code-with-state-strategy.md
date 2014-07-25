@@ -59,7 +59,7 @@ class Employee {
   private $type; // EmployeeType
 
   public function __construct($arg) {
-    $this->type = $arg;
+    $this->type = EmployeeType::newType($arg);
   }
   public function getType() {
     return $this->type->getTypeCode();
@@ -229,7 +229,7 @@ Set step 5
 
 Go to "private $type;|||"
 
-# Теперь нужно фактически подключить созданные подклассы к <code>Employee</code>, модифицируя методы доступа к коду типа.
+# Теперь нужно фактически подключить созданные подклассы к <code>Employee</code>, модифицируя методы доступа к коду типа и конструктор.
 
 Print " // EmployeeType"
 
@@ -250,12 +250,10 @@ Wait 500ms
 
 Select:
 ```
-  public function setType($arg) {
     $this->type = |||$arg|||;
-  }
 ```
 
-# Тело сеттера меняем на вызов фабричного метода.
+# Тело сеттера и конструктора меняем на вызов фабричного метода.
 
 Print "EmployeeType::newType($arg)"
 

@@ -59,7 +59,7 @@ class Employee {
   private EmployeeType type;
 
   public Employee(int arg) {
-    type = arg;
+    type = EmployeeType.newType(arg);
   }
   public int getType() {
     return type.getTypeCode();
@@ -229,7 +229,7 @@ Set step 5
 
 Select "private |||int||| type"
 
-# Теперь нужно фактически подключить созданные подклассы к <code>Employee</code>, модифицируя методы доступа к коду типа.
+# Теперь нужно фактически подключить созданные подклассы к <code>Employee</code>, модифицируя методы доступа к коду типа и конструктор.
 
 Print "EmployeeType"
 
@@ -250,12 +250,11 @@ Wait 500ms
 
 Select:
 ```
-  public void setType(int arg) {
     type = |||arg|||;
-  }
 ```
 
-# Тело сеттера меняем на вызов фабричного метода.
+
+# Тело сеттера и конструктор меняем на вызов фабричного метода.
 
 Print "EmployeeType.newType(arg)"
 
