@@ -55,16 +55,16 @@ class Employee {
 
 ```
 class Employee {
-  // ...
+  // ...  
   private $type; // EmployeeType
 
   public function __construct($arg) {
     $this->type = EmployeeType::newType($arg);
   }
-  public function getType() {
+  public function getTypeCode() {
     return $this->type->getTypeCode();
   }
-  public function setType($arg) {
+  public function setTypeCode($arg) {
     $this->type = EmployeeType::newType($arg);
   }
 
@@ -72,7 +72,7 @@ class Employee {
   public $commission;
   public $bonus;
   public function payAmount() {
-    return $this->type->payAmount($this);
+    return $type->payAmount($this);
   }
 }
 
@@ -94,6 +94,8 @@ abstract class EmployeeType {
         throw new Exception("Incorrect Employee Code");
     }
   }
+
+  abstract public function payAmount(Employee $employee);
 }
 class Engineer extends EmployeeType {
   public function getTypeCode() {
@@ -149,6 +151,12 @@ Print:
     $this->type = $arg;
   }
 ```
+
+Wait 500ms
+
+Select "switch ($this->|||type|||) {"
+
+Print "getType()"
 
 Select whole "setType"
 
@@ -257,6 +265,17 @@ Select:
 
 Print "EmployeeType::newType($arg)"
 
+Select name of "setType"
++ Select name of "getType"
+
+# Так как методы доступа теперь возвращают код, а не сам объект типа, стоит переменовать их, чтобы избавить будущего читателя от непонимания.
+
+Select "setType("
+Print "setTypeCode("
+
+Select "getType("
+Print "getTypeCode("
+
 
 Select:
 ```
@@ -306,11 +325,61 @@ Type "EmployeeType"
 
 Set step 6
 
-# На этом этапе всё готово, чтобы начать перемещать методы и поля, нужные только для определённых типов служащих, в соответствующие классы.
+# Теперь всё готово для применения <a href="/replace-conditional-with-polymorphism">замены условного оператора полиморфизмом</a>.
 
-Select name of "payAmount"
+Select body of "payAmount"
 
-# В нашем случае, создадим методы <code>payAmount</code> в каждом из подклассов и переместим туда расчёты зарплаты для соответствующих типов служащих.
+# Сперва выделим реализацию <code>payAmount</code> в новый метод в классе типа.
+
+Go to the end of "EmployeeType"
+
+Print:
+```
+
+
+  public function payAmount() {
+    switch ($this->getTypeCode()) {
+      case EmployeeType::$ENGINEER:
+        return $this->monthlySalary;
+      case EmployeeType::$SALESMAN:
+        return $this->monthlySalary + $this->commission;
+      case EmployeeType::$MANAGER:
+        return $this->monthlySalary + $this->bonus;
+      default:
+        throw new Exception("Incorrect Employee Code");
+    }
+  }
+```
+
+Select "monthlySalary" in "EmployeeType"
++Select "commission" in "EmployeeType"
++Select "bonus" in "EmployeeType"
+
+# Нам нужны данные из объекта <code>Employee</code>, поэтому создадим в методе параметр, в который будет передаваться основной объект <code>Employee</code>.
+
+Go to "payAmount(|||) {" in "EmployeeType"
+
+Print "Employee $employee"
+
+Select "$this->monthlySalary" in "EmployeeType"
+
+Print "$employee->monthlySalary"
+
+Select "$this->commission" in "EmployeeType"
+
+Print "$employee->commission"
+
+Select "$this->bonus" in "EmployeeType"
+
+Print "$employee->bonus"
+
+Select body of "payAmount"
+
+# После этих действий, мы можем настроить делегирование из класса <code>Employee</code>.
+
+Print "    return $type->payAmount($this);"
+
+# После этого займёмся перемещением кода в подклассы. Создадим методы <code>payAmount</code> в каждом из подклассов и переместим туда расчёты зарплаты для соответствующих типов служащих.
 
 Go to the end of "class Engineer"
 
@@ -351,11 +420,27 @@ Set step 7
 
 Select body of "payAmount"
 
-# После того как методы созданы, можно применить <a href="/replace-conditional-with-polymorphism">замену условного оператора полиморфизмом</a> к оператору <code>switch</code> в методе <code>payAmount</code>.
+# После того как методы созданы, можно сделать метод <code>payAmount</code> в <code>EmployeeType</code> абстрактным.
+
+Select:
+```
+  public function payAmount(Employee $employee) {
+    switch ($this->getTypeCode()) {
+      case EmployeeType::$ENGINEER:
+        return $employee->monthlySalary;
+      case EmployeeType::$SALESMAN:
+        return $employee->monthlySalary + $employee->commission;
+      case EmployeeType::$MANAGER:
+        return $employee->monthlySalary + $employee->bonus;
+      default:
+        throw new Exception("Incorrect Employee Code");
+    }
+  }
+```
 
 Print:
 ```
-    return $this->type->payAmount($this);
+  abstract public function payAmount(Employee $employee);
 ```
 
 #C Запускаем финальное тестирование.

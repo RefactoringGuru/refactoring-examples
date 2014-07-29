@@ -150,6 +150,13 @@ Print:
   }
 ```
 
+Wait 500ms
+
+Select "switch (|||type|||) {"
+
+Print "getType()"
+
+
 Select whole "setType"
 
 # Предполагается, что это замечательная, прогрессивная компания, позволяющая менеджерам вырастать до инженеров. Поэтому код типа изменяемый, и применять подклассы для избавления от кодирования типа нельзя, что приводит нас к применении паттерна <a href="http://sourcemaking.com/design_patterns/state">Состояние</a>.
@@ -258,6 +265,18 @@ Select:
 
 Print "EmployeeType.newType(arg)"
 
+Select name of "setType"
++ Select name of "getType"
+
+# Так как методы доступа теперь возвращают код, а не сам объект типа, стоит переменовать их, чтобы избавить будущего читателя от непонимания.
+
+Select "setType("
+Print "setTypeCode("
+
+Select "getType("
+Print "getTypeCode("
+
+
 
 Select:
 ```
@@ -314,11 +333,61 @@ Type "EmployeeType"
 
 Set step 6
 
-# На этом этапе всё готово, чтобы начать перемещать методы и поля, нужные только для определённых типов служащих, в соответствующие классы.
+# Теперь всё готово для применения <a href="/replace-conditional-with-polymorphism">замены условного оператора полиморфизмом</a>.
 
-Select name of "payAmount"
+Select body of "payAmount"
 
-# В нашем случае, создадим методы <code>payAmount</code> в каждом из подклассов и переместим туда расчёты зарплаты для соответствующих типов служащих.
+# Сперва выделим реализацию <code>payAmount</code> в новый метод в классе типа.
+
+Go to the end of "EmployeeType"
+
+Print:
+```
+
+
+  public int payAmount() {
+    switch (getTypeCode()) {
+      case EmployeeType.ENGINEER:
+        return monthlySalary;
+      case EmployeeType.SALESMAN:
+        return monthlySalary + commission;
+      case EmployeeType.MANAGER:
+        return monthlySalary + bonus;
+      default:
+        throw new RuntimeException("Incorrect Employee Code");
+    }
+  }
+```
+
+Select "monthlySalary" in "EmployeeType"
++Select "commission" in "EmployeeType"
++Select "bonus" in "EmployeeType"
+
+# Нам нужны данные из объекта <code>Employee</code>, поэтому создадим в методе параметр, в который будет передаваться основной объект <code>Employee</code>.
+
+Go to "payAmount(|||) {" in "EmployeeType"
+
+Print "Employee employee"
+
+Select "monthlySalary" in "EmployeeType"
+
+Print "employee.monthlySalary"
+
+Select "commission" in "EmployeeType"
+
+Print "employee.commission"
+
+Select "bonus" in "EmployeeType"
+
+Print "employee.bonus"
+
+Select body of "payAmount"
+
+# После этих действий, мы можем настроить делегирование из класса <code>Employee</code>.
+
+Print "    return type.payAmount(this);"
+
+# После этого займёмся перемещением кода в подклассы. Создадим методы <code>payAmount</code> в каждом из подклассов и переместим туда расчёты зарплаты для соответствующих типов служащих.
 
 Go to the end of "class Engineer"
 
@@ -359,11 +428,27 @@ Set step 7
 
 Select body of "payAmount"
 
-# После того как методы созданы, можно применить <a href="/replace-conditional-with-polymorphism">замену условного оператора полиморфизмом</a> к оператору <code>switch</code> в методе <code>payAmount</code>.
+# После того как методы созданы, можно сделать метод <code>payAmount</code> в <code>EmployeeType</code> абстрактным.
+
+Select:
+```
+  public int payAmount(Employee employee) {
+    switch (getTypeCode()) {
+      case EmployeeType.ENGINEER:
+        return employee.monthlySalary;
+      case EmployeeType.SALESMAN:
+        return employee.monthlySalary + employee.commission;
+      case EmployeeType.MANAGER:
+        return employee.monthlySalary + employee.bonus;
+      default:
+        throw new RuntimeException("Incorrect Employee Code");
+    }
+  }
+```
 
 Print:
 ```
-    return type.payAmount(this);
+  abstract public int payAmount(Employee employee);
 ```
 
 
