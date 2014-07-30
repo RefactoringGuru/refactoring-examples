@@ -8,7 +8,7 @@ rename-method:php
 
 3. Найдите все обращения к старому методу и замените их обращениями к новому.
 
-4. Удалите старый метод. Этот шаг неосуществим, если старый метод является частью публичного интерфейса. В этом случае, старый метод нужно пометить как устаревший (`deprecated`).
+4. Удалите старый метод. Этот шаг неосуществим, если старый метод является частью публичного интерфейса. В этом случае, старый метод нужно пометить как устаревший (<code>deprecated</code>).
 
 
 
@@ -17,13 +17,13 @@ rename-method:php
 ```
 class Person {
   //...
-  public String getTelephoneNumber() {
-    return ("(" + officeAreaCode + ") " + officeNumber);
+  public function getTelephoneNumber() {
+    return ("(" . officeAreaCode . ") " . officeNumber);
   }
 }
 
 // Client code
-phone = employee.getTelephoneNumber();
+$phone = $employee->getTelephoneNumber();
 ```
 
 ###
@@ -31,13 +31,13 @@ phone = employee.getTelephoneNumber();
 ```
 class Person {
   //...
-  public String getOfficeTelephoneNumber() {
-    return ("(" + officeAreaCode + ") " + officeNumber);
+  public function getOfficeTelephoneNumber() {
+    return ("(" . $this->officeAreaCode . ") " . $this->officeNumber);
   }
 }
 
 // Client code
-phone = employee.getOfficeTelephoneNumber();
+$phone = $employee->getOfficeTelephoneNumber();
 ```
 
 ###
