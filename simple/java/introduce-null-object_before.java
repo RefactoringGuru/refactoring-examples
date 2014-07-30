@@ -1,4 +1,6 @@
-if (customer == null)
+if (customer == null) {
   plan = BillingPlan.basic();
-else
+}
+else {
   plan = customer.getPlan();
+}

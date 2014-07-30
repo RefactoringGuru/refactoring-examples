@@ -1,3 +1,3 @@
-int basePrice = _quantity * _itemPrice;
+int basePrice = quantity * itemPrice;
 int discountLevel = getDiscountLevel();
-double finalPrice = discountedPrice (basePrice, discountLevel);
+double finalPrice = discountedPrice(basePrice, discountLevel);

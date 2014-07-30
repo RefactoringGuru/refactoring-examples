@@ -1,2 +1,8 @@
-Date newStart = new Date (previousEnd.getYear(),
-  previousEnd.getMonth(), previousEnd.getDate() + 1);
+class Report {
+  //...
+  void sendReport() {
+    Date nextDay = new Date(previousEnd.getYear(),
+      previousEnd.getMonth(), previousEnd.getDate() + 1);
+    //...
+  }
+}

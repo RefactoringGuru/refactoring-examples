@@ -1,7 +1,6 @@
 class Employee {
-  ...
-  Employee (int type) {
-    _type = type;
+  Employee(int type) {
+    this.type = type;
   }
-  ...
+  //...
 }

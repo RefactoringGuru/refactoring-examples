@@ -1,2 +1,4 @@
-double basePrice = anOrder.basePrice();
-return (basePrice > 1000);
+double hasDiscount(Order order) {
+  double basePrice = order.basePrice();
+  return (basePrice > 1000);
+}

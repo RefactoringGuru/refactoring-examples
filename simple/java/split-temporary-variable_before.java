@@ -1,4 +1,4 @@
-double temp = 2 * (_height + _width);
-System.out.println (temp);
-temp = _height * _width;
-System.out.println (temp);
+double temp = 2 * (height + width);
+System.out.println(temp);
+temp = height * width;
+System.out.println(temp);

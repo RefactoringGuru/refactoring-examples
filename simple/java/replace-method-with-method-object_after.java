@@ -1,5 +1,5 @@
 class Order {
-  ...
+  //...
   public double price() {
     return new PriceCalculator(this).compute();
   }
@@ -12,11 +12,11 @@ class PriceCalculator {
   
   public PriceCalculator(Order order) {
     // copy relevant information from order object.
-    ...
+    //...
   }
   
   public double compute() {
     // long computation.
-    ...
+    //...
   }
 }

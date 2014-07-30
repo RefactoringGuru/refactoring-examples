@@ -1,2 +1,2 @@
-int basePrice = _quantity * _itemPrice;
+int basePrice = quantity * itemPrice;
 double finalPrice = discountedPrice(basePrice);

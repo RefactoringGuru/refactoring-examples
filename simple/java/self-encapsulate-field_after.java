@@ -1,6 +1,12 @@
-private int _low, _high;
-boolean includes (int arg) {
-  return arg >= getLow() && arg <= getHigh();
+class Range {
+  private int low, high;
+  boolean includes(int arg) {
+    return arg >= getLow() && arg <= getHigh();
+  }
+  int getLow() {
+    return low;
+  }
+  int getHigh() {
+    return high;
+  }
 }
-int getLow() {return _low;}
-int getHigh() {return _high;}

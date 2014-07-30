@@ -1,1 +1,1 @@
-withinPlan = plan.withinRange(daysTempRange());
+bool withinPlan = plan.withinRange(daysTempRange());

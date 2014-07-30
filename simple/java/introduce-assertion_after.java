@@ -1,7 +1,7 @@
 double getExpenseLimit() {
-  Assert.isTrue (_expenseLimit != NULL_EXPENSE || _primaryProject != null);
+  Assert.isTrue(expenseLimit != NULL_EXPENSE || primaryProject != null);
 
-  return (_expenseLimit != NULL_EXPENSE) ?
-    _expenseLimit:
-    _primaryProject.getMemberExpenseLimit();
+  return (expenseLimit != NULL_EXPENSE) ?
+    expenseLimit:
+    primaryProject.getMemberExpenseLimit();
 }

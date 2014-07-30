@@ -1,15 +1,14 @@
 class Bird {
-  ...
+  //...
   double getSpeed() {
-    switch (_type) {
+    switch (type) {
       case EUROPEAN:
         return getBaseSpeed();
       case AFRICAN:
-        return getBaseSpeed() - getLoadFactor() * _numberOfCoconuts;
+        return getBaseSpeed() - getLoadFactor() * numberOfCoconuts;
       case NORWEGIAN_BLUE:
-        return (_isNailed) ? 0 : getBaseSpeed(_voltage);
+        return (isNailed) ? 0 : getBaseSpeed(voltage);
     }
-    throw new RuntimeException ("Should be unreachable");
+    throw new RuntimeException("Should be unreachable");
   }
-  ...
 }

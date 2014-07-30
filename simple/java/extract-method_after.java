@@ -3,7 +3,7 @@ void printOwing() {
   printDetails(getOutstanding());
 }
 
-void printDetails (double outstanding) {
-  System.out.println ("name:  " + _name);
-  System.out.println ("amount " + outstanding);
+void printDetails(double outstanding) {
+  System.out.println("name: " + name);
+  System.out.println("amount: " + outstanding);
 }

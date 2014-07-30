@@ -1,7 +1,6 @@
 abstract class Bird {
-  ...
+  //...
   abstract double getSpeed();
-  ...
 }
 
 class European extends Bird {
@@ -11,14 +10,14 @@ class European extends Bird {
 }
 class African extends Bird {
   double getSpeed() {
-    return getBaseSpeed() - getLoadFactor() * _numberOfCoconuts;
+    return getBaseSpeed() - getLoadFactor() * numberOfCoconuts;
   }
 }
 class NorvegianBlue extends Bird {
   double getSpeed() {
-    return (_isNailed) ? 0 : getBaseSpeed(_voltage);
+    return (isNailed) ? 0 : getBaseSpeed(voltage);
   }
 }
 
-// Somewhere in Client code.
+// Somewhere in client code
 speed = bird.getSpeed();

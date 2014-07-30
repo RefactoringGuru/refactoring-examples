@@ -1,5 +1,6 @@
 void withdraw(int amount) throws BalanceException {
-  if (amount > _balance)
+  if (amount > _balance) {
     throw new BalanceException();
-  _balance -= amount;
+  }
+  balance -= amount;
 }

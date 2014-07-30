@@ -1,3 +1,6 @@
-int getRating() {
-  return (_numberOfLateDeliveries > 5) ? 2 : 1;
+class PizzaDelivery {
+  //...
+  int getRating() {
+    return (numberOfLateDeliveries > 5) ? 2 : 1;
+  }
 }

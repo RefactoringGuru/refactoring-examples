@@ -1,6 +1,6 @@
 void setHeight(int arg) {
-  _height = arg;
+  height = arg;
 }
 void setWidth(int arg) {
-  _width = arg;
+  width = arg;
 }

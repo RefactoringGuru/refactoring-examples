@@ -1,10 +1,10 @@
-void setValue (String name, int value) {
+void setValue(String name, int value) {
   if (name.equals("height")) {
-    _height = value;
+    height = value;
     return;
   }
   if (name.equals("width")) {
-    _width = value;
+    width = value;
     return;
   }
   Assert.shouldNeverReachHere();

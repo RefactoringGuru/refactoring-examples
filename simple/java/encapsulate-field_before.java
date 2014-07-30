@@ -1,1 +1,3 @@
-public String _name
+class Person {
+  public String name;
+}

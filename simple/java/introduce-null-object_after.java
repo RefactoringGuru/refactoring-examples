@@ -10,8 +10,7 @@ class NullCustomer extends Customer {
 
 // Replace null values with Null-object.
 customer = (order.customer != null) ?
-  order.customer :
-  new NullCustomer();
+  order.customer : new NullCustomer();
 
 // Use Null-object as if it's normal subclass.
 plan = customer.getPlan();

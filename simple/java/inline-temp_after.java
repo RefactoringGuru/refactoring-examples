@@ -1,1 +1,3 @@
-return (anOrder.basePrice() > 1000);
+double hasDiscount(Order order) {
+  return (order.basePrice() > 1000);
+}
