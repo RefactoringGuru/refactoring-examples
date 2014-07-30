@@ -17,13 +17,13 @@ rename-method:php
 ```
 class Person {
   //...
-  public function getTelephoneNumber() {
-    return ("(" . $this->officeAreaCode . ") " . $this->officeNumber);
+  public String getTelephoneNumber() {
+    return ("(" + officeAreaCode + ") " + officeNumber);
   }
 }
 
 // Client code
-$phone = $employee->getTelephoneNumber();
+phone = employee.getTelephoneNumber();
 ```
 
 ###
@@ -31,7 +31,7 @@ $phone = $employee->getTelephoneNumber();
 ```
 class Person {
   //...
-  public function getOfficeTelephoneNumber() {
+  public String getOfficeTelephoneNumber() {
     return ("(" + officeAreaCode + ") " + officeNumber);
   }
 }
@@ -42,9 +42,13 @@ phone = employee.getOfficeTelephoneNumber();
 
 ###
 
+Set step 1
+
 Select name of "getTelephoneNumber"
 
-# Имеется метод для получения номера телефона лица.
+# Имеется метод для получения номера телефона лица. Метод нигде не переопределяется, так что нам не нужно отслеживать изменение в подклассах.
+
+Set step 2
 
 # Мы решили переименовать метод в <code>getOfficeTelephoneNumber</code>, дабы он лучше отражал то, что делает.
 
@@ -66,11 +70,15 @@ Select body of "getTelephoneNumber"
 
 Print "    $this->getOfficeTelephoneNumber();"
 
+Set step 3
+
 # Теперь находим места вызова прежнего метода и изменяем их так, чтобы в них вызывался новый метод.
 
 Select "$employee->|||getTelephoneNumber|||()"
 
 Print "getOfficeTelephoneNumber"
+
+Set step 4
 
 Select whole "getTelephoneNumber"
 
