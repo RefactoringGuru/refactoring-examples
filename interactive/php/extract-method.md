@@ -1,4 +1,4 @@
-extract-method:java
+extract-method:php
 
 ###
 
@@ -15,55 +15,55 @@ extract-method:java
 ###
 
 ```
-void printOwing() {
-  Enumeration elements = orders.elements();
-  double outstanding = 0.0;
+function printOwing() {
+  $e = $this->orders->elements();
+  $outstanding = 0;
 
   // print banner
-  System.out.println ("*****************************");
-  System.out.println ("****** Customer totals ******");
-  System.out.println ("*****************************");
+  print("*****************************\n");
+  print("****** Customer totals ******\n");
+  print("*****************************\n");
 
   // print owings
-  while (elements.hasMoreElements()) {
-    Order each = (Order) elements.nextElement();
-    outstanding += each.getAmount();
+  while ($e->hasMoreElements()) {
+    $each = $e->nextElement();
+    $outstanding += $each->getAmount();
   }
 
   // print details
-  System.out.println("name: " + name);
-  System.out.println("amount: " + outstanding);
+  print("name: " . $this->name);
+  print("amount: " . $outstanding);
 }
 ```
 
 ###
 
 ```
-void printOwing() {
-  printBanner();
-  double outstanding = getOutstanding();
-  printDetails(outstanding);
+function printOwing() {
+  $this->printBanner();
+  $outstanding = $this->getOutstanding();
+  $this->printDetails($outstanding);
 }
 
-void printBanner() {
-  System.out.println("*****************************");
-  System.out.println("****** Customer totals ******");
-  System.out.println("*****************************");
+function printBanner() {
+  print("*****************************\n");
+  print("****** Customer totals ******\n");
+  print("*****************************\n");
 }
 
-void printDetails(double outstanding) {
-  System.out.println("name: " + name);
-  System.out.println("amount: " + outstanding);
+function printDetails($outstanding) {
+  print("name: " . $this->name);
+  print("amount: " . $outstanding);
 }
 
-double getOutstanding() {
-  Enumeration elements = orders.elements();
-  double outstanding = 0.0;
-  while (elements.hasMoreElements()) {
-    Order each = (Order) elements.nextElement();
-    outstanding += each.getAmount();
+function getOutstanding() {
+  $e = $this->orders->elements();
+  $outstanding = 0;
+  while ($e->hasMoreElements()) {
+    $each = $e->nextElement();
+    $outstanding += $each->getAmount();
   }
-  return outstanding;
+  return $outstanding;
 }
 ```
 
@@ -76,9 +76,9 @@ Set step 1
 Select in "printOwing":
 ```
   // print banner
-  System.out.println ("*****************************");
-  System.out.println ("****** Customer totals ******");
-  System.out.println ("*****************************");
+  print("*****************************\n");
+  print("****** Customer totals ******\n");
+  print("*****************************\n");
 ```
 
 # Сперва — простейший случай. Код, выводящий баннер, легко выделить с помощью копирования и вставки.
@@ -91,10 +91,10 @@ Print:
 ```
 
 
-void printBanner() {
-  System.out.println("*****************************");
-  System.out.println("****** Customer totals ******");
-  System.out.println("*****************************");
+function printBanner() {
+  print("*****************************\n");
+  print("****** Customer totals ******\n");
+  print("*****************************\n");
 }
 ```
 
@@ -103,9 +103,9 @@ Set step 2
 Select in "printOwing":
 ```
   // print banner
-  System.out.println ("*****************************");
-  System.out.println ("****** Customer totals ******");
-  System.out.println ("*****************************");
+  print("*****************************\n");
+  print("****** Customer totals ******\n");
+  print("*****************************\n");
 ```
 
 # Заменяем код в исходном методе вызовом нового метода.
@@ -114,7 +114,7 @@ Remove selected
 
 Print:
 ```
-  printBanner();
+  $this->printBanner();
 ```
 
 #C Запускаем компиляцию, чтобы убедиться, что всё работает.
@@ -126,8 +126,9 @@ Set step 3
 Select:
 ```
   // print details
-  System.out.println("name: " + name);
-  System.out.println("amount: " + |||outstanding|||);
+  print("name: " . $this->name);
+  print("amount: " . |||$outstanding|||);
+
 ```
 
 # Дальше — сложнее. Основная проблема с извлечением сложных методов кроется в локальных переменных.
@@ -135,8 +136,9 @@ Select:
 Select in "printOwing":
 ```
   // print details
-  System.out.println("name: " + name);
-  System.out.println("amount: " + outstanding);
+  print("name: " . $this->name);
+  print("amount: " . $outstanding);
+
 ```
 
 # Давайте попытаемся извлечь метод вывода деталей.
@@ -149,40 +151,40 @@ Print:
 ```
 
 
-void printDetails() {
-  System.out.println("name: " + name);
-  System.out.println("amount: " + outstanding);
+function printDetails() {
+  print("name: " . $this->name);
+  print("amount: " . $outstanding);
 }
 ```
 
 Select in "printOwing":
 ```
   // print details
-  System.out.println("name: " + name);
-  System.out.println("amount: " + outstanding);
+  print("name: " . $this->name);
+  print("amount: " . $outstanding);
 ```
 
 Remove selected
 
-Print "  printDetails();"
+Print "  $this->printDetails();"
 
-#C Давайте запустим компиляцию.
+#C Давайте запустим тестирование.
 
 #F Ошибка! Переменная <code>outstanding</code> в методе <code>printDetails()</code> не определена.
 
-Select in "printDetails" text "outstanding"
+Select "$outstanding" in "printDetails"
 
 # Да, действительно, мы перенесли переменную <code>outstanding</code> из исходного метода, но в новом методе ей не присваивается никакое значение.
 
 # Решением будет сделать эту переменную параметром метода, и передавать ее значение из исходного метода.
 
-Go to text "void printDetails(|||)"
+Go to parameters of "printDetails"
 
-Print "double outstanding"
+Print "$outstanding"
 
 Go to text "printDetails(|||)" in "printOwing"
 
-Print "outstanding"
+Print "$outstanding"
 
 #C Запустим компиляцию сейчас.
 
@@ -192,15 +194,15 @@ Set step 4
 
 Select in "printOwing":
 ```
-  Enumeration elements = orders.elements();
-  double outstanding = 0.0;
+  $e = $this->orders->elements();
+  $outstanding = 0;
 ```
 + Select in "printOwing":
 ```
   // print owings
-  while (elements.hasMoreElements()) {
-    Order each = (Order) elements.nextElement();
-    outstanding += each.getAmount();
+  while ($e->hasMoreElements()) {
+    $each = $e->nextElement();
+    $outstanding += $each->getAmount();
   }
 ```
 
@@ -215,20 +217,20 @@ Print:
 ```
 
 
-double getOutstanding() {
-  Enumeration elements = orders.elements();
-  double outstanding = 0.0;
-  while (elements.hasMoreElements()) {
-    Order each = (Order) elements.nextElement();
-    outstanding += each.getAmount();
+function getOutstanding() {
+  $e = $this->orders->elements();
+  $outstanding = 0;
+  while ($e->hasMoreElements()) {
+    $each = $e->nextElement();
+    $outstanding += $each->getAmount();
   }
 }
 ```
 
 Select in "printOwing":
 ```
-  Enumeration elements = orders.elements();
-  double outstanding = 0.0;
+  $e = $this->orders->elements();
+  $outstanding = 0;
 
 
 ```
@@ -239,21 +241,21 @@ Select in "printOwing":
 ```
 
   // print owings
-  while (elements.hasMoreElements()) {
-    Order each = (Order) elements.nextElement();
-    outstanding += each.getAmount();
+  while ($e->hasMoreElements()) {
+    $each = $e->nextElement();
+    $outstanding += $each->getAmount();
   }
 
 ```
 
 Remove selected
 
-Print "  getOutstanding();"
+Print "  $this->getOutstanding();"
 
 Select in "getOutstanding":
 ```
-  Enumeration |||elements||| = orders.elements();
-  double |||outstanding||| = 0.0;
+  |||$e||| = $this->orders->elements();
+  |||$outstanding||| = 0;
 ```
 
 # Здесь дополнительные сложности создаются локальным переменными, которым присваиваются новые значения. Вполне возможно, что эти значения могли использоваться в оставшемся коде основного метода.
@@ -262,14 +264,14 @@ Select in "getOutstanding":
 
 Select in "getOutstanding":
 ```
-  double |||outstanding||| = 0.0;
+  |||$outstanding||| = 0;
 ```
 
 #<+ Следует проверить каждую из переменных.
 
 + Select in "printOwing":
 ```
-  printDetails(|||outstanding|||);
+  $this->printDetails(|||$outstanding|||);
 ```
 
 #<= В нашем случае, проблему создаёт переменная <code>outstanding</code>, которая потом используется в вызове <code>printDetails()</code>.
@@ -281,12 +283,12 @@ Go to the end of "getOutstanding"
 Print:
 ```
 
-  return outstanding;
+  return $outstanding;
 ```
 
-Go to text "|||getOutstanding()" in "printOwing"
+Go to text "|||$this->getOutstanding()" in "printOwing"
 
-Print "double outstanding = "
+Print "$outstanding = "
 
 #C Запускаем финальную компиляцию.
 
