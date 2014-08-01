@@ -18,12 +18,12 @@ add-parameter:java
 class Calendar {
   // ...
   private Set appointments;
-  public Appointment findAppointment(Date date) {
+  public ArrayList<Appointment> findAppointments(Date date) {
     Set result = new ArrayList();
     Iterator iter = kent.getCourses().iterator();
     while (iter.hasNext()) {
       Appointment each = (Appointment) iter.next();
-      if (date.compareTo(each.date)) {
+      if (date.compareTo(each.date) == 0) {
         result.add(date);
       }
     }
@@ -33,7 +33,7 @@ class Calendar {
 
 // Somewhere in client code
 Date today = new Date();
-appointments = calendar.findAppointment(today);
+appointments = calendar.findAppointments(today);
 ```
 
 ###
@@ -42,13 +42,13 @@ appointments = calendar.findAppointment(today);
 class Calendar {
   // ...
   private Set appointments;
-  public Appointment findAppointment(Date date, String name) {
+  public ArrayList<Appointment> findAppointments(Date date, String name) {
     Set result = new ArrayList();
     Iterator iter = kent.getCourses().iterator();
     while (iter.hasNext()) {
       Appointment each = (Appointment) iter.next();
-      if (date.compareTo(each.date)) {
-        if (name == null || (name != null && name != each.name)) {
+      if (date.compareTo(each.date) == 0) {
+        if (name == null || (name != null && name == each.name)) {
           result.add(date);
         }
       }
@@ -59,7 +59,7 @@ class Calendar {
 
 // Somewhere in client code
 Date today = new Date();
-appointments = calendar.findAppointment(today, null);
+appointments = calendar.findAppointments(today, null);
 ```
 
 ###
@@ -68,7 +68,7 @@ Set step 1
 
 # У нас есть класс календаря, в котором хранятся записи встреч.
 
-Select name of "findAppointment"
+Select name of "findAppointments"
 
 # В нём есть метод, который возвращает встречи по дате.
 
@@ -85,12 +85,12 @@ Go to the end of "Calendar"
 Print:
 ```
 
-  public Appointment findAppointment(Date date, String name) {
+  public ArrayList<Appointment> findAppointments(Date date, String name) {
     Set result = new ArrayList();
     Iterator iter = kent.getCourses().iterator();
     while (iter.hasNext()) {
       Appointment each = (Appointment) iter.next();
-      if (date.compareTo(each.date)) {
+      if (date.compareTo(each.date) == 0) {
         result.add(date);
       }
     }
@@ -109,32 +109,32 @@ Print:
         }
 ```
 
-Select body of "findAppointment"
+Select body of "findAppointments"
 
 # Теперь тело старого метода можно заменить вызовом нового метода.
 
 Print:
 ```
-    findAppointmentByDate(date, null);
+    findAppointments(date, null);
 ```
 
 Set step 3
 
-Select name of "findAppointment"
+Select name of "findAppointments"
 
 # Теперь нужно найти все обращения к старому методу и заменить их обращениями к новому.
 
-Select "calendar.findAppointment(today);"
+Select "calendar.findAppointments(today);"
 
 # Вот одно из них. Так как нам нечего подать в новый параметр, впишем значение <code>null</code>.
 
-Go to "calendar.findAppointment(today|||);"
+Go to "calendar.findAppointments(today|||);"
 
 Print ", null"
 
 Set step 4
 
-Select whole "findAppointment"
+Select whole "findAppointments"
 
 # После всех изменений, старый метод можно удалить.
 
