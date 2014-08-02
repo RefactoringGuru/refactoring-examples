@@ -16,7 +16,7 @@ class Stadium {
   public $summerRate;
   public $winterRate;
   public $winterServiceCharge;
-  
+
   public function getTicketPrice(DateTime $date, $quantity) {
     if ($date->format("m") < "06" || $date->format("m") > "08") {
       $charge = $quantity * $this->winterRate + $this->winterServiceCharge;
@@ -47,13 +47,14 @@ class Stadium {
     }
     return $charge;
   }
+
   private function notSummer(DateTime $date) {
     return $date->format("m") < "06" || $date->format("m") > "08";
   }
   private function winterCharge($quantity) {
     return $quantity * $this->winterRate + $this->winterServiceCharge;
   }
-  private function summerCharge(int quantity) {
+  private function summerCharge($quantity) {
     return $quantity * $this->summerRate;
   }
 }
@@ -124,7 +125,7 @@ Print:
 ```
 
   private function winterCharge($quantity) {
-    return $charge = $quantity * $this->winterRate + $this->winterServiceCharge;
+    return $quantity * $this->winterRate + $this->winterServiceCharge;
   }
 ```
 

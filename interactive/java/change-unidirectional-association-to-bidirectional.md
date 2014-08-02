@@ -1,4 +1,4 @@
-java--java--java--java--change-unidirectional-association-to-bidirectional:java
+change-unidirectional-association-to-bidirectional:java
 
 ###
 

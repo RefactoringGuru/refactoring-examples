@@ -24,7 +24,7 @@ class Employee {
   static $ENGINEER = 0;
   static $SALESMAN = 1;
   static $MANAGER = 2;
-  
+
   public $type;
 
   public function __construct($arg) {
@@ -64,10 +64,10 @@ class Employee {
     switch ($type) {
       case self::$ENGINEER:
         return new Engineer();
-      case self::SALESMAN:
+      case self::$SALESMAN:
         return new Salesman();
-      case self::MANAGER:
-        return new Manger();
+      case self::$MANAGER:
+        return new Manager();
       default:
         return new Employee($type);
     }
@@ -79,7 +79,7 @@ class Employee {
   public $monthlySalary;
   public function payAmount() {
     return $this->monthlySalary;
-  }  
+  }
 }
 
 class Engineer extends Employee {

@@ -42,7 +42,7 @@ class Payout {
 class Payout {
   // ...
   function getPayAmount() {
-      if ($this->isDead) {
+    if ($this->isDead) {
       return $this->deadAmount();
     }
     if ($this->isSeparated) {

@@ -133,7 +133,7 @@ Select "($this->seniority < 2) || ($this->monthsDisabled > 12) || ($this->isPart
 
 Wait 500ms
 
-Print "isNotEligibleForDisability()"
+Print "$this->isNotEligibleForDisability()"
 
 #C Запускаем тестирование.
 

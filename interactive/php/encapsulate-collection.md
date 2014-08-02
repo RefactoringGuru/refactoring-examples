@@ -117,7 +117,7 @@ $refact = new Course("Refactoring", true);
 $kent->addCourse($refact);
 $kent->addCourse(new Course("Brutal Sarcasm", false));
 assert(4 === $kent->numberOfCourses());
-kent.removeCourse($refact);
+$kent->removeCourse($refact);
 assert(3 === $kent->numberOfCourses());
 
 print("Advanced courses: " . $kent->numberOfAdvancedCourses());
@@ -285,7 +285,7 @@ return |||$this->courses|||;
 
 Print:
 ```
-clone $this->courses;
+clone $this->courses
 ```
 
 #C Запустим тестирование, чтобы убедиться в отсутствии ошибок.

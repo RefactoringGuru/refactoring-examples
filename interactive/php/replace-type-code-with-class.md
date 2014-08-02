@@ -33,7 +33,7 @@ class Person {
   public function setBloodGroup($code) {
     $this->bloodGroup = $code;
   }
-   public function getBloodGroup() {
+  public function getBloodGroup() {
     return $this->bloodGroup;
   }
 }
@@ -52,10 +52,10 @@ $child->setBloodGroup($parent->getBloodGroup());
 class Person {
   private $bloodGroup; // BloodGroup
 
-  public Person(BloodGroup bloodGroup) {
+  public function __construct(BloodGroup $bloodGroup) {
     $this->bloodGroup = $bloodGroup;
   }
-  public function __construct(BloodGroup $bloodGroup) {
+  public function setBloodGroup(BloodGroup $bloodGroup) {
     $this->bloodGroup = $bloodGroup;
   }
   public function getBloodGroup() {

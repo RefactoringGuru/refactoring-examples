@@ -24,7 +24,7 @@ function checkSecurity(array $people) {
       if ($people[$i] == "John") {
         sendAlert();
         $found = true;
-      } 
+      }
     }
   }
 }
@@ -42,8 +42,8 @@ function checkSecurity(array $people) {
     if ($people[$i] == "John") {
       sendAlert();
       break;
-    } 
-  } 
+    }
+  }
 }
 ```
 
@@ -88,7 +88,7 @@ Select:
 
 + Select:
 ```
-      } 
+      }
 |||    }
 |||  }
 }

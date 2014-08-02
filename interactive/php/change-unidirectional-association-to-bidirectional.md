@@ -59,14 +59,14 @@ class Order {
 
 class Customer {
   // ...
-  private Set orders = new HashSet();
+  private $orders = array();
 
   // Should be used in Order class only.
-  Set friendOrders() {
-    return orders;
+  public function friendOrders() {
+    return $orders;
   }
-  void addOrder(Order arg) {
-    arg.setCustomer(this);
+  public function addOrder(Order $arg) {
+    $arg->setCustomer($this);
   }
 }
 ```
@@ -135,7 +135,7 @@ Print:
 ```
 
     // Remove order from old customer.
-    if ($this->customer != null) {
+    if (isset($this->customer)) {
       $this->customer->friendOrders()->remove($this);
     }
 ```
@@ -148,7 +148,7 @@ Print:
 ```
 
     // Add order to new customer.
-    if ($this->customer != null) {
+    if (isset($this->customer)) {
       $this->customer->friendOrders()->add($this);
     }
 ```
