@@ -112,7 +112,7 @@ abstract class EmployeeType {
     }
   }
 
-  abstract public int payAmount(Employee employee)
+  abstract public int payAmount(Employee employee);
 }
 class Engineer extends EmployeeType {
   public int getTypeCode() {

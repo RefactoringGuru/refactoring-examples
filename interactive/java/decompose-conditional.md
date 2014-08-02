@@ -16,7 +16,7 @@ class Stadium {
   public double summerRate;
   public double winterRate;
   public double winterServiceCharge;
-  
+
   public double getTicketPrice(Date date, int quantity) {
     if (date.before(SUMMER_START) || date.after(SUMMER_END)) {
       charge = quantity * winterRate + winterServiceCharge;
@@ -47,6 +47,7 @@ class Stadium {
     }
     return charge;
   }
+
   private boolean notSummer(Date date) {
     return date.before(SUMMER_START) || date.after(SUMMER_END);
   }

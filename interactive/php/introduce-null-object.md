@@ -38,7 +38,7 @@ class Customer {
   }
 }
    
-public class PaymentHistory {
+class PaymentHistory {
   public function getWeeksDelinquentInLastYear() {
     //...
   }
@@ -115,7 +115,7 @@ class NullCustomer extends Customer {
   }
 }
    
-public class PaymentHistory {
+class PaymentHistory {
   public function isNull() {
     return false;
   }

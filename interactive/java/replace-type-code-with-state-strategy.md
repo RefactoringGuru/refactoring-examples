@@ -61,10 +61,10 @@ class Employee {
   public Employee(int arg) {
     type = EmployeeType.newType(arg);
   }
-  public int getType() {
+  public int getTypeCode() {
     return type.getTypeCode();
   }
-  public void setType(int arg) {
+  public void setTypeCode(int arg) {
     type = EmployeeType.newType(arg);
   }
 
@@ -94,6 +94,8 @@ abstract class EmployeeType {
         throw new IllegalArgumentException("Incorrect Employee Code");
     }
   }
+
+  abstract public int payAmount(Employee employee);
 }
 class Engineer extends EmployeeType {
   public int getTypeCode() {

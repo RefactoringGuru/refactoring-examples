@@ -38,7 +38,7 @@ class Customer {
   }
 }
    
-public class PaymentHistory {
+class PaymentHistory {
   public int getWeeksDelinquentInLastYear() {
     //...
   }
@@ -89,7 +89,7 @@ class Customer {
   public boolean isNull() {
     return false;
   }
-  static Customer newNull() {
+  public static Customer newNull() {
     return new NullCustomer();
   }
 
@@ -118,11 +118,11 @@ class NullCustomer extends Customer {
   }
 }
    
-public class PaymentHistory {
+class PaymentHistory {
   public boolean isNull() {
     return false;
   }
-  static PaymentHistory newNull() {
+  public static PaymentHistory newNull() {
     return new NullPaymentHistory();
   }
 
@@ -134,7 +134,7 @@ class NullPaymentHistory extends PaymentHistory {
   public boolean isNull() {
     return true;
   }
-  int getWeeksDelinquentInLastYear() {
+  public int getWeeksDelinquentInLastYear() {
     return 0;
   }
 }

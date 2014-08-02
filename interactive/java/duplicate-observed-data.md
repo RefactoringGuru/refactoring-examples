@@ -607,7 +607,12 @@ Select name of "calculateEnd"
 
 # После всех этих изменений, методы <code>calculateEnd()</code> и <code>calculateLength()</code> можно перенести в класс интервала.
 
-Select whole "calculateLength"
+Select:
+```
+
+    void calculateLength() {
+```
++ Select whole "calculateLength"
 
 Remove selected
 

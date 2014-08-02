@@ -24,7 +24,7 @@ class Employee {
   static final int ENGINEER = 0;
   static final int SALESMAN = 1;
   static final int MANAGER = 2;
-  
+
   public int type;
 
   public Employee(int arg) {
@@ -79,7 +79,7 @@ class Employee {
   public int monthlySalary;
   public int payAmount() {
     return monthlySalary;
-  }  
+  }
 }
 
 class Engineer extends Employee {

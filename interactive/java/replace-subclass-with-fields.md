@@ -54,7 +54,7 @@ System.out.print("Person's gender is: " + kent.getCode());
 
 ```
 class Person {
-  static Person createMale(){
+  static Person createMale() {
     return new Person(true, 'M');
   }
   static Person createFemale() {

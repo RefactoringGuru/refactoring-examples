@@ -55,7 +55,7 @@ print("Person's gender is: " . $kent->getCode());
 
 ```
 class Person {
-  static function createMale(){
+  static function createMale() {
     return new Person(true, 'M');
   }
   static function createFemale() {
