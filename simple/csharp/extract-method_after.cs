@@ -6,6 +6,6 @@ void PrintOwing()
 
 void PrintDetails(double outstanding) 
 {
-  System.out.println("name: " + name);
-  System.out.println("amount: " + outstanding);
+  Console.WriteLine("name: " + name);
+  Console.WriteLine("amount: " + outstanding);
 }
