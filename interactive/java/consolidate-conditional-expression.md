@@ -16,7 +16,7 @@ class Payout {
   
   public int seniority;
   public int monthsDisabled;
-  public bool isPartTime;
+  public boolean isPartTime;
 
   public double disabilityAmount() {
     if (seniority < 2) {
@@ -51,7 +51,7 @@ class Payout {
   
   public int seniority;
   public int monthsDisabled;
-  public bool isPartTime;
+  public boolean isPartTime;
 
   public double disabilityAmount() {
     if (isNotEligibleForDisability()) {
@@ -60,7 +60,7 @@ class Payout {
     // compute the disability amount
     // ...
   }
-  private bool isNotEligibleForDisability() {
+  private boolean isNotEligibleForDisability() {
     return (seniority < 2) || (monthsDisabled > 12) || (isPartTime);
   }
    
@@ -124,7 +124,7 @@ Go to after "disabilityAmount"
 Print:
 ```
 
-  private bool isNotEligibleForDisability() {
+  private boolean isNotEligibleForDisability() {
     return (seniority < 2) || (monthsDisabled > 12) || (isPartTime);
   }
 ```

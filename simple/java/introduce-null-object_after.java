@@ -1,5 +1,5 @@
 class NullCustomer extends Customer {
-  bool isNull() {
+  boolean isNull() {
     return true;
   }
   Plan getPlan() {

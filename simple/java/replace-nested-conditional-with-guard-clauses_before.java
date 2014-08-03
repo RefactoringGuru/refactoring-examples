@@ -1,4 +1,5 @@
 public double getPayAmount() {
+  double result;
   if (isDead){
     result = deadAmount();
   }
