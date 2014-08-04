@@ -18,6 +18,7 @@ class Stadium {
   public double winterServiceCharge;
 
   public double getTicketPrice(Date date, int quantity) {
+    double charge;
     if (date.before(SUMMER_START) || date.after(SUMMER_END)) {
       charge = quantity * winterRate + winterServiceCharge;
     }
@@ -39,6 +40,7 @@ class Stadium {
   public double winterServiceCharge;
 
   public double getTicketPrice(Date date, int quantity) {
+    double charge;
     if (notSummer(date)) {
       charge = winterCharge(quantity);
     }
@@ -119,7 +121,7 @@ Set step 2
 
 Select "charge = quantity * winterRate + winterServiceCharge;"
 
-# Теперь возьмёмся за тело условного оператора. Сначала выделим в новый метод всё, что находится внутри <code>then</code> 
+# Теперь возьмёмся за тело условного оператора. Сначала выделим в новый метод всё, что находится внутри <code>then</code>
 
 Go to the end of "Stadium"
 
@@ -140,7 +142,7 @@ Print "charge = winterCharge(quantity);"
 
 Select "charge = quantity * summerRate;"
 
-# После этого, возьмёмся за <code>else</code>
+# После этого возьмёмся за <code>else</code>
 
 
 Go to the end of "Stadium"

@@ -2,7 +2,7 @@ decompose-conditional:csharp
 
 ###
 
-1.  Выделите условие в отдельный метод с помощью <a href="/extract-method">выделения метода</a>.
+1. Выделите условие в отдельный метод с помощью <a href="/extract-method">выделения метода</a>.
 
 2. Повторите выделение для <code>then</code> и <code>else</code> части оператора.
 
@@ -24,7 +24,7 @@ class Stadium
 
     if (date < SUMMER_START || date > SUMMER_END)
     {
-      charge = quantity * (winterRate + winterServiceCharge);
+      charge = quantity * winterRate + winterServiceCharge;
     }
     else
     {
@@ -68,7 +68,7 @@ class Stadium
   }
   private double WinterCharge(int quantity)
   {
-    return quantity * (winterRate + winterServiceCharge);
+    return quantity * winterRate + winterServiceCharge;
   }
   private double SummerCharge(int quantity)
   {
@@ -135,7 +135,7 @@ Select "NotSummer(date)" in "GetTicketPrice"
 
 Set step 2
 
-Select "charge = quantity * (winterRate + winterServiceCharge);"
+Select "charge = quantity * winterRate + winterServiceCharge;"
 
 # Теперь возьмёмся за тело условного оператора. Сначала выделим в новый метод всё, что находится внутри <code>then</code>
 
@@ -146,11 +146,11 @@ Print:
 
   private double WinterCharge(int quantity)
   {
-    return quantity * (winterRate + winterServiceCharge);
+    return quantity * winterRate + winterServiceCharge;
   }
 ```
 
-Select "charge = quantity * (winterRate + winterServiceCharge);"
+Select "charge = quantity * winterRate + winterServiceCharge;"
 
 Wait 500ms
 

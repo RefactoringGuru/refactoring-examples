@@ -117,7 +117,7 @@ Set step 2
 
 Select "$charge = $quantity * $this->winterRate + $this->winterServiceCharge;"
 
-# Теперь возьмёмся за тело условного оператора. Сначала выделим в новый метод всё, что находится внутри <code>then</code> 
+# Теперь возьмёмся за тело условного оператора. Сначала выделим в новый метод всё, что находится внутри <code>then</code>
 
 Go to the end of "Stadium"
 
@@ -138,7 +138,7 @@ Print "$charge = $this->winterCharge($quantity);"
 
 Select "$charge = $quantity * $this->summerRate;"
 
-# После этого, возьмёмся за <code>else</code>
+# После этого возьмёмся за <code>else</code>
 
 
 Go to the end of "Stadium"
