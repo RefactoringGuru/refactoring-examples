@@ -88,22 +88,23 @@ Select 3rd "getSomething()"
 ````
 
 
-3. Sometimes you need to point origin of selection (like class or method), since select might be too broad. Origin may be just a name (this way it script will try to guess the location) or more broad keyword (see below). This should also works with all following select methods.
+3. Sometimes you need to point origin of selection (like class or method), since select might be too broad. Origin may be just a name (this way it script will try to guess the location) or more broad keyword (see below). This should also works with all following select methods. Two origins may be passed if needed.
 
 ```
-Select "private int field;" in "Example"
-Select "private int field;" in "class Example"
+Select "private int field;" in "ExampleClass"
+Select "private int field;" in "class ExampleClass"
 Select "doSomething()" in "int someMethod"
+Select "doSomething()" in "someMethod" of "ExampleClass"
 ```
 
 It is also possible to target certain parts of method or class, for example;
 
 ```
 Select "interval" in parameters of "doSomething"
-Select "interval" in body of "doSomething"
+Select "interval" in body of "doSomething" in "ExampleClass"
 Select "interval" in whole "doSomething"
 Select name of "doSomething"
-Select visibility of "doSomething"
+Select visibility of "doSomething" in "ExampleClass"
 Select type of "doSomething"
 Select parameters of "doSomething"
 Select body of "doSomething"
@@ -162,10 +163,10 @@ class Example {
 Go to the end of file
 Go to start of "someMethod"
 Go to end of "someMethod"
-Go to before "someMethod"
+Go to before "someMethod" in "ExampleClass"
 Go to after "someMethod"
 Go to parameters of "someMethod"
-Go to the end of parameters of "someMethod"
+Go to the end of parameters of "someMethod" in "ExampleClass"
 ```
 - Note that you can use method names ("someMethod"), class names ("Example"), or two-word identifiers in case neither of this gives correct destination ("class Example" or "int someMethod").
 - Also note that cursor is inserted right after opening brace ({) or on the end of previous line before closing brace (}). This is important to calculate correct number of new lines in the following print command if any.
