@@ -175,17 +175,7 @@ Remove selected
 
 # Если рассматриваемая процедура лишь проверяет условие и возвращает значение, мы можем ещё более упростить код с помощью тернарного оператора.
 
-Go to the end of "vacationAmount"
-
-Select:
-```
-    if ($this->onVacation() && $this->lengthOfService() > 10) {
-      return 1;
-    }
-    else {
-      return 0.5;
-    }
-```
+Select body of "vacationAmount"
 
 Print:
 ```

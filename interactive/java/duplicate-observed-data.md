@@ -290,16 +290,7 @@ Select name of "public IntervalWindow"
 
 # Затем надо создать код инициализации этого поля, а также сделать класс окна наблюдателем предметного класса. Весь этот код стоит поместить в конструктор <code>IntervalWindow</code>.
 
-Go to:
-```
-  public IntervalWindow() {
-    java.awt.TextField startField = new java.awt.TextField();
-    java.awt.TextField endField = new java.awt.TextField();
-    java.awt.TextField lengthField = new java.awt.TextField();
-    startField.addFocusListener(new SymFocus());|||
-  }
-
-```
+Go to the end of "IntervalWindow"
 
 Print:
 ```

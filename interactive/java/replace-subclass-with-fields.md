@@ -193,25 +193,13 @@ Print:
 
 Wait 500ms
 
-Select:
-```
-
-  boolean isMale() {
-    return true;
-  }
-```
+Select whole "isMale" in "Male"
 
 Remove selected
 
 Wait 500ms
 
-Select:
-```
-
-  boolean isMale() {
-    return false;
-  }
-```
+Select whole "isMale" in "Female"
 
 Remove selected
 
@@ -226,41 +214,21 @@ Print:
 
 Wait 500ms
 
-Select:
-```
-
-  char getCode() {
-    return 'M';
-  }
-```
+Select whole "getCode" in "Male"
 
 Remove selected
 
 Wait 500ms
 
-Select:
-```
-
-  char getCode() {
-    return 'F';
-  }
-```
+Select whole "getCode" in "Female"
 
 Remove selected
 
 Set step 7
 
 Select "|||abstract||| class Person"
-
-+ Select:
-```
-  static Person createMale() {
-    return |||new Male()|||;
-  }
-  static Person createFemale() {
-    return |||new Female()|||;
-  }
-```
++ Select "new Male()"
++ Select "new Female()"
 
 # В итоге все подклассы оказываются пустыми, поэтому я снимаю пометку abstract с класса Person и с помощью <a href="/inine-method">Встраивания метода</a> встраиваю конструктор подкласса в родительский класс.
 
@@ -270,12 +238,7 @@ Remove selected
 
 Wait 500ms
 
-Select:
-```
-  static Person createMale() {
-    return |||new Male()|||;
-  }
-```
+Select "new Male()"
 
 Wait 500ms
 
@@ -294,12 +257,7 @@ Remove selected
 #S Всё хорошо, можно проделать ту же операцию с классом <code>Female</code>
 
 
-Select:
-```
-  static Person createFemale() {
-    return |||new Female()|||;
-  }
-```
+Select "new Female()"
 
 Wait 500ms
 
