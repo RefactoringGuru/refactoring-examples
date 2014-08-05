@@ -172,7 +172,7 @@ Select name of "interestForAmount_days"
 + Select name of "interestForBigFamily"
 + Select "other 10 methods"
 
-#+ В этом случае, вам не придётся делать замену во всех методах сразу...
+# В этом случае, вам не придётся делать замену во всех методах сразу...
 
 Select "interestRate = arg" in "setInterestRate"
 +Select "return interestRate" in "getInterestRate"
@@ -197,7 +197,7 @@ Select in "Account":
 
 ```
 
-# ...после чего исходное поле можно удалить.
+# После чего исходное поле можно удалить.
 
 Remove selected
 
