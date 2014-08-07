@@ -290,7 +290,7 @@ Select name of "public IntervalWindow"
 
 # Затем надо создать код инициализации этого поля, а также сделать класс окна наблюдателем предметного класса. Весь этот код стоит поместить в конструктор <code>IntervalWindow</code>.
 
-Go to the end of "IntervalWindow"
+Go to the end of "public IntervalWindow"
 
 Print:
 ```

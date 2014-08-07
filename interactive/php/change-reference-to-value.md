@@ -1,12 +1,10 @@
-change-reference-to-value:java
+change-reference-to-value:php
 
 ###
 
 1. Обеспечьте неизменяемость объекта. Объект не должен иметь сеттеров или других методов, меняющих его состояние и данные (в этом может помочь <a href="/remove-setting-method">удаление сеттера</a>). Единственное место, где полям объекта-значения присваиваются какие-то данные, должен быть конструктор.
 
-2. Создайте метод сравнения для сравнения двух объектов-значений.
-
-3. Проверьте, возможно ли удалить фабричный метод и сделать конструктор объекта публичным.
+2. Проверьте, возможно ли удалить фабричный метод и сделать конструктор объекта публичным.
 
 
 
@@ -14,70 +12,62 @@ change-reference-to-value:java
 
 ```
 class Customer {
-  private final String name;
-  private Date birthDate;
+  private $name;
+  private $birthDate;
 
-  public String getName() {
-    return name;
+  public function getName() {
+    return $this->name;
   }
-  public String getBirthDate() {
-    return birthday;
+  public function getBirthDate() {
+    return $this->birthday;
   }
-  public void setBirthDate(Date birthDate) {
-    this.birthDate = birthDate;
+  public function setBirthDate(DateTime $birthDate) {
+    $this->birthDate = $birthDate;
   }
-  private Customer(String name) {
-    this.name = name;
+  private function __construct($name) {
+    $this->name = $name;
   }
   
-  private static Dictionary instances = new Hashtable();
+  private static $instances = array();
 
-  public static Customer get(String name) {
-    Customer value = instances.get(name);
-    if (value == null) {
-      value = new Currency(name);
-      instances.put(name, value);
+  public static function get($name) {
+    if (!isset($this->instances[$name])) {
+      $value = new Currency($name);
+      $this->instances[$name] = $value;
+    }
+    else {
+      $value = $this->instances[$name]
     }
     return value;
   }
 }
    
 // Somewhere in client code
-Customer john = Customer.get("John Smith");
-john.setBirthDate(new Date(1985, 1, 1));
+$john = Customer::get("John Smith");
+$john->setBirthDate(new DateTime("1985-01-01"));
 ```
 
 ###
 
 ```
 class Customer {
-  private final String name;
-  private Date birthDate;
+  private $name;
+  private $birthDate;
 
-  public boolean equals(Object arg) {
-    if (!(arg instanceof Customer)) {
-      return false;
-    }
-    Customer other = (Customer) arg;
-    return (name.equals(other.name));
+  public function getName() {
+    return $this->name;
   }
-  public int hashCode() {
-    return name.hashCode();
+  public function getBirthDate() {
+    return $this->birthday;
   }
-  public String getName() {
-    return name;
-  }
-  public String getBirthDate() {
-    return birthday;
-  }
-  public Customer(String name, Date birthDate) {
-    this.name = name;
-    this.birthDate = birthDate;
+  public function __construct($name, DateTime birthDate) {
+    $this->name = $name;
+    $this->birthDate = $birthDate;
   }
 }
    
 // Somewhere in client code
-Customer john = new Customer("John Smith", new Date(1985, 1, 1));
+$john = new Customer("John Smith", new Date(1985, 1, 1));
 ```
 
 ###
@@ -86,16 +76,16 @@ Set step 1
 
 # Давайте рассмотрим <i>Замену ссылки значением</i> на примере класса покупателя.
 
-Select "private final String |||name|||"
-+ Select "private Date |||birthDate|||"
+Select "private |||$name|||"
++ Select "private |||$birthDate|||"
 
 # Этот класс содержит имя и день рождения покупателя. Это класс порождает объекты-ссылки, другими словами для одного реального покупателя создаётся только один экземпляр класса <code>Customer</code>.
 
-Select "Customer.get("John Smith")"
+Select "Customer::get("John Smith")"
 
 # Таким образом, для получения экземпляра может использоваться следующий код.
 
-Select visibility of "private Customer"
+Select visibility of "__construct"
 
 # Класс <code>Customer</code> ведёт реестр своих экземпляров. Я не могу просто обратиться к конструктору (вот почему он закрытый).
 
@@ -113,60 +103,34 @@ Select whole "setBirthDate"
 
 Remove selected
 
-Go to the end of parameters of "private Customer"
+Go to the end of parameters of "__construct"
 
-Print ", Date birthDate"
+Print ", DateTime birthDate"
 
-Go to the end of "private Customer"
+Go to the end of "__construct"
 
 Print:
 ```
 
-    this.birthDate = birthDate;
+    $this->birthDate = $birthDate;
 ```
 
 Select:
 ```
 
-john.setBirthDate(new Date(1985, 1, 1));
+$john->setBirthDate(new DateTime("1985-01-01"));
 ```
 
 # Так как сеттера в классе теперь нет, нам нужно удалить его использование в клиентском коде. Действие этого сеттера пока нечем компенсировать, но неволнуйтесь, мы рассмотрим это чуточку позже.
 
 Remove selected
 
-
 Set step 2
-
-Go to before "getname"
-
-# Есть еще одна проблема. Объекты-значения с одинаковымми данными должны быть равны при сравнивании. Чтобы сделать это на языке Java, нужно определить в сравниваемых классах специальные методы <code>equals</code> и <code>hash</code>.
-
-# Вот так это будет выглядеть в нашем случае.
-
-Print:
-```
-
-  public boolean equals(Object arg) {
-    if (!(arg instanceof Customer)) {
-      return false;
-    }
-    Customer other = (Customer) arg;
-    return (name.equals(other.name));
-  }
-  public int hashCode() {
-    return name.hashCode();
-  }
-```
-
-# Теперь сравнение вида <code>new Customer("John").equals(new Customer("John"))</code> будет возвращать <code>TRUE</code>.
-
-Set step 3
 
 Select:
 ```
   
-  private static Dictionary instances = new Hashtable();
+  private static $instances = array();
 
 
 ```
@@ -176,11 +140,11 @@ Select:
 
 Remove selected
 
-Select "|||private||| Customer"
+Select visibility of "__construct"
 
 Print "public"
 
-Select "Customer.get("John Smith")"
+Select "Customer::get("John Smith")"
 
 # После всех этих изменений, клиентский код тоже изменится.
 
