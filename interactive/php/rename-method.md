@@ -86,7 +86,7 @@ Select whole "getTelephoneNumber"
 
 Remove selected
 
-#C Запускаем финальную компиляцию.
+#C Запускаем финальное тестирование.
 
 #S Отлично, все работает!
 

@@ -20,10 +20,10 @@ replace-type-code-with-class:php
 
 ```
 class Person {
-  public static $О = 0;
-  public static $A = 1;
-  public static $B = 2;
-  public static $AB = 3;
+  const О = 0;
+  const A = 1;
+  const B = 2;
+  const AB = 3;
 
   private $bloodGroup; // int
 
@@ -39,8 +39,8 @@ class Person {
 }
 
 // Somewhere in client code.
-$parent = new Person(Person::$O);
-if ($parent->getBloodGroup() == Person::$AB) {
+$parent = new Person(Person::O);
+if ($parent->getBloodGroup() == Person::AB) {
   // ...
 }
 $child->setBloodGroup($parent->getBloodGroup());
@@ -103,10 +103,10 @@ Set step 1
 
 Select:
 ```
-  public static |||$О = 0|||;
-  public static |||$A = 1|||;
-  public static |||$B = 2|||;
-  public static |||$AB = 3|||;
+  const |||О = 0|||;
+  const |||A = 1|||;
+  const |||B = 2|||;
+  const |||AB = 3|||;
 ```
 
 # Группы крови закодированы в четырёх константах этого класса.
@@ -216,15 +216,15 @@ Set step 5
 
 Select:
 ```
-  public static |||$О = 0|||;
-  public static |||$A = 1|||;
-  public static |||$B = 2|||;
-  public static |||$AB = 3|||;
+  const |||О = 0|||;
+  const |||A = 1|||;
+  const |||B = 2|||;
+  const |||AB = 3|||;
 ```
 
 # Тепперь настала пора заменить любые упоминания значений закодированного типа вызовами соответствующих статических методов <i>класса типа</i> <code>BloodGroup</code>.
 
-Select "new Person(|||Person::$O|||);"
+Select "new Person(|||Person::O|||);"
 
 Wait 500ms
 
@@ -232,7 +232,7 @@ Type "BloodGroup::O()->getCode()"
 
 Wait 500ms
 
-Select "$parent->getBloodGroup() == |||Person::$AB|||"
+Select "$parent->getBloodGroup() == |||Person::AB|||"
 
 Wait 500ms
 
@@ -292,10 +292,10 @@ Remove selected
 Set step 6
 Select:
 ```
-  public static $О = 0;
-  public static $A = 1;
-  public static $B = 2;
-  public static $AB = 3;
+  const О = 0;
+  const A = 1;
+  const B = 2;
+  const AB = 3;
 
 
 ```

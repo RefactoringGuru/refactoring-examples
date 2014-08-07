@@ -24,7 +24,7 @@ class Company {
     return $this->customer;
   }
 }
-   
+
 class Customer {
   //...
   public function getName() {
@@ -37,7 +37,7 @@ class Customer {
     //...
   }
 }
-   
+
 class PaymentHistory {
   public function getWeeksDelinquentInLastYear() {
     //...
@@ -52,7 +52,7 @@ if (customer == null) {
 else {
   $customerName = $customer->getName();
 }
- 
+
 //...
 if ($customer == null) {
   $plan = BillingPlan::basic();
@@ -60,7 +60,7 @@ if ($customer == null) {
 else {
   $plan = $customer->getPlan();
 }
-  
+
 //...
 if ($customer == null) {
   $weeksDelinquent = 0;
@@ -80,7 +80,7 @@ class Company {
     return ($this->customer == null) ? Customer::newNull() : $this->customer;
   }
 }
-   
+
 class Customer {
   //...
   public function isNull() {
@@ -114,7 +114,7 @@ class NullCustomer extends Customer {
     return PaymentHistory::newNull();
   }
 }
-   
+
 class PaymentHistory {
   public function isNull() {
     return false;
@@ -139,10 +139,10 @@ class NullPaymentHistory extends PaymentHistory {
 // Somewhere in client code
 $customer = $site->getCustomer();
 $customerName = $customer->getName();
- 
+
 //...
 $plan = $customer->getPlan();
-  
+
 //...
 $weeksDelinquent = $customer->getHistory()->getWeeksDelinquentInLastYear();
 ```
@@ -231,7 +231,7 @@ Print "$customer->isNull()"
 
 # Это самая сложная часть данного рефакторинга, т.к. для каждого заменяемого источника <code>null</code> необходимо найти все случаи проверки на <code>null</code> и отредактировать их. Если объект интенсивно передаётся, их может быть нелегко проследить.
 
-#C После всех замен стоит провести компиляцию и тщательное тестирование.
+#C После всех замен стоит провести тщательное тестирование.
 
 #S Отлично, все работает, можем продолжать!
 
@@ -384,7 +384,7 @@ Print:
 $weeksDelinquent = $customer->getHistory()->getWeeksDelinquentInLastYear();
 ```
 
-#C Запускаем финальную компиляцию.
+#C Запускаем финальное тестирование.
 
 #S Отлично, все работает!
 

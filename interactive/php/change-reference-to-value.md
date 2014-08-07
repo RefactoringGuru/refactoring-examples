@@ -27,7 +27,7 @@ class Customer {
   private function __construct($name) {
     $this->name = $name;
   }
-  
+
   private static $instances = array();
 
   public static function get($name) {
@@ -41,7 +41,7 @@ class Customer {
     return value;
   }
 }
-   
+
 // Somewhere in client code
 $john = Customer::get("John Smith");
 $john->setBirthDate(new DateTime("1985-01-01"));
@@ -65,7 +65,7 @@ class Customer {
     $this->birthDate = $birthDate;
   }
 }
-   
+
 // Somewhere in client code
 $john = new Customer("John Smith", new Date(1985, 1, 1));
 ```
@@ -91,7 +91,7 @@ Select visibility of "__construct"
 
 Select name of "get"
 
-# Вместо этого, я вызываю статический фабричный метод, который ищет покупателя среди уже созданных объектов. И только в случае, если такой объект еще не создан, фабричный метод запускает реальный конструктор, а затем добавляет созданный объект в реестр. 
+# Вместо этого, я вызываю статический фабричный метод, который ищет покупателя среди уже созданных объектов. И только в случае, если такой объект еще не создан, фабричный метод запускает реальный конструктор, а затем добавляет созданный объект в реестр.
 
 # Теперь, допустим, у вас есть несколько заказов, ссылающихся на одного и того же клиента. Внезапно, код одного из заказов меняет значенияе даты рождения клиента. Так как оба заказа ссылаются на один тот же объект клиента, новая дата рождения будет доступна и из другого заказа.
 
@@ -129,7 +129,7 @@ Set step 2
 
 Select:
 ```
-  
+
   private static $instances = array();
 
 
@@ -150,7 +150,7 @@ Select "Customer::get("John Smith")"
 
 Print "new Customer("John Smith", new Date(1985, 1, 1))"
 
-#C Запускаем финальную компиляцию.
+#C Запускаем финальное тестирование.
 
 #S Отлично, все работает!
 

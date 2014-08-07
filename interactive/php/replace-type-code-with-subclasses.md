@@ -21,9 +21,9 @@ replace-type-code-with-subclasses:php
 ```
 class Employee {
   // ...
-  static $ENGINEER = 0;
-  static $SALESMAN = 1;
-  static $MANAGER = 2;
+  const ENGINEER = 0;
+  const SALESMAN = 1;
+  const MANAGER = 2;
 
   public $type;
 
@@ -36,11 +36,11 @@ class Employee {
   public $bonus;
   public function payAmount() {
     switch ($this->type) {
-      case self::$ENGINEER:
+      case self::ENGINEER:
         return $this->monthlySalary;
-      case self::$SALESMAN:
+      case self::SALESMAN:
         return $this->monthlySalary + $this->commission;
-      case self::$MANAGER:
+      case self::MANAGER:
         return $this->monthlySalary + $this->bonus;
       default:
         throw new RuntimeException("Incorrect Employee Code");
@@ -54,19 +54,19 @@ class Employee {
 ```
 class Employee {
   // ...
-  static $ENGINEER = 0;
-  static $SALESMAN = 1;
-  static $MANAGER = 2;
+  const ENGINEER = 0;
+  const SALESMAN = 1;
+  const MANAGER = 2;
 
   abstract public function getType();
 
   static function create($type) {
     switch ($type) {
-      case self::$ENGINEER:
+      case self::ENGINEER:
         return new Engineer();
-      case self::$SALESMAN:
+      case self::SALESMAN:
         return new Salesman();
-      case self::$MANAGER:
+      case self::MANAGER:
         return new Manager();
       default:
         return new Employee($type);
@@ -84,14 +84,14 @@ class Employee {
 
 class Engineer extends Employee {
   public function getType() {
-    return Employee::$ENGINEER;
+    return Employee::ENGINEER;
   }
 }
 
 class Salesman extends Employee {
   public $commission;
   public function getType() {
-    return Employee::$SALESMAN;
+    return Employee::SALESMAN;
   }
   public function payAmount() {
     return $this->monthlySalary + $this->commission;
@@ -101,7 +101,7 @@ class Salesman extends Employee {
 class Manager extends Employee {
   public $bonus;
   public function getType() {
-    return Employee::$MANAGER;
+    return Employee::MANAGER;
   }
   public function payAmount() {
     return $this->monthlySalary + $this->bonus;
@@ -162,7 +162,7 @@ Print "private"
 
 Set step 3
 
-Select "$ENGINEER"
+Select "ENGINEER"
 
 # Теперь можно приступить к преобразованию <code>Engineer</code> в подкласс. Сначала создаётся сам подкласс.
 
@@ -184,7 +184,7 @@ Print:
 ```
 
   public function getType() {
-    return Employee::$ENGINEER;
+    return Employee::ENGINEER;
   }
 ```
 
@@ -195,7 +195,7 @@ Select body of "create"
 Print:
 ```
     switch ($type) {
-      case self::$ENGINEER:
+      case self::ENGINEER:
         return new Engineer();
       default:
         return new Employee($type);
@@ -212,21 +212,21 @@ Print:
 
 class Salesman extends Employee {
   public function getType() {
-    return Employee::$SALESMAN;
+    return Employee::SALESMAN;
   }
 }
 ```
 
 Go to:
 ```
-      case self::$ENGINEER:
+      case self::ENGINEER:
         return new Engineer();|||
 ```
 
 Print:
 ```
 
-      case self::$SALESMAN:
+      case self::SALESMAN:
         return new Salesman();
 ```
 
@@ -240,21 +240,21 @@ Print:
 
 class Manager extends Employee {
   public function getType() {
-    return Employee::$MANAGER;
+    return Employee::MANAGER;
   }
 }
 ```
 
 Go to:
 ```
-      case self::$SALESMAN:
+      case self::SALESMAN:
         return new Salesman();|||
 ```
 
 Print:
 ```
 
-      case self::$MANAGER:
+      case self::MANAGER:
         return new Manager();
 ```
 
@@ -328,7 +328,7 @@ Print:
 
 Select:
 ```
-      case self::$SALESMAN:
+      case self::SALESMAN:
         return $this->monthlySalary + $this->commission;
 
 ```
@@ -367,7 +367,7 @@ Print:
 
 Select:
 ```
-      case self::$MANAGER:
+      case self::MANAGER:
         return $this->monthlySalary + $this->bonus;
 
 ```

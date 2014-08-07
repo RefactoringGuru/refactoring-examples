@@ -23,10 +23,10 @@ replace-type-code-with-state-strategy:php
 ```
 class Employee {
   // ...
-  static $ENGINEER = 0;
-  static $SALESMAN = 1;
-  static $MANAGER = 2;
-  
+  const ENGINEER = 0;
+  const SALESMAN = 1;
+  const MANAGER = 2;
+
   public $type;
 
   public function __construct($arg) {
@@ -38,11 +38,11 @@ class Employee {
   public $bonus;
   public function payAmount() {
     switch ($this->type) {
-      case self::$ENGINEER:
+      case self::ENGINEER:
         return $this->monthlySalary;
-      case self::$SALESMAN:
+      case self::SALESMAN:
         return $this->monthlySalary + $this->commission;
-      case self::$MANAGER:
+      case self::MANAGER:
         return $this->monthlySalary + $this->bonus;
       default:
         throw new Exception("Incorrect Employee Code");
@@ -55,7 +55,7 @@ class Employee {
 
 ```
 class Employee {
-  // ...  
+  // ...
   private $type; // EmployeeType
 
   public function __construct($arg) {
@@ -77,18 +77,18 @@ class Employee {
 }
 
 abstract class EmployeeType {
-  static $ENGINEER = 0;
-  static $SALESMAN = 1;
-  static $MANAGER = 2;
+  const ENGINEER = 0;
+  const SALESMAN = 1;
+  const MANAGER = 2;
 
   abstract public function getTypeCode();
   public static function newType($code) {
     switch ($code) {
-      case self::$ENGINEER:
+      case self::ENGINEER:
         return new Engineer();
-      case self::$SALESMAN:
+      case self::SALESMAN:
         return new Salesman();
-      case self::$MANAGER:
+      case self::MANAGER:
         return new Manager();
       default:
         throw new Exception("Incorrect Employee Code");
@@ -99,7 +99,7 @@ abstract class EmployeeType {
 }
 class Engineer extends EmployeeType {
   public function getTypeCode() {
-    return EmployeeType::$ENGINEER;
+    return EmployeeType::ENGINEER;
   }
   public function payAmount(Employee $employee) {
     return $employee->monthlySalary;
@@ -107,7 +107,7 @@ class Engineer extends EmployeeType {
 }
 class Salesman extends EmployeeType {
   public function getTypeCode() {
-    return EmployeeType::$SALESMAN;
+    return EmployeeType::SALESMAN;
   }
   public function payAmount(Employee $employee) {
     return $employee->monthlySalary + $employee->commission;
@@ -115,7 +115,7 @@ class Salesman extends EmployeeType {
 }
 class Manager extends EmployeeType {
   public function getTypeCode() {
-    return EmployeeType::$MANAGER;
+    return EmployeeType::MANAGER;
   }
   public function payAmount(Employee $employee) {
     return $employee->monthlySalary + $employee->bonus;
@@ -187,17 +187,17 @@ Print:
 
 class Engineer extends EmployeeType {
   public function getTypeCode() {
-    return Employee::$ENGINEER;
+    return Employee::ENGINEER;
   }
 }
 class Salesman extends EmployeeType {
   public function getTypeCode() {
-    return Employee::$SALESMAN;
+    return Employee::SALESMAN;
   }
 }
 class Manager extends EmployeeType {
   public function getTypeCode() {
-    return Employee::$MANAGER;
+    return Employee::MANAGER;
   }
 }
 ```
@@ -213,11 +213,11 @@ Print:
 
   public static function newType($code) {
     switch ($code) {
-      case Employee::$ENGINEER:
+      case Employee::ENGINEER:
         return new Engineer();
-      case Employee::$SALESMAN:
+      case Employee::SALESMAN:
         return new Salesman();
-      case Employee::$MANAGER:
+      case Employee::MANAGER:
         return new Manager();
       default:
         throw new Exception("Incorrect Employee Code");
@@ -280,9 +280,9 @@ Print "getTypeCode("
 Select:
 ```
 
-  static $ENGINEER = 0;
-  static $SALESMAN = 1;
-  static $MANAGER = 2;
+  const ENGINEER = 0;
+  const SALESMAN = 1;
+  const MANAGER = 2;
 
 ```
 
@@ -295,29 +295,29 @@ Go to the beginning of "EmployeeType"
 Print:
 ```
 
-  static $ENGINEER = 0;
-  static $SALESMAN = 1;
-  static $MANAGER = 2;
+  const ENGINEER = 0;
+  const SALESMAN = 1;
+  const MANAGER = 2;
 
 ```
 
 Wait 500ms
 
-Select "|||Employee|||::$" in "newType"
+Select "|||Employee|||::" in "newType"
 
 Print "self"
 
 Wait 500ms
 
-Select "|||self|||::$" in "payAmount"
+Select "|||self|||::" in "payAmount"
 
 Print "EmployeeType"
 
 Wait 500ms
 
-Select "|||Employee|||::$" in "Engineer"
-+ Select "|||Employee|||::$" in "Manager"
-+ Select "|||Employee|||::$" in "Salesman"
+Select "|||Employee|||::" in "Engineer"
++ Select "|||Employee|||::" in "Manager"
++ Select "|||Employee|||::" in "Salesman"
 
 Wait 500ms
 
@@ -339,11 +339,11 @@ Print:
 
   public function payAmount() {
     switch ($this->getTypeCode()) {
-      case EmployeeType::$ENGINEER:
+      case EmployeeType::ENGINEER:
         return $this->monthlySalary;
-      case EmployeeType::$SALESMAN:
+      case EmployeeType::SALESMAN:
         return $this->monthlySalary + $this->commission;
-      case EmployeeType::$MANAGER:
+      case EmployeeType::MANAGER:
         return $this->monthlySalary + $this->bonus;
       default:
         throw new Exception("Incorrect Employee Code");
@@ -426,11 +426,11 @@ Select:
 ```
   public function payAmount(Employee $employee) {
     switch ($this->getTypeCode()) {
-      case EmployeeType::$ENGINEER:
+      case EmployeeType::ENGINEER:
         return $employee->monthlySalary;
-      case EmployeeType::$SALESMAN:
+      case EmployeeType::SALESMAN:
         return $employee->monthlySalary + $employee->commission;
-      case EmployeeType::$MANAGER:
+      case EmployeeType::MANAGER:
         return $employee->monthlySalary + $employee->bonus;
       default:
         throw new Exception("Incorrect Employee Code");
