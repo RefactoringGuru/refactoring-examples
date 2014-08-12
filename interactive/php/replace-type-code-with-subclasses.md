@@ -60,7 +60,7 @@ class Employee {
 
   abstract public function getType();
 
-  static function create($type) {
+  public static function create($type) {
     switch ($type) {
       case self::ENGINEER:
         return new Engineer();
@@ -147,7 +147,7 @@ Go to before "__construct"
 Print:
 ```
 
-  static function create($type) {
+  public static function create($type) {
     return new Employee($type);
   }
 ```

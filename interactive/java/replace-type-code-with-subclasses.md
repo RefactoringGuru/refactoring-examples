@@ -60,7 +60,7 @@ class Employee {
 
   abstract public int getType();
 
-  static Employee create(int type) {
+  public static Employee create(int type) {
     switch (type) {
       case ENGINEER:
         return new Engineer();
@@ -150,7 +150,7 @@ Go to before "public Employee"
 Print:
 ```
 
-  static Employee create(int type) {
+  public static Employee create(int type) {
     return new Employee(type);
   }
 ```
