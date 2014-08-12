@@ -89,6 +89,8 @@ private static int numberOfOrdersFor(Collection orders, String customer) {
 
 ###
 
+Set step 1
+
 # Давайте рассмотрим рефакторинг <i>Замена простого поля объектом</i> на примере класса заказа.
 
 Select "private String |||customer|||"

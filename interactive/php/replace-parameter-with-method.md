@@ -71,6 +71,8 @@ class Order {
 
 ###
 
+Set step 1
+
 # Рассмотрим этот рефакторинг на ещё одном примере расчёта цены заказа.
 
 # Метод получения скидки (<code>discountedPrice</code>) сейчас практически нельзя использовать в отрыве от метода получения цены (<code>getPrice</code>), т.к. перед этим нужно получить значения всех параметров.
@@ -87,6 +89,8 @@ Select:
     }
 
 ```
+
+Set step 2
 
 # Для начала, выделим расчет <code>discountLevel</code> в собственный метод.
 
@@ -105,11 +109,15 @@ Print:
   }
 ```
 
+Set step 3
+
 Select "$discountLevel" in body of "discountedPrice"
 
 # Теперь мы можем использовать этот метод вместо параметра в методе расчёта скидки.
 
 Print "$this->getDiscountLevel()"
+
+Set step 4
 
 # Нужда в одном из параметров отпала, можем применить <a href="/remove-parameter">удаление параметра</a>.
 
@@ -146,7 +154,7 @@ Remove selected
 
 Select "$this->quantity * $this->itemPrice"
 
-# Попробуем выделить расёт базовой цены в собственный метод.
+# Попробуем выделить расчёт базовой цены в собственный метод.
 
 Go to after "getDiscountLevel"
 

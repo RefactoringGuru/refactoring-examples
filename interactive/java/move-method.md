@@ -82,6 +82,8 @@ class AccountType {
 
 ###
 
+Set step 1
+
 # Давайте рассмотрим <i>Перемещение метода</i> на примере класса банковского счета.
 
 Select "private AccountType |||type|||"

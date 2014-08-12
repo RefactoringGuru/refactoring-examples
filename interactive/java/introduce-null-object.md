@@ -24,7 +24,7 @@ class Company {
     return customer;
   }
 }
-   
+
 class Customer {
   //...
   public String getName() {
@@ -37,7 +37,7 @@ class Customer {
     //...
   }
 }
-   
+
 class PaymentHistory {
   public int getWeeksDelinquentInLastYear() {
     //...
@@ -53,7 +53,7 @@ if (customer == null) {
 else {
   customerName = customer.getName();
 }
- 
+
 //...
 BillingPlan plan;
 if (customer == null) {
@@ -62,7 +62,7 @@ if (customer == null) {
 else {
   plan = customer.getPlan();
 }
-  
+
 //...
 int weeksDelinquent;
 if (customer == null) {
@@ -83,7 +83,7 @@ class Company {
     return (customer == null) ? Customer.newNull() : customer;
   }
 }
-   
+
 class Customer {
   //...
   public boolean isNull() {
@@ -117,7 +117,7 @@ class NullCustomer extends Customer {
     return PaymentHistory.newNull();
   }
 }
-   
+
 class PaymentHistory {
   public boolean isNull() {
     return false;
@@ -142,10 +142,10 @@ class NullPaymentHistory extends PaymentHistory {
 // Somewhere in client code
 Customer customer = site.getCustomer();
 String customerName = customer.getName();
- 
+
 //...
 BillingPlan plan = customer.getPlan();
-  
+
 //...
 int weeksDelinquent = customer.getHistory().getWeeksDelinquentInLastYear();
 ```
@@ -245,7 +245,7 @@ Set step 5
 
 Select "customerName = "N/A""
 
-# Итак, начнём перемещать поведения в нулевой класс. Начнём с переноса названия покупателя по-умолчанию в нулевой класс.
+# Итак, начнём перемещать поведения в нулевой класс. Начнём с переноса названия покупателя по умолчанию в нулевой класс.
 
 Go to the end of "NullCustomer"
 
@@ -277,7 +277,7 @@ Print:
 String customerName = customer.getName();
 ```
 
-# То же можно проделать и с остальными методами, к которым можно придумать поведение по-умолчанию.
+# То же можно проделать и с остальными методами, к которым можно придумать поведение по умолчанию.
 
 Go to the end of "NullCustomer"
 
@@ -349,7 +349,7 @@ Print:
 
 Go to the end of "NullPaymentHistory"
 
-# После создания нулевого объекта, можно добавить в него поведения по-умолчанию.
+# После создания нулевого объекта, можно добавить в него поведения по умолчанию.
 
 Print:
 ```
