@@ -31,7 +31,7 @@ public class Person
     get;
     set;
   }
-  
+
   public string GetTelephoneNumber()
   {
     return "(" + OfficeAreaCode + ") " + OfficeNumber;
@@ -56,7 +56,7 @@ public class Person
       return officeTelephone;
     }
   }
-  
+
   public string GetTelephoneNumber()
   {
     return officeTelephone.GetTelephoneNumber();
@@ -147,7 +147,7 @@ Select "AreaCode" in "TelephoneNumber"
 
 Select "OfficeAreaCode" in "GetTelephoneNumber"
 
-# После того, как свойство успешно переместилось в класс <code>TelephoneNumber</code>, методы, которые использовали перемещенное свойство, необходимо изменить так, чтобы они обращались к свойству через экземпляр созданного класса.
+# После того, как свойство успешно переместилось в класс <code>TelephoneNumber</code>, методы, которые использовали перемещённое свойство, необходимо изменить так, чтобы они обращались к свойству через экземпляр созданного класса.
 
 Print:
 ```
