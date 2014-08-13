@@ -1,30 +1,33 @@
-split-temporary-variable:java
+split-temporary-variable:csharp
 
 ###
 
-1. Найдите место в коде, где переменная первый раз заполняется каким-то значением. В этом месте, переименуйте переменную и дайте ей название, соответствующее присваиваемому значению.
+1. Найдите место в коде, где переменная первый раз заполняется каким-то значением. В этом месте переименуйте переменную и дайте ей название, соответствующее присваиваемому значению.
 
-2. Подставьте её новое название вместо старого в местах, где использовалось это значение переменной.
+2. Подставьте её новое название вместо старого в тех местах, где использовалось это значение переменной.
 
-3. Повторите операцию для остальных случаев, где переменной присваивается новое значение.
+3. Повторите операцию для случаев, где переменной присваивается новое значение.
 
 
 
 ###
 
 ```
-double getDistanceTravelled(int time) {
+double GetDistanceTravelled(int time)
+{
   double result;
   double acc = primaryForce / mass;
   int primaryTime = Math.min(time, delay);
   result = 0.5 * acc * primaryTime * primaryTime;
 
   int secondaryTime = time - delay;
-  if (secondaryTime > 0) {
+  if (secondaryTime > 0)
+  {
     double primaryVel = acc * delay;
     acc = (primaryForce + secondaryForce) / mass;
     result +=  primaryVel * secondaryTime + 0.5 * acc * secondaryTime * secondaryTime;
   }
+
   return result;
 }
 ```
@@ -32,18 +35,21 @@ double getDistanceTravelled(int time) {
 ###
 
 ```
-double getDistanceTravelled(int time) {
+double GetDistanceTravelled(int time)
+{
   double result;
-  final double primaryAcceleration = primaryForce / mass;
+  const double primaryAcceleration = primaryForce / mass;
   int primaryTime = Math.min(time, delay);
   result = 0.5 * primaryAcceleration * primaryTime * primaryTime;
 
   int secondaryTime = time - delay;
-  if (secondaryTime > 0) {
+  if (secondaryTime > 0)
+  {
     double primaryVel = primaryAcceleration * delay;
-    final double secondaryAcceleration = (primaryForce + secondaryForce) / mass;
+    const double secondaryAcceleration = (primaryForce + secondaryForce) / mass;
     result +=  primaryVel * secondaryTime + 0.5 * secondaryAcceleration * secondaryTime * secondaryTime;
   }
+
   return result;
 }
 ```
@@ -58,7 +64,6 @@ Select "|||acc||| ="
 
 #^ Для нашего примера представляет интерес то, что переменная <code>acc</code> устанавливается в нём дважды.
 
-
 #+ Она выполняет две задачи: содержит первоначальное ускорение, вызванное первой силой...
 
 #^= ...и позднее ускорение, вызванное обеими силами.
@@ -67,15 +72,17 @@ Select "|||acc||| ="
 
 Select "double |||acc|||"
 
-# Начнём с изменения имени переменной. Я выбрал новое имя, представляющее лишь первое применение временной переменной.
+# Начнём с изменения имени переменной. Я выбрал имя, которое отражает ее первое применение.
 
 Print "primaryAcceleration"
 
 Go to "|||double primaryAcceleration"
 
-# Кроме того, я объявляю ее как <code>final</code>, чтобы гарантировать однократное присваивание ей значения.
+# Кроме того, я объявлю ее константой, чтобы гарантировать однократную инициализацию.
 
-Print "final "
+Print "const "
+
+Wait 500ms
 
 Set step 2
 
@@ -108,7 +115,7 @@ Wait 500ms
 
 Go to "|||double secondaryAcceleration"
 
-Print "final "
+Print "const "
 
 Wait 500ms
 

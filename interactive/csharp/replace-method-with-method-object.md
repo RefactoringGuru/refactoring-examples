@@ -1,4 +1,4 @@
-replace-method-with-method-object:java
+replace-method-with-method-object:csharp
 
 ###
 
@@ -19,12 +19,15 @@ replace-method-with-method-object:java
 ###
 
 ```
-class Account {
+public class Account
+{
   // ...
-  int gamma(int inputVal, int quantity, int yearToDate) {
-    int importantValue1 = (inputVal * quantity) + delta();
+  private int Gamma(int inputVal, int quantity, int yearToDate)
+  {
+    int importantValue1 = (inputVal * quantity) + Delta();
     int importantValue2 = (inputVal * yearToDate) + 100;
-    if ((yearToDate - importantValue1) > 100) {
+    if ((yearToDate - importantValue1) > 100)
+    {
       importantValue2 -= 20;
     }
     int importantValue3 = importantValue2 * 7;
@@ -38,38 +41,47 @@ class Account {
 ###
 
 ```
-class Account {
+public class Account
+{
   // ...
-  int gamma(int inputVal, int quantity, int yearToDate) {
-    return new Gamma(this, inputVal, quantity, yearToDate).compute();
+  private int Gamma(int inputVal, int quantity, int yearToDate)
+  {
+    return new Gamma(this, inputVal, quantity, yearToDate).Compute();
   }
   // ...
 }
 
-class Gamma {
-  private final Account account;
+public class Gamma
+{
+  private Account account;
   private int importantValue1;
   private int importantValue2;
   private int importantValue3;
   private int inputVal;
   private int quantity;
   private int yearToDate;
-  public Gamma(Account source, int inputValArg, int quantityArg, int yearToDateArg) {
+
+  public Gamma(Account source, int inputValArg, int quantityArg, int yearToDateArg)
+  {
     this.account = source;
     inputVal = inputValArg;
     quantity = quantityArg;
     yearToDate = yearToDateArg;
   }
-  public int compute() {
-    int importantValue1 = (inputVal * quantity) + account.delta();
+
+  public int Compute()
+  {
+    int importantValue1 = (inputVal * quantity) + account.Delta();
     int importantValue2 = (inputVal * yearToDate) + 100;
-    importantThing();
+    ImportantThing();
     int importantValue3 = importantValue2 * 7;
     // and so on...
     return importantValue3 - 2 * importantValue1;
   }
-  void importantThing() {
-    if ((yearToDate - importantValue1) > 100) {
+  private void ImportantThing()
+  {
+    if ((yearToDate - importantValue1) > 100)
+    {
       importantValue2 -= 20;
     }
   }
@@ -80,13 +92,13 @@ class Gamma {
 
 Set step 1
 
-# Для хорошего примера потребовалась бы целая глава, поэтому я продемонстрирую этот рефакторинг на методе, которому он не нужен. (Не задавайте вопросов о логике этого метода – она была придумана по ходу дела.)
+# Для хорошего примера потребовалась бы целая глава, поэтому я продемонстрирую этот рефакторинг на методе, которому он не нужен (не задавайте вопросов о логике этого метода – она была придумана по ходу дела).
 
-Select name of "gamma"
+Select name of "Gamma"
 
-# Мы видим, что в одном из методов класса есть множество запутанных вычислений и хитросплетение локальных переменных. Это всё затрудняет дальнейший рефакторинг класса.
+# Мы видим, что в одном из методов класса есть множество запутанных вычислений и хитросплетение локальных переменных. Всё это затрудняет дальнейший рефакторинг класса.
 
-# Давайте преобразуем этот метод в отдельный класс так, чтобы локальные переменные стали полями этого класса. После чего можно переместить данный метод в новый класс.
+# Давайте преобразуем этот метод в отдельный класс так, чтобы локальные переменные стали полями этого класса. После чего можно будет переместить данный метод в новый класс.
 
 Go to the end of file
 
@@ -96,27 +108,28 @@ Print:
 ```
 
 
-class Gamma {
+public class Gamma
+{
 }
 ```
 
 Set step 2
 
-# Первым делом, в только что созданный класс <code>Gamma</code>, поместим константное поле для хранения исходного объекта.
+# Первым делом создадим в классе <code>Gamma</code> поле для хранения исходного объекта.
 
 Go to the end of "Gamma"
 
 Print:
 ```
 
-  private final Account account;
+  private Account account;
 ```
 
 Set step 3
 
 Go to the end of "Gamma"
 
-# Кроме того, перенесем переменные из метода, который мы хотим отделить...
+# А также перенесем все переменные из метода, который мы хотим отделить...
 
 
 Print:
@@ -129,7 +142,7 @@ Print:
 
 Go to the end of "Gamma"
 
-# ...а также создадим поля для каждого из параметров метода.
+# ...и создадим поля для каждого из параметров метода.
 
 Print:
 ```
@@ -143,12 +156,14 @@ Set step 4
 
 Go to the end of "Gamma"
 
-# Создадим конструктор, который будет принимать входящие данные и сохранять их в полях класса для дальнейшего использования.
+# Создадим конструктор, который будет принимать параметры метода и сохранять их в полях класса для дальнейшего использования.
 
 Print:
 ```
 
-  public Gamma(Account source, int inputValArg, int quantityArg, int yearToDateArg) {
+
+  public Gamma(Account source, int inputValArg, int quantityArg, int yearToDateArg)
+  {
     this.account = source;
     inputVal = inputValArg;
     quantity = quantityArg;
@@ -162,7 +177,7 @@ Print:
 
 Set step 5
 
-Select whole "gamma" in "Account"
+Select whole "Gamma" in "Account"
 
 # Теперь можно переместить исходный метод.
 
@@ -171,10 +186,13 @@ Go to the end of "Gamma"
 Print:
 ```
 
-  public int compute() {
-    int importantValue1 = (inputVal * quantity) + delta();
+
+  public int Compute()
+  {
+    int importantValue1 = (inputVal * quantity) + Delta();
     int importantValue2 = (inputVal * yearToDate) + 100;
-    if ((yearToDate - importantValue1) > 100) {
+    if ((yearToDate - importantValue1) > 100)
+    {
       importantValue2 -= 20;
     }
     int importantValue3 = importantValue2 * 7;
@@ -183,21 +201,21 @@ Print:
   }
 ```
 
-Select "delta()" in "compute"
+Select "Delta()" in "Compute"
 
-# При этом следует модифицировать любые вызовы функций <code>Account</code> так, чтобы они выполнялись через поле <code>account</code>.
+# При этом следует модифицировать любые вызовы методов <code>Account</code> так, чтобы они выполнялись через поле <code>account</code>.
 
-Print "account.delta()"
+Print "account.Delta()"
 
 Set step 6
 
-Select body of "int gamma"
+Select body of "int Gamma"
 
-# После этого всё готово, чтобы тело старого метода заменить делегированием объекту методов.
+# После этого осталось только заменить тело старого метода на вызов метода в новом классе.
 
 Print:
 ```
-    return new Gamma(this, inputVal, quantity, yearToDate).compute();
+    return new Gamma(this, inputVal, quantity, yearToDate).Compute();
 ```
 
 #C Запустим компиляцию и тесты, чтобы проверить код на наличие ошибок.
@@ -206,20 +224,23 @@ Print:
 
 Select:
 ```
-    if ((yearToDate - importantValue1) > 100) {
+    if ((yearToDate - importantValue1) > 100)
+    {
       importantValue2 -= 20;
     }
 ```
 
-# Преимущество это рефакторинга в том, что теперь можно легко применить <a href="/extract-method">извлечение метода</a> к методу <code>compute()</code>, не беспокоясь о передаче аргументов.
+# Преимущество это рефакторинга в том, что теперь можно легко применить <a href="/extract-method">извлечение метода</a> к методу <code>Compute()</code>, не беспокоясь о передаче аргументов.
 
 Go to the end of "Gamma"
 
 Print:
 ```
 
-  void importantThing() {
-    if ((yearToDate - importantValue1) > 100) {
+  private void ImportantThing()
+  {
+    if ((yearToDate - importantValue1) > 100)
+    {
       importantValue2 -= 20;
     }
   }
@@ -227,14 +248,17 @@ Print:
 
 Wait 500ms
 
-Select in "compute":
+Select in "Compute":
 ```
-    if ((yearToDate - importantValue1) > 100) {
+    if ((yearToDate - importantValue1) > 100)
+    {
       importantValue2 -= 20;
     }
 ```
 
-Print "    importantThing();"
+Wait 500ms
+
+Print "    ImportantThing();"
 
 Set final step
 
