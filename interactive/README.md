@@ -186,6 +186,10 @@ goes here.
 ```
 </code></pre>
 
+### Replace
+
+Same as Print, but has slight delay before execution, making it perfect for using with Select (because user gets better understanding of what's going on on the screen).
+
 ### Remove selected
 
 Simple command, which removes selected text. This command includes slight delay, so that user would see what's being deleted after select.
@@ -199,7 +203,7 @@ Select "something"
 
 Wait 500ms
 
-Print "new text"
+Select "something else"
 ```
 
 ### Compilation
