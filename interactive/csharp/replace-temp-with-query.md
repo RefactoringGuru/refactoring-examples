@@ -232,7 +232,7 @@ Remove selected
 
 Select "discountFactor" in "GetPrice"
 
-Print "DiscountFactor()"
+Replace "DiscountFactor()"
 
 #C Запускаем финальную компиляцию.
 

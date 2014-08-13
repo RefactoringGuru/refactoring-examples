@@ -192,7 +192,7 @@ Remove selected
 
 Select "discountFactor" in "getPrice"
 
-Print "discountFactor()"
+Replace "discountFactor()"
 
 #C Запускаем финальную компиляцию.
 

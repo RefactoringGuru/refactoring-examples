@@ -234,7 +234,7 @@ Select in "compute":
     }
 ```
 
-Print "    importantThing();"
+Replace "    importantThing();"
 
 Set final step
 

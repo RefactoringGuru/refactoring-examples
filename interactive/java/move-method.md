@@ -19,7 +19,7 @@ class Account {
   // ...
   private AccountType type;
   private int daysOverdrawn;
-  
+
   double overdraftCharge() {
     if (type.isPremium()) {
       double result = 10;
@@ -40,7 +40,7 @@ class Account {
     return result;
   }
 }
-  
+
 class AccountType {
   // ...
 }
@@ -53,7 +53,7 @@ class Account {
   // ...
   private AccountType type;
   private int daysOverdrawn;
-  
+
   double bankCharge() {
     double result = 4.5;
     if (daysOverdrawn > 0) {
@@ -62,7 +62,7 @@ class Account {
     return result;
   }
 }
-  
+
 class AccountType {
   // ...
   double overdraftCharge(Account account) {
@@ -81,6 +81,8 @@ class AccountType {
 ```
 
 ###
+
+Set step 1
 
 # Давайте рассмотрим <i>Перемещение метода</i> на примере класса банковского счета.
 

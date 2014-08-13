@@ -249,7 +249,7 @@ Print:
 Select "$this->name = $name;" in "Employee"
 + Select "$this->name = $name;" in "Department"
 
-Print "parent::__construct($name)"
+Replace "parent::__construct($name)"
 
 # На этом перенос имени окончен и можно взяться за годовой бюджет.
 

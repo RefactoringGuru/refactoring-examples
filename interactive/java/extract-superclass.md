@@ -255,7 +255,7 @@ Print:
 Select "this.name = name" in "Employee"
 + Select "this.name = name" in "Department"
 
-Print "super(name)"
+Replace "super(name)"
 
 # На этом перенос имени окончен и можно взяться за годовой бюджет.
 

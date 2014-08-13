@@ -256,9 +256,7 @@ Select in "Compute":
     }
 ```
 
-Wait 500ms
-
-Print "    ImportantThing();"
+Replace "    ImportantThing();"
 
 Set final step
 

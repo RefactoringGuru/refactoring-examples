@@ -47,7 +47,7 @@ public class Account
     return result;
   }
 }
-  
+
 public class AccountType
 {
   // ...
@@ -78,7 +78,7 @@ public class Account
     return result;
   }
 }
-  
+
 public class AccountType
 {
   // ...
@@ -273,7 +273,7 @@ Select "account." in "OverdraftCharge"
 
 Select "account.||||||" in "OverdraftCharge"
 
-Print "DaysOverdrawn"
+Replace "DaysOverdrawn"
 
 Select "OverdraftCharge(|||daysOverdrawn|||)"
 
