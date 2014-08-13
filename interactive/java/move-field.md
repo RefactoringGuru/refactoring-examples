@@ -21,12 +21,12 @@ class Account {
   // ...
   private AccountType type;
   private double interestRate;
-  
+
   double interestForAmount_days(double amount, int days) {
     return interestRate * amount * days / 365;
   }
 }
-  
+
 class AccountType {
   // ...
 }
@@ -38,14 +38,14 @@ class AccountType {
 class Account {
   // ...
   private AccountType type;
-  
+
   double interestForAmount_days(double amount, int days) {
     return getInterestRate() * amount * days / 365;
   }
   double interestForBigFamily(double familySize) {
     return getInterestRate() / familySize;
   }
-  
+
   // other 10 methods, which use getInterestRate()
 
   private double getInterestRate() {
@@ -55,11 +55,11 @@ class Account {
     type.setInterestRate(arg);
   }
 }
-  
+
 class AccountType {
   // ...
   private double interestRate;
-  
+
   double getInterestRate() {
     return interestRate;
   }
@@ -93,7 +93,7 @@ Print:
 ```
 
   private double interestRate;
-  
+
   double getInterestRate() {
     return interestRate;
   }
@@ -118,9 +118,7 @@ Set step 4
 
 Select "interestRate" in "interestForAmount_days"
 
-Wait 500ms
-
-Print "type.getInterestRate()"
+Replace "type.getInterestRate()"
 
 Set step 5
 
@@ -142,20 +140,20 @@ Remove selected
 
 Select whole "Account"
 
-Print instantly:
+Replace instantly:
 ```
 class Account {
   // ...
   private AccountType type;
   private double interestRate;
-  
+
   double interestForAmount_days(double amount, int days) {
     return getInterestRate() * amount * days / 365;
   }
   double interestForBigFamily(double familySize) {
     return getInterestRate() / familySize;
   }
-  
+
   // other 10 methods, which use getInterestRate()
 
   private double getInterestRate() {
@@ -181,15 +179,11 @@ Select "interestRate = arg" in "setInterestRate"
 
 Select "return interestRate" in "getInterestRate"
 
-Wait 500ms
-
-Print "return type.getInterestRate()"
+Replace "return type.getInterestRate()"
 
 Select "interestRate = arg" in "setInterestRate"
 
-Wait 500ms
-
-Print "type.setInterestRate(arg)"
+Replace "type.setInterestRate(arg)"
 
 Select in "Account":
 ```
@@ -204,7 +198,7 @@ Remove selected
 Select name of "interestForAmount_days"
 + Select name of "interestForBigFamily"
 
-# Позднее при желании можно выполнить переадресацию для клиентов методов доступа, чтобы они использовали новый объект. 
+# Позднее при желании можно выполнить переадресацию для клиентов методов доступа, чтобы они использовали новый объект.
 
 Select name of "Account"
 

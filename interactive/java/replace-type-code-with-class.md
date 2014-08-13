@@ -228,16 +228,20 @@ Select:
 # Сперва заменяем значения всех констант старого закодированного типа вызовами соответствующих методов класса <code>BloodGroup</code>.
 
 Select "public static final int О = |||0|||;"
-Print "BloodGroup.O().getCode()"
+
+Replace "BloodGroup.O().getCode()"
 
 Select "public static final int A = |||1|||;"
-Print "BloodGroup.A().getCode()"
+
+Replace "BloodGroup.A().getCode()"
 
 Select "public static final int B = |||2|||;"
-Print "BloodGroup.B().getCode()"
+
+Replace "BloodGroup.B().getCode()"
 
 Select "public static final int AB = |||3|||;"
-Print "BloodGroup.AB().getCode()"
+
+Replace "BloodGroup.AB().getCode()"
 
 #^ Сейчас по-сути, все использования констант делегируются в методы <code>BlodGroup</code>.
 
@@ -284,9 +288,7 @@ Select:
   }
 ```
 
-Wait 500ms
-
-Print "BloodGroup bloodGroup"
+Replace "BloodGroup bloodGroup"
 
 Wait 500ms
 
@@ -300,9 +302,7 @@ Select:
   }
 ```
 
-Wait 500ms
-
-Print "bloodGroup"
+Replace "bloodGroup"
 
 Wait 500ms
 

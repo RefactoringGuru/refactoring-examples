@@ -93,19 +93,19 @@ Print:
 
 Select "salary *= 1.5"
 
-Print "raise(0.5)"
+Replace "raise(0.5)"
 
 Wait 500ms
 
 Select "salary *= 1.1"
 
-Print "raise(0.1)"
+Replace "raise(0.1)"
 
 Wait 500ms
 
 Select "salary *= 1.05"
 
-Print "raise(0.05)"
+Replace "raise(0.05)"
 
 Select name of "tenPercentRaise"
 + Select name of "fivePercentRaise"

@@ -93,19 +93,19 @@ Print:
 
 Select "$this->salary *= 1.5"
 
-Print "$this->raise(0.5)"
+Replace "$this->raise(0.5)"
 
 Wait 500ms
 
 Select "$this->salary *= 1.1"
 
-Print "$this->raise(0.1)"
+Replace "$this->raise(0.1)"
 
 Wait 500ms
 
 Select "$this->salary *= 1.05"
 
-Print "$this->raise(0.05)"
+Replace "$this->raise(0.05)"
 
 Select name of "tenPercentRaise"
 + Select name of "fivePercentRaise"

@@ -116,13 +116,16 @@ Set step 2
 # После этого поочередно заменяем все <code>return</code> в исходном методе вызовами нового запроса.
 
 Select "return |||"Don"|||" in "findCriminalAndAlert"
-Print "$this->findCriminal($people)"
+
+Replace "$this->findCriminal($people)"
 
 Select "return |||"John"|||" in "findCriminalAndAlert"
-Print "$this->findCriminal($people)"
+
+Replace "$this->findCriminal($people)"
 
 Select "return |||""|||" in "findCriminalAndAlert"
-Print "$this->findCriminal($people)"
+
+Replace "$this->findCriminal($people)"
 
 Set step 3
 
@@ -176,7 +179,8 @@ Select name of "findCriminalAndAlert"
 Print "doSendAlert"
 
 Select "findCriminalAndAlert"
-Print "doSendAlert"
+
+Replace "doSendAlert"
 
 
 Select body of "doSendAlert"

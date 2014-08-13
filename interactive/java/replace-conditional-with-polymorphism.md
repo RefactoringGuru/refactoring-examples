@@ -185,15 +185,15 @@ Print "Employee employee"
 
 Select "monthlySalary" in "EmployeeType"
 
-Print "employee.monthlySalary"
+Replace "employee.monthlySalary"
 
 Select "commission" in "EmployeeType"
 
-Print "employee.commission"
+Replace "employee.commission"
 
 Select "bonus" in "EmployeeType"
 
-Print "employee.bonus"
+Replace "employee.bonus"
 
 Select body of "payAmount"
 
@@ -266,7 +266,7 @@ Select:
   }
 ```
 
-Print:
+Replace:
 ```
   abstract public int payAmount(Employee employee);
 ```

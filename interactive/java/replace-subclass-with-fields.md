@@ -205,7 +205,7 @@ Remove selected
 
 Select "  abstract char getCode();"
 
-Print:
+Replace:
 ```
   boolean getCode() {
     return code;
@@ -240,9 +240,7 @@ Wait 500ms
 
 Select "new Male()"
 
-Wait 500ms
-
-Print "new Person(true, 'M')"
+Replace "new Person(true, 'M')"
 
 Set step 8
 
@@ -259,9 +257,7 @@ Remove selected
 
 Select "new Female()"
 
-Wait 500ms
-
-Print "new Person(false, 'F')"
+Replace "new Person(false, 'F')"
 
 Wait 500ms
 

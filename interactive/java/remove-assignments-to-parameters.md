@@ -88,7 +88,7 @@ Print "result"
 
 Select "||||||int" in parameters of "discount"
 
-Print "final "
+Replace "final "
 
 #C Запускаем финальную компиляцию.
 

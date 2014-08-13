@@ -50,7 +50,7 @@ class Transaction {
     return value;
   }
 }
-   
+
 // Somewhere in client code...
 double flow = account.getFlowBetween(startDate, endDate);
 ```
@@ -105,12 +105,12 @@ class DateRange {
   }
   public Date getEnd() {
     return end;
-  }    
+  }
   public boolean includes(Date arg) {
     return (arg.equals(start) || arg.equals(end) || (arg.after(start) && arg.before(end)));
   }
 }
-   
+
 // Somewhere in client code...
 double flow = account.getFlowBetween(new DateRange(startDate, endDate));
 ```
@@ -152,7 +152,7 @@ class DateRange {
   }
   public Date getEnd() {
     return end;
-  }    
+  }
 }
 ```
 
@@ -186,9 +186,7 @@ Select "Date start" in parameters of "getFlowBetween"
 
 Select "start" in body of "getFlowBetween"
 
-Wait 500ms
-
-Print "range.getStart()"
+Replace "range.getStart()"
 
 Select "Date start, " in parameters of "getFlowBetween"
 
@@ -208,9 +206,7 @@ Select "Date end" in parameters of "getFlowBetween"
 
 Select "end" in body of "getFlowBetween"
 
-Wait 500ms
-
-Print "range.getEnd()"
+Replace "range.getEnd()"
 
 Wait 500ms
 
@@ -259,9 +255,7 @@ each.getDate().equals(range.getStart()) ||
           (each.getDate().after(range.getStart()) && each.getDate().before(range.getEnd()))
 ```
 
-Wait 500ms
-
-Print "range.includes(each.getDate())"
+Replace "range.includes(each.getDate())"
 
 #C Запускаем финальную компиляцию.
 

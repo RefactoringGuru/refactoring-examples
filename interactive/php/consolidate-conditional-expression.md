@@ -13,7 +13,7 @@ consolidate-conditional-expression:php
 ```
 class Payout {
   // ...
-  
+
   public $seniority;
   public $monthsDisabled;
   public $isPartTime;
@@ -31,13 +31,13 @@ class Payout {
     // compute the disability amount
     // ...
   }
-   
+
   public function vacationAmount() {
-    if ($this->onVacation()) {    
-      if ($this->lengthOfService() > 10) {   
+    if ($this->onVacation()) {
+      if ($this->lengthOfService() > 10) {
         return 1;
-      }      
-    }      
+      }
+    }
     return 0.5;
   }
 }
@@ -48,7 +48,7 @@ class Payout {
 ```
 class Payout {
   // ...
-  
+
   public $seniority;
   public $monthsDisabled;
   public $isPartTime;
@@ -63,7 +63,7 @@ class Payout {
   private function isNotEligibleForDisability() {
     return ($this->seniority < 2) || ($this->monthsDisabled > 12) || ($this->isPartTime);
   }
-   
+
   public function vacationAmount() {
     return ($this->onVacation() && $this->lengthOfService() > 10) ? 1 : 0.5;
   }
@@ -131,9 +131,7 @@ Print:
 
 Select "($this->seniority < 2) || ($this->monthsDisabled > 12) || ($this->isPartTime)" in "disabilityAmount"
 
-Wait 500ms
-
-Print "$this->isNotEligibleForDisability()"
+Replace "$this->isNotEligibleForDisability()"
 
 #C Запускаем тестирование.
 
@@ -161,11 +159,11 @@ Print:
 
 Select:
 ```
-    if ($this->onVacation()) {    
-      if ($this->lengthOfService() > 10) {   
+    if ($this->onVacation()) {
+      if ($this->lengthOfService() > 10) {
         return 1;
-      }      
-    }      
+      }
+    }
     return 0.5;
 
 
@@ -177,7 +175,7 @@ Remove selected
 
 Select body of "vacationAmount"
 
-Print:
+Replace:
 ```
     return ($this->onVacation() && $this->lengthOfService() > 10) ? 1 : 0.5;
 ```

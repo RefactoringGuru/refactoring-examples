@@ -627,7 +627,7 @@ Print:
 
 Select "calculateLength()" in "SymFocus"
 
-Print "subject.calculateLength()"
+Replace "subject.calculateLength()"
 
 
 Select whole "calculateEnd"
@@ -653,7 +653,7 @@ Print:
 
 Select "calculateEnd()" in "SymFocus"
 
-Print "subject.calculateEnd()"
+Replace "subject.calculateEnd()"
 
 
 Select name of "Interval"

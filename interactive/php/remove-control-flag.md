@@ -97,7 +97,8 @@ Select:
 Remove selected
 
 Select "      "
-Print "    "
+
+Replace "    "
 
 Wait 500ms
 

@@ -121,7 +121,8 @@ Select "public |||$type|||"
 # Начнём с <a href="/self-encapsulate-field">самоинкапсуляции поля</a> типа служащего.
 
 Select "|||public||| $type"
-Print "private"
+
+Replace "private"
 
 Go to before "__construct"
 
@@ -136,7 +137,7 @@ Print:
 
 Select "switch (|||$this->type|||)"
 
-Print "$this->getType()"
+Replace "$this->getType()"
 
 Set step 2
 
@@ -156,9 +157,7 @@ Wait 500ms
 
 Select visibility of "__construct"
 
-Wait 500ms
-
-Print "private"
+Replace "private"
 
 Set step 3
 
@@ -290,7 +289,7 @@ Select:
   }|||
 ```
 
-Print ";"
+Replace ";"
 
 Select "switch ($type) {" in "create"
 

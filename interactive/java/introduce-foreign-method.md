@@ -82,7 +82,7 @@ Print "Date arg"
 
 Select "previousDate" in "nextWeek"
 
-Print "arg"
+Replace "arg"
 
 Go to type of "nextWeek"
 

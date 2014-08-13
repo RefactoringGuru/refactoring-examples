@@ -17,7 +17,7 @@ class Order {
   // ...
   const FIXED_DISCOUNT = 0;
   const PERCENT_DISCOUNT = 1;
-   
+
   public function applyDiscount($type, $discount) {
     switch ($type) {
       case Order::FIXED_DISCOUNT:
@@ -107,17 +107,13 @@ Set step 2
 
 Select "applyDiscount(Order::FIXED_DISCOUNT, "
 
-Wait 500ms
-
-Print "applyFixedDiscount("
+Replace "applyFixedDiscount("
 
 Wait 1000ms
 
 Select "applyDiscount(Order::PERCENT_DISCOUNT, "
 
-Wait 500ms
-
-Print "applyPercentDiscount("
+Replace "applyPercentDiscount("
 
 #C Запускаем тестирование, чтобы убедиться в отсутствии ошибок.
 
@@ -137,7 +133,7 @@ Select:
 ```
   const FIXED_DISCOUNT = 0;
   const PERCENT_DISCOUNT = 1;
-   
+
 
 ```
 Remove selected

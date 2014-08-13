@@ -296,7 +296,7 @@ else {
 }
 ```
 
-Print:
+Replace:
 ```
 $plan = $customer->getPlan();
 ```
@@ -379,7 +379,7 @@ else {
 }
 ```
 
-Print:
+Replace:
 ```
 $weeksDelinquent = $customer->getHistory()->getWeeksDelinquentInLastYear();
 ```

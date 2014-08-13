@@ -171,7 +171,7 @@ Select:
     get|||;|||
 ```
 
-Print:
+Replace:
 ```
  {
       return officeTelephone.AreaCode;
@@ -185,7 +185,7 @@ AreaCode;
     set|||;|||
 ```
 
-Print:
+Replace:
 ```
  {
       officeTelephone.AreaCode = value;
@@ -238,7 +238,7 @@ Select:
     get|||;|||
 ```
 
-Print:
+Replace:
 ```
  {
       return officeTelephone.Number;
@@ -252,7 +252,7 @@ Number;
     set|||;|||
 ```
 
-Print:
+Replace:
 ```
  {
       officeTelephone.Number = value;
@@ -281,7 +281,7 @@ Select "TelephoneNumber |||officeTelephone|||"
 
 Select body of "GetTelephoneNumber"
 
-Print:
+Replace:
 ```
     return officeTelephone.GetTelephoneNumber();
 ```

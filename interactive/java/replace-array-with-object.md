@@ -21,7 +21,7 @@ replace-array-with-object:java
 ```
 class Tournament {
   String[] row = new String[3];
-  
+
   public Tournament() {
     row[0] = "Liverpool";
     row[1] = "15";
@@ -39,7 +39,7 @@ class Tournament {
 ```
 class Tournament {
   Performance row = new Performance();;
-  
+
   public Tournament() {
     row.setName("Liverpool");
     row.setScore("15");
@@ -118,7 +118,7 @@ Performance row = new Performance();
 Select "row" in "public Tournament"
 +Select "row" in "displayScore"
 
-Print "row.data"
+Replace "row.data"
 
 Set step 3
 
@@ -145,13 +145,13 @@ Select "row.data[0] = "Liverpool""
 
 Select "row.data[0] = "Liverpool""
 
-Print "row.setName("Liverpool")"
+Replace "row.setName("Liverpool")"
 
 Wait 500ms
 
 Select "row.data[0]"
 
-Print "row.getName()"
+Replace "row.getName()"
 
 Go to the end of "Performance"
 
@@ -171,13 +171,13 @@ Print:
 
 Select "row.data[1] = "15""
 
-Print "row.setScore("15")"
+Replace "row.setScore("15")"
 
 Wait 500ms
 
 Select "Integer.parseInt(row.data[1])"
 
-Print "row.getScore()"
+Replace "row.getScore()"
 
 Set step 4
 
@@ -185,7 +185,7 @@ Set step 4
 
 Select "|||public||| String[] data"
 
-Print "private"
+Replace "private"
 
 Set step 5
 
@@ -205,7 +205,8 @@ Print:
 ```
 
 Select "data[0]"
-Print "name"
+
+Replace "name"
 
 Select name of "getScore"
 + Select name of "setScore"
@@ -221,10 +222,12 @@ Print:
 ```
 
 Select "Integer.parseInt(data[1])"
-Print "score"
+
+Replace "score"
 
 Select "data[1] = arg"
-Print "score = Integer.parseInt(arg)"
+
+Replace "score = Integer.parseInt(arg)"
 
 Set step 6
 

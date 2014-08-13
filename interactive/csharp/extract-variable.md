@@ -96,7 +96,7 @@ Select:
     Math.Max(0, quantity - 500) * itemPrice * 0.05
 ```
 
-Print " quantityDiscount"
+Replace " quantityDiscount"
 
 #C Готово, теперь запустим компиляцию и удостоверимся, что не возникло ошибок.
 
@@ -123,7 +123,7 @@ Select:
     Math.Min(basePrice * 0.1, 100.0)
 ```
 
-Print " shipping"
+Replace " shipping"
 
 Select:
 ```

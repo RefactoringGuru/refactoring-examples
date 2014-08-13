@@ -97,19 +97,19 @@ Select "low" in "includes"
 
 Select "low" in "includes"
 
-Print "getLow()"
+Replace "getLow()"
 
 Wait 500ms
 
 Select "high" in "includes"
 
-Print "getHigh()"
+Replace "getHigh()"
 
 Wait 500ms
 
 Select "high = " in "grow"
 
-Print "setHigh("
+Replace "setHigh("
 
 Wait 500ms
 
@@ -121,7 +121,7 @@ Wait 500ms
 
 Select "(|||high|||" in "grow"
 
-Print "getHigh()"
+Replace "getHigh()"
 
 Select "this.low"
 Select "this.high"

@@ -115,9 +115,7 @@ Print "DateTime date"
 
 Select "previousDate" in "GetNearFirstDate"
 
-Wait 500ms
-
-Print "date"
+Replace "date"
 
 Go to type of "GetNearFirstDate"
 

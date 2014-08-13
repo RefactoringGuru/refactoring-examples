@@ -26,7 +26,7 @@ class Customer {
 }
 
 class Order {
-  //...  
+  //...
   private Customer customer;
   public String getCustomerName() {
       return customer.getName();
@@ -82,7 +82,7 @@ class Customer {
 }
 
 class Order {
-  //...  
+  //...
   private Customer customer;
   public String getCustomerName() {
       return customer.getName();
@@ -150,9 +150,7 @@ Select name of "public Order"
 
 Select "new Customer(customerName)"
 
-Wait 500ms
-
-Print "Customer.create(customerName)"
+Replace "Customer.create(customerName)"
 
 Select visibility of "public Customer"
 
@@ -206,7 +204,7 @@ Select name of "create"
 
 Select "new Customer(name)" in "create"
 
-Print "(Customer) instances.get(name)"
+Replace "(Customer) instances.get(name)"
 
 Select name of "create"
 
@@ -218,7 +216,7 @@ Wait 500ms
 
 Select "Customer.|||create|||"
 
-Print "getNamed"
+Replace "getNamed"
 
 #C Запускаем финальную компиляцию.
 

@@ -68,7 +68,7 @@ Print:
 
 Select body of "getTelephoneNumber"
 
-Print "    getOfficeTelephoneNumber();"
+Replace "    getOfficeTelephoneNumber();"
 
 Set step 3
 
@@ -76,7 +76,7 @@ Set step 3
 
 Select "employee.|||getTelephoneNumber|||()"
 
-Print "getOfficeTelephoneNumber"
+Replace "getOfficeTelephoneNumber"
 
 Set step 4
 

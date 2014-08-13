@@ -74,7 +74,7 @@ Select "$result = $this->normalPayAmount()"
 
 Select "|||$result =||| $this->deadAmount();"
 
-Print "return"
+Replace "return"
 
 Select:
 ```
@@ -114,7 +114,7 @@ Select "$this->isSeparated"
 
 Select "|||$result =||| $this->separatedAmount();"
 
-Print "return"
+Replace "return"
 
 Select:
 ```
@@ -149,7 +149,7 @@ Select "$this->isRetired"
 
 Select "|||$result =||| $this->retiredAmount();"
 
-Print "return"
+Replace "return"
 
 Select:
 ```
@@ -186,7 +186,8 @@ Remove selected
 Wait 500ms
 
 Select "$result ="
-Print "return"
+
+Replace "return"
 
 Wait 500ms
 

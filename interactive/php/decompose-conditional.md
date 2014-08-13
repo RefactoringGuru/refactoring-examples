@@ -131,9 +131,7 @@ Print:
 
 Select "$charge = $quantity * $this->winterRate + $this->winterServiceCharge;"
 
-Wait 500ms
-
-Print "$charge = $this->winterCharge($quantity);"
+Replace "$charge = $this->winterCharge($quantity);"
 
 
 Select "$charge = $quantity * $this->summerRate;"
@@ -153,9 +151,7 @@ Print:
 
 Select "$charge = $quantity * $this->summerRate;"
 
-Wait 500ms
-
-Print "$charge = $this->summerCharge($quantity);"
+Replace "$charge = $this->summerCharge($quantity);"
 
 #C Запускаем финальное тестирование.
 

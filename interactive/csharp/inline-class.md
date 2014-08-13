@@ -29,7 +29,7 @@ public class Person
       return officeTelephone;
     }
   }
-  
+
   public string GetTelephoneNumber()
   {
     return officeTelephone.GetTelephoneNumber();
@@ -79,7 +79,7 @@ public class Person
     get;
     set;
   }
-  
+
   public string GetTelephoneNumber()
   {
     return "(" + AreaCode + ") " + Number;
@@ -195,7 +195,7 @@ Select in "Person":
 return officeTelephone.GetTelephoneNumber();
 ```
 
-Print:
+Replace:
 ```
 return "(" + AreaCode + ") " + Number;
 ```

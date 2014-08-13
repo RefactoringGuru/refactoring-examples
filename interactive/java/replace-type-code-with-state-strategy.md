@@ -135,9 +135,7 @@ Select "public int |||type|||"
 
 Select "|||public||| int type"
 
-Wait 500ms
-
-Print "private"
+Replace "private"
 
 Go to after "public Employee"
 
@@ -156,7 +154,7 @@ Wait 500ms
 
 Select "switch (|||type|||) {"
 
-Print "getType()"
+Replace "getType()"
 
 
 Select whole "setType"
@@ -251,9 +249,7 @@ Select:
   }
 ```
 
-Wait 500ms
-
-Print "type.getTypeCode()"
+Replace "type.getTypeCode()"
 
 Wait 500ms
 
@@ -273,10 +269,12 @@ Select name of "setType"
 # Так как методы доступа теперь возвращают код, а не сам объект типа, стоит переменовать их, чтобы избавить будущего читателя от непонимания.
 
 Select "setType("
-Print "setTypeCode("
+
+Replace "setTypeCode("
 
 Select "getType("
-Print "getTypeCode("
+
+Replace "getTypeCode("
 
 
 
@@ -321,7 +319,7 @@ Select:
       case||| |||MANAGER:
 ```
 
-Print " EmployeeType."
+Replace " EmployeeType."
 
 Wait 500ms
 
@@ -373,15 +371,15 @@ Print "Employee employee"
 
 Select "monthlySalary" in "EmployeeType"
 
-Print "employee.monthlySalary"
+Replace "employee.monthlySalary"
 
 Select "commission" in "EmployeeType"
 
-Print "employee.commission"
+Replace "employee.commission"
 
 Select "bonus" in "EmployeeType"
 
-Print "employee.bonus"
+Replace "employee.bonus"
 
 Select body of "payAmount"
 
@@ -448,7 +446,7 @@ Select:
   }
 ```
 
-Print:
+Replace:
 ```
   abstract public int payAmount(Employee employee);
 ```

@@ -124,7 +124,7 @@ Select "$calendar->findAppointment($today);"
 
 Select "$calendar->|||findAppointment|||($today);"
 
-Print "findAppointmentByDateAndName"
+Replace "findAppointmentByDateAndName"
 
 Go to "$calendar->findAppointmentByDateAndName($today|||);"
 

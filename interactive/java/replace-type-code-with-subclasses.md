@@ -122,9 +122,7 @@ Select "public int |||type|||"
 
 Select "|||public||| int type"
 
-Wait 500ms
-
-Print "private"
+Replace "private"
 
 Go to before "public Employee"
 
@@ -139,7 +137,7 @@ Print:
 
 Select "switch (|||type|||)"
 
-Print "getType()"
+Replace "getType()"
 
 Set step 2
 
@@ -159,9 +157,7 @@ Wait 500ms
 
 Select "|||public||| Employee"
 
-Wait 500ms
-
-Print "private"
+Replace "private"
 
 Set step 3
 
@@ -293,7 +289,7 @@ Select:
   }|||
 ```
 
-Print ";"
+Replace ";"
 
 Select "switch (type) {" in "create"
 

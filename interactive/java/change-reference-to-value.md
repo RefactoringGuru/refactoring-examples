@@ -29,7 +29,7 @@ class Customer {
   private Customer(String name) {
     this.name = name;
   }
-  
+
   private static Dictionary instances = new Hashtable();
 
   public static Customer get(String name) {
@@ -41,7 +41,7 @@ class Customer {
     return value;
   }
 }
-   
+
 // Somewhere in client code
 Customer john = Customer.get("John Smith");
 john.setBirthDate(new Date(1985, 1, 1));
@@ -75,7 +75,7 @@ class Customer {
     this.birthDate = birthDate;
   }
 }
-   
+
 // Somewhere in client code
 Customer john = new Customer("John Smith", new Date(1985, 1, 1));
 ```
@@ -101,7 +101,7 @@ Select visibility of "private Customer"
 
 Select name of "get"
 
-# Вместо этого, я вызываю статический фабричный метод, который ищет покупателя среди уже созданных объектов. И только в случае, если такой объект еще не создан, фабричный метод запускает реальный конструктор, а затем добавляет созданный объект в реестр. 
+# Вместо этого, я вызываю статический фабричный метод, который ищет покупателя среди уже созданных объектов. И только в случае, если такой объект еще не создан, фабричный метод запускает реальный конструктор, а затем добавляет созданный объект в реестр.
 
 # Теперь, допустим, у вас есть несколько заказов, ссылающихся на одного и того же клиента. Внезапно, код одного из заказов меняет значенияе даты рождения клиента. Так как оба заказа ссылаются на один тот же объект клиента, новая дата рождения будет доступна и из другого заказа.
 
@@ -165,7 +165,7 @@ Set step 3
 
 Select:
 ```
-  
+
   private static Dictionary instances = new Hashtable();
 
 
@@ -178,7 +178,7 @@ Remove selected
 
 Select "|||private||| Customer"
 
-Print "public"
+Replace "public"
 
 Select "Customer.get("John Smith")"
 

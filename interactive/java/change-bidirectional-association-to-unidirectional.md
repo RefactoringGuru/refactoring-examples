@@ -135,9 +135,7 @@ Wait 500ms
 
 Select "|||getCustomer()|||.getDiscount()"
 
-Wait 500ms
-
-Print "customer"
+Replace "customer"
 
 
 Select:
@@ -180,9 +178,7 @@ Remove selected
 
 Select "|||customer|||.getDiscount()"
 
-Wait 500ms
-
-Print "getCustomer()"
+Replace "getCustomer()"
 
 
 Select "getDiscountedPrice(|||this|||);"

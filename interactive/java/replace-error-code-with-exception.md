@@ -100,9 +100,7 @@ else {
 }
 ```
 
-Wait 500ms
-
-Print:
+Replace:
 ```
 try {
   account.withdraw(amount);
@@ -121,9 +119,7 @@ Select:
       return -1;
 ```
 
-Wait 500ms
-
-Print:
+Replace:
 ```
       throw new BalanceException();
 ```

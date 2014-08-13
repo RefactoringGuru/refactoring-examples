@@ -13,7 +13,7 @@ consolidate-conditional-expression:java
 ```
 class Payout {
   // ...
-  
+
   public int seniority;
   public int monthsDisabled;
   public boolean isPartTime;
@@ -31,13 +31,13 @@ class Payout {
     // compute the disability amount
     // ...
   }
-   
+
   public double vacationAmount() {
-    if (onVacation()) {    
-      if (lengthOfService() > 10) {   
+    if (onVacation()) {
+      if (lengthOfService() > 10) {
         return 1;
-      }      
-    }      
+      }
+    }
     return 0.5;
   }
 }
@@ -48,7 +48,7 @@ class Payout {
 ```
 class Payout {
   // ...
-  
+
   public int seniority;
   public int monthsDisabled;
   public boolean isPartTime;
@@ -63,7 +63,7 @@ class Payout {
   private boolean isNotEligibleForDisability() {
     return (seniority < 2) || (monthsDisabled > 12) || (isPartTime);
   }
-   
+
   public double vacationAmount() {
     return (onVacation() && lengthOfService() > 10) ? 1 : 0.5;
   }
@@ -131,9 +131,7 @@ Print:
 
 Select "(seniority < 2) || (monthsDisabled > 12) || (isPartTime)" in "disabilityAmount"
 
-Wait 500ms
-
-Print "isNotEligibleForDisability()"
+Replace "isNotEligibleForDisability()"
 
 #C Запускаем компиляцию и тестирование.
 
@@ -161,11 +159,11 @@ Print:
 
 Select:
 ```
-    if (onVacation()) {    
-      if (lengthOfService() > 10) {   
+    if (onVacation()) {
+      if (lengthOfService() > 10) {
         return 1;
-      }      
-    }      
+      }
+    }
     return 0.5;
 
 
@@ -177,7 +175,7 @@ Remove selected
 
 Select body of "vacationAmount"
 
-Print:
+Replace:
 ```
     return (onVacation() && lengthOfService() > 10) ? 1 : 0.5;
 ```

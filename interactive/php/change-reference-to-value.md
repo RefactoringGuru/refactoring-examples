@@ -142,7 +142,7 @@ Remove selected
 
 Select visibility of "__construct"
 
-Print "public"
+Replace "public"
 
 Select "Customer::get("John Smith")"
 

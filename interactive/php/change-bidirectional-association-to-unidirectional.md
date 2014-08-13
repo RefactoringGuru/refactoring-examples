@@ -133,9 +133,7 @@ Wait 500ms
 
 Select "|||$this->getCustomer()|||->getDiscount()"
 
-Wait 500ms
-
-Print "$customer"
+Replace "$customer"
 
 Select:
 ```
@@ -175,9 +173,7 @@ Remove selected
 
 Select "|||$customer|||->getDiscount()"
 
-Wait 500ms
-
-Print "$this->getCustomer()"
+Replace "$this->getCustomer()"
 
 Wait 500ms
 

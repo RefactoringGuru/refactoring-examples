@@ -152,9 +152,7 @@ Print:
 
 Select "charge = quantity * winterRate + winterServiceCharge;"
 
-Wait 500ms
-
-Print "charge = WinterCharge(quantity);"
+Replace "charge = WinterCharge(quantity);"
 
 
 Select "charge = quantity * summerRate;"
@@ -175,9 +173,7 @@ Print:
 
 Select "charge = quantity * summerRate;"
 
-Wait 500ms
-
-Print "charge = SummerCharge(quantity);"
+Replace "charge = SummerCharge(quantity);"
 
 #C Запускаем финальную компиляцию.
 

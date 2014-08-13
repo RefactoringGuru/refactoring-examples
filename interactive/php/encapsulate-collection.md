@@ -199,7 +199,7 @@ Select name of "setCourses"
 
 Select "setCourses"
 
-Print "initializeCourses"
+Replace "initializeCourses"
 
 # В общем случае мы должны сначала прибегнуть к методу удаления и убрать все элементы, а затем добавлять новые. Однако это происходит редко (как и бывает с общими случаями).
 
@@ -213,9 +213,7 @@ Select:
     }
 ```
 
-Wait 500ms
-
-Print:
+Replace:
 ```
     $this->courses->addAll($arg);
 ```
@@ -239,9 +237,7 @@ Select:
 |||$s->attach|||(new Course("Appreciating Single Malts", true));
 ```
 
-Wait 1000ms
-
-Print "$kent->addCourse"
+Replace "$kent->addCourse"
 
 Select:
 ```
@@ -263,15 +259,13 @@ Select "getCourses()->attach"
 
 Select "getCourses()->attach"
 
-Print "addCourse"
+Replace "addCourse"
 
 Wait 500ms
 
 Select "getCourses()->detach"
 
-Wait 500ms
-
-Print "removeCourse"
+Replace "removeCourse"
 
 Set step 5
 
@@ -350,7 +344,7 @@ Select:
 print("Advanced courses: " . |||$count|||);
 ```
 
-Print "$kent->numberOfAdvancedCourses()"
+Replace "$kent->numberOfAdvancedCourses()"
 
 Select "$kent->getCourses()->count()"
 
@@ -370,7 +364,7 @@ Print:
 
 Select "$kent->getCourses()->count()"
 
-Print "$kent->numberOfCourses()"
+Replace "$kent->numberOfCourses()"
 
 #C Запускаем финальное тестирование.
 

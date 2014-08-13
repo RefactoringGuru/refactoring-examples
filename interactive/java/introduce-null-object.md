@@ -302,7 +302,7 @@ else {
 }
 ```
 
-Print:
+Replace:
 ```
 BillingPlan plan = customer.getPlan();
 ```
@@ -386,7 +386,7 @@ else {
 }
 ```
 
-Print:
+Replace:
 ```
 int weeksDelinquent = customer.getHistory().getWeeksDelinquentInLastYear();
 ```

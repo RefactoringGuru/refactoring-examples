@@ -169,7 +169,7 @@ Wait 500ms
 
 Select body of "getAreaCode" in "Person"
 
-Print:
+Replace:
 ```
     return areaCode;
 ```
@@ -187,7 +187,7 @@ Wait 500ms
 
 Select body of "setAreaCode" in "Person"
 
-Print:
+Replace:
 ```
     areaCode = arg;
 ```
@@ -205,7 +205,7 @@ Wait 500ms
 
 Select body of "getNumber" in "Person"
 
-Print:
+Replace:
 ```
     return number;
 ```
@@ -223,7 +223,7 @@ Wait 500ms
 
 Select body of "setNumber" in "Person"
 
-Print:
+Replace:
 ```
     number = arg;
 ```
@@ -240,7 +240,7 @@ Wait 500ms
 
 Select body of "getTelephoneNumber" in "Person"
 
-Print:
+Replace:
 ```
     return ("(" + areaCode + ") " + number);
 ```

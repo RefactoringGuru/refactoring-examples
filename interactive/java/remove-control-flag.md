@@ -24,7 +24,7 @@ void checkSecurity(String[] people) {
       if (people[i].equals ("John")) {
         sendAlert();
         found = true;
-      } 
+      }
     }
   }
 }
@@ -42,7 +42,7 @@ void checkSecurity(String[] people) {
     if (people[i].equals ("John")) {
       sendAlert();
       break;
-    } 
+    }
   }
 }
 ```
@@ -88,7 +88,7 @@ Select:
 
 + Select:
 ```
-      } 
+      }
 |||    }
 |||  }
 ```
@@ -96,7 +96,8 @@ Select:
 Remove selected
 
 Select "      "
-Print "    "
+
+Replace "    "
 
 Wait 500ms
 

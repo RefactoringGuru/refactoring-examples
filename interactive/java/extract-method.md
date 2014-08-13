@@ -278,7 +278,7 @@ Select in "getOutstanding":
 
 Select type of "GetOutstanding"
 
-Print:
+Replace:
 ```
 double
 ```

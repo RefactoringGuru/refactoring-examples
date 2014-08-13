@@ -289,10 +289,7 @@ Select in "GetOutstanding":
 
 Select type of "GetOutstanding"
 
-Print:
-```
-double
-```
+Replace "double"
 
 Go to the end of "GetOutstanding"
 

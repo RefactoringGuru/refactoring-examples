@@ -49,7 +49,7 @@ class Transaction {
     return $this->value;
   }
 }
-   
+
 // Somewhere in client code...
 $flow = $account->getFlowBetween($startDate, $endDate);
 ```
@@ -103,12 +103,12 @@ class DateRange {
   }
   public function getEnd() {
     return $this->end;
-  }    
+  }
   public function includes(DateTime $arg) {
     return ($arg == $this->start || $arg == $this->end || ($arg > $this->start && $arg < $this->end));
   }
 }
-   
+
 // Somewhere in client code...
 $flow = $account->getFlowBetween(new DateRange($startDate, $endDate));
 ```
@@ -150,7 +150,7 @@ class DateRange {
   }
   public function getEnd() {
     return $this->end;
-  }    
+  }
 }
 ```
 
@@ -184,9 +184,7 @@ Select "DateTime $start" in parameters of "getFlowBetween"
 
 Select "$start" in body of "getFlowBetween"
 
-Wait 500ms
-
-Print "$range->getStart()"
+Replace "$range->getStart()"
 
 Select "DateTime $start, " in parameters of "getFlowBetween"
 
@@ -206,9 +204,7 @@ Select "DateTime $end" in parameters of "getFlowBetween"
 
 Select "$end" in body of "getFlowBetween"
 
-Wait 500ms
-
-Print "$range->getEnd()"
+Replace "$range->getEnd()"
 
 Wait 500ms
 
@@ -257,9 +253,7 @@ $transaction->getDate() == $range->getStart() ||
           ($transaction->getDate() > $range->getStart() && $transaction->getDate() < $range->getEnd())
 ```
 
-Wait 500ms
-
-Print "$range->includes($transaction->getDate())"
+Replace "$range->includes($transaction->getDate())"
 
 #C Запускаем финальное тестирование.
 

@@ -254,9 +254,7 @@ return $this->bloodGroup|||->getCode()|||;
 Select parameters in "__construct"
 + Select parameters in "setBloodGroup"
 
-Wait 500ms
-
-Print "BloodGroup $bloodGroup"
+Replace "BloodGroup $bloodGroup"
 
 Wait 500ms
 
@@ -265,9 +263,7 @@ Select:
 new BloodGroup($code)
 ```
 
-Wait 500ms
-
-Print "$bloodGroup"
+Replace "$bloodGroup"
 
 Wait 500ms
 

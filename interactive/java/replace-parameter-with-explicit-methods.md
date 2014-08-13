@@ -17,7 +17,7 @@ class Order {
   // ...
   public static final int FIXED_DISCOUNT = 0;
   public static final int PERCENT_DISCOUNT = 1;
-   
+
   public double applyDiscount(int type, double discount) {
     switch (type) {
       case FIXED_DISCOUNT:
@@ -107,17 +107,13 @@ Set step 2
 
 Select "applyDiscount(Order.FIXED_DISCOUNT, "
 
-Wait 500ms
-
-Print "applyFixedDiscount("
+Replace "applyFixedDiscount("
 
 Wait 1000ms
 
 Select "applyDiscount(Order.PERCENT_DISCOUNT, "
 
-Wait 500ms
-
-Print "applyPercentDiscount("
+Replace "applyPercentDiscount("
 
 #C Запускаем компиляцию и тестирование, чтобы убедиться в отсутствии ошибок.
 
@@ -137,7 +133,7 @@ Select:
 ```
   public static final int FIXED_DISCOUNT = 0;
   public static final int PERCENT_DISCOUNT = 1;
-   
+
 
 ```
 Remove selected

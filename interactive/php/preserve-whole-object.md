@@ -52,7 +52,7 @@ class HeatingPlan {
 
 Set step 1
 
-# Рассмотрим класс описывающий комнату и регистрирующий самую высокую и самую низкую температуру в течение суток. 
+# Рассмотрим класс описывающий комнату и регистрирующий самую высокую и самую низкую температуру в течение суток.
 
 Select "$plan->withinRange"
 
@@ -84,7 +84,7 @@ Remove selected
 
 Select "&& |||$high|||"
 
-Print "$room->getHighestTemp()"
+Replace "$room->getHighestTemp()"
 
 Wait 500ms
 
@@ -103,7 +103,7 @@ Remove selected
 
 Select "|||$low||| >="
 
-Print "$room->getLowestTemp()"
+Replace "$room->getLowestTemp()"
 
 Wait 500ms
 

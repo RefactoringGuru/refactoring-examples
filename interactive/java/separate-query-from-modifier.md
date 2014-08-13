@@ -116,13 +116,16 @@ Set step 2
 # После этого поочерёдно заменяем все <code>return</code> в исходном методе вызовами нового запроса.
 
 Select "return |||"Don"|||" in "findCriminalAndAlert"
-Print "findCriminal(people)"
+
+Replace "findCriminal(people)"
 
 Select "return |||"John"|||" in "findCriminalAndAlert"
-Print "findCriminal(people)"
+
+Replace "findCriminal(people)"
 
 Select "return |||""|||" in "findCriminalAndAlert"
-Print "findCriminal(people)"
+
+Replace "findCriminal(people)"
 
 Set step 3
 
@@ -176,7 +179,8 @@ Select name of "findCriminalAndAlert"
 Print "doSendAlert"
 
 Select "findCriminalAndAlert"
-Print "doSendAlert"
+
+Replace "doSendAlert"
 
 
 Select body of "doSendAlert"

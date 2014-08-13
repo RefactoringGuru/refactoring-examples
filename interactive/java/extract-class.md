@@ -19,7 +19,7 @@ class Person {
   private String name;
   private String officeAreaCode;
   private String officeNumber;
-  
+
   public String getName() {
     return name;
   }
@@ -47,7 +47,7 @@ class Person {
 class Person {
   private String name;
   private TelephoneNumber officeTelephone = new TelephoneNumber();
-  
+
   public String getName() {
     return name;
   }
@@ -160,7 +160,7 @@ Select name of "getOfficeAreaCode"
 
 Select body of "getOfficeAreaCode"
 
-Print:
+Replace:
 ```
     return officeTelephone.getAreaCode();
 ```
@@ -169,7 +169,7 @@ Wait 500ms
 
 Select body of "setOfficeAreaCode"
 
-Print:
+Replace:
 ```
     officeTelephone.setAreaCode(arg);
 ```
@@ -178,7 +178,7 @@ Print:
 
 Select "officeAreaCode" in "getTelephoneNumber"
 
-Print "getOfficeAreaCode()"
+Replace "getOfficeAreaCode()"
 
 Select:
 ```
@@ -235,21 +235,21 @@ Select "private String |||officeNumber|||"
 
 Select body of "getTelephoneNumber"
 
-Print:
+Replace:
 ```
     return officeTelephone.getTelephoneNumber();
 ```
 
 Select body of "getOfficeNumber"
 
-Print:
+Replace:
 ```
     return officeTelephone.getNumber();
 ```
 
 Select body of "setOfficeNumber"
 
-Print:
+Replace:
 ```
     officeTelephone.setNumber(arg);
 ```

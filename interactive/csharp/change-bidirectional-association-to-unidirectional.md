@@ -155,9 +155,7 @@ Wait 500ms
 
 Select "|||this.Customer|||.GetDiscount()"
 
-Wait 500ms
-
-Print "customer"
+Replace "customer"
 
 
 Select:
@@ -198,9 +196,7 @@ Remove selected
 
 Select "|||customer|||.GetDiscount()"
 
-Wait 500ms
-
-Print "this.Customer"
+Replace "this.Customer"
 
 
 Select "GetDiscountedPrice(|||this|||);"

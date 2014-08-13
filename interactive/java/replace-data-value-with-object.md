@@ -145,7 +145,7 @@ Select "private String customer"
 
 Select "private |||String||| customer"
 
-Print "Customer"
+Replace "Customer"
 
 Set step 4
 
@@ -153,7 +153,7 @@ Set step 4
 
 Select "return |||customer|||" in "getCustomer"
 
-Print "customer.getName()"
+Replace "customer.getName()"
 
 Select name of "public Order"
 + Select name of "setCustomer"
@@ -163,7 +163,7 @@ Select name of "public Order"
 Select "= |||customer|||" in "public Order"
 + Select "= |||customer|||" in "setCustomer"
 
-Print "new Customer(customer)"
+Replace "new Customer(customer)"
 
 Select name of "setCustomer"
 
@@ -189,7 +189,7 @@ Wait 500ms
 
 Select "each.|||getCustomer|||"
 
-Print "getCustomerName"
+Replace "getCustomerName"
 
 Select "String |||customer|||" in parameters of "public Order"
 + Select "(|||customer|||)" in "public Order"

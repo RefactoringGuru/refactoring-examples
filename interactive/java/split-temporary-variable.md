@@ -114,7 +114,7 @@ Wait 500ms
 
 Select " |||acc||| "
 
-Print "secondaryAcceleration"
+Replace "secondaryAcceleration"
 
 #C Запускаем финальную компиляцию.
 

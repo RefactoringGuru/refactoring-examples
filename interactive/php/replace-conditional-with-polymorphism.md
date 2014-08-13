@@ -184,15 +184,15 @@ Print "Employee $employee"
 
 Select "$this->monthlySalary" in "EmployeeType"
 
-Print "$employee->monthlySalary"
+Replace "$employee->monthlySalary"
 
 Select "$this->commission" in "EmployeeType"
 
-Print "$employee->commission"
+Replace "$employee->commission"
 
 Select "$this->bonus" in "EmployeeType"
 
-Print "$employee->bonus"
+Replace "$employee->bonus"
 
 Select body of "payAmount"
 
@@ -265,7 +265,7 @@ Select:
   }
 ```
 
-Print:
+Replace:
 ```
   abstract public function payAmount(Employee $employee);
 ```

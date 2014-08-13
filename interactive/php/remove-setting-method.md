@@ -16,7 +16,7 @@ remove-setting-method:php
 class Account {
   // ...
   private $id;
-  
+
   public function __construct($id) {
     $this->setId($id);
   }
@@ -32,7 +32,7 @@ class Account {
 class Account {
   // ...
   private $id;
-  
+
   public function __construct($id) {
     $this->initializeId($id);
   }
@@ -66,7 +66,7 @@ Select body of "setId"
 
 Select body of "__construct"
 
-Print:
+Replace:
 ```
     $this->id = $id;
 ```
@@ -77,11 +77,11 @@ Remove selected
 
 Select name of "Account"
 
-# По сути, для такого простого случая, мы уже все сделали. Но бывают и другие, более сложные случаи. 
+# По сути, для такого простого случая, мы уже все сделали. Но бывают и другие, более сложные случаи.
 
 Select whole "__construct"
 
-Print instant:
+Replace instant:
 ```
   public function __construct($id) {
     $this->setId($id);
@@ -102,17 +102,13 @@ Select body of "setId"
 
 Select visibility of "setId"
 
-Wait 500ms
-
-Print "private"
+Replace "private"
 
 Wait 500ms
 
 Select "setId"
 
-Wait 500ms
-
-Print "initializeId"
+Replace "initializeId"
 
 Set step 2
 
@@ -149,17 +145,13 @@ Select "parent::__construct($id)"
 
 Select visibility of "initializeId"
 
-Wait 500ms
-
-Print "protected"
+Replace "protected"
 
 Wait 500ms
 
 Select "parent::__construct($id)"
 
-Wait 500ms
-
-Print "$this->initializeId($id)"
+Replace "$this->initializeId($id)"
 
 #C Запускаем финальную компиляцию.
 
