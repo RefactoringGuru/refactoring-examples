@@ -80,7 +80,7 @@ abstract class JobItem {
 }
 class PartsItem extends JobItem {
   protected $unitPrice;
-  
+
   public function __construct($quantity, $unitPrice) {
     parent::__construct($quantity);
     $this->unitPrice = $unitPrice;
@@ -188,7 +188,7 @@ Select parameters of "__construct" in "JobItem"
 
 Select visibility of "__construct" in "JobItem"
 
-# Сначала обращаемся к родительскому классу. Делаем некоторые из параметров опциональными, подавая туда значения по умолчанию.
+# Сначала обращаемся к родительскому классу. Создаём новый конструктор и объявляем прежний защищенным (подклассу он по-прежнему нужен)
 
 Go to "$isLabor|||, Employee $employee" in "JobItem"
 
@@ -403,7 +403,7 @@ Print:
 
 class PartsItem extends JobItem {
   protected $unitPrice;
-  
+
   public function __construct($quantity, $unitPrice) {
     parent::__construct($quantity);
     $this->unitPrice = $unitPrice;

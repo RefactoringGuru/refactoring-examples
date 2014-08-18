@@ -131,7 +131,7 @@ Set step 1
 
 Select "public int |||type|||"
 
-# Начнем с <a href="/self-encapsulate-field">самоинкапсуляции поля</a> типа служащего.
+# Начнём с <a href="/self-encapsulate-field">самоинкапсуляции поля</a> типа служащего.
 
 Select "|||public||| int type"
 

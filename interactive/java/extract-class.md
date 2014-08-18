@@ -231,7 +231,7 @@ Print:
 
 Select "private String |||officeNumber|||"
 
-# Теперь мы можем делегировать всю телефонную функциональность классу <code>TelephoneNumber</code>.
+# После чего мы можем делегировать всю телефонную функциональность классу <code>TelephoneNumber</code>.
 
 Select body of "getTelephoneNumber"
 

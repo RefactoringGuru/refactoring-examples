@@ -92,7 +92,7 @@ Select:
 
 Set step 2
 
-# Для начала, выделим расчет <code>discountLevel</code> в собственный метод.
+# Для начала, выделим расчёт <code>discountLevel</code> в собственный метод.
 
 Go to after "discountedPrice"
 

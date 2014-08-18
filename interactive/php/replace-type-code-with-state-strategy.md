@@ -131,7 +131,7 @@ Set step 1
 
 Select "public |||$type|||"
 
-# Начнем с <a href="/self-encapsulate-field">самоинкапсуляции поля</a> типа служащего.
+# Начнём с <a href="/self-encapsulate-field">самоинкапсуляции поля</a> типа служащего.
 
 Select "|||public||| $type"
 
@@ -257,7 +257,7 @@ Select:
     $this->type = |||$arg|||;
 ```
 
-# Тело сеттера и конструктора меняем на вызов фабричного метода.
+# Тело сеттера и конструктор меняем на вызов фабричного метода.
 
 Print "EmployeeType::newType($arg)"
 

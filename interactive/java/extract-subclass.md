@@ -79,7 +79,7 @@ abstract class JobItem {
 }
 class PartsItem extends JobItem {
   protected int unitPrice;
-  
+
   public LaborItem(int quantity, int unitPrice) {
     super(quantity);
     this.unitPrice = unitPrice;
@@ -189,7 +189,7 @@ Select parameters of "public JobItem"
 
 Select visibility of "public JobItem"
 
-# Сначала я обращаюсь к родительскому классу. Я создаю новый конструктор и объявляю прежний защищенным (подклассу он по-прежнему нужен):
+# Сначала обращаемся к родительскому классу. Создаём новый конструктор и объявляем прежний защищенным (подклассу он по-прежнему нужен)
 
 Print "protected"
 
@@ -418,7 +418,7 @@ Print:
 
 class PartsItem extends JobItem {
   protected int unitPrice;
-  
+
   public LaborItem(int quantity, int unitPrice) {
     super(quantity);
     this.unitPrice = unitPrice;

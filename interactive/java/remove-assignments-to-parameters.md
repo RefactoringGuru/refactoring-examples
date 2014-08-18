@@ -57,7 +57,7 @@ Select 3nd "inputVal"
 +Select 4th "inputVal"
 +Select 5th "inputVal"
 
-#^= Значение этого параметра изменяется в теле функции.
+#^= Значение этого параметра изменяется в теле метода.
 
 Set step 2
 

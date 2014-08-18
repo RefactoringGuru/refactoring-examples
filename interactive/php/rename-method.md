@@ -82,7 +82,7 @@ Set step 4
 
 Select whole "getTelephoneNumber"
 
-# После всех изменений прежний метод можно удалить.
+# После всех изменений, старый метод можно удалить.
 
 Remove selected
 

@@ -185,7 +185,7 @@ Print:
 
 Select "delta()" in "compute"
 
-# При этом следует модифицировать любые вызовы функций <code>Account</code> так, чтобы они выполнялись через поле <code>account</code>.
+# При этом следует модифицировать любые вызовы методов <code>Account</code> так, чтобы они выполнялись через поле <code>account</code>.
 
 Print "account.delta()"
 
