@@ -122,9 +122,9 @@ Replace "type.getInterestRate()"
 
 Set step 5
 
-Select:
+Select in "Account":
 ```
-  private AccountType type;
+  private double interestRate;
 
 ```
 
@@ -166,7 +166,8 @@ class Account {
 
 ```
 
-Select name of "interestForAmount_days"
+Select name of "Account"
++ Select name of "interestForAmount_days"
 + Select name of "interestForBigFamily"
 + Select "other 10 methods"
 
