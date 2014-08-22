@@ -4,7 +4,7 @@ move-field:java
 
 1. Инкапсулируйте поле, если оно публичное.
 
-2. Создайте такое же поле с методами доступа в классе-приёмнике.
+2. Создайте такое же поле с методами доступа в классе-приемнике.
 
 3. Определите, как вы будете обращаться к классу-получателю. Вполне возможно, у вас уже есть поле или метод, которые возвращают подходящий объект, но если нет, нужно будет написать новый метод или поле, в котором бы хранился объект класса-получателя.
 
@@ -23,7 +23,7 @@ class Account {
   private double interestRate;
 
   double interestForAmount_days(double amount, int days) {
-    return interestRate * amount * days / 365;
+    return interestRate * amount * days / 365.0;
   }
 }
 
@@ -40,7 +40,7 @@ class Account {
   private AccountType type;
 
   double interestForAmount_days(double amount, int days) {
-    return getInterestRate() * amount * days / 365;
+    return getInterestRate() * amount * days / 365.0;
   }
   double interestForBigFamily(double familySize) {
     return getInterestRate() / familySize;
@@ -102,7 +102,7 @@ Print:
   }
 ```
 
-#C Запустим компиляцию, на всякий случай.
+#C На всякий случай запустим компиляцию.
 
 #S Все хорошо, можно продолжать.
 
@@ -114,7 +114,7 @@ Select "AccountType |||type|||" in "Account"
 
 Set step 4
 
-# Заменим все обращения к старому полю на соответствующие вызовы методов в классе-получателе.
+# Заменим все обращения к старому полю на соответствующие вызовы методов в целевом классе.
 
 Select "interestRate" in "interestForAmount_days"
 
@@ -148,7 +148,7 @@ class Account {
   private double interestRate;
 
   double interestForAmount_days(double amount, int days) {
-    return getInterestRate() * amount * days / 365;
+    return getInterestRate() * amount * days / 365.0;
   }
   double interestForBigFamily(double familySize) {
     return getInterestRate() / familySize;
@@ -166,12 +166,11 @@ class Account {
 
 ```
 
-Select name of "Account"
-+ Select name of "interestForAmount_days"
+Select name of "interestForAmount_days"
 + Select name of "interestForBigFamily"
 + Select "other 10 methods"
 
-# В этом случае, вам не придётся делать замену во всех методах сразу...
+# В этом случае вам не придётся делать замену во всех методах сразу...
 
 Select "interestRate = arg" in "setInterestRate"
 +Select "return interestRate" in "getInterestRate"
