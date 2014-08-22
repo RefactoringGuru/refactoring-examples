@@ -44,14 +44,16 @@ public class Account
   // ...
   double SchedulePayment()
   {
-    DateTime paymentDate = GetNearFirstDate(previousDate);
+    DateTime paymentDate = previousDate.GetNearFirstDate();
 
     // Issue a payment using paymentDate.
     // ...
   }
+}
 
-  //TODO: Foreign method. Should be on DateTime.
-  public static DateTime GetNearFirstDate(DateTime date)
+public static class TypeExtensions
+{
+  public static DateTime GetNearFirstDate(this DateTime date)
   {
     if (date.Day == 1)
       return date;
@@ -83,11 +85,11 @@ Select:
 
 # В этом классе есть некий код, который открывает новый период выставления счетов только первого числа ближайшего месяца.
 
-# Было бы идеально, если бы класс <code>DateTime</code> имел метод получения даты ближайшего указанного числа (например, <code>previousDate.GetNearDate()</code>), но он его не имеет, да и к тому же мы не можем его изменить, т.к. он стандартный.
+# Было бы идеально, если бы класс <code>DateTime</code> имел метод получения даты ближайшего указанного числа (например, <code>previousDate.GetNearDate()</code>), но он его не имеет.
 
 Go to the end of "Account"
 
-# Тем не менее, мы можем создать такой «внешний» метод в своём собственном классе.
+# Однако мы вполне можем создать такой «внешний» метод в своём собственном классе.
 
 Print:
 ```
@@ -146,13 +148,82 @@ Set step 4
 
 Go to before "GetNearFirstDate"
 
-# В качестве последнего штриха, следует добавить комментарий к «внешнему методу» о его природе. В дальнейшем это позволит избежать путаницы с его использованием. Кроме того, если в программе будет создан новый класс для хранения дополнительных функций с датами, этот метод будет легко найти и переместить в лучшее место.
+# Давайте добавим уточняющий комментарий к «внешнему методу». В дальнейшем это позволит избежать путаницы с его использованием. Кроме того, если в программе будет создан новый класс для хранения дополнительных функций с датами, этот метод будет легко найти и переместить в лучшее место.
 
 Print:
 ```
 
   //TODO: Foreign method. Should be on DateTime.
 ```
+
+Go to after "Account"
+
+# Вообще, таким лучшим местом мог бы стать класс, расширяющий возможности самого <code>DateTime</code>. Давайте напоследок реализуем его, для этого воспользуемся <i>методами расширения</i>, которые доступны в нашем арсенале, начиная с версии C# 3.0.
+
+Print:
+```
+
+
+public static class TypeExtensions
+{
+}
+```
+
+Select name of "GetNearFirstDate" in "Account"
+
+# Перенесем в него наш метод...
+
+Go to the end of "TypeExtensions"
+
+Print:
+```
+
+  public static DateTime GetNearFirstDate(DateTime date)
+  {
+    if (date.Day == 1)
+      return date;
+
+    DateTime result = date.AddMonths(1);
+    result.Day = 1;
+
+    return result;
+  }
+```
+
+Select in "Account":
+```
+
+
+  //TODO: Foreign method. Should be on DateTime.
+  public static DateTime GetNearFirstDate(DateTime date)
+  {
+    if (date.Day == 1)
+      return date;
+
+    DateTime result = date.AddMonths(1);
+    result.Day = 1;
+
+    return result;
+  }
+```
+
+# ...удалим его из исходного класса...
+
+Remove selected
+
+Select parameters of "GetNearFirstDate"
+
+# ...в качестве первого параметра метод расширения должен принимать экземпляр того класса, для которого он будет вызван.
+
+Select "||||||DateTime" in parameters of "GetNearFirstDate"
+
+Print "this "
+
+Select "GetNearFirstDate(previousDate)"
+
+# Замечательно, осталось только прописать вызов нашего метода расширения в клиентском коде.
+
+Print "previousDate.GetNearFirstDate()"
 
 #C Запускаем финальную компиляцию.
 
