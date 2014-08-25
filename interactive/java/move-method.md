@@ -94,7 +94,7 @@ Select "private AccountType |||type|||"
 
 Select name of "OverdraftCharge"
 
-# Прежде всего посмотрим, какие поля и методы использует <code>overdraftCharge()</code>, и решим, следует ли переносить только этот метод или сразу всё, связанное с ним.
+# Прежде всего посмотрим, какие поля и методы использует <code>overdraftCharge()</code>, и решим, следует ли переносить только его, или же надо будет перенести также и то, что с ним связано.
 
 Select "private AccountType |||type|||"
 
@@ -112,7 +112,7 @@ Set step 2
 
 Select whole "overdraftCharge"
 
-# Теперь я могу скопировать метод <code>overdraftCharge()</code> в класс типа счета <code>AccountType</code>.
+# Скопируем метод <code>overdraftCharge()</code> в класс <code>AccountType</code>.
 
 Go to the end of "AccountType"
 
@@ -139,14 +139,14 @@ Select name of "overdraftCharge" in "AccountType"
 
 Select "type." in "overdraftCharge" of "AccountType"
 
-# В данном случае редактирование означает удаление <code>type</code> из вызовов методов класса <code>Account</code>...
+# Первым делом удалим из метода поле <code>type</code>. Т.к. мы теперь находимся внутри класса, реализующего тип счета, и все методы можно вызывать из него напрямую.
 
 Remove selected
 
 Select "daysOverdrawn" in "overdraftCharge" of "AccountType"
 
 
-# ...и некоторые действия с теми полями и методами <code>Account</code>, которые все же нужны, как например, поле <code>daysOverdrawn</code>.
+# Далее прорабатываем те поля и методы <code>Account</code>, которые остаются нужны. У нас таким полем является <code>daysOverdrawn</code>.
 
 # В теории, если необходимо сохранить некоторый метод или поле исходного класса, то можно выбрать один из четырёх вариантов действия: <ol><li>Переместить это поле или метод в целевой класс.</li><li>Создать ссылку из целевого класса в исходный или воспользоваться уже имеющейся.</li><li>Передать экземпляр исходного класса в качестве параметра метода целевого класса.</li><li>Передать значение поля в виде параметра.</li></ol>
 
@@ -198,7 +198,7 @@ type.overdraftCharge(daysOverdrawn)
 
 Select whole "overdraftCharge" in "Account"
 
-# После замены во всех точках вызова можно удалить объявление метода в <code>Account</code>.
+# После перенаправления всех вызовов метода в новый класс, мы можем удалить объявление метода в классе <code>Account</code>.
 
 Remove selected
 
@@ -212,7 +212,7 @@ Select name in "Account"
 
 Select parameters in "overdraftCharge"
 
-# Во-первых, в переносимый метод нужно передавать весь исходный объект.
+# Во-первых, в переносимый метод нужно передать экземпляр исходного класса.
 
 Print:
 ```
@@ -221,7 +221,7 @@ Account account
 
 Select "daysOverdrawn" in "overdraftCharge"
 
-# Во-вторых, все интересующие поля и методы теперь можно брать прямо из этого объекта.
+# Во-вторых, все интересующие поля и методы теперь нужно брать напрямую из полученного экземпляра.
 
 Print:
 ```
@@ -230,7 +230,7 @@ account.getDaysOverdrawn()
 
 Select "overdraftCharge(|||daysOverdrawn|||)"
 
-# И, наконец, в-третьих, во все вызовы метода необходимо передавать объекты в класс <code>Account</code>.
+# И, наконец, в-третьих, во все вызовы метода необходимо добавить передачу текущего экземпляра класса <code>Account</code>.
 
 Print "this"
 
