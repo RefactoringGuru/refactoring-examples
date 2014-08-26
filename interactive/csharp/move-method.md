@@ -103,6 +103,8 @@ public class AccountType
 
 ###
 
+Set step 1
+
 # Давайте рассмотрим <i>Перемещение метода</i> на примере класса банковского счета.
 
 Select "private AccountType |||type|||"
@@ -164,7 +166,7 @@ Select name of "OverdraftCharge" in "AccountType"
 
 Select "type." in "OverdraftCharge" of "AccountType"
 
-#^= Первым делом удалим из метода поле <code>type</code>. Т.к. мы теперь находимся внутри класса, реализующего тип счета, то все методы можно вызывать из него напрямую.
+#^= Первым делом удалим из метода поле <code>type</code>. Т.к. мы теперь находимся внутри класса, реализующего тип счета, и все методы можно вызывать из него напрямую.
 
 Remove selected
 

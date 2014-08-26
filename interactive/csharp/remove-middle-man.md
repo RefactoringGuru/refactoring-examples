@@ -13,7 +13,7 @@ remove-middle-man:csharp
 ```
 public class Person
 {
-  Department department;
+  private Department department;
 
   public Person GetManager()
   {
@@ -47,7 +47,7 @@ manager = john.GetManager();
 ```
 public class Person
 {
-  Department department;
+  private Department department;
 
   public Department Department
   {
