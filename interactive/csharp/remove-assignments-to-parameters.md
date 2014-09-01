@@ -58,7 +58,7 @@ int Discount(int inputVal, int quantity, int yearToDate)
 
 Set step 1
 
-# Давайте рассмотрим <i>Удаление присваиваний параметрам</i> на примере небольшого метода рассчёта скидки.
+# Давайте рассмотрим <i>Удаление присваиваний параметрам</i> на примере небольшого метода расчёта скидки.
 
 Select "inputVal" in parameters of "Discount"
 

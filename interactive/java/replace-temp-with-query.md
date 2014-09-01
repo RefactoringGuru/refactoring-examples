@@ -142,7 +142,7 @@ Select "double |||discountFactor|||"
 
 Go to the end of "Product"
 
-# Создаём новый метод.
+# Создаём новый метод…
 
 Print:
 ```
@@ -159,7 +159,7 @@ Print:
 
 Go to "double discountFactor|||;"
 
-# ...используем его для инициализации переменной
+# ...используем его для инициализации переменной…
 
 Print " = discountFactor()"
 
@@ -180,7 +180,7 @@ Remove selected
 
 # Обратите внимание на то, как трудно было бы выделить <code>discountFactor</code> без предварительной замены <code>basePrice</code> вызовом метода.
 
-# В итоге приходим к следующему виду метода <code>getPrice()</code>
+# В итоге приходим к следующему виду метода <code>getPrice()</code>.
 
 Select:
 ```

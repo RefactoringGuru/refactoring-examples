@@ -151,7 +151,7 @@ Select body of "payAmount"
 
 # Давайте попытаемся избавиться от условного оператора внутри метода <code>payAmount()</code>.
 
-# Сперва выделим реализацию <code>payAmount</code> в новый метод в классе типа <code>EmployeeType</code>. Сделаем это, чтобы иметь общую точку доступа к данному методу в подклассах.
+# Сначала выделим реализацию <code>payAmount</code> в новый метод в классе типа <code>EmployeeType</code>. Сделаем это, чтобы иметь общую точку доступа к данному методу в подклассах.
 
 Go to the end of "EmployeeType"
 
@@ -197,7 +197,7 @@ Replace "employee.bonus"
 
 Select body of "payAmount"
 
-# После этих действий, мы можем настроить делегирование из класса <code>Employee</code>.
+# После этих действий мы можем настроить делегирование из класса <code>Employee</code>.
 
 Print "    return type.payAmount(this);"
 
@@ -248,7 +248,7 @@ Set step 4
 
 Select body of "payAmount"
 
-# После того как методы созданы, можно сделать метод <code>payAmount</code> в <code>EmployeeType</code> абстрактным.
+# После того, как методы созданы, можно сделать метод <code>payAmount</code> в <code>EmployeeType</code> абстрактным.
 
 Select:
 ```
