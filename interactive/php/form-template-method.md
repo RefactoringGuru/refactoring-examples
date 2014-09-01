@@ -63,7 +63,7 @@ class Article {
   }
 }
 
-class ArticleView {
+abstract class ArticleView {
   private $article;
   public function __construct(Article $article) {
     $this->article = $article;
@@ -341,6 +341,10 @@ Print:
 Set step 4
 
 # Как видите, у нас получилось много одинаковых шагов в обоих классах. Следует переместить одинаковые шаги в виде абстрактных методов в суперкласс.
+
+Go to type "ArticleView"
+
+Print "abstract "
 
 Go to end of "ArticleView"
 

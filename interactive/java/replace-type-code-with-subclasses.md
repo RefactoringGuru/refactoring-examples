@@ -52,7 +52,7 @@ class Employee {
 ###
 
 ```
-class Employee {
+abstract class Employee {
   // ...
   static final int ENGINEER = 0;
   static final int SALESMAN = 1;
@@ -68,8 +68,6 @@ class Employee {
         return new Salesman();
       case MANAGER:
         return new Manger();
-      default:
-        return new Employee(type);
     }
   }
   private Employee(int arg) {
@@ -291,9 +289,27 @@ Select:
 
 Replace ";"
 
+Go to before "Employee"
+
+# Это сделает и класс <code>Employee</code> абстрактным.
+
+Print "abstract "
+
+# После этих изменений, мы больше не можем создавать объекты <code>Employee</code> как реализацию по умолчанию, поэтому важно помнить, что избавляться от поля типа стоит только после создания всех подклассов.
+
+Select:
+```
+      default:
+        return new Employee(type);
+
+```
+
+Remove selected
+
+
 Select "switch (type) {" in "create"
 
-# Обратите внимание, что мы создали ещё один большой оператор <code>switch</code>. Вообще <a href="/smells/switch-statements">это плохо</a>, но после завершения рефакторинга он будет единственным оставшимся в коде.
+# Обратите внимание, что в итоге мы создали ещё один большой оператор <code>switch</code>. Вообще  –  <a href="/smells/switch-statements">это плохо</a>, но после завершения рефакторинга он будет единственным оставшимся в коде.
 
 Set step 5
 

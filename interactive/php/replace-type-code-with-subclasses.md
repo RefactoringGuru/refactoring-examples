@@ -52,7 +52,7 @@ class Employee {
 ###
 
 ```
-class Employee {
+abstract class Employee {
   // ...
   const ENGINEER = 0;
   const SALESMAN = 1;
@@ -68,8 +68,6 @@ class Employee {
         return new Salesman();
       case self::MANAGER:
         return new Manager();
-      default:
-        return new Employee($type);
     }
   }
   private function __construct($arg) {
@@ -290,6 +288,23 @@ Select:
 ```
 
 Replace ";"
+
+Go to before "Employee"
+
+# Это сделает и класс <code>Employee</code> абстрактным.
+
+Print "abstract "
+
+# После этих изменений, мы больше не можем создавать объекты <code>Employee</code> как реализацию по умолчанию, поэтому важно помнить, что избавляться от поля типа стоит только после создания всех подклассов.
+
+Select:
+```
+      default:
+        return new Employee($type);
+
+```
+
+Remove selected
 
 Select "switch ($type) {" in "create"
 
