@@ -47,12 +47,12 @@ class Guard {
     $found = $this->findCriminal($people);
     $this->someLaterCode($found);
   }
-  public void doSendAlert($people) {
+  public function doSendAlert($people) {
     if ($this->findCriminal($people) != "")
       $this->sendAlert();
     }
   }
-  public function doSendAlert($people) {
+  public function findCriminal($people) {
     for ($i = 0; $i < count($people); $i++) {
       if ($people[$i] == "Don") {
         return "Don";
@@ -98,7 +98,7 @@ Go to the end of "Guard"
 Print:
 ```
 
-  public function findCriminalAndAlert($people) {
+  public function findCriminal($people) {
     for ($i = 0; $i < count($people); $i++) {
       if ($people[$i] == "Don") {
         return "Don";
@@ -153,12 +153,6 @@ Print:
 
 Set step 4
 
-Select type of "findCriminalAndAlert"
-
-# Проделав это для всех вызовов, убираем код возврата из модификатора.
-
-Print "void"
-
 Select in "findCriminalAndAlert":
 ```
         return $this->findCriminal($people);
@@ -169,6 +163,8 @@ Select in "findCriminalAndAlert":
     return $this->findCriminal($people);
 
 ```
+
+# Проделав это для всех вызовов, убираем код возврата из модификатора.
 
 Remove selected
 
