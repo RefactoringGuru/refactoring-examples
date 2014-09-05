@@ -22,6 +22,16 @@ class IntervalWindow extends Frame {
   java.awt.TextField endField;
   java.awt.TextField lengthField;
 
+  public IntervalWindow() {
+    startField = new java.awt.TextField();
+    endField = new java.awt.TextField();
+    lengthField = new java.awt.TextField();
+    SymFocus focusListener = new SymFocus();
+    startField.addFocusListener(focusListener);
+    endField.addFocusListener(focusListener);
+    lengthField.addFocusListener(focusListener);
+  }
+
   class SymFocus extends java.awt.event.FocusAdapter {
     public void focusLost(java.awt.event.FocusEvent event) {
       Object object = event.getSource();
@@ -78,13 +88,6 @@ class IntervalWindow extends Frame {
       }
     }
   }
-
-  public IntervalWindow() {
-    java.awt.TextField startField = new java.awt.TextField();
-    java.awt.TextField endField = new java.awt.TextField();
-    java.awt.TextField lengthField = new java.awt.TextField();
-    startField.addFocusListener(new SymFocus());
-  }
 }
 ```
 
@@ -96,6 +99,20 @@ class IntervalWindow extends Frame implements Observer {
   java.awt.TextField endField;
   java.awt.TextField lengthField;
   private Interval subject;
+
+  public IntervalWindow() {
+    startField = new java.awt.TextField();
+    endField = new java.awt.TextField();
+    lengthField = new java.awt.TextField();
+    SymFocus focusListener = new SymFocus();
+    startField.addFocusListener(focusListener);
+    endField.addFocusListener(focusListener);
+    lengthField.addFocusListener(focusListener);
+
+    subject = new Interval();
+    subject.addObserver(this);
+    update(subject, null);
+  }
 
   class SymFocus extends java.awt.event.FocusAdapter {
     public void focusLost(java.awt.event.FocusEvent event) {
@@ -136,47 +153,36 @@ class IntervalWindow extends Frame implements Observer {
     }
   }
 
-  public IntervalWindow() {
-    java.awt.TextField startField = new java.awt.TextField();
-    java.awt.TextField endField = new java.awt.TextField();
-    java.awt.TextField lengthField = new java.awt.TextField();
-    startField.addFocusListener(new SymFocus());
-
-    subject = new Interval();
-    subject.addObserver(this);
-    update(subject, null);
-  }
-
   public void update(Observable observed, Object arg) {
     endField.setText(subject.getEnd());
-    lengthField.setText(subject.getLength());
     startField.setText(subject.getStart());
+    lengthField.setText(subject.getLength());
   }
 
   String getEnd() {
-    return endField.getText();
+    subject.setEnd(arg);
   }
   void setEnd(String arg) {
-    endField.setText(arg);
-  }
-  String getLength() {
-    return lengthField.getText();
-  }
-  void setLength(String arg) {
-    lengthField.setText(arg);
+    subject.setEnd(arg);
   }
   String getStart() {
-    return startField.getText();
+    subject.setStart(arg);
   }
   void setStart(String arg) {
-    startField.setText(arg);
+    subject.setStart(arg);
+  }
+  String getLength() {
+    subject.setLength(arg);
+  }
+  void setLength(String arg) {
+    subject.setLength(arg);
   }
 }
 
 class Interval extends Observable {
   private String end = "0";
-  private String length = "0";
   private String start = "0";
+  private String length = "0";
 
   String getEnd() {
     return end;
@@ -186,19 +192,19 @@ class Interval extends Observable {
     setChanged();
     notifyObservers();
   }
-  String getLength() {
-    return length;
-  }
-  void setLength(String arg) {
-    length = arg;
-    setChanged();
-    notifyObservers();
-  }
   String getStart() {
     return start;
   }
   void setStart(String arg) {
     start = arg;
+    setChanged();
+    notifyObservers();
+  }
+  String getLength() {
+    return length;
+  }
+  void setLength(String arg) {
+    length = arg;
     setChanged();
     notifyObservers();
   }
@@ -238,11 +244,11 @@ Select 1st "lengthField"
 + Select 1st "startField"
 + Select 1st "endField"
 
-#< Окно состоит из трёх полей: стартовое значение (Start), конечное значение (End) и результирующая длина (length). <br/><img src="/images/refactoring/gui-window.png">
+#< Окно состоит из трёх полей ввода: стартовое значение (Start), конечное значение (End) и результирующая длина (length). <br/><img src="/images/refactoring/gui-window.png">
 
 Select name of "focusLost"
 
-#V+ Перерасчёты новых значений происходят при потере фокуса элементом. При изменении полей <code>Start</code> или <code>End</code> вычисляется <code>length</code>; при изменении поля <code>length</code> вычисляется <code>End</code>.
+#V+ Перерасчёты новых значений происходят при потере фокуса элементом. При изменении текстовых полей <code>Start</code> или <code>End</code> вычисляется <code>length</code>, при изменении поля <code>length</code> вычисляется <code>End</code>.
 
 Select name of "StartField_FocusLost"
 + Select name of "EndField_FocusLost"
@@ -257,8 +263,7 @@ Select name of "calculateLength"
 
 Go to the end of file
 
-# Нашей задачей станет отделение всех перерасчётов длины и конечного значения в отдельный класс предметной области. Начнём с создания такого класса.
-
+# Нашей задачей станет выделение всех перерасчётов длины и конечного значения в отдельный класс предметной области. Начнём с создания такого класса.
 
 Print:
 ```
@@ -468,73 +473,6 @@ Go to the end of "class IntervalWindow"
 Print:
 ```
 
-  String getLength() {
-    return lengthField.getText();
-  }
-  void setLength(String arg) {
-    lengthField.setText(arg);
-  }
-```
-
-Select "lengthField.getText" in "class SymFocus"
-
-Type "getLength"
-
-Select "lengthField.setText" in "class SymFocus"
-
-Type "setLength"
-
-Go to start of "LengthField_FocusLost"
-
-Print:
-```
-
-      setLength(lengthField.getText());
-```
-
-Go to:
-```
-  private String end = "0";|||
-```
-
-Print:
-```
-
-  private String length = "0";
-```
-
-Go to the end of "class Interval"
-
-Print:
-```
-
-  String getLength() {
-    return length;
-  }
-  void setLength(String arg) {
-    length = arg;
-    setChanged();
-    notifyObservers();
-  }
-```
-
-Go to the end of "update"
-
-Print:
-```
-
-    lengthField.setText(subject.getLength());
-```
-
-
-
-
-
-Go to the end of "class IntervalWindow"
-
-Print:
-```
-
   String getStart() {
     return startField.getText();
   }
@@ -543,13 +481,19 @@ Print:
   }
 ```
 
+Wait 500ms
+
 Select "startField.getText" in "class SymFocus"
 
-Type "getStart"
+Replace "getStart"
+
+Wait 1000ms
 
 Select "startField.setText" in "class SymFocus"
 
-Type "setStart"
+Replace "setStart"
+
+Wait 1000ms
 
 Go to start of "StartField_FocusLost"
 
@@ -559,16 +503,22 @@ Print:
       setStart(startField.getText());
 ```
 
+Wait 500ms
+
 Go to:
 ```
-  private String length = "0";|||
+  private String end = "0";|||
 ```
+
+# Добавляем поле в класс интервала...
 
 Print:
 ```
 
   private String start = "0";
 ```
+
+Wait 500ms
 
 Go to the end of "class Interval"
 
@@ -585,6 +535,8 @@ Print:
   }
 ```
 
+Wait 500ms
+
 Go to the end of "update"
 
 Print:
@@ -593,10 +545,160 @@ Print:
     startField.setText(subject.getStart());
 ```
 
+
+Go to the end of "class IntervalWindow"
+
+# Осталось расправиться с полем длины.
+
+Print:
+```
+
+  String getLength() {
+    return lengthField.getText();
+  }
+  void setLength(String arg) {
+    lengthField.setText(arg);
+  }
+```
+
+Wait 500ms
+
+Select "lengthField.getText" in "class SymFocus"
+
+Type "getLength"
+
+Wait 500ms
+
+Select "lengthField.setText" in "class SymFocus"
+
+Type "setLength"
+
+Wait 500ms
+
+Go to start of "LengthField_FocusLost"
+
+Print:
+```
+
+      setLength(lengthField.getText());
+```
+
+Wait 500ms
+
+Go to:
+```
+  private String start = "0";|||
+```
+
+# Добавляем поле в класс интервала...
+
+Print:
+```
+
+  private String length = "0";
+```
+
+Wait 500ms
+
+Go to the end of "class Interval"
+
+Print:
+```
+
+  String getLength() {
+    return length;
+  }
+  void setLength(String arg) {
+    length = arg;
+    setChanged();
+    notifyObservers();
+  }
+```
+
+Wait 500ms
+
+Go to the end of "update"
+
+Print:
+```
+
+    lengthField.setText(subject.getLength());
+```
+
+
 Select name of "calculateEnd"
 + Select name of "calculateLength"
 
-# После всех этих изменений, методы <code>calculateEnd()</code> и <code>calculateLength()</code> можно перенести в класс интервала.
+# Теперь было бы неплохо переместить методы <code>calculateEnd()</code> и <code>calculateLength()</code> в класс интервала.
+
+Select body of "setEnd"
++ Select body of "setStart"
++ Select body of "setLength"
+
+# Но для этого нужно сперва сделать так, чтобы сеттеры полей класса <code>IntervalWindow</code> заполняли значения в классе <code>Interval</code>.
+
+Select body of "setEnd"
+
+Replace:
+```
+    subject.setEnd(arg);
+```
+
+Wait 500ms
+
+Select body of "setStart"
+
+Replace:
+```
+    subject.setStart(arg);
+```
+
+Wait 500ms
+
+Select body of "setLength"
+
+Replace:
+```
+    subject.setLength(arg);
+```
+
+# Мы убрали установку значения в поле пользовательского интерфейса потому, что оно все-равно будет выставлено при вызове сеттеров класса интервала (вспомните о реализации Наблюдателя и методе <code>update</code>).
+
+Select body of "getEnd"
++ Select body of "getStart"
++ Select body of "getLength"
+
+# То же можно проделать и с геттерами.
+
+Select body of "getEnd"
+
+Replace:
+```
+    subject.setEnd(arg);
+```
+
+Wait 500ms
+
+Select body of "getStart"
+
+Replace:
+```
+    subject.setStart(arg);
+```
+
+Wait 500ms
+
+Select body of "getLength"
+
+Replace:
+```
+    subject.setLength(arg);
+```
+
+Select name of "calculateEnd"
++ Select name of "calculateLength"
+
+# И вот теперь уже можно приступить к переносу <code>calculateEnd()</code> и <code>calculateLength()</code> в класс интервала.
 
 Select:
 ```
@@ -604,6 +706,8 @@ Select:
     void calculateLength() {
 ```
 + Select whole "calculateLength"
+
+# Начнем с <code>calculateLength</code>.
 
 Remove selected
 
