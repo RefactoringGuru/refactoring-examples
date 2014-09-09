@@ -263,7 +263,7 @@ Select name of "ArticleHtml"
 
 Select name of "ArticleMarkdown"
 
-# Начнём с класса <code>ArticleMarkdown</code>.\
+# Начнём с класса <code>ArticleMarkdown</code>.
 
 Go to start of "ArticleMarkdown"
 
@@ -295,7 +295,7 @@ Print:
 
 Select name of "ArticleMarkdown"
 
-# Проделаем все это для класса <code>ArticleHtml</code>.\
+# Проделаем все это для класса <code>ArticleHtml</code>.
 
 Go to start of "ArticleHtml"
 

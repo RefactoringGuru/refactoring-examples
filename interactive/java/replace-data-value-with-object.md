@@ -196,7 +196,7 @@ Select "String |||customer|||" in parameters of "public Order"
 + Select "String |||customer|||" in parameters of "setCustomer"
 + Select "(|||customer|||)" in "setCustomer"
 
-# Кроме того, не помешает изменить названия параметров в конструкторе и сеттера.
+# Кроме того, не помешает изменить названия параметров в конструкторе и сеттере.
 
 Print "customerName"
 
