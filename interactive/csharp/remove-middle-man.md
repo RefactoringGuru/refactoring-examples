@@ -4,7 +4,7 @@ remove-middle-man:csharp
 
 1. Создайте геттер для доступа к объекту <i>класса-делегата</i> из объекта <i>класса-сервера</i>.
 
-2. Замените вызовы делегирующих методов <i>класса-сервера</i>, прямыми вызовами методов <i>класса-делегата</i>.
+2. Замените вызовы делегирующих методов <i>класса-сервера</i> прямыми вызовами методов <i>класса-делегата</i>.
 
 
 
@@ -29,12 +29,12 @@ public class Department
   {
     get;
   }
-  
+
   public Department(Person manager)
   {
     this.Manager = manager;
   }
-  
+
   //...
 }
 
@@ -65,12 +65,12 @@ public class Department
   {
     get;
   }
-  
+
   public Department(Person manager)
   {
     this.Manager = manager;
   }
-  
+
   //...
 }
 
