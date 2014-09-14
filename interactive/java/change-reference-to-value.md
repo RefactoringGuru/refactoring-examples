@@ -35,7 +35,7 @@ class Customer {
   public static Customer get(String name) {
     Customer value = instances.get(name);
     if (value == null) {
-      value = new Currency(name);
+      value = new Customer(name);
       instances.put(name, value);
     }
     return value;
