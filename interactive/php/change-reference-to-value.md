@@ -32,7 +32,7 @@ class Customer {
 
   public static function get($name) {
     if (!isset($this->instances[$name])) {
-      $value = new Currency($name);
+      $value = new Customer($name);
       $this->instances[$name] = $value;
     }
     else {

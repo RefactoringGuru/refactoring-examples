@@ -18,14 +18,14 @@ introduce-foreign-method:csharp
 public class Account
 {
   // ...
-  double SchedulePayment()
+  private double SchedulePayment()
   {
     DateTime paymentDate;
 
     if (previousDate.Day != 1)
     {
       paymentDate = previousDate.AddMonths(1);
-      paymentDate.Day = 1;
+      paymentDate = new DateTime(paymentDate.Year, paymentDate.Month, 1);
     }
     else
       paymentDate = previousDate;
@@ -42,7 +42,7 @@ public class Account
 public class Account
 {
   // ...
-  double SchedulePayment()
+  private double SchedulePayment()
   {
     DateTime paymentDate = previousDate.GetNearFirstDate();
 
@@ -58,10 +58,9 @@ public static class TypeExtensions
     if (date.Day == 1)
       return date;
 
-    DateTime result = date.AddMonths(1);
-    result.Day = 1;
-
-    return result;
+    DateTime nextDate = date.AddMonths(1);
+    
+    return new DateTime(nextDate.Year, nextDate.Month, 1);
   }
 }
 ```
@@ -77,7 +76,7 @@ Select:
     if (previousDate.Day != 1)
     {
       paymentDate = previousDate.AddMonths(1);
-      paymentDate.Day = 1;
+      paymentDate = new DateTime(paymentDate.Year, paymentDate.Month, 1);
     }
     else
       paymentDate = previousDate;
@@ -100,10 +99,9 @@ Print:
     if (previousDate.Day == 1)
       return previousDate;
 
-    DateTime result = previousDate.AddMonths(1);
-    result.Day = 1;
-
-    return result;
+    DateTime nextDate = previousDate.AddMonths(1);
+    
+    return new DateTime(nextDate.Year, nextDate.Month, 1);
   }
 ```
 
@@ -134,7 +132,7 @@ Select:
     if (previousDate.Day != 1)
     {
       paymentDate = previousDate.AddMonths(1);
-      paymentDate.Day = 1;
+      paymentDate = new DateTime(paymentDate.Year, paymentDate.Month, 1);
     }
     else
       paymentDate = previousDate;
@@ -183,10 +181,9 @@ Print:
     if (date.Day == 1)
       return date;
 
-    DateTime result = date.AddMonths(1);
-    result.Day = 1;
-
-    return result;
+    DateTime nextDate = date.AddMonths(1);
+    
+    return new DateTime(nextDate.Year, nextDate.Month, 1);
   }
 ```
 
@@ -200,10 +197,9 @@ Select in "Account":
     if (date.Day == 1)
       return date;
 
-    DateTime result = date.AddMonths(1);
-    result.Day = 1;
-
-    return result;
+    DateTime nextDate = date.AddMonths(1);
+    
+    return new DateTime(nextDate.Year, nextDate.Month, 1);
   }
 ```
 
