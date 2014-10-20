@@ -1,4 +1,4 @@
-hide-delegate:java
+hide-delegate:php
 
 ###
 
@@ -14,64 +14,64 @@ hide-delegate:java
 
 ```
 class Person {
-  private Department department;
+  private $department; // Department
 
-  public Department getDepartment() {
-    return department;
+  public function getDepartment() {
+    return $this->department;
   }
-  public void setDepartment(Department arg) {
-    department = arg;
+  public function setDepartment(Department $arg) {
+    $this->department = $arg;
   }
 }
 
 class Department {
-  private String chargeCode;
-  private Person manager;
+  private $chargeCode;
+  private $manager; // Person
 
-  public Department(Person manager) {
-    this.manager = manager;
+  public function __construct(Person $manager) {
+    $this->manager = $manager;
   }
-  public Person getManager() {
-    return manager;
+  public function getManager() {
+    return $this->manager;
   }
 
   //...
 }
 
 // Somewhere in client code
-manager = john.getDepartment().getManager();
+$manager = $john->getDepartment()->getManager();
 ```
 
 ###
 
 ```
 class Person {
-  private Department department;
+  private $department; // Department
 
-  public void setDepartment(Department arg) {
-    department = arg;
+  public function setDepartment(Department $arg) {
+    $this->department = $arg;
   }
-  public Person getManager() {
-    return department.getManager();
+  public function getManager() {
+    return $this->department->getManager();
   }
 }
 
 class Department {
-  private String chargeCode;
-  private Person manager;
+  private $chargeCode;
+  private $manager; // Person
 
-  public Department(Person manager) {
-    this.manager = manager;
+  public function __construct(Person $manager) {
+    $this->manager = $manager;
   }
-  public Person getManager() {
-    return manager;
+  public function getManager() {
+    return $this->manager;
   }
 
   //...
 }
 
 // Somewhere in client code
-manager = john.getManager();
+$manager = $john->getManager();
 ```
 
 ###
@@ -80,7 +80,7 @@ Set step 1
 
 # Давайте рассмотрим <i>Сокрытие делегирования</i> на примере классов, представляющих работника и его отдел.
 
-Select "manager = john.getDepartment().getManager();"
+Select "$manager = $john->getDepartment()->getManager();"
 
 # Если клиенту требуется узнать, кто является менеджером некоторого лица, он должен сначала узнать, в каком отделе это лицо работает.
 
@@ -95,18 +95,18 @@ Go to the end of "Person"
 Print:
 ```
 
-  public Person getManager() {
-    return department.getManager();
+  public function getManager() {
+    return $this->department->getManager();
   }
 ```
 
 Set step 3
 
-Select "john.getDepartment().getManager();"
+Select "$john->getDepartment()->getManager();"
 
 # Теперь необходимо модифицировать код таким образом, чтобы в нем использовался новый метод.
 
-Print "john.getManager();"
+Print "$john->getManager();"
 
 Select whole "getDepartment"
 

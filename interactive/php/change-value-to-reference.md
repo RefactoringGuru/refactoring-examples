@@ -1,4 +1,4 @@
-change-value-to-reference:java
+change-value-to-reference:php
 
 ###
 
@@ -16,40 +16,38 @@ change-value-to-reference:java
 
 ```
 class Customer {
-  private final String name;
-  public Customer(String name) {
-    this.name = name;
+  private $name;
+  public function __construct($name) {
+    $this->name = $name;
   }
-  public String getName() {
-    return name;
+  public function getName() {
+    return $this->name;
   }
 }
 
 class Order {
   //...
-  private Customer customer;
-  public String getCustomerName() {
-      return customer.getName();
+  private $customer; // Customer
+  public function getCustomerName() {
+      return $this->customer->getName();
   }
-  public void setCustomer(String customerName) {
-    customer = new Customer(customerName);
+  public function setCustomer($customerName) {
+    $this->customer = new Customer($customerName);
   }
-  public Order(String customerName) {
-    customer = new Customer(customerName);
+  public function __construct($customerName) {
+    $this->customer = new Customer($customerName);
   }
 }
 
 // Some client code, which uses Order class.
-private static int numberOfOrdersFor(Collection orders, String customer) {
-  int result = 0;
-  Iterator iter = orders.iterator();
-  while (iter.hasNext()) {
-    Order each = (Order) iter.next();
-    if (each.getCustomerName().equals(customer)) {
-      result++;
+private static function numberOfOrdersFor($orders, $customer) {
+  $result = 0;
+  foreach ($orders as $order) {
+    if ($order->getCustomerName() === $customer) {
+      $result++;
     }
   }
-  return result;
+  return $result;
 }
 ```
 
@@ -57,55 +55,50 @@ private static int numberOfOrdersFor(Collection orders, String customer) {
 
 ```
 class Customer {
-  private static Dictionary instances = new Hashtable();
+  private static $instances = array();
 
   // This code should be executed at the program launch.
-  static void loadCustomers() {
-    new Customer("Lemon Car Hire").store();
-    new Customer("Associated Coffee Machines").store();
-    new Customer("Bilston Gasworks").store();
-  }
-  private void store() {
-    instances.put(this.getName(), this);
+  public static function loadCustomers() {
+    Customer::instances["Lemon Car Hire"] = new Customer("Lemon Car Hire");
+    Customer::instances["Associated Coffee Machines"] = new Customer("Associated Coffee Machines");
+    Customer::instances["Bilston Gasworks"] = new Customer("Bilston Gasworks");
   }
 
-  private final String name;
-  public static Customer getNamed(String name) {
-    return (Customer) instances.get(name);
+  private $name;
+  public static function getNamed($name) {
+    return Customer::instances[$name];
   }
-  private Customer(String name) {
-    this.name = name;
+  private function __construct($name) {
+    $this->name = $name;
   }
-  public String getName() {
-    return name;
+  public function getName() {
+    return $this->name;
   }
 }
 
 class Order {
   //...
-  private Customer customer;
-  public String getCustomerName() {
-      return customer.getName();
+  private $customer; // Customer
+  public function getCustomerName() {
+      return $this->customer->getName();
   }
-  public void setCustomer(String customerName) {
-    customer = Customer.getNamed(customerName);
+  public function setCustomer($customerName) {
+    $this->customer = Customer::getNamed($customerName);
   }
-  public Order(String customerName) {
-    customer = Customer.getNamed(customerName);
+  public function __construct($customerName) {
+    $this->customer = Customer::getNamed($customerName);
   }
 }
 
 // Some client code, which uses Order class.
-private static int numberOfOrdersFor(Collection orders, String customer) {
-  int result = 0;
-  Iterator iter = orders.iterator();
-  while (iter.hasNext()) {
-    Order each = (Order) iter.next();
-    if (each.getCustomerName().equals(customer)) {
-      result++;
+private static function numberOfOrdersFor($orders, $customer) {
+  $result = 0;
+  foreach ($orders as $order) {
+    if ($order->getCustomerName() === $customer) {
+      $result++;
     }
   }
-  return result;
+  return $result;
 }
 ```
 
@@ -135,22 +128,22 @@ Select name of "Customer"
 
 # Начнём с <a href="/replace-constructor-with-factory-method">замены конструктора фабричным методом</a>. Это позволит нам контролировать процесс создания объектов покупателей, что является крайне важным моментом. Итак, создадим фабричный метод в классе покупателя.
 
-Go to before "public Customer"
+Go to before "__construct" in "Customer"
 Print:
 ```
 
-  public static Customer create(String name) {
-    return new Customer(name);
+  public static function create($name) {
+    return new Customer($name);
   }
 ```
 
-Select "new Customer(customerName)"
+Select "new Customer($customerName)"
 
 # Затем заменим вызов конструктора класса <code>Customer</code> обращением к фабричному методу.
 
-Replace "Customer.create(customerName)"
+Replace "Customer::create($customerName)"
 
-Select visibility of "public Customer"
+Select visibility of "__construct" in "Customer"
 
 # После чего можно сделать конструктор покупателя закрытым.
 
@@ -169,7 +162,7 @@ Go to the start of "Customer"
 Print:
 ```
 
-  private static Dictionary instances = new Hashtable();
+  private static $instances = array();
 
 ```
 
@@ -183,13 +176,10 @@ Print:
 ```
 
   // This code should be executed at the program launch.
-  static void loadCustomers() {
-    new Customer("Lemon Car Hire").store();
-    new Customer("Associated Coffee Machines").store();
-    new Customer("Bilston Gasworks").store();
-  }
-  private void store() {
-    instances.put(this.getName(), this);
+  public static function loadCustomers() {
+    Customer::instances["Lemon Car Hire"] = new Customer("Lemon Car Hire");
+    Customer::instances["Associated Coffee Machines"] = new Customer("Associated Coffee Machines");
+    Customer::instances["Bilston Gasworks"] = new Customer("Bilston Gasworks");
   }
 
 ```
@@ -200,9 +190,9 @@ Select name of "create"
 
 # Теперь модифицируем фабричный метод класса <code>Customer</code> так, чтобы он возвращал заранее созданного покупателя.
 
-Select "new Customer(name)" in "create"
+Select "new Customer($name)" in "create"
 
-Replace "(Customer) instances.get(name)"
+Replace "Customer::instances[$name]"
 
 Select name of "create"
 
@@ -212,7 +202,7 @@ Print "getNamed"
 
 Wait 500ms
 
-Select "Customer.|||create|||"
+Select "Customer::|||create|||"
 
 Replace "getNamed"
 

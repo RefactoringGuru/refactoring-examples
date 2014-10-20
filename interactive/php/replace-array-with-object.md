@@ -1,4 +1,4 @@
-replace-array-with-object:java
+replace-array-with-object:php
 
 ###
 
@@ -20,15 +20,15 @@ replace-array-with-object:java
 
 ```
 class Tournament {
-  String[] row = new String[2];
-
-  public Tournament() {
-    row[0] = "Liverpool";
-    row[1] = "15";
+  public $row = array();
+  
+  public function __construct() {
+    $this->row[0] = "Liverpool";
+    $this->row[1] = "15";
   }
-  public void displayScore() {
-    String name = row[0];
-    int score = Integer.parseInt(row[1]);
+  public function displayScore() {
+    $name = $this->row[0];
+    $score = intval($this->row[1]);
     // ...
   }
 }
@@ -38,34 +38,35 @@ class Tournament {
 
 ```
 class Tournament {
-  Performance row = new Performance();
-
-  public Tournament() {
-    row.setName("Liverpool");
-    row.setScore("15");
+  public row; // Performance
+  
+  public function __construct() {
+    $this->row = new Performance();
+    $this->row->setName("Liverpool");
+    $this->row->setScore("15");
   }
-  public void displayScore() {
-    String name = row.getName();
-    int score = row.getScore();
+  public function displayScore() {
+    $name = $this->row->getName();
+    $score = $this->row->getScore();
     // ...
   }
 }
 
 class Performance {
-  private String name;
-  private int score;
+  private $name;
+  private $score;
 
-  public String getName() {
-    return name;
+  public function getName() {
+    return $this->name;
   }
-  public void setName(String arg) {
-    name = arg;
+  public void setName($arg) {
+    $this->name = $arg;
   }
-  public int getScore() {
-    return score;
+  public function getScore() {
+    return $this->score;
   }
-  public void setScore(String arg) {
-    score = Integer.parseInt(arg);
+  public function setScore($arg) {
+    $this->score = intval($arg);
   }
 }
 ```
@@ -95,7 +96,7 @@ Go to the start of "Performance"
 Print:
 ```
 
-  public String[] data = new String[2];
+  public $data = array();
 ```
 
 Set step 2
@@ -104,21 +105,29 @@ Select name of "Tournament"
 
 # Теперь нужно найти места, в которых идут обращения к этому массиву, и заменить их обращениями к вашему новому классу.
 
-Select "String[] row = new String[2]"
+Select "public $row = array();"
 
 # В первую очередь создаём сам объект в том месте, где был инициирован массив данных.
 
 Print:
 ```
-Performance row = new Performance()
+public row; // Performance
 ```
 
-Select "row" in "public Tournament"
-+Select "row" in "displayScore"
+Go to start of "__construct"
+
+Print:
+```
+
+    $this->row = new Performance();
+```
+
+Select "|||row|||[" in "__construct"
++Select "|||row|||[" in "displayScore"
 
 # Теперь нужно заменить код, использующий массив.
 
-Replace "row.data"
+Replace "row->data"
 
 Set step 3
 
@@ -130,28 +139,28 @@ Print:
 ```
 
 
-  public String getName() {
-    return data[0];
+  public function getName() {
+    return $this->data[0];
   }
-  public void setName(String arg) {
-    data[0] = arg;
+  public void setName($arg) {
+    $this->data[0] = $arg;
   }
 ```
 
-Select "row.data[0] = "Liverpool""
-+ Select "String name = row.data[0]"
+Select "$this->row->data[0] = "Liverpool""
++ Select "$name = $this->row->data[0]"
 
 # Теперь нужно поочерёдно заменить код присваивания значениям элементов массива так, чтобы везде применялись методы класса <code>Perfomance</code>.
 
-Select "row.data[0] = "Liverpool""
+Select "$this->row->data[0] = "Liverpool""
 
-Replace "row.setName("Liverpool")"
+Replace "$this->row->setName("Liverpool")"
 
 Wait 500ms
 
-Select "row.data[0]"
+Select "$this->row->data[0]"
 
-Replace "row.getName()"
+Replace "$this->row->getName()"
 
 Go to the end of "Performance"
 
@@ -160,28 +169,28 @@ Go to the end of "Performance"
 Print:
 ```
 
-  public int getScore() {
-    return Integer.parseInt(data[1]);
+  public function getScore() {
+    return intval($this->data[1]);
   }
-  public void setScore(String arg) {
-    data[1] = arg;
+  public function setScore($arg) {
+    $this->data[1] = $arg;
   }
 ```
 
 
-Select "row.data[1] = "15""
+Select "$this->row->data[1] = "15""
 
-Replace "row.setScore("15")"
+Replace "$this->row->setScore("15")"
 
 Wait 500ms
 
-Select "Integer.parseInt(row.data[1])"
+Select "intval($this->row->data[1])"
 
-Replace "row.getScore()"
+Replace "$this->row->getScore()"
 
 Set step 4
 
-Select "|||public||| String[] data"
+Select "|||public||| $data"
 
 # Выполнив эти действия для всех элементов, можно объявить массив приватным.
 
@@ -196,12 +205,12 @@ Select name of "getName"
 
 # Это можно сделать, добавив поля для всех элементов массива и переориентировав методы доступа на их использование. Для начала преобразуем поле названия команды.
 
-Go to "new String[2];|||"
+Go to "array();|||"
 
 Print:
 ```
 
-  private String name;
+  private $name;
 ```
 
 Select "data[0]"
@@ -213,27 +222,27 @@ Select name of "getScore"
 
 # А затем – поле для хранения командного счёта.
 
-Go to "String name;|||"
+Go to "$name;|||"
 
 Print:
 ```
 
-  private int score;
+  private $score;
 ```
 
-Select "Integer.parseInt(data[1])"
+Select "intval($this->data[1])"
 
-Replace "score"
+Replace "$this->score"
 
-Select "data[1] = arg"
+Select "$this->data[1] = $arg"
 
-Replace "score = Integer.parseInt(arg)"
+Replace "$this->score = intval($arg)"
 
 Set step 6
 
 Select:
 ```
-  private String[] data = new String[2];
+  private $data = array();
 
 ```
 # Выполнив замену для всех элементов массива, можно удалить и само объявление массива из класса.

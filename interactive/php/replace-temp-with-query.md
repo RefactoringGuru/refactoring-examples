@@ -1,4 +1,4 @@
-replace-temp-with-query:java
+replace-temp-with-query:php
 
 ###
 
@@ -15,16 +15,15 @@ replace-temp-with-query:java
 ```
 class Product {
   // ...
-  public double getPrice() {
-    int basePrice = quantity * itemPrice;
-    double discountFactor;
-    if (basePrice > 1000) {
-      discountFactor = 0.95;
+  function getPrice() {
+    $basePrice = $this->quantity * $this->itemPrice;
+    if ($basePrice > 1000) {
+      $discountFactor = 0.95;
     }
     else {
-      discountFactor = 0.98;
+      $discountFactor = 0.98;
     }
-    return basePrice * discountFactor;
+    return $basePrice * $discountFactor;
   }
 }
 ```
@@ -34,14 +33,14 @@ class Product {
 ```
 class Product {
   // ...
-  public double getPrice() {
-    return basePrice() * discountFactor();
+  function getPrice() {
+    return $this->basePrice() * $this->discountFactor();
   }
-  private int basePrice() {
-    return quantity * itemPrice;
+  private function basePrice() {
+    return $this->quantity * $this->itemPrice;
   }
-  private double discountFactor() {
-    if (basePrice() > 1000) {
+  private function discountFactor() {
+    if ($this->basePrice() > 1000) {
       return 0.95;
     }
     else {
@@ -57,32 +56,20 @@ Set step 1
 
 # Рассмотрим <i>Замену переменной вызовом метода</i> на примере этого простого метода.
 
-Select "int |||basePrice|||"
-+Select "double |||discountFactor|||"
+Select "|||$basePrice||| = "
++Select "|||$discountFactor||| ="
 
 # Давайте по очереди заменим переменные <code>basePrice</code> и <code>discountFactor</code> вызовами соответствующих методов.
 
+Select "$basePrice = "
+
 # Для начала нужно убедиться, что переменным в пределах метода значение присваивается только один раз.
 
-# В данном случае это и так видно, но чтобы обезопасить себя, можно объявить эти переменные с ключевым словом <code>final</code>. В таком случае компилятор укажет все места, где переменным пытаются повторно присвоить значения.
-
-Go to "|||int basePrice"
-
-Print "final "
-
-Wait 500ms
-
-Go to "|||double discountFactor"
-
-Print "final "
-
-#C Давайте запустим компиляцию и удостоверимся, что все хорошо.
-
-#S <b>Все отлично, можем продолжать!</b><br/><br/>Имейте в виду, эта проверка очень важна. При возникновении проблем на этом шаге, следует воздержаться от проведения данного рефакторинга.
+# В данном случае всё так и есть, можем продолжать.
 
 Set step 2
 
-Select "basePrice = quantity * itemPrice"
+Select "$basePrice = $this->quantity * $this->itemPrice"
 
 # Итак, на втором шаге, создадим метод <code>basePrice()</code> и перенесём в него выражение, формирующее переменную <code>basePrice</code>.
 
@@ -91,36 +78,36 @@ Go to the end of "Product"
 Print:
 ```
 
-  private int basePrice() {
-    return quantity * itemPrice;
+  private function basePrice() {
+    return $this->quantity * $this->itemPrice;
   }
 ```
 
-Select "basePrice = |||quantity * itemPrice|||"
+Select "$this->quantity * $this->itemPrice" in "getPrice"
 
 # Теперь вызов метода можно использовать вместо первоначального выражения. Таким образом, у нас теперь есть новый метод, а весь старый код все ещё в рабочем состоянии.
 
-Print "basePrice()"
+Print "$this->basePrice()"
 
 Set step 3
 
-Select "(|||basePrice||| >"
+Select "(|||$basePrice||| >"
 
 # Самое время начать заменять переменную непосредственным вызовом метода.
 
 # Заменим первую переменную, а затем запустим компиляцию, чтобы убедиться, что ничего не сломалось.
 
-Print "basePrice()"
+Print "$this->basePrice()"
 
 #C Запускаем компиляцию и тестирование.
 
 #S Всё отлично, можно продолжать!
 
-Select "return |||basePrice|||"
+Select "return |||$basePrice|||"
 
 # Выполним следующую замену.
 
-Print "basePrice()"
+Print "$this->basePrice()"
 
 #C Запускаем компиляцию и тестирование.
 
@@ -128,7 +115,7 @@ Print "basePrice()"
 
 Select:
 ```
-    final int basePrice = basePrice();
+    $basePrice = $this->basePrice();
 
 ```
 
@@ -136,7 +123,7 @@ Select:
 
 Remove selected
 
-Select "double |||discountFactor|||"
+Select "$discountFactor"
 
 # С первой переменной покончено, и мы можем повторить все действия для выделения <code>discountFactor</code>.
 
@@ -147,8 +134,8 @@ Go to the end of "Product"
 Print:
 ```
 
-  private double discountFactor() {
-    if (basePrice() > 1000) {
+  private function discountFactor() {
+    if ($this->basePrice() > 1000) {
       return 0.95;
     }
     else {
@@ -157,26 +144,19 @@ Print:
   }
 ```
 
-Go to "double discountFactor|||;"
-
-# ...используем его для инициализации переменной…
-
-Print " = discountFactor()"
-
-Select:
+Select in "getPrice":
 ```
-    if (basePrice() > 1000) {
-      discountFactor = 0.95;
+    if ($this->basePrice() > 1000) {
+      $discountFactor = 0.95;
     }
     else {
-      discountFactor = 0.98;
+      $discountFactor = 0.98;
     }
-
 ```
 
-#^ ...и удаляем код, ставший теперь ненужным.
+# ...используем его для инициализации переменной и удаляем лишний теперь код...
 
-Remove selected
+Print "    $discountFactor = $this->discountFactor();"
 
 # Обратите внимание на то, как трудно было бы выделить <code>discountFactor</code> без предварительной замены <code>basePrice</code> вызовом метода.
 
@@ -184,15 +164,15 @@ Remove selected
 
 Select:
 ```
-    final double discountFactor = discountFactor();
+    $discountFactor = $this->discountFactor();
 
 ```
 
 Remove selected
 
-Select "discountFactor" in "getPrice"
+Select "$discountFactor" in "getPrice"
 
-Replace "discountFactor()"
+Replace "$this->discountFactor()"
 
 #C Запускаем финальную компиляцию.
 

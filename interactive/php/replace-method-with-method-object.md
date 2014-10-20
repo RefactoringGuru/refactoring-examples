@@ -1,4 +1,4 @@
-replace-method-with-method-object:java
+replace-method-with-method-object:php
 
 ###
 
@@ -21,15 +21,15 @@ replace-method-with-method-object:java
 ```
 class Account {
   // ...
-  int gamma(int inputVal, int quantity, int yearToDate) {
-    int importantValue1 = (inputVal * quantity) + delta();
-    int importantValue2 = (inputVal * yearToDate) + 100;
-    if ((yearToDate - importantValue1) > 100) {
-      importantValue2 -= 20;
+  function gamma($inputVal, $quantity, $yearToDate) {
+    $importantValue1 = ($inputVal * $quantity) + $this->delta();
+    $importantValue2 = ($inputVal * $yearToDate) + 100;
+    if (($yearToDate - $importantValue1) > 100) {
+      $importantValue2 -= 20;
     }
-    int importantValue3 = importantValue2 * 7;
+    $importantValue3 = $importantValue2 * 7;
     // and so on...
-    return importantValue3 - 2 * importantValue1;
+    return $importantValue3 - 2 * $importantValue1;
   }
   // ...
 }
@@ -40,37 +40,38 @@ class Account {
 ```
 class Account {
   // ...
-  int gamma(int inputVal, int quantity, int yearToDate) {
-    return new Gamma(this, inputVal, quantity, yearToDate).compute();
+  function gamma($this->inputVal, $this->quantity, $this->yearToDate) {
+    return new Gamma($this, $inputVal, $quantity, $yearToDate)->compute();
   }
   // ...
 }
 
 class Gamma {
-  private final Account account;
-  private int importantValue1;
-  private int importantValue2;
-  private int importantValue3;
-  private int inputVal;
-  private int quantity;
-  private int yearToDate;
-  public Gamma(Account source, int inputValArg, int quantityArg, int yearToDateArg) {
-    this.account = source;
-    inputVal = inputValArg;
-    quantity = quantityArg;
-    yearToDate = yearToDateArg;
+  private $account; // Account
+  private $this->importantValue1;
+  private $this->importantValue2;
+  private $this->importantValue3;
+  private $this->inputVal;
+  private $this->quantity;
+  private $this->yearToDate;
+
+  public Gamma(Account $source, $this->inputValArg, $this->quantityArg, $this->yearToDateArg) {
+    $this->account = $source;
+    $this->inputVal = $this->inputValArg;
+    $this->quantity = $this->quantityArg;
+    $this->yearToDate = $this->yearToDateArg;
   }
-  public int compute() {
-    int importantValue1 = (inputVal * quantity) + account.delta();
-    int importantValue2 = (inputVal * yearToDate) + 100;
-    importantThing();
-    int importantValue3 = importantValue2 * 7;
+  public function compute() {
+    $this->importantValue1 = ($this->inputVal * $this->quantity) + $this->account->delta();
+    $this->importantValue2 = ($this->inputVal * $this->yearToDate) + 100;
+    $this->importantThing();
+    $this->importantValue3 = $this->importantValue2 * 7;
     // and so on...
-    return importantValue3 - 2 * importantValue1;
+    return $this->importantValue3 - 2 * $this->importantValue1;
   }
-  void importantThing() {
-    if ((yearToDate - importantValue1) > 100) {
-      importantValue2 -= 20;
+  private function importantThing() {
+    if (($this->yearToDate - $this->importantValue1) > 100) {
+      $this->importantValue2 -= 20;
     }
   }
 }
@@ -109,28 +110,29 @@ Go to the end of "Gamma"
 Print:
 ```
 
-  private final Account account;
+  private $account; // Account
 ```
 
 Set step 3
 
 
-Select 1st "importantValue1"
-+Select 1st "importantValue2"
-+Select 1st "importantValue3"
+Select 1st "$importantValue1"
++Select 1st "$importantValue2"
++Select 1st "$importantValue3"
 
 # Также перенесем все переменные из метода, который мы хотим отделить...
 
 Go to the end of "Gamma"
+
 Print:
 ```
 
-  private int importantValue1;
-  private int importantValue2;
-  private int importantValue3;
+  private $importantValue1;
+  private $importantValue2;
+  private $importantValue3;
 ```
 
-Select "gamma(int inputVal, int quantity, int yearToDate)"
+Select "gamma(|||$inputVal, $quantity, $yearToDate|||)"
 
 # ...а также создадим поля для каждого из параметров метода.
 
@@ -139,9 +141,9 @@ Go to the end of "Gamma"
 Print:
 ```
 
-  private int inputVal;
-  private int quantity;
-  private int yearToDate;
+  private $inputVal;
+  private $quantity;
+  private $yearToDate;
 ```
 
 Set step 4
@@ -153,11 +155,12 @@ Go to the end of "Gamma"
 Print:
 ```
 
-  public Gamma(Account source, int inputValArg, int quantityArg, int yearToDateArg) {
-    this.account = source;
-    inputVal = inputValArg;
-    quantity = quantityArg;
-    yearToDate = yearToDateArg;
+
+  public Gamma(Account $source, $inputValArg, $quantityArg, $yearToDateArg) {
+    $this->account = $source;
+    $this->inputVal = $inputValArg;
+    $this->quantity = $quantityArg;
+    $this->yearToDate = $yearToDateArg;
   }
 ```
 
@@ -169,40 +172,54 @@ Set step 5
 
 Select whole "gamma" in "Account"
 
-# Теперь можно переместить исходный метод.
+# Теперь можно переместить исходный метод, изменив его так, чтобы вместо переменных и параметров старого метода использовались поля.
 
 Go to the end of "Gamma"
 
 Print:
 ```
 
-  public int compute() {
-    int importantValue1 = (inputVal * quantity) + delta();
-    int importantValue2 = (inputVal * yearToDate) + 100;
-    if ((yearToDate - importantValue1) > 100) {
-      importantValue2 -= 20;
+  public function compute() {
+    $importantValue1 = ($inputVal * $quantity) + $this->delta();
+    $importantValue2 = ($inputVal * $yearToDate) + 100;
+    if (($yearToDate - $importantValue1) > 100) {
+      $importantValue2 -= 20;
     }
-    int importantValue3 = importantValue2 * 7;
+    $importantValue3 = $importantValue2 * 7;
     // and so on...
-    return importantValue3 - 2 * importantValue1;
+    return $importantValue3 - 2 * $importantValue1;
   }
 ```
+
+Select "$importantValue1"
+Replace "$this->importantValue1"
+Select "$importantValue2"
+Replace "$this->importantValue2"
+Select "$importantValue3"
+Replace "$this->importantValue3"
+Select "$inputVal"
+Replace "$this->inputVal"
+Select "$quantity"
+Replace "$this->quantity"
+Select "$yearToDate"
+Replace "$this->yearToDate"
+
 
 Select "delta()" in "compute"
 
 # При этом следует модифицировать любые вызовы методов <code>Account</code> так, чтобы они выполнялись через поле <code>account</code>.
 
-Print "account.delta()"
+Print "account->delta()"
 
 Set step 6
 
-Select body of "int gamma"
+Select body of "gamma" in "Account"
 
 # После этого осталось только заменить тело старого метода на вызов метода в новом классе.
 
 Print:
 ```
-    return new Gamma(this, inputVal, quantity, yearToDate).compute();
+    return new Gamma($this, $inputVal, $quantity, $yearToDate)->compute();
 ```
 
 #C Запустим компиляцию и тесты, чтобы проверить код на наличие ошибок.
@@ -211,8 +228,8 @@ Print:
 
 Select:
 ```
-    if ((yearToDate - importantValue1) > 100) {
-      importantValue2 -= 20;
+    if (($this->yearToDate - $this->importantValue1) > 100) {
+      $this->importantValue2 -= 20;
     }
 ```
 
@@ -223,9 +240,9 @@ Go to the end of "Gamma"
 Print:
 ```
 
-  void importantThing() {
-    if ((yearToDate - importantValue1) > 100) {
-      importantValue2 -= 20;
+  private function importantThing() {
+    if (($this->yearToDate - $this->importantValue1) > 100) {
+      $this->importantValue2 -= 20;
     }
   }
 ```
@@ -234,12 +251,12 @@ Wait 500ms
 
 Select in "compute":
 ```
-    if ((yearToDate - importantValue1) > 100) {
-      importantValue2 -= 20;
+    if (($this->yearToDate - $this->importantValue1) > 100) {
+      $this->importantValue2 -= 20;
     }
 ```
 
-Replace "    importantThing();"
+Replace "    $this->importantThing();"
 
 Set final step
 

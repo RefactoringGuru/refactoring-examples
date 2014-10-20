@@ -1,4 +1,4 @@
-inline-class:java
+inline-class:php
 
 ###
 
@@ -16,78 +16,82 @@ inline-class:java
 
 ```
 class Person {
-  private String name;
-  private TelephoneNumber officeTelephone = new TelephoneNumber();
-
-  public String getName() {
-    return name;
+  private $name;
+  private $officeTelephone; // TelephoneNumber
+  
+  public function __construct() {
+    $this->officeTelephone = new TelephoneNumber();
   }
-  public String getTelephoneNumber() {
-    return officeTelephone.getTelephoneNumber();
+  
+  public function getName() {
+    return $this->name;
   }
-  public TelephoneNumber getOfficeTelephone() {
-    return officeTelephone;
+  public function getOfficeTelephone() {
+    return $this->officeTelephone;
+  }
+  public function getTelephoneNumber() {
+    return $this->officeTelephone->getTelephoneNumber();
   }
 }
 
 class TelephoneNumber {
-  private String number;
-  private String areaCode;
+  private $areaCode;
+  private $number;
 
-  public String getAreaCode() {
-    return areaCode;
+  public function getAreaCode() {
+    return $this->areaCode;
   }
-  public void setAreaCode(String arg) {
-    areaCode = arg;
+  public function setAreaCode($arg) {
+    $this->areaCode = $arg;
   }
-  public String getNumber() {
-    return number;
+  public function getNumber() {
+    return $this->number;
   }
-  public void setNumber(String arg) {
-    number = arg;
+  public function setNumber($arg) {
+    $this->number = $arg;
   }
-  public String getTelephoneNumber() {
-    return ("(" + areaCode + ") " + number);
+  public function getTelephoneNumber() {
+    return ("(" + $this->areaCode + ") " + $this->number);
   }
 }
 
 // Somewhere in client code
-Person martin = new Person();
-martin.getOfficeTelephone().setAreaCode("781");
+$martin = new Person();
+$martin->getOfficeTelephone()->setAreaCode("781");
 ```
 
 ###
 
 ```
 class Person {
-  private String name;
-  private String number;
-  private String areaCode;
-
-  public String getName() {
-    return name;
+  private $name;
+  private $areaCode;
+  private $number;
+  
+  public function getName() {
+    return $this->name;
   }
-  public String getTelephoneNumber() {
-    return ("(" + areaCode + ") " + number);
+  public function getTelephoneNumber() {
+    return ("(" + $this->areaCode + ") " + $this->number);
   }
-  public String getAreaCode() {
-    return areaCode;
+  public function getAreaCode() {
+    return $this->areaCode;
   }
-  public void setAreaCode(String arg) {
-    areaCode = arg;
+  public function setAreaCode($arg) {
+    $this->areaCode = $arg;
   }
-  public String getNumber() {
-    return number;
+  public function getNumber() {
+    return $this->number;
   }
-  public void setNumber(String arg) {
-    number = arg;
+  public function setNumber($arg) {
+    $this->number = $arg;
   }
 }
 
 
 // Somewhere in client code
-Person martin = new Person();
-martin.setAreaCode("781");
+$martin = new Person();
+$martin->setAreaCode("781");
 ```
 
 ###
@@ -107,17 +111,17 @@ Go to the end of "Person"
 Print:
 ```
 
-  public String getAreaCode() {
-    return officeTelephone.getAreaCode();
+  public function getAreaCode() {
+    return $this->officeTelephone->getAreaCode();
   }
-  public void setAreaCode(String arg) {
-    officeTelephone.setAreaCode(arg);
+  public function setAreaCode($arg) {
+    $this->officeTelephone->setAreaCode($arg);
   }
-  public String getNumber() {
-    return officeTelephone.getNumber();
+  public function getNumber() {
+    return $this->officeTelephone->getNumber();
   }
-  public void setNumber(String arg) {
-    officeTelephone.setNumber(arg);
+  public function setNumber($arg) {
+    $this->officeTelephone->setNumber($arg);
   }
 ```
 
@@ -130,11 +134,11 @@ Select "officeTelephone" in "getAreaCode"
 
 Set step 2
 
-Select "martin.getOfficeTelephone().setAreaCode("781")"
+Select "$martin->getOfficeTelephone()->setAreaCode("781")"
 
 # Теперь найдём все случаи использования класса телефонного номера в клиентском коде и заменим его использованием класса <code>Person</code>
 
-Print "martin.setAreaCode("781")"
+Print "$martin->setAreaCode("781")"
 
 Set step 3
 
@@ -142,8 +146,8 @@ Set step 3
 
 Select:
 ```
-  private String number;
-  private String areaCode;
+  private $areaCode;
+  private $number;
 
 
 ```
@@ -152,13 +156,13 @@ Select:
 
 Remove selected
 
-Go to " new TelephoneNumber();|||"
+Go to "private $name;|||"
 
 Print:
 ```
 
-  private String number;
-  private String areaCode;
+  private $areaCode;
+  private $number;
 ```
 
 Select body of "getAreaCode" in "TelephoneNumber"
@@ -171,7 +175,7 @@ Select body of "getAreaCode" in "Person"
 
 Replace:
 ```
-    return areaCode;
+    return $this->areaCode;
 ```
 
 Select whole of "getAreaCode" in "TelephoneNumber"
@@ -189,7 +193,7 @@ Select body of "setAreaCode" in "Person"
 
 Replace:
 ```
-    areaCode = arg;
+    $this->areaCode = $arg;
 ```
 
 Select whole of "setAreaCode" in "TelephoneNumber"
@@ -207,7 +211,7 @@ Select body of "getNumber" in "Person"
 
 Replace:
 ```
-    return number;
+    return $this->number;
 ```
 
 Select whole of "getNumber" in "TelephoneNumber"
@@ -225,7 +229,7 @@ Select body of "setNumber" in "Person"
 
 Replace:
 ```
-    number = arg;
+    $this->number = $arg;
 ```
 
 Select whole of "setNumber" in "TelephoneNumber"
@@ -242,7 +246,7 @@ Select body of "getTelephoneNumber" in "Person"
 
 Replace:
 ```
-    return ("(" + areaCode + ") " + number);
+    return ("(" + $this->areaCode + ") " + $this->number);
 ```
 
 Select whole of "getTelephoneNumber" in "TelephoneNumber"
@@ -261,7 +265,11 @@ Select whole "TelephoneNumber"
 
 Select:
 ```
-  private TelephoneNumber officeTelephone = new TelephoneNumber();
+  private $officeTelephone; // TelephoneNumber
+  
+  public function __construct() {
+    $this->officeTelephone = new TelephoneNumber();
+  }
 
 ```
 + Select whole "getOfficeTelephone"

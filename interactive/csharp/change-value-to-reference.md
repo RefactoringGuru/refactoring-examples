@@ -185,9 +185,9 @@ Print:
 
 Select "new Customer(customerName)"
 
-# Затем заменим вызов конструктора класса <code>Customer</code> обращением к фабричному методу.
-
 Replace "Customer.Create(customerName)"
+
+# Затем заменим вызов конструктора класса <code>Customer</code> обращением к фабричному методу.
 
 Select visibility of "public Customer"
 

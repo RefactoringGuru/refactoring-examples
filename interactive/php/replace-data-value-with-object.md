@@ -1,4 +1,4 @@
-replace-data-value-with-object:java
+replace-data-value-with-object:php
 
 ###
 
@@ -17,30 +17,28 @@ replace-data-value-with-object:java
 ```
 class Order {
   // ...
-  private String customer;
+  private $customer; // String
 
-  public Order(String customer) {
-    this.customer = customer;
+  public function __construct($customer) {
+    $this->customer = $customer;
   }
-  public String getCustomer() {
-    return customer;
+  public function getCustomer() {
+    return $this->customer;
   }
-  public void setCustomer(String customer) {
-    this.customer = customer;
+  public function setCustomer($customer) {
+    $this->customer = $customer;
   }
 }
 
 // Client code, which uses Order class.
-private static int numberOfOrdersFor(Collection orders, String customer) {
-  int result = 0;
-  Iterator iter = orders.iterator();
-  while (iter.hasNext()) {
-    Order each = (Order) iter.next();
-    if (each.getCustomer().equals(customer)) {
-      result++;
+private static function numberOfOrdersFor($orders, $customer) {
+  $result = 0;
+  foreach ($orders as $order) {
+    if ($order->getCustomer() === $customer) {
+      $result++;
     }
   }
-  return result;
+  return $result;
 }
 ```
 
@@ -49,41 +47,39 @@ private static int numberOfOrdersFor(Collection orders, String customer) {
 ```
 class Order {
   // ...
-  private Customer customer;
+  private $customer; // Customer
 
-  public Order(String customerName) {
-    this.customer = new Customer(customerName);
+  public function __construct($customerName) {
+    $this->customer = new Customer($customerName);
   }
-  public String getCustomerName() {
-    return customer.getName();
+  public function getCustomerName() {
+    return $this->customer->getName();
   }
-  public void setCustomer(String customerName) {
-    this.customer = new Customer(customerName);
+  public function setCustomer($customerName) {
+    $this->customer = new Customer($customerName);
   }
 }
 
 class Customer {
-  private final String name;
+  private $name;
 
-  public Customer(String name) {
-    this.name = name;
+  public function __construct($name) {
+    $this->name = $name;
   }
-  public String getName() {
-    return name;
+  public function getName() {
+    return $this->name;
   }
 }
 
 // Client code, which uses Order class.
-private static int numberOfOrdersFor(Collection orders, String customer) {
-  int result = 0;
-  Iterator iter = orders.iterator();
-  while (iter.hasNext()) {
-    Order each = (Order) iter.next();
-    if (each.getCustomerName().equals(customer)) {
-      result++;
+private static function numberOfOrdersFor($orders, $customer) {
+  $result = 0;
+  foreach ($orders as $order) {
+    if ($order->getCustomerName() === $customer) {
+      $result++;
     }
   }
-  return result;
+  return $result;
 }
 ```
 
@@ -93,7 +89,7 @@ Set step 1
 
 # Давайте рассмотрим рефакторинг <i>Замена простого поля объектом</i> на примере класса заказа.
 
-Select "private String |||customer|||"
+Select "private |||$customer|||"
 
 # В данном примере покупатель в классе заказа хранится в виде строки. Однако мы могли бы создать для покупателей свой класс и перенести в него все данные и операции, связанные с покупателями.
 
@@ -114,10 +110,10 @@ Go to end of "Customer"
 Print:
 ```
 
-  private final String name;
+  private $name;
 
-  public String getName() {
-    return name;
+  public function getName() {
+    return $this->name;
   }
 ```
 
@@ -130,20 +126,20 @@ Go to before of "getName"
 Print:
 ```
 
-  public Customer(String name) {
-    this.name = name;
+  public function __construct($name) {
+    $this->name = $name;
   }
 ```
 
 Set step 3
 
-Select "private String customer"
+Select "private $customer"
 
 # После этого можно изменить тип поля <code>Customer</code>, а также изменить связанные с ним методы таким образом, чтобы они теперь работали с экземпляром класса <code>Customer</code>.
 
 # Начнём с изменения типа поля покупателя.
 
-Select "private |||String||| customer"
+Select "String" in "Order"
 
 Replace "Customer"
 
@@ -151,19 +147,19 @@ Set step 4
 
 # Затем сделаем так, чтобы геттер имени пользователя возвращал значение из связанного объекта.
 
-Select "return |||customer|||" in "getCustomer"
+Select "return |||$this->customer|||" in "getCustomer"
 
-Replace "customer.getName()"
+Replace "$this->customer->getName()"
 
-Select name of "public Order"
+Select name of "__construct"
 + Select name of "setCustomer"
 
 # Теперь изменим конструктор и сеттер доступа так, чтобы они заполняли поле покупателя новым объектом <code>Customer</code>.
 
-Select "= |||customer|||" in "public Order"
-+ Select "= |||customer|||" in "setCustomer"
+Select "= |||$customer|||" in "__construct"
++ Select "= |||$customer|||" in "setCustomer"
 
-Replace "new Customer(customer)"
+Replace "new Customer($customer)"
 
 Select name of "setCustomer"
 
@@ -187,18 +183,16 @@ Replace "getCustomerName"
 
 Wait 500ms
 
-Select "each.|||getCustomer|||"
+Select "$order->|||getCustomer|||"
 
 Replace "getCustomerName"
 
-Select "String |||customer|||" in parameters of "public Order"
-+ Select "(|||customer|||)" in "public Order"
-+ Select "String |||customer|||" in parameters of "setCustomer"
-+ Select "(|||customer|||)" in "setCustomer"
+Select "$customer" in "__construct"
++ Select "$customer" in "setCustomer"
 
 # Кроме того, не помешает изменить названия параметров в конструкторе и сеттере.
 
-Replace "customerName"
+Replace "$customerName"
 
 #C Запускаем финальную компиляцию.
 

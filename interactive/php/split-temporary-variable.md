@@ -1,4 +1,4 @@
-split-temporary-variable:java
+split-temporary-variable:php
 
 ###
 
@@ -13,38 +13,38 @@ split-temporary-variable:java
 ###
 
 ```
-public double getDistanceTravelled(int time) {
-  double result;
-  double acc = primaryForce / mass;
-  int primaryTime = Math.min(time, delay);
-  result = 0.5 * acc * primaryTime * primaryTime;
+public function getDistanceTravelled($time) {
+  $result = 0;;
+  $acc = $this->primaryForce / $this->mass;
+  $primaryTime = Math.min($time, $this->delay);
+  $result = 0.5 * $acc * $primaryTime * $primaryTime;
 
-  int secondaryTime = time - delay;
-  if (secondaryTime > 0) {
-    double primaryVel = acc * delay;
-    acc = (primaryForce + secondaryForce) / mass;
-    result +=  primaryVel * secondaryTime + 0.5 * acc * secondaryTime * secondaryTime;
+  $secondaryTime = $time - $this->delay;
+  if ($secondaryTime > 0) {
+    $primaryVel = $acc * $this->delay;
+    $acc = ($this->primaryForce + $this->secondaryForce) / $this->mass;
+    $result += $primaryVel * $secondaryTime + 0.5 * $acc * $secondaryTime * $secondaryTime;
   }
-  return result;
+  return $result;
 }
 ```
 
 ###
 
 ```
-public double getDistanceTravelled(int time) {
-  double result;
-  final double primaryAcceleration = primaryForce / mass;
-  int primaryTime = Math.min(time, delay);
-  result = 0.5 * primaryAcceleration * primaryTime * primaryTime;
+public function getDistanceTravelled($time) {
+  $result = 0;;
+  $primaryAcceleration = $this->primaryForce / $this->mass;
+  $primaryTime = Math.min($time, $this->delay);
+  $result = 0.5 * $primaryAcceleration * $primaryTime * $primaryTime;
 
-  int secondaryTime = time - delay;
-  if (secondaryTime > 0) {
-    double primaryVel = primaryAcceleration * delay;
-    final double secondaryAcceleration = (primaryForce + secondaryForce) / mass;
-    result +=  primaryVel * secondaryTime + 0.5 * secondaryAcceleration * secondaryTime * secondaryTime;
+  $secondaryTime = $time - $this->delay;
+  if ($secondaryTime > 0) {
+    $primaryVel = $primaryAcceleration * $this->delay;
+    $secondaryAcceleration = ($this->primaryForce + $this->secondaryForce) / $this->mass;
+    $result += $primaryVel * $secondaryTime + 0.5 * $secondaryAcceleration * $secondaryTime * $secondaryTime;
   }
-  return result;
+  return $result;
 }
 ```
 
@@ -54,7 +54,7 @@ Set step 1
 
 # Давайте рассмотрим <i>Расщепление переменной</i> на примере небольшого метода расчёта расстояния перемещения мяча в пространстве в зависимости от времени и сил, действующих на него.
 
-Select "|||acc||| ="
+Select "|||$acc||| ="
 
 #^ Для нашего примера представляет интерес то, что переменная <code>acc</code> устанавливается в нём дважды.
 
@@ -64,56 +64,42 @@ Select "|||acc||| ="
 
 #^ Следовательно, эту переменную лучше расщепить, чтобы каждая её часть отвечала только за одну задачу.
 
-Select "double |||acc|||"
+Select 1st "$acc"
 
 # Начнём с изменения имени переменной. Для этого очень удобно выбрать имя, которое будет отражать её первое применение.
 
-Print "primaryAcceleration"
-
-Go to "|||double primaryAcceleration"
-
-# Кроме того, мы объявляем её как <code>final</code>, чтобы гарантировать однократное присваивание ей значения.
-
-Print "final "
+Print "$primaryAcceleration"
 
 Set step 2
 
-Select "result = 0.5 * |||acc|||"
-+ Select "|||acc||| * delay"
+Select "$result = 0.5 * |||$acc|||"
++ Select "|||$acc||| * $this->delay"
 
 # После этого нужно переименовать переменную во всех местах, где она использовалась, вплоть до того места, где ей присваивается новое значение.
 
-Print "primaryAcceleration"
+Print "$primaryAcceleration"
 
-Go to "|||acc ="
+Select "$acc"
 
-# После всех замен можно объявить первоначальную переменную в месте второго присваивания ей некоторого значения.
+# Это была последняя замена, после которой остался только второй случай использования переменной.
 
-Print "double "
-
-#C После того как мы добрались до второго случая использования переменной, можно выполнить компиляцию и тестирование.
+#C Запустим компиляцию и тестирование.
 
 #S Все отлично, можно продолжать.
 
 Set step 3
 
-Select 1st "|||acc||| "
+Select 1st "|||$acc||| "
 
 # Теперь можно повторить все действия со вторым присваиванием временной переменной. Окончательно удаляем первоначальное имя переменной, и заменяем его новым, соответствующим второй задаче.
 
-Print "secondaryAcceleration"
+Print "$secondaryAcceleration"
 
 Wait 500ms
 
-Go to "|||double secondaryAcceleration"
+Select " |||$acc||| "
 
-Print "final "
-
-Wait 500ms
-
-Select " |||acc||| "
-
-Replace "secondaryAcceleration"
+Replace "$secondaryAcceleration"
 
 #C Запускаем финальную компиляцию.
 

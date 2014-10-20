@@ -1,4 +1,4 @@
-move-method:java
+move-method:php
 
 ###
 
@@ -17,27 +17,27 @@ move-method:java
 ```
 class Account {
   // ...
-  private AccountType type;
-  private int daysOverdrawn;
+  private $type; // AccountType
+  private $daysOverdrawn;
 
-  public double overdraftCharge() {
-    if (type.isPremium()) {
-      double result = 10;
-      if (daysOverdrawn > 7) {
-        result += (daysOverdrawn - 7) * 0.85;
+  public function overdraftCharge() {
+    if ($this->type->isPremium()) {
+      $result = 10;
+      if ($this->daysOverdrawn > 7) {
+        $result += ($this->daysOverdrawn - 7) * 0.85;
       }
-      return result;
+      return $result;
     }
     else {
-      return daysOverdrawn * 1.75;
+      return $this->daysOverdrawn * 1.75;
     }
   }
-  public double bankCharge() {
-    double result = 4.5;
-    if (daysOverdrawn > 0) {
-      result += overdraftCharge();
+  public function bankCharge() {
+    $result = 4.5;
+    if ($this->daysOverdrawn > 0) {
+      $result += $this->overdraftCharge();
     }
-    return result;
+    return $result;
   }
 }
 
@@ -51,30 +51,30 @@ class AccountType {
 ```
 class Account {
   // ...
-  private AccountType type;
-  private int daysOverdrawn;
+  private $type; // AccountType
+  private $daysOverdrawn;
 
-  public double bankCharge() {
-    double result = 4.5;
-    if (daysOverdrawn > 0) {
-      result += type.overdraftCharge(this);
+  public function bankCharge() {
+    $result = 4.5;
+    if ($this->daysOverdrawn > 0) {
+      $result += $this->type->overdraftCharge($this);
     }
-    return result;
+    return $result;
   }
 }
 
 class AccountType {
   // ...
-  public double overdraftCharge(Account account) {
-    if (isPremium()) {
-      double result = 10;
-      if (account.getDaysOverdrawn() > 7) {
-        result += (account.getDaysOverdrawn() - 7) * 0.85;
+  public function overdraftCharge(Account $account) {
+    if ($this->isPremium()) {
+      $result = 10;
+      if ($account->getDaysOverdrawn() > 7) {
+        $result += ($account->getDaysOverdrawn() - 7) * 0.85;
       }
-      return result;
+      return $result;
     }
     else {
-      return account.getDaysOverdrawn() * 1.75;
+      return $account->getDaysOverdrawn() * 1.75;
     }
   }
 }
@@ -86,7 +86,7 @@ Set step 1
 
 # Давайте рассмотрим <i>Перемещение метода</i> на примере класса банковского счета.
 
-Select "private AccountType |||type|||"
+Select "private |||$type|||"
 
 # Представим себе, что будет введено несколько новых типов счетов со своими правилами начисления платы за овердрафт (превышение кредита).
 
@@ -94,19 +94,19 @@ Select "private AccountType |||type|||"
 
 Select name of "OverdraftCharge"
 
-# Прежде всего, посмотрим, какие поля и методы использует <code>overdraftCharge()</code>, и решим, следует ли переносить только его, или же надо будет перенести также и то, что с ним связано.
+# Прежде всего, посмотрим, какие поля и методы использует <code>OverdraftCharge()</code>, и решим, следует ли переносить только его, или же надо будет перенести также и то, что с ним связано.
 
-Select "private AccountType |||type|||"
+Select "private |||$type|||"
 
 # Поле <code>type</code> хранит тип счета, его нет смысла куда-то переносить.
 
-Select "private int |||daysOverdrawn|||"
+Select "private |||$daysOverdrawn|||"
 
 # Поле <code>daysOverdrawn</code> тоже не стоит переносить, так как оно будет разным для отдельных счетов.
 
 Select name of "OverdraftCharge"
 
-# А, значит, будем переносить только метод <code>OverdraftCharge()</code>
+# А, значит, будем переносить только метод <code>overdraftCharge()</code>
 
 Set step 2
 
@@ -119,16 +119,16 @@ Go to the end of "AccountType"
 Print:
 ```
 
-  public double overdraftCharge() {
-    if (type.isPremium()) {
-      double result = 10;
-      if (daysOverdrawn > 7) {
-        result += (daysOverdrawn - 7) * 0.85;
+  public function overdraftCharge() {
+    if ($this->type->isPremium()) {
+      $result = 10;
+      if ($this->daysOverdrawn > 7) {
+        $result += ($this->daysOverdrawn - 7) * 0.85;
       }
-      return result;
+      return $result;
     }
     else {
-      return daysOverdrawn * 1.75;
+      return $this->daysOverdrawn * 1.75;
     }
   }
 ```
@@ -137,7 +137,7 @@ Select name of "overdraftCharge" in "AccountType"
 
 # Теперь метод необходимо отредактировать для правильной работы на новом месте.
 
-Select "type." in "overdraftCharge" of "AccountType"
+Select "type->" in "overdraftCharge" of "AccountType"
 
 # Первым делом удалим из метода поле <code>type</code>, т.к. мы теперь находимся внутри класса, реализующего тип счета, и все методы можно вызывать из него напрямую.
 
@@ -154,11 +154,13 @@ Select "daysOverdrawn" in "overdraftCharge" of "AccountType"
 
 Go to parameters of "overdraftCharge" of "AccountType"
 
-Print "int daysOverdrawn"
+Print "$daysOverdrawn"
 
-Select "daysOverdrawn" in "overdraftCharge" of "AccountType"
+Select "$this->daysOverdrawn" in "overdraftCharge" of "AccountType"
 
 # ...и будем использовать этот параметр в теле метода.
+
+Replace "$daysOverdrawn"
 
 #C Запустим компиляцию, чтобы проверить код на наличие ошибок.
 
@@ -172,7 +174,7 @@ Select body of "overdraftCharge" in "Account"
 
 Print:
 ```
-    return type.overdraftCharge(daysOverdrawn);
+    return $this->type->overdraftCharge($this->daysOverdrawn);
 ```
 
 #C Запустим компиляцию ещё раз на всякий случай.
@@ -191,7 +193,7 @@ Select "overdraftCharge()" in "bankCharge"
 
 Print:
 ```
-type.overdraftCharge(daysOverdrawn)
+type->overdraftCharge($this->daysOverdrawn)
 ```
 
 # Обратите внимание, если перемещаемый метод не является приватным, необходимо посмотреть, не пользуются ли им другие классы. В строго типизированном языке после удаления объявления метода в исходном классе компиляция обнаружит всё, что могло быть пропущено. В остальных случаях помогут автотесты.
@@ -216,23 +218,23 @@ Select parameters in "overdraftCharge"
 
 Print:
 ```
-Account account
+Account $account
 ```
 
-Select "daysOverdrawn" in "overdraftCharge"
+Select "$daysOverdrawn" in "overdraftCharge"
 
 # Во-вторых, все интересующие поля и методы теперь нужно брать напрямую из полученного экземпляра.
 
 Print:
 ```
-account.getDaysOverdrawn()
+$account->getDaysOverdrawn()
 ```
 
-Select "overdraftCharge(|||daysOverdrawn|||)"
+Select "overdraftCharge(|||$this->daysOverdrawn|||)"
 
 # И, наконец, в-третьих, во все вызовы метода необходимо добавить передачу текущего экземпляра класса <code>Account</code>.
 
-Print "this"
+Print "$this"
 
 #C Запускаем финальную компиляцию.
 

@@ -127,10 +127,13 @@ Print:
 
 Set step 3
 
-Go to the end of "Gamma"
+Select 1st "importantValue1"
++Select 1st "importantValue2"
++Select 1st "importantValue3"
 
 # Также перенесем все переменные из метода, который мы хотим отделить...
 
+Go to the end of "Gamma"
 
 Print:
 ```
@@ -140,9 +143,11 @@ Print:
   private int importantValue3;
 ```
 
-Go to the end of "Gamma"
+Select "gamma(|||int inputVal, int quantity, int yearToDate|||)"
 
-# ...и создадим поля для каждого из параметров метода.
+# ...а также создадим поля для каждого из параметров метода.
+
+Go to the end of "Gamma"
 
 Print:
 ```

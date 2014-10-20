@@ -1,4 +1,4 @@
-move-field:java
+move-field:php
 
 ###
 
@@ -19,11 +19,11 @@ move-field:java
 ```
 class Account {
   // ...
-  private AccountType type;
-  private double interestRate;
+  private $type; // AccountType
+  private $interestRate;
 
-  public double interestForAmount_days(double amount, int days) {
-    return interestRate * amount * days / 365.0;
+  public function interestForAmount_days($amount, $days) {
+    return $this->interestRate * $amount * $days / 365.0;
   }
 }
 
@@ -37,34 +37,34 @@ class AccountType {
 ```
 class Account {
   // ...
-  private AccountType type;
+  private $type; // AccountType
 
-  public double interestForAmount_days(double amount, int days) {
-    return getInterestRate() * amount * days / 365.0;
+  public function interestForAmount_days($amount, $days) {
+    return $this->getInterestRate() * $amount * $days / 365.0;
   }
-  public double interestForBigFamily(double familySize) {
-    return getInterestRate() / familySize;
+  public function interestForBigFamily($familySize) {
+    return $this->getInterestRate() / $familySize;
   }
 
   // other 10 methods, which use getInterestRate()
 
-  private double getInterestRate() {
-    return type.getInterestRate();
+  private function getInterestRate() {
+    return $this->type->getInterestRate();
   }
-  private void setInterestRate(double arg) {
-    type.setInterestRate(arg);
+  private function setInterestRate($arg) {
+    $this->type->setInterestRate($arg);
   }
 }
 
 class AccountType {
   // ...
-  private double interestRate;
+  private $interestRate;
 
-  public double getInterestRate() {
-    return interestRate;
+  public function getInterestRate() {
+    return $this->interestRate;
   }
-  public void setInterestRate(double arg) {
-    interestRate = arg;
+  public function setInterestRate($arg) {
+    $this->interestRate = $arg;
   }
 }
 ```
@@ -75,7 +75,7 @@ Set step 1
 
 # Давайте рассмотрим <i>Перемещение поля</i> на примере класса банковского счета.
 
-Select "double |||interestRate|||"
+Select "private |||$interestRate|||"
 
 # Мы хотим переместить поле процентной ставки <code>interestRate</code> в класс типа счета <code>AccountType</code>.
 
@@ -92,13 +92,13 @@ Go to the end of "AccountType"
 Print:
 ```
 
-  private double interestRate;
+  private $interestRate;
 
-  public double getInterestRate() {
-    return interestRate;
+  public function getInterestRate() {
+    return $this->interestRate;
   }
-  public void setInterestRate(double arg) {
-    interestRate = arg;
+  public function setInterestRate($arg) {
+    $this->interestRate = $arg;
   }
 ```
 
@@ -108,7 +108,7 @@ Print:
 
 Set step 3
 
-Select "AccountType |||type|||" in "Account"
+Select "private |||$type|||"
 
 # В рассматриваемом примере в классе <code>Account</code> есть поле для доступа к объекту типа счета, поэтому мы можем обращаться к перемещённому полю через него.
 
@@ -118,13 +118,13 @@ Set step 4
 
 Select "interestRate" in "interestForAmount_days"
 
-Replace "type.getInterestRate()"
+Replace "type->interestRate"
 
 Set step 5
 
 Select in "Account":
 ```
-  private double interestRate;
+  private $interestRate;
 
 ```
 
@@ -144,23 +144,23 @@ Replace instantly:
 ```
 class Account {
   // ...
-  private AccountType type;
-  private double interestRate;
+  private $type; // AccountType
+  private $interestRate;
 
-  public double interestForAmount_days(double amount, int days) {
-    return getInterestRate() * amount * days / 365.0;
+  public function interestForAmount_days($amount, $days) {
+    return $this->getInterestRate() * $amount * $days / 365.0;
   }
-  public double interestForBigFamily(double familySize) {
-    return getInterestRate() / familySize;
+  public function interestForBigFamily($familySize) {
+    return $this->getInterestRate() / $familySize;
   }
 
   // other 10 methods, which use getInterestRate()
 
-  private double getInterestRate() {
-    return interestRate;
+  private function getInterestRate() {
+    return $this->interestRate;
   }
-  private void setInterestRate(double arg) {
-    interestRate = arg;
+  private function setInterestRate($arg) {
+    $this->interestRate = $arg;
   }
 }
 
@@ -172,22 +172,22 @@ Select name of "interestForAmount_days"
 
 # В этом случае вам не придётся делать замену во всех методах сразу...
 
-Select "interestRate = arg" in "setInterestRate"
-+Select "return interestRate" in "getInterestRate"
+Select "$this->interestRate = $arg" in "setInterestRate"
++Select "return $this->interestRate" in "getInterestRate"
 
 # ...а всего лишь в методах доступа (геттере и сеттере).
 
-Select "return interestRate" in "getInterestRate"
+Select "return $this->interestRate" in "getInterestRate"
 
-Replace "return type.getInterestRate()"
+Replace "return $this->type->getInterestRate()"
 
-Select "interestRate = arg" in "setInterestRate"
+Select "$this->interestRate = $arg" in "setInterestRate"
 
-Replace "type.setInterestRate(arg)"
+Replace "$this->type->setInterestRate($arg)"
 
 Select in "Account":
 ```
-  private double interestRate;
+  private $interestRate;
 
 ```
 

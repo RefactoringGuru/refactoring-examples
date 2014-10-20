@@ -112,10 +112,10 @@ Print:
 Performance row = new Performance()
 ```
 
-# Теперь нужно заменить код, использующий массив.
-
 Select "row" in "public Tournament"
 +Select "row" in "DisplayScore"
+
+# Теперь нужно заменить код, использующий массив.
 
 Replace "row.data"
 
