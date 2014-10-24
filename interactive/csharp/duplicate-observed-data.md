@@ -699,7 +699,7 @@ Select name of "CalculateLength"
 + Select name of "CalculateEnd"
 
 #|ru| Для завершения рефакторинга нам осталось только перенести методы <code>CalculateLength()</code> и <code>CalculateEnd()</code> в предметный класс.
-#|uk| Для завершення рефакторінга нам залишилося тільки перенести методи <code>CalculateLength()</code> і <code>CalculateEnd()</code> в предметний клас.
+#|uk| Для завершення рефакторинга нам залишилося тільки перенести методи <code>CalculateLength()</code> і <code>CalculateEnd()</code> в предметний клас.
 
 Select whole "CalculateLength"
 
