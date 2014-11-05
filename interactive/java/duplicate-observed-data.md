@@ -3,18 +3,23 @@ duplicate-observed-data:java
 ###
 
 1.ru. Создайте класс предметной области.
+1.en. Create a domain class.
 1.uk. Створіть клас предметної області.
 
 2.ru. Примените паттерн Наблюдатель. Сделайте класс пользовательского интерфейса наблюдателем за классом предметной области.
+2.en. Use the Observer pattern. Make the user interface class an observer of the domain class.
 2.uk. Застосуйте патерн Спостерігач. Зробіть клас користувальницького інтерфейсу спостерігачем за класом предметної області.
 
 3.ru. Скройте прямой доступ к полям пользовательского интерфейса.
+3.en. Hide direct access to the fields of the user interface.
 3.uk. Приховайте прямий доступ до полів користувальницького інтерфейсу.
 
 4.ru. Используйте сеттеры для установки значений полей в ответ на активность пользователя в интерфейсе.
+4.en. Use setters to set the values of the fields in response to the user's activity in the interface.
 4.uk. Використовуйте сеттери для установки значень полів у відповідь на активність користувача в інтерфейсі.
 
 5.ru. Переместите необходимые поля из класса GUI в класс предметной области. При этом, изменяйте методы доступа в классе интерфейса так, чтобы они обращались к полям класса предметной области.
+5.en. Move the necessary fields from the GUI class to the domain class. Change the access methods in the interface class so that they refer to the fields of the domain class.
 5.uk. Перемістіть необхідні поля з класу GUI в клас предметної області. При цьому, змінюйте методи доступу в класі інтерфейсу так, щоб вони зверталися до полів класу предметної області.
 
 
@@ -244,6 +249,7 @@ Set step 1
 Select name of "class IntervalWindow"
 
 #|ru| Давайте рассмотрим <i>Дублирование видимых данных</i> на примере класса для создания окна редактирования интервала чисел.
+#|en| Let's look at <i>Duplicate Observed Data</i> by looking at a class that creates a window for editing numeric intervals.
 #|uk| Давайте розглянемо <i>Дублювання видимих ​​даних<i> на прикладі класу для створення вікна редагування інтервалу чисел.
 
 Select 1st "lengthField"
@@ -251,11 +257,13 @@ Select 1st "lengthField"
 + Select 1st "endField"
 
 #|ru|< Окно состоит из трёх полей ввода: стартовое значение (Start), конечное значение (End) и результирующая длина (length). <br/><img src="/images/refactoring/gui-window.png">
+#|en|< The window consists of three parts: Start value, End value, and Length. <br/><img src="/images/refactoring/gui-window.png">
 #|uk|< Вікно складається з трьох полів: стартове значення (Start), кінцеве значення (End) і результуюча довжина (length).<br/><img src="/images/refactoring/gui-window.png">
 
 Select name of "focusLost"
 
 #|ru|V+ Перерасчёты новых значений происходят при потере фокуса элементом. При изменении текстовых полей <code>Start</code> или <code>End</code> вычисляется <code>length</code>, при изменении поля <code>length</code> вычисляется <code>End</code>.
+#|en|V+ Recalculations of new values occur when the element loses focus. When a change occurs in <code>Start</code> or <code>End</code> text fields, <code>length</code> is calculated. When <code>length</code> changes, <code>End</code> is calculated.
 #|uk|V+ Перерахунки нових значень відбуваються при втраті фокуса елементом. При зміні полів <code>Start</code> або <code>End</code> обчислюється <code>length</code>; при зміні поля <code>length</code> обчислюється <code>End</code>.
 
 Select name of "StartField_FocusLost"
@@ -263,17 +271,20 @@ Select name of "StartField_FocusLost"
 + Select name of "LengthField_FocusLost"
 
 #|ru|V= При этом конкретные вычисления происходят в служебных методах, относящихся к каждому из полей.
+#|en|V= The specific calculations take place in utility methods for each of the fields.
 #|uk|V= При цьому конкретні обчислення відбуваються в службових методах, що відносяться до кожного з полів.
 
 Select name of "calculateLength"
 + Select name of "calculateEnd"
 
 #|ru| Эти методы вызывают вычисление новой длины (<code>calculateLength</code>) или нового конечного значения (<code>calculateEnd</code>) в зависимости от того, что поменялось в окне.
+#|en| These methods call calculation of the new length (<code>calculateLength</code>) or new end value (<code>calculateEnd</code>) depending on what has changed in the window.
 #|uk| Ці методи викликають обчислення нової довжини (<code>calculateLength</code>) або нового кінцевого значення (<code>calculateEnd</code>) залежно від того, що помінялося у вікні.
 
 Go to the end of file
 
 #|ru| Нашей задачей станет выделение всех перерасчётов длины и конечного значения в отдельный класс предметной области. Начнём с создания такого класса.
+#|en| Our task is to separate all recalculations of length and end value into a separate domain class. Start by creating such a class.
 #|uk| Нашим завданням стане відділення всіх перерахунків довжини і кінцевого значення в окремий клас предметної області. Почнемо із створення такого класу.
 
 Print:
@@ -285,6 +296,7 @@ class Interval extends Observable {
 ```
 
 #|ru| После того как был создан класс предметной области, стоит поместить ссылку на него из класса окна.
+#|en| After a domain class is created, place a reference to it from the window class.
 #|uk| Після того, як був створений клас предметної області, варто помістити посилання на нього з класу вікна.
 
 Go to:
@@ -306,6 +318,7 @@ Set step 2
 Select name of "public IntervalWindow"
 
 #|ru| Затем надо создать код инициализации этого поля, а также сделать класс окна наблюдателем предметного класса. Весь этот код стоит поместить в конструктор <code>IntervalWindow</code>.
+#|en| Then create code for initializing this field and make the window class an observer of the domain class. Place all this code in the <code>IntervalWindow</code> constructor.
 #|uk| Потім треба створити код ініціалізації цього поля, а також зробити клас вікна спостерігачем предметного класу. Весь цей код варто помістити в конструктор <code>IntervalWindow</code>.
 
 Go to the end of "public IntervalWindow"
@@ -322,6 +335,7 @@ Print:
 Select "|||update|||(subject, null);"
 
 #|ru|^ Здесь вызов функции <code>update</code> гарантирует, что объект окна (GUI) заполнится данными из объекта предметной области. Но чтобы это заработало, нам нужно кое-что ещё.
+#|en|^ Here, the call of the <code>update</code> function guarantees that the window object (GUI) will be filled with data from the domain object. But we need some other things in order for this to work.
 #|uk|^ Тут виклик функції <code>update</code> гарантує, що об'єкт вікна (GUI) заповниться даними з об'єкта предметної області. Але щоб це запрацювало, нам потрібно дещо ще.
 
 Go to:
@@ -330,6 +344,7 @@ class IntervalWindow extends Frame|||
 ```
 
 #|ru| Во-первых, нужно объявить класс <code>IntervalWindow</code> реализующим интерфейс наблюдателя (<code>Observer</code>).
+#|en| First, declare the <code>IntervalWindow</code> class as implementing the <code>Observer</code> interface.
 #|uk| По-перше, потрібно оголосити клас <code>IntervalWindow</code> реалізуючим інтерфейс спостерігача (<code>Observer</code>).
 
 Print:
@@ -338,6 +353,7 @@ Print:
 ```
 
 #|ru| Во-вторых, реализовать этот интерфейс, создав сам метод <code>update()</code>.
+#|en| Second, implement this interface by creating the <code>update()</code> method.
 #|uk| По-друге, реалізувати цей інтерфейс, створивши сам метод <code>update()</code>.
 
 Go to the end of "class IntervalWindow"
@@ -353,6 +369,9 @@ Print:
 #C|ru| Запустим компиляцию и тестирование. Да, никаких реальных изменений мы пока ещё не внесли, но ошибки можно совершить в простейших вещах, поэтому лучше всегда держать код проверенным.
 #S Всё хорошо, можно продолжать.
 
+#C|en| Compile and test. While we have not yet made any "real" changes, mistakes can be often made in the simplest things and it is best to keep all code checked at all times.
+#S All is well, so let's continue.
+
 #C|uk| Запустимо компіляцію і тестування. Так, жодних реальних змін ми поки ще не внесли, але помилки можна зробити в найпростіших речах, тому краще завжди тримати код перевіреним.
 #S Все добре, можна продовжувати.
 
@@ -363,6 +382,7 @@ Select 1st "lengthField"
 + Select 1st "endField"
 
 #|ru| Теперь пора взяться за поля. Проведём <a href="/self-encapsulate-field">самоинкапсуляцию</a> каждого из полей окна интервала. Создадим для каждого из полей геттер и сеттер, возвращающий и принимающий строковое значение. Начнём с поля конца интервала:
+#|en| Now let's take care of the fields. Perform <a href="/self-encapsulate-field">Self-Encapsulate Field</a> on each of the fields of the interval window. For each field, create a getter and setter that return and accept a string value. Start with the field of the end of the interval:
 #|uk| Саме час взятися за поля. Проведемо <a href="/self-encapsulate-field">самоінкапсуляцію</a> кожного з полів вікна інтервалу. Створимо для кожного з полів геттер і сетер, який повертає і приймає строкове значення. Почнемо з поля кінця інтервалу:
 
 Go to the end of "class IntervalWindow"
@@ -380,6 +400,7 @@ Print:
 ```
 
 #|ru| После чего можно заменить все обращения к <code>endField</code> вызовами соответствующих методов.
+#|en| Then you can replace all references to <code>endField</code> with calls to the relevant methods.
 #|uk| Після чого можна замінити всі звернення до <code>endField</code> викликами відповідних методів.
 
 Select "endField.getText" in "class SymFocus"
@@ -399,6 +420,7 @@ Set step 4
 Select name of "EndField_FocusLost"
 
 #|ru| В нашем случае, в отличие от обычной самоинкапсуляции, пользователь сам может менять значение поля <code>End</code> в окне, поэтому нам нужно позаботиться о том, чтобы такое изменение сохранилось.
+#|en| In our case, unlike ordinary self-encapsulation, the user can independently change the value of the <code>End</code> field in the window. So we make sure that this change is saved if it is made.
 #|uk| У нашому випадку, на відміну від звичайної самоінкапсуляціі, сам користувач може поміняти значення поля <code>End</code> в вікні, тому нам потрібно подбати про те, щоб така зміна збереглася.
 
 Go to start of "EndField_FocusLost"
@@ -412,9 +434,11 @@ Print:
 Select "setEnd(|||endField.getText()|||);"
 
 #|ru| Обратите внимание на то, что в этом вызове мы обращаемся к полю непосредственно. Мы делаем так потому, что после продолжения рефакторинга <code>getEnd()</code> будет получать значение от объекта предметной области, а не из поля. А в этом конкретном случае нам нужно именно значение поля в окне (GUI).
+#|en| Note that in this call we are accessing the field directly. This is because after continuing the refactoring, <code>getEnd()</code> will be getting its value from the domain object, not the field. And in this particular case, we need the value of the field in the window (GUI).
 #|uk| Зверніть увагу на те, що в цьому виклику ми звертаємося до поля безпосередньо. Ми робимо так тому, що після продовження рефакторинга <code>getEnd()</code> отримуватиме значення від об'єкта предметної області, а не з поля. А в цьому конкретному випадку нам потрібно саме значення поля у вікні (GUI).
 
 #|ru| В обратном случае вызов метода <code>getEnd()</code> привёл бы к тому, что при каждом изменении пользователем значения поля, этот код возвращал бы старое значение обратно, поэтому здесь нужно использовать прямой доступ.
+#|en| Otherwise, calling the <code>getEnd()</code> method would lead to a situation in which the user could change the value of the field but this code would always return the old value, so here we need direct access.
 #|uk| У зворотньому випадку виклик методу <code>getEnd()</code> привів би до того, що при кожній зміні користувачем значення поля, цей код повертав би старе значення назад, тому тут потрібно використовувати прямий доступ.
 
 Set step 5
@@ -422,6 +446,7 @@ Set step 5
 Select name of "Interval"
 
 #|ru| Отлично! После того как поле <code>End</code> полностью инкапсулировано, мы можем добавить соответствующее поле в класс предметной области.
+#|en| Excellent! Once the <code>End</code> field is fully encapsulated, we can add the relevant field to the domain class.
 #|uk| Відмінно! Після того, як поле <code>End</code> повністю інкапсульоване, ми можемо додати відповідне поле в клас предметної області.
 
 Go to start of "class Interval"
@@ -434,12 +459,14 @@ Print:
 
 Select "private String end = |||"0"|||;"
 
-#|ru| Мы инициализируем это поля тем же значением, что и поле в GUI.
-#|uk| Ми ініціалізуємо ці поля тим же значенням, що й поле в GUI.
+#|ru| Мы инициализируем это поле тем же значением, что и поле в GUI.
+#|en| Initialize the field with the same value as the field in the GUI.
+#|uk| Ми ініціалізуємо це поле тим же значенням, що й поле в GUI.
 
 Go to the end of "class Interval"
 
 #|ru| После этого добавим методы доступа к этому полю.
+#|en| Then add methods for accessing the field.
 #|uk| Після цього додамо методи доступу до цього поля.
 
 Print:
@@ -466,11 +493,13 @@ Select:
 ```
 
 #|ru| Как видите, при изменении значения мы оповещаем наблюдающий объект окна о том, что пора обновить своё значение из объекта предметной области...
+#|en| As you see, when a value is changed, we notify the window observer that it is time to update its value from the domain object…
 #|uk| Як бачите, при зміні значення ми даємо знати  спостерігаючому об'єкту вікна про те, що пора оновити своє значення з об'єкта предметної області...
 
 + Select "void |||update|||"
 
 #|ru| ...что приводит нас к вызову метода <code>update()</code> в классе окна. В нём сейчас ничего нет, поэтому давайте добавим нужный код, чтобы всё заработало.
+#|en| …which leads us to calling the <code>update()</code> method in the window class. It does not have anything in it yet, so let's add the necessary code to make everything work.
 #|uk| ...що приводить нас до виклику методу <code>update()</code> в класі вікна. У ньому зараз нічого немає, тому давайте додамо потрібний код, щоб все запрацювало.
 
 Go to the start of "update"
@@ -486,10 +515,14 @@ Select:
 |||endField.setText|||(subject.getEnd());
 ```
 #|ru| Это ещё одно место, где необходим прямой доступ, а вызов метода установки привёл бы к бесконечной рекурсии.
+#|en| This is another place where direct access is needed, since calling a setter would lead to infinite recursion.
 #|uk| Це ще одне місце, де необхідний прямий доступ, а виклик методу установки привів би до нескінченної рекурсії.
 
 #C|ru| После завершения всех перестановок с полем можно запустить компиляцию и тестирование.
-#S Всё отлично, можно продолжать.
+#S Всё отлично, можем продолжать!
+
+#C|en| After finishing all the field rearrangements, compile and test.
+#S Everything is OK! We can keep going.
 
 #C|uk| Після завершення всіх перестановок з полем можна запустити компіляцію і тестування.
 #S Все добре, можна продовжувати.
@@ -498,6 +531,7 @@ Select 1st "lengthField"
 + Select 1st "startField"
 
 #|ru| Теперь проделаем такие же изменения с остальными полями — <code>Start</code> и <code>Length</code>.
+#|en| Now do the same thing with the remaining fields, <code>Start</code> and <code>Length</code>
 #|uk| Тепер проробимо такі ж зміни з рештою полів – <code>Start</code> і <code>Length</code>.
 
 Go to the end of "class IntervalWindow"
@@ -543,6 +577,7 @@ Go to:
 ```
 
 #|ru| Добавляем поле в класс интервала...
+#|en| Add a field to the interval class…
 #|uk| Додаємо поле в клас інтервалу ...
 
 Print:
@@ -582,6 +617,7 @@ Print:
 Go to the end of "class IntervalWindow"
 
 #|ru| Осталось расправиться с полем длины.
+#|en| Now we have the length field left to deal with.
 #|uk| Залишилося розправитися з полем довжини.
 
 Print:
@@ -625,6 +661,7 @@ Go to:
 ```
 
 #|ru| Добавляем поле в класс интервала...
+#|en| Add a field to the interval class…
 #|uk| Додаємо поле в клас інтервалу ...
 
 Print:
@@ -665,6 +702,7 @@ Select name of "calculateEnd"
 + Select name of "calculateLength"
 
 #|ru| Теперь было бы неплохо переместить методы <code>calculateEnd()</code> и <code>calculateLength()</code> в класс интервала.
+#|en| Now would also be a good time to move the <code>calculateEnd()</code> and <code>calculateLength()</code> methods to the interval class..
 #|uk| Тепер було б непогано перемістити методи <code>calculateEnd()</code> і <code>calculateLength()</code> в клас інтервалу.
 
 Select body of "setEnd"
@@ -672,6 +710,7 @@ Select body of "setEnd"
 + Select body of "setLength"
 
 #|ru| Но для этого нужно сперва сделать так, чтобы сеттеры полей класса <code>IntervalWindow</code> заполняли значения в классе <code>Interval</code>.
+#|en| But to do this, you must first configure the setters of the fields of the <code>IntervalWindow</code> class to fill values in the <code>Interval</code> class.
 #|uk| Але для цього потрібно спершу зробити так, щоб сеттери полів класу <code>IntervalWindow</code> заповнювали значення в класі <code>Interval</code>.
 
 Select body of "setEnd"
@@ -700,6 +739,7 @@ Replace:
 ```
 
 #|ru| Мы убрали установку значения в поле пользовательского интерфейса потому, что оно все-равно будет выставлено при вызове сеттеров класса интервала (вспомните о реализации Наблюдателя и методе <code>update</code>).
+#|en| We removed the value assignment in the GUI interface field because the value will still be set when the setter of the interval class is called (remember about implementation of Observer in the <code>update</code> method).
 #|uk| Ми прибрали установку значення в поле користувальницького інтерфейсу тому , що воно все- одно буде виставлено при виклику сеттерів класу інтервалу (згадайте про реалізацію Спостерігача і методі <code>update</code>) .
 
 Select body of "getEnd"
@@ -707,6 +747,7 @@ Select body of "getEnd"
 + Select body of "getLength"
 
 #|ru| То же можно проделать и с геттерами.
+#|en| Do the same with getters.
 #|uk| Те ж можна виконати і з гетерами.
 
 Select body of "getEnd"
@@ -738,6 +779,7 @@ Select name of "calculateEnd"
 + Select name of "calculateLength"
 
 #|ru| И вот теперь уже можно приступить к переносу <code>calculateEnd()</code> и <code>calculateLength()</code> в класс интервала.
+#|en| We can start moving <code>calculateEnd()</code> and <code>calculateLength()</code> to the interval class.
 #|uk| І ось тепер вже можна приступити до переносу <code>calculateEnd()</code> і <code>calculateLength()</code> в клас інтервалу.
 
 Select:
@@ -748,6 +790,7 @@ Select:
 + Select whole "calculateLength"
 
 #|ru| Начнем с <code>calculateLength</code>.
+#|en| Let's start by moving <code>calculateLength</code>.
 #|uk| Почнемо з <code>calculateLength</code>.
 
 Remove selected
@@ -804,10 +847,14 @@ Replace "subject.calculateEnd()"
 Select name of "Interval"
 
 #|ru| В итоге мы получим класс предметной области, содержащий все поведения и вычисления над исходными данными, причём отдельно от кода пользовательского интерфейса.
+#|en| Ultimately, we get the domain class, which contains all behaviors and calculations on the source data separate from the GUI code.
 #|uk| В результаті ми отримаємо клас предметної області, що містить всі поведінки і обчислення над вихідними даними, причому окремо від коду користувальницького інтерфейсу.
 
 #C|ru| Запускаем финальную компиляцию и тестирование.
 #S Отлично, все работает!
+
+#C|en| Let's run the final compile and test.
+#S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію і тестування.
 #S Супер, все працює.
@@ -815,4 +862,5 @@ Select name of "Interval"
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
+#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

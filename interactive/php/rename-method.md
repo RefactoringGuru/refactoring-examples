@@ -3,15 +3,19 @@ rename-method:php
 ###
 
 1.ru. Проверьте, не определён ли метод в суперклассе или подклассе. Если так, нужно будет повторить все шаги и в этих классах.
+1.en. See whether the method is defined in a superclass or subclass. If so, you must repeat all steps in these classes too.
 1.uk. Перевірте, чи не визначений метод в суперкласі або підкласі. Якщо так, треба буде повторити усі кроки і в цих класах.
 
 2.ru. Следующий шаг важен, чтобы сохранить работоспособность программы во время рефакторинга. Итак, создайте новый метод с новыми именем. Скопируйте туда код старого метода. Удалите весь код в старом методе и вставьте вместо него вызов нового метода.
+2.en. The next method is important for maintaining the functionality of the program during the refactoring process. Create a new method with a new name. Copy the code of the old method to it. Delete all the code in the old method and, instead of it, insert a call for the new method.
 2.uk. Наступний крок важливий, щоб зберегти працездатність програми під час рефакторингу. Отже, створіть новий метод з новими ім'ям. Скопіюйте туди код старого методу. Видаліть увесь код в старому методі, а замість нього додайте виклик нового методу.
 
 3.ru. Найдите все обращения к старому методу и замените их обращениями к новому.
+3.en. Find all references to the old method and replace them with references to the new one.
 3.uk. Знайдіть усі звернення до старого методу і замініть їх зверненнями до нового.
 
 4.ru. Удалите старый метод. Этот шаг неосуществим, если старый метод является частью публичного интерфейса. В этом случае, старый метод нужно пометить как устаревший (<code>deprecated</code>).
+4.en. Delete the old method. If the old method is part of a public interface, do not perform this step. Instead, mark the old method as deprecated.
 4.uk. Видаліть старий метод. Цей крок неможливо виконати, якщо старий метод є частиною публічного інтерфейсу. В цьому випадку, старий метод треба помітити як застарілий (<code>deprecated</code>).
 
 
@@ -51,16 +55,19 @@ Set step 1
 Select name of "getTelephoneNumber"
 
 #|ru| Имеется метод для получения номера телефона определенного лица. Метод нигде не переопределяется, так что нам не нужно отслеживать изменение в подклассах.
+#|en| A method exists for getting the phone number of a certain person. The method is not redefined anywhere so we do not need to track changes in subclasses.
 #|uk| Маємо метод для отримання номера телефону певної особи. Метод ніде не перевизначається, так що нам не потрібно відстежувати зміну в підкласах.
 
 Set step 2
 
 #|ru| Мы решили переименовать метод в <code>getOfficeTelephoneNumber</code>, чтобы он лучше отражал то, что делает.
+#|en| We decided to rename the method to <code>getOfficeTelephoneNumber</code>, a more descriptive name.
 #|uk| Ми вирішили перейменувати метод в <code>getOfficeTelephoneNumber</code>, щоб він краще відображав те, що робить.
 
 Go to the end of "Person"
 
 #|ru| Начинаем с создания нового метода и копирования тела в новый метод.
+#|en| Start by creating a new method and copying the body to the new method.
 #|uk| Починаємо зі створення нового методу і копіювання тіла в новий метод.
 
 Print:
@@ -72,6 +79,7 @@ Print:
 ```
 
 #|ru| Старый метод изменяется так, чтобы вызывать новый.
+#|en| The old method changes and now calls the new method.
 #|uk| Старий метод змінюється так, щоб викликати новий.
 
 Select body of "getTelephoneNumber"
@@ -81,6 +89,7 @@ Replace "    $this->getOfficeTelephoneNumber();"
 Set step 3
 
 #|ru| Теперь находим места вызова прежнего метода и изменяем их так, чтобы в них вызывался новый метод.
+#|en| We find the places where the old method is called, modifying them to call the new method instead.
 #|uk| Тепер знаходимо місця виклику колишнього методу і змінюємо їх так, щоб в них викликався новий метод.
 
 Select "$employee->|||getTelephoneNumber|||()"
@@ -92,6 +101,7 @@ Set step 4
 Select whole "getTelephoneNumber"
 
 #|ru| После проведения всех изменений старый метод можно удалить.
+#|en| After all changes have been made, go ahead and delete the old method.
 #|uk| Після проведення всіх змін старий метод можна видалити.
 
 Remove selected
@@ -99,10 +109,14 @@ Remove selected
 #C|ru| Запускаем финальное тестирование.
 #S Отлично, все работает!
 
+#C|en| Let's start the final testing.
+#S Wonderful, it's all working!
+
 #C|uk| Запускаємо фінальне тестування.
 #S Супер, все працює.
 
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
+#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

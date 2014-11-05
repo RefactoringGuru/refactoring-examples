@@ -3,15 +3,19 @@ replace-exception-with-test:java
 ###
 
 1.ru. Создайте условный оператор для граничного случая и поместите его перед <code>try</code>/<code>catch</code> блоком.
+1.en. Create a conditional for an edge case and move it before the try/catch block.
 1.uk. Створіть умовний оператор для граничного випадку і розташуйте його перед <code>try</code>/<code>catch</code> блоком.
 
 2.ru. Переместите код из <code>catch</code>-секции внутрь этого условного оператора.
+2.en. Move code from the <code>catch</code> section inside this conditional.
 2.uk. Перемістіть код з <code>catch</code>-секції всередину цього умовного оператора.
 
 3.ru. В <code>catch</code>-секции поставьте код выбрасывания обычного безымянного исключения и запустите все тесты.
+3.en. In the <code>catch</code> section, place the code for throwing a usual unnamed exception and run all the tests.
 3.uk. У <code>catch</code>-секції розташцуйте код викидання звичайного безіменного виключення і запустіть усі тести.
 
 4.ru. Если никаких исключений не было выброшено во время тестов, избавьтесь от оператора <code>try</code>/<code>catch</code>.
+4.en. If no exceptions were thrown during the tests, get rid of the <code>try</code>/<code>catch</code> operator.
 4.uk. Якщо ніяких виключень не було викинуто під час тестів, позбавтеся від оператора <code>try</code>/<code>catch</code>.
 
 
