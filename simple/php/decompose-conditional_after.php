@@ -1,4 +1,6 @@
-if (notSummer(date))
+if (notSummer($date)) {
   $charge = winterCharge($quantity);
-else
+}
+else {
   $charge = summerCharge($quantity);
+}
