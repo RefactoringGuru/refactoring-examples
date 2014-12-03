@@ -70,7 +70,7 @@ class Person {
   public void setBloodGroup(BloodGroup bloodGroup) {
     bloodGroup = bloodGroup;
   }
-  public int getBloodGroup() {
+  public BloodGroup getBloodGroup() {
     return bloodGroup;
   }
 }
@@ -317,7 +317,7 @@ Select:
   public void setBloodGroup(|||int code|||) {
     bloodGroup = new BloodGroup(code);
   }
-  public int getBloodGroup() {
+  public |||int||| getBloodGroup() {
     return bloodGroup|||.getCode()|||;
   }
 ```
@@ -356,7 +356,18 @@ Wait 500ms
 
 Select:
 ```
-  public int getBloodGroup() {
+  public |||int||| getBloodGroup() {
+    return bloodGroup.getCode();
+  }
+```
+Replace "BloodGroup"
+
+
+Wait 500ms
+
+Select:
+```
+  public BloodGroup getBloodGroup() {
     return bloodGroup|||.getCode()|||;
   }
 ```

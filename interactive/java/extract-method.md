@@ -81,7 +81,7 @@ Set step 1
 
 #|ru| Давайте рассмотрим <i>Извлечение метода</i> на примере этой функции.
 #|en| Let's take a look at <i>Extract Method</i> using this function as an example.
-#|uk| Давайте розглянемо <i>Витяг методу<i> на прикладі цієї функції.
+#|uk| Давайте розглянемо <i>Витяг методу</i> на прикладі цієї функції.
 
 Select in "printOwing":
 ```
