@@ -10,9 +10,9 @@ move-method:java
 2.en. Check whether the method has been declared in superclasses and subclasses. If not, declare a new method in the recipient class and move the code of the old method to it.
 2.uk. Перевірте, чи не оголошений метод в суперкласах та підкласах. Якщо ні, оголосіть новий метод в класі-приймачі і перенесіть в нього код старого методу.
 
-3.ru. Замените тело старого метода делгацией к новому методу.
+3.ru. Замените тело старого метода делегацией к новому методу.
 3.en. Replace the body of the old method with delegation to the new method.
-3.uk. Замініть тіло старого методу делгаціей до нового методу.
+3.uk. Замініть тіло старого методу делегацією до нового методу.
 
 4.ru. Оцените, есть ли возможность полностью избавиться от старого метода.
 4.en. Check whether you can get rid of the old method entirely.
