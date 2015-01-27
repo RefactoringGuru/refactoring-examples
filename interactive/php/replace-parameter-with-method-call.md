@@ -1,4 +1,4 @@
-replace-parameter-with-method:java
+replace-parameter-with-method-call:php
 
 ###
 
@@ -25,24 +25,23 @@ replace-parameter-with-method:java
 ```
 class Order {
   // ...
-  public double getPrice() {
-    int basePrice = quantity * itemPrice;
-    int discountLevel;
-    if (quantity > 100) {
-      discountLevel = 2;
+  public function getPrice() {
+    $basePrice = $this->quantity * $this->itemPrice;
+    if ($this->quantity > 100) {
+      $discountLevel = 2;
     }
     else {
-      discountLevel = 1;
+      $discountLevel = 1;
     }
-    double finalPrice = discountedPrice(basePrice, discountLevel);
-    return finalPrice;
+    $finalPrice = $this->discountedPrice($basePrice, $discountLevel);
+    return $finalPrice;
   }
-  private double discountedPrice(int basePrice, int discountLevel) {
-    if (discountLevel == 2) {
-      return basePrice * 0.1;
+  private function discountedPrice($basePrice, $discountLevel) {
+    if ($discountLevel == 2) {
+      return $basePrice * 0.1;
     }
     else {
-      return basePrice * 0.05;
+      return $basePrice * 0.05;
     }
   }
 }
@@ -53,27 +52,27 @@ class Order {
 ```
 class Order {
   // ...
-  public double getPrice() {
-    return discountedPrice();
+  public function getPrice() {
+    return $this->discountedPrice();
   }
-  private double discountedPrice() {
-    if (getDiscountLevel() == 2) {
-      return getBasePrice() * 0.1;
+  private function discountedPrice() {
+    if ($this->getDiscountLevel() == 2) {
+      return $this->getBasePrice() * 0.1;
     }
     else {
-      return getBasePrice() * 0.05;
+      return $this->getBasePrice() * 0.05;
     }
   }
-  private int getDiscountLevel() {
-    if (quantity > 100) {
+  private function getDiscountLevel() {
+    if ($this->quantity > 100) {
       return 2;
     }
     else {
       return 1;
     }
   }
-  private double getBasePrice() {
-    return quantity * itemPrice;
+  private function getBasePrice() {
+    return $this->quantity * $this->itemPrice;
   }
 }
 ```
@@ -96,12 +95,11 @@ Set step 1
 
 Select:
 ```
-    int discountLevel;
-    if (quantity > 100) {
-      discountLevel = 2;
+    if ($this->quantity > 100) {
+      $discountLevel = 2;
     }
     else {
-      discountLevel = 1;
+      $discountLevel = 1;
     }
 
 ```
@@ -117,8 +115,8 @@ Go to after "discountedPrice"
 Print:
 ```
 
-  private int getDiscountLevel() {
-    if (quantity > 100) {
+  private function getDiscountLevel() {
+    if ($this->quantity > 100) {
       return 2;
     }
     else {
@@ -129,13 +127,13 @@ Print:
 
 Set step 3
 
-Select "discountLevel" in body of "discountedPrice"
+Select "$discountLevel" in body of "discountedPrice"
 
 #|ru| Теперь мы можем использовать этот метод вместо параметра в методе расчёта скидки.
 #|en| Now we can use this method instead of this parameter in the discount calculation method.
 #|uk| Тепер ми можемо використовувати цей метод замість параметра в методі розрахунку знижки.
 
-Print "getDiscountLevel()"
+Print "$this->getDiscountLevel()"
 
 Set step 4
 
@@ -143,24 +141,23 @@ Set step 4
 #|en| One of the parameters is no longer needed so we can use <a href="/remove-parameter">Remove Parameter</a>
 #|uk| Необхідність в одному з параметрів відпала, можемо застосувати <a href="/remove-parameter">видалення параметра</a>.
 
-Select ", int discountLevel"
+Select ", $discountLevel" in parameters of "discountedPrice"
 
 Remove selected
 
-Select ", discountLevel"
-
 Wait 1000ms
+
+Select ", $discountLevel"
 
 Remove selected
 
 Select:
 ```
-    int discountLevel;
-    if (quantity > 100) {
-      discountLevel = 2;
+    if ($this->quantity > 100) {
+      $discountLevel = 2;
     }
     else {
-      discountLevel = 1;
+      $discountLevel = 1;
     }
 
 ```
@@ -171,20 +168,20 @@ Select:
 
 Remove selected
 
-#C|ru| Запускаем компиляцию и тестирование.
+#C|ru| Запускаем тестирование.
 #S Отлично, все работает, продолжаем!
 
-#C|en| Let's run the compiler and auto-tests.
+#C|en| Let's start testing.
 #S Everything is good! Let's continue.
 
-#C|uk| Запускаємо компіляцію і тестування.
+#C|uk| Запускаємо тестування.
 #S Супер, все працює, продовжуємо.
 
 #|ru| Итак, один параметр ушёл. Давайте попробуем избавиться и от второго.
 #|en| One parameter, one more to go…
 #|uk| Отже, один параметр пішов. Давайте спробуємо позбутися і від другого.
 
-Select "quantity * itemPrice"
+Select "$this->quantity * $this->itemPrice"
 
 #|ru| Попробуем выделить расчёт базовой цены в собственный метод.
 #|en| Let's extract the base price calculation to its own method.
@@ -195,36 +192,36 @@ Go to after "getDiscountLevel"
 Print:
 ```
 
-  private double getBasePrice() {
-    return quantity * itemPrice;
+  private function getBasePrice() {
+    return $this->quantity * $this->itemPrice;
   }
 ```
 
-Select "basePrice" in body of "discountedPrice"
+Select "$basePrice" in body of "discountedPrice"
 
 #|ru| Теперь используем этот метод в <code>discountedPrice</code>.
 #|en| Now use this method in <code>discountedPrice</code>.
 #|uk| Тепер використовуємо цей метод в <code>discountedPrice</code>.
 
-Print "getBasePrice()"
+Print "$this->getBasePrice()"
 
 #|ru| Как и прежде, теперь мы можем избавиться и от этого параметра.
 #|en| As before, we can now get rid of this parameter as well.
 #|uk| Як і колись, тепер ми можемо позбутися і від цього параметра.
 
-Select "int basePrice" in parameters of "discountedPrice"
+Select "$basePrice" in parameters of "discountedPrice"
 
 Remove selected
 
-Wait 1000ms
+Select "discountedPrice(|||$basePrice|||)"
 
-Select "discountedPrice(|||basePrice|||)"
+Wait 1000ms
 
 Remove selected
 
 Select:
 ```
-    int basePrice = quantity * itemPrice;
+    $basePrice = $this->quantity * $this->itemPrice;
 
 ```
 
@@ -240,16 +237,16 @@ Select body of "getPrice"
 #|en| …or if we make it a bit more pretty:
 #|uk| ...або трохи красивіше:
 
-Print "    return discountedPrice();"
+Print "    return $this->discountedPrice();"
 
 
-#C|ru| Запускаем финальную компиляцию.
+#C|ru| Запускаем финальное тестирование.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's start the final testing.
 #S Wonderful, it's all working!
 
-#C|uk| Запускаємо фінальну компіляцію.
+#C|uk| Запускаємо фінальне тестування.
 #S Супер, все працює.
 
 Set final step
