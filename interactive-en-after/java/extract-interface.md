@@ -8,10 +8,10 @@ Then declare Employee as implementing this interface:
 
 When this has been done, you can change the declaration of the <code>charge</code> method to show that only part of the Employee behavior is used:
 
-Let's run the final compile.
+Let's perform the final compilation and testing.
 
 In this case, a hidden benefit appears, in the form of in-code documentation. This benefit is not worth the work if talking about just one method, but if several classes start to use the <code>Billable</code> interface, this can be rather valuable.
 
 A major payoff comes when we want to invoice for computers as well. All we need to do is implement the <code>Billable</code> interface in them, after which we can include computers in the timesheet.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

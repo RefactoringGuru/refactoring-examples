@@ -30,6 +30,6 @@ Start by removing its field and getter in the <code>Person</code> class.
 
 Voila! Nothing is holding us back now from removing the class itself. Thank you for the good times, <code>TelephoneNumber</code>, they were good indeed!
 
-Let's run the final compile.
+Let's perform the final compilation and testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

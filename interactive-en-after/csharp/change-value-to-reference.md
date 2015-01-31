@@ -38,6 +38,6 @@ In these circumstances, we cannot dynamically set the customer for an order base
 
 The new method will contain the code that is currently used in the order constructor. So to create it, we will use <a href="/extract-method">Extract Method</a>.
 
-Let's run the final compile.
+Let's perform the final compilation and testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

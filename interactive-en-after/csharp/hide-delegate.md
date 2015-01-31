@@ -10,6 +10,6 @@ Now modify the code so that it uses the new method.
 
 After all the necessary methods have been delegated, you can remove the property in the <code>Person</code> class that provided access to the <code>Department</code> instance.
 
-Let's run the final compile.
+Let's perform the final compilation and testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

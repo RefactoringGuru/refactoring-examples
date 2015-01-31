@@ -16,6 +16,6 @@ Now change the code that uses the external code so that it uses the new extensio
 
 After changes are complete, remove the external method from the client class.
 
-Let's start the final testing.
+Let's perform the final testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

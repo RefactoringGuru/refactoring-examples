@@ -18,6 +18,6 @@ After all replacements are done, the <code>GetManager()</code> delegate method c
 
 And finally: removing all delegate methods is not necessary. It may be more convenient to maintain some delegation, so see what is best for your particular situation.
 
-Let's run the final compile.
+Let's perform the final compilation and testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

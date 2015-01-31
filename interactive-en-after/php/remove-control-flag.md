@@ -12,6 +12,6 @@ Under the logic of this method, the code should not do anything more within the 
 
 Then we can remove all mentions of the control flag.
 
-Let's start the final testing.
+Let's perform the final testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

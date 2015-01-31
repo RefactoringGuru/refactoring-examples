@@ -12,6 +12,6 @@ First find all their calls and replace them with calls of the method with parame
 
 After the changes are complete, you can remove the methods themselves.
 
-Let's start the final testing.
+Let's perform the final testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

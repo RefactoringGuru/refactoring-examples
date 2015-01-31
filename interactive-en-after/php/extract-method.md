@@ -30,6 +30,6 @@ Here, the problem is caused by the <code>outstanding</code> variable, which is t
 
 Pass it back to the original method.
 
-Let's start the final testing.
+Let's perform the final testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

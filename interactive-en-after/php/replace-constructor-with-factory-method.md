@@ -22,6 +22,6 @@ Once the changes are complete, you can hide the constructor from outside eyes by
 
 In addition, you can create a conditional in the factory method to return an object of the necessary class depending on the parameter passed.
 
-Let's start the final testing.
+Let's perform the final testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

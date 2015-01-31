@@ -68,6 +68,6 @@ Let's start by moving <code>calculateLength</code>.
 
 Ultimately, we get the domain class, which contains all behaviors and calculations on the source data separate from the GUI code.
 
-Let's run the final compile and test.
+Let's perform the final compilation and testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

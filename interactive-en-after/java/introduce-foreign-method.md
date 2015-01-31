@@ -14,6 +14,6 @@ The method can now be used in the remaining code.
 
 For the finishing touch, add a comment to the "external method" about what it is. This will avoid potential confusion regarding its use. And if a new class is created in the program later for storing additional date-related functions, this method can be easily found and moved to a better place.
 
-Let's run the final compile.
+Let's perform the final compilation and testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

@@ -20,6 +20,6 @@ Nonetheless, the basic scheme is always the same: first you "un-associate" the c
 
 If you want to modify a reference through the customer class, the class should call the control method in the associated order object:
 
-Let's run the final compile and test.
+Let's perform the final compilation and testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

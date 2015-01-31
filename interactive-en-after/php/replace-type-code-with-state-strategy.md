@@ -34,6 +34,6 @@ Then start moving code to subclasses. Create <code>payAmount</code> methods in e
 
 Now that the methods have been created, you can make abstract the <code>payAmount</code> method in <code>EmployeeType</code>.
 
-Let's start the final testing.
+Let's perform the final testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

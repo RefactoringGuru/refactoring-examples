@@ -8,6 +8,6 @@ Let's run the compiler and auto-tests.
 
 Now try to move <code>validateEmailAddress()</code>. These calls are in different places so it is worth thinking about whether to move them at all. In our case, validation can be performed anywhere but preferably closer to the beginning of the method. So let's move it there.
 
-Let's run the final compile.
+Let's perform the final compilation and testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

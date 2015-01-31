@@ -8,6 +8,6 @@ Define the constructor and make it protected. This lets other programmers know t
 
 After the new constructor becomes available, it can be called from the <code>Manager</code> constructor.
 
-Let's start the final testing.
+Let's perform the final testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

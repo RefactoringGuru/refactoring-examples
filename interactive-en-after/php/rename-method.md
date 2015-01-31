@@ -10,6 +10,6 @@ We find the places where the old method is called, modifying them to call the ne
 
 After all changes have been made, go ahead and delete the old method.
 
-Let's start the final testing.
+Let's perform the final testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

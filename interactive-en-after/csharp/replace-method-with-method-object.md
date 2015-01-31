@@ -26,4 +26,4 @@ Let's compile and test to check for errors in your code.
 
 The benefit of this refactoring technique is that now you can easily apply <a href="/extract-method">Extract Method</a> to the <code>Compute()</code> method without worrying about passing arguments.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

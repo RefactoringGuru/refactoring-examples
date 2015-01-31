@@ -50,6 +50,6 @@ Such code is frequently encountered.
 
 It can also be extracted to a separate property of the <code>Person</code> class.
 
-Let's run the final compile.
+Let's perform the final compilation and testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

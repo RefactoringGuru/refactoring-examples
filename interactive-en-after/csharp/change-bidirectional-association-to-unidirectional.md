@@ -28,6 +28,6 @@ Then remove the property setter in the order class where assignment of the new c
 
 Now just remove the field itself, fully eliminating the bidirectional association between the classes.
 
-Let's run the final compile and test.
+Let's perform the final compilation and testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

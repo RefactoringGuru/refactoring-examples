@@ -14,6 +14,6 @@ Now we turn to the body of the conditional. First we extract everything inside <
 
 Then we turn our attention to <code>else</code>.
 
-Let's start the final testing.
+Let's perform the final testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

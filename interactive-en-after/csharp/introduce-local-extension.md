@@ -24,6 +24,6 @@ Now change the code that uses the foreign method so that it uses the new extensi
 
 After changes are complete, remove the external method from the client class.
 
-Let's run the final compile.
+Let's perform the final compilation and testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

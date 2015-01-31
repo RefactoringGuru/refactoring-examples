@@ -36,6 +36,6 @@ Then you can (again) remove the original field.
 
 Self-encapsulating allows refactoring via baby steps. And when a class is undergoing major changes, that is a good thing.
 
-Let's run the final compile.
+Let's perform the final compilation and testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

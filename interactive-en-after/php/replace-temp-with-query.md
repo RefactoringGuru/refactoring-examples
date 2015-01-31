@@ -32,6 +32,6 @@ Note how difficult it would have been to extract <code>discountFactor</code> if 
 
 Ultimately the <code>getPrice()</code> method comes to look as follows.
 
-Let's start the final testing.
+Let's perform the final testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

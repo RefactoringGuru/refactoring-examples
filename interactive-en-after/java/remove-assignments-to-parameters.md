@@ -12,6 +12,6 @@ In the method body, replace all references to the parameter with the variable th
 
 And finally, to explicitly say that no assignments can be made to the parameters, you can add the keyword <code>final</code> to each of them.
 
-Let's run the final compile.
+Let's perform the final compilation and testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

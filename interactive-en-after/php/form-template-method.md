@@ -32,6 +32,6 @@ As you can see, the two classes have many identical steps. We should move the id
 
 Now we can freely extract the identical <code>view</code> methods to the superclass.
 
-Let's start the final testing.
+Let's perform the final testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

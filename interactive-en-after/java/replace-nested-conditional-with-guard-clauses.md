@@ -14,6 +14,6 @@ Inline conditionals are often written by programmers taught that a method should
 
 If a method is no longer of interest at runtime, it is best to exit it as soon as possible. Forcing the reader to go over an empty <code>else</code> block only throws up roadblocks to understanding your intentions.
 
-Let's run the final compile.
+Let's perform the final compilation and testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

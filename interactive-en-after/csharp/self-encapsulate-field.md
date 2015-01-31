@@ -16,6 +16,6 @@ So we remove getter and setter bodies in the properties…
 
 …and then remove <code>low</code> and <code>high</code> fields that are no longer necessary.
 
-Hurray! Let's run the final compile.
+Hurray! Let's perform the final compilation and testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

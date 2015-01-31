@@ -14,6 +14,6 @@ We now remove the inheritance declaration from the <code>Car</code> class.
 
 All that's left to do is create a new engine object for filling the field of the associated object.
 
-Let's start the final testing.
+Let's perform the final testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

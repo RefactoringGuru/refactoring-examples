@@ -26,6 +26,6 @@ Then convert the field that stores the team win/loss history.
 
 After finishing replacement for all the elements of the array, you can remove the array declaration from the class.
 
-Let's start the final testing.
+Let's perform the final testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

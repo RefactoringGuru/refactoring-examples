@@ -26,10 +26,10 @@ Apply <a href="/rename-method">Rename Method</a> to the getter to make clear tha
 
 It also is a good idea to change the names of the parameters in the constructor and setter.
 
-Let's start the final testing.
+Let's perform the final testing.
 
 Before we finish, note that here and in many other cases, one more step is necessary. You may need to add a credit score, address, etc. to the client. You cannot do this yet, since <code>Customer</code> is used as a value. That is, each order has its own instance of the <code>Customer</code> class.
 
 To create the necessary attributes in the <code>Customer</code> class, use the <a href="/change-value-to-reference">Change Value to Reference</a> refactoring technique on it. Now all orders for the same customer will refer to the same instance of the <code>Customer</code> class.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

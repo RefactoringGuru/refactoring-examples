@@ -10,6 +10,6 @@ Initialize our variable with the parameter value.
 
 In the method body, replace all references to the parameter with the variable that we have created.
 
-Let's start the final testing.
+Let's perform the final testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

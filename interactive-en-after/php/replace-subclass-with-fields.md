@@ -24,6 +24,6 @@ The <code>Male</code> class should now be removed.
 
 Test to ascertain whether any other code has been broken in the process.
 
-Let's start the final testing.
+Let's perform the final testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

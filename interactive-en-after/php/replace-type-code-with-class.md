@@ -26,6 +26,6 @@ These changes will probably cause the client code to break, but this can be fixe
 
 And finally, remove the constants from the <code>Person</code> class.
 
-Let's start the final testing.
+Let's perform the final testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

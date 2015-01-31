@@ -18,6 +18,6 @@ Here is one of them. Since we have nothing to “give” to the new parameter, w
 
 After all changes have been made, go ahead and delete the old method.
 
-Let's run the final compile.
+Let's perform the final compilation and testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

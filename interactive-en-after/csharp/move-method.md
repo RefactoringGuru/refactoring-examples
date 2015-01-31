@@ -54,6 +54,6 @@ Then work with these properties from the instance of the class passed in the met
 
 And third, you must add passing of the current instance of the <code>Account</code> class to all method calls.
 
-Let's run the final compile.
+Let's perform the final compilation and testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

@@ -20,6 +20,6 @@ In these cases it is better to create a new method and place the code of the old
 
 In any event, we still must update the method signature, indicating that the method now throws an error.
 
-Let's run the final compile.
+Let's perform the final compilation and testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

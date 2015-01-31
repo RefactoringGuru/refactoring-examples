@@ -14,6 +14,6 @@ These conditions can be replaced as follows:
 
 If the procedure you are reviewing only checks a condition and returns a value, we can simplify the code to a greater degree by using a ternary operator.
 
-Let's start the final testing.
+Let's perform the final testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

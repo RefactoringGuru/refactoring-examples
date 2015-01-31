@@ -20,6 +20,6 @@ Then, instead of calling a setter, you should call the parent constructor.
 
 When that is impossible, you must call the necessary initialization method although first you should make sure it is available for the subclasses.
 
-Let's start the final testing.
+Let's perform the final testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

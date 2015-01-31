@@ -26,6 +26,6 @@ And one last thing. Since we no longer need to keep a registry of created object
 
 The client code will also change as the result of these changes.
 
-Let's run the final compile.
+Let's perform the final compilation and testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

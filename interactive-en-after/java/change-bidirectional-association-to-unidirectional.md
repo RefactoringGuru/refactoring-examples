@@ -28,6 +28,6 @@ Then remove the method that assigns a new customer value in the order class.
 
 Now just remove the field itself, fully eliminating the bidirectional association between the classes.
 
-Let's run the final compile and test.
+Let's perform the final compilation and testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.

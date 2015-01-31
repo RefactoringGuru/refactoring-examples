@@ -10,6 +10,6 @@ Let's compile and test to check for errors in code.
 
 Once changes are complete, remove the original method and the now-superfluous constants.
 
-Let's run the final compile.
+Let's perform the final compilation and testing.
 
-Now refactoring is complete. If you like, you can compare the old and new code.
+The refactoring is complete! You can compare the old and new code, if you like.
