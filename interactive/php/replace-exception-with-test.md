@@ -189,7 +189,7 @@ Print:
 #C|ru| Посмотрим, что покажут авто-тесты.
 #S Всё отлично, можем продолжать!
 
-#C|en| Let's compile and test.
+#C|en| Let's run the autotests.
 #S Everything is OK! We can keep going.
 
 #C|uk| Подивимося, що покажуть авто-тести.
@@ -269,7 +269,7 @@ Remove selected
 #C|ru| Запускаем финальное тестирование.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's start the final testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальне тестування.
