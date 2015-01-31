@@ -20,6 +20,8 @@ It is now time to replace all mentions of coded type values with calls to the co
 
 First replace the values of all constants of the old coded type with calls to the corresponding methods of the <code>BloodGroup</code> class.
 
+In effect, all uses of constants are now delegated to the methods of <code>BloodGroup</code>.
+
 All the same, we will go one step further and get rid of direct references to constants of the <code>Person</code> class in the remaining code, using calls to the methods of the <code>BloodGroup</code> class instead.
 
 After all the changes, test everything carefully.

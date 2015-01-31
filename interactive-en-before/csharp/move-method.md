@@ -16,6 +16,8 @@ Copy the <code>OverdraftCharge()</code> method to the <code>AccountType</code> c
 
 Now edit the method so that it will function correctly in its new location.
 
+First remove the <code>type</code> field from the method, since we are now inside the class that implements the account type and all methods can be called from it directly.
+
 Now go through the fields and methods of <code>Account</code> that you need. In our case, this would be the <code>daysOverdrawn</code> field.
 
 In theory, there are four options for saving a method or field of the original class: <ol><li>Move the field or method to the target class.</li><li>Create a reference from the target class to the original one or restore the previously existing one.</li><li>Pass an instance of the original class as a parameter of the target class method.</li><li>Pass the field value as a parameter.</li></ol>

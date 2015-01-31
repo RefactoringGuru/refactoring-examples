@@ -24,6 +24,12 @@ Additional difficulties here are caused by local variables to which new values a
 
 If a value is assigned to the parameter, you can get rid of this by using Remove Assignments to Parameters.
 
+Check each variable.
+
+Here, the problem is caused by the <code>outstanding</code> variable, which is then used in the <code>PrintDetails()</code> call.
+
+Pass it back to the original method.
+
 Let's run the final compile.
 
 Now refactoring is complete. If you like, you can compare the old and new code.

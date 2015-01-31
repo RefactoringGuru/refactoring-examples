@@ -12,6 +12,8 @@ Now let's say that we have multiple orders referring to the same client. Suddenl
 
 Would this be made impossible if each order had its own instance of the <code>Customer</code> class? Probably not. That is why the main requirement of this refactoring technique is making the class immutable. In some cases, this is simply not possible and the technique should not be used.
 
+Following this logic, remove the setter for the date of birth field. Initialize the value of the field in the constructor. Use <a href="/remove-setting-method">Remove Setting Method</a>. 
+
 Since the class no longer contains a setter, we need to remove use of it in the client code. We have nothing to replace the action of this setter yet – but don't worry, we will get to this a bit later.
 
 One more problem. Value objects with identical data should be equal when compared. To do this in C#, define <code>Equals</code> and <code>GetHashCode</code> methods in the classes being compared.

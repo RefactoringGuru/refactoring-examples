@@ -1,3 +1,9 @@
+Let's look at this refactoring approach using the example of an article that can be displayed in two formats…
+
+…in Markdown plain text…
+
+…and in HTML.
+
 Before starting the refactoring per se, we should arrange things so that these two methods appear in the subclasses of some shared parent class.
 
 To do this, create a <a href="/replace-method-with-method-object">simple method object</a> by moving both methods to it.

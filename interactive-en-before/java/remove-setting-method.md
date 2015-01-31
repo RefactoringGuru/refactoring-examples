@@ -6,6 +6,12 @@ The simplest solution would be to integrate the setter code into the constructor
 
 In effect, we have already done everything for a case as simple as this one. But there are other, more difficult cases.
 
+What if, for example, the setter performs calculations on an argument:
+
+If the change is simple, as it is here, it too can be moved to the constructor.
+
+If the change is complex, however, and consists of calls to several methods, it is better to create a new method for initializing the value.
+
 Excellent. Now for one more case.
 
 Another unpleasant situation arises when there are subclasses initializing private variables of a parent class.

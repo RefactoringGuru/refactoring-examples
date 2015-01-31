@@ -1,5 +1,7 @@
 Say that we have a class for creating employees…
 
+…in which the employee type is set via a constructor parameter.
+
 The client code calls the constructor directly.
 
 So what if we wanted to create subclasses for each type of employee –

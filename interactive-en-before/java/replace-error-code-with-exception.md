@@ -1,5 +1,9 @@
 Let's look at refactoring in the case of withdrawals from a bank account.
 
+If the customer attempts to withdraw more money than his or her current balance allows, an error code is generated (<code>-1</code>)…
+
+…which is then checked in the client code.
+
 We can replace all this by throwing an error and then "catching" it in the client code.
 
 First we create a new exception class that will be easier to catch.

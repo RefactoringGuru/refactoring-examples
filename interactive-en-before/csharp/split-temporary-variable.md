@@ -1,5 +1,13 @@
 Let's look at <i>Split Temporary Variable</i>, by way of the example of a small method for calculating the movement of a ball in space as a function of time and the forces acting on it.
 
+Notably for our example, the <code>acc</code> variable is set in it twice.
+
+It performs two tasks: it contains the initial acceleration caused by the first force…
+
+…and later acceleration caused by both forces.
+
+So it is better to split up this variable, with each part responsible for only one task.
+
 Start by changing the name of the variable. For this purpose, it is convenient to select a name that reflects the first use of the variable.
 
 We will also declare it a constant to make sure that a value Is assigned only once.

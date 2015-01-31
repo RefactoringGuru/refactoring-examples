@@ -24,6 +24,10 @@ After that, we can delegate all phone functionality to the <code>TelephoneNumber
 
 Let's run the compiler to verify that the code is not broken anywhere.
 
+Here we should decide how available we want this new class to be for clients. We can hide it entirely, using delegate methods for access (as is currently done)…
+
+…or remove all these methods and make the class public.
+
 We will need to create a public getter for the associated object so that clients can access it.
 
 But if we make the class public, take into account the dangers related to references. What about the fact that the client can change the area code when opening a phone number? This kind of change can be performed by any code that has access to a class instance via the public getter.

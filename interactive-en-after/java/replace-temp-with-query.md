@@ -30,6 +30,8 @@ Create a new method…
 
 …use it to initialize the variable…
 
+…and remove the code that is no longer necessary.
+
 Note how difficult it would have been to extract <code>discountFactor</code> if we had not first replaced <code>basePrice</code> with a method call.
 
 Ultimately the <code>getPrice()</code> method comes to look as follows.

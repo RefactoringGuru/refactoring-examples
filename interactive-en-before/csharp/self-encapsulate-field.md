@@ -8,9 +8,13 @@ Complete self-encapsulation by replacing all references to fields in these metho
 
 As you may have noted, we have not yet replaced the fields in the constructor. This is because sometimes setters may have logic that works differently than simple assignment (which is what the constructor needs).
 
+Therefore we make sure that our setters have standard assignment logic before performing replacement in the constructor.
+
 The refactoring is now technically complete, but we can tighten up the code a bit by converting our properties to <i>auto-implemented properties</i>.
 
 So we remove getter and setter bodies in the properties…
+
+…and then remove <code>low</code> and <code>high</code> fields that are no longer necessary.
 
 Hurray! Let's run the final compile.
 

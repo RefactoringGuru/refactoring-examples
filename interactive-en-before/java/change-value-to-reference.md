@@ -1,5 +1,11 @@
 Let's look at <i>Replace Data Value with Object</i> using the customer/order class example. We will pick up where we finished the example involving <a href="/replace-data-value-with-object">Replace Data Value with Object</a>.
 
+Here we have a customer class…
+
+…that is used in the order class…
+
+…and client code that is used by both classes.
+
 Currently the customer in the order class is used as a data value. In other words, each order has its own instance of <code>Customer</code> even if the actual customer is the same. We want to change the code so that multiple orders for the same customer use the same instance of the <code>Customer</code> class.
 
 In our case, this means that for each customer name, there must exist one and only one instance of the customer class.

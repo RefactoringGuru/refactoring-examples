@@ -1,5 +1,11 @@
 Let's look at <i>Duplicate Observed Data</i> by looking at a class that creates a window for editing numeric intervals.
 
+The window consists of three parts: Start value, End value, and Length. <br/><img src="/images/refactoring/gui-window_csharp.png">
+
+Recalculations of new values occur when the element loses focus. When a change occurs in <code>Start</code> or <code>End</code>, <code>Length</code> is calculated. When <code>Length</code> changes, <code>End</code> is calculated.
+
+The specific calculations take place in utility methods.
+
 These methods call calculation of the new length (<code>CalculateLength</code>) or new end value (<code>CalculateEnd</code>) depending on what has changed in the window.
 
 Our task is to separate all recalculations of length and end value into a separate domain class. Start by creating such a class.
@@ -28,9 +34,13 @@ The remaining two are responsible for error handling and ending notification-rel
 
 At this point, create code to initialize a field containing an instance of the <code>Interval</code> domain class as well as to subscribe the window class to notifications. Place all this code in the <code>IntervalWindow</code> constructor.
 
+Here, the call of the <code>OnNext</code> method guarantees that the window object (GUI) will be filled with data from the domain object.
+
 Compile and test. While we have not yet made any "real" changes, mistakes can be often made in the simplest things and it is best to keep all code checked at all times.
 
 Now it's time for the text fields. We will <a href="/self-encapsulate-field">self-encapsulate them</a>. For this, we will create string properties for the content of each field. Start with the interval start field.
+
+Do the same thing for the two remaining fields.
 
 Then we can replace all direct references to field content with references to the relevant properties.
 

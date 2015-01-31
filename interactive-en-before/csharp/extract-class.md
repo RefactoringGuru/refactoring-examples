@@ -14,6 +14,8 @@ After the method has been successfully moved to the <code>TelephoneNumber</code>
 
 In addition, if you need to store a property in the source class, you need to rewrite its setter and getter so that they delegate the property of the created class.
 
+So now we have dealt with <code>OfficeAreaCode</code>. We can similarly move the <code>OfficeNumber</code> property...
+
 …and redirect all references made to it in favor of the class that we have created.
 
 Now we need only to move the method for getting the formatted number <code>GetTelephoneNumber()</code>.
@@ -21,6 +23,10 @@ Now we need only to move the method for getting the formatted number <code>GetTe
 After that, we can delegate all phone functionality to the <code>TelephoneNumber</code> class.
 
 Let's run the compiler to verify that the code is not broken anywhere.
+
+At this stage we need to decide how accessible the class should be for clients. We can hide the class entirely, creating delegating properties for access purposes (as is currently done).
+
+We can also remove all these properties and make the class public.
 
 If so, we must create a public property for the associated object so that the clients can access it.
 

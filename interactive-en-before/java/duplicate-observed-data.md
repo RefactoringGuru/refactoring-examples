@@ -1,5 +1,11 @@
 Let's look at <i>Duplicate Observed Data</i> by looking at a class that creates a window for editing numeric intervals.
 
+The window consists of three parts: Start value, End value, and Length. <br/><img src="/images/refactoring/gui-window.png">
+
+Recalculations of new values occur when the element loses focus. When a change occurs in <code>Start</code> or <code>End</code> text fields, <code>length</code> is calculated. When <code>length</code> changes, <code>End</code> is calculated.
+
+The specific calculations take place in utility methods for each of the fields.
+
 These methods call calculation of the new length (<code>calculateLength</code>) or new end value (<code>calculateEnd</code>) depending on what has changed in the window.
 
 Our task is to separate all recalculations of length and end value into a separate domain class. Start by creating such a class.
@@ -7,6 +13,8 @@ Our task is to separate all recalculations of length and end value into a separa
 After a domain class is created, place a reference to it from the window class.
 
 Then create code for initializing this field and make the window class an observer of the domain class. Place all this code in the <code>IntervalWindow</code> constructor.
+
+Here, the call of the <code>update</code> function guarantees that the window object (GUI) will be filled with data from the domain object. But we need some other things in order for this to work.
 
 First, declare the <code>IntervalWindow</code> class as implementing the <code>Observer</code> interface.
 

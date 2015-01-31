@@ -4,9 +4,15 @@ We have <code>Customer</code> and <code>Order</code> classes with a bidirectiona
 
 Since completion of the previous refactoring technique, two new methods have appeared in the code:
 
+Method for getting order price inside the customer class, and
+
 Method for getting price with discount in the order class
 
 Recently we received new requirements: orders must appear only if the customer has already been created. This lets us forego bidirectional association between the classes and get rid of the association between the order and customer.
+
+The hardest part of this refactoring technique is making sure that it is possible. Refactoring is easy, but you must make sure that it is safe to do so. The problem comes down to whether the order code depends on the presence of the customer field. If that is the case, removing the field requires that you provide an alternative method for getting the customer object.
+
+First review all read operations involving the field and all methods that use these operations. Is there another way to provide the customer object? Often this means passing the customer as an operation argument.
 
 This works particularly well when behavior is called by client code containing a customer object that can be passed as an argument.
 

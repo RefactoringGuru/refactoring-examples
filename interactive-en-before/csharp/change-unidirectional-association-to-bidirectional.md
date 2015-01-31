@@ -16,6 +16,10 @@ Since the order will be responsible for the association, add a helper property t
 
 Now you can change the property setter in the <code>Order</code> class so that it adds the current order object to the list of user orders.
 
+The exact code in the control modifier depends on the degree of association. If <code>Customer</code> cannot be <code>null</code>, you can get by without checking it for <code>null</code> but in that case you should check the argument for <code>null</code>.
+
+Nonetheless, the basic scheme is always the same: first you "un-associate" the currently associated object so that it removes the reference to your object, then the association is replaced with a new object, and then a reverse reference to your object is added in the new object.
+
 If you want to modify the reference via the customer class, the class must set the property value in the referenced order object:
 
 Let's run the final compile and test.

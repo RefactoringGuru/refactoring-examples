@@ -14,6 +14,8 @@ To stay on the safe side, let's compile.
 
 In our example, the <code>Account</code> class contains a field for accessing the account type object. Therefore we can access the moved field through it.
 
+Replace all references to the old <code>interestRate</code> field with the appropriate references to the property in the target class.
+
 Once changes are complete, remove the original field.
 
 Here you should compile and test for potential errors.
@@ -31,6 +33,8 @@ If we now needed to move the field, we would not need to change the content of t
 Simply adjust the getter and setter of the property into which our field has been encapsulated.
 
 Then you can (again) remove the original field.
+
+Self-encapsulating allows refactoring via baby steps. And when a class is undergoing major changes, that is a good thing.
 
 Let's run the final compile.
 

@@ -1,5 +1,9 @@
 Imagine a payroll system with special rules for employees who have passed away, live on their own, or have retired. These cases are unusual but do occur.
 
+This code for checking special conditions…
+
+…is concealing performance of ordinary actions. So using borderline operators will make the code more obvious.
+
 Continue performing replacements, one at a time.
 
 And the last one.
