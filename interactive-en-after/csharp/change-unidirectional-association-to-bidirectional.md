@@ -24,4 +24,4 @@ If you want to modify the reference via the customer class, the class must set t
 
 Let's perform the final compilation and testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.
