@@ -26,4 +26,4 @@ Test to ascertain whether any other code has been broken in the process.
 
 Let's perform the final testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

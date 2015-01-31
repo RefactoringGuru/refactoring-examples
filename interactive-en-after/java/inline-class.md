@@ -32,4 +32,4 @@ Voila! Nothing is holding us back now from removing the class itself. Thank you 
 
 Let's perform the final compilation and testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

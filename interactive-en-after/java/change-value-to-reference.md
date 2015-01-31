@@ -30,4 +30,4 @@ And since the <code>Create()</code> method now always returns an existing custom
 
 Let's perform the final compilation and testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

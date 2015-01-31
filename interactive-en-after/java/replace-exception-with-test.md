@@ -24,4 +24,4 @@ After this, it is usually possible to tidy up the conditional code. In this case
 
 Let's perform the final compilation and testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

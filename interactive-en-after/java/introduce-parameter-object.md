@@ -32,4 +32,4 @@ In our case, we can move a check to see if a date is within a range. This gets r
 
 Let's perform the final compilation and testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

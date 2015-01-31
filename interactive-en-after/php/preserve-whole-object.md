@@ -18,4 +18,4 @@ And finally, remove the now-unused variables from <code>withinPlan</code>.
 
 Let's perform the final testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

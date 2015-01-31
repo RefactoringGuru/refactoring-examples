@@ -14,4 +14,4 @@ In this case, a hidden benefit appears, in the form of in-code documentation. Th
 
 A major payoff comes when we want to invoice for computers as well. All we need to do is implement the <code>Billable</code> interface in them, after which we can include computers in the timesheet.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

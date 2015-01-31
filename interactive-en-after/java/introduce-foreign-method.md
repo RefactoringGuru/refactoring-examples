@@ -16,4 +16,4 @@ For the finishing touch, add a comment to the "external method" about what it is
 
 Let's perform the final compilation and testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

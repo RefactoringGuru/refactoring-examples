@@ -1,23 +1,23 @@
-We have a Calendar class that stores records about planned meetings.
+Let's say we have a Calendar class that stores records about planned meetings.
 
-A method in this class returns the values of meetings for a particular date.
+There's a method in this class returns the values of meetings for a particular date.
 
-We would like for this method to be able to filter visitors by name as well.
+It would be great if this method could filter visitors by their names as well.
 
-We could simply add a new parameter to the method description, but that would cause a large risk of breaking calls involving this method in other code fragments.
+We could simply add a new parameter to the method signature, but that would cause a large risk of breaking some existing code that has this method's calls.
 
-So we will proceed very carefully, creating a new method with the desired parameter. To start, we will copy the body of the existing method.
+So we need to proceed very carefully. Therefore we start by creating a new method with the desired parameter. Then, we place a copy of the existing method in its body.
 
 Then we change the method body as needed for the new method.
 
-Now the body of the old method can be replaced with a call to the new method.
+Now the body of the old method can be replaced with the new method's call.
 
-Then find all references to the old method and replace them with references to the new one.
+Then we need to find all calls to the old method and replace them with calls to the new one.
 
-Here is one of them. Since we have nothing to “give” to the new parameter, we write in the value <code>null</code>.
+Here is one of them. Since we have nothing to pass to the new parameter, we use the <code>null</code> value.
 
 After all changes have been made, go ahead and delete the old method.
 
 Let's perform the final compilation and testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

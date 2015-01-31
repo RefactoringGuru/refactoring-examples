@@ -14,4 +14,4 @@ And finally, to explicitly say that no assignments can be made to the parameters
 
 Let's perform the final compilation and testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

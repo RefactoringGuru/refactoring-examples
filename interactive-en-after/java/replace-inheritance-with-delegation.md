@@ -16,4 +16,4 @@ All that's left to do is create a new engine object for filling the field of the
 
 Let's start the final testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

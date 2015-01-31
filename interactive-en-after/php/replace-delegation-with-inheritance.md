@@ -16,4 +16,4 @@ After all replacements, you can remove the field of the associated object and re
 
 Let's perform the final testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

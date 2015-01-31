@@ -16,4 +16,4 @@ If a method is no longer of interest at runtime, it is best to exit it as soon a
 
 Let's perform the final testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

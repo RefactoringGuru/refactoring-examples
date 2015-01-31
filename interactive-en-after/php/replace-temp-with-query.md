@@ -34,4 +34,4 @@ Ultimately the <code>getPrice()</code> method comes to look as follows.
 
 Let's perform the final testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

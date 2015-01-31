@@ -36,4 +36,4 @@ The following options are possible: <ul><li>Any object can change any part of th
 
 Let's perform the final testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

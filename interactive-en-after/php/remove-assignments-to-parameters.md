@@ -12,4 +12,4 @@ In the method body, replace all references to the parameter with the variable th
 
 Let's perform the final testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

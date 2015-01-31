@@ -14,4 +14,4 @@ After the changes are complete, you can remove the methods themselves.
 
 Let's perform the final testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

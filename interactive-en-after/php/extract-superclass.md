@@ -42,4 +42,4 @@ This method should also be declared abstract in the parent class.
 
 Let's perform the final testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

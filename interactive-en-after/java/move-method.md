@@ -54,4 +54,4 @@ And third, you must add passing of the current instance of the <code>Account</co
 
 Let's perform the final compilation and testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

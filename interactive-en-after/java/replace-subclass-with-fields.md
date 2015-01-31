@@ -26,4 +26,4 @@ Compile and test to make sure no other code was broken by mistake.
 
 Let's perform the final compilation and testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

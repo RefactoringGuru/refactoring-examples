@@ -10,4 +10,4 @@ After the new constructor becomes available, it can be called from the <code>Man
 
 Let's perform the final testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

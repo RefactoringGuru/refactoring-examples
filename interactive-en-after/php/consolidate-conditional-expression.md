@@ -16,4 +16,4 @@ If the procedure you are reviewing only checks a condition and returns a value, 
 
 Let's perform the final testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

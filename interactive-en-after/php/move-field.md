@@ -30,4 +30,4 @@ Self-encapsulating allows refactoring via baby steps. And when a class is underg
 
 Let's perform the final testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

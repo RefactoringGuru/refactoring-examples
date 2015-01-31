@@ -20,4 +20,4 @@ And finally: removing all delegate methods is not necessary. It may be more conv
 
 Let's perform the final testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

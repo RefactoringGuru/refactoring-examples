@@ -36,4 +36,4 @@ Now that the methods have been created, you can make abstract the <code>payAmoun
 
 Let's perform the final compilation and testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

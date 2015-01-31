@@ -24,4 +24,4 @@ In addition, you can create a conditional in the factory method to return an obj
 
 Let's perform the final testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

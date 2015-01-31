@@ -16,4 +16,4 @@ Then we turn our attention to <code>else</code>.
 
 Let's perform the final compilation and testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.

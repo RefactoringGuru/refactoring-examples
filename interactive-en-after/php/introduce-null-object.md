@@ -42,4 +42,4 @@ We can return the null object of the payment history from the null object of cus
 
 Let's perform the final testing.
 
-The refactoring is complete! You can compare the old and new code, if you like.
+The refactoring is complete! You can compare the old and new code if you like.
