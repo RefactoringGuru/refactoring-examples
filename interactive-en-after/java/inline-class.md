@@ -1,12 +1,12 @@
-Let's look at <i>Inline Class</i> using the example of a person class and the phone number used in it.
+Let's look at <i>Inline Class</i> using the person class and its phone number as an example.
 
-We want to include the <code>TelephoneNumber</code> class back in the <code>Person</code> class, since it is no longer necessary for us.
+We want to include the <code>TelephoneNumber</code> class back in the <code>Person</code> class, since it become unnecessary complex for our needs.
 
-Start by declaring all visible methods of the phone number class in the <code>Person</code> class.
+We start by declaring all visible methods of the phone number class in the <code>Person</code> class.
 
 For the first step, all these methods will delegate to the phone number object.
 
-Now find all cases where the phone number class is used in client code and replace it with use of the <code>Person</code> class.
+Now find all cases where the phone number class is used in client code and replace it with calls to the delegate methods in <code>Person</code>.
 
 We can then proceed to <a href="/move-method">Move Method</a> and <a href="/move-field">Move Field</a> for moving all fields and methods to the <code>Person</code> class. These changes can be done one by one or, if there are not too many, all at once.
 
@@ -22,7 +22,7 @@ Then move each method…
 
 …and finally the last getter of the phone number itself.
 
-This is a good time to compile and test, to make sure the code is still working correctly.
+Now is a good time to compile and test, to make sure the code is still working correctly.
 
 At this point, we need only to remove the <code>TelephoneNumber</code> class from the program.
 

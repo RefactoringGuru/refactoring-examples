@@ -1,4 +1,4 @@
-Let's say we have a Calendar class that stores records about planned meetings.
+Let's say we have a <code>Calendar</code> class that stores records about planned meetings.
 
 There's a method in this class returns the values of meetings for a particular date.
 

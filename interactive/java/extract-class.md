@@ -307,18 +307,18 @@ Set step 4
 
 Select "private TelephoneNumber officeTelephone"
 
-#|ru|+ На этом этапе осталось решить, в какой мере сделать новый класс доступным для клиентов. Можно полностью скрыть класс, создав для доступа делегирующие методы (как это сделано сейчас)...
+#|ru|+ На этом этапе осталось решить, в какой мере сделать наше поле доступным для клиентского кода. Можно полностью скрыть поле, создав для доступа к полям связанного объекта делегирующие методы (как это сделано сейчас)...
 #|en|+ Here we should decide how available we want this new class to be for clients. We can hide it entirely, using delegate methods for access (as is currently done)…
-#|uk|+ На цьому етапі залишилося вирішити, якою мірою зробити новий клас доступним для клієнтів. Можна повністю приховати клас, створивши для доступу делегуючі методи (як це зроблено зараз)...
+#|uk|+ На цьому етапі залишилося вирішити, якою мірою зробити наше поле доступним для клієнтського коду. Можна повністю приховати поле, створивши для доступу до полів зв'язаного об'єкту делегуючі методи (як це зроблено зараз)...
 
 Select whole "getOfficeAreaCode"
 + Select whole "setOfficeAreaCode"
 + Select whole "getOfficeNumber"
 + Select whole "setOfficeNumber"
 
-#|ru|= ...а можно удалить все эти методы и сделать класс открытым.
+#|ru|= ...а можно удалить все эти методы и сделать поле открытым.
 #|en|= …or remove all these methods and make the class public.
-#|uk|= ...а можна видалити всі ці методи і зробити клас відкритим.
+#|uk|= ...а можна видалити всі ці методи і зробити поле відкритим.
 
 Remove selected
 
@@ -339,9 +339,9 @@ Print:
 
 Select name of "getOfficeTelephone"
 
-#|ru| Однако, решив сделать класс общедоступным, следует учесть опасности, связанные со ссылками. Как отнестись к тому, что при открытии телефонного номера клиент может изменить код зоны? Такое изменение может произвести любой код, имеющий доступ к экземпляру класса через публичный геттер.
+#|ru| Однако, решив сделать поле общедоступным, следует учесть опасности, связанные со ссылками. Как отнестись к тому, что при открытии телефонного номера клиент может изменить код зоны? Такое изменение может произвести любой код, имеющий доступ к экземпляру класса через публичный геттер.
 #|en| But if we make the class public, take into account the dangers related to references. What about the fact that the client can change the area code when opening a phone number? This kind of change can be performed by any code that has access to a class instance via the public getter.
-#|uk| Однак, вирішивши зробити клас загальнодоступним, слід врахувати небезпеки, пов'язані з посиланнями. Як поставитися до того, що при відкритті телефонного номера клієнт може змінити код зони? Така зміна може виконати будь-який код, який має доступ до примірника класу через публічний геттер.
+#|uk| Однак, вирішивши зробити поле загальнодоступним, слід врахувати небезпеки, пов'язані з посиланнями. Як поставитися до того, що при відкритті телефонного номера клієнт може змінити код зони? Така зміна може виконати будь-який код, який має доступ до примірника класу через публічний геттер.
 
 #|ru| Возможны следующие варианты: <ul><li>Допускается изменение любым объектом любой части телефонного номера. В таком случае телефонный номер становится объектом-ссылкой, и следует рассмотреть <a href="/change-value-to-reference">замену значения ссылкой</a>. Доступ к телефонному номеру осуществляется через экземпляр класса <code>Person</code>.</li><li>Вы не желаете, чтобы кто-либо мог изменить телефонный номер, кроме как посредством методов экземпляра класса <code>Person</code>. Можно сделать телефонный номер только для чтения или обеспечить доступ к нему только через соответствующий метод.</li><li>Существует также возможность клонировать экземпляр класса <code>TelephoneNumber</code> перед тем, как предоставить его, но это может привести к недоразумениям, потому что люди будут думать, что могут изменить его значение. При этом могут также возникнуть проблемы со ссылками у клиентов, если телефонный номер часто передаётся.</li></ul>
 #|en| The following options are possible: <ul><li>Any object can change any part of the phone number. In this case the phone number becomes a reference and you should look at <a href="/change-value-to-reference">Change Value to Reference</a>. Access to the phone number is implemented through an instance of <code>Person</code>.</li><li>You do not want anyone to be able to change a phone number except through the methods of an instance of the <code>Person</code> class. The phone number can be made read-only or access to it can be limited to an appropriate method.</li><li>You can also clone an instance of the <code>TelephoneNumber</code> class before providing access to it. But this can cause confusion because people will think that they can change this value. In addition, clients may have problems with references if the phone number is passed frequently.</li></ul>

@@ -1,12 +1,12 @@
-Let's look at <i>Decompose Conditional</i> by looking at how to calculate the cost of a stadium ticket.
+Let's look at <i>Decompose Conditional</i> using a simple class, that calculates the cost of a stadium ticket.
 
 The cost depends on the season (winter or summer).
 
 Our task is to make this conditional easier to understand. We can start by extracting the condition to a new method with a more obvious name.
 
-Let's compile and test to check for errors in code.
+Let's compile and test to check for errors in the code.
 
-The condition is clearer now, yes? Many programmers in such situations do not extract the components of the conditional. Often the conditions seem short and not worth the effort.
+The condition became much clearer now. However, many programmers in such situations do not extract the components of the conditional, thinking about conditions as short and not worth the effort.
 
 But no matter how short the condition is, there is often a big difference between the purpose of the code and its body. Figuring this out requires looking at the code in detail. In this case, doing so is easy but even here the extracted method looks more like a comment.
 

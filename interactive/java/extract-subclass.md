@@ -448,9 +448,9 @@ Remove selected
 
 Select name of "JobItem"
 
-#|ru| После того, как группа методов, использующих некоторые данные, перемещена в подкласс, к этим данным можно применить <a href="/push-down-field">Спуск поля</a>. В некоторых случаях это невозможно, так как данные используются некоторым методом. Такое положение вещей означает, что необходимо продолжить работу с методами, применяя <a href="/push-down-method">Спуск метода</a> или <a href="/replace-conditional-with-polymorphism">Замену условного оператора полиморфизмом</a>.
+#|ru| После того, как группа методов, использующих некоторые данные, перемещена в подкласс, к этим данным можно применить <a href="/push-down-field">Спуск поля</a>. В некоторых случаях это невозможно, так как данные используются некоторым методом.
 #|en| After the group of methods that use particular data is moved to a subclass, you can apply <a href="/push-down-field">Push Down Field</a> to this data. In some cases this is impossible because the data is used by a method. This state of affairs means that you should continue working with the methods, by using <a href="/push-down-method">Push Down Method</a> or <a href="/replace-conditional-with-polymorphism">Replace Conditional With Polymorphism</a>.
-#|uk| Після того, як група методів, що використовують деякі дані, переміщена в підклас, до цих даних можна застосувати <a href="/push-down-field">Спуск поля</a>. В деяких випадках це неможливо, так як дані використовуються деяким методом. Такий стан речей означає, що необхідно продовжити роботу з методами, застосовуючи <a href="/push-down-method">Спуск методу</a> або <a href="/replace-conditional-with-polymorphism">Заміну умовного оператора поліморфізмом</a>.
+#|uk| Після того, як група методів, що використовують деякі дані, переміщена в підклас, до цих даних можна застосувати <a href="/push-down-field">Спуск поля</a>. В деяких випадках це неможливо, так як дані використовуються деяким методом.
 
 #|ru| В нашем случае все готово, чтобы переместить поле <code>employee</code> в <code>LaborItem</code>.
 #|en| In our case, everything is ready for us to move the <code>employee</code> field to <code>LaborItem</code>.

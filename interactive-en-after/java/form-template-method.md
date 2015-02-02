@@ -1,4 +1,4 @@
-Let's look at this refactoring approach using the example of an article that can be displayed in two formats…
+Let's look at this refactoring using the example of an article that can be displayed in two formats…
 
 …in Markdown plain text…
 
@@ -6,7 +6,7 @@ Let's look at this refactoring approach using the example of an article that can
 
 Before starting the refactoring per se, we should arrange things so that these two methods appear in the subclasses of some shared parent class.
 
-To do this, create a <a href="/replace-method-with-method-object">simple method object</a> by moving both methods to it.
+To do this, we create a <a href="/replace-method-with-method-object">simple method object</a> by moving both methods to it.
 
 Now the bodies of the original methods can be replaced with calls to the <code>ArticleView</code> methods.
 
@@ -14,9 +14,9 @@ Then from <code>ArticleView</code> we can extract two subclasses, <code>ArticleM
 
 Since the methods are now located in different classes, we can make them more similar to each other by giving them identical names.
 
-Let's launch autotests to check for errors in code.
+Let's launch autotests to check for errors in the code.
 
-Now everything is ready to finally start the refactoring itself.
+Finally, everything is ready to start the refactoring itself.
 
 First split the <code>view</code> methods in both steps to their constituent steps. Defining the steps is rather easy in our case – these are parts of the printed article.
 
@@ -28,7 +28,7 @@ Do all of this for the <code>ArticleHtml</code> class.
 
 Now we can replace parts of the <code>view</code> method with calls to the new methods.
 
-As you can see, the two classes have many identical steps. We should move the identical steps as abstract methods to a superclass.
+As you can see, the two classes have many identical steps. We should move the identical steps as abstract methods to the superclass.
 
 Now we can freely extract the identical <code>view</code> methods to the superclass.
 
