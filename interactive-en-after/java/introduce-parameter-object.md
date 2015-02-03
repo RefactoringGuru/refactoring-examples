@@ -1,20 +1,20 @@
-Let's look at this refactoring technique, using as our example a bank account class and transactions.
+Let's look at this refactoring, using the bank account and transactions classes.
 
-We are interested in the method for getting the total transactions during an indicated period of time.
+We are interested in the method for getting the total for all transactions during an indicated period of time.
 
-As you can see, the method takes a range of two dates as its parameters. This is a common situation and instead of passing two dates, it would be nice to pass an object consisting of a range of dates.
+As you can see, the method takes a range of two dates as its parameters. Pretty common situation? But instead of passing two dates, it would be better to pass a single date range object.
 
-In the future, operations for checking whether a date falls in a range, etc., can be moved to this object.
+In future, that will allow us to move date range behaviors into their own class.
 
-Create a simple range class.
+Let's begin with creating a simple range class.
 
-The class is immutable: the dates of the range cannot be changed after it is created, since the date fields are declared as private and we did not create setters for them.
+The class will be immutable: the dates of the range cannot be changed after it is created, since the date fields are declared as private and we did not create setters for them.
 
-This step allows avoiding many errors related with passing objects in parameters via references.
+This way you could avoid many errors related to passing objects in method parameters via references.
 
 Now we can add a range parameter to the method for getting the transaction total.
 
-Find all places where the method is called. In these calls, add a new parameter – specifically, an object created from the dates already given to the method.
+Now, let's find all places where the method is called. In these calls, add a new parameter – specifically, an object created from the dates already given to the method.
 
 The new parameter is in place, so we return to the method description and try to get rid of the old date parameters there.
 
@@ -24,9 +24,9 @@ After replacements in the method body, the parameter can be removed from the sig
 
 Now for the remaining parameter.
 
-After performing all these moves, run and test.
+Compile, and test after performing all these moves.
 
-After all the necessary parameters are removed, we can think about moving appropriate behaviors to the parameter object.
+After all the necessary parameters were removed, we can start thinking about moving appropriate behaviors to the parameter object.
 
 In our case, we can move a check to see if a date is within a range. This gets rid of the unwieldy code inside <code>getFlowBetween</code>.
 

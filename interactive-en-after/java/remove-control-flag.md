@@ -4,13 +4,13 @@ In this function, the variable <code>found</code> is a control flag. It is initi
 
 …which changes as the function is run…
 
-…after which the code does not do anything more until the cycle is complete.
+…after which the code does not do anything more until the loop is finished.
 
-This refactoring technique starts with us looking for assignments by the control variable that affect the execution flow of the program. In this case, this is assignments of the <code>true</code> value.
+This refactoring starts with us looking for any assignments to the control variable that affect the execution flow of the program. In our case, this is assignments of the <code>true</code> value.
 
-Under the logic of this method, the code should not do anything more within the cycle after these assignments. Therefore we can simply replace them with a <code>break</code> operator, saving several moot iterations in the process.
+According to the logic of this method, we can simply replace assignments to control flags with <code>break</code> operator.
 
-Then we can remove all mentions of the control flag.
+Then we can remove all other mentions of the control flag.
 
 Let's perform the final compilation and testing.
 

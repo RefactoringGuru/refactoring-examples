@@ -4,17 +4,17 @@ We want to move the <code>interestRate</code> field to the <code>AccountType</co
 
 Several methods refer to this field. One of them is the <code>interestForAmount_days()</code> method.
 
-Create the same field and same access methods in the target class.
+Let's start by creating the same field and same access methods in the target class.
 
-To stay on the safe side, let's compile.
+To stay on the safe side, compile and test after each change.
 
-In our example, the <code>Account</code> class contains a field for accessing the account type object. Therefore we can access the moved field through it.
+In our example, the <code>Account</code> class contains a field for accessing the account type object. For this reason, we can access the moved field through it.
 
-Replace all references to the old field with appropriate calls to methods in the target class.
+We replace all references to the old field with appropriate calls to methods in the target class.
 
-Once changes are complete, remove the original field.
+Once changes are complete, we can remove the original field.
 
-Here you should compile and test for potential errors.
+Let's compile and test for potential errors.
 
 Remember that if a class has many methods that use the moved field, you may want to self-encapsulate it to simplify later refactoring. Let's look at a quick example.
 
