@@ -1,18 +1,18 @@
 We have an <code>Employee</code> class that delegates certain work to the <code>Person</code> class.
 
-Inheritance would be more appropriate here, since the employee class needs practically all data from <code>Person</code>.
+Inheritance would be more appropriate here since the employee class needs practically all data from <code>Person</code>.
 
-Start refactoring by declaring inheritance in the <code>Employee</code> class.
+Let's start refactoring by declaring the <code>Employee</code> as a subclass of <code>Person</code>.
 
-Here we should compile and run autotests to make sure there are no conflicting methods. These issues can arise if identically named methods return values of different types or generate different exceptions. For all such issues, use  <a href="/rename-method">Rename Method</a>.
+Right after that we should compile and run autotests to make sure there are no conflicting methods. These issues can arise if identically named methods return values of different types or generate different exceptions. For all such issues, use  <a href="/rename-method">Rename Method</a>.
 
-Next force the delegation field to refer to the object itself.
+Next, force the field, which contained reference to a <code>Person</code> object, to reference its own object. We will get rid of it later, but for now it will keep the code working.
 
 We also should remove all simple delegate methods from <code>Employee</code>, such as <code>getName</code> and <code>setName</code>. If we forget to remove them, a stack overflow will occur due to infinite recursion.
 
-Then get rid of references to the associated field, using own-class calls instead.
+Then we get rid of delegation calls by calling our object's methods.
 
-After all replacements, you can remove the field of the associated object and related initialization code, which are no longer necessary.
+After all replacements, we can finally remove the field of the associated object and it's initialization code, which are no longer necessary.
 
 Let's perform the final compilation and testing.
 

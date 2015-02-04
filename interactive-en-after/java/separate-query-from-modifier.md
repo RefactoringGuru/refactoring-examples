@@ -1,4 +1,4 @@
-Let's consider <i>Separate Query from Modifier</i> using a security system class as our example. The class has a method that tells us the name of a violator and sends a warning.
+Let's look at <i>Separate Query from Modifier</i> refactoring using a security system class as our example. The class has a method that tells us the name of a violator and sends a warning.
 
 The main problem with this method is that it is used for two different purposes.
 
@@ -10,7 +10,7 @@ But that's not all. The method also sends a message about the people found.
 
 With this approach, even if we only need to get a list of names we take the risk of accidentally sending messages. This refactoring technique will save us from that risk. In our case, searching for people will be the "query" and sending messages will be the "modifier".
 
-To separate the query from the modifier, first create an appropriate query that returns the same value as the original method but does not lead to side effects.
+To separate the query from the modifier, first create an appropriate query that returns the same value as the original method, but does not lead to side effects.
 
 Then, one by one, replace all cases of <code>return</code> in the original method with calls for the new query.
 

@@ -331,8 +331,8 @@ Set step 4
 
 Select "private TelephoneNumber officeTelephone"
 
-#|ru|+ На этом этапе осталось решить, в какой степени новый класс будет доступным для клиентов. Можно полностью скрыть класс, создав для доступа делегирующие свойства (как это сделано сейчас).
-#|en|+ At this stage we need to decide how accessible the class should be for clients. We can hide the class entirely, creating delegating properties for access purposes (as is currently done).
+#|ru|+ На этом этапе осталось решить, в какой степени новый класс будет доступным для клиентов. Можно полностью скрыть класс, создав для доступа делегирующие свойства (как это сделано сейчас)...
+#|en|+ At this stage we need to decide how accessible the class should be for clients. We can hide the class entirely, creating delegating properties for access purposes (as is currently done)...
 #|uk|+ На цьому етапі залишилося вирішити, якою мірою зробити новий клас доступним для клієнтів. Можна повністю приховати клас, створивши для доступу делегуючі властивості (як це зроблено зараз)...
 
 Select:
@@ -357,8 +357,8 @@ Select:
   }
 ```
 
-#|ru|= А можно удалить все эти свойства и сделать класс открытым.
-#|en|= We can also remove all these properties and make the class public.
+#|ru|= ...а можно удалить все эти свойства и сделать класс открытым.
+#|en|= …or remove all these properties and make the class public.
 #|uk|= ...а можна видалити всі ці властивості і зробити клас відкритим.
 
 Remove selected

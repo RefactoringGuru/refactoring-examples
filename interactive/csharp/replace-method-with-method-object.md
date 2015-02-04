@@ -114,10 +114,9 @@ Select name of "Gamma"
 #|en| We see that one of the class methods has many opaque calculations and thickets of local variables. All this makes it hard to refactor the class.
 #|uk| Ми бачимо, що в одному з методів класу є безліч заплутаних обчислень і хитросплетіння локальних змінних. Все це ускладнює подальший рефакторинг класу.
 
-#|ru| Давайте преобразуем этот метод в отдельный класс так, чтобы локальные переменные стали полями этого класса. После чего можно будет переместить данный метод в новый класс.
+#|ru| Давайте преобразуем этот метод в отдельный класс так, чтобы локальные переменные стали полями этого класса.
 #|en| Let's convert this method to a separate class so that the local variables become fields of the class. Then we can move the method to a new class.
-#|uk| Давайте перетворимо цей метод в окремий клас так, щоб локальні змінні стали полями цього класу. Після чого можна буде перемістити даний метод в новий клас.
-
+#|uk| Давайте перетворимо цей метод в окремий клас так, щоб локальні змінні стали полями цього класу.
 Go to the end of file
 
 #|ru| Для начала создадим новый класс.
@@ -279,9 +278,9 @@ Select:
     }
 ```
 
-#|ru| Преимущество это рефакторинга в том, что теперь можно легко применить <a href="/extract-method">извлечение метода</a> к методу <code>Compute()</code>, не беспокоясь о передаче аргументов.
-#|en| The benefit of this refactoring technique is that now you can easily apply <a href="/extract-method">Extract Method</a> to the <code>Compute()</code> method without worrying about passing arguments.
-#|uk| Перевага цього рефакторинга в тому, що тепер можна легко застосувати <a href="/extract-method">відокремлення методу</a> до методу <code>Compute()</code>, не турбуючись про передачу аргументів.
+#|ru| Преимущество это рефакторинга в том, что теперь можно легко применить <a href="/extract-method">извлечение метода</a> к методу <code>Сompute()</code>, не беспокоясь о передаче аргументов в подметоды.
+#|en| The benefit of this refactoring technique is that now you can easily apply <a href="/extract-method">Extract Method</a> to the <code>Compute()</code> method without worrying about passing correct arguments between sub-methods.
+#|uk| Перевага цього рефакторинга в тому, що тепер можна легко застосувати <a href="/extract-method">відокремлення методу</a> до методу <code>Сompute()</code>, не турбуючись про передачу аргументів в субметоди.
 
 Go to the end of "Gamma"
 

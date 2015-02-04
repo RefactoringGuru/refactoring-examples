@@ -1,16 +1,16 @@
-Let's look at <i>Replace Type Code With Subclasses</i>, using an employee salary class as our example. We have several type of employees and the salary of an employee depends on his or her type.
+Let's look at <i>Replace Type Code With Subclasses</i>, using an payroll class as our example. We have several types of employees, which affects their salary values.
 
-Start by applying <a href="/self-encapsulate-field">Self-Encapsulate Field</a> to the employee type.
+We start by applying <a href="/self-encapsulate-field">Self-Encapsulate Field</a> to the employee type.
 
-Since the <code>Employee</code> constructor uses type code as a parameter, replace it with a factory method.
+Since the <code>Employee</code> constructor uses type code as a parameter, we should replace it with a factory method.
 
-Now start converting <code>Engineer</code> to a subclass. First create the subclass itself…
+Now we can start converting <code>Engineer</code> to a subclass. First create the subclass itself…
 
 …then create the method to replace the type code.
 
-Replace the factory method as well so that it creates the necessary object.
+We need to replace the factory method as well so that it creates the necessary object.
 
-Continue these actions in order until all code has been replaced by subclasses.
+Continue these actions one by one, until all code has been replaced by subclasses.
 
 Then we can eliminate the field with type code in <code>Employee</code>…
 

@@ -143,9 +143,9 @@ class BloodGroup {
 
 Set step 2
 
-#|ru| В этот класс мы помещаем поле группы крови из класса <code>Person</code>, конструктор, инициализирующий значение поля, а также его геттер.
+#|ru| В этот класс мы помещаем поле группы крови из класса <code>Person</code>, его геттер и конструктор, инициализирующий значение поля.
 #|en| We place the blood type field from the <code>Person</code> class, constructor initializing the field value, and its getter in this class.
-#|uk| У цей клас ми поміщаємо поле групи крові з класу <code>Person</code>, конструктор, який ініціалізує значення поля, а також його геттер.
+#|uk| У цей клас ми поміщаємо поле групи крові з класу <code>Person</code>, його геттер та конструктор, який ініціалізує значення поля.
 
 Go to the end of "BloodGroup"
 

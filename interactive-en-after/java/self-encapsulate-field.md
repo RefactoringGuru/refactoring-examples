@@ -1,4 +1,4 @@
-Let's look at <i>Self-Encapsulation</i> using the example of a range class.<br/><br/>Self-encapsulation means implementing access to fields through access methods even in the methods of the class itself.
+Let's look at <i>Self-Encapsulation</i> using the example of a range class.<br/><br/>Self-encapsulation differs from regular encapsulation by requiring even its own class to access fields through getters and setters.
 
 These access methods must be created if they do not yet exist. So go ahead and create getters and setters in our class.
 

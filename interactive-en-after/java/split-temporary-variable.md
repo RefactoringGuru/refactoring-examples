@@ -1,4 +1,4 @@
-Let's look at <i>Split Temporary Variable</i>, by way of the example of a small method for calculating the movement of a ball in space as a function of time and the forces acting on it.
+Let's look at <i>Split Temporary Variable</i> using a small method, which calculates the movement of a ball in space as a function of time and the forces acting on it.
 
 Notably for our example, the <code>acc</code> variable is set in it twice.
 
@@ -12,7 +12,7 @@ Start by changing the name of the variable. For this purpose, it is convenient t
 
 In addition, we declare it as <code>final</code> in order to guarantee that a value is assigned to it only once.
 
-Then rename the variable in all places where it is used, including the place where the new value is assigned.
+Then we should rename the variable in all places where it is used, including the place where the new value is assigned.
 
 After all replacements, you can declare the initial variable in the place of the second assignment of a value to it.
 

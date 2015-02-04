@@ -174,9 +174,9 @@ Remove selected
 Select "daysOverdrawn" in "overdraftCharge" of "AccountType"
 
 
-#|ru| Далее прорабатываем те поля и методы <code>Account</code>, которые остаются нужны. У нас таким полем является <code>daysOverdrawn</code>.
+#|ru| Далее прорабатываем те поля и методы <code>Account</code>, которые остались в оригинальном классе, но все еще нужны внутри метода, который мы перенесли. У нас таким полем является <code>daysOverdrawn</code>.
 #|en| Now go through the fields and methods of <code>Account</code> that you need. In our case, this would be the <code>daysOverdrawn</code> field.
-#|uk| Далі опрацьовуємо ті поля та методи <code>Account</code>, які будуть потрібні і надалі. У нас таким полем є <code>daysOverdrawn</code>.
+#|uk| Далі опрацьовуємо ті поля та методи <code>Account</code>, які залишилися в оригінальному класі, але все ще потрібні в тілі методу, який ми перенесли. У нас таким полем є <code>daysOverdrawn</code>.
 
 #|ru| В теории, если необходимо сохранить некоторый метод или поле исходного класса, то можно выбрать один из четырёх вариантов действия: <ol><li>Переместить это поле или метод в целевой класс.</li><li>Создать ссылку из целевого класса в исходный или воспользоваться уже имеющейся.</li><li>Передать экземпляр исходного класса в качестве параметра метода целевого класса.</li><li>Передать значение поля в виде параметра.</li></ol>
 #|en| In theory, there are four options for saving a method or field of the original class: <ol><li>Move the field or method to the target class.</li><li>Create a reference from the target class to the original one or restore the previously existing one.</li><li>Pass an instance of the original class as a parameter of the target class method.</li><li>Pass the field value as a parameter.</li></ol>

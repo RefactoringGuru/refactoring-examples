@@ -1,14 +1,14 @@
 Let's look at this technique using an order class as an example.
 
-This class has a method for applying discounts that handles both fixed discounts and percentage-based ones.
+This class has a method for applying discounts that handle both fixed discounts and percentage-based ones.
 
-Start refactoring by extracting each version to a separate method.
+Let's start refactoring by extracting each version to a separate method.
 
 Now find all places where the original method is called, replacing them with calls to our new methods.
 
 Let's compile and test to check for errors in code.
 
-Once changes are complete, remove the original method and the now-superfluous constants.
+Once changes are complete, remove the original method and now-useless constants.
 
 Let's perform the final compilation and testing.
 

@@ -2,29 +2,29 @@ Let's look at <i>Replace Temp with Query</i> using a simple method as an example
 
 Replace the variables <code>basePrice</code> and <code>discountFactor</code> one by one with calls to the respective methods.
 
-First make sure that the variables are assigned a value within the method only once.
+First, make sure that there is just one value assignment to the variable within the method.
 
-This is already apparent here, but to be safe, we can declare these variables with the keyword <code>final</code>. In this case, the compiler will flag all places where attempts are made to re-assign values to variables.
+That is already apparent here, but to be safe, we can declare these variables with the keyword <code>final</code>. In this case, the compiler will flag all places where attempts are made to re-assign values to variables.
 
 Compile and verify that nothing has gone astray.
 
 For the second step, we create a <code>basePrice()</code> method and move the expression forming the <code>basePrice</code> variable to it.
 
-Now we can use a method call instead of the initial expression. Thus we now have a new method and all of the old code still works.
+Now we can use a method call instead of the initial expression. Thus, we now have a new method and all of the old code still works.
 
-This is the perfect time to replace the variable with a direct method call.
+Now is the perfect time to replace the variable with a direct method call.
 
 Replace the first variable and then compile to make sure that nothing is broken.
 
 Let's run the compiler and auto-tests.
 
-Perform the following replacement.
+Perform the next replacement.
 
 Let's run the compiler and auto-tests.
 
 The previous replacement was the last one, so we can remove the variable declaration.
 
-All is done with the first variable. We can repeat all this to extract <code>discountFactor</code>.
+The first variable is done. We can repeat all this to extract <code>discountFactor</code>.
 
 Create a new method…
 

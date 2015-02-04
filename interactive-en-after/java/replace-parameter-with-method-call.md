@@ -1,10 +1,10 @@
-Let's consider this refactoring technique using yet another order price example.
+Let's look at this refactoring using yet another order price example.
 
-The method for getting the discount (<code>discountedPrice</code>) is currently nearly impossible to use separately from the method for getting the price (<code>getPrice</code>), since prior to it you must get the values of all parameters.
+The method for getting the discount (<code>discountedPrice</code>) is currently nearly impossible to use separately from the method for getting the price (<code>getPrice</code>), since you must get the values of all parameters prior to it.
 
 But what if we eliminate all parameters in <code>discountedPrice</code>? Let's try.
 
-To start, extract <code>discountLevel</code> to its own method.
+To start, we extract <code>discountLevel</code> to its own method.
 
 Now we can use this method instead of this parameter in the discount calculation method.
 

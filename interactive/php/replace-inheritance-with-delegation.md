@@ -138,9 +138,9 @@ Go to the start of "Car"
 #|en| So it would have been more efficient to delegate to the <code>Engine</code> class for getting the necessary properties or methods.
 #|uk| Таким чином, було б ефективніше використовувати делегування до класу <code>Engine</code> для отримання потрібних властивостей або методів.
 
-#|ru| Начнём рефакторинг с создания поля для хранения ссылки на суперкласс.
+#|ru| Начнём рефакторинг с создания поля для хранения ссылки на объект двигателя.
 #|en| Start refactoring by creating a field for storing a reference to the superclass.
-#|uk| Почнемо рефакторинг зі створення поля для зберігання посилання на суперклас.
+#|uk| Почнемо рефакторинг зі створення поля для зберігання посилання на об'єкт двигуна.
 
 Go to "private $model;|||"
 

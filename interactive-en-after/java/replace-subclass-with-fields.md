@@ -8,7 +8,7 @@ Then replace all calls to subclass constructors with calls to the relevant facto
 
 After replacing all these calls, the code should not contain any more mentions of the subclasses.
 
-Now, in the parent class, declare fields for each method that returns constants in subclasses.
+Now, in the parent class, we should declare fields for each method that returns constants in subclasses.
 
 Add a protected constructor to the parent class.
 
@@ -18,11 +18,11 @@ Then we can compile and test.
 
 The fields are created and initialized, but are not yet used. Now we can get the fields "in the game" by placing access methods in the parent class and removing subclass methods.
 
-All subclasses are empty at this point so we remove the "abstract" label from the Person class and, by using <a href="/inline-method">Inline Method</a>, place the subclass constructor inline inside the parent class.
+All subclasses are empty at this point. That allows us to remove the "abstract" keyword from the Person class and use its constructor instead the ones from subclasses (that we could simply remove).
 
 The <code>Male</code> class should now be removed.
 
-Compile and test to make sure no other code was broken by mistake.
+Compile and test to make sure nothing has been broken by mistake.
 
 Let's perform the final compilation and testing.
 

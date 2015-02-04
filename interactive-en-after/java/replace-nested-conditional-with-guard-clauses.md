@@ -1,8 +1,8 @@
-Imagine a payroll system with special rules for employees who have passed away, live on their own, or have retired. These cases are unusual but do occur.
+Imagine a payroll system with special rules for employees who have passed away, live apart, or have retired. These cases are unusual but do occur.
 
-This code for checking special conditions…
+Once some of the special conditions are triggered...
 
-…is concealing performance of ordinary actions. So using borderline operators will make the code more obvious.
+...a corresponding method is called. Then it's is taken to the end of the method and returned as is. Such could be pretty difficult to understand, especially if there are lot of conditional branches. To fix it, we could place guard clauses, e.g. return the value right away if some condition is met.
 
 Continue performing replacements, one at a time.
 
@@ -10,9 +10,9 @@ And the last one.
 
 After these changes, you can get rid of the <code>result</code> variable entirely.
 
-Inline conditionals are often written by programmers taught that a method should contain only one exit point. But in reality, this rule is simplistic and obsolete.
+Multi-level sub-conditionals are often written by programmers taught that a method should contain only one exit point. But in modern programming, this rule have become obsolete.
 
-If a method is no longer of interest at runtime, it is best to exit it as soon as possible. Forcing the reader to go over an empty <code>else</code> block only throws up roadblocks to understanding your intentions.
+If, during execution, method did everything, it could, it's better to exit as soon as possible. Otherwise, going over an empty <code>else</code> block only throws up roadblocks to performance and readability.
 
 Let's perform the final compilation and testing.
 
