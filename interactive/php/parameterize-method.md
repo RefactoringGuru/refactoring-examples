@@ -82,7 +82,7 @@ Select "$this->salary *= 1.5"
 + Select "$this->salary *= 1.05"
 
 #|ru| В нашем случае это будет код повышения зарплаты, причём отличается он только коэффициентом повышения.
-#|en| In our case this is code for increasing salaries, which is differentiated only by the increase coefficient.
+#|en| In our case, this is the code for increasing salaries, which differs only by the increase coefficient.
 #|uk| В нашому випадку це буде код підвищення зарплати, причому відрізняється він тільки коефіцієнтом підвищення.
 
 Set step 2
@@ -90,7 +90,7 @@ Set step 2
 Go to the end of "Employee"
 
 #|ru| Итак, создадим новый метод с параметром, в который будем подавать коэффициент повышения зарплаты.
-#|en| Create a new method with the parameter to which we will send the salary increase coefficient.
+#|en| Let's start by creating a new method with the parameter. Later on, we will send the salary increase coefficient there.
 #|uk| Отже, створимо новий метод з параметром, в який будемо подавати коефіцієнт підвищення зарплати.
 
 Print:
@@ -125,13 +125,13 @@ Select name of "tenPercentRaise"
 + Select name of "fivePercentRaise"
 
 #|ru| Теперь можно избавиться от «ленивых» методов, которые только делегируют выполнение методу с параметром.
-#|en| Get rid of "lazy" methods that only delegate to the method with parameter.
+#|en| Now, let's get rid of "lazy" methods that only delegate to the method with parameter.
 #|uk| Тепер можна позбутися «ледачих» методів, які тільки делегують виконання методу з параметром.
 
 Select "$employee->|||fivePercentRaise()|||"
 
 #|ru| Сначала нужно найти все их вызовы и заменить их вызовами метода с параметром.
-#|en| First find all their calls and replace them with calls of the method with parameter.
+#|en| First, find all their calls and replace them with calls to our new method with parameter.
 #|uk| Спочатку потрібно знайти всі їхні виклики і замінити їх викликами методу з параметром.
 
 Print "raise(0.05)"
@@ -157,5 +157,5 @@ Remove selected
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

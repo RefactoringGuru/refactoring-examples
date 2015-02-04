@@ -66,7 +66,7 @@ Select "sendEmail();"
 #|uk| Як бачите, в нашому методі є умовний оператор з кодом, що повторюється у різних гілках.
 
 #|ru| Попробуем вынести этот код за пределы условного оператора. Начнём с <code>sendEmail()</code>.
-#|en| Try to move this code outside the conditional. Start with <code>sendEmail()</code>.
+#|en| Let's move this code outside the conditional. We start with <code>sendEmail()</code>.
 #|uk| Спробуємо винести цей код за межі умовного оператора. Почнемо з <code>sendEmail()</code>.
 
 Select:
@@ -76,7 +76,7 @@ Select:
 ```
 
 #|ru| Вызов этой функции лежит в конце обеих веток условного оператора. Это значит, что мы можем перенести вызов после условия.
-#|en| The call to this function is at the end of both branches of the conditional operator. This means that we can move the call after the condition.
+#|en| The call to this function is at the end of both branches of the conditional operator. That means that we can move the call after the condition.
 #|uk| Виклик цієї функції лежить в кінці обох гілок умовного оператора. Це означає, що ми можемо перенести виклик після умови.
 
 Remove selected
@@ -105,7 +105,7 @@ Select:
 ```
 
 #|ru| Теперь попытаемся вынести <code>validateEmailAddress()</code>. Эти вызовы находятся в разных местах, поэтому нужно подумать, будет ли уместно вообще их двигать. В нашем случае, валидацию можно проводить где угодно, но лучше всего – ближе к началу метода. Поэтому и перемещаем её туда.
-#|en| Now try to move <code>validateEmailAddress()</code>. These calls are in different places so it is worth thinking about whether to move them at all. In our case, validation can be performed anywhere but preferably closer to the beginning of the method. So let's move it there.
+#|en| Now let's try to move <code>validateEmailAddress()</code>. These calls are in different places, so it is worth thinking about whether to move them at all. In our case, validation can be performed anywhere but preferably closer to the beginning of the method. So let's move it there.
 #|uk| Тепер спробуємо винести <code>validateEmailAddress()</code>. Ці виклики знаходяться в різних місцях, тому потрібно подумати, чи буде доречно взагалі їх рухати. В нашому випадку, валідацію можна проводити де завгодно, але найкраще – ближче до початку методу. Тому і переміщаємо її туди.
 
 Remove selected
@@ -125,7 +125,7 @@ Print:
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -134,5 +134,5 @@ Print:
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

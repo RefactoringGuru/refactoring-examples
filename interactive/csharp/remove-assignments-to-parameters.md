@@ -69,7 +69,7 @@ Set step 1
 Select "inputVal" in parameters of "Discount"
 
 #|ru|+ Обратите внимание на параметр <code>inputVal</code>.
-#|en|+ Note the <code>inputVal</code> parameter.
+#|en|+ Take a look at the <code>inputVal</code> parameter.
 #|uk|+ Зверніть увагу на параметр <code>inputVal</code>.
 
 Select 3nd "inputVal"
@@ -77,13 +77,13 @@ Select 3nd "inputVal"
 +Select 5th "inputVal"
 
 #|ru|^= Значение этого параметра изменяется в теле метода.
-#|en|^= The value of this parameter changes in the method body.
+#|en|^= The initial value of this parameter changes inside the method body.
 #|uk|^= Значення цього параметра змінюється в тілі методу.
 
 Set step 2
 
 #|ru|^ Заменим использование параметра новой переменной, значение которой мы будем изменять, после чего вернем её как результат этого метода.
-#|en|^ Replace use of the parameter with a new variable. We will change the value of the variable and then return it as the result of our method.
+#|en|^ Let's replace usage of the parameter with a new variable. We will be changing that variable's value instead of the parameter and then return it as the result of our method.
 #|uk|^ Замінимо використання параметра нової змінної, значення якої ми змінюватимемо, після чого повернемо її як результат цього методу.
 
 Go to the start of "Discount"
@@ -98,7 +98,7 @@ Print:
 Select "int result = inputVal"
 
 #|ru| Инициализируем нашу переменную значением параметра.
-#|en| Initialize our variable with the parameter value.
+#|en| First, we initialize our variable with the parameter value.
 #|uk| Ініціалізуємо нашу змінну значенням параметру.
 
 Select 4th "inputVal"
@@ -107,7 +107,7 @@ Select 4th "inputVal"
 +Select 7th "inputVal"
 
 #|ru| В теле метода заменим все обращения к параметру на созданную нами переменную.
-#|en| In the method body, replace all references to the parameter with the variable that we have created.
+#|en| Then, we should replace all references to the parameter in method's body with the variable that we have created.
 #|uk| У тілі методу замінимо всі звернення до параметру на створену нами змінну.
 
 Print "result"
@@ -115,7 +115,7 @@ Print "result"
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -124,5 +124,5 @@ Print "result"
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

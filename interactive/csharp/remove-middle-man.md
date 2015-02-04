@@ -39,7 +39,7 @@ public class Department
     this.Manager = manager;
   }
 
-  //...
+  //…
 }
 
 // Somewhere in client code
@@ -75,7 +75,7 @@ public class Department
     this.Manager = manager;
   }
 
-  //...
+  //…
 }
 
 // Somewhere in client code
@@ -153,13 +153,13 @@ Select whole "GetManager"
 Remove selected
 
 #|ru| И напоследок: не обязательно удалять все делегирующие методы. Может оказаться удобнее сохранить некоторые из делегирований. Действуйте по ситуации.
-#|en| And finally: removing all delegate methods is not necessary. It may be more convenient to maintain some delegation, so see what is best for your particular situation.
+#|en| And finally: removing all delegate methods is not always necessary. It may be more convenient to maintain some delegation, so see what is best for your particular situation.
 #|uk| І наостанок: не обов'язково видаляти усі делегуючи методи. Може виявитися зручнішим зберегти деякі з делегувань. Дійте за обставинами.
 
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -168,5 +168,5 @@ Remove selected
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

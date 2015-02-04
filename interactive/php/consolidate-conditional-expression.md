@@ -79,7 +79,7 @@ class Payout {
 Set step 1
 
 #|ru| Давайте рассмотрим <i>Объединение условных операторов</i> на примере метода вычисления размера выходного пособия при получении сотрудником травмы.
-#|en| Let's look at <i>Consolidate Conditional Expression</i>, using as our example the method for calculating workman's compensation for an injured worker.
+#|en| Let's look at <i>Consolidate Conditional Expression</i>, using the method for calculating workman's injury compensation.
 #|uk| Давайте розглянемо <i>Об'єднання умовних операторів<i> на прикладі методу обчислення розміру вихідної допомоги при отриманні співробітником травми.
 
 Select "if" in "disabilityAmount"
@@ -90,7 +90,7 @@ Select "if" in "disabilityAmount"
 #|uk| Як бачите, у нас є ряд умов, які повертають однаковий результат.
 
 #|ru| Эти проверки можно объединить в одно выражение с помощью операции «или».
-#|en| These checks can be merged into a single expression using the <code>or</code> operator.
+#|en| We can merge these checks into a single expression using the <code>OR</code> operator.
 #|uk| Ці перевірки можна об'єднати в один вираз за допомогою операції «або».
 
 Go to:
@@ -128,7 +128,7 @@ Set step 2
 Select "($this->seniority < 2) || ($this->monthsDisabled > 12) || ($this->isPartTime)"
 
 #|ru| Это условие выглядит слишком длинным и непонятным на первый взгляд. Поэтому можно <a href="/extract-method">выделить его в новый метод</a> и сообщить о том, что именно ищет условный оператор (нетрудоспособность не оплачивается).
-#|en| This condition looks too long and hard to comprehend at first glance. So we can <a href="/extract-method">Extract Method</a> and say what the conditional is looking for (no compensation to be paid).
+#|en| This condition looks too long and hard to comprehend. So we can <a href="/extract-method">Extract Method</a> and make more clear what the conditional is looking for (no compensation to be paid).
 #|uk| Ця умова виглядає занадто довгою і незрозумілою на перший погляд. Тому можна <a href="/extract-method">виділити її в новий метод</a> і повідомити про те, що саме шукає умовний оператор (непрацездатність не оплачується).
 
 Go to after "disabilityAmount"
@@ -157,7 +157,7 @@ Replace "$this->isNotEligibleForDisability()"
 Select "if" in "vacationAmount"
 
 #|ru| Предыдущий пример демонстрировал операцию <code>или</code>, но то же самое можно делать с помощью <code>и</code>.
-#|en| The previous example demonstrated the <code>or</code> operation but the same thing can be done using <code>and</code>.
+#|en| The previous example demonstrated the <code>OR</code> operation but the same thing can be done using <code>AND</code>.
 #|uk| Попередній приклад демонстрував операцію <code>або</code>, але те ж саме можна робити за допомогою <code>і</code>.
 
 #|ru| Эти условия можно заменить следующим образом:
@@ -193,7 +193,7 @@ Select:
 Remove selected
 
 #|ru| Если рассматриваемая процедура лишь проверяет условие и возвращает значение, мы можем ещё более упростить код с помощью тернарного оператора.
-#|en| If the procedure you are reviewing only checks a condition and returns a value, we can simplify the code to a greater degree by using a ternary operator.
+#|en| If the code only checks a condition and returns a value, we can simplify it to a greater degree by using a ternary operator.
 #|uk| Якщо розглянута процедура лише перевіряє умову і повертає значення, ми можемо ще більш спростити код за допомогою тернарного оператора.
 
 Select body of "vacationAmount"
@@ -215,5 +215,5 @@ Replace:
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

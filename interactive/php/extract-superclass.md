@@ -141,7 +141,7 @@ Select name of "Employee"
 + Select name of "Department"
 
 #|ru| Рассмотрим этот рефакторинг на примере классов служащих и отдела.
-#|en| Let's look at this refactoring technique using the example of employees and their department.
+#|en| Let's look at <i>Extract Superclass</i> using the example of employees and their department.
 #|uk| Розглянемо цей рефакторинг на прикладі класів службовців та відділу.
 
 Select "private $name"
@@ -159,13 +159,13 @@ Select "private $annualCost"
 #|uk| По-друге, для обох класів є річний бюджет (annualcost), хоча методи його розрахунку трошки розрізняються.
 
 #|ru| Поэтому имеет смысл выделить эти моменты в общий родительский класс.
-#|en| Therefore it would be good to extract these aspects to a shared parent class.
+#|en| For this reason, it would be good to extract these aspects to a shared parent class.
 #|uk| Тому має сенс виділити ці моменти в загальний батьківський клас.
 
 Go to before "Employee"
 
 #|ru| Итак, на первом этапе создаём новый родительский класс, а имеющиеся классы определяем как его подклассы.
-#|en| To start, we create a new parent class and we define the existing classes as subclasses of it.
+#|en| To start, we create a new parent class, and we define the existing classes as subclasses of it.
 #|uk| Отже, на першому етапі створюємо новий батьківський клас, а наявні класи визначаємо як його підкласи.
 
 Print:
@@ -267,7 +267,7 @@ Print:
 ```
 
 #|ru| В подклассах теперь можно убрать инициализацию поля, заменив её вызовами родительского конструктора.
-#|en| In the subclasses you can go ahead and remove code initialization, placing parent constructor calls there instead.
+#|en| In the subclasses, we can go ahead and remove code initialization, placing parent constructor calls there instead.
 #|uk| В підкласах тепер можна прибрати ініціалізацію поля, замінивши її викликами батьківського конструктора.
 
 Select "$this->name = $name;" in "Employee"
@@ -276,7 +276,7 @@ Select "$this->name = $name;" in "Employee"
 Replace "parent::__construct($name)"
 
 #|ru| На этом перенос имени окончен, и можно взяться за годовой бюджет.
-#|en| The name has been moved, which leaves the annual budget for you to tackle.
+#|en| The name has been moved, which leaves us only the annual budget.
 #|uk| На цьому перенесення імені закінчено, і можна взятися за річний бюджет.
 
 Select name of "getAnnualCost"
@@ -315,15 +315,15 @@ Select body of "getAnnualCost" in "Department"
 #|uk| Одним з клієнтів цих класів є сам клас <code>Department</code>, що містить колекцію класів службовців. Метод <code>getAnnualCost</code> використовує тільки метод підрахунку річного бюджету, який тепер оголошений в <code>Party</code>.
 
 #|ru| Такое поведение открывает новую возможность. Мы можем рассматривать применение паттерна <a href="http://sourcemaking.com/design_patterns/composite">компоновщик</a> к <code>Department</code> и <code>Employee</code>.
-#|en| This behavior offers a new opportunity. We can look at using the <a href="http://sourcemaking.com/design_patterns/composite">Composite</a> pattern on <code>Department</code> and <code>Employee</code>. 
+#|en| This behavior offers a new opportunity. We can consider using the <a href="http://sourcemaking.com/design_patterns/composite">Composite</a> pattern on <code>Department</code> and <code>Employee</code>. 
 #|uk| Така поведінка відкриває нову можливість. Ми можемо розглядати застосування патерну <a href="http://sourcemaking.com/design_patterns/composite">компоновщик</a> до <code>Department</code> і <code>Employee</code>.
 
 #|ru| Это позволит включать один отдел в другой. В результате создаётся новая функциональность, так что нельзя, строго говоря, называть эти действия рефакторингом.
-#|en| This allows including one department in another. The result is new functionality, so strictly speaking this goes beyond refactoring.
+#|en| That allows including one department in another. The result is new functionality, so strictly speaking this goes beyond refactoring.
 #|uk| Це дозволить включати один відділ в інший. В результаті створюється нова функціональність, так що не можна, строго кажучи, називати ці дії рефакторингом.
 
 #|ru| Тем не менее, если бы требовалась компоновка, мы получили бы её, изменив тип поля <code>staff</code>, чтобы картина была нагляднее.
-#|en| Be that as it may, if the Composite pattern were necessary, we would get it by changing the type of the <code>staff</code> field to make for a prettier picture.
+#|en| Be that as it may, if the Composite pattern were necessary, we would get it by changing the type of the <code>staff</code> field.
 #|uk| Проте, якби була потрібна компоновка, ми отримали б її, змінивши тип поля <code>staff</code>, щоб картина була наочніше.
 
 Select "Employee" in "Department"
@@ -386,5 +386,5 @@ Print:
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

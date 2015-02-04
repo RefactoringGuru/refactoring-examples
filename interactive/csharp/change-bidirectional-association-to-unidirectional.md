@@ -127,48 +127,48 @@ public class Customer
 Set step 1
 
 #|ru| <i>Замену двунаправленной связи однонаправленной</i> мы продолжим с того места, на котором закончили в обратном рефакторинге.
-#|en| We will continue <i>Change Bidirectional Association to Unidirectional</i> from the place where we stopped in the inverse refactoring.
+#|en| We will start <i>Change Bidirectional Association to Unidirectional</i> from the place where we have stopped in the inverse refactoring.
 #|uk| <i>Заміну двонаправленного зв'язку однонаправленим<i> ми продовжимо з того ж місця, на якому закінчили в зворотньому рефакторингу.
 
 Select name of "Order"
 + Select name of "Customer"
 
 #|ru| У нас имеются классы <code>Покупатель</code> и <code>Заказ</code> с двусторонней связью.
-#|en| We have <code>Customer</code> and <code>Order</code> classes with a bidirectional association.
+#|en| In other words, we have <code>Customer</code> and <code>Order</code> classes with a bidirectional association.
 #|uk| Ми маємо класи <code>Покупець</code> та <code>Замовлення</code> з двонаправленим зв'язком.
 
 #|ru| С момента окончания прошлого рефакторинга, в наш код успели внедриться два новых метода.
-#|en| Since completion of the previous refactoring technique, two new methods have appeared in the code:
+#|en| Two new methods have been added to the code since completion of the previous refactoring.
 #|uk| З моменту закінчення минулого рефакторинга, в наш код встигли впровадитися два нових методи.
 
 Select name of "GetPriceFor"
 
 #|ru|V Метод получения цены заказа внутри класса покупателя.
-#|en|V Method for getting order price inside the customer class, and
+#|en|V First, the method for getting order price in the customer object.
 #|uk|V Метод отримання ціни замовлення всередині класу покупця.
 
 + Select name of "GetDiscountedPrice"
 
 #|ru| А также метод получения цены со скидкой в классе заказа.
-#|en| Method for getting price with discount in the order class
+#|en| Then the method for getting price with discount in the order class.
 #|uk| А також метод отримання ціни зі знижкою в класі замовлення.
 
 Select "private |||Customer||| customer;"
 
 #|ru| Итак, недавно к нам поступили новые требования, в которых говорится, что заказы должны появляться, только в том случае, если покупатель уже создан. Это позволяет нам отказаться от двусторонней связи между классами и избавиться от связи заказа к покупателю.
-#|en| Recently we received new requirements: orders must appear only if the customer has already been created. This lets us forego bidirectional association between the classes and get rid of the association between the order and customer.
+#|en| Few days ago a new requirement was received, which says that orders must only be created only for existing customers. This lets us eliminate the bidirectional association between orders and customer, and only keeping customers aware of their orders.
 #|uk| Отже, нещодавно до нас надійшли нові вимоги, в яких йдеться про те, що замовлення повинні з'являтися, тільки в тому випадку, якщо покупець вже створений. Це дозволяє нам відмовитися від двонаправленого зв'язку між класами та позбутися від зв'язку замовлення до покупця.
 
 Select "|||this.Customer|||.GetDiscount()"
 
 #|ru| Самое трудное в данном рефакторинге – проверка возможности его осуществления. Необходимо убедиться в безопасности, а выполнить сам рефакторинг довольно просто. Проблема заключается в том, зависит ли код заказа от наличия поля покупателя. В этом случае, чтобы удалить поле, надо предоставить альтернативный способ получения объекта покупателя.
-#|en| The hardest part of this refactoring technique is making sure that it is possible. Refactoring is easy, but you must make sure that it is safe to do so. The problem comes down to whether the order code depends on the presence of the customer field. If that is the case, removing the field requires that you provide an alternative method for getting the customer object.
+#|en| The hardest part of this refactoring technique is making sure that it is possible. Refactoring itself is easy, but we must make sure that it is safe. The problem comes down to whether any of order class' code needs a customer field. If that is the case, removing the field requires you to provide an alternative method for getting the customer object.
 #|uk| Найважче в даному рефакторингу – перевірка можливості його здійснення. Необхідно перш за все переконатися в безпеці, а виконати сам рефакторинг досить просто. Проблема полягає в тому, чи залежить код замовлення від наявності поля покупця. В цьому випадку, щоб видалити поле, треба надати альтернативний спосіб отримання об'єкта покупця.
 
 Set step 2
 
 #|ru|^= Первым делом изучаются все операции чтения поля и все методы, использующие эти операции. Есть ли другой способ предоставить объект покупателя? Часто это означает, что надо передавать покупателя в качестве аргумента операции.
-#|en|^= First review all read operations involving the field and all methods that use these operations. Is there another way to provide the customer object? Often this means passing the customer as an operation argument.
+#|en|^= First, we review all usages of the customer field and it's getter. Is there another way to provide the customer object or it's data? Often thу best solution means passing the customer as an argument to the methods, which use the field.
 #|uk|^= В прешу чергу вивчаються всі операції читання поля і всі методи, які використовують ці операції. Чи є інший спосіб надати об'єкт покупця? Найчастіше це означає, що необхідно передавати покупця як аргумент операції.
 
 Go to parameters of "GetDiscountedPrice"
@@ -188,7 +188,7 @@ Select:
 ```
 
 #|ru| Особенно хорошо это действует, когда поведение вызывается клиентским кодом, в котором присутствует объект покупателя, который можно передать в качестве аргумента.
-#|en| This works particularly well when behavior is called by client code containing a customer object that can be passed as an argument.
+#|en| This works particularly well for methods that called by client code already containing a customer object. In this case, you just pass it as a method's argument.
 #|uk| Особливо добре це діє, коли поведінка викликається клієнтським кодом, в якому присутній об'єкт покупця, який можна передати в якості аргументу.
 
 Go to:
@@ -239,7 +239,7 @@ Select:
 ```
 
 #|ru| Медленно, но работает. В контексте базы данных выполнение может даже несколько ускорить, если применить запрос базы данных.
-#|en| Slow… but it works. In the context of a database, things may even become a little faster if a database query is used.
+#|en| Slow… But it works. In the context of a database, things may even become a little faster if a database query is used.
 #|uk| Повільно, але працює. В контексті бази даних виконання може навіть дещо прискорити, якщо застосувати запит бази даних.
 
 Set step 3
@@ -318,7 +318,7 @@ Select:
 ```
 
 #|ru| Осталось удалить само поле, полностью избавившись от двунаправленной связи между классами.
-#|en| Now just remove the field itself, fully eliminating the bidirectional association between the classes.
+#|en| At last, we can remove the field itself, fully eliminating the bidirectional association between the classes.
 #|uk| Залишилося видалити саме поле, повністю позбавившись від двонаправленого зв'язку між класами.
 
 Remove selected
@@ -326,7 +326,7 @@ Remove selected
 #C|ru| Запускаем финальную компиляцию и тестирование.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile and test.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію і тестування.
@@ -335,5 +335,5 @@ Remove selected
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

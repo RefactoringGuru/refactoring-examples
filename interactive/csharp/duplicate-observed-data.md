@@ -223,7 +223,7 @@ Set step 1
 Select name of "class IntervalWindow"
 
 #|ru| Давайте рассмотрим <i>Дублирование видимых данных</i> на примере класса для создания окна редактирования интервала чисел.
-#|en| Let's look at <i>Duplicate Observed Data</i> by looking at a class that creates a window for editing numeric intervals.
+#|en| Let's look at <i>Duplicate Observed Data</i> using the class that creates a window for editing numeric intervals.
 #|uk| Давайте розглянемо <i>Дублювання видимих ​​даних<i> на прикладі класу для створення вікна редагування інтервалу чисел.
 
 Select name of "public IntervalWindow"
@@ -255,7 +255,7 @@ Select name of "CalculateLength"
 Go to the end of file
 
 #|ru| Нашей задачей станет выделение всех перерасчётов длины и конечного значения в отдельный класс предметной области. Начнём с создания такого класса.
-#|en| Our task is to separate all recalculations of length and end value into a separate domain class. Start by creating such a class.
+#|en| Our task is to separate all recalculations of length and end value into a separate domain class. Let's start by creating such class.
 #|uk| Нашим завданням стане відділення всіх перерахунків довжини і кінцевого значення в окремий клас предметної області. Почнемо із створення такого класу.
 
 Print:
@@ -268,7 +268,7 @@ public class Interval
 ```
 
 #|ru| После того как был создан класс предметной области, стоит поместить ссылку на него из класса окна.
-#|en| After a domain class is created, place a reference to it from the window class.
+#|en| After creation of a domain class, let's place a reference to it from the window class.
 #|uk| Після того, як був створений клас предметної області, варто помістити посилання на нього з класу вікна.
 
 Go to start of "class IntervalWindow"
@@ -426,7 +426,7 @@ Select "|||OnNext|||(subject);"
 #C|ru| Запустим компиляцию и тестирование. Да, никаких реальных изменений мы пока ещё не внесли, но ошибки можно совершить в простейших вещах, поэтому лучше всегда держать код проверенным.
 #S Всё хорошо, можно продолжать.
 
-#C|en| Compile and test. While we have not yet made any "real" changes, mistakes can be often made in the simplest things and it is best to keep all code checked at all times.
+#C|en| Compile and test. While we have not yet made any "real" changes, mistakes can be often made in the simplest things, and it is best to keep all code checked at all times.
 #S All is well, so let's continue.
 
 #C|uk| Запустимо компіляцію і тестування. Так, жодних реальних змін ми поки ще не внесли, але помилки можна зробити в найпростіших речах, тому краще завжди тримати код перевіреним.
@@ -586,7 +586,7 @@ Print:
 Select ""0"" in "Interval"
 
 #|ru| Инициализируем мы эти поля теми же значениями, что и поля в GUI.
-#|en| Initialize the field with the same value as the field in the GUI.
+#|en| We should initialize the field with the same value as the field in the GUI.
 #|uk| Ми ініціалізуємо ці поля тим же значенням, що й поле в GUI.
 
 Go to before "public Interval"
@@ -702,15 +702,15 @@ Wait 500ms
 
 Select "observer.OnNext(this);" in "OnValueChanged"
 
-#|ru| Как было сказано ранее, при изменении значений свойств в предметном классе мы оповещаем наблюдающий объект окна о том, что пора обновить значения своих полей ввода...
-#|en| As you see, when a property value of domain object is changed, we notify the window observer that it is time to update its text fields...
-#|uk| Як було сказано раніше, при зміні значень властивостей в предметному класі ми оповіщаємо що спостерігає об'єкт вікна про те, що пора оновити значення своїх полів введення...
+#|ru| Как было сказано ранее, при изменении значений свойств в предметном классе мы оповещаем наблюдающий объект окна о том, что пора обновить значения своих полей ввода…
+#|en| As you see, when a property value of domain object is changed, we notify the window observer that it is time to update its text fields…
+#|uk| Як було сказано раніше, при зміні значень властивостей в предметному класі ми оповіщаємо що спостерігає об'єкт вікна про те, що пора оновити значення своїх полів введення…
 
 + Select "void |||OnNext|||"
 
-#|ru| ...что приводит нас к вызову метода <code>OnNext()</code> в классе окна. Он сейчас пуст, поэтому давайте наполним его соответствующим кодом.
-#|en| ...which leads us to calling the <code>OnNext()</code> method in the window class. It does not have anything in it yet, so let's add the necessary code to make everything work.
-#|uk| ...що приводить нас до виклику методу <code>OnNext()</code> в класі вікна. Він зараз порожній, тому давайте наповнимо його відповідним кодом.
+#|ru| …что приводит нас к вызову метода <code>OnNext()</code> в классе окна. Он сейчас пуст, поэтому давайте наполним его соответствующим кодом.
+#|en| …which leads us to calling the <code>OnNext()</code> method in the window class. It does not have anything in it yet, so let's add the necessary code to make everything work.
+#|uk| …що приводить нас до виклику методу <code>OnNext()</code> в класі вікна. Він зараз порожній, тому давайте наповнимо його відповідним кодом.
 
 Go to the start of "OnNext"
 
@@ -835,7 +835,7 @@ Select name of "Interval"
 #C|ru| Запускаем финальную компиляцию и тестирование.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile and test.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію і тестування.
@@ -844,5 +844,5 @@ Select name of "Interval"
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

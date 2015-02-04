@@ -100,7 +100,7 @@ Set step 2
 Go to parameters of "nextWeek"
 
 #|ru| Чтобы метод был более универсальным, в него следует добавить параметр класса <code>Date</code>. По сути, мы будем расширять функциональность объекта, который подаётся в этом параметре.
-#|en| To make the method more universal, add a parameter of the <code>Date</code> class to it. We are essentially broadening the functionality of the object mentioned in this parameter.
+#|en| To make the method more universal, we will add a parameter of the <code>Date</code> class to it. Essentially, we are extending the functionality of the object passed in this parameter.
 #|uk| Щоб метод був більш універсальним, в нього слід додати параметр класу <code>Date</code>. По суті, ми будемо розширювати функціональність об'єкта, який подається в цьому параметрі.
 
 Print "DateTime $arg"
@@ -127,7 +127,7 @@ Select:
 ```
 
 #|ru| Теперь метод можно использовать в остальном коде.
-#|en| The method can now be used in the remaining code.
+#|en| The method can now be used in the other code.
 #|uk| Тепер метод можна використовувати в іншому коді.
 
 Print "    $paymentDate = $this->nextWeek($this->previousDate);"
@@ -137,7 +137,7 @@ Set step 4
 Go to before "nextWeek"
 
 #|ru| В качестве последнего штриха следует добавить комментарий к «внешнему методу» о его природе. В дальнейшем это позволит избежать путаницы с его использованием. Кроме того, если в программе будет создан новый класс для хранения дополнительных функций с датами, этот метод будет легко найти и переместить в лучшее место.
-#|en| For the finishing touch, add a comment to the "external method" about what it is. This will avoid potential confusion regarding its use. And if a new class is created in the program later for storing additional date-related functions, this method can be easily found and moved to a better place.
+#|en| For the finishing touch, let's add a comment to the "foreign method" about its purpose and our intentions. That will help to avoid potential confusion regarding its use. And if a new class is created in the program later for storing additional date-related functions, this method can be easily found and moved to a better place.
 #|uk| В якості останнього штриха слід додати коментар до «зовнішнього методу» про його природу. Надалі це дозволить уникнути плутанини з його використанням. Крім того, якщо в програмі буде створено новий клас для зберігання додаткових функцій з датами, цей метод буде легко знайти і перемістити в краще місце.
 
 Print:
@@ -160,5 +160,5 @@ Print:
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

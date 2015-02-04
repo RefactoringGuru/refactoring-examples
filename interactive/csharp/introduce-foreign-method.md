@@ -159,7 +159,7 @@ Select:
 ```
 
 #|ru| Теперь метод можно использовать в остальном коде.
-#|en| The method can now be used in the remaining code.
+#|en| The method can now be used in the other code.
 #|uk| Тепер метод можна використовувати в іншому коді.
 
 Print " = GetNearFirstDate(previousDate);"
@@ -195,9 +195,9 @@ public static class TypeExtensions
 
 Select name of "GetNearFirstDate" in "Account"
 
-#|ru| Перенесем в него наш метод...
+#|ru| Перенесем в него наш метод…
 #|en| Move our method to it…
-#|uk| Перенесемо в нього наш метод...
+#|uk| Перенесемо в нього наш метод…
 
 Go to the end of "TypeExtensions"
 
@@ -231,17 +231,17 @@ Select in "Account":
   }
 ```
 
-#|ru| ...удалим его из исходного класса...
+#|ru| …удалим его из исходного класса…
 #|en| …remove it from the original class…
-#|uk| ...видалимо його з вихідного класу...
+#|uk| …видалимо його з вихідного класу…
 
 Remove selected
 
 Select parameters of "GetNearFirstDate"
 
-#|ru| ...в качестве первого параметра метод расширения должен принимать экземпляр того класса, для которого он будет вызван.
+#|ru| …в качестве первого параметра метод расширения должен принимать экземпляр того класса, для которого он будет вызван.
 #|en| …as the first parameter, the extension method should accept the instance of the class for which it will be called.
-#|uk| ...в якості першого параметру метод розширення повинен приймати примірник того класу, для якого він буде викликаний.
+#|uk| …в якості першого параметру метод розширення повинен приймати примірник того класу, для якого він буде викликаний.
 
 Select "||||||DateTime" in parameters of "GetNearFirstDate"
 
@@ -258,7 +258,7 @@ Print "previousDate.GetNearFirstDate()"
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -267,5 +267,5 @@ Print "previousDate.GetNearFirstDate()"
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

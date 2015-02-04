@@ -144,7 +144,7 @@ class BloodGroup {
 Set step 2
 
 #|ru| В этот класс мы помещаем поле группы крови из класса <code>Person</code>, его геттер и конструктор, инициализирующий значение поля.
-#|en| We place the blood type field from the <code>Person</code> class, constructor initializing the field value, and its getter in this class.
+#|en| We place the blood type field from the <code>Person</code> class, its getter and the constructor, which initialize the field value.
 #|uk| У цей клас ми поміщаємо поле групи крові з класу <code>Person</code>, його геттер та конструктор, який ініціалізує значення поля.
 
 Go to the end of "BloodGroup"
@@ -165,7 +165,7 @@ Type:
 Set step 3
 
 #|ru| Теперь, создаём статические методы для каждого из значений закодированного типа из оригинального класса. Эти методы должны возвращать экземпляры класса <code>BloodGroup</code>.
-#|en| Now create static methods for each of the coded type values from the original class. These methods should return instances of the <code>BloodGroup</code> class.
+#|en| Now let's create static methods for each of the type code values from the original class. These methods should return instances of the <code>BloodGroup</code> class.
 #|uk| Тепер, створюємо статичні методи для кожного зі значень закодованого типу з оригінального класу. Ці методи повинні повертати екземпляри класу <code>BloodGroup</code>.
 
 Go to the end of "class BloodGroup"
@@ -256,7 +256,7 @@ Select:
 ```
 
 #|ru| Настала пора заменить любые упоминания значений закодированного типа вызовами соответствующих статических методов <i>класса типа</i>.
-#|en| It is now time to replace all mentions of coded type values with calls to the corresponding static methods of the <i>type class</i>.
+#|en| It is now time to replace all type code values with calls to the corresponding static methods of the <i>type class</i>.
 #|uk| А тепер саме час замінити будь-які згадки значень закодованого типу викликами відповідних статичних методів <i>класу типу<i>.
 
 Select "new Person(|||Person::O|||);"
@@ -290,7 +290,7 @@ return $this->bloodGroup|||->getCode()|||;
 ```
 
 #|ru| После всех замен нужно постараться вообще избавиться от использования числовых кодов <code>BloodGroup</code> и использовать вместо этого объекты. Давайте попробуем сделать это в классе <code>Person</code>.
-#|en| After all the changes are completed, it is better to avoid using any numeric codes for <code>BloodGroup</code> and use objects instead. Let's try to do so in the <code>Person</code> class.
+#|en| In the end, it is better to avoid using any numeric codes for <code>BloodGroup</code> and use objects instead. Let's try to do so in the <code>Person</code> class.
 #|uk| Після всіх замін потрібно постаратися взагалі позбутися від використання числових кодів <code>BloodGroup</code> і використовувати замість цього об'єкти. Давайте спробуємо зробити це в класі <code>Person</code>.
 
 Select parameters in "__construct"
@@ -358,5 +358,5 @@ Remove selected
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

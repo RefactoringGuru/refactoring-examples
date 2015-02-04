@@ -82,14 +82,14 @@ Employee eng = Employee.create(Employee.ENGINEER);
 Set step 1
 
 #|ru| Допустим, у нас есть класс для создания сотрудников,…
-#|en| Say that we have a class for creating employees…
-#|uk| Припустимо, у нас є клас для створення співробітників,...
+#|en| Say, we have a class for creating employees…
+#|uk| Припустимо, у нас є клас для створення співробітників,…
 
 Select parameters in "public Employee"
 
-#|ru|< ...в котором тип сотрудника задаётся параметром конструктора.
-#|en|< …in which the employee type is set via a constructor parameter.
-#|uk|< ...в якому тип співробітника задається параметром конструктора.
+#|ru|< …в котором тип сотрудника задаётся параметром конструктора.
+#|en|< …in which the employee type is set via constructor's parameter.
+#|uk|< …в якому тип співробітника задається параметром конструктора.
 
 Select "new Employee"
 
@@ -98,7 +98,7 @@ Select "new Employee"
 #|uk| Клієнтський код викликає цей конструктор безпосередньо.
 
 #|ru| Предположим, мы захотели создать подклассы для каждого типа сотрудников.
-#|en| So what if we wanted to create subclasses for each type of employee –
+#|en| So what if we wanted to create subclasses for each type of employee?
 #|uk| Припустимо, ми захотіли створити підкласи для кожного типу співробітників.
 
 Go to after "Employee"
@@ -120,11 +120,11 @@ class Manager extends Employee {
 Select "new Employee"
 
 #|ru| Что случилось бы с этим кодом? Его пришлось бы переписать, т.к. мы не можем возвращать ничего другого из конструктора <code>Employee</code>, кроме объектов <code>Employee</code> (а нам нужен <code>Engineer</code>).
-#|en| what would happen with the code then? We would have to rewrite it, since we cannot return anything from the <code>Employee</code> constructor other than <code>Employee</code> objects (and we need <code>Engineer</code>).
+#|en| We would have to rewrite it, since we cannot return anything from the <code>Employee</code> constructor other than <code>Employee</code> objects (and we need <code>Engineer</code>).
 #|uk| Що сталося б з цим кодом? Його довелося б переписати, так як ми не можемо повертати нічого іншого з конструктора <code>Employee</code>, крім об'єктів <code>Employee</code> (а нам потрібен <code>Engineer</code>).
 
 #|ru| Но если потом что-то снова поменяется, нам придется создавать ещё больше подклассов, и, вполне возможно, что вызовы конструкторов снова придётся править.
-#|en| But if something changes again later, we will have to create even more subclasses and may well have to adjust the constructor calls… again.
+#|en| And if something changes again later, we will have to create even more subclasses and may well have to adjust the constructor calls… again.
 #|uk| Але якщо потім щось знову поміняється, нам доведеться створювати ще більше підкласів, і, цілком можливо, що виклики конструкторів знову доведеться правити.
 
 #|ru| Альтернативой этому является создание <b>фабричного метода</b> – специального статического метода, который бы возвращал объекты разных классов в зависимости от параметров.
@@ -134,7 +134,7 @@ Select "new Employee"
 Go to before "public Employee"
 
 #|ru| Класс <code>Employee</code> является лучшим местом для хранения фабричного метода, так как он, скорее всего, переживёт любые изменения подклассов.
-#|en| The <code>Employee</code> class is the best place to store the factory method, since it will probably survive any changes in the subclasses.
+#|en| The <code>Employee</code> class is the best place to store the factory method because it will probably survive any changes in the subclasses.
 #|uk| Клас <code>Employee</code> є кращим місцем для зберігання фабричного методу, так як він, швидше за все, переживе будь-які зміни підкласів.
 
 Print:
@@ -194,7 +194,7 @@ Print:
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -203,5 +203,5 @@ Print:
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

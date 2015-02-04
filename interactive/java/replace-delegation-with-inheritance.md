@@ -92,11 +92,11 @@ Set step 1
 #|uk| У нас є клас службовця <code>Employee</code>, який делегує деяку роботу класу особистості <code>Person</code>.
 
 #|ru| Здесь наследование было бы уместнее, так как классу служащих необходимы практически все данные из <code>Person</code>.
-#|en| Inheritance would be more appropriate here, since the employee class needs practically all data from <code>Person</code>.
+#|en| Inheritance would be more appropriate here since the employee class needs practically all data from <code>Person</code>.
 #|uk| Тут успадкування було б доречніше, так як класу службовців необхідні практично всі дані з <code>Person</code>.
 
 #|ru| Начинаем рефакторинг с объявления наследования в классе <code>Employee</code>
-#|en| Start refactoring by declaring inheritance in the <code>Employee</code> class.
+#|en| Let's start refactoring by declaring the <code>Employee</code> as a subclass of <code>Person</code>.
 #|uk| Починаємо рефакторинг з оголошення успадкування в класі <code>Employee</code>
 
 Go to "class Employee|||"
@@ -106,7 +106,7 @@ Print " extends Person"
 #C|ru| Здесь стоит запустить компиляцию, чтобы убедиться в отсутствии конфликтующих методов. Они возникают, если методы с одинаковым именем возвращают значения различных типов или генерируют разные исключительные ситуации. Все проблемы такого рода исправляются с помощью <a href="/rename-method">Переименования метода</a>.
 #S В данном простом примере таких затруднений не возникает.
 
-#C|en| Here we should compile and run autotests to make sure there are no conflicting methods. These issues can arise if identically named methods return values of different types or generate different exceptions. For all such issues, use  <a href="/rename-method">Rename Method</a>.
+#C|en| Right after that we should compile and run autotests to make sure there are no conflicting methods. These issues can arise if identically named methods return values of different types or generate different exceptions. For all such issues, use  <a href="/rename-method">Rename Method</a>.
 #S No such difficulties are present in our simple example.
 
 #C|uk| Тут варто запустити компіляцію, щоб переконатися у відсутності конфліктуючих методів. Вони виникають, якщо методи з однаковим ім'ям повертають значення різних типів або генерують різні виняткові ситуації. Всі проблеми такого роду виправляються за допомогою <a href="/rename-method">Перейменування методу</a>.
@@ -117,7 +117,7 @@ Set step 2
 Select "new Person()"
 
 #|ru| Следующим шагом заставляем поле делегирования ссылаться на сам объект.
-#|en| Next force the delegation field to refer to the object itself.
+#|en| Next, force the field, which contained reference to a <code>Person</code> object, to reference its own object. We will get rid of it later, but for now it will keep the code working.
 #|uk| Наступним кроком змушуємо поле делегування посилатися на сам об'єкт.
 
 Print "this"
@@ -138,7 +138,7 @@ Set step 4
 Select "person."
 
 #|ru| Далее следует избавиться от обращений к связанному полю, заменив их вызовами из собственного класса.
-#|en| Then get rid of references to the associated field, using own-class calls instead.
+#|en| Then we get rid of delegation calls by calling our object's methods.
 #|uk| Далі слід позбутися звернень до пов'язаного поля, замінивши їх викликами з власного класу.
 
 Remove selected
@@ -156,7 +156,7 @@ Select:
 ```
 
 #|ru| После всех замен поле связанного объекта, а также код его инициализации становятся бесполезными и их можно убрать.
-#|en| After all replacements, you can remove the field of the associated object and related initialization code, which are no longer necessary.
+#|en| After all replacements, we can finally remove the field of the associated object and it's initialization code, which are no longer necessary.
 #|uk| Після всіх замін поле пов'язаного об'єкта, а також код його ініціалізації стають даремними і їх можна прибрати.
 
 Remove selected
@@ -164,7 +164,7 @@ Remove selected
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -173,5 +173,5 @@ Remove selected
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

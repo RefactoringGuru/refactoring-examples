@@ -92,7 +92,7 @@ Select in "printOwing":
 ```
 
 #|ru| Для начала – простейший случай. Код, выводящий баннер, легко выделить при помощи копирования и вставки.
-#|en| Begin with a very, very simple case. The code for displaying a banner can be easily extracted via copy and paste.
+#|en| We begin with a very, very simple case. The code for displaying a banner can be easily extracted via copy and paste.
 #|uk| Спершу – найпростіший випадок. Код, що виводить банер, легко виділити за допомогою копіювання і вставки.
 
 Wait 500ms
@@ -121,7 +121,7 @@ Select in "printOwing":
 ```
 
 #|ru| Заменяем код в исходном методе вызовом нового метода.
-#|en| Replace the code in the original method with a call to the new method.
+#|en| After that, we replace the code in the original method with a call to the new method.
 #|uk| Замінюємо код у вихідному методі викликом нового методу.
 
 Remove selected
@@ -151,7 +151,7 @@ Select:
 ```
 
 #|ru| Дальше — сложнее. Основная проблема с извлечением сложных методов кроется в локальных переменных.
-#|en| Now things get trickier. The problem with extracting complex methods is hidden in local variables.
+#|en| Now things get trickier. The problem with extracting complex methods is buried in local variables.
 #|uk| Далі — складніше. Основна проблема з відокремленням складних методів криється в локальних змінних.
 
 Select in "printOwing":
@@ -163,7 +163,7 @@ Select in "printOwing":
 ```
 
 #|ru| Давайте попытаемся извлечь метод вывода деталей.
-#|en| Let's extract the method for displaying the details.
+#|en| Let's try to extract the method for displaying the details.
 #|uk| Давайте спробуємо відокремити метод виводу деталей.
 
 Wait 500ms
@@ -203,11 +203,11 @@ Print "  $this->printDetails();"
 Select "$outstanding" in "printDetails"
 
 #|ru| Да, действительно, мы перенесли переменную <code>outstanding</code> из исходного метода, но в новом методе ей не присваивается никакого значения.
-#|en| Yes, we really did move the <code>outstanding</code> variable out of the original method but no value is assigned to it in the new method.
+#|en| Ah… Yes, we really did move the <code>outstanding</code> variable out of the original method but no value is assigned to it in the new method.
 #|uk| Так, дійсно, ми перенесли змінну <code>outstanding</code> з вихідного методу, але в новому методі їй не присвоюється ніякого значення.
 
 #|ru| Лучшее решение — сделать эту переменную параметром метода, и передавать её значение из исходного метода.
-#|en| The better solution is to make the variable a method parameter and pass its value from the original method.
+#|en| The better solution is to convert that variable to a method parameter and pass its value from the original method.
 #|uk| Кращим рішенням буде зробити цю змінну параметром методу, і передавати її значення з вихідного методу.
 
 Go to parameters of "printDetails"
@@ -244,7 +244,7 @@ Select in "printOwing":
 ```
 
 #|ru| Теперь давайте попробуем извлечь код расчёта задолженности.
-#|en| Now on to extraction of the code for calculating amounts outstanding.
+#|en| Now on to the extraction of the code for calculating amounts outstanding.
 #|uk| Тепер давайте спробуємо відокремити код розрахунку заборгованості.
 
 
@@ -298,11 +298,11 @@ Select in "getOutstanding":
 ```
 
 #|ru| Здесь дополнительные сложности создаются локальными переменными, которым присваиваются новые значения. Вполне возможно, что эти значения могли использоваться в оставшемся коде основного метода.
-#|en| Additional difficulties here are caused by local variables to which new values are assigned. It is quite possible that these values are used in the remaining code of the main method.
+#|en| In this case, additional difficulties are caused by local variables to which new values are assigned. It is quite possible that these values are used in the remaining code of the main method.
 #|uk| Тут додаткові складності створюються локальними змінними, яким присвоюються нові значення. Цілком можливо, що ці значення могли використовуватися в залишившемуся коді основного методу.
 
 #|ru| Если значение присваивается параметру, от этого можно избавиться, применив «удаление присваивания параметрам».
-#|en| If a value is assigned to the parameter, you can get rid of this by using Remove Assignments to Parameters.
+#|en| If a value is assigned to the parameter, you can get rid of this by using <i>Remove Assignments to Parameters</i> refactoring.
 #|uk| Якщо значення присвоюється параметру, від цього можна позбутися, застосувавши «видалення присвоювання параметрами».
 
 Select in "getOutstanding":
@@ -311,7 +311,7 @@ Select in "getOutstanding":
 ```
 
 #|ru|<+ Следует проверить каждую из переменных.
-#|en|<+ Check each variable.
+#|en|<+ Let's check each variable.
 #|uk|<+ Слід перевірити кожну з змінних.
 
 + Select in "printOwing":
@@ -319,9 +319,9 @@ Select in "getOutstanding":
   $this->printDetails(|||$outstanding|||);
 ```
 
-#|ru|<= В нашем случае проблему создаёт переменная <code>outstanding</code>, которая потом используется в вызове <code>PrintDetails()</code>.
-#|en|<= Here, the problem is caused by the <code>outstanding</code> variable, which is then used in the <code>PrintDetails()</code> call.
-#|uk|<= В нашому випадку, проблему створює змінна <code>outstanding</code>, яка потім використовується у виклику <code>PrintDetails()</code>.
+#|ru|<= В нашем случае проблему создаёт переменная <code>outstanding</code>, которая потом используется в вызове <code>printDetails()</code>.
+#|en|<= Here, the problem is caused by the <code>outstanding</code> variable, which is then used in the <code>printDetails()</code> call.
+#|uk|<= В нашому випадку, проблему створює змінна <code>outstanding</code>, яка потім використовується у виклику <code>printDetails()</code>.
 
 #|ru|< Передадим её обратно в исходный метод.
 #|en|< Pass it back to the original method.
@@ -351,5 +351,5 @@ Print "$outstanding = "
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

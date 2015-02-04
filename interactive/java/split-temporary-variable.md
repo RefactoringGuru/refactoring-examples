@@ -59,7 +59,7 @@ public double getDistanceTravelled(int time) {
 Set step 1
 
 #|ru| Давайте рассмотрим <i>Расщепление переменной</i> на примере небольшого метода расчёта расстояния перемещения мяча в пространстве в зависимости от времени и сил, действующих на него.
-#|en| Let's look at <i>Split Temporary Variable</i>, by way of the example of a small method for calculating the movement of a ball in space as a function of time and the forces acting on it.
+#|en| Let's look at <i>Split Temporary Variable</i> using a small method, which calculates the movement of a ball in space as a function of time and the forces acting on it.
 #|uk| Давайте розглянемо <i>Розщеплення змінної<i> на прикладі невеличкого методу розрахунку відстані переміщення м'яча в просторі залежно від часу і сил, що діють на нього.
 
 Select "|||acc||| ="
@@ -68,13 +68,13 @@ Select "|||acc||| ="
 #|en|^ Notably for our example, the <code>acc</code> variable is set in it twice.
 #|uk|^ Для нашого прикладу становить цікавість те, що змінна <code>acc</code> встановлюється в ньому двічі.
 
-#|ru|+ Она выполняет две задачи: содержит первоначальное ускорение, вызванное первой силой...
+#|ru|+ Она выполняет две задачи: содержит первоначальное ускорение, вызванное первой силой…
 #|en|+ It performs two tasks: it contains the initial acceleration caused by the first force…
-#|uk|+ Вона виконує два завдання: містить початкове прискорення, викликане першою силою...
+#|uk|+ Вона виконує два завдання: містить початкове прискорення, викликане першою силою…
 
-#|ru|^= ...и позднее ускорение, вызванное обеими силами.
+#|ru|^= …и позднее ускорение, вызванное обеими силами.
 #|en|^= …and later acceleration caused by both forces.
-#|uk|^= ...і пізніше прискорення, викликане обома силами.
+#|uk|^= …і пізніше прискорення, викликане обома силами.
 
 #|ru|^ Следовательно, эту переменную лучше расщепить, чтобы каждая её часть отвечала только за одну задачу.
 #|en|^ So it is better to split up this variable, with each part responsible for only one task.
@@ -102,7 +102,7 @@ Select "result = 0.5 * |||acc|||"
 + Select "|||acc||| * delay"
 
 #|ru| После этого нужно переименовать переменную во всех местах, где она использовалась, вплоть до того места, где ей присваивается новое значение.
-#|en| Then rename the variable in all places where it is used, including the place where the new value is assigned.
+#|en| Then we should rename the variable in all places where it is used, including the place where the new value is assigned.
 #|uk| Після цього потрібно перейменувати змінну у всіх місцях, де вона використовувалася, аж до того місця, де їй присвоюється нове значення.
 
 Print "primaryAcceleration"
@@ -149,7 +149,7 @@ Replace "secondaryAcceleration"
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -158,5 +158,5 @@ Replace "secondaryAcceleration"
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

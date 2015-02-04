@@ -37,7 +37,7 @@ class Department {
     return manager;
   }
 
-  //...
+  //…
 }
 
 // Somewhere in client code
@@ -69,7 +69,7 @@ class Department {
     return manager;
   }
 
-  //...
+  //…
 }
 
 // Somewhere in client code
@@ -99,7 +99,7 @@ Select body of "getManager"
 Go to before "setDepartment"
 
 #|ru| Для начала создадим метод для доступа к делегату.
-#|en| To start, create a method for delegate access.
+#|en| To start, let's create a method for delegate access.
 #|uk| Для початку створимо метод для доступу до делегату.
 
 Print:
@@ -112,7 +112,7 @@ Print:
 Set step 2
 
 #|ru| После этого нужно по очереди пересмотреть каждый делегирующий метод <code>Person</code> и найти использующий его код. Этот код следует изменить так, чтобы он сначала получал класс-делегат (<code>Department</code>), после чего через него уже напрямую вызывал нужный метод.
-#|en| Then review each delegate method of <code>Person</code> and find the code that uses it. Modify the code so that it first gets the delegate class (<code>Department</code>), and then directly calls the necessary method through the delegate method.
+#|en| Then, review each delegate method of <code>Person</code> and find the code that uses it. Modify the code so that it first gets the delegate class (<code>Department</code>), and then directly calls the necessary method through the delegate method.
 #|uk| Після цього потрібно по черзі переглянути кожен делегуючий метод <code>Person</code> і знайти код,що його використовує. Цей код слід змінити так, щоб він спочатку отримував клас-делегат (<code>Department</code>), після чого через нього вже безпосередньо викликав потрібний метод.
 
 Select name "getManager"
@@ -128,27 +128,27 @@ Select "john.|||getManager()|||"
 #|uk| Спочатку знаходимо місця, де він використовується.
 
 #|ru| Затем изменяем этот код таким образом, чтобы он вызывал методы делегата напрямую.
-#|en| We proceed to change the code so that it calls delegate methods directly.
+#|en| Then change the code so that it calls delegate methods directly.
 #|uk| Потім змінюємо цей код таким чином, щоб він викликав методи делегата безпосередньо.
 
 Print "getDepartment().getManager()"
 
 Select whole "getmanager"
 
-#|ru| После всех замен делегирующий метод <code>GetManager()</code> можно удалить из класса <code>Person</code>.
-#|en| After all replacements are done, the <code>GetManager()</code> delegate method can be removed from the <code>Person</code> class.
-#|uk| Після всіх замін делегуючий метод <code>GetManager()</code> можна видалити з класу <code>Person</code>.
+#|ru| После всех замен делегирующий метод <code>getManager()</code> можно удалить из класса <code>Person</code>.
+#|en| After all replacements are done, the <code>getManager()</code> delegate method can be removed from the <code>Person</code> class.
+#|uk| Після всіх замін делегуючий метод <code>getManager()</code> можна видалити з класу <code>Person</code>.
 
 Remove selected
 
 #|ru| И напоследок: не обязательно удалять все делегирующие методы. Может оказаться удобнее сохранить некоторые из делегирований. Действуйте по ситуации.
-#|en| And finally: removing all delegate methods is not necessary. It may be more convenient to maintain some delegation, so see what is best for your particular situation.
+#|en| And finally: removing all delegate methods is not always necessary. It may be more convenient to maintain some delegation, so see what is best for your particular situation.
 #|uk| І наостанок: не обов'язково видаляти усі делегуючи методи. Може виявитися зручнішим зберегти деякі з делегувань. Дійте за обставинами.
 
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -157,5 +157,5 @@ Remove selected
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

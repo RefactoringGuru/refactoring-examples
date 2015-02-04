@@ -63,32 +63,32 @@ Set step 1
 
 Select "|||$found||| = false"
 
-#|ru| В этой функции переменная <code>found</code> является управляющим флагом. Она инициализируется одним значением...
+#|ru| В этой функции переменная <code>found</code> является управляющим флагом. Она инициализируется одним значением…
 #|en| In this function, the variable <code>found</code> is a control flag. It is initialized by one value…
-#|uk| У цій функції змінна <code>found</code> є керуючим прапором. Вона ініціалузується одним значенням...
+#|uk| У цій функції змінна <code>found</code> є керуючим прапором. Вона ініціалузується одним значенням…
 
 Select "|||$found||| = true"
 
-#|ru| ...которое меняется по ходу выполнения функции...
+#|ru| …которое меняется по ходу выполнения функции…
 #|en| …which changes as the function is run…
-#|uk| ...яке змінюється по ходу виконання функції...
+#|uk| …яке змінюється по ходу виконання функції…
 
 Select "(!$found)"
 
-#|ru| ...после чего, код больше ничего не делает до конца выполнения цикла.
-#|en| …after which the code does not do anything more until the cycle is complete.
-#|uk| ...після чого, код більше нічого не робить до кінця виконання циклу.
+#|ru| …после чего, код больше ничего не делает до конца выполнения цикла.
+#|en| …after which the code does not do anything more until the loop is finished.
+#|uk| …після чого, код більше нічого не робить до кінця виконання циклу.
 
 Select "$found = true"
 
 #|ru| Данный рефакторинг начинается с того, что мы ищем присваивания управляющей переменной, которые влияют на ход выполнения программы. В данном случае это присваивания значения <code>true</code>.
-#|en| This refactoring technique starts with us looking for assignments by the control variable that affect the execution flow of the program. In this case, this is assignments of the <code>true</code> value.
+#|en| This refactoring starts with us looking for any assignments to the control variable that affect the execution flow of the program. In our case, this is assignments of the <code>true</code> value.
 #|uk| Даний рефакторинг починається з того, що ми шукаємо присвоювання керуючої змінної, які впливають на хід виконання програми. В даному випадку це надання значення <code>true</code>.
 
 Set step 2
 
 #|ru| По логике нашего метода после этих присваиваний код внутри цикла уже ничего не должен делать, поэтому мы можем просто заменить их оператором <code>break</code>, сэкономив несколько холостых итераций цикла.
-#|en| Under the logic of this method, the code should not do anything more within the cycle after these assignments. Therefore we can simply replace them with a <code>break</code> operator, saving several moot iterations in the process.
+#|en| According to the logic of this method, we can simply replace assignments to control flags with <code>break</code> operator.
 #|uk| За логікою нашого методу після цих присвоювань код всередині циклу вже нічого не повинен робити, тому ми можемо просто замінити їх оператором <code>break</code>, заощадивши кілька холостих ітерацій циклу.
 
 Print "break"
@@ -96,7 +96,7 @@ Print "break"
 Set step 3
 
 #|ru| После этого можно убрать все упоминания управляющего флага.
-#|en| Then we can remove all mentions of the control flag.
+#|en| Then we can remove all other mentions of the control flag.
 #|uk| Після цього можна прибрати всі згадки керуючого прапора.
 
 
@@ -142,5 +142,5 @@ Remove selected
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

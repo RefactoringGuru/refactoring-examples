@@ -107,19 +107,19 @@ $martin->setAreaCode("781");
 Set step 1
 
 #|ru| Давайте рассмотрим <i>Встраивание класса</i> на примере класса личности и телефонного номера, который в нём используется.
-#|en| Let's look at <i>Inline Class</i> using the example of a person class and the phone number used in it.
+#|en| Let's look at <i>Inline Class</i> using the person class and its phone number as an example.
 #|uk| Давайте розглянемо <i>Вбудовування класу<i> на прикладі класу особистості і телефонного номера, який в ньому використовується.
 
 Select name of "TelephoneNumber"
 
 #|ru| Мы хотим включить класс <code>TelephoneNumber</code> обратно в класс <code>Person</code>, так как он потерял свою актуальность для наших задач.
-#|en| We want to include the <code>TelephoneNumber</code> class back in the <code>Person</code> class, since it is no longer necessary for us.
+#|en| We want to include the <code>TelephoneNumber</code> class back in the <code>Person</code> class, since it become unnecessary complex for our needs.
 #|uk| Ми хочемо включити клас <code>TelephoneNumber</code> назад в клас <code>Person</code>, так як він втратив свою актуальність для наших задач.
 
 Go to the end of "Person"
 
 #|ru| Начнём с объявления в классе <code>Person</code> всех видимых методов класса телефонного номера.
-#|en| Start by declaring all visible methods of the phone number class in the <code>Person</code> class.
+#|en| We start by declaring all visible methods of the phone number class in the <code>Person</code> class.
 #|uk| Почнемо з оголошення в класі <code>Person</code> всіх видимих ​​методів класу телефонного номера.
 
 Print:
@@ -153,7 +153,7 @@ Set step 2
 Select "$martin->getOfficeTelephone()->setAreaCode("781")"
 
 #|ru| Теперь найдём все случаи использования класса телефонного номера в клиентском коде и заменим его использованием класса <code>Person</code>
-#|en| Now find all cases where the phone number class is used in client code and replace it with use of the <code>Person</code> class.
+#|en| Now find all cases where the phone number class is used in client code and replace it with calls to the delegate methods in <code>Person</code>.
 #|uk| Тепер знайдемо всі випадки використання класу телефонного номера в клієнтському коді та замінимо його використанням класу <code>Person</code>
 
 Print "$martin->setAreaCode("781")"
@@ -189,9 +189,9 @@ Print:
 
 Select body of "getAreaCode" in "TelephoneNumber"
 
-#|ru| Потом переносим каждый метод...
+#|ru| Потом переносим каждый метод…
 #|en| Then move each method…
-#|uk| Потім переносимо кожен метод...
+#|uk| Потім переносимо кожен метод…
 
 Wait 500ms
 
@@ -209,9 +209,9 @@ Remove selected
 
 Select body of "setAreaCode" in "TelephoneNumber"
 
-#|ru| ...один за другим...
+#|ru| …один за другим…
 #|en| …one by one…
-#|uk| ...один за іншим...
+#|uk| …один за іншим…
 
 Wait 500ms
 
@@ -229,9 +229,9 @@ Remove selected
 
 Select body of "getNumber" in "TelephoneNumber"
 
-#|ru| ...переносим все методы...
+#|ru| …переносим все методы…
 #|en| …move all the methods…
-#|uk| ...переносимо всі методи...
+#|uk| …переносимо всі методи…
 
 Wait 500ms
 
@@ -248,9 +248,9 @@ Remove selected
 
 Select body of "setNumber" in "TelephoneNumber"
 
-#|ru| ...все до последнего...
+#|ru| …все до последнего…
 #|en| …each and every one…
-#|uk| ...все до останнього...
+#|uk| …все до останнього…
 
 
 Wait 500ms
@@ -268,9 +268,9 @@ Remove selected
 
 Select body of "getTelephoneNumber" in "TelephoneNumber"
 
-#|ru| ... и, наконец, последний геттер самого номера.
+#|ru| … и, наконец, последний геттер самого номера.
 #|en| …and finally the last getter of the phone number itself.
-#|uk| ...і, нарешті, останній геттер самого номера.
+#|uk| …і, нарешті, останній геттер самого номера.
 
 Wait 500ms
 
@@ -339,5 +339,5 @@ Remove selected
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

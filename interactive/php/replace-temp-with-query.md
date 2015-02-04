@@ -74,7 +74,7 @@ Select "|||$basePrice||| = "
 Select "$basePrice = "
 
 #|ru| Для начала нужно убедиться, что переменным в пределах метода значение присваивается только один раз.
-#|en| First make sure that the variables are assigned a value within the method only once.
+#|en| First, make sure that there is just one value assignment to the variable within the method.
 #|uk| Для початку потрібно переконатися, що змінним в межах методу значення присвоюється тільки одноразово.
 
 #|ru| В данном случае всё так и есть, можем продолжать.
@@ -102,7 +102,7 @@ Print:
 Select "$this->quantity * $this->itemPrice" in "getPrice"
 
 #|ru| Теперь вызов метода можно использовать вместо первоначального выражения. Таким образом, у нас теперь есть новый метод, а весь старый код все ещё в рабочем состоянии.
-#|en| Now we can use a method call instead of the initial expression. Thus we now have a new method and all of the old code still works.
+#|en| Now we can use a method call instead of the initial expression. Thus, we now have a new method and all of the old code still works.
 #|uk| Тепер виклик методу можна використовувати замість початкового виразу. Таким чином, у нас тепер є новий метод, а весь старий код все ще в робочому стані.
 
 Print "$this->basePrice()"
@@ -112,7 +112,7 @@ Set step 3
 Select "(|||$basePrice||| >"
 
 #|ru| Самое время начать заменять переменную непосредственным вызовом метода.
-#|en| This is the perfect time to replace the variable with a direct method call.
+#|en| Now is the perfect time to replace the variable with a direct method call.
 #|uk| Саме час почати замінювати змінну безпосереднім викликом методу.
 
 #|ru| Заменим первую переменную, а затем запустим авто-тесты, чтобы убедиться, что ничего не сломалось.
@@ -133,7 +133,7 @@ Print "$this->basePrice()"
 Select "return |||$basePrice|||"
 
 #|ru| Выполним следующую замену.
-#|en| Perform the following replacement.
+#|en| Perform the next replacement.
 #|uk| Виконаємо наступну заміну.
 
 Print "$this->basePrice()"
@@ -162,14 +162,14 @@ Remove selected
 Select "$discountFactor"
 
 #|ru| С первой переменной покончено, и мы можем повторить все действия для выделения <code>discountFactor</code>.
-#|en| All is done with the first variable. We can repeat all this to extract <code>discountFactor</code>.
+#|en| The first variable is done. We can repeat all this to extract <code>discountFactor</code>.
 #|uk| З першою змінною закінчили, і тепер ми можемо повторити всі дії для виділення <code>discountFactor</code>.
 
 Go to the end of "Product"
 
 #|ru| Создаём новый метод…
 #|en| Create a new method…
-#|uk| Створюємо новий метод...
+#|uk| Створюємо новий метод…
 
 Print:
 ```
@@ -194,9 +194,9 @@ Select in "getPrice":
     }
 ```
 
-#|ru| ...используем его для инициализации переменной и удаляем лишний теперь код...
-#|en| ...use it to initialize the variable and remove old code...
-#|uk| ...використовуємо його для ініціалізації змінної і видаляємо зайвий тепер код...
+#|ru| …используем его для инициализации переменной и удаляем лишний теперь код…
+#|en| …use it to initialize the variable and remove old code…
+#|uk| …використовуємо його для ініціалізації змінної і видаляємо зайвий тепер код…
 
 Print "    $discountFactor = $this->discountFactor();"
 
@@ -232,5 +232,5 @@ Replace "$this->discountFactor()"
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

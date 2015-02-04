@@ -54,7 +54,7 @@ Select "$this->quantity * $this->itemPrice"
 
 #|ru| Сперва определим базовую цену <code>basePrice</code> как количество товаров в заказе, умноженное на стоимость одной единицы…
 #|en| First define the <code>basePrice</code> as the number of products in the order, multiplied by the unit cost…
-#|uk| Спершу визначимо базову ціну <code>basePrice</code> як кількість товарів в замовленні, помножене на вартість однієї одиниці...
+#|uk| Спершу визначимо базову ціну <code>basePrice</code> як кількість товарів в замовленні, помножене на вартість однієї одиниці…
 
 Set step 2
 
@@ -69,9 +69,9 @@ Print:
 Select 2nd "$this->quantity * $this->itemPrice"
 + Select 3rd "$this->quantity * $this->itemPrice"
 
-#|ru| ...и применим новую переменную в формуле. Данное выражение повторяется несколько раз, поэтому заменим все одинаковые вычисления переменной.
+#|ru| …и применим новую переменную в формуле. Данное выражение повторяется несколько раз, поэтому заменим все одинаковые вычисления переменной.
 #|en| …and use the new variable in the formula. The expression is repeated several times so we will replace all identical calculations with the variable.
-#|uk| ...і застосуємо нову змінну у формулі. Даний вираз повторюється кілька разів, тому замінимо всі однакові обчислення змінної.
+#|uk| …і застосуємо нову змінну у формулі. Даний вираз повторюється кілька разів, тому замінимо всі однакові обчислення змінної.
 
 Print "$basePrice"
 
@@ -177,5 +177,5 @@ Remove selected
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

@@ -40,7 +40,7 @@ class Account {
       $importantValue2 -= 20;
     }
     $importantValue3 = $importantValue2 * 7;
-    // and so on...
+    // and so on…
     return $importantValue3 - 2 * $importantValue1;
   }
   // ...
@@ -78,7 +78,7 @@ class Gamma {
     $this->importantValue2 = ($this->inputVal * $this->yearToDate) + 100;
     $this->importantThing();
     $this->importantValue3 = $this->importantValue2 * 7;
-    // and so on...
+    // and so on…
     return $this->importantValue3 - 2 * $this->importantValue1;
   }
   private function importantThing() {
@@ -94,23 +94,23 @@ class Gamma {
 Set step 1
 
 #|ru| Для хорошего примера потребовалась бы целая глава, поэтому продемонстрируем этот рефакторинг на методе, которому он не нужен (не задавайте вопросов о логике этого метода – она была придумана по ходу дела).
-#|en| A thorough example would require an entire chapter, so we will demonstrate this technique on a method that does not require it (better not to question the logic of the method – it was devised without any grand plan in mind).
+#|en| A thorough example would require an entire chapter, so we will demonstrate this refactoring on a method that does not require it (for this reason, it's better not to question the logic of the method – it was devised without any grand plan in mind).
 #|uk| Для доброго прикладу потрібна була б ціла глава, тому продемонструємо цей рефакторинг на методі, якому він не потрібен (не ставте запитань про логіку цього методу – вона була придумана з розвитку справи.).
 
 Select name of "gamma"
 
 #|ru| Мы видим, что в одном из методов класса есть множество запутанных вычислений и хитросплетение локальных переменных. Всё это затрудняет дальнейший рефакторинг класса.
-#|en| We see that one of the class methods has many opaque calculations and thickets of local variables. All this makes it hard to refactor the class.
+#|en| We see that one of the class methods has many sophisticated calculations and entanglement of local variables. All this makes it hard to refactor the class.
 #|uk| Ми бачимо, що в одному з методів класу є безліч заплутаних обчислень і хитросплетіння локальних змінних. Все це ускладнює подальший рефакторинг класу.
 
 #|ru| Давайте преобразуем этот метод в отдельный класс так, чтобы локальные переменные стали полями этого класса.
-#|en| Let's convert this method to a separate class so that the local variables become fields of the class. Then we can move the method to a new class.
+#|en| Let's convert this method to a separate class so that the local variables become fields of the class. That will isolate it and ease the further refactoring.
 #|uk| Давайте перетворимо цей метод в окремий клас так, щоб локальні змінні стали полями цього класу.
 
 Go to the end of file
 
 #|ru| Для начала создадим новый класс.
-#|en| First, create a new class.
+#|en| So, let's create a new class.
 #|uk| Для початку створимо новий клас.
 
 Print:
@@ -124,7 +124,7 @@ class Gamma {
 Set step 2
 
 #|ru| Первым делом создадим в классе <code>Gamma</code> неизменяемое поле для хранения исходного объекта.
-#|en| Begin by creating an immutable field for storing the source object, in the <code>Gamma</code> class.
+#|en| First, create an immutable field for storing the source object, in the <code>Gamma</code> class.
 #|uk| Першим ділом створимо в класі <code>Gamma</code> незмінне поле для зберігання вихідного об'єкта.
 
 Go to the end of "Gamma"
@@ -142,9 +142,9 @@ Select 1st "$importantValue1"
 +Select 1st "$importantValue2"
 +Select 1st "$importantValue3"
 
-#|ru| Также перенесем все переменные из метода, который мы хотим отделить...
+#|ru| Также перенесем все переменные из метода, который мы хотим отделить…
 #|en| Move all variables from the method that we want to separate…
-#|uk| Також перенесемо всі змінні з методу, який ми хочемо відокремити...
+#|uk| Також перенесемо всі змінні з методу, який ми хочемо відокремити…
 
 Go to the end of "Gamma"
 
@@ -158,9 +158,9 @@ Print:
 
 Select "gamma(|||$inputVal, $quantity, $yearToDate|||)"
 
-#|ru| ...а также создадим поля для каждого из параметров метода.
-#|en| ...and create fields for each of the method's parameters.
-#|uk| ...та створимо поля для кожного з параметрів методу
+#|ru| …а также создадим поля для каждого из параметров метода.
+#|en| …and create fields for each of the method's parameters.
+#|uk| …та створимо поля для кожного з параметрів методу
 
 Go to the end of "Gamma"
 
@@ -177,7 +177,7 @@ Set step 4
 Go to the end of "Gamma"
 
 #|ru| Создадим конструктор, который будет принимать параметры метода и сохранять их в полях класса для дальнейшего использования.
-#|en| Create a constructor that will accept the method parameters and store them in class fields for further use.
+#|en| Create a constructor that will accept the method's parameters and store them in class fields for further use.
 #|uk| Створимо конструктор, який прийматиме параметри методу і зберігатиме їх в полях класу для подальшого використання.
 
 Print:
@@ -221,7 +221,7 @@ Print:
       $importantValue2 -= 20;
     }
     $importantValue3 = $importantValue2 * 7;
-    // and so on...
+    // and so on…
     return $importantValue3 - 2 * $importantValue1;
   }
 ```
@@ -278,7 +278,7 @@ Select:
 ```
 
 #|ru| Преимущество это рефакторинга в том, что теперь можно легко применить <a href="/extract-method">извлечение метода</a> к методу <code>compute()</code>, не беспокоясь о передаче аргументов в подметоды.
-#|en| The benefit of this refactoring technique is that you can now easily apply <a href="/extract-method">Extract Method</a> to the <code>compute()</code> method without worrying about passing arguments.
+#|en| The benefit of this refactoring is that you can now easily apply <a href="/extract-method">Extract Method</a> to the <code>compute()</code> method without worrying about passing correct arguments between sub-methods.
 #|uk| Перевага цього рефакторинга в тому, що тепер можна легко застосувати <a href="/extract-method">відокремлення методу</a> до методу <code>compute()</code>, не турбуючись про передачу аргументів в субметоди.
 
 Go to the end of "Gamma"
@@ -307,5 +307,5 @@ Replace "    $this->importantThing();"
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

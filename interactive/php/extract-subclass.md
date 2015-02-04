@@ -136,25 +136,25 @@ $total = $j1->getTotalPrice() + $j2->getTotalPrice();
 Set step 1
 
 #|ru| Начнём с класса выполняемых работ, который определяет цены операций, выполняемых в местном гараже.
-#|en| Start with the class of works performed, which determines the price of operations performed in the local garage.
+#|en| We start with the <code>JobItem</code> class, which tracks the time and materials used to fix a client's car in a local garage. This class is also responsible for calculating the price client should pay.
 #|uk| Почнемо з класу виконуваних робіт, який визначає ціни операцій, яківиконуються в місцевому гаражі.
 
 Select name of "getUnitPrice"
 
 #|ru| Цена работы может состоять как из фиксированной суммы (например, платы за заказ каких-то деталей), так и оплаты времени механика, цена которого может браться напрямую из класса <code>Employee</code>.
-#|en| The price of work can consist of either a fixed amount (such as payments for ordering certain parts) or payment for a mechanic's time, the price of which can be taken directly from the <code>Employee</code> class.
+#|en| The price usually consists of several items. First, it's the fixed cost of certain parts. Second, it's the cost of a mechanic's time, multiplied by his rate (that can be taken directly from the <code>Employee</code> class).
 #|uk| Ціна роботи може складатися як з фіксованої суми (наприклад, плати за замовлення якихось деталей), так і оплати часу механіка, ціна якого може братися безпосередньо з класу <code>Employee</code>.
 
 #|ru| При этом цена вычисляется разными способами в пределах одного класса, именно это нас и смущает.
-#|en| The price is calculated in various ways within a single class, which is a bit offputting.
+#|en| So, the price is calculated in several ways, all of which sit in a single class. And that starts to smell as a <i>Large Class</i>.
 #|uk| При цьому ціна обчислюється різними способами в межах одного класу, саме це нас і бентежить.
 
 #|ru| Было бы здорово выделить из этого класса подкласс <code>LaborItem</code> и переместить в него все поведения, связанные с ручной работой, а в оригинальном классе оставить только расчёты фиксированной работы.
-#|en| It would be great to isolate a <code>LaborItem</code> subclass from the class and move to that subclass all behaviors that are associated with manual work. Then we could leave only fixed amounts in the original class.
+#|en| As a solution, we could extract the <code>LaborItem</code> subclass and move all behaviors, which are associated with manual work, to that subclass. Then we could leave only fixed amounts in the original class.
 #|uk| Було б класно виділити з цього класу підклас <code>LaborItem</code> та перемістити в нього всі поведінки, пов'язані з ручною роботою, а в оригінальному класі залишити тільки розрахунки фіксованої роботи.
 
 #|ru| Итак, создаём новый класс.
-#|en| Create a new class.
+#|en| Awesome, let's create a new class.
 #|uk| Отже, створюємо новий клас.
 
 Go to after "JobItem"
@@ -170,13 +170,13 @@ class LaborItem extends JobItem {
 Set step 2
 
 #|ru| Теперь, начинаем спускать методы, свойственные только для подкласса.
-#|en| Now start to push down the subclass-only methods.
+#|en| Now we should start to push down the labor-related methods.
 #|uk| Тепер, починаємо спускати методи, які властиві тільки для підкласу.
 
 Select name of "__construct" in "JobItem"
 
 #|ru| Прежде всего, нам нужен конструктор для этого класса, потому что в <code>JobItem</code> нет нужного нам конструктора, который бы принимал только объект рабочего и количество потраченных часов.
-#|en| Above all, we need a constructor for this class since <code>JobItem</code> does not have the constructor we need, one which would accept only the employee object and number of hours spent.
+#|en| Above all, we need a constructor because <code>JobItem</code> does not have the constructor we need, one that would accept only the employee object and number of hours spent.
 #|uk| Перш за все, нам потрібен конструктор для цього класу, тому що в <code>JobItem</code> немає потрібного нам конструктора, який би брав тільки об'єкт працівника і кількість витрачених годин.
 
 #|ru| Пока что для этого скопируем сигнатуру родительского конструктора.
@@ -194,7 +194,7 @@ Print:
 ```
 
 #|ru| Этого достаточно, чтобы новый подкласс перестал выдавать ошибки. Однако этот конструктор путаный: одни аргументы нужны для <code>LaborItem</code>, а другие – нет. Мы это исправим, но позднее.
-#|en| This is enough to make the new subclass stop displaying errors. However, this constructor is unwieldy: some arguments are necessary for <code>LaborItem</code> and others are not. We will fix this a little later.
+#|en| That is enough to make the new subclass stop displaying errors. However, this constructor is unwieldy: some arguments are necessary for <code>LaborItem</code> and others are not. We will fix this a little later.
 #|uk| Цього достатньо, щоб новий підклас перестав видавати помилки. Однак цей конструктор заплутаний: одні аргументи потрібні для <code>LaborItem</code>, а інші – ні. Ми це виправимо, але пізніше.
 
 Set step 3
@@ -202,7 +202,7 @@ Set step 3
 Select 1st "new JobItem"
 
 #|ru| На следующем этапе осуществляется поиск обращений к конструктору <code>JobItem</code> и случаев, когда вместо него следует вызывать конструктор <code>LaborItem</code>.
-#|en| During the next step, search for references to the <code>JobItem</code> constructor and cases when the <code>LaborItem</code> constructor should be called instead.
+#|en| During the next step, we need to search for references to the <code>JobItem</code> constructor and cases when the <code>LaborItem</code> constructor should be called instead.
 #|uk| На наступному етапі здійснюється пошук звернень до конструктора <code>JobItem</code> і випадків, коли замість нього слід викликати конструктор <code>LaborItem</code>.
 
 Print "new LaborItem"
@@ -212,20 +212,20 @@ Print "new LaborItem"
 #|uk| На даному етапі ми не чіпаємо тип змінної, а змінюємо лише тип конструктора.
 
 #|ru| Это вызвано тем, что новый тип следует использовать только там, где это необходимо. В данный момент у нас нет специфического интерфейса для подкласса, поэтому лучше пока не объявлять какие-либо разновидности.
-#|en| This is because the new type should be used only where necessary. We do not yet have a specific interface for the subclass so it is better to not declare any varieties.
+#|en| That is because the new type should be used only where necessary. We do not yet have a specific interface for the subclass, so it is better to not declare any varieties.
 #|uk| Це викликано тим, що новий тип слід використовувати тільки там, де це необхідно. В даний момент у нас немає специфічного інтерфейсу для підкласу, тому краще поки не оголошувати будь-які різновиди.
 
 Select parameters of "__construct" in "JobItem"
 + Select parameters of "__construct" in "LaborItem"
 
 #|ru| Теперь самое время привести в порядок списки параметров конструктора. К каждому из них применим <a href="/remove-parameter">удаление параметров</a>.
-#|en| This is the perfect time to perform housekeeping on the lists of constructor parameters. Apply <a href="/remove-parameter">Remove Parameter</a> to each of them.
+#|en| That is the perfect time to perform housekeeping on the lists of constructor parameters. Let's apply <a href="/remove-parameter">Remove Parameter</a> to each of them.
 #|uk| Тепер саме час привести в порядок списки параметрів конструктора. До кожного з них застосуємо <a href="/remove-parameter">видалення параметрів</a>.
 
 Select visibility of "__construct" in "JobItem"
 
 #|ru| Сначала обращаемся к родительскому классу. Создаём новый конструктор и объявляем прежний защищенным (подклассу он по-прежнему нужен).
-#|en| First refer to the parent class. Create a new constructor and declare the previous one protected (the subclass still needs it).
+#|en| First, we need to refer to the parent class. We create a new constructor and declare the previous one protected (the subclass still needs it).
 #|uk| Спочатку звертаємося до батьківського класу. Створюємо новий конструктор і оголошуємо колишній захищеним (підкласу він як і раніше потрібний).
 
 Go to "$isLabor|||, Employee $employee" in "JobItem"
@@ -256,7 +256,7 @@ Remove selected
 Select "($quantity, |||$unitPrice, $isLabor, |||Employee $employee)"
 
 #|ru| Теперь применим <a href="/remove-parameter">удаление параметров</a> к конструктору подкласса, чтобы избавиться от ненужных параметров.
-#|en| Apply <a href="/remove-parameter">Remove Parameter</a> to the subclass constructor to get rid of unnecessary parameters.
+#|en| Now, we apply <a href="/remove-parameter">Remove Parameter</a> to the subclass constructor to get rid of unnecessary parameters.
 #|uk| Тепер застосуємо <a href="/remove-parameter">видалення параметрів</a> до конструктора підкласу, щоб позбутися від непотрібних параметрів.
 
 Remove selected
@@ -318,7 +318,7 @@ Select ", Employee $employee = null" in "JobItem"
 
 
 #|ru| После того как поле <code>employee</code> защищено, мы можем привести в порядок конструкторы, чтобы <code>employee</code> инициализировалось только в подклассе, в который оно спускается.
-#|en| Once the <code>employee</code> field is protected, we can clean up the constructors so that <code>employee</code> is initialized only in the subclass to which it is being pushed down.
+#|en| Once the <code>employee</code> field is protected, we can clean up the constructors so that <code>employee</code> is initialized only in the subclass.
 #|uk| Після того як поле <code>employee</code> стало захищеним, ми можемо привести до ладу конструктори, щоб <code>employee</code> ініціювалося тільки в підкласі, в який воно спускається.
 
 Remove selected
@@ -344,7 +344,7 @@ Set step 5
 Select "private $isLabor;"
 
 #|ru| Поле <code>isLabor</code> применяется для указания информации, которая теперь присуща иерархии, поэтому можно удалить это поле.<br/><br/>Лучше всего сделать это, сначала применив <a href="/self-encapsulate-field">Самоинкапсуляцию поля</a>, после чего изменив метод доступа, чтобы применить полиморфный константный метод (это такой метод, посредством которого каждая реализация возвращает (своё) фиксированное значение).
-#|en| The <code>isLabor</code> field is used to indicate information now implied by the hierarchy, so the field can be removed<br/><br/>The best way to do so is to first use <a href="/self-encapsulate-field">Self-Encapsulate Field</a> and then, after changing the access method, use a polymorphic constant method (a method via which each implementation returns its own fixed value).
+#|en| The <code>isLabor</code> field is used to indicate information now implied by the hierarchy, so the field can be removed<br/><br/>The best way to do so is to first use <a href="/self-encapsulate-field">Self-Encapsulate Field</a> and then override the getter in subclasses so that it return own fixed value (such methods usually called "polymorphic constant method").
 #|uk| Поле <code>isLabor</code> застосовується для вказівки інформації, яка тепер властива ієрархії, тому можна видалити це поле.<br/><br/>Найкраще зробити це, спочатку застосувавши <a href = "/ self-encapsulate- field ">Самоінкапсуляцію поля</a>, після чого змінивши метод доступу, щоб застосувати поліморфний константний метод (це такий метод, за допомогою якого кожна реалізація повертає (своє) фіксоване значення).
 
 #|ru| Итак, объявим геттеры <code>isLabor</code> в обоих классах.
@@ -401,7 +401,7 @@ Remove selected
 Select "isLabor" in "getUnitPrice"
 
 #|ru| Теперь можно посмотреть на пользователей методов <code>isLabor</code>. Они должны быть подвергнуты рефакторингу <a href="/replace-conditional-with-polymorphism">Замена условного оператора полиморфизмом</a>.
-#|en| Now look at the users of the <code>isLabor</code> methods. They should be refactored using <a href="/replace-conditional-with-polymorphism">Replace Conditional With Polymorphism</a>.
+#|en| Now look at the uses of the <code>isLabor</code> methods. They should be refactored using <a href="/replace-conditional-with-polymorphism">Replace Conditional With Polymorphism</a>.
 #|uk| Тепер можна подивитися на користувачів методів <code>isLabor</code>. Для них необхідно застосувати рефакторинг <a href="/replace-conditional-with-polymorphism">Заміна умовного оператора полиморфизмом</a>.
 
 Select body of "getUnitPrice"
@@ -424,7 +424,7 @@ Select whole "isLabor" in "JobItem"
 +Select whole "isLabor" in "LaborItem"
 
 #|ru| После этого становится видно, что методы <code>isLabor</code> теперь нигде не используются и их можно удалить из всех классов.
-#|en| It then becomes clear that the <code>isLabor</code> methods are not used anywhere now and can be removed from all classes.
+#|en| Then it becomes clear that <code>isLabor</code> methods are not used anywhere and can be safely removed from all classes.
 #|uk| Після цього стає видно, що методи <code>isLabor</code> тепер ніде не використовуються і їх можна видалити з усіх класів.
 
 Remove selected
@@ -432,7 +432,7 @@ Remove selected
 Select name of "JobItem"
 
 #|ru| После того, как группа методов, использующих некоторые данные, перемещена в подкласс, к этим данным можно применить <a href="/push-down-field">Спуск поля</a>. В некоторых случаях это невозможно, так как данные используются некоторым методом.
-#|en| After the group of methods that use particular data is moved to a subclass, you can apply <a href="/push-down-field">Push Down Field</a> to this data. In some cases this is impossible because the data is used by a method. This state of affairs means that you should continue working with the methods, by using <a href="/push-down-method">Push Down Method</a> or <a href="/replace-conditional-with-polymorphism">Replace Conditional With Polymorphism</a>.
+#|en| After pushing methods down to a subclass, you can consider moving some of the fields as well. We can apply <a href="/push-down-field">Push Down Field</a> to these fields. In some cases, this is impossible because the fields are still used in the context of superclass.
 #|uk| Після того, як група методів, що використовують деякі дані, переміщена в підклас, до цих даних можна застосувати <a href="/push-down-field">Спуск поля</a>. В деяких випадках це неможливо, так як дані використовуються деяким методом.
 
 #|ru| В нашем случае все готово, чтобы переместить поле <code>employee</code> в <code>LaborItem</code>.
@@ -529,7 +529,7 @@ Replace:
 Select type of "JobItem"
 
 #|ru| В итоге класс <code>JobItem</code> станет абстрактным.
-#|en| The <code>JobItem</code> class is abstract as a result.
+#|en| The <code>JobItem</code> class becomes abstract as a result.
 #|uk| У підсумку клас <code>JobItem</code> стане абстрактним.
 
 Replace "abstract class"
@@ -546,5 +546,5 @@ Replace "abstract class"
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

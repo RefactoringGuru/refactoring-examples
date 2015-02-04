@@ -29,11 +29,11 @@ form-template-method:java
 ```
 class Article {
   // ...
-  public String getTitle() { /* ... */ }
-  public String getIntro() { /* ... */ }
-  public String getBody() { /* ... */ }
-  public String getAuthor() { /* ... */ }
-  public String getDate() { /* ... */ }
+  public String getTitle() { /* … */ }
+  public String getIntro() { /* … */ }
+  public String getBody() { /* … */ }
+  public String getAuthor() { /* … */ }
+  public String getDate() { /* … */ }
 
   public String markdownView() {
     String output = "# " + getTitle() + "\n\n";
@@ -57,11 +57,11 @@ class Article {
 ```
 class Article {
   // ...
-  public String getTitle() { /* ... */ }
-  public String getIntro() { /* ... */ }
-  public String getBody() { /* ... */ }
-  public String getAuthor() { /* ... */ }
-  public String getDate() { /* ... */ }
+  public String getTitle() { /* … */ }
+  public String getIntro() { /* … */ }
+  public String getBody() { /* … */ }
+  public String getAuthor() { /* … */ }
+  public String getDate() { /* … */ }
 
   public String markdownView() {
     return new ArticleMarkdown(this).view();
@@ -120,21 +120,21 @@ Set step 1
 
 Select name of "Article"
 
-#|ru|+ Рассмотрим этот рефакторинг на примере класса статьи, которая может выводиться в двух форматах...
-#|en|+ Let's look at this refactoring approach using the example of an article that can be displayed in two formats…
-#|uk|+ Розглянемо цей рефакторинг на прикладі класу статті, яка може виводитися в двох форматах...
+#|ru|+ Рассмотрим этот рефакторинг на примере класса статьи, которая может выводиться в двух форматах…
+#|en|+ Let's look at this refactoring using the example of an article that can be displayed in two formats…
+#|uk|+ Розглянемо цей рефакторинг на прикладі класу статті, яка може виводитися в двох форматах…
 
 Select name of "markdownView"
 
-#|ru|<+ ...простом текстовом формате Markdown...
+#|ru|<+ …простом текстовом формате Markdown…
 #|en|<+ …in Markdown plain text…
-#|uk|<+ ...простому текстовому форматі Markdown...
+#|uk|<+ …простому текстовому форматі Markdown…
 
 Select name of "htmlView"
 
-#|ru|<= ...и в разметке HTML.
+#|ru|<= …и в разметке HTML.
 #|en|<= …and in HTML.
-#|uk|<= ...і в розмітці HTML.
+#|uk|<= …і в розмітці HTML.
 
 #|ru| Прежде чем приступить непосредственно к рефакторингу, мы должны устроить так, чтобы эти два метода появились в подклассах некоторого общего родительского класса.
 #|en| Before starting the refactoring per se, we should arrange things so that these two methods appear in the subclasses of some shared parent class.
@@ -144,7 +144,7 @@ Select whole "markdownView"
 +Select whole "htmlView"
 
 #|ru| Для этого можно создать <a href="/replace-method-with-method-object">простой объект методов</a>, переместив оба метода в него.
-#|en| To do this, create a <a href="/replace-method-with-method-object">simple method object</a> by moving both methods to it.
+#|en| To do this, we create a <a href="/replace-method-with-method-object">simple method object</a> by moving both methods to it.
 #|uk| Для цього можна створити <a href="/replace-method-with-method-object">простий об'єкт методів</a>, перемістивши обидва методи в нього.
 
 Go to after "Article"
@@ -282,14 +282,14 @@ Select name of "ArticleHtml"
 #C|ru| Запустим тестирование, чтобы убедиться в отсутствии ошибок.
 #S Всё работает, можем продолжать.
 
-#C|en| Let's launch autotests to check for errors in code.
+#C|en| Let's launch autotests to check for errors in the code.
 #S Everything is OK! We can keep going.
 
 #C|uk| Запустимо тестування, щоб переконатися у відсутності помилок.
 #S Все працює, можемо продовжувати.
 
 #|ru| Итак, все готово чтобы, наконец, приступить к самому рефакторингу.
-#|en| Now everything is ready to finally start the refactoring itself.
+#|en| Finally, everything is ready to start the refactoring itself.
 #|uk| Отже, все готово щоб, нарешті, приступити до самого рефакторингу.
 
 #|ru| Первым делом разобьём методы <code>view</code> в обоих классах на составные шаги. Определить шаги в нашем случае довольно просто — это части напечатанной статьи.
@@ -371,7 +371,7 @@ Print:
 Set step 4
 
 #|ru| Как видите, у нас получилось много одинаковых шагов в обоих классах. Следует переместить одинаковые шаги в виде абстрактных методов в суперкласс.
-#|en| As you can see, the two classes have many identical steps. We should move the identical steps as abstract methods to a superclass.
+#|en| As you can see, the two classes have many identical steps. We should move the identical steps as abstract methods to the superclass.
 #|uk| Як бачите, у нас вийшло багато однакових кроків в обох класах. Слід перемістити однакові кроки у вигляді абстрактних методів в суперклас.
 
 Go to type "ArticleView"
@@ -422,5 +422,5 @@ Print:
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

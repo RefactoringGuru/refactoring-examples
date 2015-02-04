@@ -83,29 +83,29 @@ try {
 Set step 1
 
 #|ru| Рассмотрим рефакторинг на примере метода снятия денег с банковского счета.
-#|en| Let's look at refactoring in the case of withdrawals from a bank account.
+#|en| Let's look at this refactoring in the context of withdrawals from a bank account.
 #|uk| Розглянемо рефакторинг на прикладі методу зняття грошей з банківського рахунку.
 
 Go to "if ($amount > $this->balance) {|||"
 
 #|ru|<+ В нашем случае, при попытке снять больше денег, чем есть на счету, генерируется код ошибки (<code>-1</code>),…
-#|en|<+ If the customer attempts to withdraw more money than his or her current balance allows, an error code is generated (<code>-1</code>)…
-#|uk|<+ В нашому випадку, при спробі зняти більше грошей, ніж є на рахунку, генерується код помилки (<code>-1</code>),...
+#|en|<+ If a customer attempts to withdraw more money than his or her current balance allows, an error code will be returned (<code>-1</code>)…
+#|uk|<+ В нашому випадку, при спробі зняти більше грошей, ніж є на рахунку, генерується код помилки (<code>-1</code>),…
 
 Select "$account->withdraw($amount) == -1"
 
-#|ru|= ...который затем проверяется в клиентском коде.
+#|ru|= …который затем проверяется в клиентском коде.
 #|en|= …which is then checked in the client code.
-#|uk|= ...який потім перевіряється в клієнтському коді.
+#|uk|= …який потім перевіряється в клієнтському коді.
 
 #|ru| Заменим все это выбрасыванием исключения с последующим «отловом» его в клиентском коде.
-#|en| We can replace all this by throwing an error and then "catching" it in the client code.
+#|en| We can replace all this by throwing an exception and then "catching" it in the client code.
 #|uk| Замінимо все це викиданням винятку з наступним «виловом» його в клієнтському коді.
 
 Go to after "Account"
 
 #|ru| Итак, первым делом можно создать новый класс исключения, который будет легче отлавливать.
-#|en| First we create a new exception class that will be easier to catch.
+#|en| First, we create a new exception class.
 #|uk| Отже, першим ділом можна створити новий клас винятку, який буде легше відловлювати.
 
 Print:
@@ -115,7 +115,7 @@ class BalanceException extends Exception {}
 ```
 
 #|ru| Затем обернём код вызова нашего метода в <code>try</code>/<code>catch</code> блоки.
-#|en| Wrap the code for calling the new method in <code>try</code>/<code>catch</code> blocks.
+#|en| Then, wrap our method body with the <code>try</code>/<code>catch</code> block.
 #|uk| Потім обгорнемо код виклику нашого методу в <code>try</code>/<code>catch</code> блоки.
 
 Select:
@@ -141,7 +141,7 @@ try {
 Set step 2
 
 #|ru| После этого изменяем метод так, чтобы он выбрасывал исключение вместо возврата кода ошибки.
-#|en| Then change the method so that it throws an exception instead of returning an error code.
+#|en| After that, change the method so that it throws an exception instead of returning an error code.
 #|uk| Після цього змінюємо метод так, щоб він викидав виняток замість повернення коду помилки.
 
 Select:
@@ -188,11 +188,11 @@ Deindent
 Select name of "Account"
 
 #|ru| Неудобство этого шага в том, что мы вынуждены изменить все обращения к методу и сам метод за один шаг, иначе компилятор нас накажет. Если мест вызова много, то придётся выполнять большую модификацию без промежуточного тестирования.
-#|en| This step is inconvenient because we are forced to change all references to the method, as well as the method itself, in a single step. Otherwise, the compiler will shake its head at us in disapproval. If there are many calls, we will have to make a mammoth modification without any intermediate compilation or testing.
+#|en| This step is not very safe because we are forced to change all references to the method, as well as the method itself, in a single step. Otherwise, the compiler will shake its head at us in disapproval. If there are many calls, we will have to make a mammoth modification without any intermediate compilation or testing.
 #|uk| Незручність цього кроку в тому, що ми змушені змінити всі звернення до методу і сам метод за один крок, інакше компілятор нас покарає. Якщо місць виклику багато, то доведеться виконувати велику модифікацію без проміжних компіляцій та тестуваннь.
 
 #|ru| В таких случаях лучше создать новый метод, переместить в него код старого, включив в него исключения. Код старого метода заменить <code>try</code>/<code>catch</code> блоками, которые возвращают коды ошибки. После этого код останется рабочим, а вы сможете один за другим заменять обработчики кодов ошибок вызовами нового метода и блоками <code>try</code>/<code>catch</code>.
-#|en| In these cases it is better to create a new method and place the code of the old one inside it, including exceptions. Replace the code of the old method with <code>try</code>/<code>catch</code> blocks that return error codes. After this the code will remain functional and we can replace error code handlers, one by one, with calls to the new method and <code>try</code>/<code>catch</code> blocks.
+#|en| In such cases, it is better to create a new method and place the code of the old one inside it, including exceptions. Replace the code of the old method with <code>try</code>/<code>catch</code> blocks that return error codes. After this, the code will remain functional and we could replace error code handlers, one by one, with calls to the new method and <code>try</code>/<code>catch</code> blocks.
 #|uk| В таких випадках краще створити новий метод, перемістити в нього код старого, включивши в нього винятки. Код старого методу замінити <code>try</code>/<code>catch</code> блоками, які повертають коди помилки. Після цього код залишиться робочим, а ви зможете один за іншим замінювати обробники кодів помилок викликами нового методу і блоками <code>try</code>/<code>catch</code>.
 
 Set step 3
@@ -202,7 +202,7 @@ Select:
 @return Zero on success, -1 on error.
 ```
 #|ru| Как бы то ни было, нам осталось только обновить документацию метода, сообщив, что метод теперь выбрасывает исключение.
-#|en| In any event, we still must update the method signature, indicating that the method now throws an error.
+#|en| After all of the changes, we must update the method's signature, indicating that the method now throws exceptions.
 #|uk| Як би там не було, нам залишилося тільки оновити документацію методу, повідомивши, що метод тепер викидає виключення.
 
 Print:
@@ -222,5 +222,5 @@ Print:
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

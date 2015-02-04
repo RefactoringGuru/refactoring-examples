@@ -28,7 +28,7 @@ introduce-null-object:java
 
 ```
 class Company {
-  //...
+  //…
   private Customer customer;
   public Customer getCustomer() {
     return customer;
@@ -36,21 +36,21 @@ class Company {
 }
 
 class Customer {
-  //...
+  //…
   public String getName() {
-    //...
+    //…
   }
   public BillingPlan getPlan() {
-    //...
+    //…
   }
   public PaymentHistory getHistory() {
-    //...
+    //…
   }
 }
 
 class PaymentHistory {
   public int getWeeksDelinquentInLastYear() {
-    //...
+    //…
   }
 }
 
@@ -64,7 +64,7 @@ else {
   customerName = customer.getName();
 }
 
-//...
+//…
 BillingPlan plan;
 if (customer == null) {
   plan = BillingPlan.basic();
@@ -73,7 +73,7 @@ else {
   plan = customer.getPlan();
 }
 
-//...
+//…
 int weeksDelinquent;
 if (customer == null) {
   weeksDelinquent = 0;
@@ -87,7 +87,7 @@ else {
 
 ```
 class Company {
-  //...
+  //…
   private Customer customer;
   public Customer getCustomer() {
     return (customer == null) ? Customer.newNull() : customer;
@@ -95,7 +95,7 @@ class Company {
 }
 
 class Customer {
-  //...
+  //…
   public boolean isNull() {
     return false;
   }
@@ -104,13 +104,13 @@ class Customer {
   }
 
   public String getName() {
-    //...
+    //…
   }
   public BillingPlan getPlan() {
-    //...
+    //…
   }
   public PaymentHistory getHistory() {
-    //...
+    //…
   }
 }
 class NullCustomer extends Customer {
@@ -137,7 +137,7 @@ class PaymentHistory {
   }
 
   public int getWeeksDelinquentInLastYear() {
-    //...
+    //…
   }
 }
 class NullPaymentHistory extends PaymentHistory {
@@ -153,10 +153,10 @@ class NullPaymentHistory extends PaymentHistory {
 Customer customer = site.getCustomer();
 String customerName = customer.getName();
 
-//...
+//…
 BillingPlan plan = customer.getPlan();
 
-//...
+//…
 int weeksDelinquent = customer.getHistory().getWeeksDelinquentInLastYear();
 ```
 
@@ -167,7 +167,7 @@ Set step 1
 Select name of "Company"
 
 #|ru| Рассмотрим рефакторинг на примере классов коммерческой компании.
-#|en| Let's look at this refactoring technique, using a business as an example.
+#|en| Let's look at this refactoring, using a commercial company class as an example.
 #|uk| Розглянемо рефакторинг на прикладі класів комерційної компанії.
 
 Select name of "Customer"
@@ -197,7 +197,7 @@ Select "if (customer == null)"
 #|uk| Зверніть увагу на умовний оператор, перевіряючий, чи є клієнт в компанії. Така ситуація цілком може статись, якщо компанія нова, або старий покупець вирішив змінити постачальника.
 
 #|ru| В коде может быть много таких повторяющихся проверок на <code>null</code>, что сигнализирует о потребности введения Null-объекта.
-#|en| The code may contain many such repetitive <code>null</code> verifications, which indicates the need to introduce a Null object.
+#|en| The code may contain many such repetitive <code>null</code> verifications, which indicates the need to introduce a null-object.
 #|uk| У коді може бути багато таких повторюваних перевірок на <code>null</code>, що сигналізує про потребу введення Null-об'єкта.
 
 #|ru| Первым делом создаём нулевой класс для <code>customer</code> и модифицируем класс <code>Сustomer</code>, чтобы он поддерживал запрос проверки на <code>null</code>.
@@ -229,7 +229,7 @@ class NullCustomer extends Customer {
 ```
 
 #|ru| Для создания нулевых клиентов введём фабричный метод, благодаря чему клиентам не обязательно будет знать о существовании нулевого класса.
-#|en| To create null clients, introduce a factory method. Thanks to it, clients will not need to know about the existence of the null class.
+#|en| To create "null" clients, let's introduce a factory method. Thanks to it, client code will not need to know about the existence of the null-object
 #|uk| Для створення нульових клієнтів введемо фабричний метод, завдяки чому клієнтам не обов'язково буде знати про існування нульового класу.
 
 Go to after "isNull"
@@ -247,7 +247,7 @@ Set step 3
 Select "return customer"
 
 #|ru| Теперь мы должны модифицировать все участки кода, где запрашиваются объекты <code>Сustomer</code>, и модифицировать их так, чтобы возвращать нулевого пользователя вместо <code>null</code>.
-#|en| Now we should modify all code that requests <code>Customer</code> objects, modifying them so that they return the null user instead of <code>null</code>.
+#|en| Now we should handle all code that returns <code>Customer</code> objects. We should add the checks, which will return our <code>null</code> object instead of <code>null</code> value.
 #|uk| Тепер ми повинні модифікувати всі ділянки коду, де э запит щодо об'єктів <code>Сustomer</code>, і модифікувати їх так, щоб повертати нульового користувача замість <code>null</code>.
 
 Print "return (customer == null) ? Customer.newNull() : customer"
@@ -264,13 +264,13 @@ Select "if (|||customer == null|||)"
 Print "customer.isNull()"
 
 #|ru| Это самая сложная часть данного рефакторинга, т.к. для каждого заменяемого источника <code>null</code> необходимо найти все случаи проверки на <code>null</code> и отредактировать их. Если объект интенсивно передаётся, их может быть нелегко проследить.
-#|en| This is the most complex part of the refactoring technique, since for each source of <code>null</code> that you are replacing, you must find all <code>null</code> checks and change them. If an object is passed intensively, doing so consistently can be difficult.
+#|en| This is the most complex part of the refactoring. For each source of <code>null</code> that you are replacing, you must find all <code>null</code> checks and change them. If an object is passed back and forth between methods, doing so consistently can be difficult.
 #|uk| Це найскладніша частина даного рефакторинга, т.к. для кожного джерела<code>null</code>, що замінюється,  необхідно знайти всі випадки перевірки на <code>null</code> і відредагувати їх. Якщо об'єкт інтенсивно передається, їх може бути нелегко простежити.
 
 #C|ru| После всех замен стоит провести компиляцию и тщательное тестирование.
 #S Отлично, все работает, можем продолжать!
 
-#C|en| After the replacements are done, compile and test carefully.
+#C|en| After all replacements are done, compile and test carefully.
 #S Great, it all works! We can continue then.
 
 #C|uk| Після всіх замін варто провести компіляцію і ретельне тестування.
@@ -279,13 +279,13 @@ Print "customer.isNull()"
 Set step 5
 
 #|ru| В данный момент мы ничего не выигрываем от применения <code>isNull</code> вместо <code>== null</code>. Выгода появится тогда, когда код поведения в нулевой ситуации будет перемещён в нулевой класс, а условные операторы вообще убраны.
-#|en| We do not yet gain any benefit from using <code>isNull</code> instead of <code>== null</code>. The benefit will appear when behavior code in a null situation is moved to a null class and conditionals are removed entirely.
+#|en| We do not yet gain any benefit from using <code>isNull</code> instead of plain <code>== null</code>  checks. The benefit will be visible when the code, which used to work in null cases will be moved straight to the null-object class.
 #|uk| В даний момент ми нічого не виграємо від застосування <code>isNull</code> замість <code>== null</code>. Вигода з'явиться тоді, коли код поведінки в нульовій ситуації буде переміщений в нульовий клас, а умовні оператори взагалі видалені.
 
 Select "customerName = "N/A""
 
 #|ru| Итак, начнём перемещать поведения в нулевой класс. И первое, что мы сделаем, это перенесём название покупателя по умолчанию в нулевой класс.
-#|en| Start moving behaviors to the null class. The first thing to do is move the default customer name to the null class.
+#|en| Let's start moving behaviors. The first thing to do is move the default customer name to the null-object class.
 #|uk| Отже, почнемо переміщати поведінки в нульовий клас. І перше, що ми зробимо, це перенесемо початкову назву покупця в нульовий клас.
 
 Go to the end of "NullCustomer"
@@ -312,7 +312,7 @@ else {
 ```
 
 #|ru| После этого можно убрать проверку на <code>null</code> из части клиентского кода.
-#|en| Then remove the check for <code>null</code> from the part of the client code.
+#|en| Then remove the check for <code>null</code> from the corresponding part of the client code.
 #|uk| Після цього можна прибрати перевірку на <code>null</code> з частини клієнтського коду.
 
 Print:
@@ -355,11 +355,11 @@ BillingPlan plan = customer.getPlan();
 Select "customer.getHistory()"
 
 #|ru| При внимательном рассмотрении последнего участка можно заметить, что там содержится потенциальная ошибка доступа уже к объекту оплат, в случае, когда объект пользователя не имеет никакой истории оплат.
-#|en| Careful review of the last bit of code shows that a potential access error is present, when attempting to access a payment object if the user object has no payment history.
+#|en| Careful review of the last bit of code could show a potential access error. It will occur when somebody will access a payment object while user object won't have any payment history.
 #|uk| При уважному розгляді останньої ділянки можна помітити, що там міститься потенційна помилка доступу вже до об'єкта оплат, у разі, коли об'єкт користувача не має ніякої історії оплат.
 
 #|ru| Чтобы решить проблему, можно создать нулевой класс ещё и для класса истории оплат.
-#|en| To solve the problem, you can create a null class for the payment history class as well.
+#|en| To solve the problem, you can create a null-object class for the payment history class as well.
 #|uk| Щоб вирішити проблему, можна створити нульовий клас ще й для класу історії оплат.
 
 Go to the start of "PaymentHistory"
@@ -399,7 +399,7 @@ Print:
 Go to the end of "NullPaymentHistory"
 
 #|ru| После создания нулевого объекта можно добавить в него поведение по умолчанию.
-#|en| Once the null object has been created, you can add default behavior to it.
+#|en| Once the null-object has been defined, you can move default behavior to it.
 #|uk| Після створення нульового об'єкта можна додати в нього типову поведінка.
 
 Print:
@@ -413,11 +413,11 @@ Print:
 Select "customer.getHistory()"
 
 #|ru| Теперь о проблеме доступа к нулевому объекту истории оплат можно не волноваться. Но это ещё не всё.
-#|en| Now we can rest easy about any potential problem accessing the null object of the payment history. But there are still other things to take care of.
+#|en| Now we can rest easy about any potential problem accessing the null-object of the payment history. But there are still other things to take care of.
 #|uk| Тепер про проблему доступу до нульового об'єкту історії оплат можна не хвилюватися. Але це ще не все.
 
 #|ru| Мы можем возвращать нулевой объект истории оплат из нулевого объекта покупателей, полностью избавившись от проверок на <code>null</code> в клиентском коде.
-#|en| We can return the null object of the payment history from the null object of customers, fully ridding the client code of checks for <code>null</code>.
+#|en| We can return the null-object of the payment history from the null-object of customers, fully ridding the client code of checks for <code>null</code>.
 #|uk| Ми можемо повертати нульовий об'єкт історії оплат з нульового об'єкта покупців, повністю позбавившись від перевірок на <code>null</code> в клієнтському коді.
 
 Go to the end of "NullCustomer"
@@ -449,7 +449,7 @@ int weeksDelinquent = customer.getHistory().getWeeksDelinquentInLastYear();
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -458,5 +458,5 @@ int weeksDelinquent = customer.getHistory().getWeeksDelinquentInLastYear();
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

@@ -86,7 +86,7 @@ class Stadium
 Set step 1
 
 #|ru| Давайте рассмотрим <i>Разбиение условного оператора</i> на примере вычисления стоимости входного билета на стадион.
-#|en| Let's look at <i>Decompose Conditional</i> by looking at how to calculate the cost of a stadium ticket.
+#|en| Let's look at <i>Decompose Conditional</i> using a simple class, that calculates the cost of a stadium ticket.
 #|uk| Давайте розглянемо <i>Розбиття умовного оператора<i> на прикладі обчислення вартості вхідного квитка на стадіон.
 
 Select name of "GetTicketPrice"
@@ -136,7 +136,7 @@ Print "NotSummer(date)"
 #C|ru| Запускаем компиляцию и тестирование, чтобы убедиться в отсутствии ошибок.
 #S Отлично, все работает!
 
-#C|en| Let's compile and test to check for errors in code.
+#C|en| Let's compile and test to check for errors in the code.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо компіляцію і тестування, щоб переконатися у відсутності помилок.
@@ -145,7 +145,7 @@ Print "NotSummer(date)"
 Select "NotSummer(date)" in "GetTicketPrice"
 
 #|ru| Условие стало очевидней, не правда ли? Многие программисты в таких ситуациях не выделяют части, образующие условие. Часто условия кажутся короткими и не стоящими такого труда.
-#|en| The condition is clearer now, yes? Many programmers in such situations do not extract the components of the conditional. Often the conditions seem short and not worth the effort.
+#|en| The condition became much clearer now. However, many programmers in such situations do not extract the components of the conditional, thinking about conditions as short and not worth the effort.
 #|uk| Умова стала очевиднішою , чи не так? Багато програмістів в таких ситуаціях не виділяють частини, що утворюють умову. Часто умови здаються короткими і не вартими такої праці.
 
 #|ru| Тем не менее, несмотря на краткость условия, нередко существует большой разрыв между смыслом кода и его телом. Приходится смотреть в код и разбираться в том, что он делает. В данном случае это сделать нетрудно, но даже здесь выделенный метод более похож на комментарий.
@@ -201,7 +201,7 @@ Replace "charge = SummerCharge(quantity);"
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -210,5 +210,5 @@ Replace "charge = SummerCharge(quantity);"
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

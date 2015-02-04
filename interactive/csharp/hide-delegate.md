@@ -48,7 +48,7 @@ public class Department
     this.Manager = manager;
   }
 
-  //...
+  //…
 }
 
 // Somewhere in client code
@@ -82,7 +82,7 @@ public class Department
     this.Manager = manager;
   }
 
-  //...
+  //…
 }
 
 // Somewhere in client code
@@ -104,7 +104,7 @@ Select "manager = john.Department.Manager;"
 #|uk| Якщо клієнтові потрібно дізнатися, хто є менеджером деякої особи, він повинен спочатку дізнатися, в якому відділі ця особа працює.
 
 #|ru| Так клиентскому коду открывается характер работы класса <code>Department</code> и то, что в нем хранятся данные о менеджере.
-#|en| So the <code>Department</code> class and storage in it of manager data is opened to the client code.
+#|en| That way, along with the manager value, client code gets full access to the <code>Department</code> object and its other fields. If that doesn't look very safe to you… you're right.
 #|uk| Так клієнтському коду відкривається характер роботи класу <code>Department</code> і те, що в ньому зберігаються дані про менеджера.
 
 Set step 2
@@ -130,7 +130,7 @@ Set step 3
 Select "john.Department.Manager;"
 
 #|ru| Теперь необходимо модифицировать код таким образом, чтобы в нем использовался новый метод.
-#|en| Now modify the code so that it uses the new method.
+#|en| Now let's modify the code so that it uses the new method.
 #|uk| Тепер необхідно модифікувати код таким чином, щоб у ньому використовувався новий метод.
 
 Print "john.GetManager();"
@@ -159,7 +159,7 @@ Remove selected
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -168,5 +168,5 @@ Remove selected
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

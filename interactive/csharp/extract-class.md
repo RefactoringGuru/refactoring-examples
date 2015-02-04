@@ -110,7 +110,7 @@ Select "string |||OfficeAreaCode|||"
 Go to the end of file
 
 #|ru| Начнём с определения класса телефонного номера.
-#|en| Start with defining the phone number class.
+#|en| Let's start by defining the phone number class.
 #|uk| Почнемо з визначення класу телефонного номера.
 
 Print:
@@ -218,9 +218,9 @@ Replace:
 
 Select "string |||OfficeNumber|||"
 
-#|ru|^= Итак, с <code>OfficeAreaCode</code> разобрались. Аналогичным образом переносим свойство <code>OfficeNumber</code>...
-#|en|^= So now we have dealt with <code>OfficeAreaCode</code>. We can similarly move the <code>OfficeNumber</code> property...
-#|uk|^= Отже, з <code>OfficeAreaCode</code> розібралися. Аналогічним чином переносимо властивість <code>OfficeNumber</code>...
+#|ru|^= Итак, с <code>OfficeAreaCode</code> разобрались. Аналогичным образом переносим свойство <code>OfficeNumber</code>…
+#|en|^= So now we have dealt with <code>OfficeAreaCode</code>. We can similarly move the <code>OfficeNumber</code> property…
+#|uk|^= Отже, з <code>OfficeAreaCode</code> розібралися. Аналогічним чином переносимо властивість <code>OfficeNumber</code>…
 
 Go to the end of "TelephoneNumber"
 
@@ -236,9 +236,9 @@ Print:
 
 Select "OfficeNumber" in "GetTelephoneNumber"
 
-#|ru| ...и перенаправляем все обращения к нему в созданный нами класс.
+#|ru| …и перенаправляем все обращения к нему в созданный нами класс.
 #|en| …and redirect all references made to it in favor of the class that we have created.
-#|uk| ...та перенаправляємо всі звернення до нього в створений нами клас.
+#|uk| …та перенаправляємо всі звернення до нього в створений нами клас.
 
 Print:
 ```
@@ -331,9 +331,9 @@ Set step 4
 
 Select "private TelephoneNumber officeTelephone"
 
-#|ru|+ На этом этапе осталось решить, в какой степени новый класс будет доступным для клиентов. Можно полностью скрыть класс, создав для доступа делегирующие свойства (как это сделано сейчас)...
-#|en|+ At this stage we need to decide how accessible the class should be for clients. We can hide the class entirely, creating delegating properties for access purposes (as is currently done)...
-#|uk|+ На цьому етапі залишилося вирішити, якою мірою зробити новий клас доступним для клієнтів. Можна повністю приховати клас, створивши для доступу делегуючі властивості (як це зроблено зараз)...
+#|ru|+ На этом этапе осталось решить, в какой степени новый класс будет доступным для клиентов. Можно полностью скрыть класс, создав для доступа делегирующие свойства (как это сделано сейчас)…
+#|en|+ At this stage we need to decide how accessible the class should be for clients. We can hide the class entirely, creating delegating properties for access purposes (as is currently done)…
+#|uk|+ На цьому етапі залишилося вирішити, якою мірою зробити новий клас доступним для клієнтів. Можна повністю приховати клас, створивши для доступу делегуючі властивості (як це зроблено зараз)…
 
 Select:
 ```
@@ -357,9 +357,9 @@ Select:
   }
 ```
 
-#|ru|= ...а можно удалить все эти свойства и сделать класс открытым.
+#|ru|= …а можно удалить все эти свойства и сделать класс открытым.
 #|en|= …or remove all these properties and make the class public.
-#|uk|= ...а можна видалити всі ці властивості і зробити клас відкритим.
+#|uk|= …а можна видалити всі ці властивості і зробити клас відкритим.
 
 Remove selected
 
@@ -390,7 +390,7 @@ Select "public TelephoneNumber |||OfficeTelephone|||"
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -399,5 +399,5 @@ Select "public TelephoneNumber |||OfficeTelephone|||"
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

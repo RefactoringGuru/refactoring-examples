@@ -112,13 +112,13 @@ Select name of "get"
 #|uk| Тепер, припустимо, у вас є кілька замовлень, які посилаються на одного і того ж клієнта. Раптово код одного з замовлень міняє значення дати народження клієнта. Так як обидва замовлення посилаються на один той самий об'єкт клієнта, нова дата народження буде доступна також з іншого замовлення.
 
 #|ru| Было бы такое возможно, если б каждый заказ имел разные экземпляры класса <code>Customer</code>? Пожалуй, нет. Вот почему главным требованием этого рефакторинга является приведение класса к неизменяемому виду. В некоторых случаях это вообще невозможно и от рефакторинга нужно отказаться.
-#|en| Would this be made impossible if each order had its own instance of the <code>Customer</code> class? Probably not. That is why the main requirement of this refactoring technique is making the class immutable. In some cases, this is simply not possible and the technique should not be used.
+#|en| Would this be made impossible if each order had own instance of the <code>Customer</code> class? Probably not. That is why the main requirement of this refactoring is making the class immutable. In some cases, this is simply not possible, and the refactoring should not be executed.
 #|uk| Було б таке можливим, якщо б кожне замовлення мало різні екземпляри класу <code>Customer</code>? Мабуть, ні. Ось чому головною вимогою цього рефакторинга є приведення класу до незмінного виляду. В деяких випадках це взагалі неможливо і від рефакторинга потрібно відмовитися.
 
 Select whole "setBirthDate"
 
 #|ru| Следуя этой логике, необходимо убрать сеттер поля даты рождения и инициализировать значение этого поля в конструкторе. Применим рефакторинг <a href="/remove-setting-method">удаление сеттера</a>.
-#|en| Following this logic, remove the setter for the date of birth field. Initialize the value of the field in the constructor. Use <a href="/remove-setting-method">Remove Setting Method</a>. 
+#|en| Following this logic, we should remove the setter of the date of birth field. Then, initialize the value of the field in the constructor. This could be done with <a href="/remove-setting-method">Remove Setting Method</a>.
 #|uk| Слідуючи цій логіці, необхідно прибрати сетер поля дати народження і ініціалізувати значення цього поля в конструкторі. Застосуємо рефакторинг <a href="/remove-setting-method">видалення сетера</a>.
 
 Remove selected
@@ -142,7 +142,7 @@ $john->setBirthDate(new DateTime("1985-01-01"));
 ```
 
 #|ru| Так как сеттера в классе теперь нет, нам нужно удалить его использование в клиентском коде. Действие этого сеттера пока нечем компенсировать, но не волнуйтесь, мы рассмотрим это чуточку позже.
-#|en| Since the class no longer contains a setter, we need to remove use of it in the client code. We have nothing to replace the action of this setter yet – but don't worry, we will get to this a bit later.
+#|en| Since the class no longer contains a setter, we need to remove its use in the client code. Note that we don't have anything to compensate that setter yet. But don't worry, we will get to this a bit later.
 #|uk| Так як сетера в класі тепер немає, нам потрібно видалити його використання в клієнтському коді. Дію цього сетера поки нічим компенсувати, але не хвилюйтеся, ми розглянемо це трішки пізніше.
 
 Remove selected
@@ -188,5 +188,5 @@ Print "new Customer("John Smith", new Date(1985, 1, 1))"
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

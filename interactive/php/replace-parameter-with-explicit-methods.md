@@ -78,11 +78,11 @@ Select name of "Order"
 #|uk| Розглянемо даний рефакторинг на прикладі класу замовлення.
 
 #|ru| В этом классе есть метод применения скидки, который может работать как с фиксированными скидками, так и с процентными.
-#|en| This class has a method for applying discounts that handles both fixed discounts and percentage-based ones.
+#|en| This class has a method for applying discounts that handle both fixed discounts and percentage-based ones.
 #|uk| В цьому класі є метод застосування знижки, який може працювати як з фіксованими знижками, так і з процентними.
 
 #|ru| Начнём рефакторинг с выделения каждого варианта исполнения в отдельный метод.
-#|en| Start refactoring by extracting each version to a separate method.
+#|en| Let's start refactoring by extracting each version to a separate method.
 #|uk| Почнемо рефакторинг з виділення кожного варіанту виконання в окремий метод.
 
 Select "$this->price -= $discount;"
@@ -141,7 +141,7 @@ Replace "applyPercentDiscount("
 Set step 3
 
 #|ru| После всех замен останется удалить оригинальный метод, а также лишние теперь константы.
-#|en| Once changes are complete, remove the original method and the now-superfluous constants.
+#|en| Once changes are complete, remove the original method and now-useless constants.
 #|uk| Після всіх замін залишиться видалити оригінальний метод, а також зайві тепер константи.
 
 Select whole "applyDiscount"
@@ -171,5 +171,5 @@ Remove selected
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

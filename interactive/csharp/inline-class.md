@@ -105,13 +105,13 @@ martin.AreaCode = "781";
 Set step 1
 
 #|ru| Давайте рассмотрим <i>Встраивание класса</i> на примере класса личности и телефонного номера, который в нём используется.
-#|en| Let's look at <i>Inline Class</i> using the example of a person class and the phone number used in it.
+#|en| Let's look at <i>Inline Class</i> using the person class and its phone number as an example.
 #|uk| Давайте розглянемо <i>Вбудовування класу<i> на прикладі класу особистості і телефонного номера, який в ньому використовується.
 
 Select name of "TelephoneNumber"
 
 #|ru| Мы хотим включить класс <code>TelephoneNumber</code> обратно в класс <code>Person</code>, так как он потерял свою актуальность для наших задач.
-#|en| We want to include the <code>TelephoneNumber</code> class back in the <code>Person</code> class, since it is no longer necessary for us.
+#|en| We want to include the <code>TelephoneNumber</code> class back in the <code>Person</code> class, since it become unnecessary complex for our needs.
 #|uk| Ми хочемо включити клас <code>TelephoneNumber</code> назад в клас <code>Person</code>, так як він втратив свою актуальність для наших задач.
 
 Go to:
@@ -161,7 +161,7 @@ Set step 2
 Select "martin.OfficeTelephone.AreaCode = "781""
 
 #|ru| Теперь найдём все случаи использования класса телефонного номера в клиентском коде и заменим его использованием класса <code>Person</code>
-#|en| Now find all cases where the phone number class is used in client code and replace it with use of the <code>Person</code> class.
+#|en| Now find all cases where the phone number class is used in client code and replace it with calls to the delegate methods in <code>Person</code>.
 #|uk| Тепер знайдемо всі випадки використання класу телефонного номера в клієнтському коді та замінимо його використанням класу <code>Person</code>
 
 Print "martin.AreaCode = "781""
@@ -259,7 +259,7 @@ Wait 500ms
 #C|ru| Запустим компиляцию и тестирование, чтобы убедиться, что код всё ещё работает исправно.
 #S Всё хорошо, можно продолжать.
 
-#C|en| This is a good time to compile and test, to make sure the code is still working correctly.
+#C|en| Now is a good time to compile and test, to make sure the code is still working correctly.
 #S All is well, so let's continue.
 
 #C|uk| Запустимо компіляцію і тестування, щоб переконатися, що код все ще працює справно.
@@ -307,7 +307,7 @@ Remove selected
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -316,5 +316,5 @@ Remove selected
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

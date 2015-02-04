@@ -58,7 +58,7 @@ class Transaction {
   }
 }
 
-// Somewhere in client code...
+// Somewhere in client code…
 $flow = $account->getFlowBetween($startDate, $endDate);
 ```
 
@@ -117,7 +117,7 @@ class DateRange {
   }
 }
 
-// Somewhere in client code...
+// Somewhere in client code…
 $flow = $account->getFlowBetween(new DateRange($startDate, $endDate));
 ```
 
@@ -126,29 +126,29 @@ $flow = $account->getFlowBetween(new DateRange($startDate, $endDate));
 Set step 1
 
 #|ru| Рассмотрим этот рефакторинг на примере класса банковского счета и его транзакций.
-#|en| Let's look at this refactoring technique, using as our example a bank account class and transactions.
+#|en| Let's look at this refactoring, using the bank account and transactions classes.
 #|uk| Розглянемо цей рефакторинг на прикладі класу банківського рахунку та його транзакцій.
 
 Select name of "getFlowBetween"
 
 #|ru| Нас интересует метод получения суммы транзакций за указанный период времени.
-#|en| We are interested in the method for getting the total transactions during an indicated period of time.
+#|en| We are interested in the method for getting the total for all transactions during an indicated period of time.
 #|uk| Нас цікавить метод отримання суми транзакцій за вказаний період часу.
 
 Select parameters in "getFlowBetween"
 
 #|ru| Как видите, метод принимает в качестве параметров диапазон из двух дат. Это довольно частая картина и было бы неплохо вместо передачи двух дат передавать объект диапазона дат.
-#|en| As you can see, the method takes a range of two dates as its parameters. This is a common situation and instead of passing two dates, it would be nice to pass an object consisting of a range of dates.
+#|en| As you can see, the method takes a range of two dates as its parameters. Pretty common situation? But instead of passing two dates, it would be better to pass a single date range object.
 #|uk| Як бачите, метод приймає в якості параметрів діапазон з двох дат. Це досить часта картина і було б непогано замість передачі двох дат передавати об'єкт діапазону дат.
 
 #|ru| В дальнейшем в такой объект можно было бы перенести операции по проверке вхождения даты в диапазон и прочее.
-#|en| In the future, operations for checking whether a date falls in a range, etc., can be moved to this object.
+#|en| In future, that will allow us to move date range behaviors into their own class.
 #|uk| Надалі в такий об'єкт можна було б перенести операції з перевірки щодо входження дати в діапазон та інше.
 
 Go to after "Transaction"
 
 #|ru| Итак, создадим простой класс диапазонов.
-#|en| Create a simple range class.
+#|en| Let's begin with creating a simple range class.
 #|uk| Отже, створимо простий клас діапазонів.
 
 Print:
@@ -175,11 +175,11 @@ class DateRange {
 Select "private" in "DateRange"
 
 #|ru| Заметьте, что класс сделан неизменяемым, т.е. поменять даты диапазона после его создания невозможно, так как поля дат объявлены как приватные, а сеттеров для них мы не создали.
-#|en| The class is immutable: the dates of the range cannot be changed after it is created, since the date fields are declared as private and we did not create setters for them.
+#|en| The class will be immutable: the dates of the range cannot be changed after it is created, since the date fields are declared as private and we did not create setters for them.
 #|uk| Зауважте, що клас є незмінним, тобто поміняти дати діапазону після його створення неможливо, так як поля дат оголошені приватними, а сеттерів для них ми не створили.
 
 #|ru| Этот шаг позволит избежать многих ошибок связанных с передачей объектов в параметрах по ссылкам.
-#|en| This step allows avoiding many errors related with passing objects in parameters via references.
+#|en| This way you could avoid many errors related to passing objects in method parameters via references.
 #|uk| Цей крок дозволить уникнути багатьох помилок пов'язаних з передачею об'єктів в параметрах за посиланнями.
 
 Set step 2
@@ -193,7 +193,7 @@ Go to the parameters end of "getFlowBetween"
 Print ", DateRange $range"
 
 #|ru| Находим все места, где вызывается этот метод, и дописываем в этих вызовах новый параметр, а именно объект, созданный из уже подаваемых в метод дат.
-#|en| Find all places where the method is called. In these calls, add a new parameter – specifically, an object created from the dates already given to the method.
+#|en| Now, let's find all places where the method is called. In these calls, add a new parameter – specifically, an object created from the dates already given to the method.
 #|uk| Знаходимо всі місця, де викликається цей метод, і дописуємо в цих викликах новий параметр, а саме об'єкт, створений з дат, які вже подаються в метод.
 
 Go to ", $endDate|||"
@@ -263,7 +263,7 @@ Remove selected
 Set step 4
 
 #|ru| После того, как все необходимые параметры были удалены, можно подумать о перенесении в объект-параметр каких-то поведений, которые ему подходят.
-#|en| After all the necessary parameters are removed, we can think about moving appropriate behaviors to the parameter object.
+#|en| After all the necessary parameters were removed, we can start thinking about moving appropriate behaviors to the parameter object.
 #|uk| Після того, як всі необхідні параметри були видалені, можна подумати про перенесення в об'єкт-параметр якихось поведінок, які йому підходять.
 
 Select:
@@ -310,5 +310,5 @@ Replace "$range->includes($transaction->getDate())"
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

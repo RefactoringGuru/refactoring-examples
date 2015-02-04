@@ -82,7 +82,7 @@ Select "int |||basePrice|||"
 #|uk| Давайте по черзі замінимо змінні <code>basePrice</code> і <code>discountFactor</code> викликами відповідних методів.
 
 #|ru| Для начала нужно убедиться, что переменным в пределах метода значение присваивается только один раз.
-#|en| First make sure that the variables are assigned a value within the method only once.
+#|en| First, make sure that there is just one value assignment to the variable within the method.
 #|uk| Для початку потрібно переконатися, що змінним в межах методу значення присвоюється тільки одноразово.
 
 #|ru| В данном случае это и так видно, но чтобы обезопасить себя, можно временно объявить эти переменные константами (используя для этого ключевое слово <code>const</code>). В таком случае компилятор укажет все места, где константам пытаются повторно присвоить значения.
@@ -167,7 +167,7 @@ Print:
 Select "basePrice = |||quantity * itemPrice|||"
 
 #|ru| Теперь вызов метода можно использовать вместо первоначального выражения. Таким образом, у нас теперь есть новый метод, а весь старый код все ещё в рабочем состоянии.
-#|en| Now we can use a method call instead of the initial expression. Thus we now have a new method and all of the old code still works.
+#|en| Now we can use a method call instead of the initial expression. Thus, we now have a new method and all of the old code still works.
 #|uk| Тепер виклик методу можна використовувати замість початкового виразу. Таким чином, у нас тепер є новий метод, а весь старий код все ще в робочому стані.
 
 Print "BasePrice()"
@@ -177,7 +177,7 @@ Set step 3
 Select "(|||basePrice||| >"
 
 #|ru| Самое время начать заменять переменную непосредственным вызовом метода.
-#|en| This is the perfect time to replace the variable with a direct method call.
+#|en| Now is the perfect time to replace the variable with a direct method call.
 #|uk| Саме час почати замінювати змінну безпосереднім викликом методу.
 
 #|ru| Заменим первую переменную, а затем запустим компиляцию, чтобы убедиться, что ничего не сломалось.
@@ -198,7 +198,7 @@ Print "BasePrice()"
 Select "return |||basePrice|||"
 
 #|ru| Выполним следующую замену.
-#|en| Perform the following replacement.
+#|en| Perform the next replacement.
 #|uk| Виконаємо наступну заміну.
 
 Print "BasePrice()"
@@ -227,14 +227,14 @@ Remove selected
 Select "double |||discountFactor|||"
 
 #|ru| С первой переменной покончено, и мы можем повторить все действия для выделения <code>discountFactor</code>.
-#|en| All is done with the first variable. We can repeat all this to extract <code>discountFactor</code>.
+#|en| The first variable is done. We can repeat all this to extract <code>discountFactor</code>.
 #|uk| З першою змінною закінчили, і тепер ми можемо повторити всі дії для виділення <code>discountFactor</code>.
 
 Go to the end of "Product"
 
 #|ru| Создаём новый метод…
 #|en| Create a new method…
-#|uk| Створюємо новий метод...
+#|uk| Створюємо новий метод…
 
 Print:
 ```
@@ -251,9 +251,9 @@ Print:
 
 Go to "double discountFactor|||;"
 
-#|ru| ...используем его для инициализации переменной…
+#|ru| …используем его для инициализации переменной…
 #|en| …use it to initialize the variable…
-#|uk| ...використовуємо його для ініціалізації змінної...
+#|uk| …використовуємо його для ініціалізації змінної…
 
 Print " = DiscountFactor()"
 
@@ -272,9 +272,9 @@ Select:
 
 ```
 
-#|ru|^ ...и удаляем код, ставший теперь ненужным.
+#|ru|^ …и удаляем код, ставший теперь ненужным.
 #|en|^ …and remove the code that is no longer necessary.
-#|uk|^ ...та видаляємо код, що став тепер непотрібним.
+#|uk|^ …та видаляємо код, що став тепер непотрібним.
 
 Remove selected
 
@@ -282,9 +282,9 @@ Remove selected
 #|en| Note how difficult it would have been to extract <code>discountFactor</code> if we had not first replaced <code>basePrice</code> with a method call.
 #|uk| Зверніть увагу на те, як важко було б виділити <code>discountFactor</code> без попередньої заміни <code>basePrice</code> викликом методу.
 
-#|ru| В итоге приходим к следующему виду метода <code>getPrice()</code>.
-#|en| Ultimately the <code>getPrice()</code> method comes to look as follows.
-#|uk| У підсумку приходимо до наступного вигляду методу <code>getPrice()</code>.
+#|ru| В итоге приходим к следующему виду метода <code>GetPrice()</code>.
+#|en| Ultimately the <code>GetPrice()</code> method comes to look as follows.
+#|uk| У підсумку приходимо до наступного вигляду методу <code>GetPrice()</code>.
 
 Select:
 ```
@@ -301,7 +301,7 @@ Replace "DiscountFactor()"
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -310,5 +310,5 @@ Replace "DiscountFactor()"
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

@@ -59,29 +59,29 @@ class HeatingPlan {
 Set step 1
 
 #|ru| Рассмотрим класс, описывающий комнату и регистрирующий самую высокую и самую низкую температуру в течение суток.
-#|en| Let's look at a class that describes a room and logs the hottest/coldest temperatures in a 24-hour period.
+#|en| Let's look at this refactoring using the class that describes hotel rooms and logs their daily temperature.
 #|uk| Розглянемо клас, що описує кімнату та реєструє найвищу і найнижчу температуру протягом доби.
 
 Select "$plan->withinRange"
 
 #|ru| Он должен сравнивать этот диапазон с диапазоном в заранее установленном плане обогрева и потом, в зависимости от результатов сравнения, проделывать какие-то действия (например, менять температуру или, скажем, отсылать email хозяину дома).
-#|en| It should compare this range with the range in the preset heating schedule and then, depending on the results of the comparison, perform certain actions (such as change temperature or, say, send an email message to the house owner).
+#|en| The class should analyze room's micro climate and react with certain actions. For now, only temperature is compared with a predefined temperature plan. Then, depending on the results of the comparison, class could issue a heat or cool command, or even send an email to the house owner if the temperature is dangerously high.
 #|uk| Він повинен порівнювати цей діапазон з діапазоном в заздалегідь встановленому плані обігріву і потім, в залежності від результатів порівняння, проробляти якісь дії (наприклад, змінювати температуру або, скажімо, відсилати email господареві будинку).
 
 Select "$low, $high" in "withinPlan"
 
 #|ru| В данный момент для проверки соответствия мы передаём только температуру, но в любой момент может потребоваться проверять и что-то ещё из параметров комнаты, например, влажность.
-#|en| Currently we are passing only the temperature for comparison but at any time we may need to check another room parameter, such as humidity.
+#|en| Currently, we are passing only the temperature for analysis but at any time we may need to check another room parameter, such as humidity.
 #|uk| В даний момент для перевірки відповідності ми передаємо тільки температуру, але в будь-який момент може знадобитися перевіряти і щось ще з параметрів кімнати, наприклад, вологість.
 
 #|ru| В текущей реализации придётся создавать новые и новые параметры в методе анализа данных. Чтобы этого избежать, можно передавать вместо конкретных значений весь объект-комнату. Это позволит использовать любые параметры комнаты без изменения сигнатуры методов.
-#|en| In other words, we would have to create more and more new parameters. To avoid this, we can pass the entire room object instead of specific values. This allows using any room parameters without changing the signature of the methods.
+#|en| With current implementation, we would have to add more and more parameters to the method. To avoid this, we can pass the entire room object instead of specific values. That will allow to take any room data straight from the room object, without changing signature of the method.
 #|uk| З нинішньою реалізацією доведеться створювати нові і нові параметри в методі аналізу даних. Щоб цього уникнути, можна передавати замість конкретних значень весь об'єкт-кімнату. Це дозволить використовувати будь-які параметри кімнати без зміни сигнатури методів.
 
 Go to parameters of "withinRange"
 
 #|ru| Итак, на первом шаге добавим параметр в метод <code>withinRange</code>.
-#|en| So for the first step, add a parameter to the <code>withinRange</code> method.
+#|en| So for the first step, we add a parameter to the <code>withinRange</code> method.
 #|uk| Отже, на першому кроці додамо параметр в метод <code>withinRange</code>.
 
 Print "Room $room, "
@@ -93,7 +93,7 @@ Print "$this, "
 Set step 2
 
 #|ru| Теперь начинаем по одному удалять из метода параметры, которые можно заменить вызовами полей или методов передаваемого объекта.
-#|en| One by one, start to remove parameters from the method that you can replace with calls to fields or methods of the object being passed.
+#|en| One by one, we should remove parameters with data, that could be retrieved from the object we pass into the method.
 #|uk| Тепер починаємо по одному видаляти з методу параметри, які можна замінити викликами полів або методів переданого об'єкта.
 
 Select ", $high" in parameters of "withinRange"
@@ -154,7 +154,7 @@ Select:
 Set step 3
 
 #|ru| Напоследок, удаляем ненужные теперь переменные из <code>withinPlan</code>.
-#|en| And finally, remove the now-unused variables from <code>withinPlan</code>.
+#|en| And finally, let's remove the unused variables from <code>withinPlan</code>.
 #|uk| Наостанок, видаляємо непотрібні тепер змінні з <code>withinPlan</code>.
 
 Remove selected
@@ -171,5 +171,5 @@ Remove selected
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

@@ -67,7 +67,7 @@ class IntRange {
 Set step 1
 
 #|ru| Давайте рассмотрим <i>Самоинкапсуляцию</i> на примере класса диапазонов.<br/><br/>Самоинкапсуляция заключается в реализации доступа к полям через методы доступа даже в методах самого класса.
-#|en| Let's look at <i>Self-Encapsulation</i> using the example of a range class.<br/><br/>Self-encapsulation means implementing access to fields through access methods even in the methods of the class itself.
+#|en| Let's look at <i>Self-Encapsulation</i> using the example of a range class.<br/><br/>Self-encapsulation differs from regular encapsulation by requiring even its own class to access fields through getters and setters.
 #|uk| Давайте розглянемо <i>Самоінкапсуляцію<i> на прикладі класу діапазонів.<br/><br/>Самоінкапсуляція полягає в реалізації доступу до полів через методи доступу навіть у методах самого класу.
 
 Go to before "includes"
@@ -145,7 +145,7 @@ Select "this.low"
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -154,5 +154,5 @@ Select "this.low"
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

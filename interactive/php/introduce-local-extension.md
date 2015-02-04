@@ -79,11 +79,11 @@ class MyNewDate extends DateTime {
 Set step 1
 
 #|ru| <i>Введение локального расширения</i> можно осуществить двумя способами: через создание класса-наследника либо через создание класса-обёртки. В этом примере мы пойдём путём наследования.
-#|en| <i>Introduction of a local extension</i> can be performed in two ways: by creating an inheritor class or a wrapper class. In this example, we will use inheritance.
+#|en| <i>Introduction of a local extension</i> can be performed in two ways: by creating either subclass or a wrapper class. In this example, we will use inheritance.
 #|uk| <i>Введення локального розширення<i> можна здійснити двома способами: через створення класу-спадкоємця або класу-обгортки. В цьому прикладі ми підемо шляхом наслідування.
 
 #|ru| Для начала давайте создадим новый класс дат, как подкласс оригинального класса <code>Date</code>
-#|en| First create a new class of dates as a subclass of the original <code>Date</code> class.
+#|en| First, we create a new subclass of the original <code>Date</code> class.
 #|uk| Спочатку створимо новий клас дат, як підклас оригінального класу <code>Date</code>
 
 Go to the end of file
@@ -119,7 +119,7 @@ Set step 3
 Select name of "__construct"
 
 #|ru| Теперь добавляется конвертирующий конструктор, принимающий оригинал в качестве аргумента.
-#|en| Now add a converting constructor that accepts the original as an argument.
+#|en| Now wee should add a converting constructor that accepts the original as an argument.
 #|uk| Тепер додається конвертируючий конструктор, який приймає оригінал як аргумент. В PHP нельзя создавать несколько конструкторов, поэтому мы просто расширим существующий.
 
 Select:
@@ -191,7 +191,7 @@ Set step 5
 Select "$this->nextWeek($this->previousDate)"
 
 #|ru| Изменим код, использующий внешний метод, чтобы вместо метода он использовал новый класс-расширение.
-#|en| Now change the code that uses the external code so that it uses the new extension class instead.
+#|en| Now we replace all usages of the old foreign method with our new extension class.
 #|uk| Змінимо код, що використовує зовнішній метод так, щоб він замість цього використовував новий клас-розширення.
 
 Print "(new MyNewDate($this->previousDate))->nextWeek()"
@@ -206,7 +206,7 @@ Select whole "nextWeek" in "Account"
 
 ```
 #|ru| После всех замен внешний метод можно удалить.
-#|en| After changes are complete, remove the external method from the client class.
+#|en| After all changes are complete, we remove the external method from the client class.
 #|uk| Після всіх замін зовнішній метод можна видалити.
 
 Remove selected
@@ -223,5 +223,5 @@ Remove selected
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

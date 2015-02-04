@@ -165,7 +165,7 @@ Go to "$kent = |||new Person();"
 Go to the end of "class Person"
 
 #|ru| Итак, первым делом нужны надлежащие методы модификации для этой коллекции.
-#|en| Thus first we need proper modification methods for this collection.
+#|en| Thus, first we need proper modification methods for this collection.
 #|uk| Отже, насамперед потрібні належні методи модифікації для цієї колекції.
 
 Print:
@@ -200,7 +200,7 @@ Set step 3
 Select name of "setCourses"
 
 #|ru| Теперь посмотрим на пользователей сеттера <code>setCourses</code>. Если клиентов много и сеттер интенсивно используется, необходимо заменить тело метода так, чтобы в нем использовались операции добавления и удаления.
-#|en| Now look at the users of the <code>setCourses</code> setter. If there are many clients and the setter is used intensively, replace the method body so that it uses add/remove operations.
+#|en| Now look at the uses of the <code>setCourses</code> setter. If there are many clients and the setter is used intensively, replace the method body so that it uses add/remove operations.
 #|uk| Тепер подивимося на користувачів сетера <code>setCourses</code>. Якщо клієнтів багато і сетер інтенсивно використовується, необхідно замінити тіло методу так, щоб в ньому використовувалися операції додавання і видалення.
 
 Select "$kent->setCourses($s)"
@@ -212,7 +212,7 @@ Select "$kent->setCourses($s)"
 Select body of "setCourses"
 
 #|ru| В этом случае нужно изменить тело сеттера так, чтобы в нем использовался метод добавления.
-#|en| If this is the case, change the setter body so that it uses an addition method.
+#|en| If this is the case, change the setter body so that it uses collection's <code>add</code> method.
 #|uk| В цьому випадку потрібно змінити тіло сетера так, щоб в ньому використовувався метод додавання.
 
 Print:
@@ -234,7 +234,7 @@ Select "setCourses"
 Replace "initializeCourses"
 
 #|ru| В общем случае мы должны сначала прибегнуть к методу удаления и убрать все элементы, а затем добавлять новые. Однако это происходит редко (как и бывает с общими случаями).
-#|en| As a general rule, we should use the removal method and get rid of all elements, and then add new ones. However, this happens rarely (as is true of general rules).
+#|en| But in a general case, this method should first remove all existing collection items, and then add new ones.
 #|uk| У загальному випадку ми повинні спочатку вдатися до методу видалення і прибрати всі елементи, а потім додавати нові. Однак це відбувається рідко (як і буває з загальними випадками).
 
 #|ru| Если мы знаем, что другого поведения при добавлении элементов во время инициализации нет, можно убрать цикл и применить addAll.
@@ -255,7 +255,7 @@ Replace:
 ```
 
 #|ru| Стоит упомянуть, что мы не можем просто присвоить значение множеству, даже если предыдущее множество было пустым. Если клиент соберётся модифицировать множество после того, как передаст его, это станет нарушением инкапсуляции. Поэтому мы должны создать копию.
-#|en| Remember than we cannot simply assign a value to a set even if the previous set was empty. If the client plans to modify the set after passing it, this will violate encapsulation. So we should create a copy.
+#|en| Remember that we cannot simply assign a value to a set even if the previous set was empty. If the client plans to modify the set after passing it, this will violate encapsulation. So we always have to create copies.
 #|uk| Варто згадати, що ми не можемо просто привласнити значення множини, навіть якщо попередня множина була порожньою. Якщо клієнт збереться модифікувати множину після того, як передасть її, це стане порушенням інкапсуляції. Тому ми повинні створити копію.
 
 Select:
@@ -264,8 +264,8 @@ $s = new SplObjectStorage();
 
 ```
 
-#|ru| Если клиенты просто создают множество и пользуются методом установки, мы можем заставить их пользоваться методами добавления и удаления непосредственно...
-#|en| If clients simply create a set and use a setter, we can force them to use add/remove methods directly...
+#|ru| Если клиенты просто создают множество и пользуются методом установки, мы можем заставить их пользоваться методами добавления и удаления непосредственно…
+#|en| If client code simply creates a set and uses its setter, we should force it to use add/remove methods instead…
 #|uk| Якщо клієнти просто створюють множину і користуються методом установки, ми можемо змусити їх користуватися методами додавання та видалення безпосередньо ,а також повністю прибрати виклик методу ініціалізації.
 
 Remove selected
@@ -286,9 +286,9 @@ $kent->initializeCourses($s);
 
 ```
 
-#|ru| ...и полностью убрать вызов метода инициализации.
-#|en| ...and get rid of the call to the initialization method completely.
-#|uk| ...і повністю прибрати виклик методу ініціалізації.
+#|ru| …и полностью убрать вызов метода инициализации.
+#|en| …and get rid of the call to the initialization method completely.
+#|uk| …і повністю прибрати виклик методу ініціалізації.
 
 Remove selected
 
@@ -299,11 +299,11 @@ Select "getCourses()->attach"
 + Select "getCourses()->detach"
 
 #|ru| Теперь нужно рассмотреть, кто использует геттер коллекции. В первую очередь нас должны интересовать случаи модификации коллекции с его помощью.
-#|en| Now see who is using the collection getter. Our foremost interest should go to cases when it is used to modify the collection.
+#|en| Now let's see who is using the collection's getter. Our foremost interest should go to cases when it is used to modify the collection.
 #|uk| Тепер потрібно розглянути, хто використовує геттер колекції. В першу чергу нас повинні цікавити випадки модифікації колекції з його допомогою.
 
 #|ru| Такие вызовы следует заменять вызовами метода добавления или удаления курсов.
-#|en| These calls should be replaced with calls to the method for adding or removing courses.
+#|en| We need to replace such calls with add/remove calls.
 #|uk| Такі виклики слід замінювати викликами методу додавання або видалення курсів.
 
 Select "getCourses()->attach"
@@ -324,7 +324,7 @@ return |||$this->courses|||;
 ```
 
 #|ru| Последним штрихом следует изменить тело геттера так, чтобы он возвращал значение, доступное только для чтения (другими словами неизменяемое представление коллекции).
-#|en| As the finishing touch, change the getter body so that it returns a read-only value (an immutable representation of the collection).
+#|en| As the finishing touch, let's change the getter's body so that it returns a read-only value (an immutable representation of the collection).
 #|uk| Останнім штрихом слід змінити тіло геттера так, щоб він повертав значення, доступне тільки для читання (іншими словами незмінне уявлення колекції).
 
 
@@ -348,7 +348,7 @@ private |||$courses|||
 ```
 
 #|ru| После этого коллекцию можно считать полностью инкапсулированной. Никто не сможет изменить её элементы, кроме как через методы <code>Person</code>.
-#|en| Then the collection can be considered fully encapsulated. Nobody can change its elements other than by using the <code>Person</code> method.
+#|en| At this point, we can consider the collection fully encapsulated. Nobody can change its elements other than by using the <code>Person</code> class' method.
 #|uk| Після цього колекцію можна вважати повністю інкапсульованою. Ніхто не зможе змінити її елементи, крім як через методи <code>Person</code>.
 
 Set step 6
@@ -365,7 +365,7 @@ foreach ($kent->getCourses() as $course) {
 ```
 
 #|ru| После того как для класса <code>Person</code> был создан корректный интерфейс, мы можем заняться перемещением релевантного кода в этот класс. Вот пример такого кода.
-#|en| After the correct interface is created for the <code>Person</code> class, we can start moving the relevant code to this class. Here is an example of the code.
+#|en| Now that we have a proper interface for the <code>Person</code> class, we can start moving the relevant code to this class. Here is an example of the code.
 #|uk| Після того як для класу <code>Person</code> був створений коректний інтерфейс, ми можемо зайнятися переміщенням релевантного коду в цей клас. Ось приклад такого коду.
 
 #|ru| Применим <a href="/extract-method">извлечение метода</a> к этому коду, чтобы переместить его в <code>Person</code>.
@@ -411,7 +411,7 @@ Replace "$kent->numberOfAdvancedCourses()"
 Select "$kent->getCourses()->count()"
 
 #|ru| Часто встречается такой код.
-#|en| Such code is frequently encountered.
+#|en| Take a loot at this code. It's quite frequently encountered.
 #|uk| Часто зустрічається такий код.
 
 Go to the end of "Person"
@@ -444,5 +444,5 @@ Replace "$kent->numberOfCourses()"
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

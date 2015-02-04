@@ -99,17 +99,17 @@ Set step 1
 Select "private AccountType |||type|||"
 
 #|ru| Представим себе, что будет введено несколько новых типов счетов со своими правилами начисления платы за овердрафт (превышение кредита).
-#|en| Say that there will be several new account types, and each account type will have different rules for how to calculate overdraft fees, when the bank's customer attempts to spend more money than is available.
+#|en| Say, there will be several new account types, and each account type will have different rules for how to calculate overdraft fees, when the bank's customer attempts to spend more money than is available.
 #|uk| Уявімо собі, що буде введено кілька нових типів рахунків зі своїми правилами нарахування плати за овердрафт (перевищення кредиту).
 
 #|ru| Мы хотим переместить метод начисления этой оплаты внутрь класса, представляющего тип счета.
 #|en| We want to move the method for calculating this overdraft fee to inside the class that represents the account type.
 #|uk| Ми хочемо перемістити метод нарахування цієї оплати всередину класу, що представляє тип рахунку.
 
-Select name of "OverdraftCharge"
+Select name of "overdraftCharge"
 
 #|ru| Прежде всего, посмотрим, какие поля и методы использует <code>overdraftCharge()</code>, и решим, следует ли переносить только его, или же надо будет перенести также и то, что с ним связано.
-#|en| To start, let's see which fields and methods are used by <code>overdraftCharge()</code> and decide whether to move only it or perhaps also move everything associated with it. 
+#|en| First, we need to decide whether to move only <code>overdraftCharge()</code> method or, perhaps, some other related code, fields or methods. 
 #|uk| Перш за все, подивимося, які поля і методи використовує <code>overdraftCharge()</code>, і вирішимо, чи слід переносити тільки його, або ж треба буде перенести також і те, що з ним пов'язано.
 
 Select "private AccountType |||type|||"
@@ -121,21 +121,21 @@ Select "private AccountType |||type|||"
 Select "private int |||daysOverdrawn|||"
 
 #|ru| Поле <code>daysOverdrawn</code> тоже не стоит переносить, так как оно будет разным для отдельных счетов.
-#|en| Moving the <code>daysOverdrawn</code> field would not make sense either, since it is different for different accounts.
+#|en| Moving the <code>daysOverdrawn</code> field would not make sense either, since its value will be different in every other account.
 #|uk| Поле <code>daysOverdrawn</code> теж не варто переносити, так як воно буде відрізнятися для окремих рахунків.
 
-Select name of "OverdraftCharge"
+Select name of "overdraftCharge"
 
-#|ru| А, значит, будем переносить только метод <code>OverdraftCharge()</code>
-#|en| So we will move only the <code>OverdraftCharge()</code> method.
-#|uk| А це означає, що будемо переносити тільки метод <code>OverdraftCharge()</code>
+#|ru| А, значит, будем переносить только метод <code>overdraftCharge()</code>
+#|en| So, it looks like we going to move only the <code>overdraftCharge()</code> method.
+#|uk| А це означає, що будемо переносити тільки метод <code>overdraftCharge()</code>
 
 Set step 2
 
 Select whole "overdraftCharge"
 
 #|ru| Скопируем метод <code>overdraftCharge()</code> в класс <code>AccountType</code>.
-#|en| Copy the <code>overdraftCharge()</code> method to the <code>AccountType</code> class.
+#|en| Awesome, let's copy the <code>overdraftCharge()</code> method to the <code>AccountType</code> class.
 #|uk| Скопіюємо метод <code>overdraftCharge()</code> в клас <code>AccountType</code>.
 
 Go to the end of "AccountType"
@@ -160,13 +160,13 @@ Print:
 Select name of "overdraftCharge" in "AccountType"
 
 #|ru| Теперь метод необходимо отредактировать для правильной работы на новом месте.
-#|en| Now edit the method so that it will function correctly in its new location.
+#|en| Now, we should edit the method so that it will work correctly in the new location.
 #|uk| Тепер метод необхідно відредагувати для правильної роботи на новому місці.
 
 Select "type." in "overdraftCharge" of "AccountType"
 
 #|ru| Первым делом удалим из метода поле <code>type</code>, т.к. мы теперь находимся внутри класса, реализующего тип счета, и все методы можно вызывать из него напрямую.
-#|en| First remove the <code>type</code> field from the method, since we are now inside the class that implements the account type and all methods can be called from it directly.
+#|en| First remove the <code>type</code> field from the method, since the method is inside the class that implements the account type and, therefore, all methods could be called from it directly.
 #|uk| Першим ділом видалимо з методу поле <code>type</code>, так як ми тепер перебуваємо всередині класу, що реалізовує тип рахунку, і всі методи можна викликати з нього безпосередньо.
 
 Remove selected
@@ -175,16 +175,16 @@ Select "daysOverdrawn" in "overdraftCharge" of "AccountType"
 
 
 #|ru| Далее прорабатываем те поля и методы <code>Account</code>, которые остались в оригинальном классе, но все еще нужны внутри метода, который мы перенесли. У нас таким полем является <code>daysOverdrawn</code>.
-#|en| Now go through the fields and methods of <code>Account</code> that you need. In our case, this would be the <code>daysOverdrawn</code> field.
+#|en| Now we should go through the fields and methods  that left in <code>Account</code> class but still needed inside the method we move. In our case, this is the <code>daysOverdrawn</code> field.
 #|uk| Далі опрацьовуємо ті поля та методи <code>Account</code>, які залишилися в оригінальному класі, але все ще потрібні в тілі методу, який ми перенесли. У нас таким полем є <code>daysOverdrawn</code>.
 
 #|ru| В теории, если необходимо сохранить некоторый метод или поле исходного класса, то можно выбрать один из четырёх вариантов действия: <ol><li>Переместить это поле или метод в целевой класс.</li><li>Создать ссылку из целевого класса в исходный или воспользоваться уже имеющейся.</li><li>Передать экземпляр исходного класса в качестве параметра метода целевого класса.</li><li>Передать значение поля в виде параметра.</li></ol>
 #|en| In theory, there are four options for saving a method or field of the original class: <ol><li>Move the field or method to the target class.</li><li>Create a reference from the target class to the original one or restore the previously existing one.</li><li>Pass an instance of the original class as a parameter of the target class method.</li><li>Pass the field value as a parameter.</li></ol>
 #|uk| У теорії, якщо необхідно зберегти деякий метод або поле вихідного класу, то можна вибрати один з чотирьох варіантів дії: <ol> <li> Перемістити це поле або метод в цільовий клас. </ Li> <li> Створити посилання з цільового класу до вихідного або скористатися вже наявним осиланням. </ li> <li> Надіслати примірник вихідного класу як параметр методу цільового класу. </ li> <li> Надіслати значення поля у вигляді параметра. </ li> </ ol>
 
-#|ru| В данном случае мы передаем значение поля как параметр...
-#|en| In this case, we will pass the field value as a parameter…
-#|uk| В даному випадку ми передаємо значення поля як параметр...
+#|ru| В данном случае мы передаем значение поля как параметр…
+#|en| In our case, let's pass the field value as a parameter…
+#|uk| В даному випадку ми передаємо значення поля як параметр…
 
 Go to parameters of "overdraftCharge" of "AccountType"
 
@@ -192,9 +192,9 @@ Print "int daysOverdrawn"
 
 Select "daysOverdrawn" in "overdraftCharge" of "AccountType"
 
-#|ru| ...и будем использовать этот параметр в теле метода.
+#|ru| …и будем использовать этот параметр в теле метода.
 #|en| …and use this parameter in the method body.
-#|uk| ...і будемо використовувати цей параметр в тілі методу.
+#|uk| …і будемо використовувати цей параметр в тілі методу.
 
 #C|ru| Запустим компиляцию, чтобы проверить код на наличие ошибок.
 #S Всё отлично, можем продолжать!
@@ -210,7 +210,7 @@ Set step 3
 Select body of "overdraftCharge" in "Account"
 
 #|ru| Теперь можно заменить тело исходного метода простым делегированием.
-#|en| Now we can replace the body of the original method with simple delegation.
+#|en| Now we can replace the body of the original method in <code>Account</code> class with simple delegation.
 #|uk| Тепер можна замінити тіло вихідного методу простим делегуванням.
 
 Print:
@@ -232,7 +232,7 @@ Set step 4
 Select name of "overdraftCharge" in "Account"
 
 #|ru| Код в рабочем состоянии, поэтому мы можем пойти дальше и вообще удалить метод <code>overdraftCharge()</code> из исходного класса.
-#|en| The code is functioning, so we can continue and remove the <code>overdraftCharge()</code> method from the original class entirely.
+#|en| The code works fine, so we can continue and remove the <code>overdraftCharge()</code> method from the original class entirely.
 #|uk| Код в робочому стані, тому ми можемо піти далі і взагалі видалити метод <code>overdraftCharge()</code> з вихідного класу.
 
 Select "overdraftCharge()" in "bankCharge"
@@ -247,7 +247,7 @@ type.overdraftCharge(daysOverdrawn)
 ```
 
 #|ru| Обратите внимание, если перемещаемый метод не является приватным, необходимо посмотреть, не пользуются ли им другие классы. В строго типизированном языке после удаления объявления метода в исходном классе компиляция обнаружит всё, что могло быть пропущено. В остальных случаях помогут автотесты.
-#|en| If the moved method is not private, make sure that other classes are not using it. In a strongly typed language, after a method declaration in the original class is removed, compilation will uncover everything that may have been skipped. In other languages, autotests will assist.
+#|en| In case, when the moved being method is not private, make sure that other classes are not using it. It's easy in strongly-typed programming languages (Java, C#) – compilation will uncover everything that may have been missed. In other languages, autotest is your friend.
 #|uk| Зверніть увагу, якщо переміщуваний метод не є приватним, необхідно подивитися, чи не користуються їм інші класи. В строго типізованій мові після видалення оголошення методу у вихідному класі компіляція виявить все, що могло бути пропущено. В інших випадках допоможуть автотести.
 
 Select whole "overdraftCharge" in "Account"
@@ -264,12 +264,12 @@ Select name in "Account"
 #|en| We can compile and test after each removal or perform everything in one fell swoop.
 #|uk| Можна виконувати компілювання і тестування після кожного видалення або зробити це за один прийом.
 
-#|ru| Можно ли на этом считать перемещение метода завершённым?<br/><br/>Не так быстро...
+#|ru| Можно ли на этом считать перемещение метода завершённым?<br/><br/>Не так быстро…
 #|en| So can we say that we are done moving the method?<br/><br/>Not quite…
-#|uk| Чи можна на цьому вважати переміщення методу завершеним?<br/><br/>Не так швидко...
+#|uk| Чи можна на цьому вважати переміщення методу завершеним?<br/><br/>Не так швидко…
 
 #|ru| Давайте рассмотрим ещё один нюанс. В данном случае метод обращался к единственному полю, поэтому мы смогли передать его значение в параметре. Если бы метод вызывал какой-то другой метод класса <code>Account</code>, то нам не удалось бы это сделать. В таких ситуациях требуется передавать в параметрах экземпляр всего исходного класса. Давайте рассмотрим, как это могло быть реализовано.
-#|en| Let's look at one nuance. In this case, the method referred to a single field, because of which we could pass its value in a parameter. If the method had called any other method of the <code>Account</code> class, we would not be able to do this. In such situations, you must pass an instance of the entire original class in the parameters. Here are all the details of how to implement this.
+#|en| Let's look at one nuance. In this case, the method referred to a single field, which allowed us to pass its value to the parameter. If the method had called any other method of the <code>Account</code> class, we would not be able to do this. In such situations, you must pass the entire object in the parameters and retrieve everything you need from it. Let's see how it's done.
 #|uk| Давайте розглянемо ще один нюанс. В даному випадку метод звертався до єдиного поля, тому ми змогли передати його значення в параметрі. Якби метод викликав якийсь інший метод класу <code>Account</code>, то нам не вдалося б це зробити. В таких ситуаціях потрібно передавати в параметрах примірник всього вихідного класу. Давайте розглянемо, як це могло б бути реалізоване.
 
 Select parameters in "overdraftCharge"
@@ -305,7 +305,7 @@ Print "this"
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -314,5 +314,5 @@ Print "this"
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

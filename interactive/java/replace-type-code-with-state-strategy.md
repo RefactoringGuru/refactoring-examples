@@ -142,13 +142,13 @@ class Manager extends EmployeeType {
 Set step 1
 
 #|ru| Рассмотрим рефакторинг <i>Замена кодирования типа состоянием/стратегией</i> на примере всё того же класса зарплаты служащего. У нас есть несколько типов служащих, на основе которых вычисляется размер зарплаты каждого конкретного служащего.
-#|en| Let's look at <i>Replace Type Code with State/Strategy</i> in the context of the employee salary class considered earlier. We have several types of employees; these types are used to calculate the salary amount for each particular employee.
+#|en| Let's look at <i>Replace Type Code with State/Strategy</i> in the context of the payroll class considered earlier. We have several types of employees; these types are used to calculate the salary amount for each particular employee.
 #|uk| Розглянемо рефакторинг <i>Заміна кодування типу станом / стратегією<i> на прикладі все того ж класу зарплати службовця. У нас є кілька типів службовців, на основі яких обчислюється розмір зарплати кожного конкретного службовця.
 
 Select "public int |||type|||"
 
 #|ru| Начнём с <a href="/self-encapsulate-field">самоинкапсуляции поля</a> типа служащего.
-#|en| Start by applying <a href="/self-encapsulate-field">Self-Encapsulate Field</a> to the employee type.
+#|en| Let's start by applying <a href="/self-encapsulate-field">Self-Encapsulate Field</a> to the employee type.
 #|uk| Почнемо з <a href="/self-encapsulate-field">самоінкапсуляціі поля</a> типу службовця.
 
 Select "|||public||| int type"
@@ -253,13 +253,13 @@ Print:
 Select "switch (code)"
 
 #|ru| Как видите, мы вносим здесь большой оператор <code>switch</code>. Это не очень хорошая новость, но зато по завершению рефакторинга этот оператор окажется единственным в коде и будет выполняться только при изменении типа.
-#|en| As you can see, here we are introducing a large <code>switch</code> operator. This is not great news, but once we are done with refactoring, this operator will be the only one in the code and will be run only when a type is changed.
+#|en| As you can see, here we are introducing a large <code>switch</code> operator. That's not great news, but once we are done with refactoring, this operator will be the only one in the code and will be run only when a type is changed.
 #|uk| Як бачите, ми вносимо тут великий оператор <code>switch</code>. Це не дуже хороша новина, але зате по завершенню рефакторинга цей оператор виявиться єдиним у коді і буде виконуватися тільки при зміні типу.
 
 #C|ru| Запустим компиляцию и тестирование, чтобы убедиться в отсутствии ошибок.
 #S Всё отлично, можем продолжать!
 
-#C|en| Let's compile and test to check for errors in code.
+#C|en| Let's compile and test to check for errors in the code.
 #S Everything is OK! We can keep going.
 
 #C|uk| Запустимо компіляцію і тестування, щоб переконатися у відсутності помилок.
@@ -480,7 +480,7 @@ Set step 7
 Select body of "payAmount"
 
 #|ru| После того, как методы созданы, можно сделать метод <code>payAmount</code> в <code>EmployeeType</code> абстрактным.
-#|en| Now that the methods have been created, you can make abstract the <code>payAmount</code> method in <code>EmployeeType</code>.
+#|en| Now that the methods have been created, you can make the <code>payAmount</code> method in <code>EmployeeType</code>  abstract.
 #|uk| Після того, як методи створені, можна зробити метод <code>payAmount</code> в <code>EmployeeType</code> абстрактним.
 
 Select:
@@ -508,7 +508,7 @@ Replace:
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -517,5 +517,5 @@ Replace:
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

@@ -39,7 +39,7 @@ public class Order
     this.Customer = customer;
   }
 }
-//...
+//…
 // Client code, which uses Order class.
 private static int NumberOfOrdersFor(List<Order> orders, string customer)
 {
@@ -93,7 +93,7 @@ public class Customer
     this.Name = name;
   }
 }
-//...
+//…
 // Client code, which uses Order class.
 private static int NumberOfOrdersFor(List<Order> orders, string customer)
 {
@@ -119,13 +119,13 @@ private static int NumberOfOrdersFor(List<Order> orders, string customer)
 Set step 1
 
 #|ru| Давайте рассмотрим рефакторинг <i>Замена простого поля объектом</i> на примере класса заказа.
-#|en| Let's look at the <i>Replace Data Value with Object</i> refactoring technique, using an order class as an example.
+#|en| Let's look at the <i>Replace Data Value with Object</i> refactoring, using an order class as an example.
 #|uk| Давайте розглянемо рефакторинг <i>Заміна простого поля об'єктом<i> на прикладі класу замовлення.
 
 Select "private string |||customer|||"
 
 #|ru| В данном примере покупатель в классе заказа хранится в виде строки. Однако мы могли бы создать для покупателей свой класс и перенести в него все данные и операции, связанные с покупателями.
-#|en| In this example, the customer in the order class is stored as a string. But we could have created a class just for customers and moved all data and operations related to customers to this class.
+#|en| In this example, the customer in the order class is stored as a string. Alternatively, we could create a <code>Customer</code> class and move the other customer data and behaviors to this class.
 #|uk| В даному прикладі покупець в класі замовлення зберігається у вигляді рядка. Однак ми могли б створити для покупців свій клас і перенести в нього всі дані та операції, пов'язані з покупцями.
 
 Go to after "Order"
@@ -162,7 +162,7 @@ Set step 2
 Go to end of "Customer"
 
 #|ru| Здесь же создадим конструктор, принимающий начальное значение имени.
-#|en| Here is where we will create a constructor that accepts the initial value of the name.
+#|en| We should also create a constructor that accepts the initial value of the name.
 #|uk| Тут же створимо конструктор, який приймає початкове значення імені.
 
 Print:
@@ -237,7 +237,7 @@ Select "new Customer(customer)"
 #C|ru| В данный момент можно выполнить компиляцию и тестирование.
 #S Всё отлично, код работает корректно.
 
-#C|en| Let's compile and test.
+#C|en| Anyway, let's compile and test to make sure there are no errors.
 #S Everything is OK! Code works correctly.
 
 #C|uk| В даний момент можна виконати компіляцію і тестування.
@@ -287,7 +287,7 @@ Replace "customerName"
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -296,15 +296,15 @@ Replace "customerName"
 Select "private Customer |||customer|||"
 
 #|ru| Прежде, чем закончить, хотелось бы обратить ваше внимание на то, что здесь, как и во многих других случаях, надо сделать ещё одну вещь. Вам может потребоваться добавить к клиенту оценку кредитоспособности, адрес и т.п. Пока что это сделать нельзя, так как <code>Customer</code> задействован как объект-значение. То есть в каждом заказе находится собственный экземпляр класса <code>Customer</code>.
-#|en| Before we finish, note that here and in many other cases, one more step is necessary. You may need to add a credit score, address, etc. to the client. You cannot do this yet, since <code>Customer</code> is used as a value. That is, each order has its own instance of the <code>Customer</code> class.
+#|en| Before we finish, note that here and in many other cases, one more step is necessary. You may need to add a credit score, address, etc. to the <code>Customer</code>. You cannot do this yet, since <code>Customer</code> is used as a value object. That is, each order has its own instance of the <code>Customer</code> class.
 #|uk| Перш, ніж закінчити, хотілося б звернути вашу увагу на те, що тут, як і в багатьох інших випадках, треба зробити ще одну річ. Вам може знадобитися додати до клієнта оцінку кредитоспроможності, адресу і т.п. Поки що це зробити не можливо, так як <code>Customer</code> задіяний як об'єкт-значення. Тобто в кожному замовленні знаходиться власний примірник класу <code>Customer</code>.
 
 #|ru| Чтобы создать в классе <code>Customer</code> требуемые атрибуты, необходимо применить к нему рефакторинг <a href="/change-value-to-reference">замена значения ссылкой</a>. После этого все заказы для одного и того же покупателя будут ссылаться на один и тот же экземпляр класса <code>Customer</code>.
-#|en| To create the necessary attributes in the <code>Customer</code> class, use the <a href="/change-value-to-reference">Change Value to Reference</a> refactoring technique on it. Now all orders for the same customer will refer to the same instance of the <code>Customer</code> class.
+#|en| To create the necessary attributes in the <code>Customer</code> class, use the <a href="/change-value-to-reference">Change Value to Reference</a> refactoring technique on it. After that refactoring, all orders for the same customer will refer to the same instance of the <code>Customer</code> class.
 #|uk| Щоб створити в класі <code>Customer</code> необхідні атрибути, треба застосувати до нього рефакторинг <a href="/change-value-to-reference">заміна значення посиланням</a>. Після цього всі замовлення для одного і того ж покупця будуть посилатися на той самий  примірник класу <code>Customer</code>.
 
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

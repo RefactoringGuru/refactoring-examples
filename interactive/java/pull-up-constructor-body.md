@@ -64,7 +64,7 @@ class Manager extends Employee {
 Set step 1
 
 #|ru| Начнём с классов менеджера и служащего. В данном случае <code>Employee</code> вообще не имеет конструктора, а его поля заполняются в классе <code>Manager</code>, который реально используется в программе.
-#|en| Start with the manager and employee classes. In this case, <code>Employee</code> does not have any constructor and its fields are filled in the <code>Manager</code> class, which actually is used in the program.
+#|en| Let's look at <i>Pull Up Constructor Body</i> using manager and employee classes. In this case, <code>Employee</code> does not have any constructor and its fields are filled in the <code>Manager</code> class, which is actually used in the program.
 #|uk| Почнемо з класів менеджера і службовця. В даному випадку <code>Employee</code> взагалі не має конструктора, а його поля заповнюються в класі <code>Manager</code>, який реально використовується в програмі.
 
 #|ru| Таким образом, если мы захотим создать ещё один подкласс <code>Employee</code>, нам придётся дублировать части конструктора, чтобы инициализировать поля <code>Employee</code>.
@@ -78,7 +78,7 @@ Set step 1
 Go to the end of "Employee"
 
 #|ru| Определим конструктор и сделаем его защищённым. Это даст знать другим программистам, что его нужно вызывать в подклассах.
-#|en| Define the constructor and make it protected. This lets other programmers know that it needs to be called in subclasses.
+#|en| Let's define the constructor and make it protected. That will work as default implementation and let subclasses call it inside their own constructors.
 #|uk| Визначимо конструктор і зробимо його захищеним. Це дасть знати іншим програмістам, що його потрібно викликати в підкласах.
 
 Print:
@@ -93,7 +93,7 @@ Print:
 Set step 3
 
 #|ru| После того как новый конструктор стал доступен, его можно вызвать из конструктора <code>Manager</code>.
-#|en| After the new constructor becomes available, it can be called from the <code>Manager</code> constructor.
+#|en| At this point, the new constructor can be called inside <code>Manager</code> constructor as <code>super</code>.
 #|uk| Після того як новий конструктор став доступний, його можна викликати з конструктора <code>Manager</code>.
 
 Select in "Manager":
@@ -112,7 +112,7 @@ Replace:
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -121,5 +121,5 @@ Replace:
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

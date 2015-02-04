@@ -81,7 +81,7 @@ Set step 1
 Select name of "findCriminalAndAlert"
 
 #|ru| Рассмотрим рефакторинг <i>Разделение запроса и модификатора</i> на примере класса системы безопасности. В этом классе есть метод, который сообщает имя злоумышленника и посылает предупреждение.
-#|en| Let's consider <i>Separate Query from Modifier</i> using a security system class as our example. The class has a method that tells us the name of a violator and sends a warning.
+#|en| Let's look at <i>Separate Query from Modifier</i> refactoring using a security system class as our example. The class has a method that tells us the name of a violator and sends a warning.
 #|uk| Розглянемо рефакторинг <i>Поділ запиту та модифікатора<i> на прикладі класу системи безпеки. В цьому класі є метод, який повідомляє ім'я зловмисника і посилає попередження.
 
 #|ru| Основной проблемой данного метода является то, что он используется для двух разных целей.
@@ -114,7 +114,7 @@ Select "sendAlert()" in "findCriminalAndAlert"
 Go to the end of "Guard"
 
 #|ru| Итак, чтобы отделить запрос от модификатора, мы должны сначала создать подходящий запрос, который возвращает тоже значение, что и исходный метод, но не создаёт побочных эффектов.
-#|en| To separate the query from the modifier, first create an appropriate query that returns the same value as the original method but does not lead to side effects.
+#|en| To separate the query from the modifier, first create an appropriate query that returns the same value as the original method, but does not lead to side effects.
 #|uk| Отже, щоб відокремити запит від модифікатора, ми повинні спочатку створити відповідний запит, який повертає теж значення, що й вихідний метод, але не створює побічних ефектів.
 
 Print:
@@ -229,7 +229,7 @@ Print:
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -238,5 +238,5 @@ Print:
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

@@ -24,7 +24,7 @@ rename-method:java
 
 ```
 class Person {
-  //...
+  //…
   public String getTelephoneNumber() {
     return ("(" + officeAreaCode + ") " + officeNumber);
   }
@@ -38,7 +38,7 @@ phone = employee.getTelephoneNumber();
 
 ```
 class Person {
-  //...
+  //…
   public String getOfficeTelephoneNumber() {
     return ("(" + officeAreaCode + ") " + officeNumber);
   }
@@ -55,13 +55,13 @@ Set step 1
 Select name of "getTelephoneNumber"
 
 #|ru| Имеется метод для получения номера телефона определенного лица. Метод нигде не переопределяется, так что нам не нужно отслеживать изменение в подклассах.
-#|en| A method exists for getting the phone number of a certain person. The method is not redefined anywhere so we do not need to track changes in subclasses.
+#|en| There is a method for getting the phone number of a certain person. The method is not overridden anywhere so we do not need to track changes in subclasses.
 #|uk| Маємо метод для отримання номера телефону певної особи. Метод ніде не перевизначається, так що нам не потрібно відстежувати зміну в підкласах.
 
 Set step 2
 
 #|ru| Мы решили переименовать метод в <code>getOfficeTelephoneNumber</code>, чтобы он лучше отражал то, что делает.
-#|en| We decided to rename the method to <code>getOfficeTelephoneNumber</code>, a more descriptive name.
+#|en| Let's change it's name to <code>getOfficeTelephoneNumber</code>, a more descriptive name.
 #|uk| Ми вирішили перейменувати метод в <code>getOfficeTelephoneNumber</code>, щоб він краще відображав те, що робить.
 
 Go to the end of "Person"
@@ -79,7 +79,7 @@ Print:
 ```
 
 #|ru| Старый метод изменяется так, чтобы вызывать новый. Это действие может выглядеть лишним, однако это поможет держать код рабочим, пока вы выполняете все последующие шаги рефакторинга.
-#|en| The old method changes and now calls the new method.
+#|en| Then we change the old method so that it call the new one. That might look to you as a useless step, but it will help to keep the code working while you search for all calls of the old method and replace them with the new method calls.
 #|uk| Старий метод змінюється так, щоб викликати новий. Ця дія може виглядати зайвою, однак вона допоможе зберігти код працюючим, поки ви виконуєте всі наступні кроки рефакторингу.
 
 Select body of "getTelephoneNumber"
@@ -89,7 +89,7 @@ Replace "    getOfficeTelephoneNumber();"
 Set step 3
 
 #|ru| Теперь находим места вызова прежнего метода и изменяем их так, чтобы в них вызывался новый метод.
-#|en| We find the places where the old method is called, modifying them to call the new method instead.
+#|en| So, we find the places where the old method is called, modifying them to call the new method instead.
 #|uk| Тепер знаходимо місця виклику колишнього методу і змінюємо їх так, щоб в них викликався новий метод.
 
 Select "employee.|||getTelephoneNumber|||()"
@@ -101,7 +101,7 @@ Set step 4
 Select whole "getTelephoneNumber"
 
 #|ru| После проведения всех изменений старый метод можно удалить.
-#|en| After all changes have been made, go ahead and delete the old method.
+#|en| After all changes have been made, we can go ahead and delete the old method.
 #|uk| Після проведення всіх змін старий метод можна видалити.
 
 Remove selected
@@ -109,7 +109,7 @@ Remove selected
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -118,5 +118,5 @@ Remove selected
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

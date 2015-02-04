@@ -78,14 +78,14 @@ public class IntRange
 Set step 1
 
 #|ru| Давайте рассмотрим <i>Самоинкапсуляцию</i> на примере класса диапазонов.<br/><br/>Самоинкапсуляция заключается в реализации доступа к полям через свойства, в том числе, в методах самого класса.
-#|en| Let's look at <i>Self-Encapsulate<i> using a class of ranges as an example.<br/><br/>Self-encapsulation consists of implementing access to fields through properties, including in the methods of the class itself.
+#|en| Let's look at <i>Self-Encapsulation</i> using the example of a range class.<br/><br/>Self-encapsulation differs from regular encapsulation by requiring even its own class to access fields through getters and setters.
 #|uk| Давайте розглянемо <i>Самоінкапсуляцію<i> на прикладі класу діапазонів.<br/><br/>Самоінкапсуляція полягає в реалізації доступу до полів через властивості, в тому числі, в методах самого класу.
 
 Select "private int |||low|||,"
 +Select ", |||high|||;"
 
 #|ru| Для начала создадим свойства, инкапсулирующие наши поля. Эти свойства можно сделать приватными, если к ним не требуется доступа извне.
-#|en| To start, create properties that encapsulate our fields. These properties can be made private if external access to them is not needed.
+#|en| To start, let's create properties that encapsulate our fields. These properties can be made private if external access to them is not needed.
 #|uk| Для початку створимо властивості, які інкапсулюють наші поля. Ці властивості можна зробити приватними, якщо до них не потрібен доступ ззовні.
 
 Go to before "IntRange" in "IntRange"
@@ -147,7 +147,7 @@ Select "low = value;"
 +Select "high = value;"
 
 #|ru|^ Поэтому, только убедившись, что наши сеттеры имеют стандартную логику присваивания, производим замену в конструкторе.
-#|en|^ Therefore we make sure that our setters have standard assignment logic before performing replacement in the constructor.
+#|en|^ For this reason, we make sure that our setters have standard assignment logic before performing replacement in the constructor.
 #|uk|^ Тому, тільки переконавшись, що наші сеттери мають стандартну логіку присвоювання, можемо здыйснювати заміну в конструкторі.
 
 Select "this.|||low|||"
@@ -169,9 +169,9 @@ Select " { return low; }"
 +Select " { return high; }"
 +Select " { high = value; }"
 
-#|ru| Для этого удалим в свойствах тела геттеров и сеттеров...
+#|ru| Для этого удалим в свойствах тела геттеров и сеттеров…
 #|en| So we remove getter and setter bodies in the properties…
-#|uk| Для цього видалимо у властивостях тіла геттерів та сеттерів...
+#|uk| Для цього видалимо у властивостях тіла геттерів та сеттерів…
 
 Replace ";"
 
@@ -182,16 +182,16 @@ Select:
 
 ```
 
-#|ru|^ ...после чего удалим ненужные больше поля <code>low</code> и <code>high</code>.
+#|ru|^ …после чего удалим ненужные больше поля <code>low</code> и <code>high</code>.
 #|en|^ …and then remove <code>low</code> and <code>high</code> fields that are no longer necessary.
-#|uk|^ ...після чого видалимо непотрібні більше поля <code>low</code> і <code>high</code>.
+#|uk|^ …після чого видалимо непотрібні більше поля <code>low</code> і <code>high</code>.
 
 Remove selected
 
 #C|ru| Все! Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Hurray! Let's run the final compile.
+#C|en| Hurray! Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Все! Запускаємо фінальну компіляцію.
@@ -200,5 +200,5 @@ Remove selected
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

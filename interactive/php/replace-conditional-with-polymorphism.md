@@ -153,17 +153,17 @@ class Manager extends EmployeeType {
 Set step 1
 
 #|ru| Этот рефакторинг мы рассмотрим на примере кода классов расчёта зарплаты для разных типов служащих (см. <a href="/replace-type-code-with-state-strategy">замены кодирования типом состоянием/стратегией</a>).
-#|en| Let's take a look at this refactoring technique in the context of code for calculating salaries for different types of employees (see <a href="/replace-type-code-with-state-strategy">Replace Type Code with State/Strategy</a>).
+#|en| Let's take a look at this refactoring in the context of code for calculating payroll for different types of employees (see <a href="/replace-type-code-with-state-strategy">Replace Type Code with State/Strategy</a>).
 #|uk| Цей рефакторинг ми розглянемо на прикладі коду класів розрахунку зарплати для різних типів службовців (см. <a Href="/replace-type-code-with-state-strategy">заміни кодування типом станом / стратегією</a>).
 
 Select body of "payAmount"
 
 #|ru| Давайте попытаемся избавиться от условного оператора внутри метода <code>payAmount()</code>.
-#|en| We can try to get rid of the conditional inside the <code>payAmount()</code> method.
+#|en| See that big conditional inside the <code>payAmount()</code> method? Let's try to get rid of it.
 #|uk| Давайте спробуємо позбутися від умовного оператора всередині методу <code>payAmount()</code>.
 
 #|ru| Сначала выделим реализацию <code>payAmount</code> в новый метод в классе типа <code>EmployeeType</code>. Сделаем это, чтобы иметь общую точку доступа к данному методу в подклассах.
-#|en| First extract the implementation of <code>payAmount</code> to a new method in a class like <code>EmployeeType</code>. This gives us a common access point for this method in the subclasses.
+#|en| First, extract the implementation of <code>payAmount</code> to a new method in a class like <code>EmployeeType</code>. This gives us a common access point for this method in the subclasses.
 #|uk| Спочатку виділимо реалізацію <code>payAmount</code> в новий метод в класі типу <code>EmployeeType</code>. Зробимо це, щоб мати спільну точку доступу до даного методу в підкласах.
 
 Go to the end of "EmployeeType"
@@ -191,7 +191,7 @@ Select "monthlySalary" in "EmployeeType"
 +Select "bonus" in "EmployeeType"
 
 #|ru| Нам нужны данные из объекта <code>Employee</code>, поэтому создадим в методе параметр, в который будет передаваться основной объект <code>Employee</code>.
-#|en| We need datа from the <code>Employee</code> object, so in the method we create the parameter to which the main <code>Employee</code> object will be passed.
+#|en| We need data from the <code>Employee</code> object. For this reason we create a parameter in method and pass the <code>Employee</code> object in it.
 #|uk| Нам потрібні дані з об'єкта <code>Employee</code>, тому створимо в методі параметр, в який буде передаватися основний об'єкт <code>Employee</code>.
 
 Go to "payAmount(|||) {" in "EmployeeType"
@@ -213,7 +213,7 @@ Replace "$employee->bonus"
 Select body of "payAmount"
 
 #|ru| После этих действий мы можем настроить делегирование из класса <code>Employee</code>.
-#|en| After these actions, we can set up delegation from the <code>Employee</code> class.
+#|en| Now, we can set up delegation from the <code>Employee</code> class.
 #|uk| Після цих дій ми можемо налаштувати делегування з класу <code>Employee</code>.
 
 Print "    return $type->payAmount($this);"
@@ -268,7 +268,7 @@ Set step 4
 Select body of "payAmount"
 
 #|ru| После того, как методы созданы, можно сделать метод <code>payAmount</code> в <code>EmployeeType</code> абстрактным.
-#|en| Now that the methods have been created, you can make abstract the <code>payAmount</code> method in <code>EmployeeType</code>.
+#|en| Now that the methods have been created, we can make the <code>payAmount</code> method in <code>EmployeeType</code>  abstract.
 #|uk| Після того, як методи створені, можна зробити метод <code>payAmount</code> в <code>EmployeeType</code> абстрактним.
 
 Select:
@@ -304,5 +304,5 @@ Replace:
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

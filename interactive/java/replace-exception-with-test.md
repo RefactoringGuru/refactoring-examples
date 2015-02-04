@@ -78,19 +78,19 @@ class ResourcePool {
 Set step 1
 
 #|ru| Для этого примера возьмём объект, управляющий ресурсами, создание которых обходится дорого, но возможно повторное их использование. Хороший пример такой ситуации дают соединения с базами данных.
-#|en| For this example, we take an object that controls resources which are expensive to create but reusable. A good example of this situation is database connections.
+#|en| For this example, we take an object that controls resources that are expensive to create but reusable. A good example of this situation is database connections.
 #|uk| Для цього прикладу візьмемо об'єкт, керуючий ресурсами, створення яких обходиться дорого, але можливе їх повторне  використання. Хороший приклад такої ситуації дають з'єднання з базами даних.
 
 Select "Stack |||available|||"
 #|ru|+ У администратора соединений есть два пула, в одном из которых находятся ресурсы, доступные для использования, …
 #|en|+ The administrator has two pools. One of them contains resources available for use…
-#|uk|+ У адміністратора з'єднань є два пула, в одному з яких знаходяться ресурси, доступні для використання...
+#|uk|+ У адміністратора з'єднань є два пула, в одному з яких знаходяться ресурси, доступні для використання…
 
 Select "Stack |||allocated|||"
 
 #|ru|<= …а в другом – уже выделенные.
 #|en|<= …and the other pool contains already allocated resources.
-#|uk|<= ...а в іншому – вже виділені.
+#|uk|<= …а в іншому – вже виділені.
 
 Select "(Resource) available.pop()"
 
@@ -105,13 +105,13 @@ Select "result = new Resource();"
 #|uk|< Якщо клієнт запитує ресурс, коли вільних ресурсів немає, адміністратор створює новий ресурс.
 
 #|ru|< В данном случае нехватка ресурсов не является неожиданным происшествием, поэтому использование исключения не совсем оправдано.
-#|en|< Insufficient resources are not an unexpected event, so using an exception is not truly justified.
+#|en|< "Insufficient resources" is not an unexpected event, so using an exception is not truly justified.
 #|uk|< В даному випадку нестача ресурсів не є несподіваною подією, тому використання винятку не зовсім виправдано.
 
 Go to "Resource result;|||"
 
 #|ru| Итак, попытаемся избавиться от исключения. Первым делом в начале метода создадим условный оператор, условие в котором будет совпадать с условием выброса исключения. Весь остальной код поместим в <code>else</code>.
-#|en| So we can get rid of the exception. First, in the beginning of the method, create a conditional whose condition coincides with the condition for throwing an exception. Place all the remaining code in <code>else</code>.
+#|en| So let's try to get rid of the exception. First, at the beginning of the method, create a conditional whose condition coincides with the condition for throwing an exception. Place all the remaining code in <code>else</code>.
 #|uk| Отже, спробуємо позбутися від виключення. Першим ділом на початку методу створимо умовний оператор, умова в якому буде збігатися з умовою виключення винятку. Весь інший код помістимо в <code>else</code>.
 
 Print:
@@ -161,7 +161,7 @@ Select:
 ```
 
 #|ru| Далее скопируем код из <code>catch</code> секции внутрь граничного условного оператора.
-#|en| Then copy the code from the <code>catch</code> section to inside the borderline conditional.
+#|en| Then copy the code from the <code>catch</code> section to inside the guard clause.
 #|uk| Далі скопіюємо код з <code>catch</code> секції всередину граничного умовного оператора.
 
 Go to "isEmpty()) {|||"
@@ -179,7 +179,7 @@ Set step 3
 Go to "catch (EmptyStackException e) {|||"
 
 #|ru| Полученный код никогда не должен достигать <code>catch</code> секции. Но чтобы убедиться в этом на 100%, вставим проверку внутрь секции и запустим все тесты.
-#|en| The code so obtained should not reach the <code>catch</code> section. But to be 100% sure, insert a check inside the section and run all the tests.
+#|en| This code should never reach the <code>catch</code> section. But to be 100% sure, insert a check inside the section and run all the tests.
 #|uk| Отриманий код ніколи не повинен досягати <code>catch</code> секції. Але щоб переконатися в цьому на 100%, вставимо перевірку всередину секції і запустимо всі тести.
 
 Print:
@@ -200,7 +200,7 @@ Print:
 Set step 4
 
 #|ru| Теперь мы можем удалить try/catch секцию, не беспокоясь о возможных ошибках.
-#|en| Now we can remove the try/catch section without worrying about possible errors.
+#|en| Now we can remove the <code>try</code>/<code>catch</code> section without worrying about possible errors.
 #|uk| Тепер ми можемо видалити try / catch секцію, не турбуючись про можливі помилки.
 
 Select:
@@ -271,7 +271,7 @@ Remove selected
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -280,5 +280,5 @@ Remove selected
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

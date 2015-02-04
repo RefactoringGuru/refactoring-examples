@@ -88,7 +88,7 @@ class Performance {
 Set step 1
 
 #|ru| Давайте рассмотрим рефакторинг <i>Замена массива объектом</i> на примере класса, хранящего название спортивной команды и количество заработанных ею очков.
-#|en| Let's look at <i>Replace Array with Object</i>, using as our example a class that stores the name of an athletic team, number of wins, and number of losses.
+#|en| Let's look at <i>Replace Array with Object</i>, using a class that stores the name of an athletic team, number of wins and losses as our example.
 #|uk| Давайте розглянемо рефакторинг <i>Заміна масиву об'єктом<i> на прикладі класу, який зберігає назву спортивної команди, кількість виграшів і кількість поразок.
 
 Go to the end of file
@@ -108,7 +108,7 @@ class Performance {
 Go to the start of "Performance"
 
 #|ru| На первом этапе мы добавляем в новый класс такое же поле массив, как и в оригинале. Не беспокойтесь, мы избавимся от него чуть позже.
-#|en| We start by adding the same array field to the new class as in the original. Don't worry, this is a temporary measure that we will dispense with later.
+#|en| Then, we add the same array field to the new class as in the original. Don't worry, this is a temporary measure that we will take care of later.
 #|uk| На першому етапі ми додаємо в новий клас таке ж поле масив, як і в оригіналі. Не турбуйтеся, ми позбудемося нього трохи пізніше.
 
 Print:
@@ -122,13 +122,13 @@ Set step 2
 Select name of "Tournament"
 
 #|ru| Теперь нужно найти места, в которых идут обращения к этому массиву, и заменить их обращениями к вашему новому классу.
-#|en| Now find places with references to the array and replace them with references to your new class.
+#|en| Now we should find all code, which works with the array and replace it with calls to your new class.
 #|uk| Тепер потрібно знайти місця, в яких йдуть звернення до цього масиву, і замінити їх зверненнями до вашого нового класу.
 
 Select "public $row = array();"
 
 #|ru| В первую очередь создаём сам объект в том месте, где был инициирован массив данных.
-#|en| Create the object itself in the place where the array had been initialized.
+#|en| Create the instance of our data class in the place where the array had been initialized.
 #|uk| В першу чергу створюємо сам об'єкт в тому місці, де був ініційований масив даних.
 
 Print:
@@ -177,7 +177,7 @@ Select "$this->row->data[0] = "Liverpool""
 + Select "$name = $this->row->data[0]"
 
 #|ru| Теперь нужно поочерёдно заменить код присваивания значениям элементов массива так, чтобы везде применялись методы класса <code>Perfomance</code>.
-#|en| One by one, replace the code for assignment to array element values. The methods of the <code>Performance</code> class will now be used everywhere instead.
+#|en| Now we need to replace the code of assignment values to array elements with appropriate setters of the <code>Performance</code> class.
 #|uk| Тепер потрібно по черзі замінити код присвоювання значень елементів масиву так, щоб скрізь застосовувалися методи класу <code>Perfomance</code>.
 
 Select "$this->row->data[0] = "Liverpool""
@@ -231,14 +231,14 @@ Replace "private"
 Set step 5
 
 #|ru| Теперь главная часть этого рефакторинга – замена интерфейса – завершена. Однако полезно будет также заменить массив внутри класса данных.
-#|en| The main part of this refactoring technique – replacing the interface – is now complete. But it will also be useful to replace the array inside the data class.
+#|en| The main part of this refactoring – replacing the interface – is now complete. But it will also be useful to replace the array inside the data class.
 #|uk| Тепер головна частина цього рефакторинга – заміна інтерфейсу – завершена. Однак корисно буде також замінити масив всередині класу даних.
 
 Select name of "getName"
 + Select name of "setName"
 
 #|ru| Это можно сделать, добавив поля для всех элементов массива и переориентировав методы доступа на их использование. Для начала преобразуем поле названия команды.
-#|en| To do this, add fields for all array elements and reorient the access methods to use them. First convert the team name field.
+#|en| To do this, we add fields for all array elements and reorient the access methods to use them. First convert the team name field.
 #|uk| Це можна зробити, додавши поля для всіх елементів масиву і переорієнтувавши методи доступу на їх використання. Для початку перетворимо поле назви команди.
 
 Go to "array();|||"
@@ -284,7 +284,7 @@ Select:
 
 ```
 #|ru| Выполнив замену для всех элементов массива, можно удалить и само объявление массива из класса.
-#|en| After finishing replacement for all the elements of the array, you can remove the array declaration from the class.
+#|en| After finishing replacements for all the elements of the array, we can remove the array declaration from the class.
 #|uk| Виконавши заміну для всіх елементів масиву, можна видалити і саме оголошення масиву з класу.
 
 Remove selected
@@ -301,5 +301,5 @@ Remove selected
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

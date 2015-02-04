@@ -221,7 +221,7 @@ Example:
 
 #S Everything works fine!
 
-...
+…
 
 #C Let's compile this baby.
 
@@ -238,7 +238,7 @@ To advance steps, use following code.
 ```
 Set step 1
 
-...
+…
 
 Set final step
 ```

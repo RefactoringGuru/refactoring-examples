@@ -65,22 +65,22 @@ class Payout {
 Set step 1
 
 #|ru| Представьте себе работу системы начисления зарплаты с особыми правилами для служащих, которые умерли, проживают раздельно или вышли на пенсию. Такие случаи необычны, но могут встретиться.
-#|en| Imagine a payroll system with special rules for employees who have passed away, live on their own, or have retired. These cases are unusual but do occur.
+#|en| Imagine a payroll system with special rules for employees who have passed away, live apart, or have retired. These cases are unusual but do occur.
 #|uk| Уявіть собі роботу системи нарахування зарплати з особливими правилами для службовців, які померли, проживають окремо або вийшли на пенсію. Такі випадки незвичайні, але можуть зустрітися.
 
 Select "$this->isDead"
 + Select "$this->isSeparated"
 + Select "$this->isRetired"
 
-#|ru|+ В этом коде проверки особых условий...
-#|en|+ This code for checking special conditions…
-#|uk|+ У цьому коді перевірки особливих умов...
+#|ru|+ В этом коде проверки особых условий…
+#|en|+ Once some of the special conditions are triggered…
+#|uk|+ У цьому коді перевірки особливих умов…
 
 Select "$result = $this->normalPayAmount()"
 
-#|ru|<= ...приводят к выполнению методов, результаты которых возвращаются в конце метода без дополнительной обработки. Это означает, что мы можем ввести граничные операторы и возвращать значения сразу же при прохождении какого-то условия.
-#|en|<= …is concealing performance of ordinary actions. So using borderline operators will make the code more obvious.
-#|uk|<= ...призводять до виконання методів, результати яких повертаються в кінці методу без додаткової обробки. Це означає, що ми можемо ввести граничні оператори та повертати значення відразу ж при проходженні якогось умови.
+#|ru|<= …приводят к выполнению методов, результаты которых возвращаются в конце метода без дополнительной обработки. Это означает, что мы можем ввести граничные операторы и возвращать значения сразу же при прохождении какого-то условия.
+#|en|<= …a corresponding method is called. Then it's is taken to the end of the method and returned as is. Such could be pretty difficult to understand, especially if there are lot of conditional branches. To fix it, we could place guard clauses, e.g. return the value right away if some condition is met.
+#|uk|<= …призводять до виконання методів, результати яких повертаються в кінці методу без додаткової обробки. Це означає, що ми можемо ввести граничні оператори та повертати значення відразу ж при проходженні якогось умови.
 
 Select "|||$result =||| $this->deadAmount();"
 
@@ -215,11 +215,11 @@ Select:
 Remove selected
 
 #|ru| Вложенный условный код часто пишут программисты, которых учили, что в методе должна быть только одна точка выхода. На самом деле это слишком упрощённое (да и устаревшее) правило.
-#|en| Inline conditionals are often written by programmers taught that a method should contain only one exit point. But in reality, this rule is simplistic and obsolete.
+#|en| Multi-level sub-conditionals are often written by programmers taught that a method should contain only one exit point. But in modern programming, this rule have become obsolete.
 #|uk| Вкладений умовний код часто пишуть програмісти, яких вчили, що в методі повинна бути тільки одна точка виходу. Насправді це занадто спрощене (та й застаріле) правило.
 
 #|ru| Если во время выполнения метод больше не представляет для нас интереса, лучше выйти из него как можно скорее. Заставляя читателя рассматривать пустой блок <code>else</code>, вы только создаёте преграды на пути понимания кода.
-#|en| If a method is no longer of interest at runtime, it is best to exit it as soon as possible. Forcing the reader to go over an empty <code>else</code> block only throws up roadblocks to understanding your intentions.
+#|en| If, during execution, method did everything, it could, it's better to exit as soon as possible. Otherwise, going over an empty <code>else</code> block only throws up roadblocks to performance and readability.
 #|uk| Якщо під час виконання метод більше не становить для нас інтересу, краще вийти з нього якомога швидше. Змушуючи читача розглядати порожній блок <code>else</code>, ви тільки створюєте перепони на шляху розуміння коду.
 
 #C|ru| Запускаем финальное тестирование.
@@ -234,5 +234,5 @@ Remove selected
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

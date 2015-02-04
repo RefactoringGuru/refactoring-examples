@@ -34,7 +34,7 @@ class Customer {
 }
 
 class Order {
-  //...
+  //…
   private Customer customer;
   public String getCustomerName() {
       return customer.getName();
@@ -90,7 +90,7 @@ class Customer {
 }
 
 class Order {
-  //...
+  //…
   private Customer customer;
   public String getCustomerName() {
       return customer.getName();
@@ -122,31 +122,31 @@ private static int numberOfOrdersFor(Collection orders, String customer) {
 Set step 1
 
 #|ru| Давайте рассмотрим <i>Замену значения ссылкой</i> на примере класса заказа и покупателя. Мы продолжим с того места, где закончили пример <a href="/replace-data-value-with-object">Замена простого поля объектом</a>.
-#|en| Let's look at <i>Replace Data Value with Object</i> using the customer/order class example. We will pick up where we finished the example involving <a href="/replace-data-value-with-object">Replace Data Value with Object</a>.
+#|en| Let's look at <i>Replace Data Value with Object</i> using the customer/order class example. We will pick up where we finished the <i>Replace Data Value with Object</i> refactoring.
 #|uk| Давайте розглянемо <i>Заміну значення посиланням<i> на прикладі класу замовлення та покупця. Ми продовжимо з того місця, де закінчили приклад <a href="/replace-data-value-with-object">Заміна простого поля об'єктом</a>.
 
 Select name of "Customer"
 
-#|ru|+ В данном случае имеется класс покупателя...
+#|ru|+ В данном случае имеется класс покупателя…
 #|en|+ Here we have a customer class…
-#|uk|+ В даному випадку мається клас покупця...
+#|uk|+ В даному випадку мається клас покупця…
 
 Select name of "Order"
 
-#|ru|+ ...который используется в классе заказов...
+#|ru|+ …который используется в классе заказов…
 #|en|+ …that is used in the order class…
-#|uk|+ ...який використовується в класі замовлень...
+#|uk|+ …який використовується в класі замовлень…
 
 Select name of "numberOfOrdersFor"
 
-#|ru|= ...и некоторый клиентский код, который использует оба класса.
+#|ru|= …и некоторый клиентский код, который использует оба класса.
 #|en|= …and client code that is used by both classes.
-#|uk|= ...і деякий клієнтський код, який використовує обидва класи.
+#|uk|= …і деякий клієнтський код, який використовує обидва класи.
 
 Select name of "Customer"
 
 #|ru| В данный момент покупатель в классе заказа используется как объект-значение. Т.е. каждый заказ имеет собственный экземпляр <code>Сustomer</code>, даже если это один и тот же реальный покупатель. Надо изменить код так, чтобы при наличии нескольких заказов для одного покупателя в них использовался один и тот же экземпляр класса <code>Сustomer</code>.
-#|en| Currently the customer in the order class is used as a data value. In other words, each order has its own instance of <code>Customer</code> even if the actual customer is the same. We want to change the code so that multiple orders for the same customer use the same instance of the <code>Customer</code> class.
+#|en| Currently, the customer in the order class is used as a data value. In other words, each order has own instance of <code>Customer</code> even if the actual customer is the same. We want to change the code so that multiple orders for the same customer use the same instance of the <code>Customer</code> class.
 #|uk| В даний момент покупець в класі замовлення використовується як об'єкт-значення. Тобто кожне замовлення має власний примірник <code>Сustomer</code>, навіть якщо це один і той же реальний покупець. Треба змінити код так, щоб при наявності декількох замовлень для одного покупця в них використовувався один і той же примірник класу <code>Сustomer</code>.
 
 #|ru| В нашем случае это означает, что для каждого имени покупателя должен существовать только один экземпляр класса покупателя.
@@ -187,11 +187,11 @@ Set step 2
 Select name of "Customer"
 
 #|ru| Теперь надо решить, какой объект будет ответственным за предоставление доступа к экземплярам класса покупателей. В общем случае для этого хорошо бы иметь какой-то объект-реестр, который будет содержать пул всех объектов-ссылок и получать нужные экземпляры из него. Например, если нужно сделать несколько товарных позиций в заказе, каждая позиция может храниться внутри объекта заказа.
-#|en| A decision must be made: Which object will be responsible for providing access to instances of the customer class? Generally it would be good to have a registry object for this purpose, containing a pool of all reference objects and retrieving the necessary instances from it. For example, if you need to put several products in an order, each product can be stored inside the order object.
+#|en| A decision must be made: Which object will be responsible for providing access to instances of the customer class? It would be good to have a registry object for this purpose, containing a pool of all reference objects and retrieving the necessary instances from it. For example, if you need to put several products in an order, each product can be stored inside the order object.
 #|uk| Тепер треба вирішити, який об'єкт буде відповідальним за надання доступу до екземплярів класу покупців. У загальному випадку для цього добре б мати якийсь об'єкт-реєстр, який буде містити пул всіх об'єктів-посилань, і отримувати потрібні екземпляри з нього. Наприклад, якщо потрібно зробити кілька товарних позицій у замовленні, кожна позиція може зберігатися всередині об'єкта замовлення.
 
 #|ru| Однако в данной ситуации для покупателей такого объекта нет. Чтобы не создавать новый класс для хранения реестра покупателей, можно организовать хранение с помощью статического поля в классе <code>Сustomer</code>.
-#|en| But in this case, no such object exists for customers. To not create a new class for storing a customer registry, you can set up storage by using a static field in the <code>Customer</code> class.
+#|en| But, in this case, no such object exists for customers. To not create a new class for storing a customer registry, you can set up storage by using a static field in the <code>Customer</code> class.
 #|uk| Однак у даній ситуації для покупців такого об'єкта немає. Щоб не створювати новий клас для зберігання реєстру покупців, можна організувати зберігання за допомогою статичного поля в класі <code>Сustomer</code>.
 
 Go to the start of "Customer"
@@ -242,9 +242,9 @@ Replace "(Customer) instances.get(name)"
 
 Select name of "create"
 
-#|ru| И поскольку метод <code>Create()</code> теперь всегда возвращает уже существующего покупателя, надо это пояснить с помощью <a href="/rename-method">переименования метода</a>.
-#|en| And since the <code>Create()</code> method now always returns an existing customer, this should be clarified with the help of <a href="/rename-method">Rename Method</a>.
-#|uk| І оскільки метод <code>Create()</code> тепер завжди повертає вже існуючого покупця, треба це пояснити за допомогою <a href="/rename-method">перейменування методу</a>.
+#|ru| И поскольку метод <code>create()</code> теперь всегда возвращает уже существующего покупателя, надо это пояснить с помощью <a href="/rename-method">переименования метода</a>.
+#|en| And since the <code>create()</code> method now always returns an existing customer, this should be clarified with the help of <a href="/rename-method">Rename Method</a>.
+#|uk| І оскільки метод <code>create()</code> тепер завжди повертає вже існуючого покупця, треба це пояснити за допомогою <a href="/rename-method">перейменування методу</a>.
 
 Print "getNamed"
 
@@ -257,7 +257,7 @@ Replace "getNamed"
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -266,5 +266,5 @@ Replace "getNamed"
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

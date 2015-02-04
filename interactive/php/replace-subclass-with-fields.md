@@ -153,7 +153,7 @@ Set step 3
 Go to after "createFemale"
 
 #|ru| Теперь в родительском классе объявим поля для каждого метода, возвращавшего константы в подклассах.
-#|en| Now, in the parent class, declare fields for each method that returns constants in subclasses.
+#|en| Now, in the parent class, we should declare fields for each method that returns constants in subclasses.
 #|uk| Тепер в батьківському класі оголосимо поля для кожного методу, який повертає константи в підкласах.
 
 Print:
@@ -272,7 +272,7 @@ Select "|||abstract||| class Person"
 + Select "new Female()"
 
 #|ru| В итоге все подклассы оказываются пустыми, поэтому мы снимаем пометку abstract с класса Person и с помощью <a href="/inine-method">Встраивания метода</a> встраиваем конструктор подкласса в родительский класс.
-#|en| All subclasses are empty at this point so we remove the "abstract" label from the Person class and, by using <a href="/inline-method">Inline Method</a>, place the subclass constructor inline inside the parent class.
+#|en| All subclasses are empty at this point. That allows us to remove the "abstract" keyword from the Person class and use its constructor instead the ones from subclasses (that we could simply remove).
 #|uk| У підсумку всі підкласи виявляються порожніми, тому ми знімаємо позначку abstract з класу Person і за допомогою <a href="/inine-method">вбудовування методу</a> вбудовуємо конструктор підкласу в батьківський клас.
 
 Select "|||abstract |||class Person"
@@ -327,5 +327,5 @@ Remove selected
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

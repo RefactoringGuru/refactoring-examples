@@ -82,11 +82,11 @@ class Order {
 Set step 1
 
 #|ru| Рассмотрим этот рефакторинг на ещё одном примере расчёта цены заказа.
-#|en| Let's consider this refactoring technique using yet another order price example.
+#|en| Let's look at this refactoring using yet another order price example.
 #|uk| Розглянемо цей рефакторинг на ще одному прикладі розрахунку ціни замовлення.
 
 #|ru| Метод получения скидки (<code>discountedPrice</code>) сейчас практически нельзя использовать в отрыве от метода получения цены (<code>getPrice</code>), т.к. перед этим нужно получить значения всех параметров.
-#|en| The method for getting the discount (<code>discountedPrice</code>) is currently nearly impossible to use separately from the method for getting the price (<code>getPrice</code>), since prior to it you must get the values of all parameters.
+#|en| The method for getting the discount (<code>discountedPrice</code>) is currently nearly impossible to use separately from the method for getting the price (<code>getPrice</code>), since you must get the values of all parameters prior to it.
 #|uk| Метод отримання знижки (<code>discountedPrice</code>) зараз практично не можна використовувати у відриві від методу отримання ціни (<code>getPrice</code>), так як перед цим потрібно отримати значення всіх параметрів.
 
 #|ru| А что если вообще избавиться от параметров в <code>discountedPrice</code>? Давайте попробуем это сделать.
@@ -107,7 +107,7 @@ Select:
 Set step 2
 
 #|ru| Для начала, выделим расчёт <code>discountLevel</code> в собственный метод.
-#|en| To start, extract <code>discountLevel</code> to its own method.
+#|en| To start, we extract <code>discountLevel</code> to its own method.
 #|uk| Для початку, виділимо розрахунок <code>discountLevel</code> у власний метод.
 
 Go to after "discountedPrice"
@@ -227,15 +227,15 @@ Select:
 
 #|ru| После этого чистим код оригинального метода…
 #|en| Then clean up the code of the original method…
-#|uk| Після цього чистимо код оригінального методу...
+#|uk| Після цього чистимо код оригінального методу…
 
 Remove selected
 
 Select body of "getPrice"
 
-#|ru| ...или немного красивее:
+#|ru| …или немного красивее:
 #|en| …or if we make it a bit more pretty:
-#|uk| ...або трохи красивіше:
+#|uk| …або трохи красивіше:
 
 Print "    return $this->discountedPrice();"
 
@@ -252,5 +252,5 @@ Print "    return $this->discountedPrice();"
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

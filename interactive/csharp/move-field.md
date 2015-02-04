@@ -110,9 +110,9 @@ Set step 2
 
 Go to the end of "AccountType"
 
-#|ru| Создадим копию поля в целевом классе...
+#|ru| Создадим копию поля в целевом классе…
 #|en| Create a copy of the field in the target class…
-#|uk| Створимо копію поля в цільовому класі...
+#|uk| Створимо копію поля в цільовому класі…
 
 Print:
 ```
@@ -120,9 +120,9 @@ Print:
   private double interestRate;
 ```
 
-#|ru| ...а также создадим публичное свойство для доступа к этому полю извне.
+#|ru| …а также создадим публичное свойство для доступа к этому полю извне.
 #|en| …and also create a public property for accessing this field externally.
-#|uk| ...а також створимо публічну властивість для доступу до цього поля ззовні.
+#|uk| …а також створимо публічну властивість для доступу до цього поля ззовні.
 
 Go to the end of "AccountType"
 
@@ -172,7 +172,7 @@ Print:
 #C|ru| На всякий случай запустим компиляцию.
 #S Все хорошо, можно продолжать.
 
-#C|en| To stay on the safe side, let's compile.
+#C|en| To stay on the safe side, compile and test after each change.
 #S All is well, so let's continue.
 
 #C|uk| На всякий випадок запустимо компіляцію.
@@ -183,7 +183,7 @@ Set step 3
 Select "AccountType |||type|||" in "Account"
 
 #|ru| В рассматриваемом примере в классе <code>Account</code> есть поле для доступа к объекту типа счета, поэтому мы можем обращаться к перемещённому полю через него.
-#|en| In our example, the <code>Account</code> class contains a field for accessing the account type object. Therefore we can access the moved field through it.
+#|en| In our example, the <code>Account</code> class contains a field for accessing the account type object. For this reason, we can access the moved field through it.
 #|uk| У розглянутому прикладі в класі <code>Account</code> є поле для доступу до об'єкта типу рахунку, тому ми можемо звертатися до переміщеного поля через нього.
 
 Set step 4
@@ -205,7 +205,7 @@ Select in "Account":
 ```
 
 #|ru| После осуществления всех замен исходное поле можно удалить.
-#|en| Once changes are complete, remove the original field.
+#|en| Once changes are complete, we can remove the original field.
 #|uk| Після здійснення всіх замін вихідне поле можна видалити.
 
 Remove selected
@@ -213,7 +213,7 @@ Remove selected
 #C|ru| Тут же стоит запустить компиляцию и тесты, чтобы обнаружить потенциальные ошибки.
 #S Все отлично, код исправно работает.
 
-#C|en| Here you should compile and test for potential errors.
+#C|en| Let's compile and test for potential errors.
 #S Outstanding. The code is doing what we intended.
 
 #C|uk| Тут же варто запустити компіляцію і тести, щоб виявити потенційні помилки.
@@ -316,7 +316,7 @@ Select "private double |||InterestRate|||" in "Account"
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -325,5 +325,5 @@ Select "private double |||InterestRate|||" in "Account"
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

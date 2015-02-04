@@ -124,14 +124,14 @@ class Manager extends Employee {
 Set step 1
 
 #|ru| Рассмотрим рефакторинг <i>Замена кодирования типа подклассами</i> на примере класса зарплаты служащего. У нас есть несколько типов служащих, в зависимости от которых вычисляется размер зарплаты.
-#|en| Let's look at <i>Replace Type Code With Subclasses</i>, using an employee salary class as our example. We have several type of employees and the salary of an employee depends on his or her type.
+#|en| Let's look at <i>Replace Type Code With Subclasses</i>, using an payroll class as our example. We have several types of employees, which affects their salary values.
 #|uk| Розглянемо рефакторинг <i>Заміна кодування типу підклассами<i> на прикладі класу зарплати службовця. У нас є кілька типів службовців, залежно від яких обчислюється розмір зарплати.
 
 Select "public int |||type|||"
 + Select name of "payAmount"
 
 #|ru| Начнём с <a href="/self-encapsulate-field">самоинкапсуляции поля</a> типа служащего.
-#|en| Start by applying <a href="/self-encapsulate-field">Self-Encapsulate Field</a> to the employee type.
+#|en| We start by applying <a href="/self-encapsulate-field">Self-Encapsulate Field</a> to the employee type.
 #|uk| Почнемо з <a href="/self-encapsulate-field">самоінкапсуляціі поля</a> типу службовця.
 
 Select "|||public||| int type"
@@ -158,7 +158,7 @@ Set step 2
 Go to before "public Employee"
 
 #|ru| Поскольку конструктор <code>Employee</code> использует код типа в качестве параметра, надо заменить его фабричным методом.
-#|en| Since the <code>Employee</code> constructor uses type code as a parameter, replace it with a factory method.
+#|en| Since the <code>Employee</code> constructor uses type code as a parameter, we should replace it with a factory method.
 #|uk| Оскільки конструктор <code>Employee</code> використовує код типу як параметр, треба замінити його фабричним методом.
 
 Print:
@@ -180,8 +180,8 @@ Set step 3
 Select "ENGINEER"
 
 #|ru| Теперь можно приступить к преобразованию <code>Engineer</code> в подкласс. Сначала создаётся сам подкласс…
-#|en| Now start converting <code>Engineer</code> to a subclass. First create the subclass itself…
-#|uk| Тепер можна приступити до перетворення <code>Engineer</code> в підклас. Спочатку створюється сам підклас...
+#|en| Now we can start converting <code>Engineer</code> to a subclass. First create the subclass itself…
+#|uk| Тепер можна приступити до перетворення <code>Engineer</code> в підклас. Спочатку створюється сам підклас…
 
 Go to the end of file
 
@@ -197,7 +197,7 @@ Go to the end of "Engineer"
 
 #|ru| …а потом замещающий метод для кода типа.
 #|en| …then create the method to replace the type code.
-#|uk| ...А потім заміщуючий метод для коду типу.
+#|uk| …А потім заміщуючий метод для коду типу.
 
 Print:
 ```
@@ -210,7 +210,7 @@ Print:
 Select body of "create"
 
 #|ru| Необходимо также заменить фабричный метод, чтобы он создавал надлежащий объект.
-#|en| Replace the factory method as well so that it creates the necessary object.
+#|en| We need to replace the factory method as well so that it creates the necessary object.
 #|uk| Необхідно також замінити фабричний метод, щоб він створював належний об'єкт.
 
 Print:
@@ -226,7 +226,7 @@ Print:
 Go to the end of file
 
 #|ru| Продолжаем эти действия поочерёдно, пока все коды не будут заменены подклассами.
-#|en| Continue these actions in order until all code has been replaced by subclasses.
+#|en| Continue these actions one by one, until all code has been replaced by subclasses.
 #|uk| Продовжуємо виконувати ці дії по черзі, поки всі коди не  будуть замінені підклассами.
 
 Print:
@@ -290,9 +290,9 @@ Select:
 
 Set step 4
 
-#|ru| После этого можно избавиться от поля с кодом типа в <code>Employee</code>...
+#|ru| После этого можно избавиться от поля с кодом типа в <code>Employee</code>…
 #|en| Then we can eliminate the field with type code in <code>Employee</code>…
-#|uk| Після цього можна позбутися від поля з кодом типу в <code>Employee</code>...
+#|uk| Після цього можна позбутися від поля з кодом типу в <code>Employee</code>…
 
 Remove selected
 
@@ -304,9 +304,9 @@ Go to:
   }
 ```
 
-#|ru| ...и сделать <code>getType</code> абстрактным методом.
+#|ru| …и сделать <code>getType</code> абстрактным методом.
 #|en| …and make <code>getType</code> an abstract method.
-#|uk| ...і зробити <code>getType</code> абстрактним методом.
+#|uk| …і зробити <code>getType</code> абстрактним методом.
 
 Print "abstract "
 
@@ -460,7 +460,7 @@ Print:
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -469,5 +469,5 @@ Print:
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

@@ -104,7 +104,7 @@ Set step 2
 Go to the end of "AccountType"
 
 #|ru| Создадим такое же поле, а также методы доступа к нему в целевом классе.
-#|en| Create the same field and same access methods in the target class.
+#|en| Let's start by creating the same field and same access methods in the target class.
 #|uk| Створимо таке ж поле, а також методи доступу до нього в цільовому класі.
 
 Print:
@@ -123,7 +123,7 @@ Print:
 #C|ru| На всякий случай запустим компиляцию.
 #S Все хорошо, можно продолжать.
 
-#C|en| To stay on the safe side, let's compile.
+#C|en| To stay on the safe side, compile and test after each change.
 #S All is well, so let's continue.
 
 #C|uk| На всякий випадок запустимо компіляцію.
@@ -134,13 +134,13 @@ Set step 3
 Select "AccountType |||type|||" in "Account"
 
 #|ru| В рассматриваемом примере в классе <code>Account</code> есть поле для доступа к объекту типа счета, поэтому мы можем обращаться к перемещённому полю через него.
-#|en| In our example, the <code>Account</code> class contains a field for accessing the account type object. Therefore we can access the moved field through it.
+#|en| In our example, the <code>Account</code> class contains a field for accessing the account type object. For this reason, we can access the moved field through it.
 #|uk| У розглянутому прикладі в класі <code>Account</code> є поле для доступу до об'єкта типу рахунку, тому ми можемо звертатися до переміщеного поля через нього.
 
 Set step 4
 
 #|ru| Заменим все обращения к старому полю на соответствующие вызовы методов в целевом классе.
-#|en| Replace all references to the old field with appropriate calls to methods in the target class.
+#|en| We replace all references to the old field with appropriate calls to methods in the target class.
 #|uk| Замінимо всі звернення до старого поля на відповідні виклики методів в цільовому класі.
 
 Select "interestRate" in "interestForAmount_days"
@@ -156,7 +156,7 @@ Select in "Account":
 ```
 
 #|ru| После осуществления всех замен исходное поле можно удалить.
-#|en| Once changes are complete, remove the original field.
+#|en| Once changes are complete, we can remove the original field.
 #|uk| Після здійснення всіх замін вихідне поле можна видалити.
 
 Remove selected
@@ -164,7 +164,7 @@ Remove selected
 #C|ru| Тут же стоит запустить компиляцию и тесты, чтобы обнаружить потенциальные ошибки.
 #S Все отлично, код исправно работает.
 
-#C|en| Here you should compile and test for potential errors.
+#C|en| Let's compile and test for potential errors.
 #S Outstanding. The code is doing what we intended.
 
 #C|uk| Тут же варто запустити компіляцію і тести, щоб виявити потенційні помилки.
@@ -206,16 +206,16 @@ Select name of "interestForAmount_days"
 + Select name of "interestForBigFamily"
 + Select "other 10 methods"
 
-#|ru| В этом случае вам не придётся делать замену во всех методах сразу...
+#|ru| В этом случае вам не придётся делать замену во всех методах сразу…
 #|en| In this case, you will not need to make changes in all methods right away…
-#|uk| В цьому випадку вам не доведеться робити заміну в усіх методах відразу...
+#|uk| В цьому випадку вам не доведеться робити заміну в усіх методах відразу…
 
 Select "interestRate = arg" in "setInterestRate"
 +Select "return interestRate" in "getInterestRate"
 
-#|ru| ...а всего лишь в методах доступа (геттере и сеттере).
+#|ru| …а всего лишь в методах доступа (геттере и сеттере).
 #|en| …only in the access methods (getter and setter).
-#|uk| ...а всього лише в методах доступу (геттері та сеттері).
+#|uk| …а всього лише в методах доступу (геттері та сеттері).
 
 Select "return interestRate" in "getInterestRate"
 
@@ -253,7 +253,7 @@ Select name of "Account"
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -262,5 +262,5 @@ Select name of "Account"
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.

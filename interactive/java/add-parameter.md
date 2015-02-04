@@ -75,29 +75,29 @@ appointments = calendar.findAppointments(today, null);
 Set step 1
 
 #|ru| У нас есть класс Календарь, в котором хранятся записи о запланированных встречах.
-#|en| We have a Calendar class that stores records about planned meetings.
+#|en| Let's say we have a <code>Calendar</code> class that stores records about planned meetings.
 #|uk| Ми маємо клас Календар, в якому зберігаються записи щодо запланованих зустрічей.
 
 Select name of "findAppointments"
 
 #|ru| В нём есть метод, который возвращает значения встреч на определенную дату.
-#|en| A method in this class returns the values of meetings for a particular date.
+#|en| There's a method in this class returns the values of meetings for a particular date.
 #|uk| У ньому є метод, який повертає значення зустрічей на певну дату.
 
 #|ru| Было бы неплохо, если бы этот метод мог фильтровать посетителей ещё и по имени.
-#|en| We would like for this method to be able to filter visitors by name as well.
+#|en| It would be great if this method could filter visitors by their names as well.
 #|uk| Було б непогано, якби цей метод міг фільтрувати відвідувачів ще й за ім'ям.
 
 Set step 2
 
 #|ru| Можно просто вписать новый параметр в описание метода, но в таком случае есть большая вероятность «сломать» вызовы этого метода в других фрагментах кода.
-#|en| We could simply add a new parameter to the method description, but that would cause a large risk of breaking calls involving this method in other code fragments.
+#|en| We could simply add a new parameter to the method signature, but that would cause a large risk of breaking some existing code that has this method's calls.
 #|uk| Можна просто вписати новий параметр в опис методу, але в такому випадку є велика ймовірність «зламати» виклики цього методу в інших фрагментах коду.
 
 Go to the end of "Calendar"
 
 #|ru| Поэтому мы будем продвигаться очень осторожно и создадим новый метод с желаемым параметром, для начала скопировав туда тело существующего.
-#|en| So we will proceed very carefully, creating a new method with the desired parameter. To start, we will copy the body of the existing method.
+#|en| So we need to proceed very carefully. Therefore we start by creating a new method with the desired parameter. Then, we place a copy of the existing method in its body.
 #|uk| Тому ми будемо просуватися дуже обережно і створимо новий метод з бажаним параметром, для початку скопіювавши туди тіло існуючого.
 
 Print:
@@ -132,7 +132,7 @@ Print:
 Select body of "findAppointments"
 
 #|ru| Теперь тело старого метода можно заменить вызовом нового метода.
-#|en| Now the body of the old method can be replaced with a call to the new method.
+#|en| Now the body of the old method can be replaced with the new method's call.
 #|uk| Тепер тіло старого методу можна замінити викликом нового методу.
 
 Print:
@@ -145,13 +145,13 @@ Set step 3
 Select name of "findAppointments"
 
 #|ru| Далее нужно найти все обращения к старому методу и заменить их обращениями к новому.
-#|en| Then find all references to the old method and replace them with references to the new one.
+#|en| Then we need to find all calls to the old method and replace them with calls to the new one.
 #|uk| Далі потрібно знайти всі звернення до старого методу і замінити їх зверненнями до нового.
 
 Select "calendar.findAppointments(today);"
 
 #|ru| Вот одно из них. Так как нам нечего подать в новый параметр, впишем значение <code>null</code>.
-#|en| Here is one of them. Since we have nothing to “give” to the new parameter, we write in the value <code>null</code>.
+#|en| Here is one of them. Since we have nothing to pass to the new parameter, we use the <code>null</code> value.
 #|uk| Ось одне з них. Так як нам нема чого подавати в новий параметр, використаємо значення <code>null</code>.
 
 Go to "calendar.findAppointments(today|||);"
@@ -171,7 +171,7 @@ Remove selected
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's run the final compile.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
 #C|uk| Запускаємо фінальну компіляцію.
@@ -180,5 +180,5 @@ Remove selected
 Set final step
 
 #|ru|Q На этом рефакторинг можно считать оконченным. В завершение, можете посмотреть разницу между старым и новым кодом.
-#|en|Q Now refactoring is complete. If you like, you can compare the old and new code.
+#|en|Q The refactoring is complete! You can compare the old and new code if you like.
 #|uk|Q На цьому рефакторинг можна вважати закінченим. На завершення, можете подивитися різницю між старим та новим кодом.
