@@ -268,9 +268,9 @@ Set step 4
 
 Select body of "payAmount"
 
-#|ru| После того, как методы созданы, можно сделать метод <code>payAmount</code> в <code>EmployeeType</code> абстрактным.
+#|ru| После того как методы созданы, можно сделать метод <code>payAmount</code> в <code>EmployeeType</code> абстрактным.
 #|en| Now that the methods have been created, we can make the <code>payAmount</code> method in <code>EmployeeType</code>  abstract.
-#|uk| Після того, як методи створені, можна зробити метод <code>payAmount</code> в <code>EmployeeType</code> абстрактним.
+#|uk| Після того як методи створені, можна зробити метод <code>payAmount</code> в <code>EmployeeType</code> абстрактним.
 
 Select:
 ```

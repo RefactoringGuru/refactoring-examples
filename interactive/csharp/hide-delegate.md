@@ -150,9 +150,9 @@ Select:
 
 ```
 
-#|ru| После того, как все необходимые методы делегированы, можно удалить свойство в классе <code>Person</code>, которое предоставляло доступ к экземпляру <code>Department</code>.
+#|ru| После того как все необходимые методы делегированы, можно удалить свойство в классе <code>Person</code>, которое предоставляло доступ к экземпляру <code>Department</code>.
 #|en| After all the necessary methods have been delegated, you can remove the property in the <code>Person</code> class that provided access to the <code>Department</code> instance.
-#|uk| Після того, як всі необхідні методи делеговані, можна видалити властивість в класі <code>Person</code>, яке надавала доступ до примірника <code>Department</code>.
+#|uk| Після того як всі необхідні методи делеговані, можна видалити властивість в класі <code>Person</code>, яке надавала доступ до примірника <code>Department</code>.
 
 Remove selected
 

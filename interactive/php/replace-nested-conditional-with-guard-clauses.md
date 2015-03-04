@@ -6,9 +6,9 @@ replace-nested-conditional-with-guard-clauses:php
 1.en. Isolate all guard clauses that lead to calling an exception or immediate return of a value from the method. Place these conditions at the beginning of the method.
 1.uk. Виділіть граничні умови, які призводять до виклику виключення або негайного повернення значення з методу. Перемістіть ці умови в початок методу.
 
-2.ru. После того, как с переносами покончено, и все тесты стали проходить, проверьте, можно ли использовать <a href="/consolidate-conditional-expression">объединение условных операторов</a> для граничных условных операторов, ведущих к одинаковым исключениям или возвращаемым значениям.
+2.ru. После того как с переносами покончено, и все тесты стали проходить, проверьте, можно ли использовать <a href="/consolidate-conditional-expression">объединение условных операторов</a> для граничных условных операторов, ведущих к одинаковым исключениям или возвращаемым значениям.
 2.en. After rearrangement is complete and all tests are successfully completed, see whether you can use <a href="/consolidate-conditional-expression">Consolidate Conditional Expression</a> for guard clauses that lead to the same exceptions or returned values.
-2.uk. Після того, як з перенесеннями покінчено, і усі тести стали проходити, перевірте, чи можна використати <a href="/consolidate-conditional-expression">ооб'єднання умовних операторів</a> для граничних умовних операторів, що ведуть до однакових виключень або повертаних значень.
+2.uk. Після того як з перенесеннями покінчено, і усі тести стали проходити, перевірте, чи можна використати <a href="/consolidate-conditional-expression">ооб'єднання умовних операторів</a> для граничних умовних операторів, що ведуть до однакових виключень або повертаних значень.
 
 
 

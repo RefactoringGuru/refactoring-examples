@@ -167,9 +167,9 @@ Select "AreaCode" in "TelephoneNumber"
 
 Select "OfficeAreaCode" in "GetTelephoneNumber"
 
-#|ru| После того, как свойство успешно переместилось в класс <code>TelephoneNumber</code>, методы, которые использовали перемещённое свойство, необходимо изменить так, чтобы они обращались к экземпляру созданного класса.
+#|ru| После того как свойство успешно переместилось в класс <code>TelephoneNumber</code>, методы, которые использовали перемещённое свойство, необходимо изменить так, чтобы они обращались к экземпляру созданного класса.
 #|en| After the method has been successfully moved to the <code>TelephoneNumber</code> class, the methods that used the moved property must be changed so that they reference an instance of the created class.
-#|uk| Після того, як властивість успішно перемістилася в клас <code>TelephoneNumber</code>, методи, які використовували переміщену властивість, необхідно змінити так, щоб вони зверталися до примірника створеного класу.
+#|uk| Після того як властивість успішно перемістилася в клас <code>TelephoneNumber</code>, методи, які використовували переміщену властивість, необхідно змінити так, щоб вони зверталися до примірника створеного класу.
 
 Print:
 ```
