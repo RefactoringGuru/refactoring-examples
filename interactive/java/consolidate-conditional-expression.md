@@ -65,7 +65,7 @@ class Payout {
     // ...
   }
   private boolean isNotEligibleForDisability() {
-    return (seniority < 2) || (monthsDisabled > 12) || (isPartTime);
+    return seniority < 2 || monthsDisabled > 12 || isPartTime;
   }
 
   public double vacationAmount() {
@@ -102,7 +102,7 @@ Go to:
 Print:
 ```
 
-    if ((seniority < 2) || (monthsDisabled > 12) || (isPartTime)) {
+    if (seniority < 2 || monthsDisabled > 12 || isPartTime) {
       return 0;
     }
 ```
@@ -125,9 +125,9 @@ Remove selected
 
 Set step 2
 
-Select "(seniority < 2) || (monthsDisabled > 12) || (isPartTime)"
+Select "seniority < 2 || monthsDisabled > 12 || isPartTime"
 
-#|ru| Это условие выглядит слишком длинным и непонятным на первый взгляд. Поэтому можно <a href="/extract-method">выделить его в новый метод</a> и сообщить о том, что именно ищет условный оператор (нетрудоспособность не оплачивается).
+#|ru| Это условие выглядит слишком длинным и непонятным на первый взгляд. Поэтому можно <a href="/extract-method">выделить его в новый метод</a>, сообщив в названии, что именно ищет условный оператор (нетрудоспособность не оплачивается).
 #|en| This condition looks too long and hard to comprehend. So we can <a href="/extract-method">Extract Method</a> and make more clear what the conditional is looking for (no compensation to be paid).
 #|uk| Ця умова виглядає занадто довгою і незрозумілою на перший погляд. Тому можна <a href="/extract-method">виділити її в новий метод</a> і повідомити про те, що саме шукає умовний оператор (непрацездатність не оплачується).
 
@@ -137,11 +137,11 @@ Print:
 ```
 
   private boolean isNotEligibleForDisability() {
-    return (seniority < 2) || (monthsDisabled > 12) || (isPartTime);
+    return seniority < 2 || monthsDisabled > 12 || isPartTime;
   }
 ```
 
-Select "(seniority < 2) || (monthsDisabled > 12) || (isPartTime)" in "disabilityAmount"
+Select "seniority < 2 || monthsDisabled > 12 || isPartTime" in "disabilityAmount"
 
 Replace "isNotEligibleForDisability()"
 
@@ -192,11 +192,11 @@ Select:
 
 Remove selected
 
-#|ru| Если рассматриваемая процедура лишь проверяет условие и возвращает значение, мы можем ещё более упростить код с помощью тернарного оператора.
+Select body of "vacationAmount"
+
+#|ru| Если рассматриваемая процедура лишь проверяет условие и возвращает значение, мы можем ещё больше упростить код с помощью тернарного оператора.
 #|en| If the code only checks a condition and returns a value, we can simplify it to a greater degree by using a ternary operator.
 #|uk| Якщо розглянута процедура лише перевіряє умову і повертає значення, ми можемо ще більш спростити код за допомогою тернарного оператора.
-
-Select body of "vacationAmount"
 
 Replace:
 ```

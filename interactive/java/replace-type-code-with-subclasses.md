@@ -10,7 +10,7 @@ replace-type-code-with-subclasses:java
 2.en. Make the superclass constructor private. Create a static factory method with the same parameters as the superclass constructor.
 2.uk. Зробіть конструктор суперкласу приватним. Створіть статичний фабричний метод з тими ж параметрами, що і конструктор суперкласу.
 
-3.ru. Для каждого значения кодированного типа, создайте свой подкласс. В нем переопределите геттер закодированного поля так, чтобы он возвращал соответствующее значение закодированного типа.
+3.ru. Для каждого значения кодированного типа создайте свой подкласс. В нем переопределите геттер закодированного поля так, чтобы он возвращал соответствующее значение закодированного типа.
 3.en. Create a unique subclass for each value of the coded type. In it, redefine the getter of the coded type so that it returns the corresponding value of the coded type.
 3.uk. Зробіть конструктор суперкласу приватним. Створіть статичний фабричний метод з тими ж параметрами, що і конструктор суперкласу. Він обов'язково повинен містити параметр, який набуватиме стартових значень закодованого типу. Залежно від цього параметру фабричний метод створюватиме об'єкти різних підкласів. Для цього в його коді доведеться створити великий умовний оператор, але, принаймні, він буде єдиним, який дійсно потрібний, про усе інше надалі зможуть потурбуватися підкласи і поліморфізм.
 
@@ -79,11 +79,10 @@ abstract class Employee {
       case SALESMAN:
         return new Salesman();
       case MANAGER:
-        return new Manger();
+        return new Manager();
+      default:
+        throw new RuntimeException("Incorrect Employee Code");
     }
-  }
-  private Employee(int arg) {
-    type = arg;
   }
 
   public int monthlySalary;
@@ -93,27 +92,27 @@ abstract class Employee {
 }
 
 class Engineer extends Employee {
-  public int getType() {
+  @Override public int getType() {
     return Employee.ENGINEER;
   }
 }
 
 class Salesman extends Employee {
   public int commission;
-  public int getType() {
+  @Override public int getType() {
     return Employee.SALESMAN;
   }
-  public int payAmount() {
+  @Override public int payAmount() {
     return monthlySalary + commission;
   }
 }
 
 class Manager extends Employee {
   public int bonus;
-  public int getType() {
+  @Override public int getType() {
     return Employee.MANAGER;
   }
-  public int payAmount() {
+  @Override public int payAmount() {
     return monthlySalary + bonus;
   }
 }
@@ -128,7 +127,6 @@ Set step 1
 #|uk| Розглянемо рефакторинг <i>Заміна кодування типу підклассами<i> на прикладі класу зарплати службовця. У нас є кілька типів службовців, залежно від яких обчислюється розмір зарплати.
 
 Select "public int |||type|||"
-+ Select name of "payAmount"
 
 #|ru| Начнём с <a href="/self-encapsulate-field">самоинкапсуляции поля</a> типа служащего.
 #|en| We start by applying <a href="/self-encapsulate-field">Self-Encapsulate Field</a> to the employee type.
@@ -155,11 +153,13 @@ Replace "getType()"
 
 Set step 2
 
-Go to before "public Employee"
+Select parameters of "public Employee"
 
 #|ru| Поскольку конструктор <code>Employee</code> использует код типа в качестве параметра, надо заменить его фабричным методом.
 #|en| Since the <code>Employee</code> constructor uses type code as a parameter, we should replace it with a factory method.
 #|uk| Оскільки конструктор <code>Employee</code> використовує код типу як параметр, треба замінити його фабричним методом.
+
+Go to before "public Employee"
 
 Print:
 ```
@@ -177,7 +177,7 @@ Replace "private"
 
 Set step 3
 
-Select "ENGINEER"
+Select 1st "ENGINEER"
 
 #|ru| Теперь можно приступить к преобразованию <code>Engineer</code> в подкласс. Сначала создаётся сам подкласс…
 #|en| Now we can start converting <code>Engineer</code> to a subclass. First create the subclass itself…
@@ -202,16 +202,16 @@ Go to the end of "Engineer"
 Print:
 ```
 
-  public int getType() {
+  @Override public int getType() {
     return Employee.ENGINEER;
   }
 ```
 
 Select body of "create"
 
-#|ru| Необходимо также заменить фабричный метод, чтобы он создавал надлежащий объект.
-#|en| We need to replace the factory method as well so that it creates the necessary object.
-#|uk| Необхідно також замінити фабричний метод, щоб він створював належний об'єкт.
+#|ru| Необходимо также изменить фабричный метод, чтобы он создавал надлежащий объект.
+#|en| We need to change the factory method as well so that it creates the necessary object.
+#|uk| Необхідно також змінити фабричний метод, щоб він створював належний об'єкт.
 
 Print:
 ```
@@ -234,7 +234,7 @@ Print:
 
 
 class Salesman extends Employee {
-  public int getType() {
+  @Override public int getType() {
     return Employee.SALESMAN;
   }
 }
@@ -262,7 +262,7 @@ Print:
 
 
 class Manager extends Employee {
-  public int getType() {
+  @Override public int getType() {
     return Employee.MANAGER;
   }
 }
@@ -278,7 +278,7 @@ Print:
 ```
 
       case MANAGER:
-        return new Manger();
+        return new Manager();
 ```
 
 Select:
@@ -327,31 +327,33 @@ Go to before "Employee"
 
 Print "abstract "
 
-#|ru| После этих изменений, мы больше не можем создавать объекты <code>Employee</code> как реализацию по умолчанию, поэтому важно помнить, что избавляться от поля типа стоит только после создания всех подклассов.
-#|en| After all these changes, we can no longer create <code>Employee</code> objects as the default implementation. So it is important to remember to get rid of the type field only after creating all subclasses.
-#|uk| Після цих змін, ми більше не можемо створювати об'єкти <code>Employee</code> як типову реалізацію, тому важливо пам'ятати, що позбуватися від поля типу варто тільки після створення всіх підкласів.
-
 Select:
 ```
       default:
-        return new Employee(type);
+        |||return new Employee(type);|||
 
 ```
 
-Remove selected
+#|ru| После этих изменений мы больше не можем создавать объекты <code>Employee</code> как реализацию по умолчанию, поэтому важно помнить, что избавляться от поля типа стоит только после создания всех подклассов.
+#|en| After all these changes, we can no longer create <code>Employee</code> objects as the default implementation. So it is important to remember to get rid of the type field only after creating all subclasses.
+#|uk| Після цих змін ми більше не можемо створювати об'єкти <code>Employee</code> як типову реалізацію, тому важливо пам'ятати, що позбуватися від поля типу варто тільки після створення всіх підкласів.
 
+Replace:
+```
+throw new RuntimeException("Incorrect Employee Code");
+```
+
+Select whole of "private Employee"
+
+Remove selected
 
 Select "switch (type) {" in "create"
 
-#|ru| Обратите внимание, что в итоге мы создали ещё один большой оператор <code>switch</code>. Вообще  –  <a href="/smells/switch-statements">это плохо</a>, но после завершения рефакторинга он будет единственным оставшимся в коде.
+#|ru| Обратите внимание, что в итоге мы создали ещё один большой оператор <code>switch</code>. На самом деле  –  <a href="/smells/switch-statements">это плохо</a>, но после завершения рефакторинга он будет единственным оставшимся в коде.
 #|en| Note that we ended up creating another big <code>switch</code> operator. Generally speaking this <a href="/smells/switch-statements">gives off a bad whiff</a> but once refactoring is done, it will be the only operator remaining in the code.
-#|uk| Зверніть увагу, що в підсумку ми створили ще один великий оператор <code>switch</code>. Взагалі – <a href="/smells/switch-statements">це погано</a>, але після завершення рефакторинга він буде єдиним залишившимся в коді.
+#|uk| Зверніть увагу, що в підсумку ми створили ще один великий оператор <code>switch</code>. Насправді – <a href="/smells/switch-statements">це погано</a>, але після завершення рефакторинга він буде єдиним залишившимся в коді.
 
 Set step 5
-
-#|ru| Теперь, после создания подклассов, следует применить <a href="/push-down-method">Спуск метода</a> и <a href="/push-down-field">Спуск поля</a> ко всем методам и полям, которые относятся только к конкретным типам служащих.
-#|en| After creating the subclasses, use <a href="/push-down-method">Push Down Method</a> and <a href="/push-down-field">Push Down Field</a> on all methods and fields that relate to only specific types of employees.
-#|uk| Тепер, після створення підкласів, слід застосувати <a href="/push-down-method">Спуск методу</a> і <a href="/push-down-field">Спуск поля</a> до всіх методів та полей, що відносяться тільки до конкретних типів службовців.
 
 Select:
 ```
@@ -361,9 +363,13 @@ Select:
 ```
 + Select name of "payAmount"
 
-#|ru| В нашем случае создадим методы <code>payAmount</code> в каждом из подклассов и переместим туда расчёты зарплаты для соответствующих типов служащих.
-#|en| In our case, we will create <code>payAmount</code> methods in each of the subclasses and move payroll calculations there for the relevant types of employees.
-#|uk| В нашому випадку створимо методи <code>payAmount</code> в кожному з підкласів і перемістимо туди розрахунки зарплати для відповідних типів службовців.
+#|ru| Теперь, после создания подклассов, следует применить <a href="/push-down-method">Спуск метода</a> и <a href="/push-down-field">Спуск поля</a> ко всем методам и полям, которые относятся к тем или иным типам служащих.
+#|en| After creating the subclasses, use <a href="/push-down-method">Push Down Method</a> and <a href="/push-down-field">Push Down Field</a> on all methods and fields that relate to only specific types of employees.
+#|uk| Тепер, після створення підкласів, слід застосувати <a href="/push-down-method">Спуск методу</a> і <a href="/push-down-field">Спуск поля</a> до всіх методів та полей, що відносяться тільки до тих чи інших типів службовців.
+
+#|ru| В нашем случае надо создать методы <code>PayAmount</code> в каждом из подклассов и переместить туда расчёты зарплаты для соответствующих типов служащих.
+#|en| In our case, we will create <code>PayAmount</code> methods in each of the subclasses and move payroll calculations there for the relevant types of employees.
+#|uk| В нашому випадку треба створити методи <code>PayAmount</code> в кожному з підкласів і перемістити туди розрахунки зарплати для відповідних типів службовців.
 
 Select:
 ```
@@ -395,7 +401,7 @@ Go to the end of "Salesman"
 Print:
 ```
 
-  public int payAmount() {
+  @Override public int payAmount() {
     return monthlySalary + commission;
   }
 ```
@@ -437,7 +443,7 @@ Go to the end of "Manager"
 Print:
 ```
 
-  public int payAmount() {
+  @Override public int payAmount() {
     return monthlySalary + bonus;
   }
 ```
