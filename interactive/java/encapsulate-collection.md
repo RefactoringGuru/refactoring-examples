@@ -51,7 +51,7 @@ class Person {
   }
 }
 
-// Клиентский код
+// Client code
 Person kent = new Person();
 Set s = new HashSet();
 s.add(new Course("Smalltalk Programming", false));
@@ -120,7 +120,7 @@ class Person {
   }
 }
 
-// Клиентский код
+// Client code
 Person kent = new Person();
 kent.addCourse(new Course("Smalltalk Programming", false));
 kent.addCourse(new Course("Appreciating Single Malts", true));

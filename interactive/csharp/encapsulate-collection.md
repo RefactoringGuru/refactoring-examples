@@ -60,7 +60,7 @@ public class Person
   }
 }
 
-// Клиентский код
+// Client code
 Person kent = new Person();
 List<Course> s = new List<Course>();
 
@@ -147,7 +147,7 @@ public class Person
   }
 }
 
-// Клиентский код
+// Client code
 Person kent = new Person();
 kent.AddCourse(new Course("Smalltalk Programming"));
 kent.AddCourse(new Course("Appreciating Single Malts", true));

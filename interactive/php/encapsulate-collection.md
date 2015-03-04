@@ -51,7 +51,7 @@ class Person {
   }
 }
 
-// Клиентский код
+// Client code
 $kent = new Person();
 $s = new SplObjectStorage();
 $s->attach(new Course("Smalltalk Programming", false));
@@ -120,7 +120,7 @@ class Person {
   }
 }
 
-// Клиентский код
+// Client code
 $kent = new Person();
 $kent->addCourse(new Course("Smalltalk Programming", false));
 $kent->addCourse(new Course("Appreciating Single Malts", true));
