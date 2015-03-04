@@ -209,7 +209,7 @@ Print:
 
 Select body of "create"
 
-#|ru| Необходимо также изменить фабричный метод, чтобы он создавал надлежащий объект.
+#|ru| ***Необходимо также изменить фабричный метод, чтобы он создавал надлежащий объект.
 #|en| We need to change the factory method as well so that it creates the necessary object.
 #|uk| Необхідно також змінити фабричний метод, щоб він створював належний об'єкт.
 
@@ -349,7 +349,7 @@ Remove selected
 
 Select "switch (type) {" in "create"
 
-#|ru| Обратите внимание, что в итоге мы создали ещё один большой оператор <code>switch</code>. На самом деле  –  <a href="/smells/switch-statements">это плохо</a>, но после завершения рефакторинга он будет единственным оставшимся в коде.
+#|ru| ***Обратите внимание, что в итоге мы создали ещё один большой оператор <code>switch</code>. На самом деле  –  <a href="/smells/switch-statements">это плохо</a>, но после завершения рефакторинга он будет единственным оставшимся в коде.
 #|en| Note that we ended up creating another big <code>switch</code> operator. Generally speaking this <a href="/smells/switch-statements">gives off a bad whiff</a> but once refactoring is done, it will be the only operator remaining in the code.
 #|uk| Зверніть увагу, що в підсумку ми створили ще один великий оператор <code>switch</code>. Насправді – <a href="/smells/switch-statements">це погано</a>, але після завершення рефакторинга він буде єдиним залишившимся в коді.
 
@@ -367,9 +367,9 @@ Select:
 #|en| After creating the subclasses, use <a href="/push-down-method">Push Down Method</a> and <a href="/push-down-field">Push Down Field</a> on all methods and fields that relate to only specific types of employees.
 #|uk| Тепер, після створення підкласів, слід застосувати <a href="/push-down-method">Спуск методу</a> і <a href="/push-down-field">Спуск поля</a> до всіх методів та полей, що відносяться тільки до тих чи інших типів службовців.
 
-#|ru| В нашем случае надо создать методы <code>PayAmount</code> в каждом из подклассов и переместить туда расчёты зарплаты для соответствующих типов служащих.
-#|en| In our case, we will create <code>PayAmount</code> methods in each of the subclasses and move payroll calculations there for the relevant types of employees.
-#|uk| В нашому випадку треба створити методи <code>PayAmount</code> в кожному з підкласів і перемістити туди розрахунки зарплати для відповідних типів службовців.
+#|ru| ***В нашем случае надо создать методы <code>payAmount</code> в каждом из подклассов и переместить туда расчёты зарплаты для соответствующих типов служащих.
+#|en| In our case, we will create <code>payAmount</code> methods in each of the subclasses and move payroll calculations there for the relevant types of employees.
+#|uk| В нашому випадку треба створити методи <code>payAmount</code> в кожному з підкласів і перемістити туди розрахунки зарплати для відповідних типів службовців.
 
 Select:
 ```

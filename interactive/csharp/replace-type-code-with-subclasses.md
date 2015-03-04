@@ -7,14 +7,14 @@ replace-type-code-with-subclasses:csharp
 1.uk. Використайте <a href="/self-encapsulate-field">самоінкапсуляцію поля</a> для створення геттера для поля, яке містить кодування типу.
 
 2.ru. Сделайте конструктор суперкласса приватным. Создайте статический фабричный метод с теми же параметрами, что и конструктор суперкласса.
-2.en. Make the superclass constructor private. create a static factory method with the same parameters as the superclass constructor.
+2.en. Make the superclass constructor private. Create a static factory method with the same parameters as the superclass constructor.
 2.uk. Зробіть конструктор суперкласу приватним. Створіть статичний фабричний метод з тими ж параметрами, що і конструктор суперкласу.
 
 3.ru. Для каждого значения кодированного типа создайте свой подкласс. Переопределите в нём геттер закодированного поля так, чтобы он возвращал соответствующее значение закодированного типа.
-3.en. create a unique subclass for each value of the coded type. In it, redefine the getter of the coded type so that it returns the corresponding value of the coded type.
+3.en. Create a unique subclass for each value of the coded type. In it, redefine the getter of the coded type so that it returns the corresponding value of the coded type.
 3.uk. Зробіть конструктор суперкласу приватним. Створіть статичний фабричний метод з тими ж параметрами, що і конструктор суперкласу. Він обов'язково повинен містити параметр, який набуватиме стартових значень закодованого типу. Залежно від цього параметру фабричний метод створюватиме об'єкти різних підкласів. Для цього в його коді доведеться створити великий умовний оператор, але, принаймні, він буде єдиним, який дійсно потрібний, про усе інше надалі зможуть потурбуватися підкласи і поліморфізм.
 
-4.ru. Удалите поле с закодированным типом из суперкласса, а соответствующее ему свойство сделайте абстрактным.
+4.ru. ***Удалите поле с закодированным типом из суперкласса, а соответствующее ему свойство сделайте абстрактным.
 4.en. Delete the field with type code from the superclass. Make its property abstract.
 4.uk. Видаліть поле із закодованим типом з суперкласу, а відповідне йому властивість зробіть абстрактним.
 
@@ -241,7 +241,7 @@ Print:
 
 Select body of "Create"
 
-#|ru| Необходимо также изменить фабричный метод, чтобы он создавал надлежащий объект.
+#|ru| ***Необходимо также изменить фабричный метод, чтобы он создавал надлежащий объект.
 #|en| We need to change the factory method as well so that it creates the necessary object.
 #|uk| Необхідно також змінити фабричний метод, щоб він створював належний об'єкт.
 
@@ -394,7 +394,7 @@ Remove selected
 
 Select "switch (type)" in "Create"
 
-#|ru| Обратите внимание, что в итоге мы создали ещё один большой оператор <code>switch</code>. На самом деле  –  <a href="/smells/switch-statements">это плохо</a>, но после завершения рефакторинга он будет единственным оставшимся в коде.
+#|ru| ***Обратите внимание, что в итоге мы создали ещё один большой оператор <code>switch</code>. На самом деле  –  <a href="/smells/switch-statements">это плохо</a>, но после завершения рефакторинга он будет единственным оставшимся в коде.
 #|en| Note that we ended up creating another big <code>switch</code> operator. Generally speaking this <a href="/smells/switch-statements">gives off a bad whiff</a> but once refactoring is done, it will be the only operator remaining in the code.
 #|uk| Зверніть увагу, що в підсумку ми створили ще один великий оператор <code>switch</code>. Насправді – <a href="/smells/switch-statements">це погано</a>, але після завершення рефакторинга він буде єдиним залишившимся в коді.
 
@@ -415,7 +415,7 @@ Select:
 #|en| After creating the subclasses, use <a href="/push-down-method">Push Down Method</a> and <a href="/push-down-field">Push Down Field</a> on all methods and properties that relate to only specific types of employees.
 #|uk| Тепер, після створення підкласів, слід застосувати <a href="/push-down-method">Спуск методу</a> і <a href="/push-down-field">Спуск поля</a> до всіх методів та властивостей, що відносяться тільки до тих чи інших типів службовців.
 
-#|ru| В нашем случае надо создать методы <code>PayAmount</code> в каждом из подклассов и переместить туда расчёты зарплаты для соответствующих типов служащих.
+#|ru| ***В нашем случае надо создать методы <code>PayAmount</code> в каждом из подклассов и переместить туда расчёты зарплаты для соответствующих типов служащих.
 #|en| In our case, we will create <code>PayAmount</code> methods in each of the subclasses and move payroll calculations there for the relevant types of employees.
 #|uk| В нашому випадку треба створити методи <code>PayAmount</code> в кожному з підкласів і перемістити туди розрахунки зарплати для відповідних типів службовців.
 
@@ -507,7 +507,7 @@ Set step 6
 
 Select body of "PayAmount"
 
-#|ru| После перемещения всего кода по подклассам вы можете либо объявить метод в суперклассе абстрактным, либо оставить в нём реализацию по умолчанию, сделав его виртуальным (так и поступим).
+#|ru| ***После перемещения всего кода по подклассам вы можете либо объявить метод в суперклассе абстрактным, либо оставить в нём реализацию по умолчанию, сделав его виртуальным (так и поступим).
 #|en| After all the code has been moved to the subclasses, you can either declare the method in the superclass abstract or else leave the default implementation there, making it a virtual (which is what we will do).
 #|uk| Після переміщення всього коду до підкласів ви можете або оголосити метод в суперкласі абстрактним, або залишити в ньому типову реалізацію, зробивши його віртуальним (так і вчинимо).
 
