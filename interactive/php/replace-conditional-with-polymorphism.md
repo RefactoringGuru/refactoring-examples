@@ -162,9 +162,9 @@ Select body of "payAmount"
 #|en| See that big conditional inside the <code>payAmount()</code> method? Let's try to get rid of it.
 #|uk| Давайте спробуємо позбутися від умовного оператора всередині методу <code>payAmount()</code>.
 
-#|ru| Сначала выделим реализацию <code>payAmount</code> в новый метод в классе типа <code>EmployeeType</code>. Сделаем это, чтобы иметь общую точку доступа к данному методу в подклассах.
-#|en| First, extract the implementation of <code>payAmount</code> to a new method in a class like <code>EmployeeType</code>. This gives us a common access point for this method in the subclasses.
-#|uk| Спочатку виділимо реалізацію <code>payAmount</code> в новий метод в класі типу <code>EmployeeType</code>. Зробимо це, щоб мати спільну точку доступу до даного методу в підкласах.
+#|ru| Сначала выделим реализацию <code>payAmount</code> в новый метод в классе типа.
+#|en| First extract the implementation of <code>payAmount</code> to a new method in a type class.
+#|uk| Спочатку виділимо реалізацію <code>payAmount</code> в новий метод в класі типу.
 
 Go to the end of "EmployeeType"
 
@@ -191,7 +191,7 @@ Select "monthlySalary" in "EmployeeType"
 +Select "bonus" in "EmployeeType"
 
 #|ru| Нам нужны данные из объекта <code>Employee</code>, поэтому создадим в методе параметр, в который будет передаваться основной объект <code>Employee</code>.
-#|en| We need data from the <code>Employee</code> object. For this reason we create a parameter in method and pass the <code>Employee</code> object in it.
+#|en| We need datа from the <code>Employee</code> object, so in the method we create the parameter to which the main <code>Employee</code> object will be passed.
 #|uk| Нам потрібні дані з об'єкта <code>Employee</code>, тому створимо в методі параметр, в який буде передаватися основний об'єкт <code>Employee</code>.
 
 Go to "payAmount(|||) {" in "EmployeeType"
@@ -213,16 +213,12 @@ Replace "$employee->bonus"
 Select body of "payAmount"
 
 #|ru| После этих действий мы можем настроить делегирование из класса <code>Employee</code>.
-#|en| Now, we can set up delegation from the <code>Employee</code> class.
+#|en| After these actions, we can set up delegation from the <code>Employee</code> class.
 #|uk| Після цих дій ми можемо налаштувати делегування з класу <code>Employee</code>.
 
 Print "    return $type->payAmount($this);"
 
-Set step 2
-
-Select name of "payAmount"
-
-#|ru| После этого займёмся перемещением кода в подклассы. Создадим методы <code>payAmount</code> в каждом из подклассов и переместим туда расчёты зарплаты для соответствующих типов служащих.
+#|ru| После этого займёмся перемещением кода в подклассы. Создадим методы <code>payAmount</code> в каждом из подклассов и переместим туда расчёты зарплат для соответствующих типов служащих.
 #|en| Then start moving code to subclasses. Create <code>payAmount</code> methods in each of the subclasses and move payroll calculations there for the relevant employee types.
 #|uk| Після цього займемося переміщенням коду в підкласи. Створимо методи <code>payAmount</code> в кожному з підкласів і перемістимо туди розрахунки зарплати для відповідних типів службовців.
 
@@ -237,8 +233,6 @@ Print:
 ```
 
 Wait 1000ms
-
-Set step 3
 
 Go to the end of "class Salesman"
 
@@ -263,12 +257,12 @@ Print:
   }
 ```
 
-Set step 4
+Set step 7
 
-Select body of "payAmount"
+Select name of "payAmount" in "EmployeeType"
 
 #|ru| После того как методы созданы, можно сделать метод <code>payAmount</code> в <code>EmployeeType</code> абстрактным.
-#|en| Now that the methods have been created, we can make the <code>payAmount</code> method in <code>EmployeeType</code>  abstract.
+#|en| Now that the methods have been created, you can make the <code>payAmount</code> method in <code>EmployeeType</code>  abstract.
 #|uk| Після того як методи створені, можна зробити метод <code>payAmount</code> в <code>EmployeeType</code> абстрактним.
 
 Select:
