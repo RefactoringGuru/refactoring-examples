@@ -2,7 +2,7 @@ separate-query-from-modifier:java
 
 ###
 
-1.ru. Создайте новый <i>метод-запрос</i>, который бы возвращал то, что возвращал оригинальный метод.
+1.ru. Создайте новый <i>метод-запрос</i>, который бы возвращал то, что возвращает оригинальный метод.
 1.en. Create a new <i>query method</i> to return what the original method did.
 1.uk. Створіть новий <i>метод-запит</i>, який би повертав те, що повертав оригінальний метод.
 
@@ -56,7 +56,7 @@ class Guard {
     someLaterCode(found);
   }
   public void doSendAlert(String[] people) {
-    if (findCriminal(people) != "")
+    if (findCriminal(people) != "") {
       sendAlert();
     }
   }
@@ -103,19 +103,19 @@ Select "found" in "checkSecurity"
 
 Select "sendAlert()" in "findCriminalAndAlert"
 
-#|ru| Но это ещё не всё. Метод также отсылает сообщения о найденных людях.
-#|en| But that's not all. The method also sends a message about the people found.
-#|uk| Але це ще не все. Метод також відсилає повідомлення про знайдених людях.
+#|ru| ***Во-вторых, он оповещает о найденных людях.
+#|en| Secondly, it alerts about the people found.
+#|uk| По-друге, він оповіщає про знайдені людях.
 
-#|ru| С данным подходом, если нам всего лишь нужно получить список имён, мы рискуем по ошибке разослать сообщения. Тут на помощь и приходит данный рефакторинг. В нашем случае поиск людей выступает в роли «запроса», а отсылка сообщений – в роли «модификатора».
-#|en| With this approach, even if we only need to get a list of names we take the risk of accidentally sending messages. This refactoring technique will save us from that risk. In our case, searching for people will be the "query" and sending messages will be the "modifier".
-#|uk| З даним підходом, якщо нам всього лише потрібно отримати список імен, ми ризикуємо помилково розіслати повідомлення. Тут на допомогу і приходить даний рефакторинг. У нашому випадку пошук людей виступає в ролі «запиту», а відсилання повідомлень – в ролі «модифікатора».
+#|ru| ***Если при таком подходе нам потребуется лишь получение списка имён, то мы рискуем по ошибке разослать оповещения. Тут на помощь и приходит данный рефакторинг. В нашем случае поиск людей выступает в роли «запроса», а отсылка сообщений – в роли «модификатора».
+#|en| With this approach, even if we only need to get a list of names we take the risk of accidentally sending alerts. This refactoring technique will save us from that risk. In our case, searching for people will be the "query" and sending alerts will be the "modifier".
+#|uk| Якщо при такому підході нам буде потрібно лише отримання списку імен, то ми ризикуємо помилково розіслати оповіщення. Тут на допомогу і приходить даний рефакторинг. У нашому випадку пошук людей виступає в ролі «запиту», а відсилання повідомлень – в ролі «модифікатора».
 
 Go to the end of "Guard"
 
-#|ru| Итак, чтобы отделить запрос от модификатора, мы должны сначала создать подходящий запрос, который возвращает тоже значение, что и исходный метод, но не создаёт побочных эффектов.
+#|ru| ***Итак, чтобы отделить запрос от модификатора, мы создадим метод-запрос, который возвращает те же значения, что и исходный метод, но при этом не содержит лишних модификаций.
 #|en| To separate the query from the modifier, first create an appropriate query that returns the same value as the original method, but does not lead to side effects.
-#|uk| Отже, щоб відокремити запит від модифікатора, ми повинні спочатку створити відповідний запит, який повертає теж значення, що й вихідний метод, але не створює побічних ефектів.
+#|uk| Отже, щоб відокремити запит від модифікатора, ми створимо метод-запит, який повертає ті ж значення, що й вихідний метод, але при цьому не містить зайвих модифікацій.
 
 Print:
 ```
@@ -135,9 +135,11 @@ Print:
 
 Set step 2
 
-#|ru| После этого поочерёдно заменяем все <code>return</code> в исходном методе вызовами нового запроса.
+Select "return" in "findCriminalAndAlert"
+
+#|ru| После этого поочерёдно заменим все <code>return</code> в исходном методе вызовами нового запроса.
 #|en| Then, one by one, replace all cases of <code>return</code> in the original method with calls for the new query.
-#|uk| Після цього по черзі замінюємо всі <code>return</code> в вихідному методі викликами нового запиту.
+#|uk| Після цього по черзі замінимо всі <code>return</code> в вихідному методі викликами нового запиту.
 
 Select "return |||"Don"|||" in "findCriminalAndAlert"
 
@@ -202,9 +204,9 @@ Remove selected
 
 Select name of "findCriminalAndAlert"
 
-#|ru| Кроме того, теперь, пожалуй, лучше изменить имя оригинального метода.
+#|ru| ***Теперь, пожалуй, самое время изменить имя оригинального метода.
 #|en| We should also now change the name of the original method for consistency.
-#|uk| Крім того, тепер, мабуть, краще змінити ім'я оригінального методу.
+#|uk| Тепер, мабуть, саме час змінити ім'я оригінального методу.
 
 Print "doSendAlert"
 
@@ -212,16 +214,15 @@ Select "findCriminalAndAlert"
 
 Replace "doSendAlert"
 
-
 Select body of "doSendAlert"
 
-#|ru| Конечно, в этом случае дублируется много кода, потому что модификатор всё ещё используется для своей работы телом запроса. Но теперь мы можем применить к модификатору <a href="/substitute-algorithm">Замещение алгоритма</a>, не боясь сломать какой-то другой код.
+#|ru| Сейчас дублируется много кода, потому что модификатор всё ещё используется для своей работы телом запроса. Но мы можем применить к модификатору <a href="/substitute-algorithm">Замещение алгоритма</a>, не боясь сломать какой-то другой код.
 #|en| Of course, the result contains a great deal of duplicate code since the modifier still uses the body of the query. But now we can apply <a href="/substitute-algorithm">Substitute Algorithm</a> without the risk of breaking any other code.
-#|uk| Звичайно, в цьому випадку дублюється багато коду, тому що модифікатор все ще використовується для своєї роботи тілом запиту. Але тепер ми можемо застосувати до модифікатору <a href="/substitute-algorithm">Заміщення алгоритму</a>, не боячись зламати якийсь інший код.
+#|uk| Зараз дублюється багато коду, тому що модифікатор все ще використовується для своєї роботи тілом запиту. Але ми можемо застосувати до модифікатору <a href="/substitute-algorithm">Заміщення алгоритму</a>, не боячись зламати якийсь інший код.
 
 Print:
 ```
-    if (findCriminal(people) != "")
+    if (findCriminal(people) != "") {
       sendAlert();
     }
 ```

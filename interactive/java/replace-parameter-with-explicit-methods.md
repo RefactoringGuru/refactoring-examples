@@ -24,14 +24,16 @@ class Order {
   public static final int FIXED_DISCOUNT = 0;
   public static final int PERCENT_DISCOUNT = 1;
 
-  public double applyDiscount(int type, double discount) {
+  public void applyDiscount(int type, double discount) {
     switch (type) {
       case FIXED_DISCOUNT:
         price -= discount;
+        break;
       case PERCENT_DISCOUNT:
         price *= discount;
+        break;
       default:
-        throw new IllegalArgumentException('Invalid discount type');
+        throw new IllegalArgumentException("Invalid discount type");
     }
   }
 }
@@ -50,10 +52,10 @@ if (order.items.size() > 5) {
 ```
 class Order {
   // ...
-  public double applyFixedDiscount(double discount) {
+  public void applyFixedDiscount(double discount) {
     price -= discount;
   }
-  public double applyPercentDiscount(double discount) {
+  public void applyPercentDiscount(double discount) {
     price *= discount;
   }
 }
@@ -77,6 +79,8 @@ Select name of "Order"
 #|en| Let's look at this technique using an order class as an example.
 #|uk| Розглянемо даний рефакторинг на прикладі класу замовлення.
 
+Select name of "applyDiscount"
+
 #|ru| В этом классе есть метод применения скидки, который может работать как с фиксированными скидками, так и с процентными.
 #|en| This class has a method for applying discounts that handle both fixed discounts and percentage-based ones.
 #|uk| В цьому класі є метод застосування знижки, який може працювати як з фіксованими знижками, так і з процентними.
@@ -94,7 +98,7 @@ Go to after "applyDiscount"
 Print:
 ```
 
-  public double applyFixedDiscount(double discount) {
+  public void applyFixedDiscount(double discount) {
     price -= discount;
   }
 ```
@@ -108,7 +112,7 @@ Go to after "applyFixedDiscount"
 Print:
 ```
 
-  public double applyPercentDiscount(double discount) {
+  public void applyPercentDiscount(double discount) {
     price *= discount;
   }
 ```

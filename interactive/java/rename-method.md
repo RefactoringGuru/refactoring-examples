@@ -2,7 +2,7 @@ rename-method:java
 
 ###
 
-1.ru. Проверьте, не определён ли метод в суперклассе или подклассе. Если так, нужно будет повторить все шаги и в этих классах.
+1.ru. Проверьте, не определён ли метод в суперклассе или подклассе. Если определён, то нужно будет повторить все шаги и в этих классах.
 1.en. See whether the method is defined in a superclass or subclass. If so, you must repeat all steps in these classes too.
 1.uk. Перевірте, чи не визначений метод в суперкласі або підкласі. Якщо так, треба буде повторити усі кроки і в цих класах.
 
@@ -14,9 +14,9 @@ rename-method:java
 3.en. Find all references to the old method and replace them with references to the new one.
 3.uk. Знайдіть усі звернення до старого методу і замініть їх зверненнями до нового.
 
-4.ru. Удалите старый метод. Этот шаг неосуществим, если старый метод является частью публичного интерфейса. В этом случае, старый метод нужно пометить как устаревший (Удалите старый метод. Этот шаг неосуществим, если старый метод является частью публичного интерфейса. В этом случае старый метод нужно пометить как устаревший (<code>deprecated</code>).
-4.en. Delete the old method. This step is not possible if the old method is part of the public interface. In that case, mark the old method as deprecated (Delete the old method. This step is not possible if the old method is part of the public interface. In that case, mark the old method as <code>deprecated</code>.
-4.uk. Видаліть старий метод. Цей крок неможливий, якщо старий метод є частиною публічного інтерфейсу. В цьому випадку, старий метод потрібно помітити як застарілий (Видаліть старий метод. Цей крок неможливий, якщо старий метод є частиною публічного інтерфейсу. В цьому випадку старий метод потрібно помітити як застарілий (<code>deprecated</code>).
+4.ru. Удалите старый метод. Этот шаг неосуществим, если старый метод является частью публичного интерфейса. В этом случае старый метод нужно пометить как устаревший (<code>deprecated</code>).
+4.en. Delete the old method. This step is not possible if the old method is part of the public interface. In that case, mark the old method as <code>deprecated</code>.
+4.uk. Видаліть старий метод. Цей крок неможливий, якщо старий метод є частиною публічного інтерфейсу. В цьому випадку старий метод потрібно помітити як застарілий (<code>deprecated</code>).
 
 
 
