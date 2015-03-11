@@ -89,7 +89,7 @@ Set step 2
 
 Go to the end of "Employee"
 
-#|ru| Итак, создадим новый метод с параметром, в который будем подавать коэффициент повышения зарплаты.
+#|ru| Итак, создадим новый метод с параметром, в который будем передавать коэффициент повышения зарплаты.
 #|en| Let's start by creating a new method with the parameter. Later on, we will send the salary increase coefficient there.
 #|uk| Отже, створимо новий метод з параметром, в який будемо подавати коефіцієнт підвищення зарплати.
 
@@ -130,9 +130,9 @@ Select name of "tenPercentRaise"
 
 Select "$employee->|||fivePercentRaise()|||"
 
-#|ru| Сначала нужно найти все их вызовы и заменить их вызовами метода с параметром.
+#|ru| Сначала нужно найти все их вызовы и заменить вызовами метода с параметром.
 #|en| First, find all their calls and replace them with calls to our new method with parameter.
-#|uk| Спочатку потрібно знайти всі їхні виклики і замінити їх викликами методу з параметром.
+#|uk| Спочатку потрібно знайти всі їхні виклики і замінити викликами методу з параметром.
 
 Print "raise(0.05)"
 

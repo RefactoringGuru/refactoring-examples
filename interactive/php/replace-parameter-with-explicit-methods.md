@@ -28,8 +28,10 @@ class Order {
     switch ($type) {
       case Order::FIXED_DISCOUNT:
         $this->price -= $discount;
+        break;
       case Order::PERCENT_DISCOUNT:
         $this->price *= $discount;
+        break;
       default:
         throw new Exception('Invalid discount type');
     }
@@ -76,6 +78,8 @@ Select name of "Order"
 #|ru| Рассмотрим данный рефакторинг на примере класса заказа.
 #|en| Let's look at this technique using an order class as an example.
 #|uk| Розглянемо даний рефакторинг на прикладі класу замовлення.
+
+Select name of "applyDiscount"
 
 #|ru| В этом классе есть метод применения скидки, который может работать как с фиксированными скидками, так и с процентными.
 #|en| This class has a method for applying discounts that handle both fixed discounts and percentage-based ones.
