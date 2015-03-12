@@ -1,4 +1,4 @@
-replace-type-code-with-subclasses:java
+replace-type-code-with-subclasses:csharp
 
 ###
 
@@ -10,17 +10,17 @@ replace-type-code-with-subclasses:java
 2.en. Make the superclass constructor private. Create a static factory method with the same parameters as the superclass constructor.
 2.uk. Зробіть конструктор суперкласу приватним. Створіть статичний фабричний метод з тими ж параметрами, що і конструктор суперкласу.
 
-3.ru. Для каждого значения кодированного типа создайте свой подкласс. В нем переопределите геттер закодированного поля так, чтобы он возвращал соответствующее значение закодированного типа.
+3.ru. Для каждого значения кодированного типа создайте свой подкласс. Переопределите в нём геттер закодированного поля так, чтобы он возвращал соответствующее значение закодированного типа.
 3.en. Create a unique subclass for each value of the coded type. In it, redefine the getter of the coded type so that it returns the corresponding value of the coded type.
 3.uk. Зробіть конструктор суперкласу приватним. Створіть статичний фабричний метод з тими ж параметрами, що і конструктор суперкласу. Він обов'язково повинен містити параметр, який набуватиме стартових значень закодованого типу. Залежно від цього параметру фабричний метод створюватиме об'єкти різних підкласів. Для цього в його коді доведеться створити великий умовний оператор, але, принаймні, він буде єдиним, який дійсно потрібний, про усе інше надалі зможуть потурбуватися підкласи і поліморфізм.
 
-4.ru. Удалите поле с закодированным типом из суперкласса, его геттер сделайте абстрактным.
-4.en. Delete the field with type code from the superclass. Make its getter abstract.
-4.uk. Видаліть поле із закодованим типом з суперкласу, його геттер зробіть абстрактним.
+4.ru. Удалите поле с закодированным типом из суперкласса, а соответствующее ему свойство сделайте абстрактным.
+4.en. Delete the field with type code from the superclass. Make its property abstract.
+4.uk. Видаліть поле із закодованим типом з суперкласу, а відповідне йому властивість зробіть абстрактним.
 
-5.ru. Теперь, когда у вас появились подклассы, можете начинать перемещать поля и методы из суперкласса в соответствующие подклассы.
-5.en. Now that you have subclasses, you can start to move the fields and methods from the superclass to corresponding subclasses
-5.uk. Тепер, коли у вас з'явилися підкласи, можете починати переміщати поля і методи з суперкласу у відповідні підкласи.
+5.ru. Теперь, когда у вас появились подклассы, можете начинать перемещать свойства и методы из суперкласса в соответствующие подклассы.
+5.en. Now that you have subclasses, you can start to move the properties and methods from the superclass to corresponding subclasses
+5.uk. Тепер, коли у вас з'явилися підкласи, можете починати переміщати властивості і методи з суперкласу у відповідні підкласи.
 
 6.ru. Когда все что можно перемещено, используйте <a href="/replace-conditional-with-polymorphism">замену условных операторов полиморфизмом</a>, чтобы окончательно избавиться от условных операторов, использующий закодированный тип.
 6.en. When everything movable has been moved, use <a href="/replace-conditional-with-polymorphism">Replace Conditional with Polymorphism</a> in order to get rid of conditionals that use type code once and for all.
@@ -31,31 +31,39 @@ replace-type-code-with-subclasses:java
 ###
 
 ```
-class Employee {
+public class Employee
+{
   // ...
-  static final int ENGINEER = 0;
-  static final int SALESMAN = 1;
-  static final int MANAGER = 2;
+  public const int ENGINEER = 0,
+                   SALESMAN = 1,
+                   MANAGER = 2;
 
   public int type;
 
-  public Employee(int arg) {
-    type = arg;
+  public int MonthlySalary
+  { get; set; }
+  public int Commission
+  { get; set; }
+  public int Bonus
+  { get; set; }
+
+  public Employee(int type)
+  {
+    this.type = type;
   }
 
-  public int monthlySalary;
-  public int commission;
-  public int bonus;
-  public int payAmount() {
-    switch (type) {
+  public int PayAmount()
+  {
+    switch (type)
+    {
       case ENGINEER:
-        return monthlySalary;
+        return MonthlySalary;
       case SALESMAN:
-        return monthlySalary + commission;
+        return MonthlySalary + Commission;
       case MANAGER:
-        return monthlySalary + bonus;
+        return MonthlySalary + Bonus;
       default:
-        throw new RuntimeException("Incorrect Employee Code");
+        throw new Exception("Incorrect Employee Code");
     }
   }
 }
@@ -64,16 +72,22 @@ class Employee {
 ###
 
 ```
-abstract class Employee {
+public abstract class Employee
+{
   // ...
-  static final int ENGINEER = 0;
-  static final int SALESMAN = 1;
-  static final int MANAGER = 2;
+  public const int ENGINEER = 0,
+                   SALESMAN = 1,
+                   MANAGER = 2;
 
-  abstract public int getType();
+  public abstract int Type
+  { get; }
+  public int MonthlySalary
+  { get; set; }
 
-  public static Employee create(int type) {
-    switch (type) {
+  public static Employee Create(int type)
+  {
+    switch (type)
+    {
       case ENGINEER:
         return new Engineer();
       case SALESMAN:
@@ -81,39 +95,51 @@ abstract class Employee {
       case MANAGER:
         return new Manager();
       default:
-        throw new RuntimeException("Incorrect Employee Code");
+        throw new Exception("Incorrect Employee Code");
     }
   }
 
-  public int monthlySalary;
-  public int payAmount() {
-    return monthlySalary;
+  public virtual int PayAmount()
+  {
+    return MonthlySalary;
   }
 }
 
-class Engineer extends Employee {
-  @Override public int getType() {
-    return Employee.ENGINEER;
+public class Engineer: Employee
+{
+  public override int Type
+  {
+    get{ return Employee.ENGINEER; }
   }
 }
 
-class Salesman extends Employee {
-  public int commission;
-  @Override public int getType() {
-    return Employee.SALESMAN;
+public class Salesman: Employee
+{
+  public override int Type
+  {
+    get{ return Employee.SALESMAN; }
   }
-  @Override public int payAmount() {
-    return monthlySalary + commission;
+  public int Commission
+  { get; set; }
+
+  public override int PayAmount()
+  {
+    return MonthlySalary + Commission;
   }
 }
 
-class Manager extends Employee {
-  public int bonus;
-  @Override public int getType() {
-    return Employee.MANAGER;
+public class Manager: Employee
+{
+  public override int Type
+  {
+    get{ return Employee.MANAGER; }
   }
-  @Override public int payAmount() {
-    return monthlySalary + bonus;
+  public int Bonus
+  { get; set; }
+
+  public override int PayAmount()
+  {
+    return MonthlySalary + Bonus;
   }
 }
 ```
@@ -136,20 +162,23 @@ Select "|||public||| int type"
 
 Replace "private"
 
-Go to before "public Employee"
-
+Go to:
+```
+|||
+  public int MonthlySalary
+```
 Print:
 ```
 
-  public int getType() {
-    return type;
+  public int Type
+  {
+    get{ return type; }
   }
-
 ```
 
 Select "switch (|||type|||)"
 
-Replace "getType()"
+Replace "this.Type"
 
 Set step 2
 
@@ -164,7 +193,8 @@ Go to before "public Employee"
 Print:
 ```
 
-  public static Employee create(int type) {
+  public static Employee Create(int type)
+  {
     return new Employee(type);
   }
 ```
@@ -189,25 +219,27 @@ Print:
 ```
 
 
-class Engineer extends Employee {
+public class Engineer: Employee
+{
 }
 ```
 
 Go to the end of "Engineer"
 
-#|ru| …а потом замещающий метод для кода типа.
-#|en| …then create the method to replace the type code.
-#|uk| …А потім заміщуючий метод для коду типу.
+#|ru| …а потом замещающее свойство для кода типа.
+#|en| …then create the property to replace the type code.
+#|uk| …А потім заміщає властивість для коду типу.
 
 Print:
 ```
 
-  @Override public int getType() {
-    return Employee.ENGINEER;
+  public int Type
+  {
+    get{ return Employee.ENGINEER; }
   }
 ```
 
-Select body of "create"
+Select body of "Create"
 
 #|ru| Необходимо также изменить фабричный метод, чтобы он создавал надлежащий объект.
 #|en| We need to change the factory method as well so that it creates the necessary object.
@@ -215,7 +247,8 @@ Select body of "create"
 
 Print:
 ```
-    switch (type) {
+    switch (type)
+    {
       case ENGINEER:
         return new Engineer();
       default:
@@ -233,9 +266,11 @@ Print:
 ```
 
 
-class Salesman extends Employee {
-  @Override public int getType() {
-    return Employee.SALESMAN;
+public class Salesman: Employee
+{
+  public int Type
+  {
+    get{ return Employee.SALESMAN; }
   }
 }
 ```
@@ -261,9 +296,11 @@ Print:
 ```
 
 
-class Manager extends Employee {
-  @Override public int getType() {
-    return Employee.MANAGER;
+public class Manager: Employee
+{
+  public int Type
+  {
+    get{ return Employee.MANAGER; }
   }
 }
 ```
@@ -299,31 +336,39 @@ Remove selected
 
 Go to:
 ```
-  |||public int getType() {
-    return type;
+  public||| int Type
+  {
+    get{ return type; }
   }
 ```
 
-#|ru| …и сделать <code>getType</code> абстрактным методом.
-#|en| …and make <code>getType</code> an abstract method.
-#|uk| …і зробити <code>getType</code> абстрактним методом.
+#|ru| …и сделать <code>Type</code> абстрактным свойством.
+#|en| …and make <code>Type</code> an abstract property.
+#|uk| …і зробити <code>Type</code> абстрактним властивістю.
 
-Print "abstract "
+Print " abstract"
 
 Select:
 ```
-  abstract public int getType()||| {
-    return type;
-  }|||
+  public abstract int Type
+  {|||
+    get{ return type; }
+  |||}
 ```
 
-Replace ";"
+Replace " get; "
 
-Go to before "Employee"
+Select "public||| |||int Type"
 
-#|ru| Это сделает и класс <code>Employee</code> абстрактным.
+Replace " override "
+
+Wait 500ms
+
+Go to "public |||class Employee"
+
+#|ru| Это сделает абстрактным и класс <code>Employee</code>.
 #|en| This will make the <code>Employee</code> class abstract as well.
-#|uk| Це зробить і клас <code>Employee</code> абстрактним.
+#|uk| Це зробить абстрактним і клас <code>Employee</code>.
 
 Print "abstract "
 
@@ -340,16 +385,16 @@ Select:
 
 Replace:
 ```
-throw new RuntimeException("Incorrect Employee Code");
+throw new Exception("Incorrect Employee Code");
 ```
 
 Select whole of "private Employee"
 
 Remove selected
 
-Select "switch (type) {" in "create"
+Select "switch (type)" in "Create"
 
-#|ru| Обратите внимание, что в итоге мы создали ещё один большой оператор <code>switch</code>. На самом деле  –  <a href="/smells/switch-statements">это плохо</a>, но после завершения рефакторинга он будет единственным оставшимся в коде.
+#|ru| ***Обратите внимание, что в итоге мы создали ещё один большой оператор <code>switch</code>. На самом деле  –  <a href="/smells/switch-statements">это плохо</a>, но после завершения рефакторинга он будет единственным оставшимся в коде.
 #|en| Note that we ended up creating another big <code>switch</code> operator. Generally speaking this <a href="/smells/switch-statements">gives off a bad whiff</a> but once refactoring is done, it will be the only operator remaining in the code.
 #|uk| Зверніть увагу, що в підсумку ми створили ще один великий оператор <code>switch</code>. Насправді – <a href="/smells/switch-statements">це погано</a>, але після завершення рефакторинга він буде єдиним залишившимся в коді.
 
@@ -357,40 +402,27 @@ Set step 5
 
 Select:
 ```
-  public int monthlySalary;
-  public int commission;
-  public int bonus;
+  public int MonthlySalary
+  { get; set; }
+  public int Commission
+  { get; set; }
+  public int Bonus
+  { get; set; }
 ```
-+ Select name of "payAmount"
++ Select name of "PayAmount"
 
-#|ru| Теперь, после создания подклассов, следует применить <a href="/push-down-method">Спуск метода</a> и <a href="/push-down-field">Спуск поля</a> ко всем методам и полям, которые относятся к тем или иным типам служащих.
-#|en| After creating the subclasses, use <a href="/push-down-method">Push Down Method</a> and <a href="/push-down-field">Push Down Field</a> on all methods and fields that relate to only specific types of employees.
-#|uk| Тепер, після створення підкласів, слід застосувати <a href="/push-down-method">Спуск методу</a> і <a href="/push-down-field">Спуск поля</a> до всіх методів та полей, що відносяться тільки до тих чи інших типів службовців.
+#|ru| Теперь, после создания подклассов, следует применить <a href="/push-down-method">Спуск метода</a> и <a href="/push-down-field">Спуск поля</a> ко всем методам и свойствам, которые относятся к тем или иным типам служащих.
+#|en| After creating the subclasses, use <a href="/push-down-method">Push Down Method</a> and <a href="/push-down-field">Push Down Field</a> on all methods and properties that relate to only specific types of employees.
+#|uk| Тепер, після створення підкласів, слід застосувати <a href="/push-down-method">Спуск методу</a> і <a href="/push-down-field">Спуск поля</a> до всіх методів та властивостей, що відносяться тільки до тих чи інших типів службовців.
 
-#|ru| В нашем случае надо создать методы <code>payAmount</code> в каждом из подклассов и переместить туда расчёты зарплаты для соответствующих типов служащих.
-#|en| In our case, we will create <code>payAmount</code> methods in each of the subclasses and move payroll calculations there for the relevant types of employees.
-#|uk| В нашому випадку треба створити методи <code>payAmount</code> в кожному з підкласів і перемістити туди розрахунки зарплати для відповідних типів службовців.
+#|ru| В нашем случае надо создать методы <code>PayAmount</code> в каждом из подклассов и переместить туда расчёты зарплаты для соответствующих типов служащих.
+#|en| In our case, we will create <code>PayAmount</code> methods in each of the subclasses and move payroll calculations there for the relevant types of employees.
+#|uk| В нашому випадку треба створити методи <code>PayAmount</code> в кожному з підкласів і перемістити туди розрахунки зарплати для відповідних типів службовців.
 
 Select:
 ```
-  public int commission;
-
-```
-
-Remove selected
-
-Go to the start of "Salesman"
-
-Print:
-```
-
-  public int commission;
-```
-
-Select:
-```
-      case SALESMAN:
-        return monthlySalary + commission;
+  public int Commission
+  { get; set; }
 
 ```
 
@@ -401,8 +433,28 @@ Go to the end of "Salesman"
 Print:
 ```
 
-  @Override public int payAmount() {
-    return monthlySalary + commission;
+  public int Commission
+  { get; set; }
+```
+
+Select:
+```
+      case SALESMAN:
+        return MonthlySalary + Commission;
+
+```
+
+Remove selected
+
+Go to the end of "Salesman"
+
+Print:
+```
+
+
+  public int PayAmount()
+  {
+    return MonthlySalary + Commission;
   }
 ```
 
@@ -410,7 +462,8 @@ Wait 500ms
 
 Select:
 ```
-  public int bonus;
+  public int Bonus
+  { get; set; }
 
 ```
 
@@ -420,48 +473,60 @@ Select:
 
 Remove selected
 
-Go to the start of "Manager"
+Go to the end of "Manager"
 
 Print:
 ```
 
-  public int bonus;
+  public int Bonus
+  { get; set; }
 ```
 
 Select:
 ```
       case MANAGER:
-        return monthlySalary + bonus;
+        return MonthlySalary + Bonus;
 
 ```
 
 Remove selected
-
 
 Go to the end of "Manager"
 
 Print:
 ```
 
-  @Override public int payAmount() {
-    return monthlySalary + bonus;
+
+  public int PayAmount()
+  {
+    return MonthlySalary + Bonus;
   }
 ```
 
 Set step 6
 
-Select body of "payAmount"
+Select body of "PayAmount"
 
-#|ru| После перемещения всего кода по подклассам вы можете либо объявить метод в суперклассе абстрактным, либо оставить в нём реализацию по умолчанию (так и сделаем).
-#|en| After all the code has been moved to the subclasses, you can either declare the method in the superclass abstract or else leave the default implementation there (which is what we will do).
-#|uk| Після переміщення всього коду до підкласів ви можете або оголосити метод в суперкласі абстрактним, або залишити в ньому типову реалізацію  (так і зробимо).
+#|ru| После перемещения всего кода по подклассам вы можете либо объявить метод в суперклассе абстрактным, либо оставить в нём реализацию по умолчанию, сделав его виртуальным (так и поступим).
+#|en| After all the code has been moved to the subclasses, you can either declare the method in the superclass abstract or else leave the default implementation there, making it a virtual (which is what we will do).
+#|uk| Після переміщення всього коду до підкласів ви можете або оголосити метод в суперкласі абстрактним, або залишити в ньому типову реалізацію, зробивши його віртуальним (так і вчинимо).
 
 Print:
 ```
-    return monthlySalary;
+    return MonthlySalary;
 ```
 
+Go to "public||| int PayAmount()" in "Employee"
 
+Print " virtual"
+
+Select "public||| |||int PayAmount"
+
+Wait 500ms
+
+Replace " override "
+
+Wait 500ms
 
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!

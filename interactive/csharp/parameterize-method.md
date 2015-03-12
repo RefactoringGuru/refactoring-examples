@@ -1,4 +1,4 @@
-parameterize-method:php
+parameterize-method:csharp
 
 ###
 
@@ -19,53 +19,58 @@ parameterize-method:php
 ###
 
 ```
-class Employee {
+public class Employee
+{
   // ...
-  public function promoteToManager() {
-    $this->type = Employee::MANAGER;
-    $this->salary *= 1.5;
+  public void PromoteToManager()
+  {
+    type = Employee.MANAGER;
+    Salary *= 1.5;
   }
-  public function tenPercentRaise() {
-    $this->salary *= 1.1;
+  public void TenPercentRaise()
+  {
+    Salary *= 1.1;
   }
-  public function fivePercentRaise() {
-    $this->salary *= 1.05;
+  public void FivePercentRaise()
+  {
+    Salary *= 1.05;
   }
 }
 
 // Somewhere in client code
-if ($employee->yearsOfExperience > 5) {
-  if (count($employee->clients) > 10) {
-    $employee->promoteToManager();
-  }
-  else {
-    $employee->fivePercentRaise();
-  }
+if (employee.YearsOfExperience > 5)
+{
+  if (employee.Clients.Count > 10)
+    employee.PromoteToManager();
+  else
+    employee.FivePercentRaise();
 }
 ```
 
 ###
 
 ```
-class Employee {
+public class Employee
+{
   // ...
-  public function promoteToManager() {
-    $this->type = Employee::MANAGER;
-    $this->raise(0.5);
+  public void PromoteToManager()
+  {
+    type = Employee.MANAGER;
+    Raise(0.5);
   }
-  public function raise($factor) {
-    $this->salary *= (1 + $factor);
+  public void Raise(double factor)
+  {
+    Salary *= (1 + factor);
   }
 }
 
 // Somewhere in client code
-if ($employee->yearsOfExperience > 5) {
-  if (count($employee->clients) > 10) {
-    $employee->promoteToManager();
-  }
-  else {
-    $employee->raise(0.05);
-  }
+if (employee.YearsOfExperience > 5)
+{
+  if (employee.Clients.Count > 10)
+    employee.PromoteToManager();
+  else
+    employee.Raise(0.05);
 }
 ```
 
@@ -77,9 +82,9 @@ Set step 1
 #|en| Start refactoring by searching for repeating code.
 #|uk| Почнемо рефакторинг з пошуку коду, який повторюється декілька разів.
 
-Select "$this->salary *= 1.5"
-+ Select "$this->salary *= 1.1"
-+ Select "$this->salary *= 1.05"
+Select "Salary *= 1.5"
++ Select "Salary *= 1.1"
++ Select "Salary *= 1.05"
 
 #|ru| В нашем случае это будет код повышения зарплаты, причём отличается он только коэффициентом повышения.
 #|en| In our case, this is the code for increasing salaries, which differs only by the increase coefficient.
@@ -90,14 +95,15 @@ Set step 2
 Go to the end of "Employee"
 
 #|ru| Итак, создадим новый метод с параметром, в который будем передавать коэффициент повышения зарплаты.
-#|en| Let's start by creating a new method with the parameter. Later on, we will send the salary increase coefficient there.
+#|en| Let's start by creating a new method with the parameter. Later on, we will send the Salary increase coefficient there.
 #|uk| Отже, створимо новий метод з параметром, в який будемо подавати коефіцієнт підвищення зарплати.
 
 Print:
 ```
 
-  public function raise($factor) {
-    $this->salary *= (1 + $factor);
+  public void Raise(double factor)
+  {
+    Salary *= (1 + factor);
   }
 ```
 
@@ -105,39 +111,39 @@ Print:
 #|en| Replace the repeating code with calls to our method with the correct parameter.
 #|uk| Замінимо  код, який повторюється, викликами нашого методу з коректним параметром.
 
-Select "$this->salary *= 1.5"
+Select "Salary *= 1.5"
 
-Replace "$this->raise(0.5)"
-
-Wait 500ms
-
-Select "$this->salary *= 1.1"
-
-Replace "$this->raise(0.1)"
+Replace "Raise(0.5)"
 
 Wait 500ms
 
-Select "$this->salary *= 1.05"
+Select "Salary *= 1.1"
 
-Replace "$this->raise(0.05)"
+Replace "Raise(0.1)"
 
-Select name of "tenPercentRaise"
-+ Select name of "fivePercentRaise"
+Wait 500ms
+
+Select "Salary *= 1.05"
+
+Replace "Raise(0.05)"
+
+Select name of "TenPercentRaise"
++ Select name of "FivePercentRaise"
 
 #|ru| Теперь можно избавиться от «ленивых» методов, которые только делегируют выполнение методу с параметром.
 #|en| Now, let's get rid of "lazy" methods that only delegate to the method with parameter.
 #|uk| Тепер можна позбутися «ледачих» методів, які тільки делегують виконання методу з параметром.
 
-Select "$employee->|||fivePercentRaise()|||"
+Select "employee.|||FivePercentRaise()|||"
 
 #|ru| Сначала нужно найти все их вызовы и заменить вызовами метода с параметром.
 #|en| First, find all their calls and replace them with calls to our new method with parameter.
-#|uk| Спочатку потрібно знайти всі їхні виклики і замінити викликами методу з параметром.
+#|uk| Спочатку потрібно знайти всі їхні виклики і замінити їх викликами методу з параметром.
 
-Print "raise(0.05)"
+Print "Raise(0.05)"
 
-Select whole "fivePercentRaise"
-+ Select whole "tenPercentRaise"
+Select whole "FivePercentRaise"
++ Select whole "TenPercentRaise"
 
 #|ru| После всех замен можно удалить сами методы.
 #|en| After the changes are complete, you can remove the methods themselves.
@@ -145,13 +151,13 @@ Select whole "fivePercentRaise"
 
 Remove selected
 
-#C|ru| Запускаем финальное тестирование.
+#C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's start the final testing.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
-#C|uk| Запускаємо фінальне тестування.
+#C|uk| Запускаємо фінальну компіляцію.
 #S Супер, все працює.
 
 Set final step

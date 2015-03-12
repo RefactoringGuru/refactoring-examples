@@ -126,9 +126,9 @@ Print "john.getManager();"
 
 Select whole "getDepartment"
 
-#|ru| После того, как все необходимые методы делегированы, можно удалить метод в классе <code>Person</code>, который предоставлял доступ к экземпляру <code>Department</code>.
+#|ru| После того как все необходимые методы делегированы, можно удалить метод в классе <code>Person</code>, который предоставлял доступ к экземпляру <code>Department</code>.
 #|en| Once all necessary methods have been delegated, we can remove the method in the <code>Person</code> class that provided access to the <code>Department</code> instance.
-#|uk| Після того, як всі необхідні методи делеговані, можна видалити метод в класі <code>Person</code>, який надавав доступ до примірника <code>Department</code>.
+#|uk| Після того як всі необхідні методи делеговані, можна видалити метод в класі <code>Person</code>, який надавав доступ до примірника <code>Department</code>.
 
 Remove selected
 

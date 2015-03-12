@@ -448,9 +448,9 @@ Remove selected
 
 Select name of "JobItem"
 
-#|ru| После того, как группа методов, использующих некоторые данные, перемещена в подкласс, к этим данным можно применить <a href="/push-down-field">Спуск поля</a>. В некоторых случаях это невозможно, так как данные используются некоторым методом.
+#|ru| После того как группа методов, использующих некоторые данные, перемещена в подкласс, к этим данным можно применить <a href="/push-down-field">Спуск поля</a>. В некоторых случаях это невозможно, так как данные используются некоторым методом.
 #|en| After pushing methods down to a subclass, you can consider moving some of the fields as well. We can apply <a href="/push-down-field">Push Down Field</a> to these fields. In some cases, this is impossible because the fields are still used in the context of superclass.
-#|uk| Після того, як група методів, що використовують деякі дані, переміщена в підклас, до цих даних можна застосувати <a href="/push-down-field">Спуск поля</a>. В деяких випадках це неможливо, так як дані використовуються деяким методом.
+#|uk| Після того як група методів, що використовують деякі дані, переміщена в підклас, до цих даних можна застосувати <a href="/push-down-field">Спуск поля</a>. В деяких випадках це неможливо, так як дані використовуються деяким методом.
 
 #|ru| В нашем случае все готово, чтобы переместить поле <code>employee</code> в <code>LaborItem</code>.
 #|en| In our case, everything is ready for us to move the <code>employee</code> field to <code>LaborItem</code>.

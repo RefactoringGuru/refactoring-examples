@@ -6,9 +6,9 @@ replace-nested-conditional-with-guard-clauses:php
 1.en. Isolate all guard clauses that lead to calling an exception or immediate return of a value from the method. Place these conditions at the beginning of the method.
 1.uk. Виділіть граничні умови, які призводять до виклику виключення або негайного повернення значення з методу. Перемістіть ці умови в початок методу.
 
-2.ru. После того, как с переносами покончено, и все тесты стали проходить, проверьте, можно ли использовать <a href="/consolidate-conditional-expression">объединение условных операторов</a> для граничных условных операторов, ведущих к одинаковым исключениям или возвращаемым значениям.
+2.ru. После того как с переносами покончено, и все тесты стали проходить, проверьте, можно ли использовать <a href="/consolidate-conditional-expression">объединение условных операторов</a> для граничных условных операторов, ведущих к одинаковым исключениям или возвращаемым значениям.
 2.en. After rearrangement is complete and all tests are successfully completed, see whether you can use <a href="/consolidate-conditional-expression">Consolidate Conditional Expression</a> for guard clauses that lead to the same exceptions or returned values.
-2.uk. Після того, як з перенесеннями покінчено, і усі тести стали проходити, перевірте, чи можна використати <a href="/consolidate-conditional-expression">ооб'єднання умовних операторів</a> для граничних умовних операторів, що ведуть до однакових виключень або повертаних значень.
+2.uk. Після того як з перенесеннями покінчено, і усі тести стали проходити, перевірте, чи можна використати <a href="/consolidate-conditional-expression">ооб'єднання умовних операторів</a> для граничних умовних операторів, що ведуть до однакових виключень або повертаних значень.
 
 
 
@@ -78,13 +78,15 @@ Select "$this->isDead"
 
 Select "$result = $this->normalPayAmount()"
 
-#|ru|<= …приводят к выполнению методов, результаты которых возвращаются в конце метода без дополнительной обработки. Это означает, что мы можем ввести граничные операторы и возвращать значения сразу же при прохождении какого-то условия.
+#|ru|<= …приводят к выполнению методов, результаты которых возвращаются в конце метода без дополнительной обработки. Это значит, что мы можем ввести граничные операторы и возвращать значения сразу же при прохождении какого-то условия.
 #|en|<= …a corresponding method is called. Then it's is taken to the end of the method and returned as is. Such could be pretty difficult to understand, especially if there are lot of conditional branches. To fix it, we could place guard clauses, e.g. return the value right away if some condition is met.
 #|uk|<= …призводять до виконання методів, результати яких повертаються в кінці методу без додаткової обробки. Це означає, що ми можемо ввести граничні оператори та повертати значення відразу ж при проходженні якогось умови.
 
 Select "|||$result =||| $this->deadAmount();"
 
 Replace "return"
+
+Wait 500ms
 
 Select:
 ```
@@ -99,7 +101,11 @@ Select:
 |||    return $result;
 ```
 
+Wait 500ms
+
 Remove selected
+
+Wait 500ms
 
 Select:
 ```
@@ -118,6 +124,8 @@ Select:
 
 Deindent
 
+Wait 500ms
+
 Select "$this->isSeparated"
 
 #|ru| Продолжаем делать замены по одной за шаг.
@@ -127,6 +135,8 @@ Select "$this->isSeparated"
 Select "|||$result =||| $this->separatedAmount();"
 
 Replace "return"
+
+Wait 500ms
 
 Select:
 ```
@@ -141,7 +151,11 @@ Select:
 |||    return $result;
 ```
 
+Wait 500ms
+
 Remove selected
+
+Wait 500ms
 
 Select:
 ```
@@ -155,6 +169,8 @@ Select:
 
 Deindent
 
+Wait 500ms
+
 Select "$this->isRetired"
 
 #|ru| И последний раз.
@@ -164,6 +180,8 @@ Select "$this->isRetired"
 Select "|||$result =||| $this->retiredAmount();"
 
 Replace "return"
+
+Wait 500ms
 
 Select:
 ```
@@ -178,7 +196,11 @@ Select:
 |||    return $result;
 ```
 
+Wait 500ms
+
 Remove selected
+
+Wait 500ms
 
 Select:
 ```
@@ -186,6 +208,8 @@ Select:
 ```
 
 Deindent
+
+Wait 500ms
 
 Select:
 ```
@@ -212,6 +236,9 @@ Select:
     return $result;
 
 ```
+
+Wait 500ms
+
 Remove selected
 
 #|ru| Вложенный условный код часто пишут программисты, которых учили, что в методе должна быть только одна точка выхода. На самом деле это слишком упрощённое (да и устаревшее) правило.

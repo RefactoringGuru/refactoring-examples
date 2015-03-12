@@ -1,4 +1,4 @@
-separate-query-from-modifier:php
+separate-query-from-modifier:csharp
 
 ###
 
@@ -23,24 +23,28 @@ separate-query-from-modifier:php
 ###
 
 ```
-class Guard {
+public class Guard
+{
   // ...
-  public function checkSecurity($people) {
-    $found = $this->findCriminalAndAlert($people);
-    $this->someLaterCode($found);
+  public void CheckSecurity(string[] people)
+  {
+    string found = FindCriminalAndAlert(people);
+    SomeLaterCode(found);
   }
-  public function findCriminalAndAlert($people) {
-    for ($i = 0; $i < count($people); $i++) {
-      if ($people[$i] == "Don") {
-        $this->sendAlert();
+  public string FindCriminalAndAlert(string[] people)
+  {
+    for (int i = 0; i < people.Length; i++)
+    {
+      if (people[i].Equals("Don")) {
+        SendAlert();
         return "Don";
       }
-      if ($people[$i] == "John") {
-        $this->sendAlert();
+      if (people[i].Equals("John")) {
+        SendAlert();
         return "John";
       }
     }
-    return "";
+    return String.Empty;
   }
 }
 ```
@@ -48,28 +52,33 @@ class Guard {
 ###
 
 ```
-class Guard {
+public class Guard
+{
   // ...
-  public function checkSecurity($people) {
-    $this->doSendAlert($people);
-    $found = $this->findCriminal($people);
-    $this->someLaterCode($found);
+  public void CheckSecurity(string[] people)
+  {
+    DoSendAlert(people);
+    string found = FindCriminal(people);
+    SomeLaterCode(found);
   }
-  public function doSendAlert($people) {
-    if ($this->findCriminal($people) != "") {
-      $this->sendAlert();
+  public void DoSendAlert(string[] people)
+  {
+    if (!String.IsNullOrEmpty(FindCriminal(people))) {
+      SendAlert();
     }
   }
-  public function findCriminal($people) {
-    for ($i = 0; $i < count($people); $i++) {
-      if ($people[$i] == "Don") {
+  public string FindCriminal(string[] people)
+  {
+    for (int i = 0; i < people.Length; i++)
+    {
+      if (people[i].Equals ("Don")) {
         return "Don";
       }
-      if ($people[$i] == "John") {
+      if (people[i].Equals ("John")) {
         return "John";
       }
     }
-    return "";
+    return String.Empty;
   }
 }
 ```
@@ -78,7 +87,7 @@ class Guard {
 
 Set step 1
 
-Select name of "findCriminalAndAlert"
+Select name of "FindCriminalAndAlert"
 
 #|ru| Рассмотрим рефакторинг <i>Разделение запроса и модификатора</i> на примере класса системы безопасности. В этом классе есть метод, который сообщает имя злоумышленника и посылает предупреждение.
 #|en| Let's look at <i>Separate Query from Modifier</i> refactoring using a security system class as our example. The class has a method that tells us the name of a violator and sends a warning.
@@ -95,13 +104,13 @@ Select "return "Don""
 #|en| First, it finds and returns a list of names that are then used for different purposes.
 #|uk| По-перше, він знаходить і повертає список потрібних імен, які в подальшому використовуються для інших цілей.
 
-Select "found" in "checkSecurity"
+Select "found" in "CheckSecurity"
 
-#|ru| Пример такого использования можно найти в методе <code>checkSecurity</code>.
-#|en| An example of such use can be found in the <code>checkSecurity</code> method.
-#|uk| Приклад такого використання можна знайти в методі <code>checkSecurity</code>.
+#|ru| Пример такого использования можно найти в методе <code>CheckSecurity</code>.
+#|en| An example of such use can be found in the <code>CheckSecurity</code> method.
+#|uk| Приклад такого використання можна знайти в методі <code>CheckSecurity</code>.
 
-Select "sendAlert()" in "findCriminalAndAlert"
+Select "SendAlert()" in "FindCriminalAndAlert"
 
 #|ru| Во-вторых, он оповещает о найденных людях.
 #|en| Secondly, it alerts about the people found.
@@ -120,44 +129,46 @@ Go to the end of "Guard"
 Print:
 ```
 
-  public function findCriminal($people) {
-    for ($i = 0; $i < count($people); $i++) {
-      if ($people[$i] == "Don") {
+  public string FindCriminal(string[] people)
+  {
+    for (int i = 0; i < people.Length; i++)
+    {
+      if (people[i].Equals ("Don")) {
         return "Don";
       }
-      if ($people[$i] == "John") {
+      if (people[i].Equals ("John")) {
         return "John";
       }
     }
-    return "";
+    return String.Empty;
   }
 ```
 
 Set step 2
 
-Select "return" in "findCriminalAndAlert"
+Select "return" in "FindCriminalAndAlert"
 
 #|ru| После этого поочерёдно заменим все <code>return</code> в исходном методе вызовами нового запроса.
 #|en| Then, one by one, replace all cases of <code>return</code> in the original method with calls for the new query.
 #|uk| Після цього по черзі замінимо всі <code>return</code> в вихідному методі викликами нового запиту.
 
-Select "return |||"Don"|||" in "findCriminalAndAlert"
+Select "return |||"Don"|||" in "FindCriminalAndAlert"
 
-Replace "$this->findCriminal($people)"
+Replace "FindCriminal(people)"
 
-Select "return |||"John"|||" in "findCriminalAndAlert"
+Select "return |||"John"|||" in "FindCriminalAndAlert"
 
-Replace "$this->findCriminal($people)"
+Replace "FindCriminal(people)"
 
-Select "return |||""|||" in "findCriminalAndAlert"
+Select "return |||String.Empty|||" in "FindCriminalAndAlert"
 
-Replace "$this->findCriminal($people)"
+Replace "FindCriminal(people)"
 
 Set step 3
 
 Select:
 ```
-    $found = $this->findCriminalAndAlert($people);
+    string found = FindCriminalAndAlert(people);
 ```
 
 #|ru| Теперь изменим все методы, из которых происходит обращение, так, чтобы в них происходило два вызова: сначала – модификатора, а потом – запроса.
@@ -166,51 +177,61 @@ Select:
 
 Select:
 ```
-    |||$found = |||$this->findCriminalAndAlert($people);
+    |||string found = |||FindCriminalAndAlert(people);
 ```
 
 Remove selected
 
-Go to "findCriminalAndAlert($people);|||"
+Go to "FindCriminalAndAlert(people);|||"
 
 Print:
 ```
 
-    $found = $this->findCriminal($people);
+    string found = FindCriminal(people);
 ```
 
 Set step 4
 
-Select in "findCriminalAndAlert":
-```
-        return $this->findCriminal($people);
-
-```
-+Select in "findCriminalAndAlert":
-```
-    return $this->findCriminal($people);
-
-```
+Select type of "FindCriminalAndAlert"
 
 #|ru| Проделав это для всех вызовов, убираем код возврата из модификатора.
 #|en| Once this has been completed for all calls, we remove the return code from the modifier.
 #|uk| Проробивши це для всіх викликів, прибираємо код повернення з модифікатора.
 
+Print "void"
+
+Wait 250ms
+
+Select in "FindCriminalAndAlert":
+```
+        return FindCriminal(people);
+
+```
++Select in "FindCriminalAndAlert":
+```
+    return FindCriminal(people);
+
+```
+
+Wait 250ms
+
 Remove selected
 
-Select name of "findCriminalAndAlert"
+Wait 500ms
+
+Select name of "FindCriminalAndAlert"
 
 #|ru| Теперь, пожалуй, самое время изменить имя оригинального метода.
 #|en| We should also now change the name of the original method for consistency.
 #|uk| Тепер, мабуть, саме час змінити ім'я оригінального методу.
 
-Print "doSendAlert"
+Print "DoSendAlert"
 
-Select "findCriminalAndAlert"
+Select "FindCriminalAndAlert"
 
-Replace "doSendAlert"
+Replace "DoSendAlert"
 
-Select body of "doSendAlert"
+Select body of "DoSendAlert"
 
 #|ru| Сейчас дублируется много кода, потому что модификатор всё ещё используется для своей работы телом запроса. Но мы можем применить к модификатору <a href="/substitute-algorithm">Замещение алгоритма</a>, не боясь сломать какой-то другой код.
 #|en| Of course, the result contains a great deal of duplicate code since the modifier still uses the body of the query. But now we can apply <a href="/substitute-algorithm">Substitute Algorithm</a> without the risk of breaking any other code.
@@ -218,18 +239,18 @@ Select body of "doSendAlert"
 
 Print:
 ```
-    if ($this->findCriminal($people) != "") {
-      $this->sendAlert();
+    if (!String.IsNullOrEmpty(FindCriminal(people))) {
+      SendAlert();
     }
 ```
 
-#C|ru| Запускаем финальное тестирование.
+#C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's start the final testing.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
-#C|uk| Запускаємо фінальне тестування.
+#C|uk| Запускаємо фінальну компіляцію.
 #S Супер, все працює.
 
 Set final step

@@ -61,7 +61,7 @@ class Female extends Person {
   }
 }
 
-// Клиентский код
+// Client code
 $kent = new Male();
 print("Person's gender is: " . $kent->getCode());
 
@@ -77,7 +77,7 @@ class Person {
   static function createFemale() {
     return new Person(false, 'F');
   }
-  protected Person($isMale, $code) {
+  protected function __construct($isMale, $code) {
     $this->isMale = $isMale;
     $this->code = $code;
   }
@@ -93,8 +93,7 @@ class Person {
   }
 }
 
-
-// Клиентский код
+// Client code
 $kent = Person::createMale();
 print("Person's gender is: " . $kent->getCode());
 
@@ -113,13 +112,13 @@ Select "return true"
 + Select "return 'M'"
 + Select "return 'F'"
 
-#|ru| Единственное различие между подклассами здесь в том, что в них есть реализации абстрактного метода, возвращающие жёстко закодированные константы. От таких классов лучше избавиться.
-#|en| The only difference between the subclasses is that they have implementations of the abstract method that return hard-coded constants. It is preferable to get rid of such classes.
-#|uk| Єдина відмінність між підклассами в данному втпадкому в тому, що в них є реалізації абстрактного методу, що повертають жорстко закодовані константи. Від таких класів краще позбутися.
+#|ru| Единственное различие между подклассами здесь в том, что в них есть реализации абстрактных методов, возвращающие жёстко заданные константы. От таких классов лучше избавиться.
+#|en| The only difference between the subclasses is that they have implementations of the abstract methods that return hard-coded constants. It is preferable to get rid of such classes.
+#|uk| Єдина відмінність між підклассами в данному втпадкому в тому, що в них є реалізації абстрактних методів, що повертають жорстко задані константи. Від таких класів краще позбутися.
 
 Go to the beginning of "Person"
 
-#|ru| Сначала следует применить <a href="/replace-constructor-with-factory-method">Замену конструктора фабричным методом</a>. В данном случае нам нужен фабричный метод для каждого подкласса.
+#|ru| Сначала следует применить <a href="/replace-constructor-with-factory-method">Замену конструктора фабричным методом</a>. В данном случае нам нужно создать фабричный метод для каждого подкласса.
 #|en| First use <a href="/replace-constructor-with-factory-method">Replace Constructor With Factory Method</a>. In our case, we need the factory method for each subclass.
 #|uk| Спочатку слід застосувати <a href="/replace-constructor-with-factory-method">Заміну конструктора фабричним методом</a>. В даному випадку нам потрібен фабричний метод для кожного підкласу.
 
@@ -176,7 +175,7 @@ Go to after "createFemale"
 Print:
 ```
 
-  protected Person($isMale, $code) {
+  protected function __construct($isMale, $code) {
     $this->isMale = $isMale;
     $this->code = $code;
   }
@@ -221,9 +220,9 @@ Set step 6
 
 Select "  abstract function isMale();"
 
-#|ru| Поля создаются и инициализируются, но пока они не используются. Теперь мы можем ввести поля в игру, поместив в родительском классе методы доступа и удалив методы подклассов.
+#|ru| Поля создаются и инициализируются, но пока не используются. Теперь мы можем ввести их в эксплуатацию, поместив в родительском классе методы доступа и удалив методы подклассов.
 #|en| The fields are created and initialized, but are not yet used. Now we can get the fields "in the game" by placing access methods in the parent class and removing subclass methods.
-#|uk| Поля створюються та ініціалізуються, але поки вони не використовуються. Тепер ми можемо ввести поля в гру, помістивши в батьківському класі методи доступу і видаливши методи підкласів.
+#|uk| Поля створюються та ініціалізуються, але поки не використовуються. Тепер ми можемо ввести їх в експлуатацію, помістивши в батьківському класі методи доступу і видаливши методи підкласів.
 
 Print:
 ```
@@ -271,9 +270,9 @@ Select "|||abstract||| class Person"
 + Select "new Male()"
 + Select "new Female()"
 
-#|ru| В итоге все подклассы оказываются пустыми, поэтому мы снимаем пометку abstract с класса Person и с помощью <a href="/inine-method">Встраивания метода</a> встраиваем конструктор подкласса в родительский класс.
+#|ru| В итоге все подклассы оказываются пустыми, поэтому мы снимаем пометку abstract с класса Person и с помощью <a href="/inine-method">Встраивания метода</a> встраиваем конструкторы подклассов в родительский класс.
 #|en| All subclasses are empty at this point. That allows us to remove the "abstract" keyword from the Person class and use its constructor instead the ones from subclasses (that we could simply remove).
-#|uk| У підсумку всі підкласи виявляються порожніми, тому ми знімаємо позначку abstract з класу Person і за допомогою <a href="/inine-method">вбудовування методу</a> вбудовуємо конструктор підкласу в батьківський клас.
+#|uk| У підсумку всі підкласи виявляються порожніми, тому ми знімаємо позначку abstract з класу Person і за допомогою <a href="/inine-method">вбудовування методу</a> вбудовуємо конструктори підкласів в батьківський клас.
 
 Select "|||abstract |||class Person"
 
@@ -312,6 +311,11 @@ Replace "new Person(false, 'F')"
 Wait 500ms
 
 Select whole "Female"
++Select:
+```
+|||
+|||// Client code
+```
 
 Remove selected
 

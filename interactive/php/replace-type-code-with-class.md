@@ -22,9 +22,9 @@ replace-type-code-with-class:php
 5.en. Replace any mentions of values of the coded type with calls of the relevant <i>type class</i> static methods.
 5.uk. Замініть будь-які згадки значень закодованого типу викликами відповідних статичних методів <i>класу типу</i>.
 
-6.ru. Удалите константы закодированного типа из исходного класса.
-6.en. Remove the coded type constants from the original class.
-6.uk. Видаліть константи закодованого типу з початкового класу.
+6.ru. Удалите константы закодированного типа из исходного класса и закройте конструктор <i>класса типа</i>.
+6.en. Remove the coded type constants from the original class and make the <i>type class</i> constructor private.
+6.uk. Видаліть константи закодованого типу з початкового класу і закрийте конструктор <i>класу типу</i>.
 
 
 
@@ -32,7 +32,7 @@ replace-type-code-with-class:php
 
 ```
 class Person {
-  const О = 0;
+  const O = 0;
   const A = 1;
   const B = 2;
   const AB = 3;
@@ -117,7 +117,7 @@ Set step 1
 
 Select:
 ```
-  const |||О = 0|||;
+  const |||O = 0|||;
   const |||A = 1|||;
   const |||B = 2|||;
   const |||AB = 3|||;
@@ -154,7 +154,7 @@ Type:
 
   private $code;
 
-  private function __construct($arg) {
+  public function __construct($arg) {
     $this->code = $arg;
   }
   public function getCode() {
@@ -164,9 +164,9 @@ Type:
 
 Set step 3
 
-#|ru| Теперь, создаём статические методы для каждого из значений закодированного типа из оригинального класса. Эти методы должны возвращать экземпляры класса <code>BloodGroup</code>.
+#|ru| Теперь создаём статические методы для каждого значения закодированного типа из оригинального класса. Эти методы должны возвращать экземпляры класса <code>BloodGroup</code>.
 #|en| Now let's create static methods for each of the type code values from the original class. These methods should return instances of the <code>BloodGroup</code> class.
-#|uk| Тепер, створюємо статичні методи для кожного зі значень закодованого типу з оригінального класу. Ці методи повинні повертати екземпляри класу <code>BloodGroup</code>.
+#|uk| Тепер, створюємо статичні методи для кожного значення закодованого типу з оригінального класу. Ці методи повинні повертати екземпляри класу <code>BloodGroup</code>.
 
 Go to the end of "class BloodGroup"
 
@@ -225,9 +225,9 @@ Select:
   }
 ```
 
-#|ru| Соответственно нужно поменять код конструктора и сеттера.
-#|en| Change the code of the constructor and setter accordingly.
-#|uk| Відповідно потрібно поміняти код конструктора і сетера.
+#|ru| Соответственно, нужно поменять код сеттера и конструктора.
+#|en| Change the code of the setter and constructor accordingly.
+#|uk| Відповідно потрібно поміняти код сетера і конструктора.
 
 Type:
 ```
@@ -249,7 +249,7 @@ Set step 5
 
 Select:
 ```
-  const |||О = 0|||;
+  const |||O = 0|||;
   const |||A = 1|||;
   const |||B = 2|||;
   const |||AB = 3|||;
@@ -273,7 +273,7 @@ Wait 500ms
 
 Type "BloodGroup::AB()->getCode()"
 
-#C|ru| После всех замен, стоит запустить тесты.
+#C|ru| После всех замен стоит запустить тесты.
 #S Всё работает, отлично!
 
 #C|en| After performing the replacements, we should perform some testing.
@@ -289,7 +289,7 @@ Select parameters in "__construct"
 return $this->bloodGroup|||->getCode()|||;
 ```
 
-#|ru| После всех замен нужно постараться вообще избавиться от использования числовых кодов <code>BloodGroup</code> и использовать вместо этого объекты. Давайте попробуем сделать это в классе <code>Person</code>.
+#|ru| После всех замен нужно постараться вообще избавиться от использования числовых кодов <code>BloodGroup</code>, и использовать вместо этого объекты. Давайте попробуем сделать это в классе <code>Person</code>.
 #|en| In the end, it is better to avoid using any numeric codes for <code>BloodGroup</code> and use objects instead. Let's try to do so in the <code>Person</code> class.
 #|uk| Після всіх замін потрібно постаратися взагалі позбутися від використання числових кодів <code>BloodGroup</code> і використовувати замість цього об'єкти. Давайте спробуємо зробити це в класі <code>Person</code>.
 
@@ -332,7 +332,7 @@ Remove selected
 Set step 6
 Select:
 ```
-  const О = 0;
+  const O = 0;
   const A = 1;
   const B = 2;
   const AB = 3;
@@ -340,11 +340,19 @@ Select:
 
 ```
 
-#|ru| Напоследок можно удалить константы из класса <code>Person</code>.
-#|en| And finally, remove the constants from the <code>Person</code> class.
-#|uk| Наостанок можна видалити константи з класу <code>Person</code>.
+#|ru| Можно удалить неиспользуемые константы из класса <code>Person</code>.
+#|en| You can remove unused constants from the <code>Person</code> class.
+#|uk| Можна видалити невикористовувані константи з класу <code>Person</code>.
 
 Remove selected
+
+Select "|||public||| function __construct" in "BloodGroup"
+
+#|ru|^ И напоследок следует закрыть конструктор класса <code>BloodGroup</code> от доступа извне.
+#|en|^ And finally, you should make the <code>BloodGroup</code> constructor private.
+#|uk|^ І наостанок слід закрити конструктор класу <code>BloodGroup</code> від доступу ззовні.
+
+Replace "private"
 
 #C|ru| Запускаем финальное тестирование.
 #S Отлично, все работает!

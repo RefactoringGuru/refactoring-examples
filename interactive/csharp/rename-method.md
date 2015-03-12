@@ -1,4 +1,4 @@
-rename-method:java
+rename-method:csharp
 
 ###
 
@@ -23,36 +23,40 @@ rename-method:java
 ###
 
 ```
-class Person {
+public class Person
+{
   //…
-  public String getTelephoneNumber() {
-    return ("(" + officeAreaCode + ") " + officeNumber);
+  public string GetTelephoneNumber()
+  {
+    return "(" + OfficeAreaCode + ") " + OfficeNumber;
   }
 }
 
 // Client code
-phone = employee.getTelephoneNumber();
+phone = employee.GetTelephoneNumber();
 ```
 
 ###
 
 ```
-class Person {
+public class Person
+{
   //…
-  public String getOfficeTelephoneNumber() {
-    return ("(" + officeAreaCode + ") " + officeNumber);
+  public string GetOfficeTelephoneNumber()
+  {
+    return "(" + OfficeAreaCode + ") " + OfficeNumber;
   }
 }
 
 // Client code
-phone = employee.getOfficeTelephoneNumber();
+phone = employee.GetOfficeTelephoneNumber();
 ```
 
 ###
 
 Set step 1
 
-Select name of "getTelephoneNumber"
+Select name of "GetTelephoneNumber"
 
 #|ru| Имеется метод для получения номера телефона определенного лица. Метод нигде не переопределяется, так что нам не нужно отслеживать изменение в подклассах.
 #|en| There is a method for getting the phone number of a certain person. The method is not overridden anywhere so we do not need to track changes in subclasses.
@@ -60,9 +64,9 @@ Select name of "getTelephoneNumber"
 
 Set step 2
 
-#|ru| Мы решили переименовать метод в <code>getOfficeTelephoneNumber</code>, чтобы он лучше отражал то, что делает.
-#|en| Let's change it's name to <code>getOfficeTelephoneNumber</code>, a more descriptive name.
-#|uk| Ми вирішили перейменувати метод в <code>getOfficeTelephoneNumber</code>, щоб він краще відображав те, що робить.
+#|ru| Мы решили переименовать метод в <code>GetOfficeTelephoneNumber</code>, чтобы он лучше отражал то, что делает.
+#|en| Let's change it's name to <code>GetOfficeTelephoneNumber</code>, a more descriptive name.
+#|uk| Ми вирішили перейменувати метод в <code>GetOfficeTelephoneNumber</code>, щоб він краще відображав те, що робить.
 
 Go to the end of "Person"
 
@@ -73,8 +77,9 @@ Go to the end of "Person"
 Print:
 ```
 
-  public String getOfficeTelephoneNumber() {
-    return ("(" + officeAreaCode + ") " + officeNumber);
+  public string GetOfficeTelephoneNumber()
+  {
+    return "(" + OfficeAreaCode + ") " + OfficeNumber;
   }
 ```
 
@@ -82,9 +87,9 @@ Print:
 #|en| Then we change the old method so that it call the new one. That might look to you as a useless step, but it will help to keep the code working while you search for all calls of the old method and replace them with the new method calls.
 #|uk| Старий метод змінюється так, щоб викликати новий. Ця дія може виглядати зайвою, однак вона допоможе зберігти код працюючим, поки ви виконуєте всі наступні кроки рефакторингу.
 
-Select body of "getTelephoneNumber"
+Select body of "GetTelephoneNumber"
 
-Replace "    getOfficeTelephoneNumber();"
+Replace "    GetOfficeTelephoneNumber();"
 
 Set step 3
 
@@ -92,13 +97,13 @@ Set step 3
 #|en| So, we find the places where the old method is called, modifying them to call the new method instead.
 #|uk| Тепер знаходимо місця виклику колишнього методу і змінюємо їх так, щоб в них викликався новий метод.
 
-Select "employee.|||getTelephoneNumber|||()"
+Select "employee.|||GetTelephoneNumber|||()"
 
-Replace "getOfficeTelephoneNumber"
+Replace "GetOfficeTelephoneNumber"
 
 Set step 4
 
-Select whole "getTelephoneNumber"
+Select whole "GetTelephoneNumber"
 
 #|ru| После проведения всех изменений старый метод можно удалить.
 #|en| After all changes have been made, we can go ahead and delete the old method.

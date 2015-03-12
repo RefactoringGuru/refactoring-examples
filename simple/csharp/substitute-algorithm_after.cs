@@ -10,5 +10,5 @@ string FoundPerson(string[] people)
     }
   }
   
-  return string.Empty;
+  return String.Empty;
 }

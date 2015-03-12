@@ -1,4 +1,4 @@
-remove-control-flag:php
+remove-control-flag:csharp
 
 ###
 
@@ -19,17 +19,20 @@ remove-control-flag:php
 ###
 
 ```
-function checkSecurity(array $people) {
-  $found = false;
-  for ($i = 0; $i < count($people); $i++) {
-    if (!$found) {
-      if ($people[$i] == "Don") {
-        sendAlert();
-        $found = true;
+void CheckSecurity(string[] people)
+{
+  bool found = false;
+  for (int i = 0; i < people.Length; i++)
+  {
+    if (!found)
+    {
+      if (people[i].Equals("Don")) {
+        SendAlert();
+        found = true;
       }
-      if ($people[$i] == "John") {
-        sendAlert();
-        $found = true;
+      if (people[i].Equals("John")) {
+        SendAlert();
+        found = true;
       }
     }
   }
@@ -39,14 +42,16 @@ function checkSecurity(array $people) {
 ###
 
 ```
-function checkSecurity(array $people) {
-  for ($i = 0; $i < count($people); $i++) {
-    if ($people[$i] == "Don") {
-      sendAlert();
+void CheckSecurity(string[] people)
+{
+  for (int i = 0; i < people.Length; i++)
+  {
+    if (people[i].Equals("Don")) {
+      SendAlert();
       break;
     }
-    if ($people[$i] == "John") {
-      sendAlert();
+    if (people[i].Equals("John")) {
+      SendAlert();
       break;
     }
   }
@@ -61,25 +66,25 @@ Set step 1
 #|en| The following function checks whether the list of people contains anybody suspicious; these suspicious names (Don and John) are hard-coded.
 #|uk| Наступна функція перевіряє, чи не міститься в списку осіб хто-небудь з парочки підозрілих, імена яких жорстко закодовані (Don і John).
 
-Select "|||$found||| = false"
+Select "|||found||| = false"
 
 #|ru| В этой функции переменная <code>found</code> является управляющим флагом. Она инициализируется одним значением…
 #|en| In this function, the variable <code>found</code> is a control flag. It is initialized by one value…
 #|uk| У цій функції змінна <code>found</code> є керуючим прапором. Вона ініціалузується одним значенням…
 
-Select "|||$found||| = true"
+Select "|||found||| = true"
 
 #|ru| …которое меняется по ходу выполнения функции…
 #|en| …which changes as the function is run…
 #|uk| …яке змінюється по ходу виконання функції…
 
-Select "(!$found)"
+Select "(!found)"
 
 #|ru| …после чего код больше ничего не делает до конца выполнения цикла.
 #|en| …after which the code does not do anything more until the loop is finished.
 #|uk| …після чого код більше нічого не робить до кінця виконання циклу.
 
-Select "$found = true"
+Select "found = true"
 
 #|ru| Данный рефакторинг начинается с того, что мы ищем присваивания управляющей переменной, которые влияют на ход выполнения программы. В данном случае это присваивания значения <code>true</code>.
 #|en| This refactoring starts with us looking for any assignments to the control variable that affect the execution flow of the program. In our case, this is assignments of the <code>true</code> value.
@@ -102,7 +107,8 @@ Set step 3
 
 Select:
 ```
-    if (!$found) {
+    if (!found)
+    {
 
 ```
 
@@ -111,7 +117,6 @@ Select:
       }
 |||    }
 |||  }
-}
 ```
 
 Remove selected
@@ -124,19 +129,19 @@ Wait 500ms
 
 Select:
 ```
-  $found = false;
+  bool found = false;
 
 ```
 
 Remove selected
 
-#C|ru| Запускаем финальное тестирование.
+#C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's start the final testing.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
-#C|uk| Запускаємо фінальне тестування.
+#C|uk| Запускаємо фінальну компіляцію.
 #S Супер, все працює.
 
 Set final step

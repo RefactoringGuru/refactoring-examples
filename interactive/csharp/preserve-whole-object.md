@@ -1,4 +1,4 @@
-preserve-whole-object:php
+preserve-whole-object:csharp
 
 ###
 
@@ -19,19 +19,24 @@ preserve-whole-object:php
 ###
 
 ```
-class Room {
+public class Room
+{
   // ...
-  public function withinPlan(HeatingPlan $plan) {
-    $low = getLowestTemp();
-    $high = getHighestTemp();
-    return $plan->withinRange($low, $high);
+  public bool WithinPlan(HeatingPlan plan)
+  {
+    int low = GetLowestTemp();
+    int high = GetHighestTemp();
+    return plan.WithinRange(low, high);
   }
 }
 
-class HeatingPlan {
-  private $range; // TempRange
-  public function withinRange($low, $high) {
-    return ($low >= $range->getLow() && $high <= $range->getHigh());
+public class HeatingPlan
+{
+  private TempRange range;
+
+  public bool WithinRange(int low, int high)
+  {
+    return low >= range.Low && high <= range.High;
   }
 }
 ```
@@ -39,17 +44,22 @@ class HeatingPlan {
 ###
 
 ```
-class Room {
+public class Room
+{
   // ...
-  public function withinPlan(HeatingPlan $plan) {
-    return $plan->withinRange($this);
+  public bool WithinPlan(HeatingPlan plan)
+  {
+    return plan.WithinRange(this);
   }
 }
 
-class HeatingPlan {
-  private $range; // TempRange
-  public function withinRange(Room $room) {
-    return ($room->getLowestTemp() >= $range->getLow() && $room->getHighestTemp() <= $range->getHigh());
+public class HeatingPlan
+{
+  private TempRange range;
+
+  public bool WithinRange(Room room)
+  {
+    return room.GetLowestTemp() >= range.Low && room.GetHighestTemp() <= range.High;
   }
 }
 ```
@@ -62,13 +72,13 @@ Set step 1
 #|en| Let's look at this refactoring using the class that describes hotel rooms and logs their daily temperature.
 #|uk| Розглянемо клас, що описує кімнату та реєструє найвищу і найнижчу температуру протягом доби.
 
-Select "$plan->withinRange"
+Select "plan.WithinRange"
 
 #|ru| Он должен сравнивать этот диапазон с диапазоном в заранее установленном плане обогрева и потом, в зависимости от результатов сравнения, проделывать какие-то действия (например, менять температуру или, скажем, отсылать email хозяину дома).
 #|en| The class should analyze room's micro climate and react with certain actions. For now, only temperature is compared with a predefined temperature plan. Then, depending on the results of the comparison, class could issue a heat or cool command, or even send an email to the house owner if the temperature is dangerously high.
 #|uk| Він повинен порівнювати цей діапазон з діапазоном в заздалегідь встановленому плані обігріву і потім, в залежності від результатів порівняння, проробляти якісь дії (наприклад, змінювати температуру або, скажімо, відсилати email господареві будинку).
 
-Select "$low, $high" in "withinPlan"
+Select "low, high" in "WithinPlan"
 
 #|ru| В данный момент для проверки соответствия мы передаём только температуру, но в любой момент может потребоваться проверить и что-нибудь ещё из параметров комнаты, например, влажность.
 #|en| Currently, we are passing only the temperature for analysis but at any time we may need to check another room parameter, such as humidity.
@@ -78,97 +88,97 @@ Select "$low, $high" in "withinPlan"
 #|en| With current implementation, we would have to add more and more parameters to the method. To avoid this, we can pass the entire room object instead of specific values. That will allow to take any room data straight from the room object, without changing signature of the method.
 #|uk| З нинішньою реалізацією доведеться створювати нові і нові параметри в методі аналізу даних. Щоб цього уникнути, можна передавати замість конкретних значень весь об'єкт-кімнату. Це дозволить використовувати будь-які параметри кімнати без зміни сигнатури методів.
 
-Go to parameters of "withinRange"
+Go to parameters of "WithinRange"
 
-#|ru| Итак, на первом шаге добавим параметр в метод <code>withinRange</code>.
-#|en| So for the first step, we add a parameter to the <code>withinRange</code> method.
-#|uk| Отже, на першому кроці додамо параметр в метод <code>withinRange</code>.
+#|ru| Итак, на первом шаге добавим параметр в метод <code>WithinRange</code>.
+#|en| So for the first step, we add a parameter to the <code>WithinRange</code> method.
+#|uk| Отже, на першому кроці додамо параметр в метод <code>WithinRange</code>.
 
-Print "Room $room, "
+Print "Room room, "
 
-Go to "$plan->withinRange(|||"
+Go to "plan.WithinRange(|||"
 
-Print "$this, "
+Print "this, "
 
 Set step 2
 
-#|ru| Теперь начинаем по одному удалять из метода параметры, которые можно заменить вызовами полей или методов передаваемого объекта.
+#|ru| Теперь начинаем по одному удалять из метода параметры, которые можно заменить вызовами свойств или методов передаваемого объекта.
 #|en| One by one, we should remove parameters with data, that could be retrieved from the object we pass into the method.
-#|uk| Тепер починаємо по одному видаляти з методу параметри, які можна замінити викликами полів або методів переданого об'єкта.
+#|uk| Тепер починаємо по одному видаляти з методу параметри, які можна замінити викликами властивостей або методів переданого об'єкта.
 
-Select ", $high" in parameters of "withinRange"
+Select ", int high" in parameters of "WithinRange"
 
 Wait 250ms
 
 Remove selected
 
-Select "&& |||$high|||"
+Select "&& |||high|||"
 
-Replace "$room->getHighestTemp()"
+Replace "room.GetHighestTemp()"
 
 Wait 500ms
 
-Select ", $high"
+Select ", high"
 
 Remove selected
 
-#C|ru| Запускаем тестирование, а затем повторяем действия для оставшегося параметра.
+#C|ru| Запускаем компиляцию и тестирование, а затем повторяем действия для оставшегося параметра.
 #S Отлично, все работает, продолжаем!
 
-#C|en| Test and then repeat these actions for the remaining parameter.
+#C|en| Compile and test, and then repeat the actions for the remaining parameter.
 #S Everything is good! Let's continue.
 
-#C|uk| Запускаємо тестування, а потім повторюємо дії для залишився параметра.
+#C|uk| Запускаємо компіляцію і тестування, а потім повторюємо дії для залишився параметра.
 #S Супер, все працює, продовжуємо.
 
-Select ", $low" in parameters of "withinRange"
+Select ", int low" in parameters of "WithinRange"
 
 Wait 500ms
 
 Remove selected
 
-Select "|||$low||| >="
+Select "|||low||| >="
 
-Replace "$room->getLowestTemp()"
+Replace "room.GetLowestTemp()"
 
 Wait 500ms
 
-Select ", $low"
+Select ", low"
 
 Remove selected
 
 
-#C|ru| Запускаем тестирование ещё раз, чтобы убедиться, что код остался рабочим.
+#C|ru| Запускаем компиляцию и тестирование ещё раз, чтобы убедиться, что код остался рабочим.
 #S Тесты успешно проходят!
 
-#C|en| Test again to make sure the code still works.
+#C|en| Compile and test one more time, to be sure that the code still works.
 #S The tests are completed successfully!
 
-#C|uk| Запускаємо тестування ще раз, щоб переконатися, що код залишився робочим.
+#C|uk| Запускаємо компіляцію і тестування ще раз, щоб переконатися, що код залишився робочим.
 #S Тести успішно проходять.
 
 Select:
 ```
-    $low = getLowestTemp();
-    $high = getHighestTemp();
+    int low = GetLowestTemp();
+    int high = GetHighestTemp();
 
 ```
 
 Set step 3
 
-#|ru| Напоследок, удаляем ненужные теперь переменные из <code>withinPlan</code>.
-#|en| And finally, let's remove the unused variables from <code>withinPlan</code>.
-#|uk| Наостанок, видаляємо непотрібні тепер змінні з <code>withinPlan</code>.
+#|ru| Напоследок, удаляем ненужные теперь переменные из <code>WithinPlan</code>.
+#|en| And finally, let's remove the unused variables from <code>WithinPlan</code>.
+#|uk| Наостанок, видаляємо непотрібні тепер змінні з <code>WithinPlan</code>.
 
 Remove selected
 
-#C|ru| Запускаем финальное тестирование.
+#C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's start the final testing.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
-#C|uk| Запускаємо фінальне тестування.
+#C|uk| Запускаємо фінальну компіляцію.
 #S Супер, все працює.
 
 Set final step

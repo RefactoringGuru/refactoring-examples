@@ -1,4 +1,4 @@
-replace-parameter-with-explicit-methods:php
+replace-parameter-with-explicit-methods:csharp
 
 ###
 
@@ -19,53 +19,63 @@ replace-parameter-with-explicit-methods:php
 ###
 
 ```
-class Order {
+public class Order
+{
   // ...
-  const FIXED_DISCOUNT = 0;
-  const PERCENT_DISCOUNT = 1;
+  public const int FIXED_DISCOUNT = 0,
+                   PERCENT_DISCOUNT = 1;
 
-  public function applyDiscount($type, $discount) {
-    switch ($type) {
-      case Order::FIXED_DISCOUNT:
-        $this->price -= $discount;
+  public void ApplyDiscount(int type, double discount)
+  {
+    switch (type)
+    {
+      case FIXED_DISCOUNT:
+        Price -= discount;
         break;
-      case Order::PERCENT_DISCOUNT:
-        $this->price *= $discount;
+      case PERCENT_DISCOUNT:
+        Price *= discount;
         break;
       default:
-        throw new Exception('Invalid discount type');
+        throw new Exception("Invalid discount type");
     }
   }
 }
 
 // Somewhere in client code
-if ($weekend) {
-  $order->applyDiscount(Order::FIXED_DISCOUNT, 10);
+if (weekend)
+{
+  order.ApplyDiscount(Order.FIXED_DISCOUNT, 10);
 }
-if (count($order->items) > 5) {
-  $order->applyDiscount(Order::PERCENT_DISCOUNT, 0.2);
+if (order.Items.Count > 5)
+{
+  order.ApplyDiscount(Order.PERCENT_DISCOUNT, 0.2);
 }
 ```
 
 ###
 
 ```
-class Order {
+public class Order
+{
   // ...
-  public function applyFixedDiscount($discount) {
-    $this->price -= $discount;
+  public void ApplyFixedDiscount(double discount)
+  {
+    Price -= discount;
   }
-  public function applyPercentDiscount($discount) {
-    $this->price *= $discount;
+  public void ApplyPercentDiscount(double discount)
+  {
+    Price *= discount;
   }
 }
 
 // Somewhere in client code
-if ($weekend) {
-  $order->applyFixedDiscount(10);
+if (weekend)
+{
+  order.ApplyFixedDiscount(10);
 }
-if (count($order->items) > 5) {
-  $order->applyPercentDiscount(0.2);
+if (order.Items.Count > 5)
+{
+  order.ApplyPercentDiscount(0.2);
 }
 ```
 
@@ -79,7 +89,7 @@ Select name of "Order"
 #|en| Let's look at this technique using an order class as an example.
 #|uk| Розглянемо даний рефакторинг на прикладі класу замовлення.
 
-Select name of "applyDiscount"
+Select name of "ApplyDiscount"
 
 #|ru| В этом классе есть метод применения скидки, который может работать как с фиксированными скидками, так и с процентными.
 #|en| This class has a method for applying discounts that handle both fixed discounts and percentage-based ones.
@@ -89,31 +99,33 @@ Select name of "applyDiscount"
 #|en| Let's start refactoring by extracting each version to a separate method.
 #|uk| Почнемо рефакторинг з виділення кожного варіанту виконання в окремий метод.
 
-Select "$this->price -= $discount;"
+Select "Price -= discount;"
 
 Wait 1000ms
 
-Go to after "applyDiscount"
+Go to after "ApplyDiscount"
 
 Print:
 ```
 
-  public function applyFixedDiscount($discount) {
-    $this->price -= $discount;
+  public void ApplyFixedDiscount(double discount)
+  {
+    Price -= discount;
   }
 ```
 
-Select "$this->price *= $discount;"
+Select "Price *= discount;"
 
 Wait 1000ms
 
-Go to after "applyFixedDiscount"
+Go to after "ApplyFixedDiscount"
 
 Print:
 ```
 
-  public function applyPercentDiscount($discount) {
-    $this->price *= $discount;
+  public void ApplyPercentDiscount(double discount)
+  {
+    Price *= discount;
   }
 ```
 
@@ -123,23 +135,23 @@ Set step 2
 #|en| Now find all places where the original method is called, replacing them with calls to our new methods.
 #|uk| Тепер знайдемо всі місця, де викликається оригінальний метод, і замінимо їх викликами наших нових методів.
 
-Select "applyDiscount(Order::FIXED_DISCOUNT, "
+Select "ApplyDiscount(Order.FIXED_DISCOUNT, "
 
-Replace "applyFixedDiscount("
+Replace "ApplyFixedDiscount("
 
 Wait 1000ms
 
-Select "applyDiscount(Order::PERCENT_DISCOUNT, "
+Select "ApplyDiscount(Order.PERCENT_DISCOUNT, "
 
-Replace "applyPercentDiscount("
+Replace "ApplyPercentDiscount("
 
-#C|ru| Запускаем тестирование, чтобы убедиться в отсутствии ошибок.
+#C|ru| Запускаем компиляцию и тестирование, чтобы убедиться в отсутствии ошибок.
 #S Отлично, все работает!
 
-#C|en| Let's launch autotests to check for errors in code.
+#C|en| Let's compile and test to check for errors in code.
 #S Wonderful, it's all working!
 
-#C|uk| Запускаємо тестування, щоб переконатися у відсутності помилок.
+#C|uk| Запускаємо компіляцію і тестування, щоб переконатися у відсутності помилок.
 #S Супер, все працює.
 
 Set step 3
@@ -148,7 +160,9 @@ Set step 3
 #|en| Once changes are complete, remove the original method and now-useless constants.
 #|uk| Після всіх замін залишиться видалити оригінальний метод, а також зайві тепер константи.
 
-Select whole "applyDiscount"
+Select whole "ApplyDiscount"
+
+Wait 250ms
 
 Remove selected
 
@@ -156,20 +170,23 @@ Wait 1000ms
 
 Select:
 ```
-  const FIXED_DISCOUNT = 0;
-  const PERCENT_DISCOUNT = 1;
+  public const int FIXED_DISCOUNT = 0,
+                   PERCENT_DISCOUNT = 1;
 
 
 ```
+
+Wait 250ms
+
 Remove selected
 
-#C|ru| Запускаем финальное тестирование.
+#C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's start the final testing.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
-#C|uk| Запускаємо фінальне тестування.
+#C|uk| Запускаємо фінальну компіляцію.
 #S Супер, все працює.
 
 Set final step

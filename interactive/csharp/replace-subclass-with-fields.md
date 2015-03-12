@@ -1,4 +1,4 @@
-replace-subclass-with-fields:java
+replace-subclass-with-fields:csharp
 
 ###
 
@@ -6,29 +6,29 @@ replace-subclass-with-fields:java
 1.en. Apply <a href="/replace-constructor-with-factory-method">Replace Constructor with Factory Method</a> to the subclasses.
 1.uk. Застосуйте до підкласів <a href="/replace-constructor-with-factory-method">заміну конструктора фабричним методом</a>.
 
-2.ru. Замените вызовы конструкторов подклассов вызовами фабричного метода суперкласса.
-2.en. Replace subclass constructor calls with superclass factory method calls.
-2.uk. Якщо якийсь код посилається на підкласи, заміните його використанням суперкласу.
+2.ru. Замените вызовы конструкторов подклассов вызовами фабричного метода базового класса.
+2.en. Replace subclass constructor calls with base class factory method calls.
+2.uk. Якщо якийсь код посилається на підкласи, заміните його використанням базового класу.
 
-3.ru. Объявите в суперклассе поля для хранения значений каждого из методов подклассов, возвращающих константные значения.
-3.en. In the superclass, declare fields for storing the values of each of the subclass methods that return constant values.
-3.uk. Оголосіть в суперкласі поля для зберігання значень кожного з методів підкласів, що повертають константні значення.
+3.ru. Объявите в базовом классе поля для хранения значений каждого из свойств подклассов, возвращающих константные значения.
+3.en. In the base class, declare fields for storing the values of each of the subclass properties that return constant values.
+3.uk. Оголосіть в базовому класі поля для зберігання значень кожного з властивостей підкласів, що повертають константні значення.
 
-4.ru. Создайте защищённый конструктор суперкласса для инициализации новых полей.
-4.en. Create a protected superclass constructor for initializing the new fields.
-4.uk. Створіть захищений конструктор суперкласу для ініціалізації нових полів.
+4.ru. Создайте в базовом классе защищённый конструктор для инициализации новых полей.
+4.en. Create a protected base class constructor for initializing the new fields.
+4.uk. Створіть у базовому класі захищений конструктор для ініціалізації нових полів.
 
-5.ru. Создайте или модифицируйте имеющиеся конструкторы подклассов, чтобы они вызывали новый конструктор суперкласса.
-5.en. Create or modify the existing subclass constructors so that they call the new superclass constructor.
-5.uk. Створіть або змінюйте наявні конструктори підкласів, щоб вони викликали новий конструктор суперкласу.
+5.ru. Создайте или модифицируйте имеющиеся конструкторы подклассов, чтобы они вызывали новый конструктор базового класса.
+5.en. Create or modify the existing subclass constructors so that they call the new base class constructor.
+5.uk. Створіть або змінюйте наявні конструктори підкласів, щоб вони викликали новий конструктор базового класу.
 
-6.ru. Реализуйте каждый константный метод в родительском классе так, чтобы он возвращал значение соответствующего поля, а затем удалите метод из подкласса.
-6.en. Implement each constant method in the parent class so that it returns the value of the corresponding field. Then remove the method from the subclass.
-6.uk. Реалізуйте кожен константний метод у батьківському класі так, щоб він повертав значення відповідного поля, а потім видалите метод з підкласу.
+6.ru. Реализуйте каждое свойство в родительском классе так, чтобы оно возвращало значение соответствующего поля, а затем удалите дублирующее свойство из подкласса.
+6.en. Implement each property in the parent class so that it returns the value of the corresponding field. Then remove the duplicate property from the subclass.
+6.uk. Реалізуйте кожне властивість у батьківському класі так, щоб воно повертало значення відповідного поля, а потім видалите дублюючі властивість з підкласу.
 
-7.ru. Если конструктор подкласса имеет какую-то дополнительную функциональность,  примените <a href="/inline-method">встраивание метода</a> для встраивания его конструктора в фабричный метод суперкласса.
-7.en. If the subclass constructor has additional functionality, use <a href="/inline-method">Inline Method</a> to incorporate the constructor into the superclass factory method.
-7.uk. Якщо конструктор підкласу має якусь додаткову функціональність, застосуйте <a href="/inline-method">вбудовування методу</a> для вбудовування конструктора у фабричний метод суперкласу.
+7.ru. Если конструктор подкласса имеет какую-то дополнительную функциональность,  примените <a href="/inline-method">встраивание метода</a> для встраивания его конструктора в фабричный метод родительского класса.
+7.en. If the subclass constructor has additional functionality, use <a href="/inline-method">Inline Method</a> to incorporate the constructor into the parent class factory method.
+7.uk. Якщо конструктор підкласу має якусь додаткову функціональність, застосуйте <a href="/inline-method">вбудовування методу</a> для вбудовування конструктора у фабричний метод батьківського класу.
 
 8.ru. Удалите подкласс.
 8.en. Delete the subclass.
@@ -39,62 +39,77 @@ replace-subclass-with-fields:java
 ###
 
 ```
-abstract class Person {
-  abstract boolean isMale();
-  abstract char getCode();
+public abstract class Person
+{
+  public abstract bool IsMale
+  { get; }
+  public abstract char Code
+  { get; }
 }
 
-class Male extends Person {
-  @Override boolean isMale() {
-    return true;
+public class Male: Person
+{
+  public override bool IsMale
+  {
+    get{ return true; }
   }
-  @Override char getCode() {
-    return 'M';
+  public override char Code
+  {
+    get{ return 'M'; }
   }
 }
-class Female extends Person {
-  @Override boolean isMale() {
-    return false;
+public class Female: Person
+{
+  public override bool IsMale
+  {
+    get{ return false; }
   }
-  @Override char getCode() {
-    return 'F';
+  public override char Code
+  {
+    get{ return 'F'; }
   }
 }
 
 // Client code
 Person kent = new Male();
-System.out.print("Person's gender is: " + kent.getCode());
+Console.WriteLine("Person's gender is: " + kent.Code);
 ```
 
 ###
 
 ```
-class Person {
-  static Person createMale() {
-    return new Person(true, 'M');
+public class Person
+{
+  private bool isMale;
+  private char code;
+
+  public bool IsMale
+  {
+    get{ return isMale; }
   }
-  static Person createFemale() {
-    return new Person(false, 'F');
+  public char Code
+  {
+    get{ return code; }
   }
-  protected Person(boolean isMale, char code) {
+
+  protected Person(bool isMale, char code)
+  {
     this.isMale = isMale;
     this.code = code;
   }
-
-  private final boolean isMale;
-  private final char code;
-
-  boolean isMale() {
-    return isMale;
+  public static Person CreateMale()
+  {
+    return new Person(true, 'M');
   }
-  char getCode() {
-    return code;
+  public static Person CreateFemale()
+  {
+    return new Person(false, 'F');
   }
 }
 
 // Client code
-Person kent = Person.createMale();
-System.out.print("Person's gender is: " + kent.getCode());
+Person kent = Person.CreateMale();
+Console.WriteLine("Person's gender is: " + kent.Code);
 ```
 
 ###
@@ -110,11 +125,11 @@ Select "return true"
 + Select "return 'M'"
 + Select "return 'F'"
 
-#|ru| Единственное различие между подклассами здесь в том, что в них есть реализации абстрактных методов, возвращающие жёстко заданные константы. От таких классов лучше избавиться.
-#|en| The only difference between the subclasses is that they have implementations of the abstract methods that return hard-coded constants. It is preferable to get rid of such classes.
-#|uk| Єдина відмінність між підклассами в данному втпадкому в тому, що в них є реалізації абстрактних методів, що повертають жорстко задані константи. Від таких класів краще позбутися.
+#|ru| Единственное различие между подклассами здесь в том, что в них есть реализации абстрактных свойств, возвращающие жёстко заданные константы. От таких классов лучше избавиться.
+#|en| The only difference between the subclasses is that they have implementations of the abstract properties that return hard-coded constants. It is preferable to get rid of such classes.
+#|uk| Єдина відмінність між підклассами в данному втпадкому в тому, що в них є реалізації абстрактних властивостей, що повертають жорстко задані константи. Від таких класів краще позбутися.
 
-Go to the beginning of "Person"
+Go to the end of "Person"
 
 #|ru| Сначала следует применить <a href="/replace-constructor-with-factory-method">Замену конструктора фабричным методом</a>. В данном случае нам нужно создать фабричный метод для каждого подкласса.
 #|en| First use <a href="/replace-constructor-with-factory-method">Replace Constructor With Factory Method</a>. In our case, we need the factory method for each subclass.
@@ -123,10 +138,13 @@ Go to the beginning of "Person"
 Print:
 ```
 
-  static Person createMale() {
+
+  public static Person CreateMale()
+  {
     return new Male();
   }
-  static Person createFemale() {
+  public static Person CreateFemale()
+  {
     return new Female();
   }
 ```
@@ -139,7 +157,7 @@ Select "Person kent = |||new Male()|||"
 #|en| Then replace all calls to subclass constructors with calls to the relevant factory methods.
 #|uk| Після цього слід замінити всі виклики конструкторів підкласів викликами відповідних фабричних методів.
 
-Print "Person.createMale()"
+Print "Person.CreateMale()"
 
 #|ru| После замены всех этих вызовов в коде не должно остаться упоминаний подклассов.
 #|en| After replacing all these calls, the code should not contain any more mentions of the subclasses.
@@ -147,24 +165,25 @@ Print "Person.createMale()"
 
 Set step 3
 
-Go to after "createFemale"
+Go to the beginning of "Person"
 
-#|ru| Теперь в родительском классе объявим поля для каждого метода, возвращавшего константы в подклассах.
-#|en| Now, in the parent class, we should declare fields for each method that returns constants in subclasses.
-#|uk| Тепер в батьківському класі оголосимо поля для кожного методу, який повертає константи в підкласах.
+#|ru| Теперь в родительском классе объявим поля для каждого свойства, возвращавшего константы в подклассах.
+#|en| Now, in the parent class, we should declare fields for each property that returns constants in subclasses.
+#|uk| Тепер в батьківському класі оголосимо поля для кожної властивості, який повертає константи в підкласах.
 
 Print:
 ```
 
-
-  private final boolean isMale;
-  private final char code;
+  private bool isMale;
+  private char code;
 
 ```
 
+Wait 500ms
+
 Set step 4
 
-Go to after "createFemale"
+Go to before "CreateMale" in "Person"
 
 #|ru| Добавляем в родительский класс защищённый конструктор.
 #|en| Add a protected constructor to the parent class.
@@ -173,7 +192,8 @@ Go to after "createFemale"
 Print:
 ```
 
-  protected Person(boolean isMale, char code) {
+  protected Person(bool isMale, char code)
+  {
     this.isMale = isMale;
     this.code = code;
   }
@@ -181,7 +201,7 @@ Print:
 
 Set step 5
 
-Go to the start of "Male"
+Go to the end of "Male"
 
 #|ru| Добавляем конструкторы, вызывающие этот новый конструктор в подклассах.
 #|en| Add constructors that call this new constructor in subclasses.
@@ -190,19 +210,19 @@ Go to the start of "Male"
 Print:
 ```
 
-  Male() {
-    super(true, 'M');
-  }
+
+  public Male(): base(true, 'M')
+  {}
 ```
 
-Go to the start of "Female"
+Go to the end of "Female"
 
 Print:
 ```
 
-  Female() {
-    super(false, 'F');
-  }
+
+  public Female(): base(false, 'F')
+  {}
 ```
 
 #C|ru| После этого можно выполнить компиляцию и тестирование.
@@ -216,61 +236,27 @@ Print:
 
 Set step 6
 
-Select "  abstract boolean isMale();"
+Select "public abstract bool IsMale"
++Select "public abstract char Code"
 
-#|ru| Поля создаются и инициализируются, но пока не используются. Теперь мы можем ввести их в эксплуатацию, поместив в родительском классе методы доступа и удалив методы подклассов.
-#|en| The fields are created and initialized, but are not yet used. Now we can get the fields "in the game" by placing access methods in the parent class and removing subclass methods.
-#|uk| Поля створюються та ініціалізуються, але поки не використовуються. Тепер ми можемо ввести їх в експлуатацію, помістивши в батьківському класі методи доступу і видаливши методи підкласів.
-
-Print:
-```
-  boolean isMale() {
-    return isMale;
-  }
-```
-
-Wait 500ms
+#|ru| Поля создаются и инициализируются, но пока не используются. Теперь мы можем ввести их в эксплуатацию, заполнив в родительском классе соответствующие геттеры и удалив дублирующие свойства из подклассов.
+#|en| The fields are created and initialized, but are not yet used. Now we can get the fields "in the game" by filling appropriate getters in the parent class and removing duplicate properties of subclasses.
+#|uk| Поля створюються та ініціалізуються, але поки не використовуються. Тепер ми можемо ввести їх в експлуатацію, заповнивши в батьківському класі відповідні геттери і видаливши дублюючі властивості з підкласів.
 
 Select:
 ```
-  @Override boolean isMale() {
-    return true;
-  }
-
+  public abstract bool IsMale
+  {||| get; |||}
 ```
-
-Remove selected
-
-Wait 500ms
-
-Select:
-```
-  @Override boolean isMale() {
-    return false;
-  }
-
-```
-
-Remove selected
-
-Select "  abstract char getCode();"
 
 Replace:
 ```
-  char getCode() {
-    return code;
-  }
+
+    get{ return isMale; }
+  
 ```
 
-Wait 500ms
-
-Select:
-```
-  @Override char getCode() {
-    return 'M';
-  }
-
-```
+Select "public |||abstract |||bool IsMale"
 
 Remove selected
 
@@ -278,13 +264,70 @@ Wait 500ms
 
 Select:
 ```
-  @Override char getCode() {
-    return 'F';
+  public override bool IsMale
+  {
+    get{ return true; }
+  }
+
+```
++Select:
+```
+  public override bool IsMale
+  {
+    get{ return false; }
   }
 
 ```
 
+Wait 500ms
+
 Remove selected
+
+Wait 500ms
+
+Select:
+```
+  public abstract char Code
+  {||| get; |||}
+```
+
+Replace:
+```
+
+    get{ return code; }
+  
+```
+
+Select "public |||abstract |||char Code"
+
+Remove selected
+
+Wait 500ms
+
+Select:
+```
+  public override char Code
+  {
+    get{ return 'M'; }
+  }
+
+
+```
++Select:
+```
+  public override char Code
+  {
+    get{ return 'F'; }
+  }
+
+
+```
+
+Wait 500ms
+
+Remove selected
+
+Wait 500ms
 
 Set step 7
 

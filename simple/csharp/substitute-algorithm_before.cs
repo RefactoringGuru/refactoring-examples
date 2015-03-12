@@ -6,14 +6,14 @@ string FoundPerson(string[] people)
     {
       return "Don";
     }
-    else if (people[i].Equals("John"))
+    if (people[i].Equals("John"))
     {
       return "John";
     }
-    else if (people[i].Equals("Kent"))
+    if (people[i].Equals("Kent"))
     {
       return "Kent";
     }
   }
-  return string.Empty;
+  return String.Empty;
 }

@@ -242,3 +242,13 @@ Set step 1
 
 Set final step
 ```
+
+### Indent
+
+Use `Indent` or `Indent N times` to add indentation in selected text, where `N` is a number of tab stops.
+
+
+### Deindent
+
+Use `Deindent` or `Deindent N times` to reduce indentation in selected text, where `N` is a number of tab stops.
+

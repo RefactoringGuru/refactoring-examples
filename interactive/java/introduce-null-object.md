@@ -114,16 +114,16 @@ class Customer {
   }
 }
 class NullCustomer extends Customer {
-  public boolean isNull() {
+  @Override public boolean isNull() {
     return true;
   }
-  public String getName() {
+  @Override public String getName() {
     return "N/A";
   }
-  public String getPlan() {
+  @Override public BillingPlan getPlan() {
     return BillingPlan.basic();
   }
-  public PaymentHistory getHistory() {
+  @Override public PaymentHistory getHistory() {
     return PaymentHistory.newNull();
   }
 }
@@ -141,10 +141,10 @@ class PaymentHistory {
   }
 }
 class NullPaymentHistory extends PaymentHistory {
-  public boolean isNull() {
+  @Override public boolean isNull() {
     return true;
   }
-  public int getWeeksDelinquentInLastYear() {
+  @Override public int getWeeksDelinquentInLastYear() {
     return 0;
   }
 }
@@ -201,8 +201,8 @@ Select "if (customer == null)"
 #|uk| У коді може бути багато таких повторюваних перевірок на <code>null</code>, що сигналізує про потребу введення Null-об'єкта.
 
 #|ru| Первым делом создаём нулевой класс для <code>customer</code> и модифицируем класс <code>Сustomer</code>, чтобы он поддерживал запрос проверки на <code>null</code>.
-#|en| First create a <code>null</code>-object class for <code>Customer</code> and modify the <code>Customer</code> class so that it supports a query for <code>null</code> verification.
-#|uk| Спершу створюємо нульовий клас для <code>Customer</code> і модифікуємо клас <code>Сustomer</code> так, щоб він підтримував запит перевірки на <code>null</code>.
+#|en| First create a <code>null</code>-object class for <code>customer</code> and modify the <code>Customer</code> class so that it supports a query for <code>null</code> verification.
+#|uk| Спершу створюємо нульовий клас для <code>customer</code> і модифікуємо клас <code>Сustomer</code> так, щоб він підтримував запит перевірки на <code>null</code>.
 
 Set step 2
 
@@ -222,7 +222,7 @@ Print:
 ```
 
 class NullCustomer extends Customer {
-  public boolean isNull() {
+  @Override public boolean isNull() {
     return true;
   }
 }
@@ -284,16 +284,16 @@ Set step 5
 
 Select "customerName = "N/A""
 
-#|ru| Итак, начнём перемещать поведения в нулевой класс. И первое, что мы сделаем, это перенесём название покупателя по умолчанию в нулевой класс.
+#|ru| Итак, начнём перемещать поведения в нулевой класс. И первое, что мы сделаем, это перенесём название покупателя по умолчанию.
 #|en| Let's start moving behaviors. The first thing to do is move the default customer name to the null-object class.
-#|uk| Отже, почнемо переміщати поведінки в нульовий клас. І перше, що ми зробимо, це перенесемо початкову назву покупця в нульовий клас.
+#|uk| Отже, почнемо переміщати поведінки в нульовий клас. І перше, що ми зробимо, це перенесемо початкову назву покупця.
 
 Go to the end of "NullCustomer"
 
 Print:
 ```
 
-  public String getName() {
+  @Override public String getName() {
     return "N/A";
   }
 ```
@@ -329,7 +329,7 @@ Go to the end of "NullCustomer"
 Print:
 ```
 
-  public String getPlan() {
+  @Override public BillingPlan getPlan() {
     return BillingPlan.basic();
   }
 ```
@@ -377,7 +377,7 @@ Print:
 ```
 
 class NullPaymentHistory extends PaymentHistory {
-  public boolean isNull() {
+  @Override public boolean isNull() {
     return true;
   }
 }
@@ -405,7 +405,7 @@ Go to the end of "NullPaymentHistory"
 Print:
 ```
 
-  public int getWeeksDelinquentInLastYear() {
+  @Override public int getWeeksDelinquentInLastYear() {
     return 0;
   }
 ```
@@ -425,7 +425,7 @@ Go to the end of "NullCustomer"
 Print:
 ```
 
-  public PaymentHistory getHistory() {
+  @Override public PaymentHistory getHistory() {
     return PaymentHistory.newNull();
   }
 ```

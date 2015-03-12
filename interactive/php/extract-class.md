@@ -184,9 +184,9 @@ Select "areaCode" in "TelephoneNumber"
 Select name of "getOfficeAreaCode"
 + Select name of "setOfficeAreaCode"
 
-#|ru| После того, как поле успешно переместилось в класс <code>TelephoneNumber</code>, методы, которые использовали перемещённое поле, необходимо изменить так, чтобы они обращались к экземпляру созданного класса.
+#|ru| После того как поле успешно переместилось в класс <code>TelephoneNumber</code>, методы, которые использовали перемещённое поле, необходимо изменить так, чтобы они обращались к экземпляру созданного класса.
 #|en| Now we should change the methods, which used the moved field so that they access it through a <code>TelephoneNumber</code> object.
-#|uk| Після того, як поле успішно перемістилося в клас <code>TelephoneNumber</code>, методи, які використовували переміщене поле, необхідно змінити так, щоб вони зверталися до примірника створеного класу.
+#|uk| Після того як поле успішно перемістилося в клас <code>TelephoneNumber</code>, методи, які використовували переміщене поле, необхідно змінити так, щоб вони зверталися до примірника створеного класу.
 
 Select body of "getOfficeAreaCode"
 

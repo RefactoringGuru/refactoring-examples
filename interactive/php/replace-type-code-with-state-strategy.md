@@ -14,11 +14,11 @@ replace-type-code-with-state-strategy:php
 3.en. Create state subclasses for each value of the coded type.
 3.uk. Створіть підкласи стану для кожного значення закодованого типу.
 
-4.ru. В абстрактном классе состояния, создайте статический фабричный метод, принимающий в параметре значение закодированного типа. В зависимости от этого параметра, фабричные метод будет создавать объекты различных состояний. Для этого в его коде придётся создать большой условный оператор, но он будет единственным по завершению рефакторинга.
+4.ru. В абстрактном классе состояния создайте статический фабричный метод, принимающий в параметре значение закодированного типа. В зависимости от этого параметра фабричный метод будет создавать объекты различных состояний. Для этого в его коде придётся создать большой условный оператор, но он будет единственным по завершению рефакторинга.
 4.en. In the abstract state class, create a static factory method that accepts the value of the coded type as a parameter. Depending on this parameter, the factory method will create objects of various states. For this, in its code create a large conditional; it will be the only one when refactoring is complete.
 4.uk. У абстрактному класі стану створіть статичний фабричний метод, що набуває в параметрі значення закодованого типу. Залежно від цього параметра фабричний метод створюватиме об'єкти різних станів. Для цього в його коді доведеться створити великий умовний оператор, але він буде єдиним після завершення рефакторингу.
 
-5.ru. В исходном классе, поменяйте тип закодированного поля на класс-состояние. В сеттере этого поля, вызывайте фабричный метод состояния для получения новых объектов состояний.
+5.ru. В исходном классе поменяйте тип закодированного поля на класс-состояние. В сеттере этого поля вызывайте фабричный метод состояния для получения новых объектов состояний.
 5.en. In the original class, change the type of the coded field to the state class. In the field's setter, call the factory state method for getting new state objects.
 5.uk. У початковому класі поміняйте тип закодованого поля на клас-стан. У сетерові цього поля викликайте фабричний метод стану для отримання нових об'єктів станів.
 
@@ -27,7 +27,7 @@ replace-type-code-with-state-strategy:php
 6.uk. Перемістіть поля та методи з суперкласу у відповідні підкласи-стану.
 
 7.ru. Когда все что можно перемещено, используйте <a href="/replace-conditional-with-polymorphism">замену условных операторов полиморфизмом</a>, чтобы окончательно избавиться от условных операторов, использующий закодированный тип.
-7.en. When everything moveable has been moved, use <a href="/replace-conditional-with-polymorphism">Replace Conditional with Polymorphism</a> in order to get rid of conditionals that use type code once and for all.
+7.en. When everything movable has been moved, use <a href="/replace-conditional-with-polymorphism">Replace Conditional with Polymorphism</a> in order to get rid of conditionals that use type code once and for all.
 7.uk. Коли усі потрібні дані будуть перенесені, використайте <a href="/replace-conditional-with-polymorphism">заміну умовних операторів поліморфізмом</a>, щоб остаточно позбавитися від умовних операторів, які використовують закодований тип.
 
 
@@ -176,9 +176,9 @@ Replace "getType()"
 
 Select whole "setType"
 
-#|ru| Предполагается, что это замечательная, прогрессивная компания, позволяющая менеджерам вырастать до инженеров. Поэтому код типа изменяемый, и применять подклассы для избавления от кодирования типа нельзя, что приводит нас к применению паттерна <a href="http://sourcemaking.com/design_patterns/state">Состояние</a>.
+#|ru| Предполагается, что это замечательная прогрессивная компания, позволяющая менеджерам вырастать до инженеров. Поэтому код типа изменяемый, и применять подклассы для избавления от кодирования типа нельзя, что приводит нас к применению паттерна <a href="http://sourcemaking.com/design_patterns/state">Состояние</a>.
 #|en| We assume that the company is progressive and enlightened and so allows its managers to ascend to engineers. So the type code can be changed and using subclasses to eliminate type coding is not possible. This causes us to use the <a href="http://sourcemaking.com/design_patterns/state">State</a> pattern.
-#|uk| Передбачається, що це чудова, прогресивна компанія, що дозволяє менеджерам виростати до інженерів. Тому код типу змінюваний, і застосовувати підкласи для позбавлення від кодування типу не можна, що приводить нас до застосування патерну <a href="http://sourcemaking.com/design_patterns/state">Стан</a>.
+#|uk| Передбачається, що це чудова прогресивна компанія, що дозволяє менеджерам виростати до інженерів. Тому код типу змінюваний, і застосовувати підкласи для позбавлення від кодування типу не можна, що приводить нас до застосування патерну <a href="http://sourcemaking.com/design_patterns/state">Стан</a>.
 
 Set step 2
 
@@ -228,9 +228,9 @@ Set step 4
 
 Go to the end of "EmployeeType"
 
-#|ru| Далее создадим статический метод в классе состояния, который будет возвращать экземпляр нужного подкласса в зависимости от подаваемого значения.
+#|ru| Далее создадим в классе состояния статический метод, который будет по переданному коду типа возвращать экземпляр соответствующего подкласса.
 #|en| Create a static method in the state class. It will return an instance of the necessary subclass, depending on the value accepted.
-#|uk| Далі створимо статичний метод в класі стану, який буде повертати примірник потрібного підкласу залежно від  значення, що подавалося.
+#|uk| Далі створимо в класі стану статичний метод, який буде по переданому кодом типу повертати екземпляр відповідного підкласу.
 
 Print:
 ```
@@ -251,9 +251,9 @@ Print:
 
 Select "switch ($code)"
 
-#|ru| Как видите, мы вносим здесь большой оператор <code>switch</code>. Это не очень хорошая новость, но зато по завершению рефакторинга этот оператор окажется единственным в коде и будет выполняться только при изменении типа.
+#|ru| Как вы могли заметить, мы создали большой оператор <code>switch</code>. Это не очень хорошо, однако по завершению рефакторинга данный оператор окажется единственным в коде и будет выполняться только при изменении типа.
 #|en| As you can see, here we are introducing a large <code>switch</code> operator. That's not great news, but once we are done with refactoring, this operator will be the only one in the code and will be run only when a type is changed.
-#|uk| Як бачите, ми вносимо тут великий оператор <code>switch</code>. Це не дуже хороша новина, але зате по завершенню рефакторинга цей оператор виявиться єдиним у коді і буде виконуватися тільки при зміні типу.
+#|uk| Як ви могли помітити, ми створили великий оператор <code>switch</code>. Це не дуже добре, проте по завершенню рефакторінга даний оператор виявиться єдиним у коді і буде виконуватися тільки при зміні типу.
 
 #C|ru| Запустим тестирование, чтобы убедиться в отсутствии ошибок.
 #S Всё отлично, можем продолжать!
@@ -268,9 +268,9 @@ Set step 5
 
 Go to "private $type;|||"
 
-#|ru| Теперь нужно фактически подключить созданные подклассы к <code>Employee</code>, модифицируя методы доступа к коду типа и конструктор.
+#|ru| Теперь нужно подключить созданные подклассы к <code>Employee</code>, модифицируя методы доступа к коду типа и конструктор.
 #|en| Now we need to connect the created subclasses to <code>Employee</code> by modifying the access methods for the type code and constructor.
-#|uk| Тепер потрібно фактично підключити створені підкласи до <code>Employee</code>, модифікуючи методи доступу до коду типу та конструктор.
+#|uk| Тепер потрібно підключити створені підкласи до <code>Employee</code>, модифікуючи методи доступу до коду типу та конструктор.
 
 Print " // EmployeeType"
 
@@ -426,7 +426,7 @@ Select body of "payAmount"
 
 Print "    return $type->payAmount($this);"
 
-#|ru| После этого займёмся перемещением кода в подклассы. Создадим методы <code>payAmount</code> в каждом из подклассов и переместим туда расчёты зарплаты для соответствующих типов служащих.
+#|ru| После этого займёмся перемещением кода в подклассы. Создадим методы <code>payAmount</code> в каждом из подклассов и переместим туда расчёты зарплат для соответствующих типов служащих.
 #|en| Then start moving code to subclasses. Create <code>payAmount</code> methods in each of the subclasses and move payroll calculations there for the relevant employee types.
 #|uk| Після цього займемося переміщенням коду в підкласи. Створимо методи <code>payAmount</code> в кожному з підкласів і перемістимо туди розрахунки зарплати для відповідних типів службовців.
 
@@ -467,11 +467,11 @@ Print:
 
 Set step 7
 
-Select body of "payAmount"
+Select name of "payAmount" in "EmployeeType"
 
-#|ru| После того, как методы созданы, можно сделать метод <code>payAmount</code> в <code>EmployeeType</code> абстрактным.
+#|ru| После того как методы созданы, можно сделать метод <code>payAmount</code> в <code>EmployeeType</code> абстрактным.
 #|en| Now that the methods have been created, you can make the <code>payAmount</code> method in <code>EmployeeType</code>  abstract.
-#|uk| Після того, як методи створені, можна зробити метод <code>payAmount</code> в <code>EmployeeType</code> абстрактним.
+#|uk| Після того як методи створені, можна зробити метод <code>payAmount</code> в <code>EmployeeType</code> абстрактним.
 
 Select:
 ```

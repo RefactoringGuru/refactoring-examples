@@ -1,4 +1,4 @@
-consolidate-conditional-expression:php
+consolidate-conditional-expression:csharp
 
 ###
 
@@ -15,30 +15,36 @@ consolidate-conditional-expression:php
 ###
 
 ```
-class Payout {
+public class Payout
+{
   // ...
 
-  public $seniority;
-  public $monthsDisabled;
-  public $isPartTime;
+  public int Seniority
+  { get; set; }
+  public int MonthsDisabled
+  { get; set; }
+  public bool IsPartTime
+  { get; set; }
 
-  public function disabilityAmount() {
-    if ($this->seniority < 2) {
+  public double DisabilityAmount()
+  {
+    if (Seniority < 2) {
       return 0;
     }
-    if ($this->monthsDisabled > 12) {
+    if (MonthsDisabled > 12) {
       return 0;
     }
-    if ($this->isPartTime) {
+    if (IsPartTime) {
       return 0;
     }
     // compute the disability amount
     // ...
   }
 
-  public function vacationAmount() {
-    if ($this->onVacation()) {
-      if ($this->lengthOfService() > 10) {
+  public double VacationAmount()
+  {
+    if (OnVacation()) {
+      if (LengthOfService() > 10) {
         return 1;
       }
     }
@@ -50,26 +56,33 @@ class Payout {
 ###
 
 ```
-class Payout {
+public class Payout
+{
   // ...
 
-  public $seniority;
-  public $monthsDisabled;
-  public $isPartTime;
+  public int Seniority
+  { get; set; }
+  public int MonthsDisabled
+  { get; set; }
+  public bool IsPartTime
+  { get; set; }
 
-  public function disabilityAmount() {
-    if ($this->isNotEligibleForDisability()) {
+  public double DisabilityAmount()
+  {
+    if (IsNotEligibleForDisability())
       return 0;
-    }
+
     // compute the disability amount
     // ...
   }
-  private function isNotEligibleForDisability() {
-    return ($this->seniority < 2) || ($this->monthsDisabled > 12) || ($this->isPartTime);
+  private bool IsNotEligibleForDisability()
+  {
+    return Seniority < 2 || MonthsDisabled > 12 || IsPartTime;
   }
 
-  public function vacationAmount() {
-    return ($this->onVacation() && $this->lengthOfService() > 10) ? 1 : 0.5;
+  public double VacationAmount()
+  {
+    return (OnVacation() && LengthOfService() > 10) ? 1 : 0.5;
   }
 }
 ```
@@ -82,8 +95,8 @@ Set step 1
 #|en| Let's look at <i>Consolidate Conditional Expression</i>, using the method for calculating workman's injury compensation.
 #|uk| Давайте розглянемо <i>Об'єднання умовних операторів<i> на прикладі методу обчислення розміру вихідної допомоги при отриманні співробітником травми.
 
-Select "if" in "disabilityAmount"
-+ Select "return 0" in "disabilityAmount"
+Select "if" in "DisabilityAmount"
++ Select "return 0" in "DisabilityAmount"
 
 #|ru| Как видите, у нас есть ряд условий, возвращающих одинаковый результат.
 #|en| As you see, there are a number of conditions that return an identical result.
@@ -102,20 +115,20 @@ Go to:
 Print:
 ```
 
-    if (($this->seniority < 2) || ($this->monthsDisabled > 12) || ($this->isPartTime)) {
+    if (Seniority < 2 || MonthsDisabled > 12 || IsPartTime)
       return 0;
-    }
+
 ```
 
 Select:
 ```
-    if ($this->seniority < 2) {
+    if (Seniority < 2) {
       return 0;
     }
-    if ($this->monthsDisabled > 12) {
+    if (MonthsDisabled > 12) {
       return 0;
     }
-    if ($this->isPartTime) {
+    if (IsPartTime) {
       return 0;
     }
 
@@ -125,52 +138,53 @@ Remove selected
 
 Set step 2
 
-Select "($this->seniority < 2) || ($this->monthsDisabled > 12) || ($this->isPartTime)"
+Select "Seniority < 2 || MonthsDisabled > 12 || IsPartTime"
 
 #|ru| Это условие выглядит слишком длинным и непонятным на первый взгляд. Поэтому можно <a href="/extract-method">выделить его в новый метод</a>, сообщив в названии, что именно ищет условный оператор (нетрудоспособность не оплачивается).
 #|en| This condition looks too long and hard to comprehend. So we can <a href="/extract-method">Extract Method</a> and make more clear what the conditional is looking for (no compensation to be paid).
 #|uk| Ця умова виглядає занадто довгою і незрозумілою на перший погляд. Тому можна <a href="/extract-method">виділити її в новий метод</a> і повідомити про те, що саме шукає умовний оператор (непрацездатність не оплачується).
 
-Go to after "disabilityAmount"
+Go to after "DisabilityAmount"
 
 Print:
 ```
 
-  private function isNotEligibleForDisability() {
-    return ($this->seniority < 2) || ($this->monthsDisabled > 12) || ($this->isPartTime);
+  private bool IsNotEligibleForDisability()
+  {
+    return Seniority < 2 || MonthsDisabled > 12 || IsPartTime;
   }
 ```
 
-Select "($this->seniority < 2) || ($this->monthsDisabled > 12) || ($this->isPartTime)" in "disabilityAmount"
+Select "Seniority < 2 || MonthsDisabled > 12 || IsPartTime" in "DisabilityAmount"
 
-Replace "$this->isNotEligibleForDisability()"
+Replace "IsNotEligibleForDisability()"
 
-#C|ru| Запускаем тестирование.
+#C|ru| Запускаем компиляцию и тестирование.
 #S Отлично, все работает!
 
-#C|en| Let's start testing.
+#C|en| Let's run the compiler and auto-tests.
 #S Wonderful, it's all working!
 
-#C|uk| Запускаємо тестування.
+#C|uk| Запускаємо компіляцію і тестування.
 #S Супер, все працює.
 
-Select "if" in "vacationAmount"
+Select "if" in "VacationAmount"
 
-#|ru| Предыдущий пример демонстрировал операцию <code>ИЛИ</code>, но то же самое можно делать с помощью <code>И</code>.
+#|ru| Предыдущий пример демонстрировал операцию <code>ИЛИ</code>, а теперь применим операцию <code>И</code> для объединения вложенных условий.
 #|en| The previous example demonstrated the <code>OR</code> operation but the same thing can be done using <code>AND</code>.
-#|uk| Попередній приклад демонстрував операцію <code>АБО</code>, але те ж саме можна робити за допомогою <code>І</code>.
+#|uk| Попередній приклад демонстрував операцію <code>АБО</code>, а тепер розглянемо застосування операції <code>І</code>, яка використовується при об'єднанні вкладених умов.
 
 #|ru| Эти условия можно заменить следующим образом:
 #|en| These conditions can be replaced as follows:
 #|uk| Ці умови можна замінити таким чином:
 
-Go to the end of "vacationAmount"
+Go to the end of "VacationAmount"
 
 Print:
 ```
 
 
-    if ($this->onVacation() && $this->lengthOfService() > 10) {
+    if (OnVacation() && LengthOfService() > 10) {
       return 1;
     }
     else {
@@ -180,8 +194,8 @@ Print:
 
 Select:
 ```
-    if ($this->onVacation()) {
-      if ($this->lengthOfService() > 10) {
+    if (OnVacation()) {
+      if (LengthOfService() > 10) {
         return 1;
       }
     }
@@ -192,24 +206,24 @@ Select:
 
 Remove selected
 
+Select body of "VacationAmount"
+
 #|ru| Если рассматриваемая процедура лишь проверяет условие и возвращает значение, мы можем ещё больше упростить код с помощью тернарного оператора.
 #|en| If the code only checks a condition and returns a value, we can simplify it to a greater degree by using a ternary operator.
 #|uk| Якщо розглянута процедура лише перевіряє умову і повертає значення, ми можемо ще більш спростити код за допомогою тернарного оператора.
 
-Select body of "vacationAmount"
-
 Replace:
 ```
-    return ($this->onVacation() && $this->lengthOfService() > 10) ? 1 : 0.5;
+    return (OnVacation() && LengthOfService() > 10) ? 1 : 0.5;
 ```
 
-#C|ru| Запускаем финальное тестирование.
+#C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's start the final testing.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
-#C|uk| Запускаємо фінальне тестування.
+#C|uk| Запускаємо фінальну компіляцію.
 #S Супер, все працює.
 
 Set final step

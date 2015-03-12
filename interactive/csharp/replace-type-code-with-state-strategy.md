@@ -1,4 +1,4 @@
-replace-type-code-with-state-strategy:java
+replace-type-code-with-state-strategy:csharp
 
 ###
 
@@ -35,31 +35,39 @@ replace-type-code-with-state-strategy:java
 ###
 
 ```
-class Employee {
+public class Employee
+{
   // ...
-  static final int ENGINEER = 0;
-  static final int SALESMAN = 1;
-  static final int MANAGER = 2;
+  public const int ENGINEER = 0,
+                   SALESMAN = 1,
+                   MANAGER = 2;
 
   public int type;
 
-  public Employee(int arg) {
-    type = arg;
+  public int MonthlySalary
+  { get; set; }
+  public int Commission
+  { get; set; }
+  public int Bonus
+  { get; set; }
+
+  public Employee(int type)
+  {
+    this.type = type;
   }
 
-  public int monthlySalary;
-  public int commission;
-  public int bonus;
-  public int payAmount() {
-    switch (type) {
+  public int PayAmount()
+  {
+    switch (type)
+    {
       case ENGINEER:
-        return monthlySalary;
+        return MonthlySalary;
       case SALESMAN:
-        return monthlySalary + commission;
+        return MonthlySalary + Commission;
       case MANAGER:
-        return monthlySalary + bonus;
+        return MonthlySalary + Bonus;
       default:
-        throw new RuntimeException("Incorrect Employee Code");
+        throw new Exception("Incorrect Employee Code");
     }
   }
 }
@@ -68,36 +76,47 @@ class Employee {
 ###
 
 ```
-class Employee {
+public class Employee
+{
   // ...
   private EmployeeType type;
 
-  public Employee(int arg) {
-    type = EmployeeType.newType(arg);
+  public int EmployeeCode
+  {
+    get{ return type.EmployeeCode; }
+    set{ type = EmployeeType.Create(value); }
   }
-  public int getTypeCode() {
-    return type.getTypeCode();
-  }
-  public void setTypeCode(int arg) {
-    type = EmployeeType.newType(arg);
+  public int MonthlySalary
+  { get; set; }
+  public int Commission
+  { get; set; }
+  public int Bonus
+  { get; set; }
+
+  public Employee(int employeeCode)
+  {
+    this.type = EmployeeType.Create(employeeCode);
   }
 
-  public int monthlySalary;
-  public int commission;
-  public int bonus;
-  public int payAmount() {
-    return type.payAmount(this);
+  public int PayAmount()
+  {
+    return type.PayAmount(this);
   }
 }
 
-abstract class EmployeeType {
-  static final int ENGINEER = 0;
-  static final int SALESMAN = 1;
-  static final int MANAGER = 2;
+public abstract class EmployeeType
+{
+  public const int ENGINEER = 0,
+                   SALESMAN = 1,
+                   MANAGER = 2;
 
-  abstract public int getTypeCode();
-  public static EmployeeType newType(int code) {
-    switch (code) {
+  public abstract int EmployeeCode
+  { get; }
+
+  public static EmployeeType Create(int code)
+  {
+    switch (code)
+    {
       case ENGINEER:
         return new Engineer();
       case SALESMAN:
@@ -105,34 +124,49 @@ abstract class EmployeeType {
       case MANAGER:
         return new Manager();
       default:
-        throw new IllegalArgumentException("Incorrect Employee Code");
+        throw new Exception("Incorrect Employee Code");
     }
   }
 
-  abstract public int payAmount(Employee employee);
+  public abstract int PayAmount(Employee employee);
 }
-class Engineer extends EmployeeType {
-  @Override public int getTypeCode() {
-    return EmployeeType.ENGINEER;
+
+public class Engineer: EmployeeType
+{
+  public override int EmployeeCode
+  {
+    get{ return EmployeeType.ENGINEER; }
   }
-  @Override public int payAmount(Employee employee) {
-    return employee.monthlySalary;
-  }
-}
-class Salesman extends EmployeeType {
-  @Override public int getTypeCode() {
-    return EmployeeType.SALESMAN;
-  }
-  @Override public int payAmount(Employee employee) {
-    return employee.monthlySalary + employee.commission;
+
+  public override int PayAmount(Employee employee)
+  {
+    return employee.MonthlySalary;
   }
 }
-class Manager extends EmployeeType {
-  @Override public int getTypeCode() {
-    return EmployeeType.MANAGER;
+
+public class Salesman: EmployeeType
+{
+  public override int EmployeeCode
+  {
+    get{ return EmployeeType.SALESMAN; }
   }
-  @Override public int payAmount(Employee employee) {
-    return employee.monthlySalary + employee.bonus;
+
+  public override int PayAmount(Employee employee)
+  {
+    return employee.MonthlySalary + employee.Commission;
+  }
+}
+
+public class Manager: EmployeeType
+{
+  public override int EmployeeCode
+  {
+    get{ return EmployeeType.MANAGER; }
+  }
+
+  public override int PayAmount(Employee employee)
+  {
+    return employee.MonthlySalary + employee.Bonus;
   }
 }
 ```
@@ -155,46 +189,49 @@ Select "|||public||| int type"
 
 Replace "private"
 
-Go to after "public Employee"
-
+Go to:
+```
+|||
+  public int MonthlySalary
+```
 Print:
 ```
 
-  public int getType() {
-    return type;
-  }
-  public void setType(int arg) {
-    type = arg;
+  public int Type
+  {
+    get{ return type; }
+    set{ type = value; }
   }
 ```
 
 Wait 500ms
 
-Select "switch (|||type|||) {"
+Select "switch (|||type|||)"
 
-Replace "getType()"
+Replace "this.Type"
 
+Select "set{ type = value; }"
 
-Select whole "setType"
-
-#|ru| Предполагается, что это замечательная прогрессивная компания, позволяющая менеджерам вырастать до инженеров. Поэтому код типа изменяемый, и применять подклассы для избавления от кодирования типа нельзя, что приводит нас к применению паттерна <a href="http://sourcemaking.com/design_patterns/state">Состояние</a>.
-#|en| We assume that the company is progressive and enlightened and so allows its managers to ascend to engineers. So the type code can be changed and using subclasses to eliminate type coding is not possible. This causes us to use the <a href="http://sourcemaking.com/design_patterns/state">State</a> pattern.
-#|uk| Передбачається, що це чудова прогресивна компанія, що дозволяє менеджерам виростати до інженерів. Тому код типу змінюваний, і застосовувати підкласи для позбавлення від кодування типу не можна, що приводить нас до застосування патерну <a href="http://sourcemaking.com/design_patterns/state">Стан</a>.
+#|ru|^ Предполагается, что это замечательная прогрессивная компания, позволяющая менеджерам вырастать до инженеров. Поэтому код типа изменяемый, и применять подклассы для избавления от кодирования типа нельзя, что приводит нас к применению паттерна <a href="http://sourcemaking.com/design_patterns/state">Состояние</a>.
+#|en|^ We assume that the company is progressive and enlightened and so allows its managers to ascend to engineers. So the type code can be changed and using subclasses to eliminate type coding is not possible. This causes us to use the <a href="http://sourcemaking.com/design_patterns/state">State</a> pattern.
+#|uk|^ Передбачається, що це чудова прогресивна компанія, що дозволяє менеджерам виростати до інженерів. Тому код типу змінюваний, і застосовувати підкласи для позбавлення від кодування типу не можна, що приводить нас до застосування патерну <a href="http://sourcemaking.com/design_patterns/state">Стан</a>.
 
 Set step 2
 
 Go to the end of file
 
-#|ru| Итак, объявим класс состояния (как абстрактный класс с абстрактным методом возврата кода типа).
-#|en| Declare the state class (as an abstract class with an abstract method for returning type code).
-#|uk| Отже, оголосимо клас стану (як абстрактний клас з абстрактним методом повернення коду типу).
+#|ru| Итак, объявим класс состояния (как абстрактный класс с абстрактным свойством, возвращающим код типа).
+#|en| Declare the state class (as an abstract class with an abstract property for returning type code).
+#|uk| Отже, оголосимо клас стану (як абстрактний клас з абстрактним властивістю, що повертає код типу).
 
 Print:
 ```
 
 
-abstract class EmployeeType {
-  abstract public int getTypeCode();
+public abstract class EmployeeType
+{
+  public abstract int EmployeeCode
+  { get; }
 }
 ```
 
@@ -208,19 +245,28 @@ Set step 3
 Print:
 ```
 
-class Engineer extends EmployeeType {
-  @Override public int getTypeCode() {
-    return Employee.ENGINEER;
+
+public class Engineer: EmployeeType
+{
+  public override int EmployeeCode
+  {
+    get{ return Employee.ENGINEER; }
   }
 }
-class Salesman extends EmployeeType {
-  @Override public int getTypeCode() {
-    return Employee.SALESMAN;
+
+public class Salesman: EmployeeType
+{
+  public override int EmployeeCode
+  {
+    get{ return Employee.SALESMAN; }
   }
 }
-class Manager extends EmployeeType {
-  @Override public int getTypeCode() {
-    return Employee.MANAGER;
+
+public class Manager: EmployeeType
+{
+  public override int EmployeeCode
+  {
+    get{ return Employee.MANAGER; }
   }
 }
 ```
@@ -236,8 +282,11 @@ Go to the end of "EmployeeType"
 Print:
 ```
 
-  public static EmployeeType newType(int code) {
-    switch (code) {
+
+  public static EmployeeType Create(int code)
+  {
+    switch (code)
+    {
       case Employee.ENGINEER:
         return new Engineer();
       case Employee.SALESMAN:
@@ -245,14 +294,14 @@ Print:
       case Employee.MANAGER:
         return new Manager();
       default:
-        throw new IllegalArgumentException("Incorrect Employee Code");
+        throw new Exception("Incorrect Employee Code");
     }
   }
 ```
 
 Select "switch (code)"
 
-#|ru| Как вы могли заметить, мы создали большой оператор <code>switch</code>. Это не очень хорошо, однако по завершению рефакторинга данный оператор окажется единственным в коде и будет выполняться только при изменении типа.
+#|ru| ***Как вы могли заметить, мы создали большой оператор <code>switch</code>. Это не очень хорошо, однако по завершению рефакторинга данный оператор окажется единственным в коде и будет выполняться только при изменении типа.
 #|en| As you can see, here we are introducing a large <code>switch</code> operator. That's not great news, but once we are done with refactoring, this operator will be the only one in the code and will be run only when a type is changed.
 #|uk| Як ви могли помітити, ми створили великий оператор <code>switch</code>. Це не дуже добре, проте по завершенню рефакторінга даний оператор виявиться єдиним у коді і буде виконуватися тільки при зміні типу.
 
@@ -269,60 +318,61 @@ Set step 5
 
 Select "private |||int||| type"
 
-#|ru| Теперь нужно подключить созданные подклассы к <code>Employee</code>, модифицируя методы доступа к коду типа и конструктор.
-#|en| Now we need to connect the created subclasses to <code>Employee</code> by modifying the access methods for the type code and constructor.
-#|uk| Тепер потрібно підключити створені підкласи до <code>Employee</code>, модифікуючи методи доступу до коду типу та конструктор.
+#|ru| Теперь нужно подключить созданные подклассы к <code>Employee</code>, модифицируя свойство, инкапсулирующее поле кода типа и конструктор.
+#|en| Now we need to connect the created subclasses to <code>Employee</code> by modifying the access property for the type code and constructor.
+#|uk| Тепер потрібно підключити створені підкласи до <code>Employee</code>, модифікуючи властивість, інкапсулюють поле коду типу та конструктор.
 
 Print "EmployeeType"
 
 Wait 500ms
 
-Select:
-```
-  public int getType() {
-    return |||type|||;
-  }
-```
+Select "get{ return |||type|||"
 
-Replace "type.getTypeCode()"
+Replace "type.EmployeeCode"
 
 Wait 500ms
 
-Select:
-```
-    type = |||arg|||;
-```
-
+Select "set{ type = |||value|||"
++Select "this.type = |||type|||;"
 
 #|ru| Тело сеттера и конструктор меняем на вызов фабричного метода.
 #|en| The setter body and constructor are replaced with a call to the factory method.
 #|uk| Тіло сетера і конструктор міняємо на виклик фабричного методу.
 
-Print "EmployeeType.newType(arg)"
+Select "set{ type = |||value|||"
 
-Select name of "setType"
-+ Select name of "getType"
+Replace "EmployeeType.Create(value)"
 
-#|ru| Так как методы доступа теперь возвращают код, а не сам объект типа, стоит переименовать их, чтобы избавить будущего читателя от непонимания.
-#|en| Since access methods now return a code, not the type object itself, we should rename them to make things clear to future readers.
-#|uk| Так як методи доступу тепер повертають код, а не сам об'єкт типу, варто перейменувати їх, щоб позбавити майбутнього читача від нерозуміння.
+Select "(int |||type|||)"
 
-Select "setType("
+Replace "employeeCode"
 
-Replace "setTypeCode("
+Select "this.type = |||type|||;"
 
-Select "getType("
+Replace "EmployeeType.Create(employeeCode)"
 
-Replace "getTypeCode("
+Wait 500ms
 
+Select "public int |||Type|||"
 
+#|ru| Так как свойство теперь возвращает код, а не сам объект типа, стоит переименовать его, чтобы избавить будущего читателя от непонимания.
+#|en| Since property now return a code, not the type object itself, we should rename it to make things clear to future readers.
+#|uk| Так як властивість тепер повертає код, а не сам об'єкт типу, варто перейменувати його, щоб позбавити майбутнього читача від нерозуміння.
+
+Replace "EmployeeCode"
+
+Select "switch (this.|||Type|||)"
+
+Replace "EmployeeCode"
+
+Wait 500ms
 
 Select:
 ```
 
-  static final int ENGINEER = 0;
-  static final int SALESMAN = 1;
-  static final int MANAGER = 2;
+  public const int ENGINEER = 0,
+                   SALESMAN = 1,
+                   MANAGER = 2;
 
 ```
 
@@ -337,15 +387,15 @@ Go to the beginning of "EmployeeType"
 Print:
 ```
 
-  static final int ENGINEER = 0;
-  static final int SALESMAN = 1;
-  static final int MANAGER = 2;
+  public const int ENGINEER = 0,
+                   SALESMAN = 1,
+                   MANAGER = 2;
 
 ```
 
 Wait 500ms
 
-Select "Employee." in "newType"
+Select "Employee." in "Create"
 
 Remove selected
 
@@ -354,9 +404,9 @@ Wait 500ms
 Select:
 ```
       case||| |||ENGINEER:
-        return monthlySalary;
+        return MonthlySalary;
       case||| |||SALESMAN:
-        return monthlySalary + commission;
+        return MonthlySalary + Commission;
       case||| |||MANAGER:
 ```
 
@@ -378,11 +428,11 @@ Set step 6
 #|en| Everything is now ready for applying <a href="/replace-conditional-with-polymorphism">Replace Conditional With Polymorphism</a>.
 #|uk| Тепер все готово для застосування <a href="/replace-conditional-with-polymorphism">заміни умовного оператора поліморфізмом</a>.
 
-Select body of "payAmount"
+Select body of "PayAmount"
 
-#|ru| Сначала выделим реализацию <code>payAmount</code> в новый метод в классе типа.
-#|en| First extract the implementation of <code>payAmount</code> to a new method in a type class.
-#|uk| Спочатку виділимо реалізацію <code>payAmount</code> в новий метод в класі типу.
+#|ru| Сначала выделим реализацию <code>PayAmount()</code> в новый метод в классе типа.
+#|en| First extract the implementation of <code>PayAmount()</code> to a new method in a type class.
+#|uk| Спочатку виділимо реалізацію <code>PayAmount()</code> в новий метод в класі типу.
 
 Go to the end of "EmployeeType"
 
@@ -390,63 +440,67 @@ Print:
 ```
 
 
-  public int payAmount() {
-    switch (getTypeCode()) {
-      case EmployeeType.ENGINEER:
-        return monthlySalary;
-      case EmployeeType.SALESMAN:
-        return monthlySalary + commission;
-      case EmployeeType.MANAGER:
-        return monthlySalary + bonus;
+  public int PayAmount()
+  {
+    switch (EmployeeCode)
+    {
+      case ENGINEER:
+        return MonthlySalary;
+      case SALESMAN:
+        return MonthlySalary + Commission;
+      case MANAGER:
+        return MonthlySalary + Bonus;
       default:
-        throw new RuntimeException("Incorrect Employee Code");
+        throw new Exception("Incorrect Employee Code");
     }
   }
 ```
 
-Select "monthlySalary" in "EmployeeType"
-+Select "commission" in "EmployeeType"
-+Select "bonus" in "EmployeeType"
+Select "MonthlySalary" in "EmployeeType"
++Select "Commission" in "EmployeeType"
++Select "Bonus" in "EmployeeType"
 
 #|ru| Нам нужны данные из объекта <code>Employee</code>, поэтому создадим в методе параметр, в который будет передаваться основной объект <code>Employee</code>.
 #|en| We need datа from the <code>Employee</code> object, so in the method we create the parameter to which the main <code>Employee</code> object will be passed.
 #|uk| Нам потрібні дані з об'єкта <code>Employee</code>, тому створимо в методі параметр, в який буде передаватися основний об'єкт <code>Employee</code>.
 
-Go to "payAmount(|||) {" in "EmployeeType"
+Go to "PayAmount(|||)" in "EmployeeType"
 
 Print "Employee employee"
 
-Select "monthlySalary" in "EmployeeType"
+Select "MonthlySalary" in "EmployeeType"
 
-Replace "employee.monthlySalary"
+Replace "employee.MonthlySalary"
 
-Select "commission" in "EmployeeType"
+Select "Commission" in "EmployeeType"
 
-Replace "employee.commission"
+Replace "employee.Commission"
 
-Select "bonus" in "EmployeeType"
+Select "Bonus" in "EmployeeType"
 
-Replace "employee.bonus"
+Replace "employee.Bonus"
 
-Select body of "payAmount"
+Select body of "PayAmount"
 
 #|ru| После этих действий мы можем настроить делегирование из класса <code>Employee</code>.
 #|en| After these actions, we can set up delegation from the <code>Employee</code> class.
 #|uk| Після цих дій ми можемо налаштувати делегування з класу <code>Employee</code>.
 
-Print "    return type.payAmount(this);"
+Print "    return type.PayAmount(this);"
 
-#|ru| После этого займёмся перемещением кода в подклассы. Создадим методы <code>payAmount</code> в каждом из подклассов и переместим туда расчёты зарплат для соответствующих типов служащих.
-#|en| Then start moving code to subclasses. Create <code>payAmount</code> methods in each of the subclasses and move payroll calculations there for the relevant employee types.
-#|uk| Після цього займемося переміщенням коду в підкласи. Створимо методи <code>payAmount</code> в кожному з підкласів і перемістимо туди розрахунки зарплати для відповідних типів службовців.
+#|ru| После этого займёмся перемещением кода в подклассы. Создадим методы <code>PayAmount()</code> в каждом из подклассов и переместим туда расчёты зарплат для соответствующих типов служащих.
+#|en| Then start moving code to subclasses. Create <code>PayAmount()</code> methods in each of the subclasses and move payroll calculations there for the relevant employee types.
+#|uk| Після цього займемося переміщенням коду в підкласи. Створимо методи <code>PayAmount()</code> в кожному з підкласів і перемістимо туди розрахунки зарплати для відповідних типів службовців.
 
 Go to the end of "class Engineer"
 
 Print:
 ```
 
-  @Override public int payAmount(Employee employee) {
-    return employee.monthlySalary;
+
+  public override int PayAmount(Employee employee)
+  {
+    return employee.MonthlySalary;
   }
 ```
 
@@ -457,8 +511,10 @@ Go to the end of "class Salesman"
 Print:
 ```
 
-  @Override public int payAmount(Employee employee) {
-    return employee.monthlySalary + employee.commission;
+
+  public override int PayAmount(Employee employee)
+  {
+    return employee.MonthlySalary + employee.Commission;
   }
 ```
 
@@ -470,40 +526,43 @@ Go to the end of "class Manager"
 Print:
 ```
 
-  @Override public int payAmount(Employee employee) {
-    return employee.monthlySalary + employee.bonus;
+
+  public override int PayAmount(Employee employee)
+  {
+    return employee.MonthlySalary + employee.Bonus;
   }
 ```
 
 Set step 7
 
-Select name of "payAmount" in "EmployeeType"
+Select name of "PayAmount" in "EmployeeType"
 
-#|ru| После того как методы созданы, можно сделать метод <code>payAmount</code> в <code>EmployeeType</code> абстрактным.
-#|en| Now that the methods have been created, you can make the <code>payAmount</code> method in <code>EmployeeType</code>  abstract.
-#|uk| Після того як методи створені, можна зробити метод <code>payAmount</code> в <code>EmployeeType</code> абстрактним.
+#|ru| После того как методы созданы, можно сделать метод <code>PayAmount()</code> в <code>EmployeeType</code> абстрактным.
+#|en| Now that the methods have been created, you can make the <code>PayAmount()</code> method in <code>EmployeeType</code>  abstract.
+#|uk| Після того як методи створені, можна зробити метод <code>PayAmount()</code> в <code>EmployeeType</code> абстрактним.
 
 Select:
 ```
-  public int payAmount(Employee employee) {
-    switch (getTypeCode()) {
-      case EmployeeType.ENGINEER:
-        return employee.monthlySalary;
-      case EmployeeType.SALESMAN:
-        return employee.monthlySalary + employee.commission;
-      case EmployeeType.MANAGER:
-        return employee.monthlySalary + employee.bonus;
+  public int PayAmount(Employee employee)
+  {
+    switch (EmployeeCode)
+    {
+      case ENGINEER:
+        return employee.MonthlySalary;
+      case SALESMAN:
+        return employee.MonthlySalary + employee.Commission;
+      case MANAGER:
+        return employee.MonthlySalary + employee.Bonus;
       default:
-        throw new RuntimeException("Incorrect Employee Code");
+        throw new Exception("Incorrect Employee Code");
     }
   }
 ```
 
 Replace:
 ```
-  abstract public int payAmount(Employee employee);
+  public abstract int PayAmount(Employee employee);
 ```
-
 
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!

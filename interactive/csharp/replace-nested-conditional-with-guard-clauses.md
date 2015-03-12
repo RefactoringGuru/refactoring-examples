@@ -1,4 +1,4 @@
-replace-nested-conditional-with-guard-clauses:java
+replace-nested-conditional-with-guard-clauses:csharp
 
 ###
 
@@ -15,23 +15,25 @@ replace-nested-conditional-with-guard-clauses:java
 ###
 
 ```
-class Payout {
+public class Payout
+{
   // ...
-  double getPayAmount() {
+  double GetPayAmount()
+  {
     double result = 0;
     if (isDead) {
-      result = deadAmount();
+      result = DeadAmount();
     }
     else {
       if (isSeparated) {
-        result = separatedAmount();
+        result = SeparatedAmount();
       }
       else {
         if (isRetired) {
-          result = retiredAmount();
+          result = RetiredAmount();
         }
         else {
-          result = normalPayAmount();
+          result = NormalPayAmount();
         }
       }
     }
@@ -43,19 +45,21 @@ class Payout {
 ###
 
 ```
-class Payout {
+public class Payout
+{
   // ...
-  double getPayAmount() {
+  double GetPayAmount()
+  {
     if (isDead) {
-      return deadAmount();
+      return DeadAmount();
     }
     if (isSeparated) {
-      return separatedAmount();
+      return SeparatedAmount();
     }
     if (isRetired) {
-      return retiredAmount();
+      return RetiredAmount();
     }
-    return normalPayAmount();
+    return NormalPayAmount();
   }
 }
 ```
@@ -76,13 +80,13 @@ Select "isDead"
 #|en|+ Once some of the special conditions are triggered…
 #|uk|+ У цьому коді перевірки особливих умов…
 
-Select "result = normalPayAmount()"
+Select "result = NormalPayAmount()"
 
 #|ru|<= …приводят к выполнению методов, результаты которых возвращаются в конце метода без дополнительной обработки. Это значит, что мы можем ввести граничные операторы и возвращать значения сразу же при прохождении какого-то условия.
 #|en|<= …a corresponding method is called. Then it's is taken to the end of the method and returned as is. Such could be pretty difficult to understand, especially if there are lot of conditional branches. To fix it, we could place guard clauses, e.g. return the value right away if some condition is met.
 #|uk|<= …призводять до виконання методів, результати яких повертаються в кінці методу без додаткової обробки. Це означає, що ми можемо ввести граничні оператори та повертати значення відразу ж при проходженні якогось умови.
 
-Select "|||result =||| deadAmount();"
+Select "|||result =||| DeadAmount();"
 
 Replace "return"
 
@@ -110,14 +114,14 @@ Wait 500ms
 Select:
 ```
       if (isSeparated) {
-        result = separatedAmount();
+        result = SeparatedAmount();
       }
       else {
         if (isRetired) {
-          result = retiredAmount();
+          result = RetiredAmount();
         }
         else {
-          result = normalPayAmount();
+          result = NormalPayAmount();
         }
       }
 ```
@@ -132,7 +136,7 @@ Select "isSeparated"
 #|en| Continue performing replacements, one at a time.
 #|uk| Продовжуємо робити заміни по одній за крок.
 
-Select "|||result =||| separatedAmount();"
+Select "|||result =||| SeparatedAmount();"
 
 Replace "return"
 
@@ -160,10 +164,10 @@ Wait 500ms
 Select:
 ```
       if (isRetired) {
-        result = retiredAmount();
+        result = RetiredAmount();
       }
       else {
-        result = normalPayAmount();
+        result = NormalPayAmount();
       }
 ```
 
@@ -177,7 +181,7 @@ Select "isRetired"
 #|en| And the last one.
 #|uk| І останній раз.
 
-Select "|||result =||| retiredAmount();"
+Select "|||result =||| RetiredAmount();"
 
 Replace "return"
 
@@ -204,7 +208,7 @@ Wait 500ms
 
 Select:
 ```
-      result = normalPayAmount();
+      result = NormalPayAmount();
 ```
 
 Deindent

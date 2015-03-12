@@ -1,4 +1,4 @@
-introduce-null-object:php
+introduce-null-object:csharp
 
 ###
 
@@ -6,17 +6,17 @@ introduce-null-object:php
 1.en. From the class in question, create a subclass that will perform the role of null object.
 1.uk. З потрібного вам класу створіть підклас, який виконуватиме роль Null-об'єкту.
 
-2.ru. В обоих классах создайте метод <code>isNull()</code>, который будет возвращать <code>true</code> для Null-объекта и <code>false</code> для реального класса.
-2.en. In both classes, create the method <code>isNull()</code>, which will return <code>true</code> for a null object and <code>false</code> for a real class.
-2.uk. У обох класах створіть метод <code>isNull()</code>, який повертатиме <code>true</code> для Null-об'єкту і <code>false</code> для реального класу.
+2.ru. В обоих классах создайте метод <code>IsNull</code>, который будет возвращать <code>true</code> для Null-объекта и <code>false</code> для реального класса.
+2.en. In both classes, create the method <code>IsNull</code>, which will return <code>true</code> for a null object and <code>false</code> for a real class.
+2.uk. У обох класах створіть метод <code>IsNull</code>, який повертатиме <code>true</code> для Null-об'єкту і <code>false</code> для реального класу.
 
 3.ru. Найдите все места, где код может вернуть <code>null</code> вместо реального объекта. Измените этот код так, чтобы он возвращал Null-объект.
 3.en. Find all places where the code may return <code>null</code> instead of a real object. Change the code so that it returns a null object.
 3.uk. Знайдіть усі місця, де код може повернути <code>null</code> замість реального об'єкту. Змініть цей код так, щоб він повертав Null-об'єкт.
 
-4.ru. Найдите все места, где переменные реального класса сравниваются с <code>null</code>. Замените такие проверки вызовом метода <code>isNull()</code>.
-4.en. Find all places where the variables of the real class are compared with <code>null</code>. Replace these checks with a call for <code>isNull()</code>.
-4.uk. Знайдіть усі місця, де змінні реального класу порівнюються з <code>null</code>. Замініть такі перевірки викликом методу <code>isNull()</code>.
+4.ru. Найдите все места, где переменные реального класса сравниваются с <code>null</code>. Замените такие проверки вызовом метода <code>IsNull</code>.
+4.en. Find all places where the variables of the real class are compared with <code>null</code>. Replace these checks with a call for <code>IsNull</code>.
+4.uk. Знайдіть усі місця, де змінні реального класу порівнюються з <code>null</code>. Замініть такі перевірки викликом методу <code>IsNull</code>.
 
 5.ru. <ul><li>Если в этих условных операторах при значении не равном <code>null</code> выполняются методы исходного класса, переопределите эти методы в Null-классе и вставьте туда код из <code>else</code> части условия. После этого условный оператор можно будет вообще удалить, а разное поведение будет осуществляться за счёт полиморфизма.</li><li>Если не все так просто, и методы переопределить не получается, посмотрите, можно ли просто выделите операции, которые должны были выполняться при значении равном <code>null</code> в новые методы Null-объекта. Вызывайте эти методы вместо старого кода в <code>else</code> как операции по умолчанию.</li></ul>
 5.en. <ul><li>If methods of the original class are performed in these conditionals for values not equal to <code>null</code>, redefine these methods in the null class and put the code from the <code>else</code> part of the conditional code there. Then you can delete the conditional entirely, since differing behavior will be controlled through polymorphism.</li><li>If things are more complicated and redefining the methods is "not in the cards", see whether you can simply move the operations that should be performed for values equal to <code>null</code> to new methods of the Null object. Call these methods instead of the old code in <code>else</code> as default operations.</li></ul>
@@ -27,134 +27,153 @@ introduce-null-object:php
 ###
 
 ```
-class Company {
+public class Company
+{
   //…
-  private $customer; // Customer
-  public function getCustomer() {
-    return $this->customer;
+  private Customer customer;
+  
+  public Customer Customer
+  {
+    get{ return customer; }
   }
 }
 
-class Customer {
-  //…
-  public function getName() {
+public class Customer
+{
+  public string Name {
     //…
   }
-  public function getPlan() {
+
+  public BillingPlan GetPlan() {
     //…
   }
-  public function getHistory() {
+  public PaymentHistory GetHistory() {
     //…
   }
 }
 
-class PaymentHistory {
-  public function getWeeksDelinquentInLastYear() {
+public class PaymentHistory
+{
+  public int WeeksDelinquentInLastYear {
     //…
   }
 }
 
 // Somewhere in client code
-$customer = $site->getCustomer();
-if (customer == null) {
-  $customerName = "N/A";
-}
-else {
-  $customerName = $customer->getName();
-}
+Customer customer = site.Customer;
+string customerName;
+if (customer == null)
+  customerName = "N/A";
+else
+  customerName = customer.Name;
 
 //…
-if ($customer == null) {
-  $plan = BillingPlan::basic();
-}
-else {
-  $plan = $customer->getPlan();
-}
+BillingPlan plan;
+if (customer == null)
+  plan = BillingPlan.Basic();
+else
+  plan = customer.GetPlan();
 
 //…
-if ($customer == null) {
-  $weeksDelinquent = 0;
-}
-else {
-  $weeksDelinquent = $customer->getHistory()->getWeeksDelinquentInLastYear();
-}
+int weeksDelinquent;
+if (customer == null)
+  weeksDelinquent = 0;
+else
+  weeksDelinquent = customer.GetHistory().WeeksDelinquentInLastYear;
 ```
 
 ###
 
 ```
-class Company {
+public class Company
+{
   //…
-  private $customer; // Customer
-  public function getCustomer() {
-    return ($this->customer == null) ? Customer::newNull() : $this->customer;
+  private Customer customer;
+  
+  public Customer Customer
+  {
+    get{ return customer ?? Customer.NewNull(); }
   }
 }
 
-class Customer {
-  //…
-  public function isNull() {
-    return false;
+public class Customer
+{
+  public virtual bool IsNull
+  {
+    get{ return false; }
   }
-  static function newNull() {
+  public virtual string Name {
+    //…
+  }
+
+  public static Customer NewNull()
+  {
     return new NullCustomer();
   }
-
-  public function getName() {
+  public virtual BillingPlan GetPlan() {
     //…
   }
-  public function getPlan() {
-    //…
-  }
-  public function getHistory() {
+  public virtual PaymentHistory GetHistory() {
     //…
   }
 }
-class NullCustomer extends Customer {
-  public function isNull() {
-    return true;
+public class NullCustomer: Customer
+{
+  public override bool IsNull
+  {
+    get{ return true; }
   }
-  public function getName() {
-    return "N/A";
+  public override string Name
+  {
+    get{ return "N/A"; }
   }
-  public function getPlan() {
-    return BillingPlan::basic();
+
+  public override BillingPlan GetPlan()
+  {
+    return BillingPlan.Basic();
   }
-  public function getHistory() {
-    return PaymentHistory::newNull();
+  public override PaymentHistory GetHistory()
+  {
+    return PaymentHistory.NewNull();
   }
 }
 
-class PaymentHistory {
-  public function isNull() {
-    return false;
+public class PaymentHistory
+{
+  public virtual bool IsNull
+  {
+    get{ return false; }
   }
-  public static function newNull() {
+  public virtual int WeeksDelinquentInLastYear {
+    //…
+  }
+
+  public static PaymentHistory NewNull()
+  {
     return new NullPaymentHistory();
   }
-
-  public function getWeeksDelinquentInLastYear() {
-    //…
-  }
 }
-class NullPaymentHistory extends PaymentHistory {
-  public function isNull() {
-    return true;
+public class NullPaymentHistory: PaymentHistory
+{
+  public override bool IsNull
+  {
+    get{ return true; }
   }
-  public function getWeeksDelinquentInLastYear() {
-    return 0;
+  public override int WeeksDelinquentInLastYear
+  {
+    get{ return 0; }
   }
 }
 
 // Somewhere in client code
-$customer = $site->getCustomer();
-$customerName = $customer->getName();
+Customer customer = site.Customer;
+string customerName = customer.Name;
 
 //…
-$plan = $customer->getPlan();
+BillingPlan plan = customer.GetPlan();
 
 //…
-$weeksDelinquent = $customer->getHistory()->getWeeksDelinquentInLastYear();
+int weeksDelinquent = customer.GetHistory().WeeksDelinquentInLastYear;
 ```
 
 ###
@@ -173,9 +192,9 @@ Select name of "Customer"
 #|en| Every business has customers (<code>Customer</code>).
 #|uk| Кожна компанія знає своїх покупців (<code>Customer</code>).
 
-Select "getName" in "Customer"
-+Select "getPlan" in "Customer"
-+Select "getHistory" in "Customer"
+Select "Name" in "Customer"
++Select "GetPlan" in "Customer"
++Select "GetHistory" in "Customer"
 
 #|ru| В свою очередь у покупателей есть свои свойства и поведения.
 #|en| Customers in turn have their own properties and behaviors.
@@ -183,11 +202,11 @@ Select "getName" in "Customer"
 
 Go to "// Somewhere in client code"
 
-#|ru| Клиентский код оперирует этими методами доступа, чтобы делать какую-то работу. Например, так выглядит код получения имени текущего клиента компании.
-#|en| The client code operates on these access methods in order to do its work. For example, this is code for getting the name of a current customer:
-#|uk| Клієнтський код оперує цими методами доступу, щоб робити якусь роботу. Наприклад, так виглядає код отримання імені поточного клієнта компанії.
+#|ru| Клиентский код оперирует этими параметрами, чтобы делать какую-то работу. Например, так выглядит код получения имени текущего клиента компании.
+#|en| The client code operates on these parameters in order to do its work. For example, this is code for getting the name of a current customer:
+#|uk| Клієнтський код оперує цими параметрами, щоб робити якусь роботу. Наприклад, так виглядає код отримання імені поточного клієнта компанії.
 
-Select "if ($customer == null)"
+Select "if (customer == null)"
 
 #|ru| Обратите внимание на условный оператор, проверяющий, есть ли клиент в компании. Такая ситуация вполне может приключиться, если компания новая, либо старый покупатель решил сменить поставщика.
 #|en| Note the conditional that verifies whether the business has the customer in question. This situation may occur if the business is new or an old customer has decided to change vendors.
@@ -197,79 +216,106 @@ Select "if ($customer == null)"
 #|en| The code may contain many such repetitive <code>null</code> verifications, which indicates the need to introduce a null-object.
 #|uk| У коді може бути багато таких повторюваних перевірок на <code>null</code>, що сигналізує про потребу введення Null-об'єкта.
 
-#|ru| Первым делом создаём нулевой класс для <code>customer</code> и модифицируем класс <code>Сustomer</code>, чтобы он поддерживал запрос проверки на <code>null</code>.
-#|en| First create a <code>null</code>-object class for <code>customer</code> and modify the <code>Customer</code> class so that it supports a query for <code>null</code> verification.
-#|uk| Спершу створюємо нульовий клас для <code>customer</code> і модифікуємо клас <code>Сustomer</code> так, щоб він підтримував запит перевірки на <code>null</code>.
+#|ru| Первым делом создаём нулевой класс <code>NullCustomer</code> и модифицируем класс <code>Сustomer</code>, чтобы он поддерживал запрос проверки на <code>null</code>.
+#|en| First create a <code>null</code>-object class <code>NullCustomer</code> and modify the <code>Customer</code> class so that it supports a query for <code>null</code> verification.
+#|uk| Спершу створюємо нульовий клас <code>NullCustomer</code> і модифікуємо клас <code>Сustomer</code> так, щоб він підтримував запит перевірки на <code>null</code>.
 
 Set step 2
 
-Go to before "getName"
+Go to beginning of "Customer"
 
 Print:
 ```
 
-  public function isNull() {
-    return false;
+  public virtual bool IsNull
+  {
+    get{ return false; }
   }
-
 ```
+
+Wait 500ms
+
 Go to after "Customer"
 
 Print:
 ```
 
-class NullCustomer extends Customer {
-  public function isNull() {
-    return true;
+public class NullCustomer: Customer
+{
+  public override bool IsNull
+  {
+    get{ return true; }
   }
 }
 ```
+
+Wait 500ms
+
+Go to before "GetPlan" in "Customer"
 
 #|ru| Для создания нулевых клиентов введём фабричный метод, благодаря чему клиентам не обязательно будет знать о существовании нулевого класса.
 #|en| To create "null" clients, let's introduce a factory method. Thanks to it, client code will not need to know about the existence of the null-object
 #|uk| Для створення нульових клієнтів введемо фабричний метод, завдяки чому клієнтам не обов'язково буде знати про існування нульового класу.
 
-Go to after "isNull"
-
 Print:
 ```
 
-  static function newNull() {
+  public static Customer NewNull()
+  {
     return new NullCustomer();
   }
 ```
 
+Select "string |||Name|||"
++Select name of "GetPlan"
++Select name of "GetHistory"
++Select "int |||WeeksDelinquentInLastYear|||"
+
+#|ru| Также нужно сделать виртуальными все свойства и методы, которые мы в дальнейшем будем переопределять в нулевых классах.
+#|en| You also need to make the virtual all the properties and methods that we will then override in the null classes.
+#|uk| Також потрібно зробити віртуальними всі властивості і методи, які ми надалі будемо перевизначати в нульових класах.
+
+Select "public||| |||string Name"
++Select "public||| |||BillingPlan"
++Select "public||| |||PaymentHistory"
++Select "public||| |||int WeeksDelinquentInLastYear"
+
+Replace " virtual "
+
+Wait 500ms
+
 Set step 3
 
-Select "return $this->customer"
+Select "return customer"
 
 #|ru| Теперь мы должны модифицировать все участки кода, где запрашиваются объекты <code>Сustomer</code>, и модифицировать их так, чтобы возвращать нулевого пользователя вместо <code>null</code>.
 #|en| Now we should handle all code that returns <code>Customer</code> objects. We should add the checks, which will return our <code>null</code> object instead of <code>null</code> value.
 #|uk| Тепер ми повинні модифікувати всі ділянки коду, де э запит щодо об'єктів <code>Сustomer</code>, і модифікувати їх так, щоб повертати нульового користувача замість <code>null</code>.
 
-Print "return ($this->customer == null) ? Customer::newNull() : $this->customer"
+Print "return customer ?? Customer.NewNull()"
+
 
 Set step 4
 
-Select "if (|||$customer == null|||)"
+Select "if (|||customer == null|||)"
 
-#|ru| После этого в остальном коде можно заменить все проверки вида <code>Customer == null</code> на вызовы <code>Customer->isNull()</code>.
-#|en| In the remaining code, we can now replace all checks resembling <code>Customer == null </code> with calls to <code>Customer->isNull()</code>.
-#|uk| Після цього в іншому коді можна замінити всі перевірки вигляду <code>Customer == null</code> на виклики <code>Customer->isNull()</code>.
+#|ru| После этого в остальном коде можно заменить все проверки вида <code>Customer == null</code> на вызовы <code>Customer.IsNull</code>.
+#|en| Then, in the remaining code, replace all checks of the type <code>Customer == null</code> with calls of <code>Customer.IsNull</code>.
+#|uk| Після цього в іншому коді можна замінити всі перевірки виду <code>Customer == null</code> на виклики <code>Customer.IsNull</code>.
 
-Print "$customer->isNull()"
+Print "customer.IsNull"
 
 #|ru| Это самая сложная часть данного рефакторинга, т.к. для каждого заменяемого источника <code>null</code> необходимо найти все случаи проверки на <code>null</code> и отредактировать их. Если объект интенсивно передаётся, их может быть нелегко проследить.
 #|en| This is the most complex part of the refactoring. For each source of <code>null</code> that you are replacing, you must find all <code>null</code> checks and change them. If an object is passed back and forth between methods, doing so consistently can be difficult.
 #|uk| Це найскладніша частина даного рефакторинга, т.к. для кожного джерела<code>null</code>, що замінюється,  необхідно знайти всі випадки перевірки на <code>null</code> і відредагувати їх. Якщо об'єкт інтенсивно передається, їх може бути нелегко простежити.
 
-#C|ru| После всех замен стоит провести тщательное тестирование.
+#C|ru| После всех замен стоит провести компиляцию и тщательное тестирование.
 #S Отлично, все работает, можем продолжать!
 
-#C|en| After all the changes, test everything carefully.
+#C|en| After all replacements are done, compile and test carefully.
 #S Great, it all works! We can continue then.
 
-#C|uk| Після всіх замін варто провести ретельне тестування.
+#C|uk| Після всіх замін варто провести компіляцію і ретельне тестування.
 #S Супер, все працює, можемо продовжувати.
 
 Set step 5
@@ -278,7 +324,7 @@ Set step 5
 #|en| We do not yet gain any benefit from using <code>isNull</code> instead of plain <code>== null</code>  checks. The benefit will be visible when the code, which used to work in null cases will be moved straight to the null-object class.
 #|uk| В даний момент ми нічого не виграємо від застосування <code>isNull</code> замість <code>== null</code>. Вигода з'явиться тоді, коли код поведінки в нульовій ситуації буде переміщений в нульовий клас, а умовні оператори взагалі видалені.
 
-Select "$customerName = "N/A""
+Select "customerName = "N/A""
 
 #|ru| Итак, начнём перемещать поведения в нулевой класс. И первое, что мы сделаем, это перенесём название покупателя по умолчанию.
 #|en| Let's start moving behaviors. The first thing to do is move the default customer name to the null-object class.
@@ -289,8 +335,9 @@ Go to the end of "NullCustomer"
 Print:
 ```
 
-  public function getName() {
-    return "N/A";
+  public override string Name
+  {
+    get{ return "N/A"; }
   }
 ```
 
@@ -298,12 +345,11 @@ Wait 500ms
 
 Select:
 ```
-if (customer == null) {
-  $customerName = "N/A";
-}
-else {
-  $customerName = $customer->getName();
-}
+string customerName;
+if (customer.IsNull)
+  customerName = "N/A";
+else
+  customerName = customer.Name;
 ```
 
 #|ru| После этого можно убрать проверку на <code>null</code> из части клиентского кода.
@@ -312,7 +358,7 @@ else {
 
 Print:
 ```
-$customerName = $customer->getName();
+string customerName = customer.Name;
 ```
 
 #|ru| То же самое можно проделать и с остальными методами, к которым возможно придумать поведение по умолчанию.
@@ -324,8 +370,10 @@ Go to the end of "NullCustomer"
 Print:
 ```
 
-  public function getPlan() {
-    return BillingPlan::basic();
+
+  public override BillingPlan GetPlan()
+  {
+    return BillingPlan.Basic();
   }
 ```
 
@@ -333,20 +381,19 @@ Wait 500ms
 
 Select:
 ```
-if ($customer->isNull()) {
-  $plan = BillingPlan::basic();
-}
-else {
-  $plan = $customer->getPlan();
-}
+BillingPlan plan;
+if (customer.IsNull)
+  plan = BillingPlan.Basic();
+else
+  plan = customer.GetPlan();
 ```
 
 Replace:
 ```
-$plan = $customer->getPlan();
+BillingPlan plan = customer.GetPlan();
 ```
 
-Select "$customer->getHistory()"
+Select "customer.GetHistory()"
 
 #|ru| При внимательном рассмотрении последнего участка можно заметить, что там содержится потенциальная ошибка доступа уже к объекту оплат, в случае, когда объект пользователя не имеет никакой истории оплат.
 #|en| Careful review of the last bit of code could show a potential access error. It will occur when somebody will access a payment object while user object won't have any payment history.
@@ -356,38 +403,45 @@ Select "$customer->getHistory()"
 #|en| To solve the problem, you can create a null-object class for the payment history class as well.
 #|uk| Щоб вирішити проблему, можна створити нульовий клас ще й для класу історії оплат.
 
-Go to the start of "PaymentHistory"
+Go to beginning of "PaymentHistory"
 
 Print:
 ```
 
-  public function isNull() {
-    return false;
+  public virtual bool IsNull
+  {
+    get{ return false; }
   }
 ```
+
+Wait 500ms
+
 Go to after "PaymentHistory"
 
 Print:
 ```
 
-class NullPaymentHistory extends PaymentHistory {
-  public function isNull() {
-    return true;
+public class NullPaymentHistory: PaymentHistory
+{
+  public override bool IsNull
+  {
+    get{ return true; }
   }
 }
 ```
 
 Wait 500ms
 
-Go to before "getWeeksDelinquentInLastYear"
+Go to end of "PaymentHistory"
 
 Print:
 ```
 
-  public static function newNull() {
+
+  public static PaymentHistory NewNull()
+  {
     return new NullPaymentHistory();
   }
-
 ```
 
 Go to the end of "NullPaymentHistory"
@@ -399,12 +453,13 @@ Go to the end of "NullPaymentHistory"
 Print:
 ```
 
-  public function getWeeksDelinquentInLastYear() {
-    return 0;
+  public override int WeeksDelinquentInLastYear
+  {
+    get{ return 0; }
   }
 ```
 
-Select "$customer->getHistory()"
+Select "customer.GetHistory()"
 
 #|ru| Теперь о проблеме доступа к нулевому объекту истории оплат можно не волноваться. Но это ещё не всё.
 #|en| Now we can rest easy about any potential problem accessing the null-object of the payment history. But there are still other things to take care of.
@@ -419,33 +474,33 @@ Go to the end of "NullCustomer"
 Print:
 ```
 
-  public function getHistory() {
-    return PaymentHistory::newNull();
+  public override PaymentHistory GetHistory()
+  {
+    return PaymentHistory.NewNull();
   }
 ```
 
 Select:
 ```
-if ($customer->isNull()) {
-  $weeksDelinquent = 0;
-}
-else {
-  $weeksDelinquent = $customer->getHistory()->getWeeksDelinquentInLastYear();
-}
+int weeksDelinquent;
+if (customer.IsNull)
+  weeksDelinquent = 0;
+else
+  weeksDelinquent = customer.GetHistory().WeeksDelinquentInLastYear;
 ```
 
 Replace:
 ```
-$weeksDelinquent = $customer->getHistory()->getWeeksDelinquentInLastYear();
+int weeksDelinquent = customer.GetHistory().WeeksDelinquentInLastYear;
 ```
 
-#C|ru| Запускаем финальное тестирование.
+#C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's start the final testing.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
-#C|uk| Запускаємо фінальне тестування.
+#C|uk| Запускаємо фінальну компіляцію.
 #S Супер, все працює.
 
 Set final step
