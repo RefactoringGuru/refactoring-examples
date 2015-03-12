@@ -27,7 +27,7 @@ replace-type-code-with-state-strategy:csharp
 6.uk. Перемістіть поля та методи з суперкласу у відповідні підкласи-стану.
 
 7.ru. Когда все что можно перемещено, используйте <a href="/replace-conditional-with-polymorphism">замену условных операторов полиморфизмом</a>, чтобы окончательно избавиться от условных операторов, использующий закодированный тип.
-7.en. When everything moveable has been moved, use <a href="/replace-conditional-with-polymorphism">Replace Conditional with Polymorphism</a> in order to get rid of conditionals that use type code once and for all.
+7.en. When everything movable has been moved, use <a href="/replace-conditional-with-polymorphism">Replace Conditional with Polymorphism</a> in order to get rid of conditionals that use type code once and for all.
 7.uk. Коли усі потрібні дані будуть перенесені, використайте <a href="/replace-conditional-with-polymorphism">заміну умовних операторів поліморфізмом</a>, щоб остаточно позбавитися від умовних операторів, які використовують закодований тип.
 
 
@@ -220,7 +220,7 @@ Set step 2
 
 Go to the end of file
 
-#|ru| ***Итак, объявим класс состояния (как абстрактный класс с абстрактным свойством, возвращающим код типа).
+#|ru| Итак, объявим класс состояния (как абстрактный класс с абстрактным свойством, возвращающим код типа).
 #|en| Declare the state class (as an abstract class with an abstract property for returning type code).
 #|uk| Отже, оголосимо клас стану (як абстрактний клас з абстрактним властивістю, що повертає код типу).
 
@@ -275,7 +275,7 @@ Set step 4
 
 Go to the end of "EmployeeType"
 
-#|ru| ***Далее создадим в классе состояния статический метод, который будет по переданному коду типа возвращать экземпляр соответствующего подкласса.
+#|ru| Далее создадим в классе состояния статический метод, который будет по переданному коду типа возвращать экземпляр соответствующего подкласса.
 #|en| Create a static method in the state class. It will return an instance of the necessary subclass, depending on the value accepted.
 #|uk| Далі створимо в класі стану статичний метод, який буде по переданому кодом типу повертати екземпляр відповідного підкласу.
 
@@ -318,7 +318,7 @@ Set step 5
 
 Select "private |||int||| type"
 
-#|ru| ***Теперь нужно подключить созданные подклассы к <code>Employee</code>, модифицируя свойство, инкапсулирующее поле кода типа и конструктор.
+#|ru| Теперь нужно подключить созданные подклассы к <code>Employee</code>, модифицируя свойство, инкапсулирующее поле кода типа и конструктор.
 #|en| Now we need to connect the created subclasses to <code>Employee</code> by modifying the access property for the type code and constructor.
 #|uk| Тепер потрібно підключити створені підкласи до <code>Employee</code>, модифікуючи властивість, інкапсулюють поле коду типу та конструктор.
 
@@ -355,7 +355,7 @@ Wait 500ms
 
 Select "public int |||Type|||"
 
-#|ru| ***Так как свойство теперь возвращает код, а не сам объект типа, стоит переименовать его, чтобы избавить будущего читателя от непонимания.
+#|ru| Так как свойство теперь возвращает код, а не сам объект типа, стоит переименовать его, чтобы избавить будущего читателя от непонимания.
 #|en| Since property now return a code, not the type object itself, we should rename it to make things clear to future readers.
 #|uk| Так як властивість тепер повертає код, а не сам об'єкт типу, варто перейменувати його, щоб позбавити майбутнього читача від нерозуміння.
 

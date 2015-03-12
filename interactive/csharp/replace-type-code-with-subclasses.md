@@ -14,7 +14,7 @@ replace-type-code-with-subclasses:csharp
 3.en. Create a unique subclass for each value of the coded type. In it, redefine the getter of the coded type so that it returns the corresponding value of the coded type.
 3.uk. Зробіть конструктор суперкласу приватним. Створіть статичний фабричний метод з тими ж параметрами, що і конструктор суперкласу. Він обов'язково повинен містити параметр, який набуватиме стартових значень закодованого типу. Залежно від цього параметру фабричний метод створюватиме об'єкти різних підкласів. Для цього в його коді доведеться створити великий умовний оператор, але, принаймні, він буде єдиним, який дійсно потрібний, про усе інше надалі зможуть потурбуватися підкласи і поліморфізм.
 
-4.ru. ***Удалите поле с закодированным типом из суперкласса, а соответствующее ему свойство сделайте абстрактным.
+4.ru. Удалите поле с закодированным типом из суперкласса, а соответствующее ему свойство сделайте абстрактным.
 4.en. Delete the field with type code from the superclass. Make its property abstract.
 4.uk. Видаліть поле із закодованим типом з суперкласу, а відповідне йому властивість зробіть абстрактним.
 
@@ -23,7 +23,7 @@ replace-type-code-with-subclasses:csharp
 5.uk. Тепер, коли у вас з'явилися підкласи, можете починати переміщати властивості і методи з суперкласу у відповідні підкласи.
 
 6.ru. Когда все что можно перемещено, используйте <a href="/replace-conditional-with-polymorphism">замену условных операторов полиморфизмом</a>, чтобы окончательно избавиться от условных операторов, использующий закодированный тип.
-6.en. When everything moveable has been moved, use <a href="/replace-conditional-with-polymorphism">Replace Conditional with Polymorphism</a> in order to get rid of conditionals that use type code once and for all.
+6.en. When everything movable has been moved, use <a href="/replace-conditional-with-polymorphism">Replace Conditional with Polymorphism</a> in order to get rid of conditionals that use type code once and for all.
 6.uk. Коли усі потрібні дані будуть перенесені, використайте <a href="/replace-conditional-with-polymorphism">заміну умовних операторів поліморфізмом</a>, щоб остаточно позбавитися від умовних операторів, які використовують закодований тип.
 
 
@@ -241,7 +241,7 @@ Print:
 
 Select body of "Create"
 
-#|ru| ***Необходимо также изменить фабричный метод, чтобы он создавал надлежащий объект.
+#|ru| Необходимо также изменить фабричный метод, чтобы он создавал надлежащий объект.
 #|en| We need to change the factory method as well so that it creates the necessary object.
 #|uk| Необхідно також змінити фабричний метод, щоб він створював належний об'єкт.
 
@@ -415,7 +415,7 @@ Select:
 #|en| After creating the subclasses, use <a href="/push-down-method">Push Down Method</a> and <a href="/push-down-field">Push Down Field</a> on all methods and properties that relate to only specific types of employees.
 #|uk| Тепер, після створення підкласів, слід застосувати <a href="/push-down-method">Спуск методу</a> і <a href="/push-down-field">Спуск поля</a> до всіх методів та властивостей, що відносяться тільки до тих чи інших типів службовців.
 
-#|ru| ***В нашем случае надо создать методы <code>PayAmount</code> в каждом из подклассов и переместить туда расчёты зарплаты для соответствующих типов служащих.
+#|ru| В нашем случае надо создать методы <code>PayAmount</code> в каждом из подклассов и переместить туда расчёты зарплаты для соответствующих типов служащих.
 #|en| In our case, we will create <code>PayAmount</code> methods in each of the subclasses and move payroll calculations there for the relevant types of employees.
 #|uk| В нашому випадку треба створити методи <code>PayAmount</code> в кожному з підкласів і перемістити туди розрахунки зарплати для відповідних типів службовців.
 
@@ -507,7 +507,7 @@ Set step 6
 
 Select body of "PayAmount"
 
-#|ru| ***После перемещения всего кода по подклассам вы можете либо объявить метод в суперклассе абстрактным, либо оставить в нём реализацию по умолчанию, сделав его виртуальным (так и поступим).
+#|ru| После перемещения всего кода по подклассам вы можете либо объявить метод в суперклассе абстрактным, либо оставить в нём реализацию по умолчанию, сделав его виртуальным (так и поступим).
 #|en| After all the code has been moved to the subclasses, you can either declare the method in the superclass abstract or else leave the default implementation there, making it a virtual (which is what we will do).
 #|uk| Після переміщення всього коду до підкласів ви можете або оголосити метод в суперкласі абстрактним, або залишити в ньому типову реалізацію, зробивши його віртуальним (так і вчинимо).
 

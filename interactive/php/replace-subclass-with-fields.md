@@ -112,7 +112,7 @@ Select "return true"
 + Select "return 'M'"
 + Select "return 'F'"
 
-#|ru| ***Единственное различие между подклассами здесь в том, что в них есть реализации абстрактных методов, возвращающие жёстко заданные константы. От таких классов лучше избавиться.
+#|ru| Единственное различие между подклассами здесь в том, что в них есть реализации абстрактных методов, возвращающие жёстко заданные константы. От таких классов лучше избавиться.
 #|en| The only difference between the subclasses is that they have implementations of the abstract methods that return hard-coded constants. It is preferable to get rid of such classes.
 #|uk| Єдина відмінність між підклассами в данному втпадкому в тому, що в них є реалізації абстрактних методів, що повертають жорстко задані константи. Від таких класів краще позбутися.
 
@@ -220,7 +220,7 @@ Set step 6
 
 Select "  abstract function isMale();"
 
-#|ru| ***Поля создаются и инициализируются, но пока не используются. Теперь мы можем ввести их в эксплуатацию, поместив в родительском классе методы доступа и удалив методы подклассов.
+#|ru| Поля создаются и инициализируются, но пока не используются. Теперь мы можем ввести их в эксплуатацию, поместив в родительском классе методы доступа и удалив методы подклассов.
 #|en| The fields are created and initialized, but are not yet used. Now we can get the fields "in the game" by placing access methods in the parent class and removing subclass methods.
 #|uk| Поля створюються та ініціалізуються, але поки не використовуються. Тепер ми можемо ввести їх в експлуатацію, помістивши в батьківському класі методи доступу і видаливши методи підкласів.
 
@@ -270,7 +270,7 @@ Select "|||abstract||| class Person"
 + Select "new Male()"
 + Select "new Female()"
 
-#|ru| ***В итоге все подклассы оказываются пустыми, поэтому мы снимаем пометку abstract с класса Person и с помощью <a href="/inine-method">Встраивания метода</a> встраиваем конструкторы подклассов в родительский класс.
+#|ru| В итоге все подклассы оказываются пустыми, поэтому мы снимаем пометку abstract с класса Person и с помощью <a href="/inine-method">Встраивания метода</a> встраиваем конструкторы подклассов в родительский класс.
 #|en| All subclasses are empty at this point. That allows us to remove the "abstract" keyword from the Person class and use its constructor instead the ones from subclasses (that we could simply remove).
 #|uk| У підсумку всі підкласи виявляються порожніми, тому ми знімаємо позначку abstract з класу Person і за допомогою <a href="/inine-method">вбудовування методу</a> вбудовуємо конструктори підкласів в батьківський клас.
 

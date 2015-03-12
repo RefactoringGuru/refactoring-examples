@@ -202,7 +202,7 @@ Select "Name" in "Customer"
 
 Go to "// Somewhere in client code"
 
-#|ru| ***Клиентский код оперирует этими параметрами, чтобы делать какую-то работу. Например, так выглядит код получения имени текущего клиента компании.
+#|ru| Клиентский код оперирует этими параметрами, чтобы делать какую-то работу. Например, так выглядит код получения имени текущего клиента компании.
 #|en| The client code operates on these parameters in order to do its work. For example, this is code for getting the name of a current customer:
 #|uk| Клієнтський код оперує цими параметрами, щоб робити якусь роботу. Наприклад, так виглядає код отримання імені поточного клієнта компанії.
 
@@ -216,7 +216,7 @@ Select "if (customer == null)"
 #|en| The code may contain many such repetitive <code>null</code> verifications, which indicates the need to introduce a null-object.
 #|uk| У коді може бути багато таких повторюваних перевірок на <code>null</code>, що сигналізує про потребу введення Null-об'єкта.
 
-#|ru| ***Первым делом создаём нулевой класс <code>NullCustomer</code> и модифицируем класс <code>Сustomer</code>, чтобы он поддерживал запрос проверки на <code>null</code>.
+#|ru| Первым делом создаём нулевой класс <code>NullCustomer</code> и модифицируем класс <code>Сustomer</code>, чтобы он поддерживал запрос проверки на <code>null</code>.
 #|en| First create a <code>null</code>-object class <code>NullCustomer</code> and modify the <code>Customer</code> class so that it supports a query for <code>null</code> verification.
 #|uk| Спершу створюємо нульовий клас <code>NullCustomer</code> і модифікуємо клас <code>Сustomer</code> так, щоб він підтримував запит перевірки на <code>null</code>.
 
@@ -271,7 +271,7 @@ Select "string |||Name|||"
 +Select name of "GetHistory"
 +Select "int |||WeeksDelinquentInLastYear|||"
 
-#|ru| ***Также нужно сделать виртуальными все свойства и методы, которые мы в дальнейшем будем переопределять в нулевых классах.
+#|ru| Также нужно сделать виртуальными все свойства и методы, которые мы в дальнейшем будем переопределять в нулевых классах.
 #|en| You also need to make the virtual all the properties and methods that we will then override in the null classes.
 #|uk| Також потрібно зробити віртуальними всі властивості і методи, які ми надалі будемо перевизначати в нульових класах.
 

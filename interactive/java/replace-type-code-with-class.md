@@ -22,7 +22,7 @@ replace-type-code-with-class:java
 5.en. Replace any mentions of values of the coded type with calls of the relevant <i>type class</i> static methods.
 5.uk. Замініть будь-які згадки значень закодованого типу викликами відповідних статичних методів <i>класу типу</i>.
 
-6.ru. ***Удалите константы закодированного типа из исходного класса и закройте конструктор <i>класса типа</i>.
+6.ru. Удалите константы закодированного типа из исходного класса и закройте конструктор <i>класса типа</i>.
 6.en. Remove the coded type constants from the original class and make the <i>type class</i> constructor private.
 6.uk. Видаліть константи закодованого типу з початкового класу і закрийте конструктор <i>класу типу</i>.
 
@@ -400,7 +400,7 @@ Select:
 
 ```
 
-#|ru| ***Можно удалить неиспользуемые константы из класса <code>Person</code>.
+#|ru| Можно удалить неиспользуемые константы из класса <code>Person</code>.
 #|en| You can remove unused constants from the <code>Person</code> class.
 #|uk| Можна видалити невикористовувані константи з класу <code>Person</code>.
 
@@ -408,7 +408,7 @@ Remove selected
 
 Select "|||public||| BloodGroup" in "BloodGroup"
 
-#|ru| ***И напоследок следует закрыть конструктор класса <code>BloodGroup</code> от доступа извне.
+#|ru| И напоследок следует закрыть конструктор класса <code>BloodGroup</code> от доступа извне.
 #|en| And finally, you should make the <code>BloodGroup</code> constructor private.
 #|uk| І наостанок слід закрити конструктор класу <code>BloodGroup</code> від доступу ззовні.
 

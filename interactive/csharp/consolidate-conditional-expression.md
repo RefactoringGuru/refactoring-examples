@@ -4,7 +4,7 @@ consolidate-conditional-expression:csharp
 
 1.ru. Объедините множество условий в одном с помощью операторов <code>И</code> и <code>ИЛИ</code>.
 1.en. Consolidate the conditionals in a single expression by using <code>AND</code> and <code>OR</code>.
-1.uk. Об'єднайте декілька умов в одному за допомогою операторів <code>і</code> та <code>або</code>.
+1.uk. Об'єднайте декілька умов в одному за допомогою операторів <code>І</code> та <code>АБО</code>.
 
 2.ru. <a href="/extract-method">Извлеките метод</a> из условия оператора и назовите его так, чтобы он отражал суть проверяемого выражения.
 2.en. Perform <a href="/extract-method">Extract Method</a> on the operator conditions and give the method a name that reflects the expression's purpose.
@@ -102,9 +102,9 @@ Select "if" in "DisabilityAmount"
 #|en| As you see, there are a number of conditions that return an identical result.
 #|uk| Як бачите, у нас є ряд умов, які повертають однаковий результат.
 
-#|ru| Эти проверки можно объединить в одно выражение с помощью операции «ИЛИ».
+#|ru| Эти проверки можно объединить в одно выражение с помощью операции <code>ИЛИ</code>.
 #|en| We can merge these checks into a single expression using the <code>OR</code> operator.
-#|uk| Ці перевірки можна об'єднати в один вираз за допомогою операції «або».
+#|uk| Ці перевірки можна об'єднати в один вираз за допомогою операції <code>АБО</code>.
 
 Go to:
 ```
@@ -170,9 +170,9 @@ Replace "IsNotEligibleForDisability()"
 
 Select "if" in "VacationAmount"
 
-#|ru| ***Предыдущий пример демонстрировал операцию <code>ИЛИ</code>, а теперь применим операцию <code>И</code> для объединения вложенных условий.
+#|ru| Предыдущий пример демонстрировал операцию <code>ИЛИ</code>, а теперь применим операцию <code>И</code> для объединения вложенных условий.
 #|en| The previous example demonstrated the <code>OR</code> operation but the same thing can be done using <code>AND</code>.
-#|uk| Попередній приклад демонстрував операцію <code>або</code>, а тепер розглянемо застосування операції <code>і</code>, яка використовується при об'єднанні вкладених умов.
+#|uk| Попередній приклад демонстрував операцію <code>АБО</code>, а тепер розглянемо застосування операції <code>І</code>, яка використовується при об'єднанні вкладених умов.
 
 #|ru| Эти условия можно заменить следующим образом:
 #|en| These conditions can be replaced as follows:

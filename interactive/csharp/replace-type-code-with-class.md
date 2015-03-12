@@ -6,7 +6,7 @@ replace-type-code-with-class:csharp
 1.en. Create a new class and give it a new name that corresponds to the purpose of the coded type. Here we will call it <i>type class</i>.
 1.uk. Створіть новий клас і дайте йому зрозумілу назву, що відповідає призначенню закодованого типу. Ми називатимемо його <i>клас типу</i>.
 
-2.ru. ***В <i>класс типа</i> скопируйте поле, содержащее кодирование типа, и сделайте его приватным. Кроме того, создайте свойство для чтения этого поля. Устанавливаться значение в это поле будет только из конструктора.
+2.ru. В <i>класс типа</i> скопируйте поле, содержащее кодирование типа, и сделайте его приватным. Кроме того, создайте свойство для чтения этого поля. Устанавливаться значение в это поле будет только из конструктора.
 2.en. Copy the field containing type code to the <i>type class</i> and make it private. Then create a read-only property for the field. A value will be set for this field only from the constructor.
 2.uk. У <i>клас типу</i> скопіюйте поле, що містить кодування типу, і зробіть його приватним. Крім того, створіть властивість для читання цього поля. Встановлюватися значення в це поле буде тільки з конструктора.
 
@@ -14,7 +14,7 @@ replace-type-code-with-class:csharp
 3.en. For each value of the coded type, create a static property in the <i>type class</I>.
 3.uk. Для кожного значення закодованого типу, створіть статичне властивість в <i>класі типу</i>.
 
-4.ru. ***В исходном классе, замените тип закодированного поля на <i>класс типа</i>. Создавайте новый объект этого типа в конструкторе, а также в сеттере поля. Измените геттер поля так, чтобы он обращался к соответствующему свойству <i>класса типа</i>.
+4.ru. В исходном классе, замените тип закодированного поля на <i>класс типа</i>. Создавайте новый объект этого типа в конструкторе, а также в сеттере поля. Измените геттер поля так, чтобы он обращался к соответствующему свойству <i>класса типа</i>.
 4.en. In the original class, replace the type of the coded field with <i>type class</i>. Create a new object of this type in the constructor as well as in the field setter. Change the field getter so that it access the <i>type class</i> property.
 4.uk. У початковому класі, замініть тип закодованого поля на <i>клас типу</i>. Створіть новий об'єкт цього типу в конструкторі, а також в сетерові поля. Змініть геттер поля так, щоб він звертався до відповідного властивості <i>класу типу</i>.
 
@@ -22,7 +22,7 @@ replace-type-code-with-class:csharp
 5.en. Replace any mentions of values of the coded type with calls of the relevant <i>type class</i> static methods.
 5.uk. Замініть будь-які згадки значень закодованого типу викликами відповідних статичних методів <i>класу типу</i>.
 
-6.ru. ***Удалите константы закодированного типа из исходного класса и закройте конструктор <i>класса типа</i>.
+6.ru. Удалите константы закодированного типа из исходного класса и закройте конструктор <i>класса типа</i>.
 6.en. Remove the coded type constants from the original class and make the <i>type class</i> constructor private.
 6.uk. Видаліть константи закодованого типу з початкового класу і закрийте конструктор <i>класу типу</i>.
 
@@ -183,7 +183,7 @@ Set step 3
 
 Go to before "public BloodGroup"
 
-#|ru| ***Теперь создаём статические свойства для каждого значения закодированного типа из оригинального класса. Эти свойства должны возвращать экземпляры класса <code>BloodGroup</code>.
+#|ru| Теперь создаём статические свойства для каждого значения закодированного типа из оригинального класса. Эти свойства должны возвращать экземпляры класса <code>BloodGroup</code>.
 #|en| Now let's create static properties for each of the type code values from the original class. These properties should return instances of the <code>BloodGroup</code> class.
 #|uk| Тепер, створюємо статичні властивості для кожного значення закодованого типу з оригінального класу. Ці властивості повинні повертати екземпляри класу <code>BloodGroup</code>.
 
@@ -248,7 +248,7 @@ Select "bloodGroupCode" in "public Person"
 +Select "|||bloodGroupCode||| = value"
 +Select "private BloodGroup |||bloodGroupCode|||"
 
-#|ru| ***Вместе с тем переименуем и само поле.
+#|ru| Вместе с тем переименуем и само поле.
 #|en| Also rename the field itself.
 #|uk| Разом з тим перейменуємо і саме поле.
 
@@ -278,7 +278,7 @@ Go to:
 return bloodGroup|||;
 ```
 
-#|ru| ***И наконец изменяем геттер свойства так, чтобы он возвращал свойство класса <code>BloodGroup</code>
+#|ru| И, наконец, изменяем геттер свойства так, чтобы он возвращал свойство класса <code>BloodGroup</code>
 #|en| Then change the property getter so that it return the property of the <code>BloodGroup</code> class.
 #|uk| І, нарешті, змінюємо геттер властивості так, щоб він повертав властивість класу <code>BloodGroup</code>
 
@@ -294,11 +294,11 @@ Select:
                    |||AB = 3|||;
 ```
 
-#|ru| ***Настала пора заменить любые упоминания значений закодированного типа вызовами геттеров соответствующих статических свойств <i>класса типа</i>.
+#|ru| Настала пора заменить любые упоминания значений закодированного типа вызовами геттеров соответствующих статических свойств <i>класса типа</i>.
 #|en| It is now time to replace all type code values with calls to the getters of corresponding static properties of the <i>type class</i>.
 #|uk| А тепер саме час замінити будь-які згадки значень закодованого типу викликами геттерів відповідних статичних властивостей <i>класу типу<i>.
 
-#|ru| ***Сначала меняем значения всех констант старого закодированного типа на обращение к соответствующим свойствам класса <code>BloodGroup</code>.
+#|ru| Сначала меняем значения всех констант старого закодированного типа на обращение к соответствующим свойствам класса <code>BloodGroup</code>.
 #|en| First replace the values of all constants with access to the corresponding properties of the <code>BloodGroup</code> class.
 #|uk| Спочатку замінюємо значення всіх констант старого закодованого типу на звернення до відповідних властивостей класу <code>BloodGroup</code>.
 
@@ -320,7 +320,7 @@ Replace "BloodGroup.AB.Code"
 
 Select "const" in "Person"
 
-#|ru|^ ***При этом надо заменить объявленную константу на статическое поле, иначе возникнет ошибка при компиляции.
+#|ru|^ При этом надо заменить объявленную константу на статическое поле, иначе возникнет ошибка при компиляции.
 #|en|^ Thus it is necessary to replace the declared constant to a static field, otherwise you will get an error when compiling.
 #|uk|^ При цьому треба замінити оголошену константу на статичне поле, інакше виникне помилка при компіляції.
 
@@ -407,9 +407,9 @@ Wait 500ms
 
 Select "BloodGroupCode"
 
-#|ru| ***После замены числовых кодов на объекты имеет смысл переименовать и само свойство.
+#|ru| После замены числовых кодов на объекты имеет смысл переименовать и само свойство.
 #|en| After replacing the numeric codes for objects, rename property.
-#|uk| Після заміни числових кодів на об'єкти має сенс перейменувати і саме властивість.
+#|uk| Після заміни числових кодів на об'єкти має сенс перейменувати і саму властивість.
 
 Replace "BloodGroup"
 
@@ -422,7 +422,7 @@ if (parent.BloodGroup == BloodGroup.AB|||.Code|||)
 }
 ```
 
-#|ru| ***Вероятно теперь сломается клиентский код, но это просто исправить, избавившись от кодов и там.
+#|ru| Вероятно теперь сломается клиентский код, но это просто исправить, избавившись от кодов и там.
 #|en| These changes will probably cause the client code to break, but this can be fixed by simply getting rid of the codes there as well.
 #|uk| Ймовірно тепер зламається клієнтський код, але це просто виправити, позбувшись кодів і там.
 
@@ -440,7 +440,7 @@ Select:
 
 ```
 
-#|ru| ***Можно удалить неиспользуемые константы из класса <code>Person</code>.
+#|ru| Можно удалить неиспользуемые константы из класса <code>Person</code>.
 #|en| You can remove unused constants from the <code>Person</code> class.
 #|uk| Можна видалити невикористовувані константи з класу <code>Person</code>.
 
@@ -448,7 +448,7 @@ Remove selected
 
 Select "|||public||| BloodGroup" in "BloodGroup"
 
-#|ru| ***И напоследок следует закрыть конструктор класса <code>BloodGroup</code> от доступа извне.
+#|ru| И напоследок следует закрыть конструктор класса <code>BloodGroup</code> от доступа извне.
 #|en| And finally, you should make the <code>BloodGroup</code> constructor private.
 #|uk| І наостанок слід закрити конструктор класу <code>BloodGroup</code> від доступу ззовні.
 

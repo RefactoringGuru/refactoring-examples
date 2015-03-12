@@ -2,9 +2,9 @@ consolidate-conditional-expression:php
 
 ###
 
-1.ru. Объедините множество условий в одном с помощью операторов <code>и</code> и <code>или</code>.
+1.ru. Объедините множество условий в одном с помощью операторов <code>И</code> и <code>ИЛИ</code>.
 1.en. Consolidate the conditionals in a single expression by using <code>AND</code> and <code>OR</code>.
-1.uk. Об'єднайте декілька умов в одному за допомогою операторів <code>і</code> та <code>або</code>.
+1.uk. Об'єднайте декілька умов в одному за допомогою операторів <code>І</code> та <code>АБО</code>.
 
 2.ru. <a href="/extract-method">Извлеките метод</a> из условия оператора и назовите его так, чтобы он отражал суть проверяемого выражения.
 2.en. Perform <a href="/extract-method">Extract Method</a> on the operator conditions and give the method a name that reflects the expression's purpose.
@@ -89,9 +89,9 @@ Select "if" in "disabilityAmount"
 #|en| As you see, there are a number of conditions that return an identical result.
 #|uk| Як бачите, у нас є ряд умов, які повертають однаковий результат.
 
-#|ru| Эти проверки можно объединить в одно выражение с помощью операции «или».
+#|ru| Эти проверки можно объединить в одно выражение с помощью операции <code>ИЛИ</code>.
 #|en| We can merge these checks into a single expression using the <code>OR</code> operator.
-#|uk| Ці перевірки можна об'єднати в один вираз за допомогою операції «або».
+#|uk| Ці перевірки можна об'єднати в один вираз за допомогою операції <code>АБО</code>.
 
 Go to:
 ```
@@ -156,9 +156,9 @@ Replace "$this->isNotEligibleForDisability()"
 
 Select "if" in "vacationAmount"
 
-#|ru| Предыдущий пример демонстрировал операцию <code>или</code>, но то же самое можно делать с помощью <code>и</code>.
+#|ru| Предыдущий пример демонстрировал операцию <code>ИЛИ</code>, но то же самое можно делать с помощью <code>И</code>.
 #|en| The previous example demonstrated the <code>OR</code> operation but the same thing can be done using <code>AND</code>.
-#|uk| Попередній приклад демонстрував операцію <code>або</code>, але те ж саме можна робити за допомогою <code>і</code>.
+#|uk| Попередній приклад демонстрував операцію <code>АБО</code>, але те ж саме можна робити за допомогою <code>І</code>.
 
 #|ru| Эти условия можно заменить следующим образом:
 #|en| These conditions can be replaced as follows:
