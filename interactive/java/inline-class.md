@@ -156,9 +156,9 @@ Print "martin.setAreaCode("781")"
 
 Set step 3
 
-#|ru| После этого мы со спокойным сердцем можем выполнять <a href="/move-method">перемещение метода</a> и завершать <a href="/move-field">перемещение поля</a> для перемещения всех полей и методов в класс <code>Person</code>. Эти перемещения можно делать по одному либо все сразу, если их не так много.
+#|ru| После этого мы со спокойным сердцем можем выполнять <a href="/ru/move-method">перемещение метода</a> и завершать <a href="/move-field">перемещение поля</a> для перемещения всех полей и методов в класс <code>Person</code>. Эти перемещения можно делать по одному либо все сразу, если их не так много.
 #|en| We can then proceed to <a href="/move-method">Move Method</a> and <a href="/move-field">Move Field</a> for moving all fields and methods to the <code>Person</code> class. These changes can be done one by one or, if there are not too many, all at once.
-#|uk| Після цього ми зі спокійним серцем можемо виконувати <a href="/move-method">переміщення методу</a> і завершувати <a href="/move-field">переміщення поля</a> для переміщення всіх полів і методів в клас <code>Person</code>. Ці переміщення можна робити по одному або всі відразу, якщо їх не так багато.
+#|uk| Після цього ми зі спокійним серцем можемо виконувати <a href="/uk/move-method">переміщення методу</a> і завершувати <a href="/move-field">переміщення поля</a> для переміщення всіх полів і методів в клас <code>Person</code>. Ці переміщення можна робити по одному або всі відразу, якщо їх не так багато.
 
 Select:
 ```

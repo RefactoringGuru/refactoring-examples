@@ -438,9 +438,9 @@ Select "tbStart.Text"
 + Select "tbEnd.Text"
 + Select "tbLength.Text"
 
-#|ru| Пора браться за текстовые поля. Произведём их <a href="/self-encapsulate-field">самоинкапсуляцию</a>. Для этого создадим строковые свойства для содержимого каждого из полей. Начнём с поля начала интервала.
+#|ru| Пора браться за текстовые поля. Произведём их <a href="/ru/self-encapsulate-field">самоинкапсуляцию</a>. Для этого создадим строковые свойства для содержимого каждого из полей. Начнём с поля начала интервала.
 #|en| Now it's time for the text fields. We will <a href="/self-encapsulate-field">self-encapsulate them</a>. For this, we will create string properties for the content of each field. Start with the interval start field.
-#|uk| Пора братися за текстові поля. Проведемо їх <a href="/self-encapsulate-field">самоінкапсуляцію</a>. Для цього створимо строкові властивості для вмісту кожного з полів. Почнемо з поля початку інтервалу.
+#|uk| Пора братися за текстові поля. Проведемо їх <a href="/uk/self-encapsulate-field">самоінкапсуляцію</a>. Для цього створимо строкові властивості для вмісту кожного з полів. Почнемо з поля початку інтервалу.
 
 Go to before "public IntervalWindow"
 

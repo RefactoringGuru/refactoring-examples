@@ -221,7 +221,7 @@ Select parameters of "public JobItem"
 
 #|ru| Теперь самое время привести в порядок списки параметров конструктора. К каждому из них применим <a href="/remove-parameter">удаление параметров</a>.
 #|en| That is the perfect time to perform housekeeping on the lists of constructor parameters. Let's apply <a href="/remove-parameter">Remove Parameter</a> to each of them.
-#|uk| Тепер саме час привести в порядок списки параметрів конструктора. До кожного з них застосуємо <a href="/remove-parameter">видалення параметрів</a>.
+#|uk| Тепер саме час привести в порядок списки параметрів конструктора. До кожного з них застосуємо <a href="/uk/remove-parameter">видалення параметрів</a>.
 
 Select visibility of "public JobItem"
 
@@ -262,7 +262,7 @@ Select "LaborItem(int quantity, |||int unitPrice, boolean isLabor, |||Employee e
 
 #|ru| Теперь применим <a href="/remove-parameter">удаление параметров</a> к конструктору подкласса, чтобы избавиться от ненужных параметров.
 #|en| Now, we apply <a href="/remove-parameter">Remove Parameter</a> to the subclass constructor to get rid of unnecessary parameters.
-#|uk| Тепер застосуємо <a href="/remove-parameter">видалення параметрів</a> до конструктора підкласу, щоб позбутися від непотрібних параметрів.
+#|uk| Тепер застосуємо <a href="/uk/remove-parameter">видалення параметрів</a> до конструктора підкласу, щоб позбутися від непотрібних параметрів.
 
 Remove selected
 
@@ -294,9 +294,9 @@ Select name of "JobItem"
 
 Select whole of "getEmployee"
 
-#|ru| Начнём с применения <a href="/push-down-method">Спуска метода</a> к <code>getEmployee</code>.
+#|ru| Начнём с применения <a href="/ru/push-down-method">Спуска метода</a> к <code>getEmployee</code>.
 #|en| Start with applying <a href="/push-down-method">Push Down Method</a> to <code>getEmployee</code>. 
-#|uk| Почнемо з застосування <a href="/push-down-method">Спуску методу</a> до <code>getEmployee</code>.
+#|uk| Почнемо з застосування <a href="/uk/push-down-method">Спуску методу</a> до <code>getEmployee</code>.
 
 Remove selected
 
@@ -348,7 +348,7 @@ Set step 5
 
 Select "private boolean isLabor;"
 
-#|ru| Поле <code>isLabor</code> применяется для указания информации, которая теперь присуща иерархии, поэтому можно удалить это поле.<br/><br/>Лучше всего сделать это, сначала применив <a href="/self-encapsulate-field">Самоинкапсуляцию поля</a>, после чего изменив метод доступа, чтобы применить полиморфный константный метод (это такой метод, посредством которого каждая реализация возвращает (своё) фиксированное значение).
+#|ru| Поле <code>isLabor</code> применяется для указания информации, которая теперь присуща иерархии, поэтому можно удалить это поле.<br/><br/>Лучше всего сделать это, сначала применив <a href="/ru/self-encapsulate-field">Самоинкапсуляцию поля</a>, после чего изменив метод доступа, чтобы применить полиморфный константный метод (это такой метод, посредством которого каждая реализация возвращает (своё) фиксированное значение).
 #|en| The <code>isLabor</code> field is used to indicate information now implied by the hierarchy, so the field can be removed<br/><br/>The best way to do so is to first use <a href="/self-encapsulate-field">Self-Encapsulate Field</a> and then override the getter in subclasses so that it return own fixed value (such methods usually called "polymorphic constant method").
 #|uk| Поле <code>isLabor</code> застосовується для вказівки інформації, яка тепер властива ієрархії, тому можна видалити це поле.<br/><br/>Найкраще зробити це, спочатку застосувавши <a href = "/ self-encapsulate- field ">Самоінкапсуляцію поля</a>, після чого змінивши метод доступу, щоб застосувати поліморфний константний метод (це такий метод, за допомогою якого кожна реалізація повертає (своє) фіксоване значення).
 
@@ -419,7 +419,7 @@ Select "isLabor" in "getUnitPrice"
 
 #|ru| Теперь можно посмотреть на пользователей методов <code>isLabor</code>. Они должны быть подвергнуты рефакторингу <a href="/replace-conditional-with-polymorphism">Замена условного оператора полиморфизмом</a>.
 #|en| Now look at the uses of the <code>isLabor</code> methods. They should be refactored using <a href="/replace-conditional-with-polymorphism">Replace Conditional With Polymorphism</a>.
-#|uk| Тепер можна подивитися на користувачів методів <code>isLabor</code>. Для них необхідно застосувати рефакторинг <a href="/replace-conditional-with-polymorphism">Заміна умовного оператора полиморфизмом</a>.
+#|uk| Тепер можна подивитися на користувачів методів <code>isLabor</code>. Для них необхідно застосувати рефакторинг <a href="/uk/replace-conditional-with-polymorphism">Заміна умовного оператора полиморфизмом</a>.
 
 Select body of "getUnitPrice"
 
@@ -448,9 +448,9 @@ Remove selected
 
 Select name of "JobItem"
 
-#|ru| После того как группа методов, использующих некоторые данные, перемещена в подкласс, к этим данным можно применить <a href="/push-down-field">Спуск поля</a>. В некоторых случаях это невозможно, так как данные используются некоторым методом.
+#|ru| После того как группа методов, использующих некоторые данные, перемещена в подкласс, к этим данным можно применить <a href="/ru/push-down-field">Спуск поля</a>. В некоторых случаях это невозможно, так как данные используются некоторым методом.
 #|en| After pushing methods down to a subclass, you can consider moving some of the fields as well. We can apply <a href="/push-down-field">Push Down Field</a> to these fields. In some cases, this is impossible because the fields are still used in the context of superclass.
-#|uk| Після того як група методів, що використовують деякі дані, переміщена в підклас, до цих даних можна застосувати <a href="/push-down-field">Спуск поля</a>. В деяких випадках це неможливо, так як дані використовуються деяким методом.
+#|uk| Після того як група методів, що використовують деякі дані, переміщена в підклас, до цих даних можна застосувати <a href="/uk/push-down-field">Спуск поля</a>. В деяких випадках це неможливо, так як дані використовуються деяким методом.
 
 #|ru| В нашем случае все готово, чтобы переместить поле <code>employee</code> в <code>LaborItem</code>.
 #|en| In our case, everything is ready for us to move the <code>employee</code> field to <code>LaborItem</code>.
@@ -487,9 +487,9 @@ Select:
 #C|uk| Виконаємо компіляцію і тестування, щоб упевнитися у відсутності помилок.
 #S Все добре, можемо продовжувати.
 
-#|ru| Итак, мы справились с извлечением <code>LaborItem</code>. Но есть ещё один момент. Поскольку цена запчастей <code>unitPrice</code> используется только в классе <code>JobItem</code> и не нужна в <code>LaborItem</code>, мы можем пойти дальше и снова применить к <code>JobItem</code> <a href="/extract-subclass">Выделение подкласса</a> и создать класс, представляющий запчасти.
+#|ru| Итак, мы справились с извлечением <code>LaborItem</code>. Но есть ещё один момент. Поскольку цена запчастей <code>unitPrice</code> используется только в классе <code>JobItem</code> и не нужна в <code>LaborItem</code>, мы можем пойти дальше и снова применить к <code>JobItem</code> <a href="/ru/extract-subclass">Выделение подкласса</a> и создать класс, представляющий запчасти.
 #|en| So extraction of <code>LaborItem</code> is complete. But one more thing remains. Since the price of spare parts (<code>unitPrice</code>) is used only in the <code>JobItem</code> class and is not needed in <code>LaborItem</code>, we can go one step further and apply <a href="/extract-subclass">Extract Subclass</a> to <code>JobItem</code> again and create a class that represents spare parts.
-#|uk| Отже, ми впоралися з витяганням <code>LaborItem</code>. Але є ще один момент. Оскільки ціна запчастин <code>unitPrice</code> використовується тільки в класі <code>JobItem</code> і не потрібна в <code>LaborItem</code>, ми можемо піти далі і знову застосувати до <code>JobItem</code> <a href="/extract-subclass">Витягання підкласу</a> і створити клас, що представляє запчастини.
+#|uk| Отже, ми впоралися з витяганням <code>LaborItem</code>. Але є ще один момент. Оскільки ціна запчастин <code>unitPrice</code> використовується тільки в класі <code>JobItem</code> і не потрібна в <code>LaborItem</code>, ми можемо піти далі і знову застосувати до <code>JobItem</code> <a href="/uk/extract-subclass">Витягання підкласу</a> і створити клас, що представляє запчастини.
 
 Go to after "JobItem"
 

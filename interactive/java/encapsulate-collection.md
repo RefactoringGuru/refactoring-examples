@@ -221,7 +221,7 @@ Select name of "setCourses"
 
 #|ru| После такой модификации стоит с помощью <a href="/rename-method">переименования метода</a> сделать намерения более ясными.
 #|en| After this modification, use <a href="/rename-method">Rename Method</a> to make your intentions obvious.
-#|uk| Після такої модифікації варто за допомогою <a href="/rename-method">перейменування методу</a> зробити наміри більш зрозумілими.
+#|uk| Після такої модифікації варто за допомогою <a href="/uk/rename-method">перейменування методу</a> зробити наміри більш зрозумілими.
 
 Select "setCourses"
 
@@ -365,9 +365,9 @@ while (iter.hasNext()) {
 #|en| Now that we have a proper interface for the <code>Person</code> class, we can start moving the relevant code to this class. Here is an example of the code.
 #|uk| Після того як для класу <code>Person</code> був створений коректний інтерфейс, ми можемо зайнятися переміщенням релевантного коду в цей клас. Ось приклад такого коду.
 
-#|ru| Применим <a href="/extract-method">извлечение метода</a> к этому коду, чтобы переместить его в <code>Person</code>.
+#|ru| Применим <a href="/ru/extract-method">извлечение метода</a> к этому коду, чтобы переместить его в <code>Person</code>.
 #|en| Apply <a href="/extract-method">Extract Method</a> to the code to move it to <code>Person</code>.
-#|uk| Застосуємо <a href="/extract-method">відокремлення методу</a> до цього коду, щоб перемістити його в <code>Person</code>.
+#|uk| Застосуємо <a href="/uk/extract-method">відокремлення методу</a> до цього коду, щоб перемістити його в <code>Person</code>.
 
 Go to the end of "class Person"
 

@@ -256,9 +256,9 @@ Select:
         AddCourse(c);
 ```
 
-#|ru| Такому коду уже не место в сеттере свойства, поэтому стоит вынести его в отдельный метод, применив <a href="/extract-method">извлечение метода</a>.
+#|ru| Такому коду уже не место в сеттере свойства, поэтому стоит вынести его в отдельный метод, применив <a href="/ru/extract-method">извлечение метода</a>.
 #|en| This code has no place in the property setter anymore, so extract it to a separate method via <a href="/extract-method">Extract Method</a>
-#|uk| Такому коду вже не місце в сетері властивості, тому варто винести його в окремий метод, застосувавши <a href="/extract-method">витяг методу</a>.
+#|uk| Такому коду вже не місце в сетері властивості, тому варто винести його в окремий метод, застосувавши <a href="/uk/extract-method">витяг методу</a>.
 
 Remove selected
 

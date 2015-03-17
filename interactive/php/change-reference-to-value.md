@@ -119,7 +119,7 @@ Select whole "setBirthDate"
 
 #|ru| Следуя этой логике, необходимо убрать сеттер поля даты рождения и инициализировать значение этого поля в конструкторе. Применим рефакторинг <a href="/remove-setting-method">удаление сеттера</a>.
 #|en| Following this logic, we should remove the setter of the date of birth field. Then, initialize the value of the field in the constructor. This could be done with <a href="/remove-setting-method">Remove Setting Method</a>.
-#|uk| Слідуючи цій логіці, необхідно прибрати сетер поля дати народження і ініціалізувати значення цього поля в конструкторі. Застосуємо рефакторинг <a href="/remove-setting-method">видалення сетера</a>.
+#|uk| Слідуючи цій логіці, необхідно прибрати сетер поля дати народження і ініціалізувати значення цього поля в конструкторі. Застосуємо рефакторинг <a href="/uk/remove-setting-method">видалення сетера</a>.
 
 Remove selected
 

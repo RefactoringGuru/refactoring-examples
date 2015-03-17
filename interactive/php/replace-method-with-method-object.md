@@ -277,9 +277,9 @@ Select:
     }
 ```
 
-#|ru| Преимущество это рефакторинга в том, что теперь можно легко применить <a href="/extract-method">извлечение метода</a> к методу <code>compute()</code>, не беспокоясь о передаче аргументов в подметоды.
+#|ru| Преимущество это рефакторинга в том, что теперь можно легко применить <a href="/ru/extract-method">извлечение метода</a> к методу <code>compute()</code>, не беспокоясь о передаче аргументов в подметоды.
 #|en| The benefit of this refactoring is that you can now easily apply <a href="/extract-method">Extract Method</a> to the <code>compute()</code> method without worrying about passing correct arguments between sub-methods.
-#|uk| Перевага цього рефакторинга в тому, що тепер можна легко застосувати <a href="/extract-method">відокремлення методу</a> до методу <code>compute()</code>, не турбуючись про передачу аргументів в субметоди.
+#|uk| Перевага цього рефакторинга в тому, що тепер можна легко застосувати <a href="/uk/extract-method">відокремлення методу</a> до методу <code>compute()</code>, не турбуючись про передачу аргументів в субметоди.
 
 Go to the end of "Gamma"
 

@@ -168,9 +168,9 @@ Print "martin.AreaCode = "781""
 
 Set step 3
 
-#|ru| После этого мы со спокойным сердцем можем выполнять <a href="/move-method">перемещение метода</a> и завершать <a href="/move-field">перемещение поля</a>, настраивая геттеры и сеттеры для работы внутри класса <code>Person</code>. Эти перемещения можно делать по одному либо все сразу, если их не так много.
+#|ru| После этого мы со спокойным сердцем можем выполнять <a href="/ru/move-method">перемещение метода</a> и завершать <a href="/move-field">перемещение поля</a>, настраивая геттеры и сеттеры для работы внутри класса <code>Person</code>. Эти перемещения можно делать по одному либо все сразу, если их не так много.
 #|en| Then we can proceed to <a href="/move-method">Move Method</a> and finish <a href="/move-field">Move Field</a>, configuring getters and setters to work inside the <code>Person</code> class. These moves can be performed one by one or all at once, if there are not too many of them.
-#|uk| Після цього ми зі спокійним серцем можемо виконувати <a href="/move-method">переміщення методу</a> і завершувати <a href="/move-field">переміщення поля</a>, налаштовуючи геттери і сеттери для роботи всередині класу <code>Person</code>. Ці переміщення можна робити поступово один за одним, або всі відразу, якщо їх не так багато.
+#|uk| Після цього ми зі спокійним серцем можемо виконувати <a href="/uk/move-method">переміщення методу</a> і завершувати <a href="/move-field">переміщення поля</a>, налаштовуючи геттери і сеттери для роботи всередині класу <code>Person</code>. Ці переміщення можна робити поступово один за одним, або всі відразу, якщо їх не так багато.
 
 Select:
 ```

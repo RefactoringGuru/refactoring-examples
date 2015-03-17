@@ -238,9 +238,9 @@ Select:
 
 ```
 
-#|ru| Обычно после этого оказывается возможным привести в порядок условный код. В данном случае мы можем применить <a href="/consolidate-duplicate-conditional-fragments">консолидацию дублирующихся условных фрагментов</a>.
+#|ru| Обычно после этого оказывается возможным привести в порядок условный код. В данном случае мы можем применить <a href="/ru/consolidate-duplicate-conditional-fragments">консолидацию дублирующихся условных фрагментов</a>.
 #|en| After this, it is usually possible to tidy up the conditional code. In this case, we can apply <a href="/consolidate-duplicate-conditional-fragments">Consolidate Duplicate Conditional Fragments</a>.
-#|uk| Зазвичай після цього виявляється можливим привести в порядок умовний код. В даному випадку ми можемо застосувати <a href="/consolidate-duplicate-conditional-fragments">консолідацію дубльованих умовних фрагментів</a>.
+#|uk| Зазвичай після цього виявляється можливим привести в порядок умовний код. В даному випадку ми можемо застосувати <a href="/uk/consolidate-duplicate-conditional-fragments">консолідацію дубльованих умовних фрагментів</a>.
 
 Go to:
 ```

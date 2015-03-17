@@ -381,9 +381,9 @@ Select 1st "lengthField"
 + Select 1st "startField"
 + Select 1st "endField"
 
-#|ru| Теперь пора взяться за поля. Проведём <a href="/self-encapsulate-field">самоинкапсуляцию</a> каждого из полей окна интервала. Создадим для каждого из полей геттер и сеттер, возвращающий и принимающий строковое значение. Начнём с поля конца интервала:
+#|ru| Теперь пора взяться за поля. Проведём <a href="/ru/self-encapsulate-field">самоинкапсуляцию</a> каждого из полей окна интервала. Создадим для каждого из полей геттер и сеттер, возвращающий и принимающий строковое значение. Начнём с поля конца интервала:
 #|en| Now let's take care of the fields. Perform <a href="/self-encapsulate-field">Self-Encapsulate Field</a> on each of the fields of the interval window. For each field, create a getter and setter that return and accept a string value. Start with the field of the end of the interval:
-#|uk| Саме час взятися за поля. Проведемо <a href="/self-encapsulate-field">самоінкапсуляцію</a> кожного з полів вікна інтервалу. Створимо для кожного з полів геттер і сетер, який повертає і приймає строкове значення. Почнемо з поля кінця інтервалу:
+#|uk| Саме час взятися за поля. Проведемо <a href="/uk/self-encapsulate-field">самоінкапсуляцію</a> кожного з полів вікна інтервалу. Створимо для кожного з полів геттер і сетер, який повертає і приймає строкове значення. Почнемо з поля кінця інтервалу:
 
 Go to the end of "class IntervalWindow"
 

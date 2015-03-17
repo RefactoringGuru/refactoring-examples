@@ -128,9 +128,9 @@ Set step 1
 
 Select "public int |||type|||"
 
-#|ru| Начнём с <a href="/self-encapsulate-field">самоинкапсуляции поля</a> типа служащего.
+#|ru| Начнём с <a href="/ru/self-encapsulate-field">самоинкапсуляции поля</a> типа служащего.
 #|en| We start by applying <a href="/self-encapsulate-field">Self-Encapsulate Field</a> to the employee type.
-#|uk| Почнемо з <a href="/self-encapsulate-field">самоінкапсуляціі поля</a> типу службовця.
+#|uk| Почнемо з <a href="/uk/self-encapsulate-field">самоінкапсуляціі поля</a> типу службовця.
 
 Select "|||public||| int type"
 
@@ -349,9 +349,9 @@ Remove selected
 
 Select "switch (type) {" in "create"
 
-#|ru| Обратите внимание, что в итоге мы создали ещё один большой оператор <code>switch</code>. На самом деле  –  <a href="/smells/switch-statements">это плохо</a>, но после завершения рефакторинга он будет единственным оставшимся в коде.
+#|ru| Обратите внимание, что в итоге мы создали ещё один большой оператор <code>switch</code>. На самом деле  –  <a href="/ru/smells/switch-statements">это плохо</a>, но после завершения рефакторинга он будет единственным оставшимся в коде.
 #|en| Note that we ended up creating another big <code>switch</code> operator. Generally speaking this <a href="/smells/switch-statements">gives off a bad whiff</a> but once refactoring is done, it will be the only operator remaining in the code.
-#|uk| Зверніть увагу, що в підсумку ми створили ще один великий оператор <code>switch</code>. Насправді – <a href="/smells/switch-statements">це погано</a>, але після завершення рефакторинга він буде єдиним залишившимся в коді.
+#|uk| Зверніть увагу, що в підсумку ми створили ще один великий оператор <code>switch</code>. Насправді – <a href="/uk/smells/switch-statements">це погано</a>, але після завершення рефакторинга він буде єдиним залишившимся в коді.
 
 Set step 5
 
@@ -363,9 +363,9 @@ Select:
 ```
 + Select name of "payAmount"
 
-#|ru| Теперь, после создания подклассов, следует применить <a href="/push-down-method">Спуск метода</a> и <a href="/push-down-field">Спуск поля</a> ко всем методам и полям, которые относятся к тем или иным типам служащих.
+#|ru| Теперь, после создания подклассов, следует применить <a href="/ru/push-down-method">Спуск метода</a> и <a href="/push-down-field">Спуск поля</a> ко всем методам и полям, которые относятся к тем или иным типам служащих.
 #|en| After creating the subclasses, use <a href="/push-down-method">Push Down Method</a> and <a href="/push-down-field">Push Down Field</a> on all methods and fields that relate to only specific types of employees.
-#|uk| Тепер, після створення підкласів, слід застосувати <a href="/push-down-method">Спуск методу</a> і <a href="/push-down-field">Спуск поля</a> до всіх методів та полей, що відносяться тільки до тих чи інших типів службовців.
+#|uk| Тепер, після створення підкласів, слід застосувати <a href="/uk/push-down-method">Спуск методу</a> і <a href="/push-down-field">Спуск поля</a> до всіх методів та полей, що відносяться тільки до тих чи інших типів службовців.
 
 #|ru| В нашем случае надо создать методы <code>payAmount</code> в каждом из подклассов и переместить туда расчёты зарплаты для соответствующих типов служащих.
 #|en| In our case, we will create <code>payAmount</code> methods in each of the subclasses and move payroll calculations there for the relevant types of employees.

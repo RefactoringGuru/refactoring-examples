@@ -94,9 +94,9 @@ public class MfDateTimeWrap
 
 Set step 1
 
-#|ru| В предыдущем примере <a href="/introduce-foreign-method">Введение внешнего метода</a> мы использовали <i>методы-расширения</i>, чтобы добавить требуемую функциональность структуре <code>DateTime</code>.
+#|ru| В предыдущем примере <a href="/ru/introduce-foreign-method">Введение внешнего метода</a> мы использовали <i>методы-расширения</i>, чтобы добавить требуемую функциональность структуре <code>DateTime</code>.
 #|en| In the previous example <a href="/introduce-foreign-method">Introduce Foreign Method</a>, we used <i>extension methods</i> to add necessary functionality to the <code>DateTime</code> structure.
-#|uk| У попередньому прикладі <a href="/introduce-foreign-method">Введення зовнішнього методу</a> ми використовували <i> методи-розширення</i>, щоб додати необхідну функціональність структурі <code>DateTime</code>.
+#|uk| У попередньому прикладі <a href="/uk/introduce-foreign-method">Введення зовнішнього методу</a> ми використовували <i> методи-розширення</i>, щоб додати необхідну функціональність структурі <code>DateTime</code>.
 
 #|ru| Этот способ хорош, если задача ограничивается добавлением методов. Однако если необходимо расширить функционал класса добавлением свойств, или же переопределить у него какой-нибудь из имеющихся методов, то следует воспользоваться рефакторингом <i>Введение локального расширения</i>, который мы сейчас и рассмотрим.
 #|en| This choice is good if the task is limited to just adding methods. If you need to extend the functionality of a class by adding properties or redefining any of its existing methods, then use <i>Introduce Local Extension</i>, which we will now examine in greater detail.
@@ -192,9 +192,9 @@ Set step 4
 
 Select whole "GetNearFirstDate"
 
-#|ru| Когда конструкторы класса готовы, можно добавить в него новые методы или перенести внешние методы из других классов. Давайте перенесём метод <code>GetNearFirstDate()</code>, воспользовавшись <a href="/move-method">перемещением метода</a>.
+#|ru| Когда конструкторы класса готовы, можно добавить в него новые методы или перенести внешние методы из других классов. Давайте перенесём метод <code>GetNearFirstDate()</code>, воспользовавшись <a href="/ru/move-method">перемещением метода</a>.
 #|en| When the class constructors are ready, you can add new methods to it or move foreign methods form other classes. Let's move the <code>GetNearFirstDate()</code> method with the help of <a href="/move-method">Move Method</a>.
-#|uk| Коли конструктори класу готові, можна додати в нього нові методи або перенести зовнішні методи з інших класів . Давайте перенесемо метод <code> GetNearFirstDate()</code>, скориставшись <a href="/move-method">переміщенням методу</a>.
+#|uk| Коли конструктори класу готові, можна додати в нього нові методи або перенести зовнішні методи з інших класів . Давайте перенесемо метод <code> GetNearFirstDate()</code>, скориставшись <a href="/uk/move-method">переміщенням методу</a>.
 
 Go to the end of "MfDateTimeWrap"
 

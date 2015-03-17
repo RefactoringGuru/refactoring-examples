@@ -116,7 +116,7 @@ Set step 1
 
 #|ru| Давайте рассмотрим <i>Замену значения ссылкой</i> на примере класса заказа и покупателя. Мы продолжим с того места, где закончили пример <a href="/replace-data-value-with-object">Замена простого поля объектом</a>.
 #|en| Let's look at <i>Replace Data Value with Object</i> using the customer/order class example. We will pick up where we finished the <i>Replace Data Value with Object</i> refactoring.
-#|uk| Давайте розглянемо <i>Заміну значення посиланням<i> на прикладі класу замовлення та покупця. Ми продовжимо з того місця, де закінчили приклад <a href="/replace-data-value-with-object">Заміна простого поля об'єктом</a>.
+#|uk| Давайте розглянемо <i>Заміну значення посиланням<i> на прикладі класу замовлення та покупця. Ми продовжимо з того місця, де закінчили приклад <a href="/uk/replace-data-value-with-object">Заміна простого поля об'єктом</a>.
 
 Select name of "Customer"
 
@@ -148,7 +148,7 @@ Select name of "Customer"
 
 #|ru| Начнём с <a href="/replace-constructor-with-factory-method">замены конструктора фабричным методом</a>. Это позволит нам контролировать процесс создания объектов покупателей, что является крайне важным моментом. Итак, создадим фабричный метод в классе покупателя.
 #|en| We start with <a href="/replace-constructor-with-factory-method">Replace Constructor with Factory Method</a>. This lets us keep an eye on the process of creation of customer objects, which is extremely important for what we are going to do. We create the factory method in the customer class.
-#|uk| Почнемо з <a href="/replace-constructor-with-factory-method">заміни конструктора фабричним методом</a>. Це дозволить нам контролювати процес створення об'єктів покупців, що є вкрай важливим моментом. Отже, створимо фабричний метод в класі покупця.
+#|uk| Почнемо з <a href="/uk/replace-constructor-with-factory-method">заміни конструктора фабричним методом</a>. Це дозволить нам контролювати процес створення об'єктів покупців, що є вкрай важливим моментом. Отже, створимо фабричний метод в класі покупця.
 
 Go to before "__construct" in "Customer"
 Print:
@@ -202,9 +202,9 @@ Set step 3
 #|en| Then decide how to create customers: in advance or dynamically (as needed). We will use the first way. When launching the application, we will load the clients that are currently "in use". We can take this information from a database or file, for example.
 #|uk| Потім треба вирішити, як створювати покупців – заздалегідь або динамічно (за потребою). Скористаємося першим способом. При запуску додатка ми будемо завантажувати тих клієнтів, які знаходяться в роботі. Їх можна взяти, наприклад, з бази даних або з файлу.
 
-#|ru| В целях простоты используем для загрузки покупателей явный код. Впоследствии всегда можно будет изменить его с помощью <a href="/substitute-algorithm">замещения алгоритма</a>.
+#|ru| В целях простоты используем для загрузки покупателей явный код. Впоследствии всегда можно будет изменить его с помощью <a href="/ru/substitute-algorithm">замещения алгоритма</a>.
 #|en| For simplicity, we will use explicit code for loading customers. This makes it possible to change it by using <a href="/substitute-algorithm">Substitute Algorithm</a>.
-#|uk| З метою простоти використовуємо для завантаження покупців явний код. Згодом завжди можна буде змінити його за допомогою <a href="/substitute-algorithm">заміщення алгоритму</a>.
+#|uk| З метою простоти використовуємо для завантаження покупців явний код. Згодом завжди можна буде змінити його за допомогою <a href="/uk/substitute-algorithm">заміщення алгоритму</a>.
 
 Print:
 ```
@@ -234,7 +234,7 @@ Select name of "create"
 
 #|ru| И поскольку метод <code>create()</code> теперь всегда возвращает уже существующего покупателя, надо это пояснить с помощью <a href="/rename-method">переименования метода</a>.
 #|en| And since the <code>create()</code> method now always returns an existing customer, this should be clarified with the help of <a href="/rename-method">Rename Method</a>.
-#|uk| І оскільки метод <code>create()</code> тепер завжди повертає вже існуючого покупця, треба це пояснити за допомогою <a href="/rename-method">перейменування методу</a>.
+#|uk| І оскільки метод <code>create()</code> тепер завжди повертає вже існуючого покупця, треба це пояснити за допомогою <a href="/uk/rename-method">перейменування методу</a>.
 
 Print "getNamed"
 

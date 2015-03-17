@@ -139,7 +139,7 @@ Set step 4
 
 #|ru| Нужда в одном из параметров отпала, можем применить <a href="/remove-parameter">удаление параметра</a>.
 #|en| One of the parameters is no longer needed so we can use <a href="/remove-parameter">Remove Parameter</a>
-#|uk| Необхідність в одному з параметрів відпала, можемо застосувати <a href="/remove-parameter">видалення параметра</a>.
+#|uk| Необхідність в одному з параметрів відпала, можемо застосувати <a href="/uk/remove-parameter">видалення параметра</a>.
 
 Select ", $discountLevel" in parameters of "discountedPrice"
 

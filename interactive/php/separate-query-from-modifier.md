@@ -212,9 +212,9 @@ Replace "doSendAlert"
 
 Select body of "doSendAlert"
 
-#|ru| Сейчас дублируется много кода, потому что модификатор всё ещё используется для своей работы телом запроса. Но мы можем применить к модификатору <a href="/substitute-algorithm">Замещение алгоритма</a>, не боясь сломать какой-то другой код.
+#|ru| Сейчас дублируется много кода, потому что модификатор всё ещё используется для своей работы телом запроса. Но мы можем применить к модификатору <a href="/ru/substitute-algorithm">Замещение алгоритма</a>, не боясь сломать какой-то другой код.
 #|en| Of course, the result contains a great deal of duplicate code since the modifier still uses the body of the query. But now we can apply <a href="/substitute-algorithm">Substitute Algorithm</a> without the risk of breaking any other code.
-#|uk| Зараз дублюється багато коду, тому що модифікатор все ще використовується для своєї роботи тілом запиту. Але ми можемо застосувати до модифікатору <a href="/substitute-algorithm">Заміщення алгоритму</a>, не боячись зламати якийсь інший код.
+#|uk| Зараз дублюється багато коду, тому що модифікатор все ще використовується для своєї роботи тілом запиту. Але ми можемо застосувати до модифікатору <a href="/uk/substitute-algorithm">Заміщення алгоритму</a>, не боячись зламати якийсь інший код.
 
 Print:
 ```

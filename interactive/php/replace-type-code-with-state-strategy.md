@@ -147,9 +147,9 @@ Set step 1
 
 Select "public |||$type|||"
 
-#|ru| Начнём с <a href="/self-encapsulate-field">самоинкапсуляции поля</a> типа служащего.
+#|ru| Начнём с <a href="/ru/self-encapsulate-field">самоинкапсуляции поля</a> типа служащего.
 #|en| Let's start by applying <a href="/self-encapsulate-field">Self-Encapsulate Field</a> to the employee type.
-#|uk| Почнемо з <a href="/self-encapsulate-field">самоінкапсуляціі поля</a> типу службовця.
+#|uk| Почнемо з <a href="/uk/self-encapsulate-field">самоінкапсуляціі поля</a> типу службовця.
 
 Select "|||public||| $type"
 
@@ -366,7 +366,7 @@ Set step 6
 
 #|ru| Теперь всё готово для применения <a href="/replace-conditional-with-polymorphism">замены условного оператора полиморфизмом</a>.
 #|en| Everything is now ready for applying <a href="/replace-conditional-with-polymorphism">Replace Conditional With Polymorphism</a>.
-#|uk| Тепер все готово для застосування <a href="/replace-conditional-with-polymorphism">заміни умовного оператора поліморфізмом</a>.
+#|uk| Тепер все готово для застосування <a href="/uk/replace-conditional-with-polymorphism">заміни умовного оператора поліморфізмом</a>.
 
 Select body of "payAmount"
 

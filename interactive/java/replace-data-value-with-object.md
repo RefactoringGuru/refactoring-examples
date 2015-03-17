@@ -218,7 +218,7 @@ Select name of "getCustomer"
 
 #|ru| Применим к геттеру <a href="/rename-method">переименование метода</a>, чтобы стало ясно, что он возвращает имя, а не объект.
 #|en| FIrst, we apply <a href="/rename-method">Rename Method</a> to the getter to make clear that it returns a name, not an object.
-#|uk| Застосуємо до геттера <a href="/rename-method">перейменування методу</a>, щоб стало ясно, що він повертає ім'я, а не об'єкт.
+#|uk| Застосуємо до геттера <a href="/uk/rename-method">перейменування методу</a>, щоб стало ясно, що він повертає ім'я, а не об'єкт.
 
 Replace "getCustomerName"
 
@@ -252,9 +252,9 @@ Replace "customerName"
 #|en| Before we finish, note that here and in many other cases, one more step is necessary. You may need to add a credit score, address, etc. to the <code>Customer</code>. You cannot do this yet, since <code>Customer</code> is used as a value object. That is, each order has its own instance of the <code>Customer</code> class.
 #|uk| Перш, ніж закінчити, хотілося б звернути вашу увагу на те, що тут, як і в багатьох інших випадках, треба зробити ще одну річ. Вам може знадобитися додати до клієнта оцінку кредитоспроможності, адресу і т.п. Поки що це зробити не можливо, так як <code>Customer</code> задіяний як об'єкт-значення. Тобто в кожному замовленні знаходиться власний примірник класу <code>Customer</code>.
 
-#|ru| Чтобы создать в классе <code>Customer</code> требуемые атрибуты, необходимо применить к нему рефакторинг <a href="/change-value-to-reference">замена значения ссылкой</a>. После этого все заказы для одного и того же покупателя будут ссылаться на один и тот же экземпляр класса <code>Customer</code>.
+#|ru| Чтобы создать в классе <code>Customer</code> требуемые атрибуты, необходимо применить к нему рефакторинг <a href="/ru/change-value-to-reference">замена значения ссылкой</a>. После этого все заказы для одного и того же покупателя будут ссылаться на один и тот же экземпляр класса <code>Customer</code>.
 #|en| To create the necessary attributes in the <code>Customer</code> class, use the <a href="/change-value-to-reference">Change Value to Reference</a> refactoring technique on it. After that refactoring, all orders for the same customer will refer to the same instance of the <code>Customer</code> class.
-#|uk| Щоб створити в класі <code>Customer</code> необхідні атрибути, треба застосувати до нього рефакторинг <a href="/change-value-to-reference">заміна значення посиланням</a>. Після цього всі замовлення для одного і того ж покупця будуть посилатися на той самий  примірник класу <code>Customer</code>.
+#|uk| Щоб створити в класі <code>Customer</code> необхідні атрибути, треба застосувати до нього рефакторинг <a href="/uk/change-value-to-reference">заміна значення посиланням</a>. Після цього всі замовлення для одного і того ж покупця будуть посилатися на той самий  примірник класу <code>Customer</code>.
 
 Set final step
 

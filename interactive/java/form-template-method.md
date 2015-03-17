@@ -145,7 +145,7 @@ Select whole "markdownView"
 
 #|ru| Для этого можно создать <a href="/replace-method-with-method-object">простой объект методов</a>, переместив оба метода в него.
 #|en| To do this, we create a <a href="/replace-method-with-method-object">simple method object</a> by moving both methods to it.
-#|uk| Для цього можна створити <a href="/replace-method-with-method-object">простий об'єкт методів</a>, перемістивши обидва методи в нього.
+#|uk| Для цього можна створити <a href="/uk/replace-method-with-method-object">простий об'єкт методів</a>, перемістивши обидва методи в нього.
 
 Go to after "Article"
 

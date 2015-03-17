@@ -118,7 +118,7 @@ Go to the beginning of "Person"
 
 #|ru| Сначала следует применить <a href="/replace-constructor-with-factory-method">Замену конструктора фабричным методом</a>. В данном случае нам нужно создать фабричный метод для каждого подкласса.
 #|en| First use <a href="/replace-constructor-with-factory-method">Replace Constructor With Factory Method</a>. In our case, we need the factory method for each subclass.
-#|uk| Спочатку слід застосувати <a href="/replace-constructor-with-factory-method">Заміну конструктора фабричним методом</a>. В даному випадку нам потрібен фабричний метод для кожного підкласу.
+#|uk| Спочатку слід застосувати <a href="/uk/replace-constructor-with-factory-method">Заміну конструктора фабричним методом</a>. В даному випадку нам потрібен фабричний метод для кожного підкласу.
 
 Print:
 ```
@@ -292,9 +292,9 @@ Select "|||abstract||| class Person"
 + Select "new Male()"
 + Select "new Female()"
 
-#|ru| В итоге все подклассы оказываются пустыми, поэтому мы снимаем пометку abstract с класса Person и с помощью <a href="/inine-method">Встраивания метода</a> встраиваем конструкторы подклассов в родительский класс.
+#|ru| В итоге все подклассы оказываются пустыми, поэтому мы снимаем пометку abstract с класса Person и с помощью <a href="/ru/inine-method">Встраивания метода</a> встраиваем конструкторы подклассов в родительский класс.
 #|en| All subclasses are empty at this point. That allows us to remove the "abstract" keyword from the Person class and use its constructor instead the ones from subclasses (that we could simply remove).
-#|uk| У підсумку всі підкласи виявляються порожніми, тому ми знімаємо позначку abstract з класу Person і за допомогою <a href="/inine-method">вбудовування методу</a> вбудовуємо конструктори підкласів в батьківський клас.
+#|uk| У підсумку всі підкласи виявляються порожніми, тому ми знімаємо позначку abstract з класу Person і за допомогою <a href="/uk/inine-method">вбудовування методу</a> вбудовуємо конструктори підкласів в батьківський клас.
 
 Select "|||abstract |||class Person"
 

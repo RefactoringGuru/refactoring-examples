@@ -141,9 +141,9 @@ Set step 4
 
 Select whole "nextWeek"
 
-#|ru| Когда конструкторы класса готовы, можно добавить в него новые методы или перенести внешние методы из других классов. Давайте перенесём метод <code>nextWeek()</code>, воспользовавшись <a href="/move-method">перемещением метода</a>.
+#|ru| Когда конструкторы класса готовы, можно добавить в него новые методы или перенести внешние методы из других классов. Давайте перенесём метод <code>nextWeek()</code>, воспользовавшись <a href="/ru/move-method">перемещением метода</a>.
 #|en| When the class constructors are ready, you can add new methods to it or move foreign methods form other classes. Let's move the <code>nextWeek()</code> method with the help of <a href="/move-method">Move Method</a>.
-#|uk| Коли конструктори класу готові, можна додати в нього нові методи або перенести зовнішні методи з інших класів . Давайте перенесемо метод <code>nextWeek()</code>, скориставшись <a href="/move-method">переміщенням методу</a>.
+#|uk| Коли конструктори класу готові, можна додати в нього нові методи або перенести зовнішні методи з інших класів . Давайте перенесемо метод <code>nextWeek()</code>, скориставшись <a href="/uk/move-method">переміщенням методу</a>.
 
 Go to the end of "MyNewDate"
 

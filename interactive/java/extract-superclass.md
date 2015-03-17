@@ -197,9 +197,9 @@ Select:
   private String name;
 ```
 
-#|ru| Теперь всё готово, чтобы начать поднимать функции в родительский класс. Обычно проще сначала выполнить <a href="/pull-up-field">Подъем полей</a>.
+#|ru| Теперь всё готово, чтобы начать поднимать функции в родительский класс. Обычно проще сначала выполнить <a href="/ru/pull-up-field">Подъем полей</a>.
 #|en| Now we can start pulling up functions to the parent class. Usually it is simpler to employ <a href="/pull-up-field">Pull Up Field</a> first.
-#|uk| Тепер все готово, щоб почати піднімати функції в батьківський клас. Зазвичай простіше спочатку виконати <a href="/pull-up-field">Підйом поля</a>.
+#|uk| Тепер все готово, щоб почати піднімати функції в батьківський клас. Зазвичай простіше спочатку виконати <a href="/uk/pull-up-field">Підйом поля</a>.
 
 Go to start of "Party"
 
@@ -219,9 +219,9 @@ Remove selected
 
 Select whole of "getName"
 
-#|ru| После этого можно применить <a href="/pull-up-method">Подъем метода</a> к методам доступа этого поля.
+#|ru| После этого можно применить <a href="/ru/pull-up-method">Подъем метода</a> к методам доступа этого поля.
 #|en| Then use <a href="/pull-up-method">Pull Up Method</a> on the methods for accessing the field.
-#|uk| Після цього можна застосувати <a href="/pull-up-method">Підйом методу</a> до методів доступу цього поля.
+#|uk| Після цього можна застосувати <a href="/uk/pull-up-method">Підйом методу</a> до методів доступу цього поля.
 
 Go to end of "Party"
 
@@ -258,9 +258,9 @@ Select:
 this.name = name;
 ```
 
-#|ru| Лучше, чтобы поля были защищёнными от публики, но для этого сперва нужно выполнить <a href="/pull-up-constructor-body">Подъем тела конструктора</a>, чтобы инициализировать их.
+#|ru| Лучше, чтобы поля были защищёнными от публики, но для этого сперва нужно выполнить <a href="/ru/pull-up-constructor-body">Подъем тела конструктора</a>, чтобы инициализировать их.
 #|en| The fields should be protected from the public, but for this we must first do <a href="/pull-up-constructor-body">Pull Up Constructor Body</a> to initialize them.
-#|uk| Краще, щоб поля були захищеними від публіки, але для цього спершу потрібно виконати <a href="/pull-up-constructor-body">Підйом тіла конструктора</a>, щоб ініціалізувати їх.
+#|uk| Краще, щоб поля були захищеними від публіки, але для цього спершу потрібно виконати <a href="/uk/pull-up-constructor-body">Підйом тіла конструктора</a>, щоб ініціалізувати їх.
 
 Go to before "getName" in "Party"
 
@@ -290,15 +290,15 @@ Select name of "getAnnualCost"
 
 #|ru| Методы <code>getTotalAnnualCost</code> и <code>getAnnualCost</code> имеют одинаковое назначение, поэтому у них должно быть одинаковое название. Сначала применим <a href="/rename-method">Переименование метода</a>, чтобы привести их к одному и тому же названию.
 #|en| The <code>getTotalAnnualCost</code> and <code>getAnnualCost</code> methods have the same purpose, so they should have the same name. Use <a href="/rename-method">Rename Method</a> to give them the same name.
-#|uk| Методи <code>getTotalAnnualCost</code> і <code>getAnnualCost</code> мають однакове призначення, тому у них має бути однакова назва. Спочатку застосуємо <a href="/rename-method">Перейменування методу</a>, щоб привести їх до однієї і тієї ж назвою.
+#|uk| Методи <code>getTotalAnnualCost</code> і <code>getAnnualCost</code> мають однакове призначення, тому у них має бути однакова назва. Спочатку застосуємо <a href="/uk/rename-method">Перейменування методу</a>, щоб привести їх до однієї і тієї ж назвою.
 
 Select name of "getTotalAnnualCost"
 
 Replace "getAnnualCost"
 
-#|ru| Тела методов пока что различаются, поэтому мы не можем применить <a href="/pull-up-method">Подъем метода</a>. С другой стороны, мы можем объявить в родительском классе абстрактный метод с таким же именем.
+#|ru| Тела методов пока что различаются, поэтому мы не можем применить <a href="/ru/pull-up-method">Подъем метода</a>. С другой стороны, мы можем объявить в родительском классе абстрактный метод с таким же именем.
 #|en| The bodies of the methods are currently different, so we cannot use <a href="/pull-up-method">Pull Up Method</a>. On the other hand, we can declare an abstract method with the same name in the parent class.
-#|uk| Тіла методів поки що розрізняються, тому ми не можемо застосувати <a href="/pull-up-method">Підйом методу</a>. З іншого боку, ми можемо оголосити в батьківському класі абстрактний метод з таким же ім'ям.
+#|uk| Тіла методів поки що розрізняються, тому ми не можемо застосувати <a href="/uk/pull-up-method">Підйом методу</a>. З іншого боку, ми можемо оголосити в батьківському класі абстрактний метод з таким же ім'ям.
 
 Go to the end of "Party"
 

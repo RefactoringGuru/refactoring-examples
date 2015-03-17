@@ -202,9 +202,9 @@ Wait 1000ms
 
 Select "    |||return customer;|||"
 
-#|ru| Другая рассматриваемая альтернатива – такое изменение геттера свойства, которое позволяет ему получать покупателя, не используя поле. Тогда можно применить к телу <code>Order.Customer.get</code> <a href="/substitute-algorithm">Замещение алгоритма</a> и сделать нечто подобное следующим действиям.
+#|ru| Другая рассматриваемая альтернатива – такое изменение геттера свойства, которое позволяет ему получать покупателя, не используя поле. Тогда можно применить к телу <code>Order.Customer.get</code> <a href="/ru/substitute-algorithm">Замещение алгоритма</a> и сделать нечто подобное следующим действиям.
 #|en| Another alternative to consider is changing the getter of the property that allows it to get the customer without using the field. Then you can apply <a href="/substitute-algorithm">Replace Algorithm</a> to the body of <code>Order.Customer.get</code> and do something similar to the actions outlined below.
-#|uk| Інша альтернатива, яку можна розглянути – така зміна геттера властивості, яка дозволяє йому отримувати покупця, не використовуючи поле. Тоді можна застосувати до тіла <code>Order.Customer.get</code> <a href="/substitute-algorithm">Заміщення алгоритму</a> і зробити щось подібне наступним діям.
+#|uk| Інша альтернатива, яку можна розглянути – така зміна геттера властивості, яка дозволяє йому отримувати покупця, не використовуючи поле. Тоді можна застосувати до тіла <code>Order.Customer.get</code> <a href="/uk/substitute-algorithm">Заміщення алгоритму</a> і зробити щось подібне наступним діям.
 
 Print:
 ```
