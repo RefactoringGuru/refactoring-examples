@@ -4,7 +4,7 @@
  *  can throw an exception of given type.)
  * @throws BalanceException
  */
-function withdraw($amount) throws BalanceException {
+function withdraw($amount) {
   if ($amount > $this->balance) {
     throw new BalanceException();
   }
