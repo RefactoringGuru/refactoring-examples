@@ -54,7 +54,7 @@ class Employee {
       case self::SALESMAN:
         return new Salesman();
       case self::MANAGER:
-        return new Manger();
+        return new Manager();
       default:
         return new Employee($type);
     }
@@ -151,7 +151,7 @@ Print:
 
 Set step 2
 
-Select "new Employee"
+Select "eng = |||new Employee|||"
 
 #|ru| Теперь нужно найти все прямые вызовы конструкторов и заменить их вызовами фабричного метода.
 #|en| Now find all direct calls to the constructors and replace them with calls to the factory method.
@@ -185,7 +185,7 @@ Print:
       case self::SALESMAN:
         return new Salesman();
       case self::MANAGER:
-        return new Manger();
+        return new Manager();
       default:
         return new Employee($type);
     }

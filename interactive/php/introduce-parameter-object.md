@@ -29,12 +29,8 @@ class Account {
 
   public function getFlowBetween(DateTime $start, DateTime $end) {
     $result = 0;
-    Enumeration e = transactions.elements();
     foreach ($this->transactions as $transaction) {
-      if ($transaction->getDate() == $start ||
-          $transaction->getDate() == $end ||
-          ($transaction->getDate() > $start && $transaction->getDate() < $end))
-      {
+      if ($transaction->getDate() >= $start && $transaction->getDate() <= $end) {
         $result += $transaction->getValue();
       }
     }
@@ -71,10 +67,8 @@ class Account {
 
   public function getFlowBetween(DateRange $range) {
     $result = 0;
-    Enumeration e = transactions.elements();
     foreach ($this->transactions as $transaction) {
-      if ($range->includes($transaction->getDate()))
-      {
+      if ($range->includes($transaction->getDate())) {
         $result += $transaction->getValue();
       }
     }
@@ -102,7 +96,7 @@ class DateRange {
   private $start; // DateTime
   private $end; // DateTime
 
-  public DateRange(DateTime $start, DateTime $end) {
+  public function __construct(DateTime $start, DateTime $end) {
     $this->start = $start;
     $this->end = $end;
   }
@@ -113,7 +107,7 @@ class DateRange {
     return $this->end;
   }
   public function includes(DateTime $arg) {
-    return ($arg == $this->start || $arg == $this->end || ($arg > $this->start && $arg < $this->end));
+    return ($arg >= $start && $arg <= $end);
   }
 }
 
@@ -159,7 +153,7 @@ class DateRange {
   private $start; // DateTime
   private $end; // DateTime
 
-  public DateRange(DateTime $start, DateTime $end) {
+  public function __construct(DateTime $start, DateTime $end) {
     $this->start = $start;
     $this->end = $end;
   }
@@ -178,9 +172,9 @@ Select "private" in "DateRange"
 #|en| The class will be immutable: the dates of the range cannot be changed after it is created, since the date fields are declared as private and we did not create setters for them.
 #|uk| Зауважте, що клас є незмінним, тобто поміняти дати діапазону після його створення неможливо, так як поля дат оголошені приватними, а сеттерів для них ми не створили.
 
-#|ru| Этот шаг позволит избежать многих ошибок связанных с передачей объектов в параметрах по ссылкам.
+#|ru| Этот шаг позволит избежать многих ошибок, связанных с передачей объектов в параметрах по ссылкам.
 #|en| This way you could avoid many errors related to passing objects in method parameters via references.
-#|uk| Цей крок дозволить уникнути багатьох помилок пов'язаних з передачею об'єктів в параметрах за посиланнями.
+#|uk| Цей крок дозволить уникнути багатьох помилок, пов'язаних з передачею об'єктів в параметрах за посиланнями.
 
 Set step 2
 
@@ -192,9 +186,13 @@ Go to the parameters end of "getFlowBetween"
 
 Print ", DateRange $range"
 
-#|ru| Находим все места, где вызывается этот метод, и дописываем в этих вызовах новый параметр, а именно объект, созданный из уже подаваемых в метод дат.
+Wait 500ms
+
+Select "$account->|||getFlowBetween|||"
+
+#|ru| Находим все места, в которых вызывается этот метод, и дописываем в передаваемые параметры объект диапазона дат.
 #|en| Now, let's find all places where the method is called. In these calls, add a new parameter – specifically, an object created from the dates already given to the method.
-#|uk| Знаходимо всі місця, де викликається цей метод, і дописуємо в цих викликах новий параметр, а саме об'єкт, створений з дат, які вже подаються в метод.
+#|uk| Знаходимо всі місця, в яких викликається цей метод, і дописуємо в передані параметри об'єкт діапазону дат.
 
 Go to ", $endDate|||"
 
@@ -202,9 +200,11 @@ Print ", new DateRange($startDate, $endDate)"
 
 Set step 3
 
-#|ru| Теперь, когда новый параметр уже на месте, вернёмся в описание метода и попробуем избавиться в нем от старых параметров дат.
-#|en| The new parameter is in place, so we return to the method description and try to get rid of the old date parameters there.
-#|uk| Тепер, коли новий параметр вже на місці, повернемося в опис методу і спробуємо позбутися в ньому від старих параметрів дат.
+Select "|||$startDate, $endDate|||,"
+
+#|ru| После чего можно избавиться от старых параметров дат.
+#|en| Then we can get rid of the old date parameters.
+#|uk| Після чого можна позбутися старих параметрів дат.
 
 Select "DateTime $start" in parameters of "getFlowBetween"
 
@@ -218,9 +218,9 @@ Replace "$range->getStart()"
 
 Select "DateTime $start, " in parameters of "getFlowBetween"
 
-#|ru| После замен в теле метода параметр можно удалить из сигнатуры метода и из его вызовов.
+#|ru| После произведенных замен в теле метода можно удалить параметр из сигнатуры метода и из его вызовов.
 #|en| After replacements in the method body, the parameter can be removed from the signature and calls of the method.
-#|uk| Після замін в тілі методу параметр можна видалити з сигнатури методу та з його викликів.
+#|uk| Після проведених замін в тілі методу можна видалити параметр з сигнатури методу і з його викликів.
 
 Remove selected
 
@@ -229,6 +229,8 @@ Wait 500ms
 Select "getFlowBetween(|||$startDate, |||"
 
 Remove selected
+
+Wait 500ms
 
 Select "DateTime $end" in parameters of "getFlowBetween"
 
@@ -246,9 +248,13 @@ Select "DateTime $end, " in parameters of "getFlowBetween"
 
 Remove selected
 
+Wait 500ms
+
 Select "getFlowBetween(|||$endDate, |||"
 
 Remove selected
+
+Wait 500ms
 
 #C|ru| После всех переносов можно запустить авто-тесты.
 #S Отлично, все работает, продолжаем!
@@ -266,16 +272,11 @@ Set step 4
 #|en| After all the necessary parameters were removed, we can start thinking about moving appropriate behaviors to the parameter object.
 #|uk| Після того як всі необхідні параметри були видалені, можна подумати про перенесення в об'єкт-параметр якихось поведінок, які йому підходять.
 
-Select:
-```
-$transaction->getDate() == $range->getStart() ||
-          $transaction->getDate() == $range->getEnd() ||
-          ($transaction->getDate() > $range->getStart() && $transaction->getDate() < $range->getEnd())
-```
+Select "$transaction->getDate() >= $range->getStart() && $transaction->getDate() <= $range->getEnd()"
 
-#|ru| В нашем случае можно перенести проверку вхождения дат в диапазон, избавившись от корявого кода внутри <code>getFlowBetween</code>.
-#|en| In our case, we can move a check to see if a date is within a range. This gets rid of the unwieldy code inside <code>getFlowBetween</code>.
-#|uk| У нашому випадку можна перенести перевірку входження дат в діапазон, позбувшись корявого коду всередині <code>getFlowBetween</code>.
+#|ru| В нашем случае можно перенести проверку вхождения дат в диапазон, избавившись от этого кода внутри <code>getFlowBetween</code>.
+#|en| In our case, we can move a check to see if a date is within a range. This gets rid of this code inside <code>getFlowBetween</code>.
+#|uk| У нашому випадку можна перенести перевірку входження дат в діапазон, позбувшись цього коду всередині <code>getFlowBetween</code>.
 
 Go to the end of "DateRange"
 
@@ -283,18 +284,13 @@ Print:
 ```
 
   public function includes(DateTime $arg) {
-    return ($arg == $this->start || $arg == $this->end || ($arg > $this->start && $arg < $this->end));
+    return ($arg >= $start && $arg <= $end);
   }
 ```
 
 Wait 500ms
 
-Select:
-```
-$transaction->getDate() == $range->getStart() ||
-          $transaction->getDate() == $range->getEnd() ||
-          ($transaction->getDate() > $range->getStart() && $transaction->getDate() < $range->getEnd())
-```
+Select "$transaction->getDate() >= $range->getStart() && $transaction->getDate() <= $range->getEnd()"
 
 Replace "$range->includes($transaction->getDate())"
 
