@@ -26,8 +26,8 @@ class Customer {
   public String getName() {
     return name;
   }
-  public String getBirthDate() {
-    return birthday;
+  public Date getBirthDate() {
+    return birthDate;
   }
   public void setBirthDate(Date birthDate) {
     this.birthDate = birthDate;
@@ -39,7 +39,7 @@ class Customer {
   private static Dictionary instances = new Hashtable();
 
   public static Customer get(String name) {
-    Customer value = instances.get(name);
+    Customer value = (Customer)instances.get(name);
     if (value == null) {
       value = new Customer(name);
       instances.put(name, value);
@@ -73,8 +73,8 @@ class Customer {
   public String getName() {
     return name;
   }
-  public String getBirthDate() {
-    return birthday;
+  public Date getBirthDate() {
+    return birthDate;
   }
   public Customer(String name, Date birthDate) {
     this.name = name;
