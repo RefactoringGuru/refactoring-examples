@@ -85,9 +85,14 @@ Set step 1
 #|en| Let's look at this refactoring using yet another order price example.
 #|uk| Розглянемо цей рефакторинг на ще одному прикладі розрахунку ціни замовлення.
 
-#|ru| Метод получения скидки (<code>discountedPrice</code>) сейчас практически нельзя использовать в отрыве от метода получения цены (<code>getPrice</code>), т.к. перед этим нужно получить значения всех параметров.
-#|en| The method for getting the discount (<code>discountedPrice</code>) is currently nearly impossible to use separately from the method for getting the price (<code>getPrice</code>), since you must get the values of all parameters prior to it.
-#|uk| Метод отримання знижки (<code>discountedPrice</code>) зараз практично не можна використовувати у відриві від методу отримання ціни (<code>getPrice</code>), так як перед цим потрібно отримати значення всіх параметрів.
+Select name of "getPrice"
++Select name of "discountedPrice"
+
+#|ru|^ Метод получения скидки (<code>discountedPrice</code>) сейчас практически нельзя использовать в отрыве от метода получения цены (<code>getPrice</code>), т.к. перед этим нужно получить значения всех параметров.
+#|en|^ The method for getting the discount (<code>discountedPrice</code>) is currently nearly impossible to use separately from the method for getting the price (<code>getPrice</code>), since you must get the values of all parameters prior to it.
+#|uk|^ Метод отримання знижки (<code>discountedPrice</code>) зараз практично не можна використовувати у відриві від методу отримання ціни (<code>getPrice</code>), так як перед цим потрібно отримати значення всіх параметрів.
+
+Select parameters of "discountedPrice"
 
 #|ru| А что если вообще избавиться от параметров в <code>discountedPrice</code>? Давайте попробуем это сделать.
 #|en| But what if we eliminate all parameters in <code>discountedPrice</code>? Let's try.
@@ -106,9 +111,9 @@ Select:
 
 Set step 2
 
-#|ru| Для начала, выделим расчёт <code>discountLevel</code> в собственный метод.
+#|ru| Для начала, выделим расчёт параметра <code>discountLevel</code> в собственный метод.
 #|en| To start, we extract <code>discountLevel</code> to its own method.
-#|uk| Для початку, виділимо розрахунок <code>discountLevel</code> у власний метод.
+#|uk| Для початку, виділимо розрахунок параметра <code>discountLevel</code> у власний метод.
 
 Go to after "discountedPrice"
 
@@ -137,17 +142,19 @@ Print "$this->getDiscountLevel()"
 
 Set step 4
 
+Select ", $discountLevel" in parameters of "discountedPrice"
+
 #|ru| Нужда в одном из параметров отпала, можем применить <a href="/remove-parameter">удаление параметра</a>.
 #|en| One of the parameters is no longer needed so we can use <a href="/remove-parameter">Remove Parameter</a>
 #|uk| Необхідність в одному з параметрів відпала, можемо застосувати <a href="/uk/remove-parameter">видалення параметра</a>.
 
-Select ", $discountLevel" in parameters of "discountedPrice"
-
 Remove selected
 
-Wait 1000ms
+Wait 500ms
 
 Select ", $discountLevel"
+
+Wait 500ms
 
 Remove selected
 
@@ -162,9 +169,9 @@ Select:
 
 ```
 
-#|ru| После этого можно очистить код от упоминаний более не используемой временной переменной.
-#|en| We can then remove mentions of the code of the temporary variable, which is no longer used.
-#|uk| Після цього можна очистити код від згадок про не використовувану тимчасову змінну.
+#|ru| После этого можно удалить не нужный более расчёт параметра.
+#|en| We can then remove parameter calculation, which is no longer used.
+#|uk| Після цього можна видалити непотрібний більш розрахунок параметра.
 
 Remove selected
 
@@ -176,6 +183,8 @@ Remove selected
 
 #C|uk| Запускаємо тестування.
 #S Супер, все працює, продовжуємо.
+
+Select parameters of "discountedPrice"
 
 #|ru| Итак, один параметр ушёл. Давайте попробуем избавиться и от второго.
 #|en| One parameter, one more to go…
@@ -205,19 +214,23 @@ Select "$basePrice" in body of "discountedPrice"
 
 Print "$this->getBasePrice()"
 
-#|ru| Как и прежде, теперь мы можем избавиться и от этого параметра.
-#|en| As before, we can now get rid of this parameter as well.
-#|uk| Як і колись, тепер ми можемо позбутися і від цього параметра.
+Wait 250ms
 
 Select "$basePrice" in parameters of "discountedPrice"
+
+#|ru| После чего мы можем избавиться и от этого параметра.
+#|en| As before, we can now get rid of this parameter as well.
+#|uk| Після чого ми можемо позбутися і від цього параметра.
 
 Remove selected
 
 Select "discountedPrice(|||$basePrice|||)"
 
-Wait 1000ms
+Wait 500ms
 
 Remove selected
+
+Wait 500ms
 
 Select:
 ```
@@ -225,9 +238,9 @@ Select:
 
 ```
 
-#|ru| После этого чистим код оригинального метода…
-#|en| Then clean up the code of the original method…
-#|uk| Після цього чистимо код оригінального методу…
+#|ru| Очищаем код метода получения цены…
+#|en| Then clean up the code of the method for getting the price…
+#|uk| Очищаємо код методу отримання ціни…
 
 Remove selected
 

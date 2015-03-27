@@ -193,7 +193,7 @@ Go to before "Customer Get"
 
 #|ru| Есть ещё одна проблема. Объекты-значения с одинаковыми данными должны быть равны при сравнении. Чтобы сделать это на языке C#, нужно переопределить в сравниваемых классах методы <code>Equals</code> и <code>GetHashCode</code>.
 #|en| One more problem. Value objects with identical data should be equal when compared. To do this in C#, define <code>Equals</code> and <code>GetHashCode</code> methods in the classes being compared.
-#|uk| Є ще одна проблема. Об'єкти-значення з однаковими даними повинні бути рівні при порівнянні. Щоб зробити це в C#, потрібно визначити в класах, що порівнюються, спеціальні методи <code>Equals</code> и <code>GetHashCode</code>.
+#|uk| Є ще одна проблема. Об'єкти-значення з однаковими даними повинні бути рівні при порівнянні. Щоб зробити це в C#, потрібно перевизначити в класах, що порівнюються, спеціальні методи <code>Equals</code> и <code>GetHashCode</code>.
 
 #|ru| Вот так это будет выглядеть в нашем случае.
 #|en| This is how it will look in our case.

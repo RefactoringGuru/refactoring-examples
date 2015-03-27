@@ -26,8 +26,8 @@ class Customer {
   public String getName() {
     return name;
   }
-  public String getBirthDate() {
-    return birthday;
+  public Date getBirthDate() {
+    return birthDate;
   }
   public void setBirthDate(Date birthDate) {
     this.birthDate = birthDate;
@@ -39,7 +39,7 @@ class Customer {
   private static Dictionary instances = new Hashtable();
 
   public static Customer get(String name) {
-    Customer value = instances.get(name);
+    Customer value = (Customer)instances.get(name);
     if (value == null) {
       value = new Customer(name);
       instances.put(name, value);
@@ -60,21 +60,21 @@ class Customer {
   private final String name;
   private Date birthDate;
 
-  public boolean equals(Object arg) {
+  @Override public boolean equals(Object arg) {
     if (!(arg instanceof Customer)) {
       return false;
     }
     Customer other = (Customer) arg;
     return (name.equals(other.name));
   }
-  public int hashCode() {
+  @Override public int hashCode() {
     return name.hashCode();
   }
   public String getName() {
     return name;
   }
-  public String getBirthDate() {
-    return birthday;
+  public Date getBirthDate() {
+    return birthDate;
   }
   public Customer(String name, Date birthDate) {
     this.name = name;
@@ -164,9 +164,9 @@ Set step 2
 
 Go to before "getname"
 
-#|ru| Есть ещё одна проблема. Объекты-значения с одинаковыми данными должны быть равны при сравнении. Чтобы сделать это на языке Java, нужно определить в сравниваемых классах специальные методы <code>equals</code> и <code>hash</code>.
+#|ru| Есть ещё одна проблема. Объекты-значения с одинаковыми данными должны быть равны при сравнении. Чтобы сделать это на языке Java, нужно переопределить в сравниваемых классах специальные методы <code>equals</code> и <code>hash</code>.
 #|en| There's one more problem. Values with identical data should be equal when compared. To do this in Java, define special <code>equals</code> and <code>hash</code> methods in the classes being compared.
-#|uk| Є ще одна проблема. Об'єкти-значення з однаковими даними повинні бути рівні при порівнянні. Щоб зробити це на мові Java, потрібно визначити в  класах, що порівнюються, спеціальні методи <code>equals</code> і <code>hash</code>.
+#|uk| Є ще одна проблема. Об'єкти-значення з однаковими даними повинні бути рівні при порівнянні. Щоб зробити це на мові Java, потрібно перевизначити в класах, що порівнюються, спеціальні методи <code>equals</code> і <code>hash</code>.
 
 #|ru| Вот так это будет выглядеть в нашем случае.
 #|en| This is how it will look in our case.
@@ -175,14 +175,14 @@ Go to before "getname"
 Print:
 ```
 
-  public boolean equals(Object arg) {
+  @Override public boolean equals(Object arg) {
     if (!(arg instanceof Customer)) {
       return false;
     }
     Customer other = (Customer) arg;
     return (name.equals(other.name));
   }
-  public int hashCode() {
+  @Override public int hashCode() {
     return name.hashCode();
   }
 ```

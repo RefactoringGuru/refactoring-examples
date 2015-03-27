@@ -1,4 +1,4 @@
-replace-parameter-with-method-call:java
+replace-parameter-with-method-call:csharp
 
 ###
 
@@ -23,27 +23,28 @@ replace-parameter-with-method-call:java
 ###
 
 ```
-class Order {
+public class Order
+{
   // ...
-  public double getPrice() {
-    int basePrice = quantity * itemPrice;
+  public double GetPrice()
+  {
+    int basePrice = Quantity * ItemPrice;
     int discountLevel;
-    if (quantity > 100) {
+
+    if (Quantity > 100)
       discountLevel = 2;
-    }
-    else {
+    else
       discountLevel = 1;
-    }
-    double finalPrice = discountedPrice(basePrice, discountLevel);
+
+    double finalPrice = DiscountedPrice(basePrice, discountLevel);
     return finalPrice;
   }
-  private double discountedPrice(int basePrice, int discountLevel) {
-    if (discountLevel == 2) {
+  private double DiscountedPrice(int basePrice, int discountLevel)
+  {
+    if (discountLevel == 2)
       return basePrice * 0.1;
-    }
-    else {
+    else
       return basePrice * 0.05;
-    }
   }
 }
 ```
@@ -51,29 +52,30 @@ class Order {
 ###
 
 ```
-class Order {
+public class Order
+{
   // ...
-  public double getPrice() {
-    return discountedPrice();
+  public double GetPrice()
+  {
+    return DiscountedPrice();
   }
-  private double discountedPrice() {
-    if (getDiscountLevel() == 2) {
-      return getBasePrice() * 0.1;
-    }
-    else {
-      return getBasePrice() * 0.05;
-    }
+  private double DiscountedPrice()
+  {
+    if (GetDiscountLevel() == 2)
+      return GetBasePrice() * 0.1;
+    else
+      return GetBasePrice() * 0.05;
   }
-  private int getDiscountLevel() {
-    if (quantity > 100) {
+  private int GetDiscountLevel()
+  {
+    if (Quantity > 100)
       return 2;
-    }
-    else {
+    else
       return 1;
-    }
   }
-  private double getBasePrice() {
-    return quantity * itemPrice;
+  private double GetBasePrice()
+  {
+    return Quantity * ItemPrice;
   }
 }
 ```
@@ -86,28 +88,27 @@ Set step 1
 #|en| Let's look at this refactoring using yet another order price example.
 #|uk| Розглянемо цей рефакторинг на ще одному прикладі розрахунку ціни замовлення.
 
-Select name of "getPrice"
-+Select name of "discountedPrice"
+Select name of "GetPrice"
++Select name of "DiscountedPrice"
 
-#|ru|^ Метод получения скидки (<code>discountedPrice</code>) сейчас практически нельзя использовать в отрыве от метода получения цены (<code>getPrice</code>), т.к. перед этим нужно получить значения всех параметров.
-#|en|^ The method for getting the discount (<code>discountedPrice</code>) is currently nearly impossible to use separately from the method for getting the price (<code>getPrice</code>), since you must get the values of all parameters prior to it.
-#|uk|^ Метод отримання знижки (<code>discountedPrice</code>) зараз практично не можна використовувати у відриві від методу отримання ціни (<code>getPrice</code>), так як перед цим потрібно отримати значення всіх параметрів.
+#|ru|^ Метод получения скидки <code>DiscountedPrice()</code> сейчас практически нельзя использовать в отрыве от метода получения цены <code>GetPrice()</code>, т.к. перед этим нужно получить значения всех параметров.
+#|en|^ The method for getting the discount <code>DiscountedPrice()</code> is currently nearly impossible to use separately from the method for getting the price <code>GetPrice()</code>, since you must get the values of all parameters prior to it.
+#|uk|^ Метод отримання знижки <code>DiscountedPrice()</code> зараз практично не можна використовувати у відриві від методу отримання ціни <code>GetPrice()</code>, так як перед цим потрібно отримати значення всіх параметрів.
 
-Select parameters of "discountedPrice"
+Select parameters of "DiscountedPrice"
 
-#|ru| А что если вообще избавиться от параметров в <code>discountedPrice</code>? Давайте попробуем это сделать.
-#|en| But what if we eliminate all parameters in <code>discountedPrice</code>? Let's try.
-#|uk| А що якщо взагалі позбутися параметрів в <code>discountedPrice</code>? Давайте спробуємо це зробити.
+#|ru| А что если вообще избавиться от параметров в <code>DiscountedPrice()</code>? Давайте попробуем это сделать.
+#|en| But what if we eliminate all parameters in <code>DiscountedPrice()</code>? Let's try.
+#|uk| А що якщо взагалі позбутися параметрів в <code>DiscountedPrice()</code>? Давайте спробуємо це зробити.
 
 Select:
 ```
     int discountLevel;
-    if (quantity > 100) {
+
+    if (Quantity > 100)
       discountLevel = 2;
-    }
-    else {
+    else
       discountLevel = 1;
-    }
 
 ```
 
@@ -117,38 +118,37 @@ Set step 2
 #|en| To start, we extract <code>discountLevel</code> to its own method.
 #|uk| Для початку, виділимо розрахунок параметра <code>discountLevel</code> у власний метод.
 
-Go to after "discountedPrice"
+Go to after "DiscountedPrice"
 
 Print:
 ```
 
-  private int getDiscountLevel() {
-    if (quantity > 100) {
+  private int GetDiscountLevel()
+  {
+    if (Quantity > 100)
       return 2;
-    }
-    else {
+    else
       return 1;
-    }
   }
 ```
 
 Set step 3
 
-Select "discountLevel" in body of "discountedPrice"
+Select "discountLevel" in body of "DiscountedPrice"
 
 #|ru| Теперь мы можем использовать этот метод вместо параметра в методе расчёта скидки.
 #|en| Now we can use this method instead of this parameter in the discount calculation method.
 #|uk| Тепер ми можемо використовувати цей метод замість параметра в методі розрахунку знижки.
 
-Print "getDiscountLevel()"
+Print "GetDiscountLevel()"
 
 Set step 4
 
-Select ", int discountLevel" in parameters of "discountedPrice"
+Select ", int discountLevel" in parameters of "DiscountedPrice"
 
 #|ru| Нужда в одном из параметров отпала, можем применить <a href="/remove-parameter">удаление параметра</a>.
 #|en| One of the parameters is no longer needed so we can use <a href="/remove-parameter">Remove Parameter</a>
-#|uk| Необхідність в одному з параметрів відпала, можемо застосувати <a href="/uk/remove-parameter">видалення параметра</a>.
+#|uk| Необхідність в одному з параметрів відпала, можемо застосувати <a href="/remove-parameter">видалення параметра</a>.
 
 Remove selected
 
@@ -163,12 +163,11 @@ Wait 500ms
 Select:
 ```
     int discountLevel;
-    if (quantity > 100) {
+
+    if (Quantity > 100)
       discountLevel = 2;
-    }
-    else {
+    else
       discountLevel = 1;
-    }
 
 ```
 
@@ -187,39 +186,40 @@ Remove selected
 #C|uk| Запускаємо компіляцію і тестування.
 #S Супер, все працює, продовжуємо.
 
-Select parameters of "discountedPrice"
+Select parameters of "DiscountedPrice"
 
 #|ru| Итак, один параметр ушёл. Давайте попробуем избавиться и от второго.
 #|en| One parameter, one more to go…
 #|uk| Отже, один параметр пішов. Давайте спробуємо позбутися і від другого.
 
-Select "quantity * itemPrice"
+Select "Quantity * ItemPrice"
 
 #|ru| Попробуем выделить расчёт базовой цены в собственный метод.
 #|en| Let's extract the base price calculation to its own method.
 #|uk| Спробуємо виділити розрахунок базової ціни у власний метод.
 
-Go to after "getDiscountLevel"
+Go to after "GetDiscountLevel"
 
 Print:
 ```
 
-  private double getBasePrice() {
-    return quantity * itemPrice;
+  private double GetBasePrice()
+  {
+    return Quantity * ItemPrice;
   }
 ```
 
-Select "basePrice" in body of "discountedPrice"
+Select "basePrice" in body of "DiscountedPrice"
 
-#|ru| Теперь используем этот метод в <code>discountedPrice</code>.
-#|en| Now use this method in <code>discountedPrice</code>.
-#|uk| Тепер використовуємо цей метод в <code>discountedPrice</code>.
+#|ru| Теперь используем этот метод в <code>DiscountedPrice</code>.
+#|en| Now use this method in <code>DiscountedPrice</code>.
+#|uk| Тепер використовуємо цей метод в <code>DiscountedPrice</code>.
 
-Print "getBasePrice()"
+Print "GetBasePrice()"
 
 Wait 250ms
 
-Select "int basePrice" in parameters of "discountedPrice"
+Select "int basePrice" in parameters of "DiscountedPrice"
 
 #|ru| После чего мы можем избавиться и от этого параметра.
 #|en| As before, we can now get rid of this parameter as well.
@@ -227,7 +227,7 @@ Select "int basePrice" in parameters of "discountedPrice"
 
 Remove selected
 
-Select "discountedPrice(|||basePrice|||)"
+Select "DiscountedPrice(|||basePrice|||)"
 
 Wait 500ms
 
@@ -237,7 +237,8 @@ Wait 500ms
 
 Select:
 ```
-    int basePrice = quantity * itemPrice;
+    int basePrice = Quantity * ItemPrice;
+
 
 ```
 
@@ -247,13 +248,13 @@ Select:
 
 Remove selected
 
-Select body of "getPrice"
+Select body of "GetPrice"
 
 #|ru| …или немного красивее:
 #|en| …or if we make it a bit more pretty:
 #|uk| …або трохи красивіше:
 
-Print "    return discountedPrice();"
+Print "    return DiscountedPrice();"
 
 
 #C|ru| Запускаем финальную компиляцию.

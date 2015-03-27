@@ -6,13 +6,13 @@ remove-setting-method:java
 1.en. The value of a field should be changeable only in the constructor. If the constructor does not contain a parameter for setting the value, add one.
 1.uk. Значення поля повинне мінятися тільки в конструкторі. Якщо конструктор не містить параметра для установки значення, треба його додати.
 
-2.ru. Найдите все вызовы сеттера.<ul><li>Если вызов сеттера стоит сразу после вызова конструктора текущего класса, переместите его аргумент в вызов конструктора и удалите сеттер.</li><li>Вызовы сеттера в конструкторе замените на прямой доступ к полю.</li></ul>
-2.en. Find all setter calls.<ul><li>If the setter call is immediately before the call to the constructor of the current class, move its argument to the constructor call and delete the setter.</li><li>Replace setter calls in the constructor with direct access to the field.</li></ul>
-2.uk. Знайдіть всі виклики сетера. <Ul><li>Якщо виклик сетера знаходиться відразу після виклику конструктора поточного класу, перемістіть його аргумент на виклик конструктора і видаліть сетер.</Li> <li>Виклики сетера в конструкторі замініть на прямий доступ до поля.</li></ul>
+2.ru. Если код сеттера чересчур сложен, то имеет смысл вынести его в отдельный метод инициализации.
+2.en. If the code in the setter is too complicated, it makes sense to make it into a separate initialization method.
+2.uk. Якщо код сетера надто складний, то має сенс винести його в окремий метод ініціалізації.
 
-3.ru. Удалите сеттер.
-3.en. Delete the setter.
-3.uk. Видаліть сетер.
+3.ru. Если в подклассах производилась инициализация закрытых полей родительского класса, то замените её на вызов конструктора родительского класса.
+3.en. If subclasses initialize private fields of the parent class, then replace it with a call to the constructor of the parent class.
+3.uk. Якщо в підкласах проводилася ініціалізація закритих полів батьківського класу, то замініть її на виклик конструктора батьківського класу.
 
 
 
@@ -60,9 +60,9 @@ class InterestAccount extends Account {
 
 Set step 1
 
-#|ru| Рассмотрим <b>удаление сеттера</b> на таком простом примере. У нас есть класс банковского счета. В нем есть поле идентификатора, который должен создаваться только один раз и больше не меняться.
+#|ru| Рассмотрим <b>удаление сеттера</b> на простом примере. У нас есть класс банковского счета. В нем есть поле идентификатора, который должен создаваться только один раз и больше не меняться.
 #|en| Let's look at <b>Remove Setter Method</b> using a simple example of a bank account class. The class has an ID field that should be created once and never change again.
-#|uk| Розглянемо <b>видалення сетера</ b> на такому простому прикладі. У нас є клас банківського рахунку. У ньому є поле ідентифікатора, який повинен створюватися тільки один раз і більше не змінюватися.
+#|uk| Розглянемо <b>видалення сетера</ b> на простому прикладі. У нас є клас банківського рахунку. У ньому є поле ідентифікатора, який повинен створюватися тільки один раз і більше не змінюватися.
 
 Select name of "setId"
 
@@ -87,11 +87,13 @@ Select whole "setId"
 
 Remove selected
 
+Set step 2
+
 Select name of "Account"
 
-#|ru| По сути, для такого простого случая мы уже все сделали. Но бывают и другие, более сложные случаи.
+#|ru| Для такого простого случая мы уже все сделали, но бывают и другие, более сложные случаи.
 #|en| In effect, we have already done everything for a case as simple as this one. But there are other, more difficult cases.
-#|uk| Взагалі-то, для такого простого випадку ми вже все зробили. Але бувають і інші, більш складні випадки.
+#|uk| Для такого простого випадку ми вже все зробили, але бувають і інші, більш складні випадки.
 
 Select whole "public Account"
 
@@ -108,13 +110,13 @@ Replace instant:
 
 Select body of "setId"
 
-#|ru|< Например, если сеттер выполняет какие-то вычисления над аргументом:
-#|en|< For example, what if the setter performs calculations on an argument:
-#|uk|< Наприклад, якщо сетер виконує якісь обчислення над аргументом:
+#|ru|< Например, если сеттер выполняет какие-то вычисления над аргументом.
+#|en|< For example, what if the setter performs calculations on an argument.
+#|uk|< Наприклад, якщо сетер виконує якісь обчислення над аргументом.
 
-#|ru|< Если изменение простое, как в этом случае, его тоже можно вынести в конструктор.
+#|ru|< Если изменение простое, как в данном случае, его тоже можно вынести в конструктор.
 #|en|< If the change is simple, as it is here, it can also be moved to the constructor.
-#|uk|< Якщо зміна проста, як в цьому випадку, її теж можна винести в конструктор.
+#|uk|< Якщо зміна проста, як в даному випадку, її теж можна винести в конструктор.
 
 #|ru|< Однако, если изменение сложное, состоит из вызовов нескольких методов, лучше создать новый метод для инициализации значения.
 #|en|< However, if the change is complex and consists of calls to several methods, it is better to create a new method for initializing the value.
@@ -130,13 +132,13 @@ Select "setId"
 
 Replace "initializeId"
 
-Set step 2
+Set step 3
 
 Go to the end of file
 
-#|ru| Отлично, давайте рассмотрим ещё один случай.
+#|ru| Отлично, давайте разберём ещё одну ситуацию.
 #|en| Excellent. Now let's review one more case.
-#|uk| Дуже добре, давайте розглянемо ще один випадок.
+#|uk| Дуже добре, давайте розберемо ще одну ситуацію.
 
 Print instant:
 ```
@@ -153,9 +155,9 @@ class InterestAccount extends Account {
 
 Select name of "InterestAccount"
 
-#|ru| Ещё один неприятный случай возникает, когда есть подклассы, инициализирующие закрытые переменные родительского класса.
+#|ru| Она возникает, когда есть подклассы, инициализирующие закрытые переменные родительского класса.
 #|en| Another unpleasant situation arises when there are subclasses initializing private variables of a parent class.
-#|uk| Ще один неприємний випадок виникає, коли є підкласи, які ініціалізують закриті змінні батьківського класу.
+#|uk| Вона виникає, коли є підкласи, які ініціалізують закриті змінні батьківського класу.
 
 Select "setId(id)"
 

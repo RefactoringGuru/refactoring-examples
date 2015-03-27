@@ -1,4 +1,4 @@
-replace-constructor-with-factory-method:php
+replace-constructor-with-factory-method:csharp
 
 ###
 
@@ -23,58 +23,67 @@ replace-constructor-with-factory-method:php
 ###
 
 ```
-class Employee {
+public class Employee
+{
   // ...
-  const ENGINEER = 0;
-  const SALESMAN = 1;
-  const MANAGER = 2;
+  public const int ENGINEER = 0,
+                   SALESMAN = 1,
+                   MANAGER = 2;
 
-  public function __construct($type) {
-    $this->type = $type;
+  public Employee(int type)
+  {
+    Type = type;
   }
 }
 
 // Some clinet code.
-$eng = new Employee(Employee::ENGINEER);
+Employee eng = new Employee(Employee.ENGINEER);
 ```
 
 ###
 
 ```
-class Employee {
+public class Employee
+{
   // ...
-  const ENGINEER = 0;
-  const SALESMAN = 1;
-  const MANAGER = 2;
+  public const int ENGINEER = 0,
+                   SALESMAN = 1,
+                   MANAGER = 2;
 
-  public static function create($type) {
-    switch ($type) {
-      case self::ENGINEER:
+  public static Employee Create(int type)
+  {
+    switch (type)
+    {
+      case ENGINEER:
         return new Engineer();
-      case self::SALESMAN:
+      case SALESMAN:
         return new Salesman();
-      case self::MANAGER:
+      case MANAGER:
         return new Manager();
       default:
-        return new Employee($type);
+        return new Employee(type);
     }
   }
-  private function __construct($type) {
-    $this->type = $type;
+  private Employee(int type)
+  {
+    Type = type;
   }
 }
-class Engineer extends Employee {
+public class Engineer: Employee
+{
   // ...
 }
-class Salesman extends Employee {
+public class Salesman: Employee
+{
   // ...
 }
-class Manager extends Employee {
+public class Manager: Employee
+{
   // ...
 }
 
 // Some clinet code.
-$eng = Employee::create(Employee::ENGINEER);
+Employee eng = Employee.Create(Employee.ENGINEER);
 ```
 
 ###
@@ -85,7 +94,7 @@ Set step 1
 #|en| Say, we have a class for creating employees…
 #|uk| Припустимо, у нас є клас для створення співробітників,…
 
-Select parameters in "__construct"
+Select parameters in "public Employee"
 
 #|ru|< …в котором тип сотрудника задаётся параметром конструктора.
 #|en|< …in which the employee type is set via constructor's parameter.
@@ -106,13 +115,16 @@ Go to after "Employee"
 Print:
 ```
 
-class Engineer extends Employee {
+public class Engineer: Employee
+{
   // ...
 }
-class Salesman extends Employee {
+public class Salesman: Employee
+{
   // ...
 }
-class Manager extends Employee {
+public class Manager: Employee
+{
   // ...
 }
 ```
@@ -131,7 +143,7 @@ Select "new Employee"
 #|en| The alternative is to create a <b>factory method</b> – a special static method that returns objects of different classes depending on particular parameters.
 #|uk| Альтернативою цьому є створення <b> фабричного методу </ b> – спеціального статичного методу, який би повертав об'єкти різних класів в залежності від параметрів.
 
-Go to before "__construct"
+Go to before "public Employee"
 
 #|ru| Класс <code>Employee</code> является лучшим местом для хранения фабричного метода, так как он, скорее всего, переживёт любые изменения подклассов.
 #|en| The <code>Employee</code> class is the best place to store the factory method because it will probably survive any changes in the subclasses.
@@ -140,8 +152,9 @@ Go to before "__construct"
 Print:
 ```
 
-  public static function create($type) {
-    return new Employee($type);
+  public static Employee Create(int type)
+  {
+    return new Employee(type);
   }
 ```
 
@@ -157,11 +170,11 @@ Select "eng = |||new Employee|||"
 #|en| Now find all direct calls to the constructors and replace them with calls to the factory method.
 #|uk| Тепер потрібно знайти всі прямі виклики конструкторів і замінити їх викликами фабричного методу.
 
-Print "Employee::create"
+Print "Employee.Create"
 
 Set step 3
 
-Select visibility of "__construct"
+Select visibility of "public Employee"
 
 #|ru| После всех замен конструктор можно скрыть от посторонних глаз, сделав его приватным.
 #|en| Once the changes are complete, you can hide the constructor from outside eyes by making it private.
@@ -171,7 +184,7 @@ Print "private"
 
 Set step 4
 
-Select body of "create"
+Select body of "Create"
 
 #|ru| После этого можно создать в фабричном методе условный оператор, который будет возвращать объект нужного класса в зависимости от параметра.
 #|en| In addition, you can create a conditional in the factory method to return an object of the necessary class depending on the parameter passed.
@@ -179,25 +192,26 @@ Select body of "create"
 
 Print:
 ```
-    switch ($type) {
-      case self::ENGINEER:
+    switch (type)
+    {
+      case ENGINEER:
         return new Engineer();
-      case self::SALESMAN:
+      case SALESMAN:
         return new Salesman();
-      case self::MANAGER:
+      case MANAGER:
         return new Manager();
       default:
-        return new Employee($type);
+        return new Employee(type);
     }
 ```
 
-#C|ru| Запускаем финальное тестирование.
+#C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's start the final testing.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
-#C|uk| Запускаємо фінальне тестування.
+#C|uk| Запускаємо фінальну компіляцію.
 #S Супер, все працює.
 
 Set final step

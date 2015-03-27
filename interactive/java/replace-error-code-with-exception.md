@@ -2,9 +2,9 @@ replace-error-code-with-exception:java
 
 ###
 
-1.ru. Найдите все вызовы метода, возвращающего код ошибки, и оберните его в <code>try</code>/<code>catch</code> блоки вместо проверки кода ошибки.
+1.ru. Найдите все вызовы метода, возвращающего код ошибки, и оберните их в <code>try</code>/<code>catch</code> блоки вместо проверки кода ошибки.
 1.en. Find all calls to a method that returns error codes and, instead of checking for an error code, wrap it in <code>try</code>/<code>catch</code> blocks.
-1.uk. Знайдіть усі виклики методу, що повертає код помилки, і оберніть його в <code>try</code>/<code>catch</code> блоки замість перевірки коду помилки.
+1.uk. Знайдіть усі виклики методу, що повертає код помилки, і оберніть їх в <code>try</code>/<code>catch</code> блоки замість перевірки коду помилки.
 
 2.ru. Внутри метода  вместо возвращения кода ошибки выбрасывайте исключение.
 2.en. Inside the method, instead of returning an error code, throw an exception.
@@ -50,7 +50,7 @@ class Account {
   // ...
   private int balance;
 
-  public int withdraw(int amount) throws BalanceException {
+  public void withdraw(int amount) throws BalanceException {
     if (amount > balance) {
       throw new BalanceException();
     }
@@ -88,7 +88,7 @@ Select "account.withdraw(amount) == -1"
 #|en|= …which is then checked in the client code.
 #|uk|= …який потім перевіряється в клієнтському коді.
 
-#|ru| Заменим все это выбрасыванием исключения с последующим «отловом» его в клиентском коде.
+#|ru| Заменим всё это выбрасыванием исключения с последующим «отловом» его в клиентском коде.
 #|en| We can replace all this by throwing an exception and then "catching" it in the client code.
 #|uk| Замінимо все це викиданням винятку з наступним «виловом» його в клієнтському коді.
 
@@ -153,6 +153,10 @@ Select:
 ```
 
 Remove selected
+
+Select type of "withdraw"
+
+Replace "void"
 
 Select:
 ```

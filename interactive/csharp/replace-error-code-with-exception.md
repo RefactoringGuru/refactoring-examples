@@ -1,4 +1,4 @@
-replace-error-code-with-exception:php
+replace-error-code-with-exception:csharp
 
 ###
 
@@ -10,71 +10,70 @@ replace-error-code-with-exception:php
 2.en. Inside the method, instead of returning an error code, throw an exception.
 2.uk. Усередині методу замість повернення коду помилки викидайте виключення.
 
-3.ru. Измените описание метода так, чтобы оно содержала информацию о выбрасываемом исключении (секция <code>@throws</code>).
-3.en. Change the method description so that it contains information about the exception being thrown (<code>@throws</code> section).
-3.uk. Змініть опис методу так, щоб воно містила інформацію про виключення, що викидається (секція <code>@throws</code>).
+3.ru. Измените описание метода так, чтобы оно содержала информацию о выбрасываемом исключении (секция <code>exception</code>).
+3.en. Change the method description so that it contains information about the exception being thrown (<code>exception</code> section).
+3.uk. Змініть опис методу так, щоб воно містила інформацію про виключення, що викидається (секція <code>exception</code>).
 
 
 
 ###
 
 ```
-class Account {
+public class Account
+{
   // ...
-  private $balance;
+  private int balance;
 
-  /**
-   * Withdraw money from account.
-   * @param int $amount Amount to withdraw.
-   * @return Zero on success, -1 on error.
-   */
-  public function withdraw($amount) {
-    if ($amount > $this->balance) {
+  public int Withdraw(int amount)
+  {
+    if (amount > balance)
+    {
       return -1;
     }
-    else {
-      $this->balance -= $amount;
+    else
+    {
+      balance -= amount;
       return 0;
     }
   }
 }
 
 // Somewhere in client code.
-if ($account->withdraw($amount) == -1) {
-  handleOverdrawn();
-}
-else {
-  doTheUsualThing();
-}
+if (account.Withdraw(amount) == -1)
+  HandleOverdrawn();
+else
+  DoTheUsualThing();
 ```
 
 ###
 
 ```
-class Account {
+public class Account
+{
   // ...
-  private $balance;
+  private int balance;
 
-  /**
-   * Withdraw money from account.
-   * @param int $amount Amount to withdraw.
-   * @throws BalanceException
-   */
-  public function withdraw($amount) {
-    if ($amount > $this->balance) {
+  ///<exception cref="BalanceException">Thrown when amount > balance</exception>
+  public void Withdraw(int amount)
+  {
+    if (amount > balance)
+    {
       throw new BalanceException();
     }
-    $this->balance -= $amount;
+    balance -= amount;
   }
 }
-class BalanceException extends Exception {}
+public class BalanceException: Exception {}
 
 // Somewhere in client code.
-try {
-  $account->withdraw($amount);
-  doTheUsualThing();
-} catch (BalanceException $e) {
-  handleOverdrawn();
+try
+{
+  account.Withdraw(amount);
+  DoTheUsualThing();
+}
+catch (BalanceException e)
+{
+  HandleOverdrawn();
 }
 ```
 
@@ -86,13 +85,16 @@ Set step 1
 #|en| Let's look at this refactoring in the context of withdrawals from a bank account.
 #|uk| Розглянемо рефакторинг на прикладі методу зняття грошей з банківського рахунку.
 
-Go to "if ($amount > $this->balance) {|||"
+Go to:
+```
+if (amount > balance)|||
+```
 
 #|ru|<+ В нашем случае, при попытке снять больше денег, чем есть на счету, генерируется код ошибки (<code>-1</code>),…
 #|en|<+ If a customer attempts to withdraw more money than his or her current balance allows, an error code will be returned (<code>-1</code>)…
 #|uk|<+ В нашому випадку, при спробі зняти більше грошей, ніж є на рахунку, генерується код помилки (<code>-1</code>),…
 
-Select "$account->withdraw($amount) == -1"
+Select "account.Withdraw(amount) == -1"
 
 #|ru|= …который затем проверяется в клиентском коде.
 #|en|= …which is then checked in the client code.
@@ -111,8 +113,10 @@ Go to after "Account"
 Print:
 ```
 
-class BalanceException extends Exception {}
+public class BalanceException: Exception {}
 ```
+
+Select ".|||Withdraw|||"
 
 #|ru| Затем обернём код вызова нашего метода в <code>try</code>/<code>catch</code> блоки.
 #|en| Then, wrap our method body with the <code>try</code>/<code>catch</code> block.
@@ -120,25 +124,28 @@ class BalanceException extends Exception {}
 
 Select:
 ```
-if ($account->withdraw($amount) == -1) {
-  handleOverdrawn();
-}
-else {
-  doTheUsualThing();
-}
+if (account.Withdraw(amount) == -1)
+  HandleOverdrawn();
+else
+  DoTheUsualThing();
 ```
 
 Replace:
 ```
-try {
-  $account->withdraw($amount);
-  doTheUsualThing();
-} catch (BalanceException $e) {
-  handleOverdrawn();
+try
+{
+  account.Withdraw(amount);
+  DoTheUsualThing();
+}
+catch (BalanceException e)
+{
+  HandleOverdrawn();
 }
 ```
 
 Set step 2
+
+Select name of "Withdraw" in "Account"
 
 #|ru| После этого изменяем метод так, чтобы он выбрасывал исключение вместо возврата кода ошибки.
 #|en| After that, change the method so that it throws an exception instead of returning an error code.
@@ -164,10 +171,15 @@ Select:
 
 Remove selected
 
+Select type of "Withdraw"
+
+Replace "void"
+
 Select:
 ```
-|||    else {
-|||      $this->balance -= $amount;
+|||    else
+    {
+|||      balance -= amount;
 |||    }
 |||
 ```
@@ -180,14 +192,14 @@ Remove selected
 
 Select:
 ```
-      $this->balance -= $amount;
+      balance -= amount;
 ```
 
 Deindent
 
 Select name of "Account"
 
-#|ru| Неудобство этого шага в том, что мы вынуждены изменить все обращения к методу и сам метод за один шаг, иначе компилятор нас накажет. Если мест вызова много, то придётся выполнять большую модификацию без промежуточного тестирования.
+#|ru| Неудобство этого шага в том, что мы вынуждены изменить все обращения к методу и сам метод за один шаг, иначе компилятор нас накажет. Если мест вызова много, то придётся выполнять большую модификацию без промежуточных компиляции и тестирования.
 #|en| This step is not very safe because we are forced to change all references to the method, as well as the method itself, in a single step. Otherwise, the compiler will shake its head at us in disapproval. If there are many calls, we will have to make a mammoth modification without any intermediate compilation or testing.
 #|uk| Незручність цього кроку в тому, що ми змушені змінити всі звернення до методу і сам метод за один крок, інакше компілятор нас покарає. Якщо місць виклику багато, то доведеться виконувати велику модифікацію без проміжних компіляцій та тестуваннь.
 
@@ -197,26 +209,24 @@ Select name of "Account"
 
 Set step 3
 
-Select:
-```
-@return Zero on success, -1 on error.
-```
+Go to before "Withdraw" in "Account"
+
 #|ru| Как бы то ни было, нам осталось только обновить описание метода, сообщив, что метод теперь выбрасывает исключение.
 #|en| After all of the changes, we must update the method's description, indicating that the method now throws exceptions.
 #|uk| Як би там не було, нам залишилося тільки оновити опис методу, повідомивши, що метод тепер викидає виключення.
 
 Print:
 ```
-@throws BalanceException
-```
 
-#C|ru| Запускаем финальное тестирование.
+  ///<exception cref="BalanceException">Thrown when amount > balance</exception>
+```
+#C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's start the final testing.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
-#C|uk| Запускаємо фінальне тестування.
+#C|uk| Запускаємо фінальну компіляцію.
 #S Супер, все працює.
 
 Set final step

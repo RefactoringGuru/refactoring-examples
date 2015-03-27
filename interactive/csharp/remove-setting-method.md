@@ -1,4 +1,4 @@
-remove-setting-method:php
+remove-setting-method:csharp
 
 ###
 
@@ -19,15 +19,20 @@ remove-setting-method:php
 ###
 
 ```
-class Account {
+public class Account
+{
   // ...
-  private $id;
+  private string id;
 
-  public function __construct($id) {
-    $this->setId($id);
+  public string Id
+  {
+    get{ return id; }
+    set{ id = value; }
   }
-  public function setId($id) {
-    $this->id = $id;
+  
+  public Account(string id)
+  {
+    Id = id;
   }
 }
 ```
@@ -35,23 +40,35 @@ class Account {
 ###
 
 ```
-class Account {
+public class Account
+{
   // ...
-  private $id;
+  private string id;
 
-  public function __construct($id) {
-    $this->initializeId($id);
+  public string Id
+  {
+    get{ return id; }
+    private set{ id = value; }
   }
-  protected function initializeId($id) {
-    $this->id = 'ID' . $id;
+
+  public Account(string id)
+  {
+    InitializeId(id);
+  }
+  protected void InitializeId(string id)
+  {
+    Id = "ID" + id;
   }
 }
 
-class InterestAccount extends Account {
-  private $interestRate;
-  public function __construct($id, $interestRate) {
-    $this->initializeId($id);
-    $this->interestRate = $interestRate;
+public class InterestAccount: Account
+{
+  private double interestRate;
+
+  public InterestAccount(string id, double interestRate)
+  {
+    InitializeId(id);
+    this.interestRate = interestRate;
   }
 }
 ```
@@ -64,26 +81,37 @@ Set step 1
 #|en| Let's look at <b>Remove Setter Method</b> using a simple example of a bank account class. The class has an ID field that should be created once and never change again.
 #|uk| Розглянемо <b>видалення сетера</ b> на простому прикладі. У нас є клас банківського рахунку. У ньому є поле ідентифікатора, який повинен створюватися тільки один раз і більше не змінюватися.
 
-Select name of "setId"
+Select "|||public||| string"
++Select "set"
 
-#|ru| Тем не менее, сейчас в классе есть сеттер. Вот его мы и попытаемся убрать.
-#|en| However, the class currently has a setter for that field, which we want to eliminate.
-#|uk| Тим не менш, зараз в класі є сетер. Ось його ми і спробуємо прибрати.
+#|ru| Сейчас в классе есть публичный сеттер. Вот его мы и попытаемся убрать.
+#|en| Now the class currently has a public setter for that field, which we want to eliminate.
+#|uk| Зараз в класі є публічний сетер. Ось його ми і спробуємо прибрати.
 
-Select body of "setId"
-
-#|ru| Самым простым решением было бы интегрировать код сеттера в конструктор.
+#|ru| Самым простым (и зачастую правильным) решением является изменение области видимости сеттера на приватную.
 #|en| The simplest solution would be to integrate the setter's code into the constructor.
-#|uk| Найпростішим рішенням було б інтегрувати код сетера в конструктор.
+#|uk| Найпростішим рішенням є зміна області видимості сетера на приватну.
 
-Select body of "__construct"
+Go to "|||set{"
+
+Print "private "
+
+#|ru| В большинстве случаев этого достаточно. Однако если есть желание, можно и вовсе удалить сеттер, переместив код инициализации поля в конструктор.
+#|en| In most cases this is enough. However, if you wish, you can remove the setter by moving the initialization code field in the constructor.
+#|uk| У більшості випадків цього достатньо. Однак якщо є бажання, можна і зовсім видалити сетер, перемістивши код ініціалізації поля в конструктор.
+
+Select body of "public Account"
 
 Replace:
 ```
-    $this->id = $id;
+    this.id = id;
 ```
 
-Select whole "setId"
+Select:
+```
+    private set{ id = value; }
+
+```
 
 Remove selected
 
@@ -95,42 +123,64 @@ Select name of "Account"
 #|en| In effect, we have already done everything for a case as simple as this one. But there are other, more difficult cases.
 #|uk| Для такого простого випадку ми вже все зробили, але бувають і інші, більш складні випадки.
 
-Select whole "__construct"
+Select:
+```
+}
+  
+  
+```
++Select whole "public Account" 
 
 Replace instant:
 ```
-  public function __construct($id) {
-    $this->setId($id);
+  private set{ id = "ID" + value; }
   }
-  public function setId($id) {
-    $this->id = 'ID' . $id;
+
+  public Account(string id)
+  {
+    Id = id;
   }
 
 ```
 
-Select body of "setId"
+Select "{ id = "ID" + value; }"
 
-#|ru|< Например, если сеттер выполняет какие-то вычисления над аргументом.
+#|ru|< Например, когда сеттер выполняет какие-то вычисления над аргументом.
 #|en|< For example, what if the setter performs calculations on an argument.
-#|uk|< Наприклад, якщо сетер виконує якісь обчислення над аргументом.
+#|uk|< Наприклад, коли сетер виконує якісь обчислення над аргументом.
 
-#|ru|< Если изменение простое, как в данном случае, его тоже можно вынести в конструктор.
-#|en|< If the change is simple, as it is here, it can also be moved to the constructor.
-#|uk|< Якщо зміна проста, як в даному випадку, її теж можна винести в конструктор.
+#|ru|< Если изменение простое, как в данном случае, его можно оставить в сеттере.
+#|en|< If the change is simple, as it is here, it can be left in the setter.
+#|uk|< Якщо зміна проста, як в даному випадку, його можна залишити в сетера.
 
 #|ru|< Однако, если изменение сложное, состоит из вызовов нескольких методов, лучше создать новый метод для инициализации значения.
 #|en|< However, if the change is complex and consists of calls to several methods, it is better to create a new method for initializing the value.
 #|uk|< Однак, якщо зміна складна, складається з викликів декількох методів, краще створити новий метод для ініціалізації значення.
 
-Select visibility of "setId"
+Go to end of "Account"
 
-Replace "private"
+Print:
+```
+
+  private void InitializeId(string id)
+  {
+    Id = "ID" + id;
+  }
+```
+
+Select "|||"ID" + |||value;"
 
 Wait 500ms
 
-Select "setId"
+Remove selected
 
-Replace "initializeId"
+Wait 500ms
+
+Select body of "public Account"
+
+Replace "    InitializeId(id);"
+
+Wait 500ms
 
 Set step 3
 
@@ -144,52 +194,74 @@ Print instant:
 ```
 
 
-class InterestAccount extends Account {
-  private $interestRate;
-  public function __construct($id, $interestRate) {
-    $this->setId($id);
-    $this->interestRate = $interestRate;
+public class InterestAccount: Account
+{
+  private double interestRate;
+
+  public InterestAccount(string id, double interestRate)
+  {
+    Id = id;
+    this.interestRate = interestRate;
   }
 }
 ```
 
 Select name of "InterestAccount"
++Select "Id = id;" in "InterestAccount"
 
 #|ru| Она возникает, когда есть подклассы, инициализирующие закрытые переменные родительского класса.
 #|en| Another unpleasant situation arises when there are subclasses initializing private variables of a parent class.
 #|uk| Вона виникає, коли є підкласи, які ініціалізують закриті змінні батьківського класу.
 
-Select "$this->setId($id)"
+Select "Id = id;" in "InterestAccount"
 
 #|ru| Тогда вместо вызова сеттера стоит вызывать родительский конструктор.
 #|en| Then, instead of calling a setter, we should call the parent constructor.
 #|uk| Тоді замість виклику сетера варто викликати батьківський конструктор.
 
-Print "parent::__construct($id)"
+Select:
+```
+    Id = id;
 
-Select "parent::__construct($id)"
+```
+
+Remove selected
+
+Go to "interestRate)|||"
+
+Print ": base(id)"
+
+Select "base(id)"
 
 #|ru| В случаях, когда это невозможно, остаётся вызвать нужный метод инициализации, хотя сначала следует позаботиться о том, чтобы он был доступен для подклассов.
 #|en| If that is impossible, we must call the proper initialization method. By the way, if it's private, you should make it protected first.
 #|uk| У випадках, коли це неможливо, залишається викликати потрібний метод ініціалізації, хоча спочатку слід подбати про те, щоб він був доступний для підкласів.
 
-Select visibility of "initializeId"
+Select visibility of "InitializeId"
 
 Replace "protected"
 
 Wait 500ms
 
-Select "parent::__construct($id)"
+Select ": base(id)"
 
-Replace "$this->initializeId($id)"
+Remove selected
 
-#C|ru| Запускаем финальное тестирование.
+Go to start of "public InterestAccount" 
+
+Print:
+```
+
+    InitializeId(id);
+```
+
+#C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
 
-#C|en| Let's start the final testing.
+#C|en| Let's perform the final compilation and testing.
 #S Wonderful, it's all working!
 
-#C|uk| Запускаємо фінальне тестування.
+#C|uk| Запускаємо фінальну компіляцію.
 #S Супер, все працює.
 
 Set final step
