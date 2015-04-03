@@ -3,23 +3,33 @@ replace-inheritance-with-delegation:java
 ###
 
 1.ru. Создайте поле в подклассе для содержания суперкласса. На первом этапе поместите в него текущий объект.
+
 1.en. Create a field in the subclass for holding the superclass. During the initial stage, place the current object in it.
+
 1.uk. Створіть поле в підкласі для утримання суперкласу. На першому етапі додайте в нього поточний об'єкт.
 
 2.ru. Измените методы подкласса так, чтобы они использовали объект суперкласса, вместо <code>this</code>.
+
 2.en. Change the subclass methods so that they use the superclass object instead of <code>this</code>.
+
 2.uk. Змініть методи підкласу так, щоб вони використовували об'єкт суперкласу, замість <code>this</code>.
 
 3.ru. Для методов, которые были унаследованы из суперкласса и которые вызывается в клиентском коде, в подклассе нужно создать простые делегирующие методы.
+
 3.en. For methods inherited from the superclass that are called in the client code, create simple delegating methods in the subclass.
+
 3.uk. Для методів, які були успадковані з суперкласу і які викликаються в клієнтському коді, в підкласі треба створити прості делегуючі методи.
 
 4.ru. Уберите объявление наследования из подкласса.
+
 4.en. Remove the inheritance declaration from the subclass.
+
 4.uk. Приберіть оголошення спадкоємства з підкласу.
 
 5.ru. Измените код инициализации поля, в котором хранится бывший суперкласс, созданием нового объекта.
+
 5.en. Change the initialization code of the field in which the former superclass is stored by creating a new object.
+
 5.uk. Змініть код ініціалізації поля-делегата новим об' єктом суперкласу.
 
 
@@ -58,7 +68,7 @@ class Car extends Engine {
     return model;
   }
   public void setModel(String model) {
-    this.model = $model;
+    this.model = model;
   }
   public String getBrand() {
     return brand;
@@ -107,7 +117,7 @@ class Car {
     return model;
   }
   public void setModel(String model) {
-    this.model = $model;
+    this.model = model;
   }
   public String getBrand() {
     return brand;
