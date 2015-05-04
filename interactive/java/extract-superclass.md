@@ -6,9 +6,9 @@ extract-superclass:java
 1.en. Create an abstract superclass.
 1.uk. Створіть абстрактний суперклас.
 
-2.ru. Используйте <a href="/pull-up-field">подъём поля</a>, <a href="/pull-up-method">подъём метода</a> и <a href="/pull-up-constructor-body">подъём тела конструктора</a> для перемещения общей функциональности в суперкласс. Лучше начинать с полей, т.к. помимо общих полей, вам нужно будет перенести те из них, которые используются в общих методах.
+2.ru. Используйте <a href="/ru/pull-up-field">Подъём поля</a>, <a href="/ru/pull-up-method">Подъём метода</a> и <a href="/ru/pull-up-constructor-body">Подъём тела конструктора</a> для перемещения общей функциональности в суперкласс. Лучше начинать с полей, т.к. помимо общих полей, вам нужно будет перенести те из них, которые используются в общих методах.
 2.en. Use <a href="/pull-up-field">Pull Up Field</a>, <a href="/pull-up-method">Pull Up Method</a>, and <a href="/pull-up-constructor-body">Pull Up Constructor Body</a> to move the common functionality to a superclass. Start with the fields, since in addition to the common fields you will need to move the fields that are used in the common methods.
-2.uk. Використайте <a href="/pull-up-field">підйом поля</a>, <a href="/pull-up-method">підйом методу</a> і <a href="/pull-up-constructor-body">підйом тіла конструктора</a> для переміщення загальної функціональності в суперклас. Краще розпочинати з полів, оскільки окрім загальних полів, вам треба буде перенести ті з них, які використовуються в загальних методах.
+2.uk. Використайте <a href="/uk/pull-up-field">Підйом поля</a>, <a href="/uk/pull-up-method">Підйом методу</a> і <a href="/uk/pull-up-constructor-body">Підйом тіла конструктора</a> для переміщення загальної функціональності в суперклас. Краще розпочинати з полів, оскільки окрім загальних полів, вам треба буде перенести ті з них, які використовуються в загальних методах.
 
 3.ru. Стоит поискать места в клиентском коде, в которых можно заменить использование подклассов вашим общим классом (например, в объявлениях типов).
 3.en. Look for places in the client code where use of subclasses can be replaced with your new class (such as in type declarations).
@@ -44,7 +44,7 @@ class Department {
   private String name;
   private Vector staff = new Vector();
 
-  public Department (String name) {
+  public Department(String name) {
     this.name = name;
   }
   public int getTotalAnnualCost() {
@@ -96,45 +96,46 @@ class Employee extends Party {
     this.id = id;
     this.annualCost = annualCost;
   }
-  public int getAnnualCost() {
+  @Override public int getAnnualCost() {
     return annualCost;
   }
   public String getId() {
     return id;
   }
-  public int getHeadCount() {
+  @Override public int getHeadCount() {
     return 1;
   }
 }
 
 class Department extends Party {
-  private Party staff = new Vector();
+  private Vector items = new Vector();
 
-  public Department (String name) {
+  public Department(String name) {
     super(name);
   }
-  public int getAnnualCost() {
+  @Override public int getAnnualCost() {
     int result = 0;
-    Iterator i = staff.iterator();
+    Iterator i = items.iterator();
     while (i.hasNext()) {
       Party each = (Party) i.next();
       result += each.getAnnualCost();
     }
     return result;
   }
-  public int getHeadCount() {
+  @Override public int getHeadCount() {
     int headCount = 0;
-    Iterator i = staff.iterator();
+    Iterator i = items.iterator();
     while (i.hasNext()) {
       Party each = (Party) i.next();
       headCount += each.getHeadCount();
     }
+    return headCount;
   }
-  public Enumeration getStaff() {
-    return staff.elements();
+  public Enumeration getItems() {
+    return items.elements();
   }
-  public void addStaff(Party arg) {
-    staff.addElement(arg);
+  public void addItem(Party arg) {
+    items.addElement(arg);
   }
 }
 ```
@@ -146,27 +147,27 @@ Set step 1
 Select name of "Employee"
 + Select name of "Department"
 
-#|ru| Рассмотрим этот рефакторинг на примере классов служащих и отдела.
+#|ru| Рассмотрим этот рефакторинг на примере классов служащего и отдела.
 #|en| Let's look at <i>Extract Superclass</i> using the example of employees and their department.
-#|uk| Розглянемо цей рефакторинг на прикладі класів службовців та відділу.
+#|uk| Розглянемо цей рефакторинг на прикладі класів службовця та відділу.
 
 Select "private String name"
 
-#|ru| У этих классов есть несколько общих черт. Во-первых, как у служащих, так и у отделов есть имена или названия.
+#|ru| У этих классов есть несколько общих черт. Во-первых, как у служащих, так и у отделов есть имена / названия.
 #|en| These classes have several traits in common. First, as with employees, departments also have names.
-#|uk| У цих класів є кілька спільних рис. По-перше, як у службовців, так і у відділів є імена або назви.
+#|uk| У цих класів є кілька спільних рис. По-перше, як у службовців, так і у відділів є імена / назви.
 
 Select "private int annualCost"
 + Select name of "getAnnualCost"
 + Select name of "getTotalAnnualCost"
 
-#|ru| Во-вторых, для обоих классов есть годовой бюджет (annualcost), хотя методы его расчёта слегка различаются.
-#|en| Second, for both classes there is an annual budget (<code>annualcost</code), although the calculation methods are slightly different.
-#|uk| По-друге, для обох класів є річний бюджет (annualcost), хоча методи його розрахунку трошки розрізняються.
+#|ru| Во-вторых, у обоих классов есть годовой бюджет (правда подходы к его расчёту слегка различаются, но это не критично).
+#|en| Second, for both classes there is an annual budget, although the calculation ways are slightly different.
+#|uk| По-друге, у обох класів є річний бюджет (правда підходи до його розрахунку трошки розрізняються, але це не критично).
 
-#|ru| Поэтому имеет смысл выделить эти моменты в общий родительский класс.
+#|ru| Так что у нас есть все основания, чтобы вынести описанные моменты в общий родительский класс.
 #|en| For this reason, it would be good to extract these aspects to a shared parent class.
-#|uk| Тому має сенс виділити ці моменти в загальний батьківський клас.
+#|uk| Так що у нас є всі підстави, щоб винести описані моменти в загальний батьківський клас.
 
 Go to before "Employee"
 
@@ -176,30 +177,48 @@ Go to before "Employee"
 
 Print:
 ```
-abstract class Party {
-}
+
 
 
 ```
 
+Go to:
+```
+|||
+
+class Employee
+```
+
+Print:
+```
+abstract class Party {
+}
+```
+
+Wait 500ms
+
 Go to "class Employee|||"
 
-Print " extends Party"
+Replace " extends Party"
 
 Wait 500ms
 
 Go to "class Department|||"
 
-Print " extends Party"
+Replace " extends Party"
+
+Wait 500ms
+
+Set step 2
 
 Select:
 ```
   private String name;
 ```
 
-#|ru| Теперь всё готово, чтобы начать поднимать функции в родительский класс. Обычно проще сначала выполнить <a href="/ru/pull-up-field">Подъем полей</a>.
-#|en| Now we can start pulling up functions to the parent class. Usually it is simpler to employ <a href="/pull-up-field">Pull Up Field</a> first.
-#|uk| Тепер все готово, щоб почати піднімати функції в батьківський клас. Зазвичай простіше спочатку виконати <a href="/uk/pull-up-field">Підйом поля</a>.
+#|ru| Теперь всё готово, чтобы начать поднимать код в родительский класс. Обычно проще сначала выполнить <a href="/ru/pull-up-field">Подъем полей</a>.
+#|en| Now we can start pulling up code to the parent class. Usually it is simpler to employ <a href="/pull-up-field">Pull Up Field</a> first.
+#|uk| Тепер все готово, щоб почати піднімати код в батьківський клас. Зазвичай простіше спочатку виконати <a href="/uk/pull-up-field">Підйом поля</a>.
 
 Go to start of "Party"
 
@@ -281,24 +300,24 @@ Select "this.name = name" in "Employee"
 
 Replace "super(name)"
 
-#|ru| На этом перенос имени окончен, и можно взяться за годовой бюджет.
+#|ru| На этом перенос имён окончен, и можно взяться за годовой бюджет.
 #|en| The name has been moved, which leaves us only the annual budget.
-#|uk| На цьому перенесення імені закінчено, і можна взятися за річний бюджет.
+#|uk| На цьому перенесення імен закінчено, і можна взятися за річний бюджет.
 
 Select name of "getAnnualCost"
 + Select name of "getTotalAnnualCost"
 
-#|ru| Методы <code>getTotalAnnualCost</code> и <code>getAnnualCost</code> имеют одинаковое назначение, поэтому у них должно быть одинаковое название. Сначала применим <a href="/rename-method">Переименование метода</a>, чтобы привести их к одному и тому же названию.
+#|ru| Методы <code>getTotalAnnualCost</code> и <code>getAnnualCost</code> имеют одинаковое назначение, поэтому у них должно быть одинаковое название. Применим <a href="/rename-method">Переименование метода</a>, чтобы привести их к одному и тому же названию.
 #|en| The <code>getTotalAnnualCost</code> and <code>getAnnualCost</code> methods have the same purpose, so they should have the same name. Use <a href="/rename-method">Rename Method</a> to give them the same name.
-#|uk| Методи <code>getTotalAnnualCost</code> і <code>getAnnualCost</code> мають однакове призначення, тому у них має бути однакова назва. Спочатку застосуємо <a href="/uk/rename-method">Перейменування методу</a>, щоб привести їх до однієї і тієї ж назвою.
+#|uk| Методи <code>getTotalAnnualCost</code> і <code>getAnnualCost</code> мають однакове призначення, тому у них має бути однакова назва. Застосуємо <a href="/uk/rename-method">Перейменування методу</a>, щоб привести їх до однієї і тієї ж назвою.
 
 Select name of "getTotalAnnualCost"
 
 Replace "getAnnualCost"
 
-#|ru| Тела методов пока что различаются, поэтому мы не можем применить <a href="/ru/pull-up-method">Подъем метода</a>. С другой стороны, мы можем объявить в родительском классе абстрактный метод с таким же именем.
+#|ru| Тела методов пока что различаются, поэтому мы не можем применить <a href="/ru/pull-up-method">Подъем метода</a>. Однако мы можем объявить в родительском классе абстрактный метод с таким же именем.
 #|en| The bodies of the methods are currently different, so we cannot use <a href="/pull-up-method">Pull Up Method</a>. On the other hand, we can declare an abstract method with the same name in the parent class.
-#|uk| Тіла методів поки що розрізняються, тому ми не можемо застосувати <a href="/uk/pull-up-method">Підйом методу</a>. З іншого боку, ми можемо оголосити в батьківському класі абстрактний метод з таким же ім'ям.
+#|uk| Тіла методів поки що розрізняються, тому ми не можемо застосувати <a href="/uk/pull-up-method">Підйом методу</a>. Однак ми можемо оголосити в батьківському класі абстрактний метод з таким же ім'ям.
 
 Go to the end of "Party"
 
@@ -308,13 +327,24 @@ Print:
   public abstract int getAnnualCost();
 ```
 
+Wait 500ms
+
+Select "||| ||| public int getAnnualCost" in "Employee"
++Select "||| ||| public int getAnnualCost" in "Department"
+
+Replace "  @Override"
+
+Wait 500ms
+
+Set step 3
+
 Select name of "Party"
 
 #|ru| Осуществив все эти изменения, давайте рассмотрим клиентов обоих классов, чтобы выяснить, можно ли изменить их так, чтобы они использовали новый родительский класс.
 #|en| Having made these changes, let's look at clients of both classes to determine whether we can make them use the new parent class.
 #|uk| Здійснивши всі ці зміни, давайте розглянемо клієнтів обох класів, щоб з'ясувати, чи можна змінити їх так, щоб вони використовували новий батьківський клас.
 
-Select "Employee" in "getAnnualCost" of "Department"
+Select "|||Employee||| each = (|||Employee|||" in "Department"
 
 #|ru| Одним из клиентов этих классов является сам класс <code>Department</code>, содержащий коллекцию классов служащих. Метод <code>getAnnualCost</code> использует только метод подсчёта годового бюджета, который теперь объявлен в <code>Party</code>.
 #|en| One of the clients of the classes is the <code>Department</code> class itself, which contains a collection of employee classes. The <code>getAnnualCost</code> method uses only the annual budget calculation method, which is now declared in <code>Party</code>.
@@ -324,49 +354,76 @@ Print "Party"
 
 Select name of "Department"
 
-#|ru| Такое поведение открывает новую возможность. Мы можем рассматривать применение паттерна <a href="http://sourcemaking.com/design_patterns/composite">компоновщик</a> к <code>Department</code> и <code>Employee</code>.
+#|ru| Такое поведение открывает новую возможность. Мы можем рассматривать применение паттерна <a href="http://sourcemaking.com/design_patterns/composite">Компоновщик</a> к <code>Department</code> и <code>Employee</code>.
 #|en| This behavior offers a new opportunity. We can consider using the <a href="http://sourcemaking.com/design_patterns/composite">Composite</a> pattern on <code>Department</code> and <code>Employee</code>. 
-#|uk| Така поведінка відкриває нову можливість. Ми можемо розглядати застосування патерну <a href="http://sourcemaking.com/design_patterns/composite">компоновщик</a> до <code>Department</code> і <code>Employee</code>.
+#|uk| Така поведінка відкриває нову можливість. Ми можемо розглядати застосування патерну <a href="http://sourcemaking.com/design_patterns/composite">Компоновщик</a> до <code>Department</code> і <code>Employee</code>.
 
 #|ru| Это позволит включать один отдел в другой. В результате создаётся новая функциональность, так что нельзя, строго говоря, называть эти действия рефакторингом.
 #|en| That allows including one department in another. The result is new functionality, so strictly speaking this goes beyond refactoring.
 #|uk| Це дозволить включати один відділ в інший. В результаті створюється нова функціональність, так що не можна, строго кажучи, називати ці дії рефакторингом.
 
-Select "|||Vector||| staff"
+Select "Vector" in "Department"
 
-#|ru| Тем не менее, если бы требовалась компоновка, мы получили бы её, изменив тип поля <code>staff</code>, чтобы картина была нагляднее.
+#|ru| Итак, если бы потребовалась компоновка, мы бы получили её, изменив тип списка <code>staff</code> на <code>Party</code>.
 #|en| Be that as it may, if the Composite pattern were necessary, we would get it by changing the type of the <code>staff</code> field.
-#|uk| Проте, якби була потрібна компоновка, ми отримали б її, змінивши тип поля <code>staff</code>, щоб картина була наочніше.
+#|uk| Отже, якби знадобилася компоновка, ми б отримали її, змінивши тип списку <code>staff</code> на <code>Party</code>.
 
-Print "Party"
+Select "|||staff||| =" in "Department"
++Select "|||staff|||." in "Department"
+
+#|ru| После чего хорошо было бы дать списку более обобщённое название.
+#|en| After that, it would be good to give the list a more generic name.
+#|uk| Після чого добре було б дати списку більш узагальнена назва.
+
+Replace "items"
+
+Wait 500ms
+
+Select name of "getStaff" in "Department"
++Select name of "addStaff" in "Department"
+
+#|ru| И отредактировать соответствующим образом методы <code>getStaff</code> и <code>addStaff</code>.
+#|en| And appropriately edit the <code>getStaff</code> and <code>addStaff</code> methods.
+#|uk| І відредагувати відповідним чином методи <code>getStaff</code> і <code>addStaff</code>.
+
+Select name of "getStaff" in "Department"
+
+Replace "getItems"
+
+Wait 500ms
+
+Select name of "addStaff" in "Department"
+
+Replace "addItem"
+
+Wait 500ms
 
 Select "Employee" in "Department"
 
-#|ru| Такое изменение повлекло бы соответствующее изменение имени <code>addStaff</code> и замену параметра на <code>Party</code>.
-#|en| This change would entail a corresponding change in the name of <code>addStaff</code> and change of the parameter to <code>Party</code>.
-#|uk| Така зміна спричинила б відповідну зміну імені <code>addStaff</code> і заміну параметра на <code>Party</code>.
-
 Print "Party"
+
+Wait 500ms
 
 Select body of "getHeadCount"
 
-#|ru| В окончательной редакции метод <code>headCount</code> должен быть сделан рекурсивным.
-#|en| In the final version, the <code>headCount</code> method should be made recursive.
-#|uk| В остаточній редакції метод <code>headCount</code> повинен бути зроблений як рекурсивний.
+#|ru| Для завершения компоновки осталось сделать рекурсивным метод <code>getHeadCount</code>.
+#|en| To complete the Composite pattern, the <code>getHeadCount</code> method should be made recursive.
+#|uk| Для завершення компонування залишилося зробити рекурсивним метод <code>getHeadCount</code>.
 
 Print:
 ```
     int headCount = 0;
-    Iterator i = staff.iterator();
+    Iterator i = items.iterator();
     while (i.hasNext()) {
       Party each = (Party) i.next();
       headCount += each.getHeadCount();
     }
+    return headCount;
 ```
 
-#|ru| Но для того, чтобы этот метод заработал, необходимо объявить аналогичный метод в <code>Employee</code>, который просто возвращает <code>1</code>.
-#|en| But for this method to work, we must declare an equivalent method in <code>Employee</code> that simply returns <code>1</code>.
-#|uk| Але для того, щоб цей метод заробив, необхідно оголосити аналогічний метод в <code>Employee</code>, який просто повертає <code>1</code>.
+#|ru| Но для того, чтобы этот подход заработал, необходимо создать аналогичный метод в <code>Employee</code>, который будет просто возвращать <code>1</code>.
+#|en| But for this approach to work, we must create an equivalent method in <code>Employee</code> that simply returns <code>1</code>.
+#|uk| Але для того, щоб цей підхід заробив, необхідно створити аналогічний метод в <code>Employee</code>, який буде просто повертати <code>1</code>.
 
 Go to the end of "Employee"
 
@@ -380,15 +437,24 @@ Print:
 
 Go to the end of "Party"
 
-#|ru| Этот метод теперь тоже следует объявить абстрактным в родительском классе.
-#|en| This method should also be declared abstract in the parent class.
-#|uk| Цей метод тепер теж слід оголосити абстрактним в батьківському класі.
+#|ru| После чего объявить этот метод абстрактным в родительском классе.
+#|en| After that this method should also be declared abstract in the parent class.
+#|uk| Після чого оголосити цей метод абстрактним в батьківському класі.
 
 Print:
 ```
 
   public abstract int getHeadCount();
 ```
+
+Wait 500ms
+
+Select "||| ||| public int getHeadCount" in "Employee"
++Select "||| ||| public int getHeadCount" in "Department"
+
+Replace "  @Override"
+
+Wait 500ms
 
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!

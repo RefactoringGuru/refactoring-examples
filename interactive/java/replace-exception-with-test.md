@@ -61,7 +61,7 @@ class ResourcePool {
 
   public Resource getResource() {
     Resource result;
-    if (available.isEmpty()) {
+    if (available.empty()) {
       result = new Resource();
     }
     else {
@@ -88,9 +88,9 @@ Select "Stack |||available|||"
 
 Select "Stack |||allocated|||"
 
-#|ru|<= …а в другом – уже выделенные.
+#|ru|<= …а в другом – те, которые уже выделены.
 #|en|<= …and the other pool contains already allocated resources.
-#|uk|<= …а в іншому – вже виділені.
+#|uk|<= …а в іншому - ті, які вже виділені.
 
 Select "(Resource) available.pop()"
 
@@ -117,7 +117,7 @@ Go to "Resource result;|||"
 Print:
 ```
 
-    if (available.isEmpty()) {
+    if (available.empty()) {
     }
     else {
 ```
@@ -164,7 +164,7 @@ Select:
 #|en| Then copy the code from the <code>catch</code> section to inside the guard clause.
 #|uk| Далі скопіюємо код з <code>catch</code> секції всередину граничного умовного оператора.
 
-Go to "isEmpty()) {|||"
+Go to "empty()) {|||"
 
 Print:
 ```
@@ -199,9 +199,9 @@ Print:
 
 Set step 4
 
-#|ru| Теперь мы можем удалить try/catch секцию, не беспокоясь о возможных ошибках.
-#|en| Now we can remove the <code>try</code>/<code>catch</code> section without worrying about possible errors.
-#|uk| Тепер ми можемо видалити try / catch секцію, не турбуючись про можливі помилки.
+#|ru| Теперь мы можем удалить <code>try</code> / <code>catch</code> секцию, не беспокоясь о возможных ошибках.
+#|en| Now we can remove the <code>try</code> / <code>catch</code> section without worrying about possible errors.
+#|uk| Тепер ми можемо видалити <code>try</code> / <code>catch</code> секцію, не турбуючись про можливі помилки.
 
 Select:
 ```
@@ -240,9 +240,9 @@ Select:
 
 ```
 
-#|ru| Обычно после этого оказывается возможным привести в порядок условный код. В данном случае мы можем применить <a href="/ru/consolidate-duplicate-conditional-fragments">консолидацию дублирующихся условных фрагментов</a>.
+#|ru| Обычно после этого появляется возможность привести в порядок условный код. В данном случае мы можем применить <a href="/ru/consolidate-duplicate-conditional-fragments">консолидацию дублирующихся условных фрагментов</a>.
 #|en| After this, it is usually possible to tidy up the conditional code. In this case, we can apply <a href="/consolidate-duplicate-conditional-fragments">Consolidate Duplicate Conditional Fragments</a>.
-#|uk| Зазвичай після цього виявляється можливим привести в порядок умовний код. В даному випадку ми можемо застосувати <a href="/uk/consolidate-duplicate-conditional-fragments">консолідацію дубльованих умовних фрагментів</a>.
+#|uk| Зазвичай після цього з'являється можливість привести в порядок умовний код. В даному випадку ми можемо застосувати <a href="/uk/consolidate-duplicate-conditional-fragments">консолідацію дубльованих умовних фрагментів</a>.
 
 Go to:
 ```
