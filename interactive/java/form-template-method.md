@@ -2,21 +2,21 @@ form-template-method:java
 
 ###
 
-1.ru. Разбейте алгоритмы в подклассах на составные части, описанные в отдельных методах. В этом может помочь <a href="/extract-method">извлечение метода</a>.
+1.ru. Разбейте алгоритмы в подклассах на составные части, описанные в отдельных методах. В этом может помочь <a href="/ru/extract-method">извлечение метода</a>.
 1.en. Split algorithms in the subclasses into their constituent parts described in separate methods. <a href="/extract-method">Extract Method</a> can help with this.
-1.uk. Розбийте алгоритми в підкласах на складові частини, описані в окремих методах. У цьому може допомогти <a href="/extract-method">витягання методу</a>.
+1.uk. Розбийте алгоритми в підкласах на складові частини, описані в окремих методах. У цьому може допомогти <a href="/uk/extract-method">витягання методу</a>.
 
-2.ru. Получившиеся методы, одинаковые для всех подклассов, можете смело перемещать в суперкласс, используя <a href="/pull-up-method">подъём метода</a>.
+2.ru. Получившиеся методы, одинаковые для всех подклассов, можете смело перемещать в суперкласс, используя <a href="/ru/pull-up-method">подъём метода</a>.
 2.en. The resulting methods that are identical for all subclasses can be moved to a superclass via <a href="/pull-up-method">Pull Up Method</a>.
-2.uk. Методи, що вийшли однаковимі для усіх підкласів, можете сміливо переміщати в суперклас, використовуючи <a href="/pull-up-method">підйом методу</a>.
+2.uk. Методи, що вийшли однаковимі для усіх підкласів, можете сміливо переміщати в суперклас, використовуючи <a href="/uk/pull-up-method">підйом методу</a>.
 
-3.ru. Отличающиеся методы приведите к единым названиям с помощью <a href="/rename-method">переименования метода</a>.
+3.ru. Отличающиеся методы приведите к единым названиям с помощью <a href="/ru/rename-method">переименования метода</a>.
 3.en. The non-similar methods can be given consistent names via <a href="/rename-method">Rename Method</a>.
-3.uk. Методи, що відрізняються, приведіть до єдиних назв за допомогою <a href="/rename-method">перейменування методу</a>.
+3.uk. Методи, що відрізняються, приведіть до єдиних назв за допомогою <a href="/uk/rename-method">перейменування методу</a>.
 
-4.ru. Поместите сигнатуры отличающихся методов в суперкласс как абстрактные с помощью <a href="/pull-up-method">подъёма метода</a>. Их реализации оставьте в подклассах.
+4.ru. Поместите сигнатуры отличающихся методов в суперкласс как абстрактные с помощью <a href="/ru/pull-up-method">подъёма метода</a>. Их реализации оставьте в подклассах.
 4.en. Move the signatures of non-similar methods to a superclass as abstract ones by using <a href="/pull-up-method">Pull Up Method</a>. Leave their implementations in the subclasses.
-4.uk. Помістіть сигнатури методів, що відрізняються, в суперклас як абстрактні за допомогою <a href="/pull-up-method">підйому методу</a>. Їх реалізації залиште в підкласах.
+4.uk. Помістіть сигнатури методів, що відрізняються, в суперклас як абстрактні за допомогою <a href="/uk/pull-up-method">підйому методу</a>. Їх реалізації залиште в підкласах.
 
 5.ru. И наконец, поднимите основной метод алгоритма в суперкласс. Он теперь должен работать с методами-шагами, описанными в суперклассе — реальными или абстрактными.
 5.en. And finally, pull up the main method of the algorithm to the superclass. Now it should work with the method steps described in the superclass, both real and abstract.
@@ -43,10 +43,10 @@ class Article {
     return output;
   }
   public String htmlView() {
-    String output = "<h2>" . getTitle() + "</h2>" + "\n";
-    output += "<blockquote>" . getIntro() + "</blockquote>" + "\n";
-    output += "<p>" . getBody() . "</p>" + "\n";
-    output += "<em>Written by " . getAuthor() + " on " + getDate() + "</em>";
+    String output = "<h2>" + getTitle() + "</h2>" + "\n";
+    output += "<blockquote>" + getIntro() + "</blockquote>" + "\n";
+    output += "<p>" + getBody() + "</p>" + "\n";
+    output += "<em>Written by " + getAuthor() + " on " + getDate() + "</em>";
     return output;
   }
 }
@@ -72,8 +72,8 @@ class Article {
 }
 
 abstract class ArticleView {
-  private Article article;
-  public ArticleView(Article article) {
+  protected Article article;
+  protected ArticleView(Article article) {
     this.article = article;
   }
   protected abstract String title();
@@ -84,32 +84,40 @@ abstract class ArticleView {
     return title() + intro() + body() + footer();
   }
 }
+
 class ArticleMarkdown extends ArticleView {
-  protected String title() {
+  public ArticleMarkdown(Article article) {
+    super(article);
+  }
+  @Override protected String title() {
     return "# " + article.getTitle() + "\n\n";
   }
-  protected String intro() {
+  @Override protected String intro() {
     return "> " + article.getIntro() + "\n\n";
   }
-  protected String body() {
+  @Override protected String body() {
     return article.getBody() + "\n\n";
   }
-  protected String footer() {
+  @Override protected String footer() {
     return "_Written by " + article.getAuthor() + " on " + article.getDate() + "_";
   }
 }
+
 class ArticleHtml extends ArticleView {
-  protected String title() {
-    return "<h2>" . article.getTitle() + "</h2>" + "\n";
+  public ArticleHtml(Article article) {
+    super(article);
   }
-  protected String intro() {
-    return "<blockquote>" . article.getIntro() + "</blockquote>" + "\n";
+  @Override protected String title() {
+    return "<h2>" + article.getTitle() + "</h2>" + "\n";
   }
-  protected String body() {
-    return "<p>" . article.getBody() . "</p>" + "\n";
+  @Override protected String intro() {
+    return "<blockquote>" + article.getIntro() + "</blockquote>" + "\n";
   }
-  protected String footer() {
-    return "<em>Written by " . article.getAuthor() + " on " + article.getDate() + "</em>";
+  @Override protected String body() {
+    return "<p>" + article.getBody() + "</p>" + "\n";
+  }
+  @Override protected String footer() {
+    return "<em>Written by " + article.getAuthor() + " on " + article.getDate() + "</em>";
   }
 }
 ```
@@ -136,14 +144,14 @@ Select name of "htmlView"
 #|en|<= …and in HTML.
 #|uk|<= …і в розмітці HTML.
 
-#|ru| Прежде чем приступить непосредственно к рефакторингу, мы должны устроить так, чтобы эти два метода появились в подклассах некоторого общего родительского класса.
+#|ru| Прежде чем приступить непосредственно к рефакторингу, мы должны сделать так, чтобы эти два метода появились в подклассах некоторого общего родительского класса.
 #|en| Before starting the refactoring per se, we should arrange things so that these two methods appear in the subclasses of some shared parent class.
-#|uk| Перш ніж приступити безпосередньо до рефакторингу, ми повинні влаштувати так, щоб ці два методи з'явилися в підкласах деякого загального батьківського класу.
+#|uk| Перш ніж приступити безпосередньо до рефакторингу, ми повинні зробити так, щоб ці два методи з'явилися в підкласах деякого загального батьківського класу.
 
 Select whole "markdownView"
 +Select whole "htmlView"
 
-#|ru| Для этого можно создать <a href="/replace-method-with-method-object">простой объект методов</a>, переместив оба метода в него.
+#|ru| Для этого можно создать <a href="/ru/replace-method-with-method-object">простой объект методов</a>, переместив оба метода в него.
 #|en| To do this, we create a <a href="/replace-method-with-method-object">simple method object</a> by moving both methods to it.
 #|uk| Для цього можна створити <a href="/uk/replace-method-with-method-object">простий об'єкт методів</a>, перемістивши обидва методи в нього.
 
@@ -154,7 +162,7 @@ Print:
 
 
 class ArticleView {
-  private Article article;
+  protected Article article;
   public ArticleView(Article article) {
     this.article = article;
   }
@@ -166,14 +174,16 @@ class ArticleView {
     return output;
   }
   public String htmlView() {
-    String output = "<h2>" . article.getTitle() + "</h2>" + "\n";
-    output += "<blockquote>" . article.getIntro() + "</blockquote>" + "\n";
-    output += "<p>" . article.getBody() . "</p>" + "\n";
-    output += "<em>Written by " . article.getAuthor() + " on " + article.getDate() + "</em>";
+    String output = "<h2>" + article.getTitle() + "</h2>" + "\n";
+    output += "<blockquote>" + article.getIntro() + "</blockquote>" + "\n";
+    output += "<p>" + article.getBody() + "</p>" + "\n";
+    output += "<em>Written by " + article.getAuthor() + " on " + article.getDate() + "</em>";
     return output;
   }
 }
 ```
+
+Wait 500ms
 
 Select body of "markdownView"
 + Select body of "htmlView"
@@ -198,22 +208,27 @@ Replace:
     return new ArticleView(this).htmlView();
 ```
 
-#|ru| Далее из <code>ArticleView</code> мы можем выделить два подкласса — <code>ArticleMarkdown</code> and <code>ArticleHtml</code>, переместив в них соответствующие методы.
+Wait 500ms
+
+Select name of "ArticleView"
+
+#|ru| Далее из <code>ArticleView</code> мы можем выделить два подкласса — <code>ArticleMarkdown</code> и <code>ArticleHtml</code>, переместив в них соответствующие методы.
 #|en| Then from <code>ArticleView</code> we can extract two subclasses, <code>ArticleMarkdown</code> and <code>ArticleHtml</code>, by moving the corresponding methods to them.
-#|uk| Далі з <code>ArticleView</code> ми можемо виділити два підкласи – <code>ArticleMarkdown</code> and <code>ArticleHtml</code>, перемістивши в них відповідні методи.
+#|uk| Далі з <code>ArticleView</code> ми можемо виділити два підкласи – <code>ArticleMarkdown</code> і <code>ArticleHtml</code>, перемістивши в них відповідні методи.
 
 Go to after "ArticleView"
+
+#|ru| Создаём класс <code>ArticleMarkdown</code>.
+#|en| Let's create a <code>ArticleMarkdown</code> class.
+#|uk| Створюємо клас <code>ArticleMarkdown</code>.
 
 Print:
 ```
 
+
 class ArticleMarkdown extends ArticleView {
-  public String markdownView() {
-    String output = "# " + article.getTitle() + "\n\n";
-    output += "> " + article.getIntro() + "\n\n";
-    output += article.getBody() + "\n\n";
-    output += "_Written by " + article.getAuthor() + " on " + article.getDate() + "_";
-    return output;
+  public ArticleMarkdown(Article article) {
+    super(article);
   }
 }
 ```
@@ -222,7 +237,27 @@ Wait 500ms
 
 Select whole of "markdownView" in "ArticleView"
 
+#|ru| Переносим в него соответствующий метод.
+#|en| Move corresponding method to it.
+#|uk| Переносимо в нього відповідний метод.
+
 Remove selected
+
+Wait 500ms
+
+Go to end of "ArticleMarkdown"
+
+Print:
+```
+
+  public String markdownView() {
+    String output = "# " + article.getTitle() + "\n\n";
+    output += "> " + article.getIntro() + "\n\n";
+    output += article.getBody() + "\n\n";
+    output += "_Written by " + article.getAuthor() + " on " + article.getDate() + "_";
+    return output;
+  }
+```
 
 Wait 500ms
 
@@ -234,16 +269,17 @@ Wait 500ms
 
 Go to after "ArticleMarkdown"
 
+#|ru| Далее создаём класс <code>ArticleHtml</code>.
+#|en| Now let's create a <code>ArticleHtml</code> class.
+#|uk| Далі створюємо клас <code>ArticleHtml</code>.
+
 Print:
 ```
 
+
 class ArticleHtml extends ArticleView {
-  public String htmlView() {
-    String output = "<h2>" . article.getTitle() + "</h2>" + "\n";
-    output += "<blockquote>" . article.getIntro() + "</blockquote>" + "\n";
-    output += "<p>" . article.getBody() . "</p>" + "\n";
-    output += "<em>Written by " . article.getAuthor() + " on " + article.getDate() + "</em>";
-    return output;
+  public ArticleHtml(Article article) {
+    super(article);
   }
 }
 ```
@@ -252,7 +288,27 @@ Wait 500ms
 
 Select whole of "htmlView" in "ArticleView"
 
+#|ru| И аналогичным образом переносим в него оставшийся метод.
+#|en| And similarly move the remaining method to it.
+#|uk| І аналогічним чином переносимо в нього залишився метод.
+
 Remove selected
+
+Wait 500ms
+
+Go to end of "ArticleHtml"
+
+Print:
+```
+
+  public String htmlView() {
+    String output = "<h2>" + article.getTitle() + "</h2>" + "\n";
+    output += "<blockquote>" + article.getIntro() + "</blockquote>" + "\n";
+    output += "<p>" + article.getBody() + "</p>" + "\n";
+    output += "<em>Written by " + article.getAuthor() + " on " + article.getDate() + "</em>";
+    return output;
+  }
+```
 
 Wait 500ms
 
@@ -260,12 +316,14 @@ Select "ArticleView" in "htmlView" of "Article"
 
 Replace "ArticleHtml"
 
+Wait 500ms
+
 Select name of "markdownView" in "ArticleMarkdown"
 + Select name of "htmlView" in "ArticleHtml"
 
-#|ru| Так как методы теперь находятся в разных классах, мы можем сделать их более похожими друг на друга, дав им одинаковые имена.
-#|en| Since the methods are now located in different classes, we can make them more similar to each other by giving them identical names.
-#|uk| Так як методи тепер знаходяться в різних класах, ми можемо зробити їх більш схожими один на одного, давши їм однакові імена.
+#|ru| Так как методы теперь находятся в разных классах, мы можем дать им одинаковые имена.
+#|en| Since the methods are now located in different classes, we can give them identical names.
+#|uk| Так як методи тепер знаходяться в різних класах, ми можемо дати їм однакові імена.
 
 Replace "view"
 
@@ -292,9 +350,9 @@ Select name of "ArticleHtml"
 #|en| Finally, everything is ready to start the refactoring itself.
 #|uk| Отже, все готово щоб, нарешті, приступити до самого рефакторингу.
 
-#|ru| Первым делом разобьём методы <code>view</code> в обоих классах на составные шаги. Определить шаги в нашем случае довольно просто — это части напечатанной статьи.
+#|ru| Первым делом разобьём методы <code>view</code> в обоих классах на составные части. Определить которые в нашем случае довольно просто — это будут части напечатанной статьи.
 #|en| First split the <code>view</code> methods in both steps to their constituent steps. Defining the steps is rather easy in our case – these are parts of the printed article.
-#|uk| Першим ділом розіб'ємо методи <code>view</code> в обох класах на складові кроки. Визначити кроки в нашому випадку досить просто – це частини надрукованої статті.
+#|uk| Першим ділом розіб'ємо методи <code>view</code> в обох класах на складові частини. Визначити які в нашому випадку досить просто – це будуть частини надрукованої статті.
 
 Select name of "ArticleMarkdown"
 
@@ -302,21 +360,21 @@ Select name of "ArticleMarkdown"
 #|en| Start with the <code>ArticleMarkdown</code> class.
 #|uk| Почнемо з класу <code>ArticleMarkdown</code>.
 
-Go to start of "ArticleMarkdown"
+Go to end of "ArticleMarkdown"
 
 Print:
 ```
 
-  protected String title() {
+  private String title() {
     return "# " + article.getTitle() + "\n\n";
   }
-  protected String intro() {
+  private String intro() {
     return "> " + article.getIntro() + "\n\n";
   }
-  protected String body() {
+  private String body() {
     return article.getBody() + "\n\n";
   }
-  protected String footer() {
+  private String footer() {
     return "_Written by " + article.getAuthor() + " on " + article.getDate() + "_";
   }
 ```
@@ -332,28 +390,28 @@ Print:
     return title() + intro() + body() + footer();
 ```
 
-Select name of "ArticleMarkdown"
+Select name of "ArticleHtml"
 
-#|ru| Проделаем все это для класса <code>ArticleHtml</code>.
+#|ru| Проделаем все то же самое для класса <code>ArticleHtml</code>.
 #|en| Do all of this for the <code>ArticleHtml</code> class.
-#|uk| Виконаємо все це для класу <code>ArticleHtml</code>.
+#|uk| Виконаємо все те ж саме для класу <code>ArticleHtml</code>.
 
-Go to start of "ArticleHtml"
+Go to end of "ArticleHtml"
 
 Print:
 ```
 
-  protected String title() {
-    return "<h2>" . article.getTitle() + "</h2>" + "\n";
+  private String title() {
+    return "<h2>" + article.getTitle() + "</h2>" + "\n";
   }
-  protected String intro() {
-    return "<blockquote>" . article.getIntro() + "</blockquote>" + "\n";
+  private String intro() {
+    return "<blockquote>" + article.getIntro() + "</blockquote>" + "\n";
   }
-  protected String body() {
-    return "<p>" . article.getBody() . "</p>" + "\n";
+  private String body() {
+    return "<p>" + article.getBody() + "</p>" + "\n";
   }
-  protected String footer() {
-    return "<em>Written by " . article.getAuthor() + " on " + article.getDate() + "</em>";
+  private String footer() {
+    return "<em>Written by " + article.getAuthor() + " on " + article.getDate() + "</em>";
   }
 ```
 
@@ -370,15 +428,25 @@ Print:
 
 Set step 4
 
-#|ru| Как видите, у нас получилось много одинаковых шагов в обоих классах. Следует переместить одинаковые шаги в виде абстрактных методов в суперкласс.
-#|en| As you can see, the two classes have many identical steps. We should move the identical steps as abstract methods to the superclass.
-#|uk| Як бачите, у нас вийшло багато однакових кроків в обох класах. Слід перемістити однакові кроки у вигляді абстрактних методів в суперклас.
-
 Go to type "ArticleView"
+
+#|ru| Как видите, у нас получилось много одинаковых частей в обоих классах. Следует вынести их в суперкласс в виде абстрактных методов.
+#|en| As you can see, the two classes have many identical steps. We should move the identical steps as abstract methods to the superclass.
+#|uk| Як бачите, у нас вийшло багато однакових частин в обох класах. Слід винести їх в суперклас у вигляді абстрактних методів.
 
 Print "abstract "
 
+Wait 500ms
+
+Select visibility of "public ArticleView"
+
+Replace "protected"
+
+Wait 500ms
+
 Go to end of "ArticleView"
+
+Wait 500ms
 
 Print:
 ```
@@ -389,14 +457,22 @@ Print:
   protected abstract String footer();
 ```
 
+Wait 500ms
+
+Select "|||private||| String"
+
+Replace "@Override protected"
+
+Wait 500ms
+
 Select whole of "view" in "ArticleMarkdown"
 + Select whole of "view" in "ArticleHtml"
 
 Set step 5
 
-#|ru| Теперь мы можем свободно вынести ничем не отличающиеся методы <code>view</code> в суперкласс.
+#|ru| Теперь мы можем свободно вынести в суперкласс ничем не отличающиеся методы <code>view</code>.
 #|en| Now we can freely extract the identical <code>view</code> methods to the superclass.
-#|uk| Тепер ми можемо вільно винести методи <code>view</code>, які нічим не відрізняються, в суперклас.
+#|uk| Тепер ми можемо вільно винести в суперклас методи <code>view</code>, які нічим не відрізняються.
 
 Remove selected
 

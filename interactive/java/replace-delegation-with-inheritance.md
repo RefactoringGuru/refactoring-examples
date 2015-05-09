@@ -10,9 +10,9 @@ replace-delegation-with-inheritance:java
 2.en. Place the current object in a field containing a reference to the delegate object.
 2.uk. У поле, що містить посилання на об'єкт-делегат, поставте поточний об'єкт.
 
-3.ru. Один за другим удаляйте методы с простой делегацией. Если у них отличались названия, используйте <a href="/rename-method">переименование метода</a> чтобы привести все методы к одному названию.
+3.ru. Один за другим удаляйте методы с простой делегацией. Если у них отличались названия, используйте <a href="/ru/rename-method">переименование метода</a> чтобы привести все методы к одному названию.
 3.en. Delete the methods with simple delegation one by one. If their names were different, use <a href="/rename-method">Rename Method</a> to give all the methods a single name.
-3.uk. Один за іншим видаляйте методи з простою делегацією. Якщо у них відрізнялися назви, використайте <a href="/rename-method">перейменування методу</a> щоб привести усі методи до однієї назви.
+3.uk. Один за іншим видаляйте методи з простою делегацією. Якщо у них відрізнялися назви, використайте <a href="/uk/rename-method">перейменування методу</a> щоб привести усі методи до однієї назви.
 
 4.ru. Замените все обращения к полю-делегату обращениями к текущему объекту.
 4.en. Replace all references to the delegate field with references to the current object.
@@ -53,7 +53,7 @@ class Employee {
   public void setName(String name) {
     person.setName(name);
   }
-  public String toString () {
+  @Override public String toString() {
     return "Emp: " + person.getLastName();
   }
 }
@@ -77,7 +77,7 @@ class Person {
 }
 
 class Employee extends Person {
-  public String toString () {
+  @Override public String toString() {
     return "Emp: " + getLastName();
   }
 }
@@ -103,13 +103,13 @@ Go to "class Employee|||"
 
 Print " extends Person"
 
-#C|ru| Здесь стоит запустить компиляцию, чтобы убедиться в отсутствии конфликтующих методов. Они возникают, если методы с одинаковым именем возвращают значения различных типов или генерируют разные исключительные ситуации. Все проблемы такого рода исправляются с помощью <a href="/rename-method">Переименования метода</a>.
+#C|ru| Здесь стоит запустить компиляцию, чтобы убедиться в отсутствии конфликтующих методов. Они возникают, если методы с одинаковым именем возвращают значения различных типов или генерируют разные исключительные ситуации. Все проблемы такого рода исправляются с помощью <a href="/ru/rename-method">Переименования метода</a>.
 #S В данном простом примере таких затруднений не возникает.
 
 #C|en| Right after that we should compile and run autotests to make sure there are no conflicting methods. These issues can arise if identically named methods return values of different types or generate different exceptions. For all such issues, use  <a href="/rename-method">Rename Method</a>.
 #S No such difficulties are present in our simple example.
 
-#C|uk| Тут варто запустити компіляцію, щоб переконатися у відсутності конфліктуючих методів. Вони виникають, якщо методи з однаковим ім'ям повертають значення різних типів або генерують різні виняткові ситуації. Всі проблеми такого роду виправляються за допомогою <a href="/rename-method">Перейменування методу</a>.
+#C|uk| Тут варто запустити компіляцію, щоб переконатися у відсутності конфліктуючих методів. Вони виникають, якщо методи з однаковим ім'ям повертають значення різних типів або генерують різні виняткові ситуації. Всі проблеми такого роду виправляються за допомогою <a href="/uk/rename-method">Перейменування методу</a>.
 #S В даному простому прикладі таких ускладнень не виникає.
 
 Set step 2
