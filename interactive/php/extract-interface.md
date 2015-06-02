@@ -90,13 +90,13 @@ Set step 1
 Select "$employee->getRate()"
 + Select "$employee->hasSpecialSkill()"
 
-#|ru| Для этого ему необходимо знать ставку оплаты служащего и наличие у того особых навыков:
-#|en| For this, the class must know an employee's rate of pay and any special skills:
-#|uk| Для цього йому необхідно знати ставку оплати службовця і наявність у того особливих навичок:
+#|ru| Для этого ему необходимо знать ставку оплаты служащего и наличие у того особых навыков.
+#|en| For this, the class must know an employee's rate of pay and any special skills.
+#|uk| Для цього йому необхідно знати ставку оплати службовця і наявність у того особливих навичок.
 
-#|ru| У служащего есть много других характеристик помимо информации о ставке оплаты и специальных навыках, но в данном приложении требуются только они. Тот факт, что требуется только это подмножество, можно подчеркнуть, определив для него интерфейс:
-#|en| The employee has many other characteristics, in addition, to pay rate and special skills, but only the latter two are needed in this application. The fact that only this subset is needed can be emphasized by defining an interface for it:
-#|uk| У службовця є багато інших характеристик окрім інформації про ставку оплати і спеціальні навички, але в даному додатку потрібні тільки вони. Той факт, що вимагається тільки це підмножина, можна підкреслити, визначивши для нього інтерфейс:
+#|ru| У служащего есть много других характеристик помимо информации о ставке оплаты и специальных навыках, но в данном приложении требуются только они. Тот факт, что требуется только это подмножество, можно подчеркнуть, определив для него интерфейс.
+#|en| The employee has many other characteristics, in addition, to pay rate and special skills, but only the latter two are needed in this application. The fact that only this subset is needed can be emphasized by defining an interface for it.
+#|uk| У службовця є багато інших характеристик окрім інформації про ставку оплати і спеціальні навички, але в даному додатку потрібні тільки вони. Той факт, що вимагається тільки це підмножина, можна підкреслити, визначивши для нього інтерфейс.
 
 Go to before "Employee"
 
@@ -112,17 +112,17 @@ interface Billable {
 
 Go to "class Employee|||"
 
-#|ru| После этого можно объявить Employee как реализующий этот интерфейс:
-#|en| Then we declare Employee as implementing this interface:
-#|uk| Після цього можна оголосити Employee як реалізуючий цей інтерфейс:
+#|ru| После этого можно объявить Employee как реализующий этот интерфейс.
+#|en| Then we declare Employee as implementing this interface.
+#|uk| Після цього можна оголосити Employee як реалізуючий цей інтерфейс.
 
 Print " implements Billable"
 
 Select "|||Employee||| $employee"
 
-#|ru| Когда это сделано, можно изменить объявление метода <code>charge</code>, чтобы показать, что используется только эта часть поведения Employee:
-#|en| Then we can change the declaration of the <code>charge</code> method to show that only part of the Employee behavior is used:
-#|uk| Коли це зроблено, можна змінити оголошення методу <code>charge</code>, щоб показати, що використовується тільки ця частина поведінки Employee:
+#|ru| Когда это сделано, можно изменить объявление метода <code>charge</code>, чтобы показать, что используется только эта часть поведения Employee.
+#|en| Then we can change the declaration of the <code>charge</code> method to show that only part of the Employee behavior is used.
+#|uk| Коли це зроблено, можна змінити оголошення методу <code>charge</code>, щоб показати, що використовується тільки ця частина поведінки Employee.
 
 Print "Billable"
 

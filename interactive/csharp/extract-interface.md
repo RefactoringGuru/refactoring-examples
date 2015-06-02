@@ -1,4 +1,4 @@
-extract-interface:java
+extract-interface:csharp
 
 ###
 
@@ -23,25 +23,25 @@ extract-interface:java
 ###
 
 ```
-class TimeSheet {
+public class TimeSheet
+{
   // ...
-  public double charge(Employee employee, int days) {
-    double base = employee.getRate() * days;
-    if (employee.hasSpecialSkill()) {
-      return base * 1.05;
-    }
-    else {
-      return base;
-    }
+  public double Charge(Employee employee, int days)
+  {
+    double baseAmount = employee.Rate * days;
+
+	return employee.HasSpecialSkill() ? baseAmount * 1.05 : baseAmount;
   }
 }
 
-class Employee {
+public class Employee
+{
   // ...
-  public int getRate() {
+  public int Rate 
+  { get; private set; }
     // ...
-  }
-  public boolean hasSpecialSkill() {
+  public bool HasSpecialSkill()
+  {
     // ...
   }
 }
@@ -50,30 +50,31 @@ class Employee {
 ###
 
 ```
-class TimeSheet {
+public class TimeSheet
+{
   // ...
-  public double charge(Billable employee, int days) {
-    double base = employee.getRate() * days;
-    if (employee.hasSpecialSkill()) {
-      return base * 1.05;
-    }
-    else {
-      return base;
-    }
+  public double Charge(IBillable employee, int days)
+  {
+    double baseAmount = employee.Rate * days;
+
+	return employee.HasSpecialSkill() ? baseAmount * 1.05 : baseAmount;
   }
 }
 
-interface Billable {
-  public int getRate();
-  public boolean hasSpecialSkill();
+public interface IBillable
+{
+  int Rate { get; }
+  bool HasSpecialSkill();
 }
 
-class Employee implements Billable {
+public class Employee: IBillable
+{
   // ...
-  @Override public int getRate() {
+  public int Rate 
+  { get; private set; }
     // ...
-  }
-  @Override public boolean hasSpecialSkill() {
+  public bool HasSpecialSkill()
+  {
     // ...
   }
 }
@@ -87,8 +88,8 @@ Set step 1
 #|en| Say, we have a <code>TimeSheet</code> class that is used for payroll.
 #|uk| У нас є клас обліку відпрацьованого часу <code>TimeSheet</code>, який генерує нарахування оплати для службовців. 
 
-Select "employee.getRate()"
-+ Select "employee.hasSpecialSkill()"
+Select "employee.Rate"
++ Select "employee.HasSpecialSkill()"
 
 #|ru| Для этого ему необходимо знать ставку оплаты служащего и наличие у того особых навыков.
 #|en| For this, the class must know an employee's rate of pay and any special skills.
@@ -103,9 +104,10 @@ Go to before "Employee"
 Print:
 ```
 
-interface Billable {
-  public int getRate();
-  public boolean hasSpecialSkill();
+public interface IBillable
+{
+  int Rate { get; }
+  bool HasSpecialSkill();
 }
 
 ```
@@ -116,23 +118,15 @@ Go to "class Employee|||"
 #|en| Then we declare Employee as implementing this interface.
 #|uk| Після цього можна оголосити Employee як реалізуючий цей інтерфейс.
 
-Print " implements Billable"
-
-Wait 500ms
-
-Select "|||||| public" in "Employee"
-
-Replace " @Override"
-
-Wait 500ms
+Print ": IBillable"
 
 Select "|||Employee||| employee"
 
-#|ru| Когда это сделано, можно изменить объявление метода <code>charge</code>, чтобы показать, что используется только эта часть поведения Employee.
-#|en| Then we can change the declaration of the <code>charge</code> method to show that only part of the Employee behavior is used.
-#|uk| Коли це зроблено, можна змінити оголошення методу <code>charge</code>, щоб показати, що використовується тільки ця частина поведінки Employee.
+#|ru| Когда это сделано, можно изменить объявление метода <code>Charge()</code>, чтобы показать, что используется только эта часть поведения Employee.
+#|en| Then we can change the declaration of the <code>Charge()</code> method to show that only part of the Employee behavior is used.
+#|uk| Коли це зроблено, можна змінити оголошення методу <code>Charge()</code>, щоб показати, що використовується тільки ця частина поведінки Employee.
 
-Print "Billable"
+Print "IBillable"
 
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!
@@ -143,13 +137,13 @@ Print "Billable"
 #C|uk| Запускаємо фінальну компіляцію.
 #S Супер, все працює.
 
-#|ru| В данном случае получена скромная выгода в виде документированности кода. Такая выгода не стоит труда для одного метода, но если бы несколько классов стали применять интерфейс <code>Billable</code>, это было бы полезно.
-#|en| In this case, a hidden benefit appears, in the form of in-code documentation. This benefit is not worth the work if talking about just one method, but if several classes start to use the <code>Billable</code> interface, this can be rather valuable.
-#|uk| В даному випадку отримана скромна вигода у вигляді документованості коду. Така вигода не варта праці для одного методу, але якби кілька класів стали застосовувати інтерфейс <code>Billable</code>, це було б корисно.
+#|ru| В данном случае получена скромная выгода в виде документированности кода. Такая выгода не стоит труда для одного метода, но если бы несколько классов стали применять интерфейс <code>IBillable</code>, это было бы полезно.
+#|en| In this case, a hidden benefit appears, in the form of in-code documentation. This benefit is not worth the work if talking about just one method, but if several classes start to use the <code>IBillable</code> interface, this can be rather valuable.
+#|uk| В даному випадку отримана скромна вигода у вигляді документованості коду. Така вигода не варта праці для одного методу, але якби кілька класів стали застосовувати інтерфейс <code>IBillable</code>, це було б корисно.
 
-#|ru| Крупная выгода появится, когда мы захотим выставлять счета ещё и для компьютеров. Все, что для этого нужно – реализовать в них интерфейс <code>Billable</code>, и тогда можно включать компьютеры в табель учёта времени.
-#|en| A major payoff comes when we want to invoice cost for office equipment as well. All we need to do is implement the <code>Billable</code> interface in those classes. After that, we can include computers cost in the timesheet.
-#|uk| Крупна вигода з'явиться, коли ми захочемо виставляти рахунки ще й для комп'ютерів. Все, що для цього потрібно – реалізувати в них інтерфейс <code>Billable</code>, і тоді можна включати комп'ютери в табель обліку часу.
+#|ru| Крупная выгода появится, когда мы захотим выставлять счета ещё и для компьютеров. Все, что для этого нужно – реализовать в них интерфейс <code>IBillable</code>, и тогда можно включать компьютеры в табель учёта времени.
+#|en| A major payoff comes when we want to invoice cost for office equipment as well. All we need to do is implement the <code>IBillable</code> interface in those classes. After that, we can include computers cost in the timesheet.
+#|uk| Крупна вигода з'явиться, коли ми захочемо виставляти рахунки ще й для комп'ютерів. Все, що для цього потрібно – реалізувати в них інтерфейс <code>IBillable</code>, і тоді можна включати комп'ютери в табель обліку часу.
 
 Set final step
 

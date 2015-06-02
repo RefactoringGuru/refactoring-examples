@@ -1,4 +1,4 @@
-replace-delegation-with-inheritance:java
+replace-delegation-with-inheritance:csharp
 
 ###
 
@@ -27,34 +27,34 @@ replace-delegation-with-inheritance:java
 ###
 
 ```
-class Person {
-  private String name;
-
-  public String getName() {
-    return name;
-  }
-  public void setName(String name) {
-    this.name = name;
-  }
-  public String getLastName() {
-    return name.substring(name.lastIndexOf(' ') + 1);
+public class Person
+{
+  public string Name
+  { get; set; }
+  public string LastName
+  {
+    get{ return Name.Substring(Name.LastIndexOf(' ') + 1); }
   }
 }
 
-class Employee {
+public class Employee
+{
   protected Person person;
 
-  public Employee() {
+  public string Name
+  {
+    get{ return person.Name; }
+    set{ person.Name = value; }
+  }
+
+  public Employee()
+  {
     this.person = new Person();
   }
-  public String getName() {
-    return person.getName();
-  }
-  public void setName(String name) {
-    person.setName(name);
-  }
-  @Override public String toString() {
-    return "Emp: " + person.getLastName();
+
+  public override string ToString()
+  {
+    return "Emp: " + person.LastName;
   }
 }
 ```
@@ -62,23 +62,21 @@ class Employee {
 ###
 
 ```
-class Person {
-  private String name;
-
-  public String getName() {
-    return name;
-  }
-  public void setName(String name) {
-    this.name = name;
-  }
-  public String getLastName() {
-    return name.substring(name.lastIndexOf(' ') + 1);
+public class Person
+{
+  public string Name
+  { get; set; }
+  public string LastName
+  {
+    get{ return Name.Substring(Name.LastIndexOf(' ') + 1); }
   }
 }
 
-class Employee extends Person {
-  @Override public String toString() {
-    return "Emp: " + getLastName();
+public class Employee: Person
+{
+  public override string ToString()
+  {
+    return "Emp: " + LastName;
   }
 }
 ```
@@ -101,7 +99,7 @@ Set step 1
 
 Go to "class Employee|||"
 
-Print " extends Person"
+Print ": Person"
 
 #C|ru| Здесь стоит запустить компиляцию, чтобы убедиться в отсутствии конфликтующих методов. Они возникают, если методы с одинаковым именем возвращают значения различных типов или генерируют разные исключительные ситуации. Все проблемы такого рода исправляются с помощью <a href="/ru/rename-method">Переименования метода</a>.
 #S В данном простом примере таких затруднений не возникает.
@@ -124,12 +122,20 @@ Print "this"
 
 Set step 3
 
-Select whole "getName" in "Employee"
-+ Select whole "setName" in "Employee"
+Select:
+```
 
-#|ru| Кроме того, мы должны удалить из <code>Employee</code> все простые методы делегирования, такие, как <code>getName</code> и <code>setName</code>. Если их оставить, возникнет ошибка переполнения стека, вызванная бесконечной рекурсией.
+  public string Name
+  {
+    get{ return person.Name; }
+    set{ person.Name = value; }
+  }
+
+```
+
+#|ru| Кроме того, мы должны удалить из <code>Employee</code> все делегирующие методы и свойства, такие, как <code>Name</code>. Если их оставить, возникнет ошибка переполнения стека, вызванная бесконечной рекурсией.
 #|en| We also should remove all simple delegate methods from <code>Employee</code>, such as <code>getName</code> and <code>setName</code>. If we forget to remove them, a stack overflow will occur due to infinite recursion.
-#|uk| Крім того, ми повинні видалити з <code>Employee</code> всі прості методи делегування, такі, як <code>getName</code> і <code>setName</code>. Якщо їх залишити, виникне помилка переповнення стека, викликана нескінченної рекурсією.
+#|uk| Крім того, ми повинні видалити з <code>Employee</code> всі делегуючи методи і властивості, такі, як <code>Name</code>. Якщо їх залишити, виникне помилка переповнення стека, викликана нескінченної рекурсією.
 
 Remove selected
 
@@ -149,9 +155,11 @@ Select:
 ```
   protected Person person;
 
-  public Employee() {
+  public Employee()
+  {
     this.person = this;
   }
+
 
 ```
 

@@ -10,17 +10,13 @@ replace-inheritance-with-delegation:php
 2.en. Change the subclass methods so that they use the superclass object instead of <code>this</code>.
 2.uk. Змініть методи підкласу так, щоб вони використовували об'єкт суперкласу, замість <code>this</code>.
 
-3.ru. Для методов, которые были унаследованы из суперкласса и которые вызывается в клиентском коде, в подклассе нужно создать простые делегирующие методы.
-3.en. For methods inherited from the superclass that are called in the client code, create simple delegating methods in the subclass.
-3.uk. Для методів, які були успадковані з суперкласу і які викликаються в клієнтському коді, в підкласі треба створити прості делегуючі методи.
+3.ru. Уберите объявление наследования из подкласса.
+3.en. Remove the inheritance declaration from the subclass.
+3.uk. Приберіть оголошення спадкоємства з підкласу.
 
-4.ru. Уберите объявление наследования из подкласса.
-4.en. Remove the inheritance declaration from the subclass.
-4.uk. Приберіть оголошення спадкоємства з підкласу.
-
-5.ru. Измените код инициализации поля, в котором хранится бывший суперкласс, созданием нового объекта.
-5.en. Change the initialization code of the field in which the former superclass is stored by creating a new object.
-5.uk. Змініть код ініціалізації поля-делегата новим об' єктом суперкласу.
+4.ru. Измените код инициализации поля, в котором хранится бывший суперкласс, созданием нового объекта.
+4.en. Change the initialization code of the field in which the former superclass is stored by creating a new object.
+4.uk. Змініть код ініціалізації поля-делегата новим об' єктом суперкласу.
 
 
 
@@ -150,6 +146,8 @@ Print:
   protected $engine;
 ```
 
+Select "|||$engine|||;"
+
 #|ru| Пока что будем заполнять это поле текущим объектом (это можно сделать в конструкторе).
 #|en| For now we will fill this field with the current object (this can be done in the constructor).
 #|uk| Поки що будемо заповнювати це поле поточним об'єктом (це можна зробити в конструкторі).
@@ -174,7 +172,7 @@ Select "$this->getCV()"
 
 Print "$this->engine->getCV()"
 
-Set step 4
+Set step 3
 
 Select " extends Engine"
 
@@ -184,13 +182,13 @@ Select " extends Engine"
 
 Remove selected
 
-Set step 5
+Set step 4
+
+Select "engine = |||$this|||"
 
 #|ru| После этого остаётся только создать новый объект двигателей для заполнения поля связанного объекта.
 #|en| All that's left to do is create a new engine object for filling the field of the associated object.
 #|uk| Після цього залишається тільки створити новий об'єкт двигунів для заповнення поля пов'язаного об'єкта.
-
-Select "engine = |||$this|||"
 
 Replace "new Engine()"
 

@@ -1,4 +1,4 @@
-replace-exception-with-test:java
+replace-exception-with-test:csharp
 
 ###
 
@@ -31,20 +31,26 @@ replace-exception-with-test:java
 ###
 
 ```
-class ResourcePool {
+public class ResourcePool
+{
   // ...
   private Stack available;
   private Stack allocated;
 
-  public Resource getResource() {
+  public Resource GetResource()
+  {
     Resource result;
-    try {
-      result = (Resource) available.pop();
-      allocated.push(result);
+
+    try
+    {
+      result = (Resource) available.Pop();
+      allocated.Push(result);
       return result;
-    } catch (EmptyStackException e) {
+    }
+    catch (InvalidOperationException e)
+    {
       result = new Resource();
-      allocated.push(result);
+      allocated.Push(result);
       return result;
     }
   }
@@ -54,20 +60,22 @@ class ResourcePool {
 ###
 
 ```
-class ResourcePool {
+public class ResourcePool
+{
   // ...
   private Stack available;
   private Stack allocated;
 
-  public Resource getResource() {
+  public Resource GetResource()
+  {
     Resource result;
-    if (available.empty()) {
+
+    if (available.Count == 0)
       result = new Resource();
-    }
-    else {
-      result = (Resource) available.pop();
-    }
-    allocated.push(result);
+    else
+      result = (Resource) available.Pop();
+
+    allocated.Push(result);
     return result;
   }
 }
@@ -82,6 +90,7 @@ Set step 1
 #|uk| Для цього прикладу візьмемо об'єкт, керуючий ресурсами, створення яких обходиться дорого, але можливе їх повторне  використання. Хороший приклад такої ситуації дають з'єднання з базами даних.
 
 Select "Stack |||available|||"
+
 #|ru|+ У администратора соединений есть два пула, в одном из которых находятся ресурсы, доступные для использования, …
 #|en|+ The administrator has two pools. One of them contains resources available for use…
 #|uk|+ У адміністратора з'єднань є два пула, в одному з яких знаходяться ресурси, доступні для використання…
@@ -92,7 +101,7 @@ Select "Stack |||allocated|||"
 #|en|<= …and the other pool contains already allocated resources.
 #|uk|<= …а в іншому - ті, які вже виділені.
 
-Select "(Resource) available.pop()"
+Select "(Resource) available.Pop()"
 
 #|ru|< Когда клиенту нужен ресурс, администратор предоставляет его из пула доступных и переводит в пул выделенных. Когда клиент высвобождает ресурс, администратор возвращает его обратно.
 #|en|< When a client needs a resource, the administrator provides it from the pool of available resources and moves it to the allocated pool. When the client frees up the resource, the administrator returns it back.
@@ -108,18 +117,24 @@ Select "result = new Resource();"
 #|en|< "Insufficient resources" is not an unexpected event, so using an exception is not truly justified.
 #|uk|< В даному випадку нестача ресурсів не є несподіваною подією, тому використання винятку не зовсім виправдано.
 
-Go to "Resource result;|||"
+Go to:
+```
+Resource result;
+|||
+```
 
 #|ru| Итак, попытаемся избавиться от исключения. Первым делом в начале метода создадим условный оператор, условие в котором будет совпадать с условием выброса исключения. Весь остальной код поместим в <code>else</code>.
 #|en| So let's try to get rid of the exception. First, at the beginning of the method, create a conditional whose condition coincides with the condition for throwing an exception. Place all the remaining code in <code>else</code>.
 #|uk| Отже, спробуємо позбутися від виключення. Першим ділом на початку методу створимо умовний оператор, умова в якому буде збігатися з умовою виключення винятку. Весь інший код помістимо в <code>else</code>.
 
-Print:
+Replace:
 ```
 
-    if (available.empty()) {
+    if (available.Count == 0)
+    {
     }
-    else {
+    else
+    {
 ```
 
 Go to:
@@ -136,13 +151,16 @@ Print:
 
 Select:
 ```
-    try {
-      result = (Resource) available.pop();
-      allocated.push(result);
+    try
+    {
+      result = (Resource) available.Pop();
+      allocated.Push(result);
       return result;
-    } catch (EmptyStackException e) {
+    }
+    catch (InvalidOperationException e)
+    {
       result = new Resource();
-      allocated.push(result);
+      allocated.Push(result);
       return result;
     }
 
@@ -155,7 +173,7 @@ Set step 2
 Select:
 ```
         result = new Resource();
-        allocated.push(result);
+        allocated.Push(result);
         return result;
 
 ```
@@ -164,19 +182,27 @@ Select:
 #|en| Then copy the code from the <code>catch</code> section to inside the guard clause.
 #|uk| Далі скопіюємо код з <code>catch</code> секції всередину граничного умовного оператора.
 
-Go to "empty()) {|||"
+Go to:
+```
+Count == 0)
+    {|||
+```
 
 Print:
 ```
 
       result = new Resource();
-      allocated.push(result);
+      allocated.Push(result);
       return result;
 ```
 
 Set step 3
 
-Go to "catch (EmptyStackException e) {|||"
+Go to:
+```
+catch (InvalidOperationException e)
+      {|||
+```
 
 #|ru| Полученный код никогда не должен достигать <code>catch</code> секции. Но чтобы убедиться в этом на 100%, вставим проверку внутрь секции и запустим все тесты.
 #|en| This code should never reach the <code>catch</code> section. But to be 100% sure, insert a check inside the section and run all the tests.
@@ -185,7 +211,7 @@ Go to "catch (EmptyStackException e) {|||"
 Print:
 ```
 
-        throw new RuntimeException("Should not reach here.");
+        throw new SystemException("Should not reach here.");
 ```
 
 #C|ru| Посмотрим, что покажет компиляция и авто-тесты.
@@ -205,7 +231,8 @@ Set step 4
 
 Select:
 ```
-      try {
+      try
+      {
 
 ```
 
@@ -213,10 +240,12 @@ Remove selected
 
 Select:
 ```
-      } catch (EmptyStackException e) {
-        throw new RuntimeException("Should not reach here.");
+      }
+      catch (InvalidOperationException e)
+      {
+        throw new SystemException("Should not reach here.");
         result = new Resource();
-        allocated.push(result);
+        allocated.Push(result);
         return result;
       }
 
@@ -226,8 +255,8 @@ Remove selected
 
 Select:
 ```
-        result = (Resource) available.pop();
-        allocated.push(result);
+        result = (Resource) available.Pop();
+        allocated.Push(result);
         return result;
 ```
 
@@ -235,7 +264,7 @@ Deindent
 
 Select:
 ```
-      allocated.push(result);
+      allocated.Push(result);
       return result;
 
 ```
@@ -253,7 +282,8 @@ Go to:
 Print:
 ```
 
-    allocated.push(result);
+
+    allocated.Push(result);
     return result;
 ```
 
@@ -261,10 +291,25 @@ Wait 500ms
 
 Select:
 ```
-      allocated.push(result);
+      allocated.Push(result);
       return result;
+    }
 
 ```
++Select:
+```
+Count == 0)
+|||    {
+|||
+```
++Select:
+```
+else
+|||    {
+|||
+```
+
+Wait 500ms
 
 Remove selected
 

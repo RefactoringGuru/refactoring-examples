@@ -1,66 +1,47 @@
-replace-inheritance-with-delegation:java
+replace-inheritance-with-delegation:csharp
 
 ###
 
-1.ru. Создайте поле в подклассе для содержания суперкласса. На первом этапе поместите в него текущий объект.
-1.en. Create a field in the subclass for holding the superclass. During the initial stage, place the current object in it.
-1.uk. Створіть поле в підкласі для утримання суперкласу. На першому етапі додайте в нього поточний об'єкт.
+1.ru. Создайте поле в подклассе для содержания экземпляра базового класса. На первом этапе поместите в него текущий объект.
+1.en. Create a field in the subclass for holding the base class. During the initial stage, place the current object in it.
+1.uk. Створіть поле в підкласі для утримання примірника базового класу. На першому етапі додайте в нього поточний об'єкт.
 
-2.ru. Измените методы подкласса так, чтобы они использовали объект суперкласса, вместо <code>this</code>.
-2.en. Change the subclass methods so that they use the superclass object instead of <code>this</code>.
-2.uk. Змініть методи підкласу так, щоб вони використовували об'єкт суперкласу, замість <code>this</code>.
+2.ru. Измените методы подкласса так, чтобы они использовали объект базового класса, вместо <code>this</code>.
+2.en. Change the subclass methods so that they use the base class object instead of <code>this</code>.
+2.uk. Змініть методи підкласу так, щоб вони використовували об'єкт базового класу, замість <code>this</code>.
 
 3.ru. Уберите объявление наследования из подкласса.
 3.en. Remove the inheritance declaration from the subclass.
 3.uk. Приберіть оголошення спадкоємства з підкласу.
 
-4.ru. Измените код инициализации поля, в котором хранится бывший суперкласс, созданием нового объекта.
-4.en. Change the initialization code of the field in which the former superclass is stored by creating a new object.
-4.uk. Змініть код ініціалізації поля-делегата новим об' єктом суперкласу.
+4.ru. Измените код инициализации поля, в котором хранится бывший базовый класс, созданием нового экземпляра класса.
+4.en. Change the initialization code of the field in which the former base class is stored by creating a new class instance.
+4.uk. Змініть код ініціалізації поля новим екземпляром базового класу.
 
 
 
 ###
 
 ```
-class Engine {
+public class Engine
+{
   //…
-  private double fuel;
-  private double CV;
-
-  public double getFuel() {
-    return fuel;
-  }
-  public void setFuel(double fuel) {
-    this.fuel = fuel;
-  }
-  public double getCV() {
-    return CV;
-  }
-  public void setCV(double cv) {
-    this.CV = cv;
-  }
+  public double Fuel
+  { get; set; }
+  public double CV
+  { get; set; }
 }
 
-class Car extends Engine {
+public class Car: Engine
+{
   // ...
-  private String brand;
-  private String model;
-
-  public String getName() {
-    return brand + " " + model + " (" + getCV() + "CV)";
-  }
-  public String getModel() {
-    return model;
-  }
-  public void setModel(String model) {
-    this.model = model;
-  }
-  public String getBrand() {
-    return brand;
-  }
-  public void setBrand(String brand) {
-    this.brand = brand;
+  public string Brand
+  { get; set; }
+  public string Model
+  { get; set; }
+  public string Name
+  {
+    get{ return Brand + " " + Model + " (" + CV + "CV)"; }
   }
 }
 ```
@@ -68,48 +49,32 @@ class Car extends Engine {
 ###
 
 ```
-class Engine {
+public class Engine
+{
   //…
-  private double fuel;
-  private double CV;
-
-  public double getFuel() {
-    return fuel;
-  }
-  public void setFuel(double fuel) {
-    this.fuel = fuel;
-  }
-  public double getCV() {
-    return CV;
-  }
-  public void setCV(double cv) {
-    this.CV = cv;
-  }
+  public double Fuel
+  { get; set; }
+  public double CV
+  { get; set; }
 }
 
-class Car {
+public class Car
+{
   // ...
-  private String brand;
-  private String model;
   protected Engine engine;
 
-  public Car() {
+  public string Brand
+  { get; set; }
+  public string Model
+  { get; set; }
+  public string Name
+  {
+    get{ return Brand + " " + Model + " (" + engine.CV + "CV)"; }
+  }
+
+  public Car()
+  {
     this.engine = new Engine();
-  }
-  public String getName() {
-    return brand + " " + model + " (" + engine.getCV() + "CV)";
-  }
-  public String getModel() {
-    return model;
-  }
-  public void setModel(String model) {
-    this.model = model;
-  }
-  public String getBrand() {
-    return brand;
-  }
-  public void setBrand(String brand) {
-    this.brand = brand;
   }
 }
 ```
@@ -122,7 +87,7 @@ Set step 1
 #|en| Let's try out one more refactoring using a <code>Car</code> class that is inherited from the <code>Engine</code> as our example.
 #|uk| Розглянемо рефакторинг на прикладі класу автомобілів <code>Car</code>, який успадковується від класу двигунів <code>Engine</code>.
 
-Select "getCV()" in "Car"
+Select "|||CV||| +" in "Car"
 
 #|ru| Сначала идея наследования казалась хорошей и оправданной, но в итоге выяснилось, что автомобили используют только одно свойство двигателя (а именно, объем).
 #|en| At first, inheritance seemed a good and noble idea… But later we found that cars use only one engine's property (volume, to be precise).
@@ -138,12 +103,13 @@ Go to the start of "Car"
 #|en| Let's start refactoring by creating a field for storing a reference to an engine object.
 #|uk| Почнемо рефакторинг зі створення поля для зберігання посилання на об'єкт двигуна.
 
-Go to "String model;|||"
+Go to "// ...|||" in "Car"
 
 Print:
 ```
 
   protected Engine engine;
+
 ```
 
 Select "Engine |||engine|||"
@@ -152,29 +118,31 @@ Select "Engine |||engine|||"
 #|en| For now we will fill this field with the current object (this can be done in the constructor).
 #|uk| Поки що будемо заповнювати це поле поточним об'єктом (це можна зробити в конструкторі).
 
-Go to before "getName"
+Go to end of "Car"
 
 Print:
 ```
 
-  public Car() {
+
+  public Car()
+  {
     this.engine = this;
   }
 ```
 
 Set step 2
 
-Select "getCV()" in "Car"
+Select "|||CV||| +" in "Car"
 
-#|ru| Теперь следует изменить все обращения к полям и методам суперкласса так, чтобы они обращались к созданному полю. В нашем случае, это происходит только в одном месте.
-#|en| Then we should change all access points to the Engine's fields and methods so that they go through the newly created field. In our case, this happens in only one place. 
-#|uk| Тепер слід змінити всі звернення до полів і методів суперкласу так, щоб вони зверталися до створеного поля. У нашому випадку, це відбувається тільки в одному місці.
+#|ru| Теперь следует изменить все обращения к свойствам и методам базового класса так, чтобы они обращались к созданному полю. В нашем случае, это происходит только в одном месте.
+#|en| Then we should change all access points to the Engine's properties and methods so that they go through the newly created field. In our case, this happens in only one place. 
+#|uk| Тепер слід змінити всі звернення до властивостей і методів базового класу так, щоб вони зверталися до створеного поля. У нашому випадку, це відбувається тільки в одному місці.
 
-Print "engine.getCV()"
+Print "engine.CV"
 
 Set step 3
 
-Select " extends Engine"
+Select ": Engine"
 
 #|ru| Теперь можно убрать объявление наследование из класса <code>Car</code>.
 #|en| Now we can remove the inheritance declaration from the <code>Car</code> class.
