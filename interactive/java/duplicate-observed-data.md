@@ -170,19 +170,19 @@ class IntervalWindow extends Frame implements Observer {
   }
 
   String getEnd() {
-    subject.setEnd(arg);
+    return subject.getEnd(arg);
   }
   void setEnd(String arg) {
     subject.setEnd(arg);
   }
   String getStart() {
-    subject.setStart(arg);
+    return subject.getStart(arg);
   }
   void setStart(String arg) {
     subject.setStart(arg);
   }
   String getLength() {
-    subject.setLength(arg);
+    return subject.getLength(arg);
   }
   void setLength(String arg) {
     subject.setLength(arg);
@@ -754,7 +754,7 @@ Select body of "getEnd"
 
 Replace:
 ```
-    subject.setEnd(arg);
+    return subject.getEnd(arg);
 ```
 
 Wait 500ms
@@ -763,7 +763,7 @@ Select body of "getStart"
 
 Replace:
 ```
-    subject.setStart(arg);
+    return subject.getStart(arg);
 ```
 
 Wait 500ms
@@ -772,7 +772,7 @@ Select body of "getLength"
 
 Replace:
 ```
-    subject.setLength(arg);
+    return subject.getLength(arg);
 ```
 
 Select name of "calculateEnd"
