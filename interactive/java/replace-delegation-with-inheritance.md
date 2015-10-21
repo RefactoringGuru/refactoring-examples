@@ -10,9 +10,9 @@ replace-delegation-with-inheritance:java
 2.en. Place the current object in a field containing a reference to the delegate object.
 2.uk. У поле, що містить посилання на об'єкт-делегат, поставте поточний об'єкт.
 
-3.ru. Один за другим удаляйте методы с простой делегацией. Если у них отличались названия, используйте <a href="/ru/rename-method">переименование метода</a> чтобы привести все методы к одному названию.
+3.ru. Один за другим удаляйте методы с простым делегированием. Если у них отличались названия, используйте <a href="/ru/rename-method">переименование метода</a> чтобы привести все методы к одному названию.
 3.en. Delete the methods with simple delegation one by one. If their names were different, use <a href="/rename-method">Rename Method</a> to give all the methods a single name.
-3.uk. Один за іншим видаляйте методи з простою делегацією. Якщо у них відрізнялися назви, використайте <a href="/uk/rename-method">перейменування методу</a> щоб привести усі методи до однієї назви.
+3.uk. Один за іншим видаляйте методи з простим делегуванням. Якщо у них відрізнялися назви, використайте <a href="/uk/rename-method">перейменування методу</a> щоб привести усі методи до однієї назви.
 
 4.ru. Замените все обращения к полю-делегату обращениями к текущему объекту.
 4.en. Replace all references to the delegate field with references to the current object.
