@@ -14,7 +14,7 @@ class African extends Bird {
     return $this->getBaseSpeed() - $this->getLoadFactor() * $this->numberOfCoconuts;
   }
 }
-class NorvegianBlue extends Bird {
+class NorwegianBlue extends Bird {
   function getSpeed() {
     return ($this->isNailed) ? 0 : $this->getBaseSpeed($this->voltage);
   }

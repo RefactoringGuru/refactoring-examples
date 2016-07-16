@@ -15,7 +15,7 @@ class African(Bird):
         return self.getBaseSpeed() - self.getLoadFactor() * self.numberOfCoconuts
 
 
-class NorvegianBlue(Bird):
+class NorwegianBlue(Bird):
 
     def getSpeed():
         return 0 if self.isNailed else self.getBaseSpeed(self.voltage)

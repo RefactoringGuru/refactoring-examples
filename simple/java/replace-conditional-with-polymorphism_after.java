@@ -13,7 +13,7 @@ class African extends Bird {
     return getBaseSpeed() - getLoadFactor() * numberOfCoconuts;
   }
 }
-class NorvegianBlue extends Bird {
+class NorwegianBlue extends Bird {
   double getSpeed() {
     return (isNailed) ? 0 : getBaseSpeed(voltage);
   }

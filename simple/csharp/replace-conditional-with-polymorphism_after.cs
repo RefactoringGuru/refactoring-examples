@@ -18,7 +18,7 @@ class African: Bird
     return GetBaseSpeed() - GetLoadFactor() * numberOfCoconuts;
   }
 }
-class NorvegianBlue: Bird 
+class NorwegianBlue: Bird
 {
   public override double GetSpeed() 
   {
