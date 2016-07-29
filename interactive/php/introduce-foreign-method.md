@@ -3,19 +3,27 @@ introduce-foreign-method:php
 ###
 
 1.ru. Создайте новый метод в клиентском классе.
+
 1.en. Create a new method in the client class.
+
 1.uk. Створіть новий метод в клієнтському класі.
 
 2.ru. В этом методе создайте параметр, в который будет передаваться объект служебного класса.
+
 2.en. In this method, create a parameter to which the object of the utility class will be passed. If this object can be obtained from the client class, you do not have to create such a parameter.
+
 2.uk. У цьому методі створіть параметр, в який передаватиметься об'єкт службового класу. Якщо цей об'єкт може бути отриманий з клієнтського класу, параметр можна не створювати.
 
 3.ru. Извлеките волнующие вас участки кода в этот метод и замените их вызовами метода.
+
 3.en. Extract the relevant code fragments to this method and replace them with method calls.
+
 3.uk. Витягніть ділянки коду, які вам потрібні, в цей метод і замініть їх викликами методу.
 
 4.ru. Оставьте в комментарии к этому методу метку <i>Foreign method</i> и призыв поместить этот метод в служебный класс, если такая возможность появится в дальнейшем.
+
 4.en. Leave a comment for the method, labeling it as <i>Foreign method</i> and requesting that the method be placed in a utility class if this becomes possible in the future.
+
 4.uk. Залиште в коментарі до цього методу мітку <i>Foreign method</i> і заклик помістити цей метод в службовий клас, якщо така можливість з'явиться в подальшому.
 
 
@@ -111,9 +119,9 @@ Replace "$arg"
 
 Go to type of "nextWeek"
 
-#|ru| Также следует объявить метод статическим, чтобы к нему был доступ и из другого кода, не связанного с <code>Account</code>.
-#|en| You should also declare the method static to make it accessible from other code not associated with <code>Account</code>.
-#|uk| Також слід оголосити метод статичним, щоб до нього був доступ і з іншого коду, не пов'язаного з <code>Account</code>.
+#|ru| Также следует объявить метод статическим, чтобы его можно было вызывать и из статических методов класса, если такие существуют сейчас или будут созданы в будущем.
+#|en| You should also declare the method static to make it accessible from other static methods of <code>Account</code> should any exists now or in future.
+#|uk| Також слід оголосити метод статичним, щоб його можна було викликати і з статичних методів классу, якщо такі існують, або з'являться в майбутньому.
 
 Print "static "
 
