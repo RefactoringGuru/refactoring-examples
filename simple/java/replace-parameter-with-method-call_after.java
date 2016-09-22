@@ -1,2 +1,2 @@
 int basePrice = quantity * itemPrice;
-double finalPrice = discountedPrice(basePrice, store);
+double finalPrice = discountedPrice(basePrice);

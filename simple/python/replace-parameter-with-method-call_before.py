@@ -1,4 +1,4 @@
 basePrice = quantity * itemPrice
-seasonalDiscount = store.getSeasonalDiscount()
-fees = store.getFees()
+seasonalDiscount = this.getSeasonalDiscount()
+fees = this.getFees()
 finalPrice = discountedPrice(basePrice, seasonalDiscount, fees)

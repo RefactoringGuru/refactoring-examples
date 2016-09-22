@@ -1,4 +1,4 @@
 int basePrice = quantity * itemPrice;
-double seasonDiscount = store.getSeasonalDiscount();
-double fees = store.getFees();
+double seasonDiscount = this.getSeasonalDiscount();
+double fees = this.getFees();
 double finalPrice = discountedPrice(basePrice, seasonDiscount, fees);

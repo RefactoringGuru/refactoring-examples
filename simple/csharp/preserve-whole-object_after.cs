@@ -1,1 +1,1 @@
-bool withinPlan = plan.WithinRange(DaysTempRange());
+bool withinPlan = plan.WithinRange(daysTempRange);

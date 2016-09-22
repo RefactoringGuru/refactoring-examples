@@ -1,1 +1,1 @@
-boolean withinPlan = plan.withinRange(daysTempRange());
+boolean withinPlan = plan.withinRange(daysTempRange);

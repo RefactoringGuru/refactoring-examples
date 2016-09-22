@@ -1,2 +1,2 @@
 basePrice = quantity * itemPrice
-finalPrice = discountedPrice(basePrice, store)
+finalPrice = discountedPrice(basePrice)

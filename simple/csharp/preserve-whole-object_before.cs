@@ -1,3 +1,3 @@
-int low = DaysTempRange().GetLow();
-int high = DaysTempRange().GetHigh();
+int low = daysTempRange.GetLow();
+int high = daysTempRange.GetHigh();
 bool withinPlan = plan.WithinRange(low, high);
