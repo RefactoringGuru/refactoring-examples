@@ -740,7 +740,7 @@ Replace:
 
 #|ru| Мы убрали установку значения в поле пользовательского интерфейса потому, что оно все-равно будет выставлено при вызове сеттеров класса интервала (вспомните о реализации Наблюдателя и методе <code>update</code>).
 #|en| We removed the value assignment in the GUI interface field because the value will still be set when the setter of the interval class is called (remember about implementation of Observer in the <code>update</code> method).
-#|uk| Ми прибрали установку значення в поле користувальницького інтерфейсу тому , що воно все- одно буде виставлено при виклику сеттерів класу інтервалу (згадайте про реалізацію Спостерігача і методі <code>update</code>) .
+#|uk| Ми прибрали установку значення в поле користувальницького інтерфейсу тому, що воно все-одно буде виставлено при виклику сеттерів класу інтервалу (згадайте про реалізацію Спостерігача і методі <code>update</code>) .
 
 Select body of "getEnd"
 + Select body of "getStart"
