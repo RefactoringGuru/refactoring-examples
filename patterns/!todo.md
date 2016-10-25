@@ -64,7 +64,7 @@ https://github.com/shvetsgroup/refactoring.guru-examples
 
 5. Перейти на гитхаб и создать pull request из ветки "abstract-factory" вашего форка в ветку "patterns" главного репозитория.
 
-6. Перетаскиваем задачу в Trello в Code review.
+6. Перетаскиваем задачу в Trello в Code review и вешаем её на меня.
 
 
 ## Приёмка работы
