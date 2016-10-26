@@ -13,7 +13,7 @@ public class Demo {
     }
 
     public static void configure() {
-        if (System.getProperty("os.name").substring(0, System.getProperty("os.name").indexOf(" ")).equals("Windows")) {
+        if (System.getProperty("os.name").equals("Linux")) {
             dialog = new WindowsDialog();
         } else {
             dialog = new HtmlDialog();

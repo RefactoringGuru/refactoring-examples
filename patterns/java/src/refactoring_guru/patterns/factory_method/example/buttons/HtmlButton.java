@@ -4,9 +4,10 @@ public class HtmlButton implements Button {
 
     public void render() {
         System.out.println("<button>Test Button</button>");
+        onClick();
     }
 
-    public void onClick(boolean action) {
-
+    public void onClick() {
+        System.out.println("Button say - 'Hello World!'");
     }
 }
