@@ -1,10 +1,9 @@
-package refactoring_guru.patterns.abstract_factory.examples;
+package refactoring_guru.patterns.abstract_factory.example;
 
-
-import refactoring_guru.patterns.abstract_factory.examples.button.Button;
-import refactoring_guru.patterns.abstract_factory.examples.factory.GUIFactory;
-import refactoring_guru.patterns.abstract_factory.examples.factory.OSXFactory;
-import refactoring_guru.patterns.abstract_factory.examples.factory.WinFactory;
+import refactoring_guru.patterns.abstract_factory.example.buttons.Button;
+import refactoring_guru.patterns.abstract_factory.example.factories.GUIFactory;
+import refactoring_guru.patterns.abstract_factory.example.factories.OSXFactory;
+import refactoring_guru.patterns.abstract_factory.example.factories.WinFactory;
 
 public class Demo {
     public static void main(String[] args) {
@@ -13,8 +12,7 @@ public class Demo {
         GUIFactory factory;
         Button button = null;
 
-        if (osName.equals("Windows XP") || osName.equals("Windows Vista") ||
-                osName.equals("Windows 8") || osName.equals("Windows 10")) {
+        if (osName.equals("Windows 10")) {
             factory = new WinFactory();
             app = new Application(factory);
             button = app.getButton();
@@ -27,7 +25,7 @@ public class Demo {
         try {
             button.paint();
         } catch (NullPointerException nullException) {
-            System.out.println("Oops your OS is Linux :)");
+            System.out.println("Oops, your OS is Linux :)");
         }
 
     }

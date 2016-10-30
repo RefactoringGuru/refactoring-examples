@@ -1,8 +1,7 @@
-package refactoring_guru.patterns.abstract_factory.examples;
+package refactoring_guru.patterns.abstract_factory.example;
 
-
-import refactoring_guru.patterns.abstract_factory.examples.button.Button;
-import refactoring_guru.patterns.abstract_factory.examples.factory.GUIFactory;
+import refactoring_guru.patterns.abstract_factory.example.buttons.Button;
+import refactoring_guru.patterns.abstract_factory.example.factories.GUIFactory;
 
 public class Application {
     private Button button;

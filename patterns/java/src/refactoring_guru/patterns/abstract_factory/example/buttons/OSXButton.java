@@ -1,4 +1,4 @@
-package refactoring_guru.patterns.abstract_factory.examples.button;
+package refactoring_guru.patterns.abstract_factory.example.buttons;
 
 public class OSXButton implements Button {
 
