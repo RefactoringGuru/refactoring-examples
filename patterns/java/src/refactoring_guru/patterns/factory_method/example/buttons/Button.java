@@ -4,5 +4,5 @@ public interface Button {
 
     public abstract void render();
 
-    public abstract void onClick(boolean action);
+    public abstract void onClick();
 }
