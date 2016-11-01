@@ -40,7 +40,7 @@ class CompressionDecorator extends DataSourceDecorator is
         Get the data from wrappee's readData() method.
         Uncompress and return that data.
 
-// Простой пример сборки и использования декораторов.
+// Вариант 1. Простой пример сборки и использования декораторов.
 class Application is
     method dumbUsageExample() is
         source = new FileDataSource('somefile.dat')
@@ -55,7 +55,7 @@ class Application is
         source.writeData(salaryRecords)
         // файл сжат и зашифрован
 
-// Клиентский код, использующий внешний источник данных.
+// Вариант 2. Клиентский код, использующий внешний источник данных.
 // Класс SalaryManager ничего не знает о том как именно будут считаны и
 // записаны данные. Он получает уже готовый источник данных.
 class SalaryManager is
