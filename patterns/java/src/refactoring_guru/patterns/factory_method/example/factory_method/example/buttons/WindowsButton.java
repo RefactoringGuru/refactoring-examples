@@ -2,15 +2,15 @@ package refactoring_guru.patterns.factory_method.example.buttons;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class WindowsButton implements Button {
+    JPanel panel = new JPanel();
+    JFrame frame = new JFrame();
+    JButton button;
 
     public void render() {
-        JPanel panel = new JPanel();
-
-        JButton button = new JButton("Test Button");
-
-        JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JLabel label = new JLabel("Hello World!");
         label.setOpaque(true);
@@ -20,13 +20,21 @@ public class WindowsButton implements Button {
         panel.setLayout(new FlowLayout(FlowLayout.CENTER));
         frame.getContentPane().add(panel);
         panel.add(label);
+        onClick();
         panel.add(button);
 
         frame.setSize(320, 200);
         frame.setVisible(true);
+        onClick();
     }
 
-    public void onClick(boolean action) {
-
+    public void onClick() {
+        button = new JButton("Exit");
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                System.exit(0);
+            }
+        });
     }
 }
