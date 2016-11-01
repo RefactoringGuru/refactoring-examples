@@ -5,8 +5,6 @@ public final class Singleton {
 
     private Singleton() {}
 
-    // Double-Checked Locking
-    // http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html
     public static Singleton getInstance() {
         if (instance == null) {
             synchronized (Singleton.class) {
