@@ -1,15 +1,15 @@
 package refactoring_guru.patterns.singletone.example;
 
-public final class Singleton {
-    private static Singleton instance;
+public final class ThreadSafeSingleton {
+    private static ThreadSafeSingleton instance;
 
-    private Singleton() {}
+    private ThreadSafeSingleton() {}
 
-    public static Singleton getInstance() {
+    public static ThreadSafeSingleton getInstance() {
         if (instance == null) {
-            synchronized (Singleton.class) {
+            synchronized (ThreadSafeSingleton.class) {
                 if (instance == null) {
-                    instance = new Singleton();
+                    instance = new ThreadSafeSingleton();
                 }
             }
         }
@@ -27,7 +27,7 @@ public final class Singleton {
         if(this.getClass() != object.getClass()) {
             return false;
         }
-        Singleton singleton = (Singleton) object;
+        ThreadSafeSingleton singleton = (ThreadSafeSingleton) object;
         return this.instance == singleton.instance;
     }
 }
