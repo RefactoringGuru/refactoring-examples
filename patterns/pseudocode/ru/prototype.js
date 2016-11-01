@@ -43,11 +43,34 @@ class Circle extends Shape is
 
 // Клиентский код.
 class Application is
-    method main() is
+    field shapes: array of Shape
+
+    method constructor() is
         Circle circle = new Circle();
         circle.X = 10
         circle.Y = 20
         circle.radius = 15
+        shapes.add(circle);
 
-        Shape newShape = circle.clone()
-        // newShape будет полной копией объекта circle
+        Circle anotherCircle = circle.clone();
+        shapes.add(anotherCircle);
+        // anotherCircle будет содержать точную копию circle.
+
+        Rectangle rectangle = new Rectangle();
+        rectangle.width = 10
+        rectangle.height = 20
+        shapes.add(rectangle);
+
+    method businessLogic() is
+        // Неочевидным плюс Прототипа в том, что вы можете клонировать набор
+        // объектов не зная их конкретных классов.
+        Array shapesCopy = new Array of Shapes.
+
+        // Например, мы не знаем какие конкретно объекты находятся внутри
+        // массива shapes, т.к. он объявлен с типом Shape. Но благодаря
+        // полиморфизму, мы можем клонировать все объекты "вслепую". Будет
+        //  выполнен метод clone() того класса, которым является данный объект.
+        foreach shapes as shape do
+            shapesCopy.add(shape.clone())
+
+        // shapesCopy будет содержать точные копии всех объектов.
