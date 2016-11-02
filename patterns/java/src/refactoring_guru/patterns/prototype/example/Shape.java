@@ -15,5 +15,6 @@ abstract class Shape {
         }
     }
 
+    @Override
     public abstract Shape clone();
 }

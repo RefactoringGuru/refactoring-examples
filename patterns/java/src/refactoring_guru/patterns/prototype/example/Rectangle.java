@@ -1,8 +1,8 @@
 package refactoring_guru.patterns.prototype.example;
 
 public class Rectangle extends Shape {
-    private int width;
-    private int height;
+    int width;
+    int height;
 
     public Rectangle() {}
 
