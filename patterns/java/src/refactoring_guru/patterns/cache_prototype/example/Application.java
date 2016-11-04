@@ -14,6 +14,6 @@ public class Application {
         Application app = new Application();
         Rectangle rectangle = (Rectangle)app.cache.getByType("Rectangle");
         Rectangle anotherRectangle = (Rectangle)app.cache.getByType("Rectangle");
-        System.out.println(rectangle.equals(anotherRectangle)); // true
+        System.out.println(rectangle.equals(anotherRectangle)); // false
     }
 }
