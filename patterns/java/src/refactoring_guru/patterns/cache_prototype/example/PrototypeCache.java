@@ -1,4 +1,4 @@
-package refactoring_guru.patterns.cash_prototype.example;
+package refactoring_guru.patterns.cache_prototype.example;
 
 import refactoring_guru.patterns.prototype.example.Circle;
 import refactoring_guru.patterns.prototype.example.Rectangle;
@@ -7,8 +7,8 @@ import refactoring_guru.patterns.prototype.example.Shape;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrototypeCash {
-    List<Shape> cash = new ArrayList<>();
+public class PrototypeCache {
+    List<Shape> cache = new ArrayList<>();
 
     public void loadCash() {
         Circle circle = new Circle();
@@ -22,16 +22,16 @@ public class PrototypeCash {
         rectangle.width = 8;
         rectangle.height = 10;
 
-        cash.add(circle);
-        cash.add(rectangle);
+        cache.add(circle);
+        cache.add(rectangle);
     }
 
     public Shape getById(int id) {
-        return cash.get(id).clone();
+        return cache.get(id).clone();
     }
 
     public Shape getByType(String type) {
-        for (Shape shape : cash) {
+        for (Shape shape : cache) {
             if (shape.getClass().getSimpleName().equals(type)) {
                 return shape.clone();
             }
