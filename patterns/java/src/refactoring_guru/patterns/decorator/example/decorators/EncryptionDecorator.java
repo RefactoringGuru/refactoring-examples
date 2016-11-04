@@ -3,14 +3,6 @@ package refactoring_guru.patterns.decorator.example.decorators;
 import java.util.Scanner;
 
 public class EncryptionDecorator extends DataSourceDecorator {
-//    static String path = "D:\\";
-//    static String name;
-//
-//    static {
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Input name of file:");
-//        name = scanner.nextLine();
-//    }
 
     public EncryptionDecorator(FileDataSource source) {
         super(source);

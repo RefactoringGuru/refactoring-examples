@@ -7,14 +7,6 @@ import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 public class CompressionDecorator extends DataSourceDecorator {
-//    static String path = "D:\\";
-//    static String name;
-//
-//    static {
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Input name of file:");
-//        name = scanner.nextLine();
-//    }
     FileDataSource fileDataSource;
 
     public CompressionDecorator(FileDataSource source) {
