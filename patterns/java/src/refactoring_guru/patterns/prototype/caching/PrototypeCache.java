@@ -1,4 +1,4 @@
-package refactoring_guru.patterns.prototype.example.caching;
+package refactoring_guru.patterns.prototype.caching;
 
 import refactoring_guru.patterns.prototype.example.Circle;
 import refactoring_guru.patterns.prototype.example.Rectangle;
