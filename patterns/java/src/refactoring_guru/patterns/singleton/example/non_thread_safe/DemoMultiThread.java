@@ -2,6 +2,9 @@ package refactoring_guru.patterns.singleton.example.non_thread_safe;
 
 public class DemoMultiThread {
     public static void main(String[] args) throws Exception {
+        System.out.println("RESULTS" + "\n" +
+                           "Single value means singleton was created just once." + "\n" +
+                           "Multiple values mean several singleton objects were created." + "\n");
         Thread threadFoo = new Thread(new ThreadFoo());
         Thread threadBar = new Thread(new ThreadBar());
         threadFoo.start();
@@ -24,7 +27,3 @@ public class DemoMultiThread {
         }
     }
 }
-
-// RESULTS
-// Single value means singleton was created just once.
-// Multiple values mean several singleton objects were created.

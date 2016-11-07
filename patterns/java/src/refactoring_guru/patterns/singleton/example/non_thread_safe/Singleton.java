@@ -9,6 +9,12 @@ public final class Singleton {
     }
 
     public static Singleton getInstance(String value) {
+        // Emulates time consuming operation.
+        try {
+            Thread.currentThread().sleep(1000);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
         if (instance == null) {
             instance = new Singleton(value);
         }
