@@ -1,16 +1,20 @@
 package refactoring_guru.patterns.singleton.example.thread_safe;
 
 public final class Singleton {
-    private static Singleton instance;
-    public static String name;
+    private static volatile Singleton instance;
+    public static String value;
 
-    private Singleton(String name) {
-        this.name = name;
+    private Singleton(String value) {
+        this.value = value;
     }
 
-    public static synchronized Singleton getInstance(String name) {
+    public static Singleton getInstance(String value) {
         if (instance == null) {
-            instance = new Singleton(name);
+            synchronized (Singleton.class) {
+                if (instance == null) {
+                    instance = new Singleton(value);
+                }
+            }
         }
         return instance;
     }
