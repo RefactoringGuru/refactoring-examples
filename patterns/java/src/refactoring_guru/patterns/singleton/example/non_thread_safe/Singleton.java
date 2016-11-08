@@ -15,7 +15,6 @@ public final class Singleton {
     }
 
     public static Singleton getInstance(String value) {
-
         if (instance == null) {
             instance = new Singleton(value);
         }
