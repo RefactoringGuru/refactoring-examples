@@ -1,15 +1,10 @@
 package refactoring_guru.patterns.adapter.adapterInJava;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.*;
 
-public class JavaAdapter {
+public class VectorToListAdapterDemo {
     public static void main(String[] args) {
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-
-        List<String> list = Arrays.asList(new String[]{"arg1", "arg2", "arg3"});
-
+        // So if the transfer enumeration to the list, you can see what's inside
         List arraylist = new ArrayList();
         Vector v = new Vector();
         v.add("A");
