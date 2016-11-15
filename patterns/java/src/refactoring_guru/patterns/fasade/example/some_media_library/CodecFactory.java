@@ -1,4 +1,4 @@
-package refactoring_guru.patterns.fasad.example;
+package refactoring_guru.patterns.fasade.example.some_media_library;
 
 public class CodecFactory {
     public static Codec extract(VideoFile file) {

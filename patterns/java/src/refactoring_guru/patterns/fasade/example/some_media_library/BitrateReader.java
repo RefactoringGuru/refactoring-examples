@@ -1,6 +1,4 @@
-package refactoring_guru.patterns.fasad.example;
-
-import java.io.File;
+package refactoring_guru.patterns.fasade.example.some_media_library;
 
 public class BitrateReader {
     public static VideoFile read(VideoFile file, Codec codec) {

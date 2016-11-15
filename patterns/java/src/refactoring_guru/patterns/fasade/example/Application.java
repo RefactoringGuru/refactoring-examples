@@ -1,4 +1,4 @@
-package refactoring_guru.patterns.fasad.example;
+package refactoring_guru.patterns.fasade.example;
 
 import java.io.File;
 
