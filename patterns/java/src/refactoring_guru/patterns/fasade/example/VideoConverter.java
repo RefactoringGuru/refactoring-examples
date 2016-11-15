@@ -2,8 +2,6 @@ package refactoring_guru.patterns.fasade.example;
 
 import refactoring_guru.patterns.fasade.example.some_media_library.*;
 
-import java.io.File;
-
 public class VideoConverter {
     public File convertVideo(String fileName, String format) {
         VideoFile file = new VideoFile(fileName);
