@@ -1,11 +1,12 @@
 package refactoring_guru.patterns.proxy.example;
 
 import refactoring_guru.patterns.proxy.example.media_framework_lib.CashedYoutubeClass;
+import refactoring_guru.patterns.proxy.example.media_framework_lib.ThirdPartyYoutubeLib;
 
 import java.util.List;
 
 public class YoutubeManager {
-    private CashedYoutubeClass service;
+    private ThirdPartyYoutubeLib service;
     private int n;
 
     public YoutubeManager(CashedYoutubeClass service, int n) {
@@ -30,7 +31,7 @@ public class YoutubeManager {
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
-        List<String> list = service.getListCache();
+        List<String> list = service.listVideos();
         System.out.println("\n" + "Render the list of video thumbnails");
         int n = 1;
         for (String s : list) {

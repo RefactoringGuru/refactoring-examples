@@ -61,8 +61,4 @@ public class CashedYoutubeClass implements ThirdPartyYoutubeLib {
             this.downloadExist = false;
         }
     }
-
-    public List<String> getListCache() {
-        return listCache;
-    }
 }
