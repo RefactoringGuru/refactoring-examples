@@ -1,6 +1,8 @@
-package refactoring_guru.patterns.fasade.example;
+package refactoring_guru.patterns.facade.example;
 
-import refactoring_guru.patterns.fasade.example.some_media_library.*;
+import refactoring_guru.patterns.facade.example.some_media_library.*;
+
+import java.io.File;
 
 public class VideoConverter {
     public File convertVideo(String fileName, String format) {

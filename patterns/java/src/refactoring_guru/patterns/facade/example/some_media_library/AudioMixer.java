@@ -1,4 +1,6 @@
-package refactoring_guru.patterns.fasade.example.some_media_library;
+package refactoring_guru.patterns.facade.example.some_media_library;
+
+import java.io.File;
 
 public class AudioMixer {
     public static File fix(VideoFile result){

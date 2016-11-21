@@ -1,4 +1,6 @@
-package refactoring_guru.patterns.fasade.example;
+package refactoring_guru.patterns.facade.example;
+
+import java.io.File;
 
 public class Application {
     public static void main(String[] args) {
