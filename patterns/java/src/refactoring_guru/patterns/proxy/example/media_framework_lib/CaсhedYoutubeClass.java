@@ -3,7 +3,7 @@ package refactoring_guru.patterns.proxy.example.media_framework_lib;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CashedYoutubeClass implements ThirdPartyYoutubeLib {
+public class CaсhedYoutubeClass implements ThirdPartyYoutubeLib {
     private ThirdPartyYoutubeLib youtubeService = new ThirdPartyYoutubeClass();
     private List<String> listCache = new ArrayList<>();
     private String videoCache;
@@ -11,7 +11,7 @@ public class CashedYoutubeClass implements ThirdPartyYoutubeLib {
     private boolean downloadExist = false;
     private long time;
 
-    public CashedYoutubeClass() {
+    public CaсhedYoutubeClass() {
         this.youtubeService = new ThirdPartyYoutubeClass();
         this.time = System.currentTimeMillis();
         this.listCache = this.youtubeService.listVideos();
