@@ -29,6 +29,7 @@ class AdvancedRemote() extends BasicRemote is
     method Mute() is
         device.setVolume(0)
 
+
 // Все устройства, с которыми может работать пульт имеют общий интерфейс.
 interface Device is
     method isEnabled()
@@ -47,6 +48,7 @@ class Radio implements Device is
     // ...
 
 
+// Где-то в клиентском коде.
 tv = new Tv();
 remote = new Remote(tv)
 remote.pover()

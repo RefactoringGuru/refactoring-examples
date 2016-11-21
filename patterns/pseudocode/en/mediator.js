@@ -2,10 +2,11 @@
 interface Mediator is
     method notify(type: string, sender: Component)
 
+
 // Конкретный посредник. Все связи между конкретными компонентами переехали в
 // код посредника. Он получает извещения от своих компонентов и знает как на них
 // реагировать.
-class AuthenticationDialog implements Mediator
+class AuthenticationDialog implements Mediator is
     field title: string
     field loginOrRegister: Checkbox
     field loginUsername, loginPassword: Textbox
@@ -33,6 +34,7 @@ class AuthenticationDialog implements Mediator
                 Log user in.
         // ...
 
+
 // Классы компонентов общаются с посредником через общий интерфейс.
 // Благодаря этому, одни и те же компоненты можно использовать в разных
 // посредниках.
@@ -50,10 +52,10 @@ class Component is
 
 // Конкретные компоненты никак не связаны между собой. У них есть только один
 // канал общения – через отправку уведомлений посреднику.
-class Button extends Component
+class Button extends Component is
     // ...
 
-class Textbox extends Component
+class Textbox extends Component is
     // ...
 
 class Checkbox extends Component is

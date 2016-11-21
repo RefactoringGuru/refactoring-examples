@@ -11,30 +11,36 @@ interface ThirdPartyYoutubeLib is
 class ThirdPartyYoutubeClass is
     method listVideos() is
         Send API request to Youtube.
-    method getVideoInfo(id)
+
+    method getVideoInfo(id) is
         Get a meta information about some video.
-    method downloadVideo(id)
+
+    method downloadVideo(id) is
         Download video file from Youtube.
 
 // С другой стороны, можно кешировать запросы к ютубу и не повторять их
 // какое-то время, пока кеш не устареет. Но внести этот код напрямую в
 // сервисный класс нельзя, так как он находится в сторонней библиотеке.
 // Поэтому мы создаем
-class CachedYoutubeClass implements ThirdPartyYoutubeLib
+class CachedYoutubeClass implements ThirdPartyYoutubeLib is
     field youtubeService: ThirdPartyYoutubeClass
     field listCache, videoCache
     field needReset
-    constructor YoutubeCache()
+
+    constructor YoutubeCache() is
         youtubeService = new ThirdPartyYoutubeClass()
+
     method listVideos() is
         if (listCache == null && !needReset)
             listCache = youtubeService.listVideos()
         return listCache
-    method getVideoInfo(id)
+
+    method getVideoInfo(id) is
         if (videoCache == null && !needReset)
             videoCache = youtubeService.getVideoInfo(id)
         return videoCache
-    method downloadVideo(id)
+
+    method downloadVideo(id is
         if (!downloadExists(id) && !needReset)
             youtubeService.listVideos()
 
@@ -43,14 +49,18 @@ class CachedYoutubeClass implements ThirdPartyYoutubeLib
 // так как заместитель имеет тот же интерфейс, что и сервис.
 class YoutubeManager is
     field service: ThirdPartyYoutubeLib
-    constructor YoutubeManager(service: ThirdPartyYoutubeClass)
+
+    constructor YoutubeManager(service: ThirdPartyYoutubeClass) is
         this.service = service
+
     method renderVideoPage() is
         info = service.getVideoInfo()
         Render the video page.
+
     method renderListPanel() is
         list = service.listVideos()
         Render the list of video thumbnails.
+
     method reactOnUserInput() is
         renderVideoPage()
         renderListPanel()

@@ -21,17 +21,17 @@ class Context is
     private strategy: Strategy
 
     method setStrategy(Strategy strategy) is
-        this.strategy = strategy;
+        this.strategy = strategy
 
     method executeStrategy(int a, int b) is
-        return strategy.execute(a, b);
+        return strategy.execute(a, b)
 
 
 // Конкретная стратегия конфигурируется на более высоком уровне, например
 // конфигуратором всего приложения. Готовый объект-стратегия подаётся в
 // клиентский объект.
 class ExampleApplication is
-    method main()
+    method main() is
         Create context object.
 
         Read first number
@@ -47,4 +47,4 @@ class ExampleApplication is
         if (action == multiplication) then
             context.setStrategy(new ConcreteStrategyMultiply());
 
-        result = context.executeStrategy(first number, second number);
+        result = context.executeStrategy(First number, Second number);

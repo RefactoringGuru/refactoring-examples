@@ -5,13 +5,15 @@ class Editor is
 
     method setText(text) is
         this.text = text
+
     method setCursor(x, y) is
         this.cursorX = cursorX
         this.cursorY = cursorY
+
     method selectionWidth(width) is
         this.selectionWidth = width
 
-    method saveState(): EditorState
+    method saveState():EditorState is
         // Снимок — неизменяемый объект, поэтому Создатель передаёт все своё
         // состояние через параметры конструктора.
         return new EditorState(this, text, cursorX, cursorY, selectionWidth)
@@ -40,8 +42,10 @@ class EditorState is
 // отмене, возвращает получателя в предыдущее состояние.
 class Command is
     field backup: EditorState
+
     method backup() is
         backup = editor.saveState()
+
     method undo() is
         if (backup != null)
             backup.restore()

@@ -21,11 +21,11 @@ class AudioMixer
 
 // Фасад, облегчающий работу с видео-фреймворком. Фасад не имеет всей
 // функциональности фреймворка, но зато скрывает его сложность от клиентов.
-class VideoConvertor
+class VideoConvertor is
     method convertVideo(filename, format):File is
         file = new VideoFile(filename)
         sourceCodec = new CodecFactory.extract(file)
-        if (format == 'mp4')
+        if (format == "mp4")
           distinationCodec = new MPEG4CompressionCodec()
         else
           distinationCodec = new OggCompressionCodec()
@@ -35,7 +35,7 @@ class VideoConvertor
         return new File(result)
 
 // Приложение не зависит от сложного фреймворка конвертации видео.
-class Application
+class Application is
     method main() is
         convertor = new VideoConvertor();
-        mp4video = convertor.convertVideo('youtubevideo.ogg', 'mp4')
+        mp4video = convertor.convertVideo("youtubevideo.ogg", "mp4")

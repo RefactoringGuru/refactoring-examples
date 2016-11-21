@@ -11,7 +11,7 @@ class WinButton implementing Button is
 
 class OSXButton implementing Button is
     method paint() is
-      Render a button in a Mac OS X style
+        Render a button in a Mac OS X style
 
 
 interface Checkbox is
@@ -58,10 +58,12 @@ class Application is
 
 // Application creates concrete factories in run time, depending on the
 // configuration or environment variables.
-Read the configuration file
-If the OS specified in the configuration file is Windows, then
-    Construct a WinFactory
-    Construct an Application with WinFactory
-else
-    Construct an OSXFactory
-    Construct an Application with OSXFactory
+class ApplicationConfigurator is
+    method main() is
+        Read the configuration file
+        If the OS specified in the configuration file is Windows, then
+            Construct a WinFactory
+            Construct an Application with WinFactory
+        else
+            Construct an OSXFactory
+            Construct an Application with OSXFactory
