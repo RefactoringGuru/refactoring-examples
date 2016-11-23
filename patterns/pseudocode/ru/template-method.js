@@ -7,7 +7,7 @@ class GameAI is
         attack()
 
     // Некоторые методы имеют реализацию в базовом классе.
-    method collectResources()
+    method collectResources() is
         foreach this.structures
             structure.collect()
 
@@ -16,7 +16,7 @@ class GameAI is
     abstract method buildUnits()
 
     // Шаблонных методов в классе может быть несколько.
-    method attack()
+    method attack() is
         enemy = closestEnemy()
         if (enemy == null)
             sendScouts(map.center)
@@ -31,13 +31,17 @@ class OrcsAI extends GameAI is
     method buildStructures() is
         If enough resources then
             Build farms, then barracks, then stronghold.
+
     method buildUnits() is
         If enough resources
             If scouts not exist, build 1 peon.
             Else build grunt.
-        ...
+
+    // ...
+
     method sendScouts(position) is
         If scouts exists, send scouts to position.
+
     method sendWarriors(position) is
         If grunts are more than 5, then send warriors to position.
 
@@ -46,7 +50,9 @@ class OrcsAI extends GameAI is
 class MonstersAI extends GameAI is
     method collectResources() is
         Do nothing.
+
     method buildStructures() is
         Do nothing.
+
     method buildUnits() is
         Do nothing.

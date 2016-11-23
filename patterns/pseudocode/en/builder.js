@@ -15,7 +15,6 @@ interface Builder is
     method setTripComputer()
     method setGPS()
 
-
 // Все конкретные строители реализуют общий интерфейс по-своему.
 class CarBuilder implements Builder is
     method setSeats(number) is
@@ -29,7 +28,7 @@ class CarBuilder implements Builder is
     method getResult(): RealCar is
         Construct and return a real car.
 
-
+// Строители могут создавать разнообразные продукты, используя одинаковые шаги.
 class CarManualBuilder implements Builder is
     method setSeats(number) is
         Document car seats features.
@@ -41,6 +40,7 @@ class CarManualBuilder implements Builder is
         Add GPS instruction.
     method getResult(): Manual is
         Get manual contents.
+
 
 // Директор знает в какой последовательности заставлять работать Строителя.
 // Но не знает какой продукт получится в итоге.
@@ -54,7 +54,7 @@ class Director is
 
 // Директор получает объект строителя от клиента (приложения). Приложение
 // само знает какой строитель использовать, чтобы получить нужный продукт.
-class Application
+class Application is
     method makeCar is
         director = new Director();
 

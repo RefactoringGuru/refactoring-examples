@@ -4,7 +4,7 @@ class TreeType is
     field name
     field color
     field texture
-    constructor Tree(name, color, texture)
+    constructor Tree(name, color, texture) { ... }
     method draw(canvas, x, y) is
         Create a bitmap from type, color and texture.
         Draw bitmap on canvas at X and Y.
@@ -24,10 +24,10 @@ class TreeFactory is
 // В программе могут быть тысячи объектов Tree, так как накладные расходы
 // на их хранение совсем небольшие — порядка трёх целых чисел (две
 // координаты и ссылка).
-class Tree
+class Tree is
     field x,y
     field type: TreeType
-    constructor Tree(x, y, type)
+    constructor Tree(x, y, type) { ... }
     method draw(canvas) is
         type.draw(canvas, this.x, this.y)
 
@@ -36,11 +36,11 @@ class Tree
 class Forest is
     field trees: collection of Trees
 
-    method plantTree(x, y, name, color, texture)
+    method plantTree(x, y, name, color, texture) is
         type = TreeFactory.getTreeType(name, color, texture)
         tree = new Tree(x, y, type);
         trees.add(tree)
 
-    method draw(canvas)
+    method draw(canvas) is
         foreach tree in trees
             tree.draw(canvas)

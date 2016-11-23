@@ -14,7 +14,7 @@ class Facebook implements SocialNetwork is
 
 
 // Интерфейс итератора.
-interface ProfileIterator
+interface ProfileIterator is
     method hasNext(): bool
     method getNext(): Profile
 

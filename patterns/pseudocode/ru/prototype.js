@@ -15,6 +15,7 @@ abstract class Shape is
     // иерархии классов Shape.
     abstract method clone(): Shape
 
+
 // Конкретный прототип. Метод клонирования создаёт новый объект и передает
 // в его конструктор для копирования собственный объект.
 // Этим мы пытаемся получить атомарность операции клонирования. В данной
@@ -24,22 +25,28 @@ abstract class Shape is
 class Rectangle extends Shape is
     field width: int
     field height: int
+
     method Rectangle(target: Rectangle) is
         Call parent constructor
         if (target != null) then
             this.width = target.width;
             this.height = target.height;
+
     method clone(): Shape is
         return new Rectangle(this)
 
+
 class Circle extends Shape is
     field radius: int
+
     method Circle(target: Circle) is
         Call parent constructor
         if (target != null) then
             this.radius = target.radius;
+
     method clone(): Shape is
         return new Circle(this)
+
 
 // Клиентский код.
 class Application is

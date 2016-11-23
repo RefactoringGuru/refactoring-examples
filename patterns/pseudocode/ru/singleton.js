@@ -1,7 +1,7 @@
 class Singleton is
     private field instance: Singleton
 
-    private method Singleton()
+    private method Singleton() is
         Some initialization code.
 
     static method getInstance() is

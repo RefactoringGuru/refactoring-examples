@@ -1,19 +1,21 @@
 // Новые совместимые классы: КруглоеОтверстие и КруглыйКолышек.
 class RoundHole is
-    constructor RoundHole(radius)
+    constructor RoundHole(radius) { ... }
     method getRadius
     method fits(peg: RoundPeg) is
         return this.getRadius() >= peg.radius()
 
 class RoundPeg is
-    constructor RoundPeg(radius)
+    constructor RoundPeg(radius) { ... }
+
     method getRadius() is
         Return the peg radius.
 
 
 // Старый несовместимый класс: КвадратныйКолышек.
 class SquarePeg is
-    constructor SquarePeg(width)
+    constructor SquarePeg(width) { ... }
+
     method getWidth() is
         Return the square peg width.
 
@@ -22,12 +24,15 @@ class SquarePeg is
 // отверстия вместе.
 class SquarePegAdapter extends RoundPeg is
     field peg: SquarePeg
+
     constructor SquarePegAdapter(peg: SquarePeg) is
         this.peg = peg
+
     method getRadius() is
         return Math.sqrt(Math.pow((peg.getWidth()/2), 2) * 2);
 
 
+// Где-то в клиентском коде.
 hole = new RoundHole(5)
 rpeg = new RoundPeg(5)
 hole.fits(rpeg) // true
