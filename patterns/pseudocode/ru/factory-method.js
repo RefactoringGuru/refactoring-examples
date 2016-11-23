@@ -30,11 +30,11 @@ class Dialog is
 
 // Конкретные фабрики переопределяют фабричный метод и возвращают из него
 // свои собственные продукты.
-class WindowsDialog extends Application is
+class WindowsDialog extends Dialog is
     method createButton() is
         return new WindowsButton()
 
-class WebDialog extends Application is
+class WebDialog extends Dialog is
     method createButton() is
         return new HTMLButton()
 
