@@ -3,7 +3,7 @@ package refactoring_guru.patterns.composite.example;
 import javax.swing.*;
 import java.awt.*;
 
-public class Circle extends Dot{
+public class Circle extends Dot {
     public int radius;
 
     public Circle(int x, int y, int radius, Color color) {
