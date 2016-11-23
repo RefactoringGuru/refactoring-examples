@@ -1,6 +1,7 @@
 package refactoring_guru.patterns.composite.example;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,22 +53,19 @@ public class CompoundGraphic implements Graphic {
         for (Graphic child : children) {
             int[] size = child.getSize();
             if (size[0] > width) {
-                width = size[0];
+                width += size[0] * 2;
             }
             if (size[1] > height) {
-                height = size[1];
+                height += size[1];
             }
         }
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(width, height);
-        // ???
+        frame.setLayout(new GridLayout());
         for (Graphic child : children) {
             JComponent component = child.getComponent();
-            component.setVisible(true);
-            component.setEnabled(true);
-            // ???
-            frame.getContentPane().add(component);
+            frame.getContentPane().add(component, new BorderLayout());
         }
         frame.setVisible(true);
     }

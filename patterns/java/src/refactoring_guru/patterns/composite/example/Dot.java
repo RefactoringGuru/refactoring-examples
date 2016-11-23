@@ -54,8 +54,8 @@ public class Dot implements Graphic {
         }
 
         @Override
-        public void paint(Graphics g) {
-            super.paint(g);
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
             g.setColor(dot.color);
             g.drawOval(dot.x, dot.y, 2, 2);
         }
