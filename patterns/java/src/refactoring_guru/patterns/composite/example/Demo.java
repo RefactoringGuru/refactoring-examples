@@ -7,7 +7,5 @@ public class Demo {
         ImageEditor editor = new ImageEditor();
         editor.load();
         editor.all.draw();
-//        Circle dot = new Circle(15, 15, 20, Color.RED);
-//        dot.draw();
     }
 }
