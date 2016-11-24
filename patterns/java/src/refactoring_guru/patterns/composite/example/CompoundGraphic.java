@@ -16,7 +16,6 @@ public class CompoundGraphic implements Graphic {
     }
 
     public void add(Graphic...components) {
-        Graphic[] array = components;
         for (Graphic graphic : components) {
             children.add(graphic);
         }
