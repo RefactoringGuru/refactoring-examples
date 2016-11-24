@@ -25,7 +25,7 @@ class OSXCheckbox implementing Checkbox is
         Render a checkbox in a Mac OS X style
 
 
-// Абстрактная фабрика знает о всех (абстрактных) типах продуктов.
+// Абстрактная фабрика знает обо всех (абстрактных) типах продуктов.
 interface GUIFactory is
     method createButton():Button
     method createCheckbox():Checkbox
@@ -38,9 +38,9 @@ class WinFactory implementing GUIFactory is
     method createCheckbox():Checkbox is
         return new WinCheckbox
 
-// Несмотря на то, что фабрики оперируют конкретными классами, их методы
+// Несмотря на то что фабрики оперируют конкретными классами, их методы
 // возвращают абстрактные типы продуктов. Благодаря этому, фабрики можно
-// взаимозаменять, не меняя клиентский код.
+// взаимозаменять, не изменяя клиентский код.
 class OSXFactory implementing GUIFactory is
     method createButton():Button is
         return new OSXButton
@@ -48,7 +48,7 @@ class OSXFactory implementing GUIFactory is
         return new OSXCheckbox
 
 
-// Код использующий фабрику не волнует с какой конкретно фабрикой он работает.
+// Код, использующий фабрику, не волнует с какой конкретно фабрикой он работает.
 // Все получатели продуктов работают с продуктами через абстрактный интерфейс.
 class Application is
     constructor Application(factory: GUIFactory) is
@@ -56,8 +56,8 @@ class Application is
         button.paint()
 
 
-// Приложение создаёт конкретную фабрику динамически, исходя из
-// конфигурации или окружения.
+// Приложение создаёт конкретную фабрику динамически, исходя из конфигурации
+// или окружения.
 class ApplicationConfigurator is
     method main() is
         Read the configuration file

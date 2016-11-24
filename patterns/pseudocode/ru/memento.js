@@ -14,7 +14,7 @@ class Editor is
         this.selectionWidth = width
 
     method saveState():EditorState is
-        // Снимок — неизменяемый объект, поэтому Создатель передаёт все своё
+        // Снимок — неизменяемый объект, поэтому Создатель передаёт все своё
         // состояние через параметры конструктора.
         return new EditorState(this, text, cursorX, cursorY, selectionWidth)
 
@@ -37,8 +37,8 @@ class EditorState is
         editor.setCursor(cursorX, cursorY)
         editor.selectionWidth(selectionWidth)
 
-// Клиентом может выступать класс комманд (см. паттерн Команда). В этом случае,
-// команда сохраняет снимок получателя перед тем как выполнить действие. А при
+// Клиентом может выступать класс команд (см. паттерн Команда). В этом случае,
+// команда сохраняет снимок получателя перед тем, как выполнить действие. А при
 // отмене, возвращает получателя в предыдущее состояние.
 class Command is
     field backup: EditorState

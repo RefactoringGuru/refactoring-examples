@@ -5,7 +5,7 @@ interface SocialNetwork is
 
 // Конкретная коллекция знает объекты каких итераторов нужно создавать.
 class Facebook implements SocialNetwork is
-    // Код получения нужного интератора.
+    // Код получения нужного итератора.
     method getFriendsIterator(profileId) is
         return new FacebookIterator(this, profileId, "friends")
     method getCoworkerIterator(profileId) is
@@ -50,8 +50,8 @@ class FacebookIterator implements ProfileIterator is
 
 
 // Мы можем подавать готовые объекты-итераторы в другие классы, избавляя их от
-// подробностей реализации тех или иных коллекций. Всё что для них важно —
-// это базовый интерфейс итератора.
+// подробностей реализации тех или иных коллекций. Всё что для них важно — это
+// базовый интерфейс итератора.
 class SocialSpammer is
     method send(iterator: ProfileIterator, message: string) is
         while (iterator.hasNext())

@@ -1,10 +1,11 @@
-// Общий интерфейс всех состояний. Контекст передаёт свой объект в
-// конструктор состояния, чтобы состояние могло обращаться к его данным и
-// методам в будущем, если потребуется.
+// Общий интерфейс всех состояний.
 abstract class State is
     field player: Player
 
-    constructor LockedState(player) is
+    // Контекст передаёт свой объект в конструктор
+    // состояния, чтобы состояние могло обращаться к его данным и методам в будущем,
+    // если потребуется.
+    constructor State(player) is
         this.player = player
 
     abstract method onLock(event)
@@ -13,7 +14,7 @@ abstract class State is
     abstract method onPrevious(event)
 
 
-// Конретные состояния реализуют методы абстрактного состояния по-своему.
+// Конкретные состояния реализуют методы абстрактного состояния по-своему.
 class LockedState is
     method onLock(event) is
         if (player.playing)
@@ -77,8 +78,8 @@ class Player is
         this.state = new ReadyState(this)
         UI = new UserInterface()
 
-        // Контест заставляет состояние реагировать на пользовательский
-        // ввод вместо себя.
+        // Контекст заставляет состояние реагировать на пользовательский ввод
+        // вместо себя.
         UI.lockButton.onClick(state.onLock)
         UI.playButton.onClick(state.onNext)
         UI.nextButton.onClick(state.onNext)

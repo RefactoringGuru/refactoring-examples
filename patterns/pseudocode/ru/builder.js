@@ -8,7 +8,7 @@ class Manual is
     Textual representation of a car.
 
 
-// Вы задаете общие шаги строительства интерфейсе Строителя.
+// Вы задаёте общие шаги строительства интерфейсе Строителя.
 interface Builder is
     method setSeats(number)
     method setEngine(engine: Engine)
@@ -42,8 +42,8 @@ class CarManualBuilder implements Builder is
         Get manual contents.
 
 
-// Директор знает в какой последовательности заставлять работать Строителя.
-// Но не знает какой продукт получится в итоге.
+// Директор знает в какой последовательности заставлять работать Строителя. Но
+// не знает какой продукт получится в итоге.
 class Director is
     method constructSportsCar(builder: Builder) is
         builder.setSeats(2)
@@ -52,8 +52,8 @@ class Director is
         builder.setGPS()
 
 
-// Директор получает объект строителя от клиента (приложения). Приложение
-// само знает какой строитель использовать, чтобы получить нужный продукт.
+// Директор получает объект строителя от клиента (приложения). Приложение само
+// знает какой строитель использовать, чтобы получить нужный продукт.
 class Application is
     method makeCar is
         director = new Director();

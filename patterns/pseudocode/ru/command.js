@@ -42,7 +42,7 @@ class PasteCommand implements Command is
         editor.replaceSelection(app.clipboard)
 
 
-// Глобальная история команд — это стек.
+// Глобальная история команд — это стек.
 class CommandHistory is
     history: array of Command
 
@@ -55,8 +55,8 @@ class CommandHistory is
         Get the most recent command from history.
 
 
-// Класс редактора содержит непосредственные операции над текстом.
-// Он отыгрывает роль Получателя – команды делегируют ему свои действия.
+// Класс редактора содержит непосредственные операции над текстом. Он отыгрывает
+// роль Получателя – команды делегируют ему свои действия.
 class Editor is
     field text: string
     field cursorX, cursorY, selectionWidth
@@ -71,9 +71,8 @@ class Editor is
         Insert clipboard contents at current position.
 
 
-// Класс приложения настраивает объекты для совместной работы.
-// Он выступает в роли Отправителя — создаёт команды, чтобы выполнить
-// какие-то действия.
+// Класс приложения настраивает объекты для совместной работы. Он выступает в
+// роли Отправителя — создаёт команды, чтобы выполнить какие-то действия.
 class Application is
     field clipboard: string
     field editors: array of Editors
@@ -86,9 +85,9 @@ class Application is
         onKeyPress("Ctrl+V", this.getPasteCommand);
         onKeyPress("Ctrl+Z", this.undo);
 
-    // При каждом нажатии горячей клавиши создаётся новая команда.
-    // Команды могут работать с несколькими редакторами одновременно, но имеют
-    // общий буфер обмена.
+    // При каждом нажатии горячей клавиши создаётся новая команда. Команды могут
+    // работать с несколькими редакторами одновременно, но имеют общий
+    // буфер обмена.
     method getCopyCommand() is
         return (new CopyCommand(this, activeEditor)).execute()
     method getCutCommand() is
@@ -96,8 +95,8 @@ class Application is
     method getPasteCommand() is
         return (new PasteCommand(this, activeEditor)).execute()
 
-    // Берем последнюю команду из истории и заставляем её все отменить.
-    // Команда сама знает как отменить своё действие.
+    // Берём последнюю команду из истории и заставляем её все отменить. Команда
+    // сама знает как отменить своё действие.
     method undo() is
         command = history.pop()
         if (command != null)

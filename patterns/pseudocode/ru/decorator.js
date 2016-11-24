@@ -36,8 +36,7 @@ class EncyptionDecorator extends DataSourceDecorator is
         Get the data from wrappee's readData() method.
         Decrypt and return that data.
 
-// Декорировать можно не только базовые компоненты, но и
-// уже обёрнутые объекты.
+// Декорировать можно не только базовые компоненты, но и уже обёрнутые объекты.
 class CompressionDecorator extends DataSourceDecorator is
     method writeData(data) is
         Compress passed data
@@ -65,9 +64,9 @@ class Application is
 
 
 
-// Вариант 2. Клиентский код, использующий внешний источник данных.
-// Класс SalaryManager ничего не знает о том как именно будут считаны и
-// записаны данные. Он получает уже готовый источник данных.
+// Вариант 2. Клиентский код, использующий внешний источник данных. Класс
+// SalaryManager ничего не знает о том как именно будут считаны и записаны
+// данные. Он получает уже готовый источник данных.
 class SalaryManager is
     field source: DataSource
 
@@ -81,8 +80,8 @@ class SalaryManager is
     // ...Остальные полезные методы...
 
 
-// Приложение может по-разному собирать декорируемые объекты, в
-// зависимости от условий использования.
+// Приложение может по-разному собирать декорируемые объекты, в зависимости от
+// условий использования.
 class ApplicationConfigurator is
     method configurationExample() is
         source = new FileDataSource("salary.dat");

@@ -10,8 +10,8 @@ abstract class Component is
     abstract method render(x, y, width, height)
 
 
-// Расширенный элемент цепочки, который имеет связи с другими
-// компонентами-обработчиками.
+// Расширенный элемент цепочки, который имеет связи с
+// другими компонентами-обработчиками.
 class ContainerComponent extends Component is
     // Здесь формируются связи цепочки.
     field children: array of Component
@@ -20,7 +20,7 @@ class ContainerComponent extends Component is
         children.add(child)
 
     // Если не можешь сам обработать клик, передай его своему дочернему
-    // компоненту, если такой имеется по координате клика.
+    // компоненту, который находится в координате клика.
     method click(x, y) is
         if (onClick != null) then
             onClick(context)
@@ -50,6 +50,6 @@ class Application is
         cancel.onClick({ ... })
         panel.add(cancel)
 
-    // Представьте что здесь произойдет.
+    // Представьте что здесь произойдёт.
     method test() is
         panel.click(251, 761)

@@ -46,7 +46,7 @@ class OrcsAI extends GameAI is
         If grunts are more than 5, then send warriors to position.
 
 // Подклассы не только реализуют абстрактные шаги шаблонного метода, но и могут
-// переопределить шаги по-умолчанию.
+// переопределить шаги по умолчанию.
 class MonstersAI extends GameAI is
     method collectResources() is
         Do nothing.

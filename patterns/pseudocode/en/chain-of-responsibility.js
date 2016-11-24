@@ -10,6 +10,12 @@ abstract class Component is
     abstract method render(x, y, width, height)
 
 
+// Конкретные реализации компонентов.
+class Button extends Component is
+    method render() is
+        Draw a button.
+
+
 // Расширенный элемент цепочки, который имеет связи с другими
 // компонентами-обработчиками.
 class ContainerComponent extends Component is
@@ -26,12 +32,6 @@ class ContainerComponent extends Component is
             onClick(context)
         else if (child.atCoord(x,y))
             child.click(x, y)
-
-
-// Конкретные реализации компонентов.
-class Button extends Component is
-    method render() is
-        Draw a button.
 
 class Panel extends ContainerComponent is
     method render() is
