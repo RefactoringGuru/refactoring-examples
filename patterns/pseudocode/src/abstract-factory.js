@@ -1,9 +1,16 @@
-// Каждое семейство продуктов имеет свою иерархию (Button/Checkbox).
-// Все продукты иерархии реализуют общий интерфейс.
+// RU: Этот паттерн предполагает, что у вас есть несколько семейств продуктов,
+// находящихся в отдельных иерархиях классов (Button/Checkbox). Продукты одного
+// семейства должны иметь общий интерфейс.
+//
+// EN: This pattern assumes that you have several families of products,
+// structured into separate class hierarchies (Button/Checkbox). All products of
+// the same family have common interface.
 interface Button is
     method paint()
 
-// Но разные продукты имеют одинаковые вариации (OSx/Windows).
+// RU: Все семейства продуктов имеют одинаковые вариации (OSx/Windows).
+//
+// EN: All products families have the same varieties (OSx/Windows).
 class WinButton implementing Button is
     method paint() is
         Render a button in a Windows style
