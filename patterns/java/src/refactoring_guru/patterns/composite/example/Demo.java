@@ -5,5 +5,6 @@ public class Demo {
         ImageEditor editor = new ImageEditor();
         editor.load();
         editor.groupSelected(editor.all.children.get(0), editor.all.children.get(1), editor.all.children.get(2));
+        editor.all.draw();
     }
 }
