@@ -1,8 +1,11 @@
 package refactoring_guru.patterns.composite.example;
 
+import refactoring_guru.patterns.composite.example.graphics.Graphic;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CompoundGraphic implements Graphic {
@@ -12,8 +15,11 @@ public class CompoundGraphic implements Graphic {
         children.add(child);
     }
 
-    public void add(List<Graphic> components) {
-        this.children.addAll(components);
+    public void add(Graphic...components) {
+        Graphic[] array = components;
+        for (Graphic graphic : components) {
+            children.add(graphic);
+        }
     }
 
     public void add(CompoundGraphic compoundGraphic) {
@@ -25,8 +31,12 @@ public class CompoundGraphic implements Graphic {
         children.remove(i);
     }
 
-    public void remove(List<Graphic> components) {
-        this.children.removeAll(components);
+    public void remove(Graphic...components) {
+        List<Graphic> list = new ArrayList<>(Arrays.asList(components));
+        for (Graphic g : list) {
+            int i = children.indexOf(g);
+            children.remove(i);
+        }
     }
 
     @Override

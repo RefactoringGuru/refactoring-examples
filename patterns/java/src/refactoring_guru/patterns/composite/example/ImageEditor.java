@@ -1,7 +1,10 @@
 package refactoring_guru.patterns.composite.example;
 
+import refactoring_guru.patterns.composite.example.graphics.Circle;
+import refactoring_guru.patterns.composite.example.graphics.Dot;
+import refactoring_guru.patterns.composite.example.graphics.Graphic;
+
 import java.awt.*;
-import java.util.List;
 
 public class ImageEditor {
     public CompoundGraphic all = new CompoundGraphic();
@@ -12,7 +15,7 @@ public class ImageEditor {
         all.add(new Circle(15, 90, 20, Color.GREEN));
     }
 
-    public void groupSelected(List<Graphic> components) {
+    public void groupSelected(Graphic...components) {
         CompoundGraphic group = new CompoundGraphic();
         group.add(components);
         all.remove(components);
