@@ -1,31 +1,54 @@
-// Интерфейс коллекции определяет фабричные методы для производства итераторов.
+// EN: Common collections interface defines factory method for producing
+// iterators. Several methods can be defined if you'd like to offer different
+// kinds of iteration over the same collection.
+// 
+// RU: Общий интерфейс коллекций должен определить фабричный метод для
+// производства итератора. Можно определить сразу несколько методов, чтобы дать
+// пользователям различные варианты обхода одной и той же коллекции.
 interface SocialNetwork is
     method getFriendsIterator(profileId): ProfileIterator
     method getCoworkerIterator(profileId): ProfileIterator
 
-// Конкретная коллекция знает объекты каких итераторов нужно создавать.
+// EN: Each concrete collection should know which type of iterator it
+// should return.
+// 
+// RU: Конкретная коллекция знает объекты каких итераторов нужно создавать.
 class Facebook implements SocialNetwork is
-    // Код получения нужного итератора.
+    // EN: Iterator creation code.
+    // 
+    // RU: Код получения нужного итератора.
     method getFriendsIterator(profileId) is
         return new FacebookIterator(this, profileId, "friends")
     method getCoworkerIterator(profileId) is
         return new FacebookIterator(this, profileId, "coworkers")
-    // Но помните, что коллекция имеет и другой код...
+    // EN: Rest of collection's code...
+    // 
+    // RU: Но помните, что коллекция имеет и другой код...
 
 
-// Интерфейс итератора.
+// EN: Common interface for all iterators.
+// 
+// RU: Общий интерфейс итераторов.
 interface ProfileIterator is
     method hasNext(): bool
     method getNext(): Profile
 
-// Конкретный итератор.
+// EN: Concrete iterator.
+// 
+// RU: Конкретный итератор.
 class FacebookIterator implements ProfileIterator is
-    // Итератору нужна ссылка на коллекцию, которую он обходит.
+    // EN: Iterator needs a reference to the collection which it
+    // traverses through.
+    // 
+    // RU: Итератору нужна ссылка на коллекцию, которую он обходит.
     field facebook: Facebook
     field profileId, type: string
 
-    // Но каждый итератор обходит коллекцию независимо от остальных, поэтому он
-    // содержит информацию о текущей позиции обхода.
+    // EN: An iterator object traverses collection independently from other
+    // iterators. Therefore it has to store the iteration state.
+    // 
+    // RU: Но каждый итератор обходит коллекцию независимо от остальных, поэтому
+    // он содержит информацию о текущей позиции обхода.
     field currentPosition
     field cache: array of Profile
 
@@ -38,7 +61,10 @@ class FacebookIterator implements ProfileIterator is
         if (cache == null)
             cache = facebook.sendSophisticatedSocialGraphRequest(profileId, type)
 
-    // Итератор реализует методы базового интерфейса по-своему.
+    // EN: Each concrete iterator has its own implementation of the
+    // common interface.
+    // 
+    // RU: Итератор реализует методы базового интерфейса по-своему.
     method hasNext() is
         initIfNeeded()
         return cache.length < currentPosition
@@ -49,9 +75,16 @@ class FacebookIterator implements ProfileIterator is
             return cache[currentPosition]
 
 
-// Мы можем подавать готовые объекты-итераторы в другие классы, избавляя их от
-// подробностей реализации тех или иных коллекций. Всё что для них важно — это
-// базовый интерфейс итератора.
+// EN: Here's another useful trick: you can pass an iterator instead of a
+// collection to a client class. This way, you don't expose a collection. But
+// there's another benefit: since client works with iterators through the common
+// interface, you can change its behavior at run time by passing different
+// iterator objects.
+// 
+// RU: Вот ещё полезная тактика: мы можем передавать объект итератора вместо
+// коллекции в клиентские классы. При таком подходе, клиентский код не будет
+// иметь доступа к коллекциям, а значит его не будет волновать подробности их
+// реализаций. Ему будет доступен только общий интерфейс итераторов.
 class SocialSpammer is
     method send(iterator: ProfileIterator, message: string) is
         while (iterator.hasNext())
@@ -59,10 +92,15 @@ class SocialSpammer is
             sendSingle(profile.email, message)
 
     method sendSingle(email: string, message: string) is
-        // Выслать ОЧЕНЬ ВАЖНОЕ СООБЩЕНИЕ на один email.
+        // EN: Send VERY IMPORTANT MESSAGE to one email address.
+        // 
+        // RU: Выслать ОЧЕНЬ ВАЖНОЕ СООБЩЕНИЕ на один email.
 
 
-// Класс приложение конфигурирует классы как захочет.
+// EN: Application class configures collections and iterators and then passes
+// them to the client code.
+// 
+// RU: Класс приложение конфигурирует классы как захочет.
 class Application is
     field network: SocialNetwork
     field spammer: SocialSpammer

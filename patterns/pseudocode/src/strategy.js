@@ -1,8 +1,12 @@
-// Общий интерфейс всех стратегий.
+// EN: Common interface for all strategies.
+// 
+// RU: Общий интерфейс всех стратегий.
 interface Strategy is
     method algorithm(a, b)
 
-// Каждая стратегия реализует общий интерфейс своим способом.
+// EN: Each concrete strategy provides unique implementation.
+// 
+// RU: Каждая конкретная стратегия реализует общий интерфейс своим способом.
 class ConcreteStrategyAdd implements Strategy is
     method algorithm(a, b) is
         return a + b
@@ -15,7 +19,10 @@ class ConcreteStrategyMultiply implements Strategy is
     method algorithm(a, b) is
         return a * b
 
-// Клиент всегда работает со стратегиями через общий интерфейс. Он не знает
+// EN: Client always works with strategies through a common interface. It should
+// neither know nor care which strategy is currently active.
+// 
+// RU: Клиент всегда работает со стратегиями через общий интерфейс. Он не знает
 // какая именно стратегия ему подана.
 class Context is
     private strategy: Strategy
@@ -27,9 +34,14 @@ class Context is
         return strategy.execute(a, b)
 
 
-// Конкретная стратегия конфигурируется на более высоком уровне, например,
+// EN: The concrete strategy is picked on a higher level (for example, by
+// application config) and passed to the client object. At any time, the
+// strategy object can be replaced by a different strategy.
+// 
+// RU: Конкретная стратегия конфигурируется на более высоком уровне, например,
 // конфигуратором всего приложения. Готовый объект-стратегия подаётся в
-// клиентский объект.
+// клиентский объект. Он может быть заменён другой стратегией в любой момент
+// на лету.
 class ExampleApplication is
     method main() is
         Create context object.

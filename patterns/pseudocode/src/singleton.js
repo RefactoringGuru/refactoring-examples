@@ -14,4 +14,6 @@ class Application is
     method main() is
         Singleton foo = Singleton.getInstance()
         Singleton bar = Singleton.getInstance()
-        // В переменной foo содержится тот же объект, что и в bar
+        // EN: foo contains the same object as bar.
+        // 
+        // RU: В переменной foo содержится тот же объект, что и в bar

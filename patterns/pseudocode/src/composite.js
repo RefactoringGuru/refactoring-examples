@@ -1,9 +1,13 @@
-// Общий интерфейс компонентов.
+// EN: Common interface for all components.
+// 
+// RU: Общий интерфейс компонентов.
 interface Graphic is
     method move(x, y)
     method draw()
 
-// Простой компонент.
+// EN: Simple component.
+// 
+// RU: Простой компонент.
 class Dot implements Graphic is
     field x, y
 
@@ -15,7 +19,9 @@ class Dot implements Graphic is
     method draw() is
         Draw a dot at X and Y.
 
-// Компоненты могут расширять другие компоненты.
+// EN: Components could extend other components.
+// 
+// RU: Компоненты могут расширять другие компоненты.
 class Circle extends Dot is
     field radius
 
@@ -27,7 +33,11 @@ class Circle extends Dot is
     method draw() is
         Draw a circle at X and Y and radius R.
 
-// Контейнер содержит операции добавления/удаления дочерних компонентов. Все
+// EN: The composite component includes methods to add/remove child components.
+// It tries to delegates to its children all operations defined in the
+// component interface.
+// 
+// RU: Контейнер содержит операции добавления/удаления дочерних компонентов. Все
 // стандартные операции интерфейса компонентов он делегирует каждому из
 // дочерних компонент.
 class CompoundGraphic implements Graphic is
@@ -48,18 +58,24 @@ class CompoundGraphic implements Graphic is
         Draw each child.
 
 
-// Приложение использует как частные компоненты, так и группы.
+// EN: Application can operate with specific components or whole groups.
+// 
+// RU: Приложение работает как с единичными компонентами, так и целыми группами.
 class ImageEditor is
     method load() is
         all = new CompoundGraphic()
         all.add(new Dot(1, 2))
         all.add(new Circle(5, 3, 10))
-        // ...
+        // EN: ...
+        // 
+        // RU: ...
 
     method groupSelected(components: array of Graphic) is
         group = new CompoundGraphic()
         group.add(components)
         all.remove(components)
         all.add(group)
-        // Все внутренние компоненты будут отрисованы.
+        // EN: All components will be drawn.
+        // 
+        // RU: Все компоненты будут отрисованы.
         all.draw()

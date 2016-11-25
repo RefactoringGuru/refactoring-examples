@@ -1,10 +1,14 @@
-// Общий интерфейс всех состояний.
+// EN: Common interface for all states.
+// 
+// RU: Общий интерфейс всех состояний.
 abstract class State is
     field player: Player
 
-    // Контекст передаёт свой объект в конструктор
-    // состояния, чтобы состояние могло обращаться к его данным и методам в будущем,
-    // если потребуется.
+    // EN: Context passes itself through the state constructor. This may help a
+    // state to fetch some useful context data if needed.
+    // 
+    // RU: Контекст передаёт себя в конструктор состояния, чтобы состояние могло
+    // обращаться к его данным и методам в будущем, если потребуется.
     constructor State(player) is
         this.player = player
 
@@ -14,7 +18,10 @@ abstract class State is
     abstract method onPrevious(event)
 
 
-// Конкретные состояния реализуют методы абстрактного состояния по-своему.
+// EN: Concrete states provide the special implementation for all
+// interface methods.
+// 
+// RU: Конкретные состояния реализуют методы абстрактного состояния по-своему.
 class LockedState is
     method onLock(event) is
         if (player.playing)
@@ -32,7 +39,9 @@ class LockedState is
         Do nothing.
 
 
-// Они также могут переводить контекст в другие состояния.
+// EN: They can also trigger state transitions in the context.
+// 
+// RU: Они также могут переводить контекст в другие состояния.
 class ReadyState is
     method onLock(event) is
         player.changeState(new LockedState(player))
@@ -69,7 +78,9 @@ class PlayingState is
             player.previousSong(5)
 
 
-// Проигрыватель выступает контекстным объектом.
+// EN: Player acts as a context.
+// 
+// RU: Проигрыватель играет роль контекста.
 class Player is
     field state: State
     field UI, volume, playlist, currentSong
@@ -78,23 +89,42 @@ class Player is
         this.state = new ReadyState(this)
         UI = new UserInterface()
 
-        // Контекст заставляет состояние реагировать на пользовательский ввод
-        // вместо себя.
+        // EN: Context delegates handling user's input to a state object.
+        // Naturally, the outcome will depend on what state is currently active,
+        // since all states can handle the input differently.
+        // 
+        // RU: Контекст заставляет состояние реагировать на пользовательский
+        // ввод вместо себя. Реакция может быть разной в зависимости от того,
+        // какое состояние сейчас активно.
         UI.lockButton.onClick(state.onLock)
         UI.playButton.onClick(state.onNext)
         UI.nextButton.onClick(state.onNext)
         UI.prevButton.onClick(state.onPrevious)
 
-    // Сервисные методы контекста, вызываемые состояниями.
+    // EN: State may call some service methods on the context.
+    // 
+    // RU: Сервисные методы контекста, вызываемые состояниями.
     method startPlayback() is
-        // ...
+        // EN: ...
+        // 
+        // RU: ...
     method stopPlayback() is
-        // ...
+        // EN: ...
+        // 
+        // RU: ...
     method nextSong() is
-        // ...
+        // EN: ...
+        // 
+        // RU: ...
     method previousSong() is
-        // ...
+        // EN: ...
+        // 
+        // RU: ...
     method fastForward(time) is
-        // ...
+        // EN: ...
+        // 
+        // RU: ...
     method rewind(time) is
-        // ...
+        // EN: ...
+        // 
+        // RU: ...

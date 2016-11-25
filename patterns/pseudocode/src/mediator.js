@@ -1,10 +1,16 @@
-// Интерфейс посредника.
+// EN: Common mediator interface.
+// 
+// RU: Общий интерфейс посредников.
 interface Mediator is
     method notify(type: string, sender: Component)
 
 
-// Конкретный посредник. Все связи между конкретными компонентами переехали в
-// код посредника. Он получает извещения от своих компонентов и знает как на
+// EN: Concrete mediator. All chaotic communications between concrete components
+// have been extracted to the mediator. Now components only talk with the
+// mediator, which knows who has to handle a request.
+// 
+// RU: Конкретный посредник. Все связи между конкретными компонентами переехали
+// в код посредника. Он получает извещения от своих компонентов и знает как на
 // них реагировать.
 class AuthenticationDialog implements Mediator is
     field title: string
@@ -32,11 +38,18 @@ class AuthenticationDialog implements Mediator is
             else
                 Create account using registration fields.
                 Log user in.
-        // ...
+        // EN: ...
+        // 
+        // RU: ...
 
 
-// Классы компонентов общаются с посредником через общий интерфейс. Благодаря
-// этому, одни и те же компоненты можно использовать в разных посредниках.
+// EN: Component classes communicate with mediator using common mediator
+// interface. Thanks to that, you can use the same components with
+// different mediators.
+// 
+// RU: Классы компонентов общаются с посредниками через их общий интерфейс.
+// Благодаря этому, одни и те же компоненты можно использовать в
+// разных посредниках.
 class Component is
     field parent: Mediator
 
@@ -49,15 +62,24 @@ class Component is
     method keypress() is
         parent.notify("keypress", this)
 
-// Конкретные компоненты никак не связаны между собой. У них есть только один
-// канал общения – через отправку уведомлений посреднику.
+// EN: Concrete components don't talk with each other. They have only one
+// communication channel–sending requests to the mediator.
+// 
+// RU: Конкретные компоненты никак не связаны между собой. У них есть только
+// один канал общения – через отправку уведомлений посреднику.
 class Button extends Component is
-    // ...
+    // EN: ...
+    // 
+    // RU: ...
 
 class Textbox extends Component is
-    // ...
+    // EN: ...
+    // 
+    // RU: ...
 
 class Checkbox extends Component is
     method check() is
         parent.notify("check", this)
-    // ...
+    // EN: ...
+    // 
+    // RU: ...

@@ -1,8 +1,14 @@
-// Базовый интерфейс обработчика.
+// EN: Abstract handler interface.
+// 
+// RU: Абстрактный интерфейс обработчика.
 abstract class Component is
     field onClick: function
 
-    // Базовый метод получения клика, для конечных элементов цепочек.
+    // EN: Basic handling method. It will be called when no other handler is
+    // capable of processing a click.
+    // 
+    // RU: Базовый обработчик клика. Здесь будут заканчиваться передачи вызова
+    // по цепочке.
     method click(x, y) is
         if (onClick != null)
             onClick(context)
@@ -10,17 +16,24 @@ abstract class Component is
     abstract method render(x, y, width, height)
 
 
-// Расширенный элемент цепочки, который имеет связи с
-// другими компонентами-обработчиками.
+// EN: Concrete component implementation. It inherits basic functionality from
+// the abstract handler.
+// 
+// RU: Конкретная реализация компонента. Он наследует базовую функциональность
+// абстрактного обработчика.
 class ContainerComponent extends Component is
-    // Здесь формируются связи цепочки.
+    // EN: Complex concrete component, which has references to other components.
+    // 
+    // RU: Расширенный элемент цепочки, который имеет связи с
+    // другими компонентами-обработчиками.
     field children: array of Component
 
     method add(child) is
         children.add(child)
 
-    // Если не можешь сам обработать клик, передай его своему дочернему
-    // компоненту, который находится в координате клика.
+    // EN: Component stores its references here.
+    // 
+    // RU: Здесь формируются связи цепочки.
     method click(x, y) is
         if (onClick != null) then
             onClick(context)
@@ -28,7 +41,11 @@ class ContainerComponent extends Component is
             child.click(x, y)
 
 
-// Конкретные реализации компонентов.
+// EN: If can't handle a click yourself, then pass it to your child component if
+// you have one at a click's coordinate.
+// 
+// RU: Если не можешь сам обработать клик, передай его своему дочернему
+// компоненту, который находится в координате клика.
 class Button extends Component is
     method render() is
         Draw a button.
@@ -38,9 +55,13 @@ class Panel extends ContainerComponent is
         Draw a panel and its children.
 
 
-// Клиентский код.
+// EN: Client code.
+// 
+// RU: Клиентский код.
 class Application is
-    // Каждое приложение конфигурирует цепочку по-своему.
+    // EN: Each application configures the chain differently.
+    // 
+    // RU: Каждое приложение конфигурирует цепочку по-своему.
     method createUI() is
         panel = new Panel(0, 0, 400, 800)
         ok = new Button(250, 760, 50, 20, "OK")
@@ -50,6 +71,8 @@ class Application is
         cancel.onClick({ ... })
         panel.add(cancel)
 
-    // Представьте что здесь произойдёт.
+    // EN: Imagine what happens here.
+    // 
+    // RU: Представьте что здесь произойдёт.
     method test() is
         panel.click(251, 761)

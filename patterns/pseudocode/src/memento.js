@@ -1,4 +1,8 @@
-// Класс создателя реализует метод получения снимка.
+// EN: Originator class should have a special method, which captures
+// originator's state inside a new memento object.
+// 
+// RU: Класс создателя должен иметь специальный метод, который сохраняет
+// состояние создателя в новом объекте-снимке.
 class Editor is
     private field text: string
     private field cursorX, cursorY, selectionWidth
@@ -14,11 +18,16 @@ class Editor is
         this.selectionWidth = width
 
     method saveState():EditorState is
-        // Снимок — неизменяемый объект, поэтому Создатель передаёт все своё
+        // EN: Memento is immutable object; that's why originator passes its
+        // state to memento's constructor parameters.
+        // 
+        // RU: Снимок — неизменяемый объект, поэтому Создатель передаёт все своё
         // состояние через параметры конструктора.
         return new EditorState(this, text, cursorX, cursorY, selectionWidth)
 
-// Снимок хранит прошлое состояние редактора.
+// EN: Memento stores past state of the editor.
+// 
+// RU: Снимок хранит прошлое состояние редактора.
 class EditorState is
     private field editor: Editor
     private field text: string
@@ -31,15 +40,23 @@ class EditorState is
         this.cursorY = cursorY
         this.selectionWidth = selectionWidth
 
-    // В нужный момент, владелец снимка может восстановить состояние редактора.
+    // EN: At some point, old editor state can be restored using a
+    // memento object.
+    // 
+    // RU: В нужный момент, владелец снимка может восстановить
+    // состояние редактора.
     method restore() is
         editor.setText(text)
         editor.setCursor(cursorX, cursorY)
         editor.selectionWidth(selectionWidth)
 
-// Клиентом может выступать класс команд (см. паттерн Команда). В этом случае,
-// команда сохраняет снимок получателя перед тем, как выполнить действие. А при
-// отмене, возвращает получателя в предыдущее состояние.
+// EN: Command object could act as a client of this pattern. In such case,
+// command gets a memento just before it changes the originator's state. When
+// undo is requested, it restores originator's state with a memento.
+// 
+// RU: Клиентом может выступать класс команд (см. паттерн Команда). В этом
+// случае, команда сохраняет снимок получателя перед тем, как выполнить
+// действие. А при отмене, возвращает получателя в предыдущее состояние.
 class Command is
     field backup: EditorState
 
@@ -49,4 +66,6 @@ class Command is
     method undo() is
         if (backup != null)
             backup.restore()
-    // ...
+    // EN: ...
+    // 
+    // RU: ...

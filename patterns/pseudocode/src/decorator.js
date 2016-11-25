@@ -1,9 +1,13 @@
-// Интерфейс компонентов.
+// EN: Common interface for all components.
+// 
+// RU: Общий интерфейс компонентов.
 interface DataSource is
     method writeData(data)
     method readData():data
 
-// Один из конкретных компонент, реализует базовую функциональность.
+// EN: One of the concrete components can act as a base layer.
+// 
+// RU: Один из конкретных компонент, реализует базовую функциональность.
 class FileDataSource implements DataSource is
     constructor FileDataSource(filename) { ... }
 
@@ -13,7 +17,9 @@ class FileDataSource implements DataSource is
     method readData():data is
         Read data from file.
 
-// Родитель всех Декораторов содержит код обёртывания.
+// EN: All other concrete components may act as wrappers.
+// 
+// RU: Родитель всех Декораторов содержит код обёртывания.
 class DataSourceDecorator implements DataSource is
     field wrappee: DataSource
 
@@ -26,7 +32,9 @@ class DataSourceDecorator implements DataSource is
     method readData():data is
         return wrappee.readData()
 
-// Конкретные Декораторы расширяют базовое поведение компонента.
+// EN: Concrete Decorators extend the functionality of a component they wrap.
+// 
+// RU: Конкретные Декораторы расширяют базовое поведение компонента.
 class EncyptionDecorator extends DataSourceDecorator is
     method writeData(data) is
         Encrypt passed data.
@@ -36,7 +44,10 @@ class EncyptionDecorator extends DataSourceDecorator is
         Get the data from wrappee's readData() method.
         Decrypt and return that data.
 
-// Декорировать можно не только базовые компоненты, но и уже обёрнутые объекты.
+// EN: You can wrap objects in several layers of decorators.
+// 
+// RU: Декорировать можно не только базовые компоненты, но и уже
+// обёрнутые объекты.
 class CompressionDecorator extends DataSourceDecorator is
     method writeData(data) is
         Compress passed data
@@ -47,24 +58,36 @@ class CompressionDecorator extends DataSourceDecorator is
         Uncompress and return that data.
 
 
-// Вариант 1. Простой пример сборки и использования декораторов.
+// EN: Option 1. A simple example of decorator assembly.
+// 
+// RU: Вариант 1. Простой пример сборки и использования декораторов.
 class Application is
     method dumbUsageExample() is
         source = new FileDataSource('somefile.dat')
         source.writeData(salaryRecords)
-        // в файл записаны чистые данные
+        // EN: a file with plain data
+        // 
+        // RU: в файл записаны чистые данные
 
         source = new CompressionDecorator(source)
         source.writeData(salaryRecords)
-        // файл сжат
+        // EN: compressed file
+        // 
+        // RU: файл сжат
 
         source = new EncyptionDecorator(source)
         source.writeData(salaryRecords)
-        // файл сжат и зашифрован
+        // EN: compressed and encrypted file
+        // 
+        // RU: файл сжат и зашифрован
 
 
 
-// Вариант 2. Клиентский код, использующий внешний источник данных. Класс
+// EN: Option 2. Client code, which uses an external data source. SalaryManager
+// neither knows not cares about data storage specifics. It receives already
+// configured data source.
+// 
+// RU: Вариант 2. Клиентский код, использующий внешний источник данных. Класс
 // SalaryManager ничего не знает о том как именно будут считаны и записаны
 // данные. Он получает уже готовый источник данных.
 class SalaryManager is
@@ -77,11 +100,17 @@ class SalaryManager is
 
     method save() is
         source.writeData(salaryRecords)
-    // ...Остальные полезные методы...
+    // EN: ...Other useful methods...
+    // 
+    // RU: ...Остальные полезные методы...
 
 
-// Приложение может по-разному собирать декорируемые объекты, в зависимости от
-// условий использования.
+// EN: Application can assemble objects with a different set of functionality
+// using the same decorators at run time, depending on the configuration
+// or environment.
+// 
+// RU: Приложение может по-разному собирать декорируемые объекты, в зависимости
+// от условий использования.
 class ApplicationConfigurator is
     method configurationExample() is
         source = new FileDataSource("salary.dat");
@@ -92,4 +121,6 @@ class ApplicationConfigurator is
 
         logger = new SalaryLogger(source)
         salary = logger.load();
-    // ...Остальной код приложения
+    // EN: ...Rest of an application code.
+    // 
+    // RU: ...Остальной код приложения

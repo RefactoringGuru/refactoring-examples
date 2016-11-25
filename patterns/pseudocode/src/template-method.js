@@ -1,21 +1,34 @@
 class GameAI is
-    // Шаблонный метод задаётся в базовом классе.
+    // EN: Template method should be defined in a base class. Its body is a set
+    // of method class in a defined order. Usually, they are the steps of
+    // some algorithm.
+    // 
+    // RU: Шаблонный метод должен быть задан в базовом классе. Он состоит из
+    // вызовов методов в определённом порядке. Чаще всего эти методы являются
+    // шагами некоего алгоритма.
     method turn() is
         collectResources()
         buildStructures()
         buildUnits()
         attack()
 
-    // Некоторые методы имеют реализацию в базовом классе.
+    // EN: Some of these steps may be implemented right in a base class.
+    // 
+    // RU: Некоторые из этих методов могут быть реализованы прямо в
+    // базовом классе.
     method collectResources() is
         foreach this.structures
             structure.collect()
 
-    // А некоторые могут быть полностью абстрактными.
+    // EN: And some of them could be defined as abstract.
+    // 
+    // RU: А некоторые могут быть полностью абстрактными.
     abstract method buildStructures()
     abstract method buildUnits()
 
-    // Шаблонных методов в классе может быть несколько.
+    // EN: By the way, a class can have several template methods.
+    // 
+    // RU: Кстати, шаблонных методов в классе может быть несколько.
     method attack() is
         enemy = closestEnemy()
         if (enemy == null)
@@ -26,7 +39,11 @@ class GameAI is
     abstract method sendScouts(position)
     abstract method sendWarriors(position)
 
-// Подклассы содержат реализацию шагов алгоритма.
+// EN: Subclasses can provide their own steps implementation as long as they
+// don't change the template method.
+// 
+// RU: Подклассы могут предоставлять свою реализацию шагов алгоритма, не изменяя
+// сам шаблонный метод.
 class OrcsAI extends GameAI is
     method buildStructures() is
         If enough resources then
@@ -37,7 +54,9 @@ class OrcsAI extends GameAI is
             If scouts not exist, build 1 peon.
             Else build grunt.
 
-    // ...
+    // EN: ...
+    // 
+    // RU: ...
 
     method sendScouts(position) is
         If scouts exists, send scouts to position.
@@ -45,8 +64,11 @@ class OrcsAI extends GameAI is
     method sendWarriors(position) is
         If grunts are more than 5, then send warriors to position.
 
-// Подклассы не только реализуют абстрактные шаги шаблонного метода, но и могут
-// переопределить шаги по умолчанию.
+// EN: Subclasses may not only implement abstract steps but also override
+// default steps from the base class.
+// 
+// RU: Подклассы могут не только реализовывать абстрактные шаги, но и
+// переопределять шаги, уже реализованные в базовом классе.
 class MonstersAI extends GameAI is
     method collectResources() is
         Do nothing.
