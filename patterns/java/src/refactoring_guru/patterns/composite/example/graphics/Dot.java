@@ -35,7 +35,6 @@ public class Dot extends BasicGraphic implements Graphic {
     @Override
     public void draw() {
         JFrame frame = getFrame(x + mn, y + mn, component);
-        frame.setVisible(true);
     }
 
     @Override
