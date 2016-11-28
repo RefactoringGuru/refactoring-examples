@@ -1,17 +1,17 @@
 package refactoring_guru.patterns.composite.example.graphics;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class Circle extends Dot {
     public int radius;
+    private final int mn = 30;
 
     public Circle(int x, int y, int radius, Color color) {
         this.x = x;
         this.y = y;
         this.radius = radius;
         this.color = color;
-        this.component = new JCircle(this);
+        this.component = BasicGraphic.createFigure(this);
     }
 
     @Override
@@ -23,14 +23,19 @@ public class Circle extends Dot {
     @Override
     public int[] getSize() {
         int[] size = new int[2];
-        size[0] = x + radius * 2 + 30;
-        size[1] = y + radius * 2 + 30;
+        size[0] = x + radius * 2 + mn;
+        size[1] = y + radius * 2 + mn;
         return size;
     }
 
     @Override
     public void draw() {
-        JFrame frame = getFrame(x + radius * 2 + 30, y + radius * 2 + 30, component);
-        frame.setVisible(true);
+        getFrame(getSize()[0], getSize()[1], component);
+    }
+
+    @Override
+    public void paint(Graphics graphics) {
+        graphics.setColor(color);
+        graphics.drawOval(x, y, radius * 2, radius * 2);
     }
 }

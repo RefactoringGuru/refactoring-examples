@@ -7,6 +7,7 @@ public class Dot extends BasicGraphic implements Graphic {
     public int x;
     public int y;
     public Color color;
+    private final int mn = 30;
 
     public Dot(){}
 
@@ -14,7 +15,7 @@ public class Dot extends BasicGraphic implements Graphic {
         this.x = x;
         this.y = y;
         this.color = color;
-        this.component = new JDot(this);
+        this.component = BasicGraphic.createFigure(this);
     }
 
     @Override
@@ -26,14 +27,20 @@ public class Dot extends BasicGraphic implements Graphic {
     @Override
     public int[] getSize() {
         int[] size = new int[2];
-        size[0] = x + 10;
-        size[1] = y + 30;
+        size[0] = x + mn;
+        size[1] = y + mn;
         return size;
     }
 
     @Override
     public void draw() {
-        JFrame frame = getFrame(x + 30, y + 30, component);
+        JFrame frame = getFrame(x + mn, y + mn, component);
         frame.setVisible(true);
+    }
+
+    @Override
+    public void paint(Graphics graphics) {
+        graphics.setColor(color);
+        graphics.drawOval(x, y, 2, 2);
     }
 }
