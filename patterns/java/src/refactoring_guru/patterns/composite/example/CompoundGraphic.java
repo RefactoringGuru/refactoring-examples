@@ -1,6 +1,5 @@
 package refactoring_guru.patterns.composite.example;
 
-import refactoring_guru.patterns.composite.example.graphics.BasicGraphic;
 import refactoring_guru.patterns.composite.example.graphics.Graphic;
 
 import javax.swing.*;
@@ -9,21 +8,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CompoundGraphic extends BasicGraphic implements Graphic {
+public class CompoundGraphic implements Graphic {
     List<Graphic> children = new ArrayList<>();
+    List<List<Graphic>> groups = new ArrayList<>();
 
     public void add(Graphic child) {
         children.add(child);
     }
 
     public void add(Graphic...components) {
-        for (Graphic graphic : components) {
-            children.add(graphic);
-        }
-    }
-
-    public void add(CompoundGraphic compoundGraphic) {
-        this.children.addAll(compoundGraphic.children);
+        List<Graphic> list = new ArrayList<>(Arrays.asList(components));
+        groups.add(list);
     }
 
     public void remove(Graphic child) {
@@ -47,39 +42,24 @@ public class CompoundGraphic extends BasicGraphic implements Graphic {
     }
 
     @Override
-    public int[] getSize() {
-        int width = 0;
-        int height = 0;
-        for (Graphic child : children) {
-            int[] size = child.getSize();
-            if (size[0] > width) {
-                width += size[0] * 2;
-            }
-            if (size[1] > height) {
-                height += size[1];
+    public void draw() {
+        JFrame frame = new JFrame("All graphics");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JPanel panel = new JPanel(new GridLayout(3, 3));
+        frame.setSize(500, 500);
+        frame.getContentPane().add(panel);
+        if (children.size() > 0) {
+            for (Graphic graphic : children) {
+                panel.add((Canvas)graphic);
             }
         }
-        return new int[] {width, height};
-    }
-
-    @Override
-    public void draw() {
-        int width = getSize()[0];
-        int height = getSize()[1];
-        JFrame frame = getFrame(width, height);
-        frame.setLayout(new GridLayout());
-        for (Graphic child : children) {
-            JComponent component = child.getComponent();
-            frame.getContentPane().add(component, new BorderLayout());
+        if (groups.size() > 0) {
+            for (List list : groups) {
+                for (Object graphic : list) {
+                    panel.add((Canvas)graphic);
+                }
+            }
         }
         frame.setVisible(true);
-    }
-
-    @Override
-    public void paint(Graphics graphic) {}
-
-    @Override
-    public JComponent getComponent() {
-        return null;
     }
 }

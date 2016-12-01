@@ -16,10 +16,8 @@ public class ImageEditor {
     }
 
     public void groupSelected(Graphic...components) {
-        CompoundGraphic group = new CompoundGraphic();
-        group.add(components);
         all.remove(components);
-        all.add(group);
+        all.add(components);
         all.draw();
     }
 }

@@ -3,11 +3,11 @@ package refactoring_guru.patterns.composite.example.graphics;
 import javax.swing.*;
 import java.awt.*;
 
-public class Dot extends BasicGraphic implements Graphic {
+public class Dot extends Canvas implements Graphic {
     public int x;
     public int y;
     public Color color;
-    private final int mn = 30;
+    private final int DOT_SIZE = 100;
 
     public Dot(){}
 
@@ -15,7 +15,6 @@ public class Dot extends BasicGraphic implements Graphic {
         this.x = x;
         this.y = y;
         this.color = color;
-        this.component = BasicGraphic.createFigure(this);
     }
 
     @Override
@@ -25,22 +24,17 @@ public class Dot extends BasicGraphic implements Graphic {
     }
 
     @Override
-    public int[] getSize() {
-        int[] size = new int[2];
-        size[0] = x + mn;
-        size[1] = y + mn;
-        return size;
-    }
-
-    @Override
     public void draw() {
-        JFrame frame = getFrame(x + mn, y + mn, component);
+        JFrame frame = new JFrame("Dot");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(x + DOT_SIZE, y + DOT_SIZE);
+        frame.add(this);
         frame.setVisible(true);
     }
 
     @Override
     public void paint(Graphics graphics) {
         graphics.setColor(color);
-        graphics.drawOval(x, y, 2, 2);
+        graphics.fillOval(x, y, 2, 2);
     }
 }
