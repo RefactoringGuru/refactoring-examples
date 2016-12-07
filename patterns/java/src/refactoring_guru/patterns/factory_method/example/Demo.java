@@ -13,11 +13,7 @@ public class Demo {
     }
 
     public static void configure() {
-<<<<<<< HEAD
         if (System.getProperty("os.name").equals("Windows 10")) {
-=======
-        if (System.getProperty("os.name").equals("Linux")) {
->>>>>>> Edit factory method
             dialog = new WindowsDialog();
         } else {
             dialog = new HtmlDialog();
