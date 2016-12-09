@@ -1,7 +1,7 @@
 package refactoring_guru.patterns.prototype.example;
 
 public class Circle extends Shape {
-    int radius;
+    public int radius;
 
     public Circle() {}
 
