@@ -6,13 +6,13 @@ namespace Guru.Refactoring.Patterns.FactoryMethod.Example
     {
         public void OnClick(OnClickButtonArgs args)
         {
-            //Bind native click event
+            // Bind native click event
             throw new NotImplementedException();
         }
 
         public void Render(Size size, Position position)
         {
-            //Draw a windows style button
+            // Draw a windows style button
             throw new NotImplementedException();
         }
     }

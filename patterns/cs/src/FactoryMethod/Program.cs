@@ -8,8 +8,8 @@ namespace Guru.Refactoring.Patterns.FactoryMethod.Example
 
         static Dialog dialog;
 
-        // Приложение создаёт определенную фабрику в зависимости от
-        // конфигурации или окружения
+        // Приложение создаёт определенную фабрику в зависимости от конфигурации
+        // или окружения
         static void Configure()
         {
             if (AppType == ApplicationType.WindowsApplication)

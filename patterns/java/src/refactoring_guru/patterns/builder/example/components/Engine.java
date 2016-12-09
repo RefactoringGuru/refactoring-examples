@@ -26,7 +26,7 @@ public class Engine {
         if (started) {
             this.mileage += mileage;
         } else {
-            //handle inability to go()....
+            // handle inability to go()....
             System.err.println("Cannot go(), you must start engine first!");
         }
     }

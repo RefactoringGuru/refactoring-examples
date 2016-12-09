@@ -6,7 +6,7 @@ namespace Guru.Refactoring.Patterns.FactoryMethod.Example
     {
         public void Render()
         {
-            //Render other controls
+            // Render other controls
 
             Button okButton = CreateButton();
             OnClickButtonArgs closeDialog = new OnClickButtonArgs();

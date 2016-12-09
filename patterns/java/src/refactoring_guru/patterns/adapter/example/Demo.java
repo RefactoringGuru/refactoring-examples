@@ -8,8 +8,7 @@ public class Demo {
 
         SquarePeg smallSqPeg = new SquarePeg(2);
         SquarePeg largeSqPeg = new SquarePeg(20);
-//        hole.fits(smallSqPeg); // CTE
-//        hole.fits(largeSqPeg); // CTE
+// hole.fits(smallSqPeg); // CTE hole.fits(largeSqPeg); // CTE
 
         SquarePegAdapter smallSqPegAdapter = new SquarePegAdapter(smallSqPeg);
         SquarePegAdapter largeSqPegAdapter = new SquarePegAdapter(largeSqPeg);
