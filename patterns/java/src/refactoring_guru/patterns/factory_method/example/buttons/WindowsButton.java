@@ -5,6 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * EN: Windows button implementation.
+ */
 public class WindowsButton implements Button {
     JPanel panel = new JPanel();
     JFrame frame = new JFrame();

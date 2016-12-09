@@ -1,8 +1,9 @@
 package refactoring_guru.patterns.factory_method.example.buttons;
 
+/**
+ * EN: Common interface for all buttons.
+ */
 public interface Button {
-
-    public abstract void render();
-
-    public abstract void onClick();
+    public void render();
+    public void onClick();
 }

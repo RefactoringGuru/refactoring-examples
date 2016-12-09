@@ -1,5 +1,8 @@
 package refactoring_guru.patterns.factory_method.example.buttons;
 
+/**
+ * EN: HTML button implementation.
+ */
 public class HtmlButton implements Button {
 
     public void render() {
