@@ -1,31 +1,24 @@
 package refactoring_guru.patterns.iterator.example;
 
-import java.util.Random;
+import refactoring_guru.patterns.iterator.example.social_networks.*;
 
 public class Application {
     public SocialNetwork network;
     public SocialSpammer spammer;
     public ProfileIterator iterator;
 
-    public void config() {
-        Random random = new Random();
-        int i = random.nextInt(1);
-        if (i == 1) {
-            this.network = new Facebook();
-        }
-        if (i == 0) {
-            this.network = new LinkedIn();
-        }
+    public Application(SocialNetwork network) {
         this.spammer = new SocialSpammer();
+        this.network = network;
     }
 
-    public void sendSpamToFriends(String message, int profileId) {
-        iterator = network.getFriendsIterator(profileId);
+    public void sendSpamToFriends(String message, String email) {
+        iterator = network.getFriendsIterator(email);
         spammer.send(iterator, message);
     }
 
-    public void sendSpamToCoworkers(String message, int profileId) {
-        iterator = network.getCoworkerIterator(profileId);
+    public void sendSpamToCoworkers(String message, String email) {
+        iterator = network.getCoworkerIterator(email);
         spammer.send(iterator, message);
     }
 }

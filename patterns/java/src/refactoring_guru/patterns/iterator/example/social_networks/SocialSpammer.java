@@ -1,4 +1,4 @@
-package refactoring_guru.patterns.iterator.example;
+package refactoring_guru.patterns.iterator.example.social_networks;
 
 public class SocialSpammer {
     Profile profile;
