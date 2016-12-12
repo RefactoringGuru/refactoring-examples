@@ -4,7 +4,9 @@ import refactoring_guru.patterns.factory_method.example.buttons.Button;
 import refactoring_guru.patterns.factory_method.example.buttons.WindowsButton;
 
 /**
- * Windows Dialog will produce Windows buttons.
+ * EN: Windows Dialog will produce Windows buttons.
+ *
+ * RU: Диалог на элементах операционной системы.
  */
 public class WindowsDialog extends Dialog {
 

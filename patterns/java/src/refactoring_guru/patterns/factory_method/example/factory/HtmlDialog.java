@@ -4,7 +4,9 @@ import refactoring_guru.patterns.factory_method.example.buttons.Button;
 import refactoring_guru.patterns.factory_method.example.buttons.HtmlButton;
 
 /**
- * HTML Dialog will produce HTML buttons.
+ * EN: HTML Dialog will produce HTML buttons.
+ *
+ * RU: HTML-диалог.
  */
 public class HtmlDialog extends Dialog {
 

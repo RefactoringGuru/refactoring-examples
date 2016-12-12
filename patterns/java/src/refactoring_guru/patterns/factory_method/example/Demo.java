@@ -18,8 +18,11 @@ public class Demo {
     }
 
     /**
-     * The concrete factory is usually chosen depending on configuration or
+     * EN: The concrete factory is usually chosen depending on configuration or
      * environment options.
+     *
+     * RU: Приложение создаёт определённую фабрику в зависимости от конфигурации
+     * или окружения.
      */
     static void configure() {
         if (System.getProperty("os.name").equals("Windows 10")) {
@@ -30,9 +33,13 @@ public class Demo {
     }
 
     /**
-     * All of the client code should work with factories and products through
+     * EN: All of the client code should work with factories and products through
      * abstract interfaces. This way it does not care which factory it works
      * with and what kind of product it returns.
+     *
+     * RU: Весь остальной клиентский код работает с фабрикой и продуктами только
+     * через общий интерфейс, поэтому для него неважно какая фабрика
+     * была создана.
      */
     static void runBusinessLogic() {
         dialog.renderWindow();
