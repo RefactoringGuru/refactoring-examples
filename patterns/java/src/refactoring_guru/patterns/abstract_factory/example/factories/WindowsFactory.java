@@ -1,7 +1,7 @@
 package refactoring_guru.patterns.abstract_factory.example.factories;
 
-import refactoring_guru.patterns.abstract_factory.example.buttons.OSXButton;
-import refactoring_guru.patterns.abstract_factory.example.checkboxes.OSXCheckbox;
+import refactoring_guru.patterns.abstract_factory.example.buttons.WindowsButton;
+import refactoring_guru.patterns.abstract_factory.example.checkboxes.WindowsCheckbox;
 
 /**
  * EN: Each concrete factory extends basic factory and responsible for creating
@@ -9,15 +9,15 @@ import refactoring_guru.patterns.abstract_factory.example.checkboxes.OSXCheckbox
  * 
  * RU: Каждая конкретная фабрика знает и создаёт только продукты своей вариации.
  */
-public class OSXFactory implements GUIFactory {
+public class WindowsFactory implements GUIFactory {
 
     @Override
-    public OSXButton createButton() {
-        return new OSXButton();
+    public WindowsButton createButton() {
+        return new WindowsButton();
     }
 
     @Override
-    public OSXCheckbox createCheckbox() {
-        return new OSXCheckbox();
+    public WindowsCheckbox createCheckbox() {
+        return new WindowsCheckbox();
     }
 }

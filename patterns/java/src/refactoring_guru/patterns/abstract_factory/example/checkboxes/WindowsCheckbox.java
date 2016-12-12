@@ -9,10 +9,10 @@ package refactoring_guru.patterns.abstract_factory.example.checkboxes;
  * 
  * Вариация чекбокса под Windows.
  */
-public class WinCheckbox implements Checkbox {
+public class WindowsCheckbox implements Checkbox {
 
     @Override
     public void paint() {
-        System.out.println("You created WinCheckbox.");
+        System.out.println("You created WindowsCheckbox.");
     }
 }

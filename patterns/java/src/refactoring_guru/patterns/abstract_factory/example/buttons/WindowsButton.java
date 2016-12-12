@@ -5,10 +5,10 @@ package refactoring_guru.patterns.abstract_factory.example.buttons;
  * 
  * This is another variant of a button.
  */
-public class WinButton implements Button {
+public class WindowsButton implements Button {
 
     @Override
     public void paint() {
-        System.out.println("You create WinButton.");
+        System.out.println("You create WindowsButton.");
     }
 }
