@@ -9,7 +9,6 @@ public class OSXButton implements Button {
 
     @Override
     public void paint() {
-        System.out.println("Greeting!");
-        System.out.println("You create OSXButton object in your operation system");
+        System.out.println("You created OSXButton.");
     }
 }

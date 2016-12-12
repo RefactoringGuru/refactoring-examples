@@ -32,7 +32,7 @@ class OSXCheckbox implementing Checkbox is
         Render a checkbox in a Mac OS X style
 
 
-// EN: Abstract factory class knows about all (abstract) product types.
+// EN: Abstract factory knows about all (abstract) product types.
 // 
 // RU: Абстрактная фабрика знает обо всех (абстрактных) типах продуктов.
 interface GUIFactory is

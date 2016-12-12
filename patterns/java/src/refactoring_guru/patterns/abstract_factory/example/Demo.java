@@ -1,32 +1,40 @@
 package refactoring_guru.patterns.abstract_factory.example;
 
-import refactoring_guru.patterns.abstract_factory.example.buttons.Button;
 import refactoring_guru.patterns.abstract_factory.example.factories.GUIFactory;
 import refactoring_guru.patterns.abstract_factory.example.factories.OSXFactory;
 import refactoring_guru.patterns.abstract_factory.example.factories.WinFactory;
 
+/**
+ * EN: Demo class. Everything comes together here.
+ *
+ * RU: Демо-класс. Здесь всё сводится воедино.
+ */
 public class Demo {
-    public static void main(String[] args) {
-        String osName = System.getProperty("os.name");
+
+    /**
+     * EN: Application picks the factory type and creates it in run time (usually at
+     * initialization stage), depending on the configuration or
+     * environment variables.
+     *
+     * RU: Приложение выбирает тип и создаёт конкретные фабрики динамически исходя
+     * из конфигурации или окружения.
+     */
+    private static Application configureApplication() {
         Application app;
         GUIFactory factory;
-        Button button = null;
-
-        if (osName.equals("Windows 10")) {
+        String osName = System.getProperty("os.name");
+        if (osName.equals("OS X")) {
             factory = new WinFactory();
             app = new Application(factory);
-            button = app.getButton();
-        } else if (osName.equals("OS X")) {
+        } else {
             factory = new OSXFactory();
             app = new Application(factory);
-            button = app.getButton();
         }
+        return app;
+    }
 
-        try {
-            button.paint();
-        } catch (NullPointerException nullException) {
-            System.out.println("Oops, your OS is Linux :)");
-        }
-
+    public static void main(String[] args) {
+        Application app = configureApplication();
+        app.paint();
     }
 }
