@@ -1,13 +1,31 @@
 package refactoring_guru.patterns.iterator.example.social_networks;
 
-public class Profile {
-    public String name;
-    public String email;
-    public String type;
+import java.util.ArrayList;
+import java.util.List;
 
-    public Profile(String email, String name, String type) {
+public class Profile {
+    private String name;
+    private String email;
+    private List<Profile> persons = new ArrayList<>();
+
+    public Profile(String email, String name) {
         this.email = email;
         this.name = name;
-        this.type = type;
+    }
+
+    public void addToSocialNetwork(Profile person) {
+        persons.add(person);
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List getProfiles() {
+        return this.persons;
     }
 }

@@ -5,7 +5,7 @@ public class SocialSpammer {
     public void send(ProfileIterator iterator, String message) {
         while (iterator.hasNext()) {
             profile = iterator.getNext();
-            sendSingle(profile.email, message);
+            sendSingle(profile.getEmail(), message);
         }
     }
 

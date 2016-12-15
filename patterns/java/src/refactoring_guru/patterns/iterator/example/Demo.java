@@ -18,6 +18,6 @@ public class Demo {
             throw new NotImplementedException();
         }
         Application application = new Application(network);
-        application.sendSpamToFriends("Hello World!", "p.mcmartney@gmail.com");
+        application.sendSpamToFriends("Hello World!", "r.starr@gmail.com");
     }
 }

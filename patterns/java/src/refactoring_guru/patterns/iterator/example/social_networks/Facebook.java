@@ -4,14 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Facebook implements SocialNetwork {
-    public static Map<String, Profile> database = new HashMap<>();
-
-    static {
-        database.put("j.lennon@gmail.com", new Profile("j.lennon@gmail.com", "John Lennon", "friends"));
-        database.put("p.mcmartney@gmail.com", new Profile("p.mcmartney@gmail.com", "Paul McCartney", "friends"));
-        database.put("g.harrison@gmail.com", new Profile("g.harrison@gmail.com", "George Harrison", "friends"));
-        database.put("r.starr@gmail.com", new Profile("r.starr@gmail.com", "Ringo Starr", "friends"));
-    }
+    public Map<String, Profile> database = new HashMap<>();
 
     @Override
     public ProfileIterator getFriendsIterator(String email) {
@@ -21,6 +14,11 @@ public class Facebook implements SocialNetwork {
     @Override
     public ProfileIterator getCoworkerIterator(String email) {
         return getFriendsIterator(email);
+    }
+
+    @Override
+    public void add(Profile profile) {
+        database.put(profile.getEmail(), profile);
     }
 
     public Profile getProfile(String email) {

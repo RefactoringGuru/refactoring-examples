@@ -1,12 +1,12 @@
 package refactoring_guru.patterns.iterator.example.social_networks;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class LinkedInIterator implements ProfileIterator {
     private LinkedIn linkedIn;
-    public String email;
+    private String email;
     private int currentPosition;
     private Map<Integer, Profile> cache = new HashMap<>();
 
@@ -17,11 +17,11 @@ public class LinkedInIterator implements ProfileIterator {
 
     private void lazyLoad() {
         if (cache.size() == 0) {
-            int i = 1;
-            Set set = linkedIn.database.keySet();
-            for (Object key : set) {
-                cache.put(i, linkedIn.getProfile((String)key));
-                i++;
+            List<Profile> profiles = linkedIn.getProfile(this.email).getProfiles();
+            int index = 1;
+            for (Profile profile : profiles) {
+                cache.put(index, profile);
+                index++;
             }
         }
     }
