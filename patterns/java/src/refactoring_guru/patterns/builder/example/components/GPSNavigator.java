@@ -1,4 +1,4 @@
-package refactoring.guru.patterns.builder.example.components;
+package refactoring_guru.patterns.builder.example.components;
 
 public class GPSNavigator {
     private String route;

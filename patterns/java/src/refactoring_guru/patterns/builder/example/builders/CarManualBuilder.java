@@ -1,11 +1,8 @@
-package refactoring.guru.patterns.builder.example.builders;
+package refactoring_guru.patterns.builder.example.builders;
 
-import refactoring.guru.patterns.builder.example.cars.Manual;
-import refactoring.guru.patterns.builder.example.cars.Type;
-import refactoring.guru.patterns.builder.example.components.Engine;
-import refactoring.guru.patterns.builder.example.components.GPSNavigator;
-import refactoring.guru.patterns.builder.example.components.Transmission;
-import refactoring.guru.patterns.builder.example.components.TripComputer;
+import refactoring_guru.patterns.builder.example.cars.Manual;
+import refactoring_guru.patterns.builder.example.cars.Type;
+import refactoring_guru.patterns.builder.example.components.*;
 
 public class CarManualBuilder implements Builder{
     private Type type;
@@ -15,7 +12,6 @@ public class CarManualBuilder implements Builder{
     private TripComputer tripComputer;
     private GPSNavigator gpsNavigator;
 
-    // setters
     @Override
     public void setType(Type type) {
         this.type = type;

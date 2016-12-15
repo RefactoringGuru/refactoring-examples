@@ -1,16 +1,13 @@
-package refactoring.guru.patterns.builder.example.builders;
+package refactoring_guru.patterns.builder.example.builders;
 
-import refactoring.guru.patterns.builder.example.cars.Type;
-import refactoring.guru.patterns.builder.example.components.Engine;
-import refactoring.guru.patterns.builder.example.components.GPSNavigator;
-import refactoring.guru.patterns.builder.example.components.Transmission;
-import refactoring.guru.patterns.builder.example.components.TripComputer;
+import refactoring_guru.patterns.builder.example.cars.Type;
+import refactoring_guru.patterns.builder.example.components.*;
 
 public interface Builder {
-    public abstract void setType(Type type);
-    public abstract void setSeats(int seats);
-    public abstract void setEngine (Engine engine);
-    public abstract void setTransmission(Transmission transmission);
-    public abstract void setTripComputer(TripComputer tripComputer);
-    public abstract void setGPSNavigator(GPSNavigator gpsNavigator);
+    public void setType(Type type);
+    public void setSeats(int seats);
+    public void setEngine (Engine engine);
+    public void setTransmission(Transmission transmission);
+    public void setTripComputer(TripComputer tripComputer);
+    public void setGPSNavigator(GPSNavigator gpsNavigator);
 }

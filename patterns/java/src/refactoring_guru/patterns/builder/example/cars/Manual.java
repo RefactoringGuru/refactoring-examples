@@ -1,9 +1,6 @@
-package refactoring.guru.patterns.builder.example.cars;
+package refactoring_guru.patterns.builder.example.cars;
 
-import refactoring.guru.patterns.builder.example.components.Engine;
-import refactoring.guru.patterns.builder.example.components.GPSNavigator;
-import refactoring.guru.patterns.builder.example.components.Transmission;
-import refactoring.guru.patterns.builder.example.components.TripComputer;
+import refactoring_guru.patterns.builder.example.components.*;
 
 public class Manual {
     private final Type type;

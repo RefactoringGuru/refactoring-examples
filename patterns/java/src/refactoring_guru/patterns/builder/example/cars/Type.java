@@ -1,5 +1,5 @@
-package refactoring.guru.patterns.builder.example.cars;
+package refactoring_guru.patterns.builder.example.cars;
 
 public enum Type {
-    CITY_CAR, SPORT_CAR, CABRIOLET;
+    CITY_CAR, SPORTS_CAR, SUV;
 }

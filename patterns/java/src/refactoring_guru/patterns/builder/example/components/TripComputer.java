@@ -1,6 +1,6 @@
-package refactoring.guru.patterns.builder.example.components;
+package refactoring_guru.patterns.builder.example.components;
 
-import refactoring.guru.patterns.builder.example.cars.Car;
+import refactoring_guru.patterns.builder.example.cars.Car;
 
 public class TripComputer {
 
