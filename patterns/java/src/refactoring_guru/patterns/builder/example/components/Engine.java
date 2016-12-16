@@ -1,5 +1,10 @@
 package refactoring_guru.patterns.builder.example.components;
 
+/**
+ * EN: Just another feature of a car.
+ * 
+ * RU: Одна из фишек автомобиля.
+ */
 public class Engine {
     private final double volume;
     private double mileage;
@@ -26,7 +31,6 @@ public class Engine {
         if (started) {
             this.mileage += mileage;
         } else {
-            // handle inability to go()....
             System.err.println("Cannot go(), you must start engine first!");
         }
     }

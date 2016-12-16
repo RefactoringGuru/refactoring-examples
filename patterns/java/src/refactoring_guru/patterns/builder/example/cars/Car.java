@@ -2,6 +2,11 @@ package refactoring_guru.patterns.builder.example.cars;
 
 import refactoring_guru.patterns.builder.example.components.*;
 
+/**
+ * EN: Car is a product class.
+ * 
+ * RU: Автомобиль — это класс продукта.
+ */
 public class Car {
     private final Type type;
     private final int seats;

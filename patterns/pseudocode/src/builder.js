@@ -10,9 +10,10 @@ class Manual is
     Textual representation of a car.
 
 
-// EN: You define common building steps in Builder interface.
+// EN: Builder interface defines all possible ways to configure a product.
 // 
-// RU: Вы задаёте общие шаги строительства в интерфейсе Строителя.
+// RU: Интерфейс Строителя объявляет все возможные этапы и шаги
+// конфигурации продукта.
 interface Builder is
     method setSeats(number)
     method setEngine(engine: Engine)
@@ -58,7 +59,7 @@ class CarManualBuilder implements Builder is
 // 
 // RU: Директор знает в какой последовательности заставлять работать строителя.
 // Он работает с ним через общий интерфейс Строителя. Из-за этого, он может не
-// знать какой продукт строится.
+// знать какой конкретно продукт сейчас строится.
 class Director is
     method constructSportsCar(builder: Builder) is
         builder.setSeats(2)

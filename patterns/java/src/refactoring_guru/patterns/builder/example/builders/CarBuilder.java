@@ -4,7 +4,11 @@ import refactoring_guru.patterns.builder.example.cars.Car;
 import refactoring_guru.patterns.builder.example.cars.Type;
 import refactoring_guru.patterns.builder.example.components.*;
 
-
+/**
+ * EN: Concrete builders implement steps defined in the common interface.
+ * 
+ * RU: Конкретные строители реализуют шаги, объявленные в общем интерфейсе.
+ */
 public class CarBuilder implements Builder {
     private Type type;
     private int seats;

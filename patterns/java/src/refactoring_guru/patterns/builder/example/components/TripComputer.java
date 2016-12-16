@@ -2,6 +2,11 @@ package refactoring_guru.patterns.builder.example.components;
 
 import refactoring_guru.patterns.builder.example.cars.Car;
 
+/**
+ * EN: Just another feature of a car.
+ * 
+ * RU: Одна из фишек автомобиля.
+ */
 public class TripComputer {
 
     public void condition() {
