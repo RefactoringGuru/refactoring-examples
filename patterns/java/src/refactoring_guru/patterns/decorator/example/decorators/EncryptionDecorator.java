@@ -1,7 +1,5 @@
 package refactoring_guru.patterns.decorator.example.decorators;
 
-import java.io.File;
-
 public class EncryptionDecorator extends DataSourceDecorator {
 
     public EncryptionDecorator(DataSource source) {
@@ -9,27 +7,32 @@ public class EncryptionDecorator extends DataSourceDecorator {
     }
 
     @Override
-    public File writeData(String data) {
-        return super.writeData(encode(data));
+    public void writeData(String data) {
+        super.writeData(encode(data));
     }
 
     @Override
-    public String readData(File file) {
-        return decode(super.readData(file));
+    public String readData() {
+        return super.readData();
+    }
+
+    public String readDecodedData() {
+        return decode(super.readData());
     }
 
     public String encode(String data) {
-        String key = "guru";
-        byte[] text = data.getBytes();
-        byte[] keyBytes = key.getBytes();
-        byte[] result = new byte[data.length()];
-        for (int i = 0; i < text.length; i++) {
-            result[i] = (byte)(text[i] ^ keyBytes[i % keyBytes.length]);
+        byte[] result = data.getBytes();
+        for (int i = 0; i < result.length; i++) {
+            result[i] += (byte)1;
         }
         return new String(result);
     }
 
     public String decode(String data) {
-        return encode(data);
+        byte[] result = data.getBytes();
+        for (int i = 0; i < result.length; i++) {
+            result[i] -= (byte)1;
+        }
+        return new String(result);
     }
 }

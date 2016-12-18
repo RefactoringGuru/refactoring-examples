@@ -7,15 +7,13 @@ import java.util.Scanner;
 
 public class SalaryManager {
     private DataSource source;
-    private File data;
 
-    public SalaryManager(DataSource source, File data) {
+    public SalaryManager(DataSource source) {
         this.source = source;
-        this.data = data;
     }
 
     public String load() {
-        return source.readData(data);
+        return source.readData();
     }
 
     public void save() {

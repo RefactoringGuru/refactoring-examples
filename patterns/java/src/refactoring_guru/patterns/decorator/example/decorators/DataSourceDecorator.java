@@ -10,12 +10,12 @@ public class DataSourceDecorator implements DataSource {
     }
 
     @Override
-    public File writeData(String data) {
-        return wrappee.writeData(data);
+    public void writeData(String data) {
+        wrappee.writeData(data);
     }
 
     @Override
-    public String readData(File file) {
-        return wrappee.readData(file);
+    public String readData() {
+        return wrappee.readData();
     }
 }

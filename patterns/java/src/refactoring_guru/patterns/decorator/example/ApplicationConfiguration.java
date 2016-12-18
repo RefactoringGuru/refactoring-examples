@@ -11,16 +11,14 @@ public class ApplicationConfiguration {
     private boolean enabledEncrypting = false;
     private boolean enabledCompression = false;
     private String salary;
-    private File data;
 
     public ApplicationConfiguration(boolean encrypting, boolean compression, File data) {
         this.enabledEncrypting = encrypting;
         this.enabledCompression = compression;
-        this.data = data;
     }
 
     public void configurationExample() {
-        FileDataSource fileSource = new FileDataSource("data.dat");
+        FileDataSource fileSource = new FileDataSource("D:/data.dat");
         DataSourceDecorator source = null;
         if (enabledEncrypting) {
             source = new EncryptionDecorator(fileSource);
@@ -28,7 +26,7 @@ public class ApplicationConfiguration {
         if (enabledCompression) {
             source = new CompressionDecorator(fileSource);
         }
-        SalaryManager manager = new SalaryManager(source, data);
+        SalaryManager manager = new SalaryManager(source);
         System.out.println(salary = manager.load());
     }
 }
