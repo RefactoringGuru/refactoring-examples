@@ -5,8 +5,6 @@ import refactoring_guru.patterns.decorator.example.decorators.DataSourceDecorato
 import refactoring_guru.patterns.decorator.example.decorators.EncryptionDecorator;
 import refactoring_guru.patterns.decorator.example.decorators.FileDataSource;
 
-import java.io.File;
-
 public class ApplicationConfiguration {
     private boolean enabledEncrypting = false;
     private boolean enabledCompression = false;

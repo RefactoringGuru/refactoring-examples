@@ -5,8 +5,6 @@ import refactoring_guru.patterns.decorator.example.decorators.DataSourceDecorato
 import refactoring_guru.patterns.decorator.example.decorators.EncryptionDecorator;
 import refactoring_guru.patterns.decorator.example.decorators.FileDataSource;
 
-import java.io.*;
-
 public class Application {
     public void dumbUsageExample() {
         String salaryRecords = "100500; 558899; 110215; 254755; 2556658;";

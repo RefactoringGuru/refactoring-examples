@@ -2,7 +2,6 @@ package refactoring_guru.patterns.decorator.example;
 
 import refactoring_guru.patterns.decorator.example.decorators.DataSource;
 
-import java.io.File;
 import java.util.Scanner;
 
 public class SalaryManager {
