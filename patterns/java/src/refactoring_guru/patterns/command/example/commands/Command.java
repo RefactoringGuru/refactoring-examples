@@ -1,4 +1,7 @@
-package refactoring_guru.patterns.command.example;
+package refactoring_guru.patterns.command.example.commands;
+
+import refactoring_guru.patterns.command.example.Application;
+import refactoring_guru.patterns.command.example.Editor;
 
 public abstract class Command {
     public Application app;
@@ -11,13 +14,12 @@ public abstract class Command {
     }
 
     public void backup() {
-        backup = editor.text;
-        app.history.push(this);
+        backup = app.clipboard;
     }
 
     public void undo() {
-        editor.text = backup;
+        editor.textField.setText(backup);
     }
 
-    public abstract String execute();
+    public abstract void execute();
 }

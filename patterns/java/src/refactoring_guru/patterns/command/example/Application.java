@@ -1,33 +1,34 @@
 package refactoring_guru.patterns.command.example;
 
+import refactoring_guru.patterns.command.example.commands.*;
+
 public class Application {
     public String clipboard;
     public Editor activeEditor;
-    public CommandHistory history;
+
+    public CommandHistory history = new CommandHistory();
 
     public void createUI() {
-        onKeyPress("Ctrl+C", this.getCopyCommand());
-        onKeyPress("Ctrl+X", this.getCutCommand());
-        onKeyPress("Ctrl+V", this.getPasteCommand());
-        onKeyPress("Ctrl+Z", this.undo());
+        activeEditor = new Editor(this);
+        activeEditor.init();
     }
 
-    public String getCopyCommand() {
+    public void getCopyCommand() {
         Command command = new CopyCommand(this, activeEditor);
         history.push(command);
-        return command.execute();
+        command.execute();
     }
 
-    public String getCutCommand() {
+    public void getCutCommand() {
         Command command = new CutCommand(this, activeEditor);
         history.push(command);
-        return command.execute();
+        command.execute();
     }
 
-    public String getPasteCommand() {
+    public void getPasteCommand() {
         Command command = new PasteCommand(this, activeEditor);
         history.push(command);
-        return command.execute();
+        command.execute();
     }
 
     public void undo() {
