@@ -16,6 +16,7 @@ public class SalaryManager {
     }
 
     public void save() {
+        System.out.print("Input salary data: ");
         String salaryRecords = new Scanner(System.in).nextLine();
         source.writeData(salaryRecords);
     }

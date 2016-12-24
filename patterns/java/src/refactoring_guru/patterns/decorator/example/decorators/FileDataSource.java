@@ -1,5 +1,7 @@
 package refactoring_guru.patterns.decorator.example.decorators;
 
+import java.io.*;
+
 public class FileDataSource implements DataSource {
     String name;
 
