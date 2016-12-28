@@ -20,9 +20,7 @@ public class Demo {
         }
         initProfiles();
         Application application = new Application(network);
-        application.sendSpamToFriends("Hello, how are You?", "ann@bing.com");
-        System.out.println("----------------------------------");
-        application.sendSpamToCoworkers("Hi, what are You doing?", "ann@bing.com");
+        application.sendSpam("Hello, how are You?", "ann@bing.com");
     }
 
     public static void initProfiles() {

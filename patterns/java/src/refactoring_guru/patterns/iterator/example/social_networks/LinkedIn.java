@@ -7,12 +7,7 @@ public class LinkedIn implements SocialNetwork {
     public  Map<String, Profile> database = new HashMap<>();
 
     @Override
-    public ProfileIterator getFriendsIterator(String email) {
-        return getCoworkerIterator(email);
-    }
-
-    @Override
-    public ProfileIterator getCoworkerIterator(String  email) {
+    public ProfileIterator getIterator(String  email) {
         return new LinkedInIterator(this, email);
     }
 

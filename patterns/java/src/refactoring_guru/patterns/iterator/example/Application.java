@@ -9,20 +9,14 @@ public class Application {
     public SocialNetwork network;
     public SocialSpammer spammer;
     public ProfileIterator iterator;
-    public List<Profile> profiles = new ArrayList<>();
 
     public Application(SocialNetwork network) {
         this.spammer = new SocialSpammer();
         this.network = network;
     }
 
-    public void sendSpamToFriends(String message, String email) {
-        iterator = network.getFriendsIterator(email);
-        spammer.send(iterator, message);
-    }
-
-    public void sendSpamToCoworkers(String message, String email) {
-        iterator = network.getCoworkerIterator(email);
+    public void sendSpam(String message, String email) {
+        iterator = network.getIterator(email);
         spammer.send(iterator, message);
     }
 }

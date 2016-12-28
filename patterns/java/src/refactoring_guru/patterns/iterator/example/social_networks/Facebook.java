@@ -7,13 +7,8 @@ public class Facebook implements SocialNetwork {
     public Map<String, Profile> database = new HashMap<>();
 
     @Override
-    public ProfileIterator getFriendsIterator(String email) {
+    public ProfileIterator getIterator(String email) {
         return new FacebookIterator(this, email);
-    }
-
-    @Override
-    public ProfileIterator getCoworkerIterator(String email) {
-        return new LinkedInIterator(this, email);
     }
 
     @Override

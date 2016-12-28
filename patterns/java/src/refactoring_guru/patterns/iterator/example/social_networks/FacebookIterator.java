@@ -5,19 +5,19 @@ import java.util.List;
 import java.util.Map;
 
 public class FacebookIterator implements ProfileIterator {
-    private SocialNetwork network;
+    private Facebook facebook;
     private String email;
     private int currentPosition;
     private Map<Integer, Profile> cache = new HashMap<>();
 
-    public FacebookIterator(SocialNetwork network, String email) {
-        this.network = network;
+    public FacebookIterator(Facebook facebook, String email) {
+        this.facebook = facebook;
         this.email = email;
     }
 
     private void lazyLoad() {
         if (cache.size() == 0) {
-            List<Profile> profiles = network.getProfile(this.email).getFriends();
+            List<Profile> profiles = facebook.getProfile(this.email).getFriends();
             int index = 1;
             for (Profile profile : profiles) {
                 cache.put(index, profile);
