@@ -5,19 +5,19 @@ import java.util.List;
 import java.util.Map;
 
 public class LinkedInIterator implements ProfileIterator {
-    private LinkedIn linkedIn;
+    private SocialNetwork network;
     private String email;
     private int currentPosition;
     private Map<Integer, Profile> cache = new HashMap<>();
 
-    public LinkedInIterator(LinkedIn linkedIn, String email) {
-        this.linkedIn = linkedIn;
+    public LinkedInIterator(SocialNetwork network, String email) {
+        this.network = network;
         this.email = email;
     }
 
     private void lazyLoad() {
         if (cache.size() == 0) {
-            List<Profile> profiles = linkedIn.getProfile(this.email).getProfiles();
+            List<Profile> profiles = network.getProfile(this.email).getCoworkers();
             int index = 1;
             for (Profile profile : profiles) {
                 cache.put(index, profile);

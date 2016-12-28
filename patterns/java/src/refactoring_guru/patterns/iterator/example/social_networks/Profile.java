@@ -6,15 +6,20 @@ import java.util.List;
 public class Profile {
     private String name;
     private String email;
-    private List<Profile> persons = new ArrayList<>();
+    private List<Profile> friends = new ArrayList<>();
+    private List<Profile> coworkers = new ArrayList<>();
 
     public Profile(String email, String name) {
         this.email = email;
         this.name = name;
     }
 
-    public void addToSocialNetwork(Profile person) {
-        persons.add(person);
+    public void addToFriends(Profile friend) {
+        friends.add(friend);
+    }
+
+    public void addToCoworkers(Profile coworker) {
+        coworkers.add(coworker);
     }
 
     public String getEmail() {
@@ -25,7 +30,11 @@ public class Profile {
         return name;
     }
 
-    public List getProfiles() {
-        return this.persons;
+    public List<Profile> getFriends() {
+        return this.friends;
+    }
+
+    public List<Profile> getCoworkers() {
+        return coworkers;
     }
 }

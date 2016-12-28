@@ -13,7 +13,7 @@ public class Facebook implements SocialNetwork {
 
     @Override
     public ProfileIterator getCoworkerIterator(String email) {
-        return getFriendsIterator(email);
+        return new LinkedInIterator(this, email);
     }
 
     @Override
