@@ -1,13 +1,10 @@
 package refactoring_guru.patterns.visitor.example;
 
-import refactoring_guru.patterns.visitor.example.shapes.Circle;
-import refactoring_guru.patterns.visitor.example.shapes.CompoundGraphic;
-import refactoring_guru.patterns.visitor.example.shapes.Dot;
-import refactoring_guru.patterns.visitor.example.shapes.Rectangle;
+import refactoring_guru.patterns.visitor.example.shapes.*;
 
 public interface Visitor {
-    public void visitDot(Dot dot);
-    public void visitCircle(Circle circle);
-    public void visitRectangle(Rectangle rectangle);
-    public void visitCompoundGraphic(CompoundGraphic cg);
+    public String visitDot(Dot dot);
+    public String visitCircle(Circle circle);
+    public String visitRectangle(Rectangle rectangle);
+    public String visitCompoundGraphic(CompoundGraphic cg);
 }

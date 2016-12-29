@@ -1,65 +1,40 @@
 package refactoring_guru.patterns.visitor.example;
 
-import refactoring_guru.patterns.visitor.example.shapes.Circle;
-import refactoring_guru.patterns.visitor.example.shapes.CompoundGraphic;
-import refactoring_guru.patterns.visitor.example.shapes.Dot;
-import refactoring_guru.patterns.visitor.example.shapes.Rectangle;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import java.io.File;
+import refactoring_guru.patterns.visitor.example.shapes.*;
 
 public class XMLExportVisitor implements Visitor {
-    JAXBContext context;
-    Marshaller marshaller;
-
-    public void visitDot(Dot d) {
-        try {
-            File dot = new File("D:/dot.xml");
-            context = JAXBContext.newInstance(Dot.class);
-            marshallerSettings();
-            marshaller.marshal(d, dot);
-        } catch (JAXBException ex) {
-            ex.printStackTrace();
-        }
+    public String visitDot(Dot d) {
+        return  "<dot>" + "\n" +
+                "    <id>" + d.getId() + "</id>" + "\n" +
+                "    <x>" + d.getX() + "</x>" + "\n" +
+                "    <y>" + d.getY() + "</y>" + "\n" +
+                "</dot>" + "\n";
     }
 
-    public void visitCircle(Circle c) {
-        try {
-            File circle = new File("D:/circle.xml");
-            context = JAXBContext.newInstance(Circle.class);
-            marshallerSettings();
-            marshaller.marshal(c, circle);
-        } catch (JAXBException ex) {
-            ex.printStackTrace();
-        }
+    public String visitCircle(Circle c) {
+        return  "<circle>" + "\n" +
+                "    <id>" + c.getId() + "</id>" + "\n" +
+                "    <x>" + c.getX() + "</x>" + "\n" +
+                "    <y>" + c.getY() + "</y>" + "\n" +
+                "    <radius>" + c.getRadius() + "</radius>" + "\n" +
+                "</circle>" + "\n";
     }
 
-    public void visitRectangle(Rectangle r) {
-        try {
-            File rectangle = new File("D:/rectangle.xml");
-            context = JAXBContext.newInstance(Rectangle.class);
-            marshallerSettings();
-            marshaller.marshal(r, rectangle);
-        } catch (JAXBException ex) {
-            ex.printStackTrace();
-        }
+    public String visitRectangle(Rectangle r) {
+        return  "<rectangle>" + "\n" +
+                "    <id>" + r.getId() + "</id>" + "\n" +
+                "    <x>" + r.getX() + "</x>" + "\n" +
+                "    <y>" + r.getY() + "</y>" + "\n" +
+                "    <width>" + r.getWidth() + "</width>" + "\n" +
+                "    <height>" + r.getHeight() + "</height>" + "\n" +
+                "</rectangle>" + "\n";
     }
 
-    public void visitCompoundGraphic(CompoundGraphic cg) {
-        try {
-            File compound = new File("D:/compound_graphic.xml");
-            context = JAXBContext.newInstance(CompoundGraphic.class);
-            marshallerSettings();
-            marshaller.marshal(cg, compound);
-        } catch (JAXBException ex) {
-            ex.printStackTrace();
+    public String visitCompoundGraphic(CompoundGraphic cg) {
+        StringBuilder sb = new StringBuilder();
+        for (Shape shape : cg.children) {
+            sb.append(shape.accept(this));
         }
-    }
-
-    public void marshallerSettings() throws JAXBException {
-        marshaller = context.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        return sb.toString();
     }
 }

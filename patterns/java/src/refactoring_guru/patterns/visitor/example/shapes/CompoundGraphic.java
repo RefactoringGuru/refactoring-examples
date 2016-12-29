@@ -2,19 +2,12 @@ package refactoring_guru.patterns.visitor.example.shapes;
 
 import refactoring_guru.patterns.visitor.example.Visitor;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
-@XmlRootElement(name = "compound_graphic")
-public class CompoundGraphic implements Graphic {
-    @XmlElement
+public class CompoundGraphic implements Shape {
     public int id;
-    @XmlElement(name = "shape")
     public List<Shape> children = new ArrayList<>();
-
-    public CompoundGraphic() {}
 
     public CompoundGraphic(int id) {
         this.id = id;
@@ -37,8 +30,11 @@ public class CompoundGraphic implements Graphic {
     }
 
     @Override
-    public void accept(Visitor visitor) {
-        visitor.visitCompoundGraphic(this);
+    public String accept(Visitor visitor) {
+        return "<compound_graphic>" + "\n" +
+                "<id>" + getId() + "</id>" + "\n" +
+                visitor.visitCompoundGraphic(this) +
+                "</compound_graphic>";
     }
 
     public void add(Shape shape) {

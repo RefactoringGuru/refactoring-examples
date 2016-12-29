@@ -2,18 +2,9 @@ package refactoring_guru.patterns.visitor.example.shapes;
 
 import refactoring_guru.patterns.visitor.example.Visitor;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-
-@XmlRootElement(name = "dot")
-@XmlType(propOrder = {"id", "x", "y"})
-public class Dot extends Shape {
-    @XmlElement
+public class Dot implements Shape {
     public int id;
-    @XmlElement
     public int x;
-    @XmlElement
     public int y;
 
     public Dot() {}
@@ -24,8 +15,20 @@ public class Dot extends Shape {
         this.y = y;
     }
 
-    public void accept(Visitor visitor) {
-        visitor.visitDot(this);
+    @Override
+    public void move(int x, int y) {
+        // TODO
+        // moving shape
+    }
+
+    @Override
+    public void draw() {
+        // TODO
+        // droving shape
+    }
+
+    public String accept(Visitor visitor) {
+        return visitor.visitDot(this);
     }
 
     public int getX() {
@@ -36,8 +39,7 @@ public class Dot extends Shape {
         return y;
     }
 
-    @Override
     public int getId() {
-        return super.getId();
+        return id;
     }
 }

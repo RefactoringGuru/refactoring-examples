@@ -13,13 +13,17 @@ public class Application {
         compoundGraphic.add(circle);
         compoundGraphic.add(rectangle);
 
-        export(dot, circle, rectangle, compoundGraphic);
+        export(circle, compoundGraphic);
     }
 
-    public static void export(Graphic...args) {
+    public static void export(Shape...args) {
         XMLExportVisitor exportVisitor = new XMLExportVisitor();
-        for (Graphic graphic : args) {
-            graphic.accept(exportVisitor);
+        StringBuilder sb = new StringBuilder();
+        for (Shape shape : args) {
+            sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>" + "\n");
+            sb.append(shape.accept(exportVisitor));
+            System.out.println(sb.toString());
+            sb.setLength(0);
         }
     }
 }
