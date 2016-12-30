@@ -1,4 +1,6 @@
-package refactoring_guru.patterns.memento;
+package refactoring_guru.patterns.memento.example;
+
+import refactoring_guru.patterns.command.example.Editor;
 
 public class Command {
     private EditorState backup;
