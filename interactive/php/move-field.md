@@ -3,23 +3,33 @@ move-field:php
 ###
 
 1.ru. Инкапсулируйте поле, если оно публичное.
+
 1.en. If the field is public, encapsulate it.
+
 1.uk. Інкапсулюйте поле, якщо воно є публічним.
 
 2.ru. Создайте копию поля и методы для доступа к нему в целевом классе.
+
 2.en. Create a field copy and methods for accessing the field in the target class.
+
 2.uk. Створіть копію поля і методи для доступу до нього в цільовому класі.
 
 3.ru. Определите, как вы будете обращаться к целевому классу. Вполне возможно, что у вас уже есть поле или метод, которые возвращают подходящий экземпляр класса, но если таковых нет, то нужно будет создать (достаточно одного из них).
+
 3.en. Decide how you will refer to the target class. It is quite possible that you already have a field or method that returns an appropriate class instance, but if not, you will need to create one of these.
+
 3.uk. Визначте, як ви будете звертатися до цільового класу. Цілком можливо, що у вас вже є поле або метод, які повертають відповідний екземпляр класу, але якщо таких немає, то потрібно буде створити (досить одного з них).
 
 4.ru. Замените все обращения к старому полю на соответствующие вызовы методов в целевом классе.
+
 4.en. Replace all references to the old class with the relevant calls to methods in the target class.
+
 4.uk. Замініть всі звернення до старого полю на відповідні виклики методів в цільовому класі.
 
 5.ru. Удалите поле в исходном классе.
+
 5.en. Delete the field in the original class.
+
 5.uk. Видаліть поле в початковому класі.
 
 
@@ -145,7 +155,7 @@ Set step 4
 
 Select "interestRate" in "interestForAmount_days"
 
-Replace "type->interestRate"
+Replace "type->getInterestRate()"
 
 Set step 5
 

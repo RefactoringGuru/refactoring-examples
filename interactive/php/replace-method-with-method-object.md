@@ -3,27 +3,39 @@ replace-method-with-method-object:php
 ###
 
 1.ru. Создайте новый класс. Дайте ему название, основываясь на предназначении метода, который рефакторите.
+
 1.en. Create a new class. Name it based on the purpose of the method that you are refactoring.
+
 1.uk. Створіть новий клас. Дайте йому назву, ґрунтуючись на призначенні методу, над яким проводиться рефакторинг.
 
 2.ru. В новом классе создайте приватное поле для хранения ссылки на экземпляр класса, в котором раньше находился метод.
+
 2.en. In the new class, create a private field for storing a reference to an instance of the class in which the method was previously located.
+
 2.uk. У новому класі створіть приватне поле для зберігання посилання на екземпляр класу, в якому раніше знаходився метод.
 
 3.ru. Кроме того, создайте по приватному полю для каждой локальной переменной и параметра метода.
+
 3.en. In addition, create a private field for each local variable and parameter of the method.
+
 3.uk. Крім того, створіть по приватному полю для кожної локальної змінної і параметра методу.
 
 4.ru. Создайте конструктор, который принимает все параметры исходного метода и инициализирует соответствующие приватные поля.
+
 4.en. Create a constructor that accepts all parameters of the original method and initializes the relevant private fields.
+
 4.uk. Створіть конструктор, який приймає всі параметри вихідного методу та ініціалізує відповідні приватні поля.
 
 5.ru. Объявите основной метод и скопируйте в него код оригинального метода, заменив локальные переменные приватным полями.
+
 5.en. Declare the main method and copy the code of the original method to it, replacing the local variables with private fields.
+
 5.uk. Оголосіть основний метод і скопіюйте в нього код оригінального методу, замінивши локальні змінні приватними полями.
 
 6.ru. Замените тело оригинального метода в исходном классе созданием объекта-метода и вызовом его основного метода.
+
 6.en. Replace the body of the original method in the original class by creating a method object and calling its main method.
+
 6.uk. Замініть тіло оригінального методу в початковому класі створенням об'єкту-методу і викликом його основного методу.
 
 
@@ -52,7 +64,7 @@ class Account {
 ```
 class Account {
   // ...
-  function gamma($this->inputVal, $this->quantity, $this->yearToDate) {
+  function gamma($inputVal, $quantity, $yearToDate) {
     return new Gamma($this, $inputVal, $quantity, $yearToDate)->compute();
   }
   // ...
@@ -60,18 +72,18 @@ class Account {
 
 class Gamma {
   private $account; // Account
-  private $this->importantValue1;
-  private $this->importantValue2;
-  private $this->importantValue3;
-  private $this->inputVal;
-  private $this->quantity;
-  private $this->yearToDate;
+  private $importantValue1;
+  private $importantValue2;
+  private $importantValue3;
+  private $inputVal;
+  private $quantity;
+  private $yearToDate;
 
-  public Gamma(Account $source, $this->inputValArg, $this->quantityArg, $this->yearToDateArg) {
+  public Gamma(Account $source, $inputValArg, $quantityArg, $yearToDateArg) {
     $this->account = $source;
-    $this->inputVal = $this->inputValArg;
-    $this->quantity = $this->quantityArg;
-    $this->yearToDate = $this->yearToDateArg;
+    $this->inputVal = $inputValArg;
+    $this->quantity = $quantityArg;
+    $this->yearToDate = $yearToDateArg;
   }
   public function compute() {
     $this->importantValue1 = ($this->inputVal * $this->quantity) + $this->account->delta();
@@ -226,17 +238,17 @@ Print:
   }
 ```
 
-Select "$importantValue1"
+Select "$importantValue1" in "compute"
 Replace "$this->importantValue1"
-Select "$importantValue2"
+Select "$importantValue2" in "compute"
 Replace "$this->importantValue2"
-Select "$importantValue3"
+Select "$importantValue3" in "compute"
 Replace "$this->importantValue3"
-Select "$inputVal"
+Select "$inputVal" in "compute"
 Replace "$this->inputVal"
-Select "$quantity"
+Select "$quantity" in "compute"
 Replace "$this->quantity"
-Select "$yearToDate"
+Select "$yearToDate" in "compute"
 Replace "$this->yearToDate"
 
 

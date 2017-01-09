@@ -22,8 +22,8 @@ preserve-whole-object:php
 class Room {
   // ...
   public function withinPlan(HeatingPlan $plan) {
-    $low = getLowestTemp();
-    $high = getHighestTemp();
+    $low = $this->getLowestTemp();
+    $high = $this->getHighestTemp();
     return $plan->withinRange($low, $high);
   }
 }
@@ -149,8 +149,8 @@ Remove selected
 
 Select:
 ```
-    $low = getLowestTemp();
-    $high = getHighestTemp();
+    $low = $this->getLowestTemp();
+    $high = $this->getHighestTemp();
 
 ```
 
