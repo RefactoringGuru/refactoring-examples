@@ -1,5 +1,3 @@
-123
-
 Все новые примеры будут сливаться в этот репозиторий, бранч patterns, папка patterns:
 
 https://github.com/shvetsgroup/refactoring.guru-examples
@@ -36,10 +34,11 @@ https://github.com/shvetsgroup/refactoring.guru-examples
 1. Синхронизировать ваш форк с главным репозиторием.
 
     ```
-    git checkout patterns
+    git checkout master
     git fetch upstream
-    git rebase upstream/patterns
+    git reset --hard upstream/master
     ```
+   
 
 
 ## Работа
@@ -51,7 +50,7 @@ https://github.com/shvetsgroup/refactoring.guru-examples
 2. Локально создать ветку abstract-factory из ветки patterns.
 
     ```
-    git checkout -b abstract-factory patterns
+    git checkout -b abstract-factory master
     ```
 
 3. Реализовать пример абстрактной фабрики.
