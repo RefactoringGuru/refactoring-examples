@@ -1,3 +1,5 @@
+123
+
 Все новые примеры будут сливаться в этот репозиторий, бранч patterns, папка patterns:
 
 https://github.com/shvetsgroup/refactoring.guru-examples
