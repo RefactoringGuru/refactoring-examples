@@ -21,14 +21,13 @@ public class Panel extends ContainerComponent {
     }
 
     public void click(int x, int y) {
-        Button button = null;
+        Component button = null;
         for(Component findButton : children) {
             if ((x > findButton.getX()) && (x < x + findButton.getWidth())
                     && (y > findButton.getY()) && (y < y + findButton.getHeight())) {
-                button = (Button)findButton;
+                button = findButton;
             }
         }
-
         if (button != null) {
             button.click(x, y);
         } else {
