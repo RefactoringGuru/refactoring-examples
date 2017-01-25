@@ -1,29 +1,71 @@
 package refactoring_guru.patterns.iterator.example.social_networks;
 
-import java.util.HashMap;
-import java.util.Map;
+import refactoring_guru.patterns.iterator.example.iterators.LinkedInIterator;
+import refactoring_guru.patterns.iterator.example.iterators.ProfileIterator;
+import refactoring_guru.patterns.iterator.example.profile.Profile;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LinkedIn implements SocialNetwork {
-    public  Map<String, Profile> database = new HashMap<>();
+    private List<Profile> contacts;
 
-    @Override
-    public ProfileIterator getIterator(String  email) {
-        return new LinkedInIterator(this, email);
+    public LinkedIn(List<Profile> cache) {
+        if (cache != null) {
+            this.contacts = cache;
+        } else {
+            this.contacts = new ArrayList<>();
+        }
     }
 
-    @Override
-    public void add(Profile profile) {
-        database.put(profile.getEmail(), profile);
+    public Profile requestContactInfoFromLinkedInAPI(String profileEmail) {
+        // Here would be a POST request to one of the LinkedIn API endpoints.
+        // Instead, we emulates long network connection, which you would expect in the real life...
+        simulateNetworkLatency();
+        System.out.println("LinkedIn: Loading profile '" + profileEmail + "' over the network...");
+
+        // ...and return test data.
+        return findContact(profileEmail);
     }
 
-    public Profile getProfile(String email) {
-        // Emulates long network connection, which you would expect in the
-        // real life.
+    public List<String> requestRelatedContactsFromLinkedInAPI(String profileEmail, String contactType) {
+        // Here would be a POST request to one of the LinkedIn API endpoints.
+        // Instead, we emulates long network connection, which you would expect in the real life.
+        simulateNetworkLatency();
+        System.out.println("LinkedIn: Loading '" + contactType + "' list of '" + profileEmail + "' over the network...");
+
+        // ...and return test data.
+        Profile profile = findContact(profileEmail);
+        if (profile != null) {
+            return profile.getContacts(contactType);
+        }
+        return null;
+    }
+
+    private Profile findContact(String profileEmail) {
+        for (Profile profile : contacts) {
+            if (profile.getEmail().equals(profileEmail)) {
+                return profile;
+            }
+        }
+        return null;
+    }
+
+    private void simulateNetworkLatency() {
         try {
             Thread.currentThread().sleep(2500);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
-        return database.get(email);
+    }
+
+    @Override
+    public ProfileIterator getFriendsIterator(String profileEmail) {
+        return new LinkedInIterator(this, "friends", profileEmail);
+    }
+
+    @Override
+    public ProfileIterator getCoworkersIterator(String profileEmail) {
+        return new LinkedInIterator(this, "coworkers", profileEmail);
     }
 }

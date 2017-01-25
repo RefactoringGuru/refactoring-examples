@@ -1,6 +1,6 @@
 package refactoring_guru.patterns.visitor.example.shapes;
 
-import refactoring_guru.patterns.visitor.example.Visitor;
+import refactoring_guru.patterns.visitor.example.visitor.Visitor;
 
 public interface Shape {
     public void move(int x, int y);

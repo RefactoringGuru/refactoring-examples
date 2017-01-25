@@ -5,7 +5,7 @@ public final class Singleton {
     public String value;
 
     private Singleton(String value) {
-        // Emulates time consuming operation.
+        // Emulates time initialization.
         try {
             Thread.currentThread().sleep(1000);
         } catch (InterruptedException ex) {

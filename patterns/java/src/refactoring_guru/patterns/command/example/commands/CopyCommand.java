@@ -1,16 +1,16 @@
 package refactoring_guru.patterns.command.example.commands;
 
-import refactoring_guru.patterns.command.example.Application;
-import refactoring_guru.patterns.command.example.Editor;
+import refactoring_guru.patterns.command.example.editor.Editor;
 
 public class CopyCommand extends Command {
 
-    public CopyCommand(Application app, Editor editor) {
-        super(app, editor);
+    public CopyCommand(Editor editor) {
+        super(editor);
     }
 
     @Override
-    public void execute() {
-        app.clipboard = editor.textField.getSelectedText();
+    public Boolean execute() {
+        editor.clipboard = editor.textField.getSelectedText();
+        return false;
     }
 }

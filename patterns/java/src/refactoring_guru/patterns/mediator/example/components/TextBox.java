@@ -1,6 +1,6 @@
 package refactoring_guru.patterns.mediator.example.components;
 
-import refactoring_guru.patterns.mediator.example.Mediator;
+import refactoring_guru.patterns.mediator.example.mediator.Mediator;
 
 public class TextBox extends Component {
     private String value;

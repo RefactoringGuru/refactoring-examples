@@ -1,8 +1,10 @@
 package refactoring_guru.patterns.command.example;
 
+import refactoring_guru.patterns.command.example.editor.Editor;
+
 public class Demo {
     public static void main(String[] args) {
-        Application app = new Application();
-        app.createUI();
+        Editor editor = new Editor();
+        editor.init();
     }
 }

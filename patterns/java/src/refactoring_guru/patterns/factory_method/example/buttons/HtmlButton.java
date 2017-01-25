@@ -13,6 +13,6 @@ public class HtmlButton implements Button {
     }
 
     public void onClick() {
-        System.out.println("Button say - 'Hello World!'");
+        System.out.println("Click! Button says - 'Hello World!'");
     }
 }
