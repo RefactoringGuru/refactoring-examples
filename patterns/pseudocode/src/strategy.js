@@ -19,11 +19,11 @@ class ConcreteStrategyMultiply implements Strategy is
     method algorithm(a, b) is
         return a * b
 
-// EN: Client always works with strategies through a common interface. It should
-// neither know nor care which strategy is currently active.
+// EN: Context (as a client) always works with strategies through a common
+// interface. It does not know or care which strategy is currently active.
 // 
-// RU: Клиент всегда работает со стратегиями через общий интерфейс. Он не знает
-// какая именно стратегия ему подана.
+// RU: Контекст (как клиент) всегда работает со стратегиями через общий
+// интерфейс. Он не знает какая именно стратегия ему подана.
 class Context is
     private strategy: Strategy
 

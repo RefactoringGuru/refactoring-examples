@@ -7,7 +7,8 @@ class Singleton is
     static method getInstance() is
         if (this.instance == null) then
             acquireThreadLock() and then
-                this.instance = new Singleton()
+                if (this.instance == null) then
+                    this.instance = new Singleton()
         return this.instance
 
 class Application is

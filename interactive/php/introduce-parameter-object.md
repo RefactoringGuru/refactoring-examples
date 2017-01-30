@@ -3,19 +3,27 @@ introduce-parameter-object:php
 ###
 
 1.ru. Создайте новый класс, который будет представлять вашу группу параметров. Сделайте так, чтобы данные объектов этого класса нельзя было изменить после создания.
+
 1.en. Create a new class that will represent your group of parameters. Make the class immutable.
+
 1.uk. Створіть новий клас, який представлятиме вашу групу параметрів. Зробіть так, щоб дані об'єктів цього класу не можна було змінити після створення (make classes immutable).
 
 2.ru. В методе, к которому применяем рефакторинг, <a href="/add-parameter">добавьте новый параметр</a>, в котором будет передаваться ваш объект-параметр. Во всех вызовах метода передавайте в этот параметр объект, создаваемый из старых параметров метода.
+
 2.en. In the method that you want to refactor, use <a href="/add-parameter">Add Parameter</a>, which is where your parameter object will be passed. In all method calls, pass the object created from old method parameters to this parameter.
+
 2.uk. В метод, до якого застосовується рефакторинг, <a href="/add-parameter">додайте новий параметр</a>, у якому передаватиметься ваш об'єкт-параметр. В усіх викликах методу передавайте в цей параметр об'єкт, що створюється із старих параметрів методу.
 
 3.ru. Теперь начинайте по одному удалять старые параметры из метода, заменяя их в коде полями объекта-параметра. Тестируйте программу после каждой замены параметра.
+
 3.en. Now start deleting old parameters from the method one by one, replacing them in the code with fields of the parameter object. Test the program after each parameter replacement.
+
 3.uk. Тепер починайте по одному видаляти старі параметри з методу, замінюючи їх в коді полями об'єкту-параметра. Тестуйте програму після кожної заміни параметра.
 
 4.ru. По окончанию оцените, есть ли возможность и смысл перенести какую-то часть метода (а иногда и весь метод) в класс объекта-параметра. Если так, используйте <a href="/move-method">перемещение метода</a> или <a href="/extract-method">извлечение метода</a>, чтобы осуществить перенос.
+
 4.en. When done, see whether there is any point in moving a part of the method (or sometimes even the whole method) to a parameter object class. If so, use <a href="/move-method">Move Method</a> or <a href="/extract-method">Extract Method</a>.
+
 4.uk. По закінченню оціните, чи є можливість і сенс перенести якусь частину методу (а іноді і увесь метод) в клас об'єкту-параметра. Якщо так, використайте <a href="/move-method">переміщення методу</a> або <a href="/extract-method">відокремлення методу</a>, щоб здійснити перенесення.
 
 
@@ -107,7 +115,7 @@ class DateRange {
     return $this->end;
   }
   public function includes(DateTime $arg) {
-    return ($arg >= $start && $arg <= $end);
+    return ($arg >= $this->start && $arg <= $this->end);
   }
 }
 
@@ -284,7 +292,7 @@ Print:
 ```
 
   public function includes(DateTime $arg) {
-    return ($arg >= $start && $arg <= $end);
+    return ($arg >= $this->start && $arg <= $this->end);
   }
 ```
 
