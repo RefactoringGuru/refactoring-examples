@@ -25,13 +25,13 @@ public class Rectangle implements Shape {
     @Override
     public void move(int x, int y) {
         // TODO
-        // moving shape
+ moving shape
     }
 
     @Override
     public void draw() {
         // TODO
-        // droving shape
+ droving shape
     }
 
     public int getId() {

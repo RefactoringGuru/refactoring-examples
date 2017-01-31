@@ -17,7 +17,8 @@ public class LinkedIn implements SocialNetwork {
     }
 
     public Profile getProfile(String email) {
-        // Emulates long network connection, which you would expect in the real life.
+        // Emulates long network connection, which you would expect in the
+        // real life.
         try {
             Thread.currentThread().sleep(2500);
         } catch (InterruptedException ex) {
