@@ -1,6 +1,6 @@
 package refactoring_guru.patterns.proxy.example;
 
-import refactoring_guru.patterns.proxy.example.media_framework_lib.CaсhedYoutubeClass;
+import refactoring_guru.patterns.proxy.example.media_framework_lib.CachedYoutubeClass;
 import refactoring_guru.patterns.proxy.example.media_framework_lib.ThirdPartyYoutubeLib;
 
 import java.util.List;
@@ -9,7 +9,7 @@ public class YoutubeManager {
     private ThirdPartyYoutubeLib service;
     private int n;
 
-    public YoutubeManager(CaсhedYoutubeClass service, int n) {
+    public YoutubeManager(CachedYoutubeClass service, int n) {
         this.service = service;
         this.n = n;
     }
