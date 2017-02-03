@@ -1,6 +1,4 @@
-package refactoring_guru.patterns.adapter.example.holes;
-
-import refactoring_guru.patterns.adapter.example.pegs.RoundPeg;
+package refactoring_guru.patterns.adapter.example.round;
 
 public class RoundHole {
     private double radius;

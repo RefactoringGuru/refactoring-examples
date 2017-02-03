@@ -1,4 +1,4 @@
-package refactoring_guru.patterns.adapter.example.pegs;
+package refactoring_guru.patterns.adapter.example.square;
 
 public class SquarePeg {
     private double width;

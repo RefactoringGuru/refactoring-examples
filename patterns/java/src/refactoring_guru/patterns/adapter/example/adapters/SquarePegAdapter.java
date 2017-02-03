@@ -1,7 +1,7 @@
 package refactoring_guru.patterns.adapter.example.adapters;
 
-import refactoring_guru.patterns.adapter.example.pegs.RoundPeg;
-import refactoring_guru.patterns.adapter.example.pegs.SquarePeg;
+import refactoring_guru.patterns.adapter.example.round.RoundPeg;
+import refactoring_guru.patterns.adapter.example.square.SquarePeg;
 
 public class SquarePegAdapter extends RoundPeg {
     private SquarePeg peg;

@@ -1,4 +1,4 @@
-package refactoring_guru.patterns.adapter.example.pegs;
+package refactoring_guru.patterns.adapter.example.round;
 
 public class RoundPeg {
     private double radius;

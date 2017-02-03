@@ -1,9 +1,9 @@
 package refactoring_guru.patterns.adapter.example;
 
 import refactoring_guru.patterns.adapter.example.adapters.SquarePegAdapter;
-import refactoring_guru.patterns.adapter.example.holes.RoundHole;
-import refactoring_guru.patterns.adapter.example.pegs.RoundPeg;
-import refactoring_guru.patterns.adapter.example.pegs.SquarePeg;
+import refactoring_guru.patterns.adapter.example.round.RoundHole;
+import refactoring_guru.patterns.adapter.example.round.RoundPeg;
+import refactoring_guru.patterns.adapter.example.square.SquarePeg;
 
 public class Demo {
     public static void main(String[] args) {
