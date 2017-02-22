@@ -6,11 +6,6 @@ public class CSVDataParser extends DataParser {
     private final StringBuilder builder = new StringBuilder();
     private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    @Override
-    public void parseDataAndOutput() {
-            super.parseDataAndOutput();
-    }
-
     public void readData() {
         String data = "";
         System.out.println("Enter data:");
