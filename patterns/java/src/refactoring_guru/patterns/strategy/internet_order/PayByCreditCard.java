@@ -1,24 +1,72 @@
 package refactoring_guru.patterns.strategy.internet_order;
 
-// Конкретная стратегия, реализует оплату корзины интернет магазина
-// редитной картой клиента
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/**
+ * RU: Конкретная стратегия, реализует оплату корзины интернет магазина
+ * кредитной картой клиента
+ */
+
 public class PayByCreditCard implements PayStrategy {
+    private final BufferedReader READER = new BufferedReader(new InputStreamReader(System.in));
     private CreditCard card;
 
-    public PayByCreditCard(CreditCard card) {
-        this.card = card;
+    // RU: Проверяем карту клиента
+    @Override
+    public void collectPaymentDetails() {
+        try {
+            System.out.print("Enter card number: ");
+            String number = READER.readLine();
+            System.out.print("Enter date 'mm/yy': ");
+            String date = READER.readLine();
+            System.out.print("Enter cvv code: ");
+            String cvv = READER.readLine();
+            card = new CreditCard(number, date, cvv);
+            do{
+                int remainderByCC = card.getAmount() - Order.getTotalCost();
+                if (remainderByCC < 0) {
+                    replenishCard();
+                }
+            } while (Order.getTotalCost() > card.getAmount());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
-    // Проверяем баланс по карте, если остатка хватает на покупку
-    // проводим оплату
+    // RU: после проверки карты мы можем оплатить покипку,
+    // если клиент продолжает покипки, мы не запрашиваем нужную карту,
+    // а проверяем на наличие средств уже имеющуюся
     @Override
     public void pay(int paymentAmount) {
-        int remainderByCC = card.getAmount() - paymentAmount;
-        if (remainderByCC > 0) {
+        if (cardIsPresent()) {
+            do {
+                if (card.getAmount() < Order.getTotalCost()) {
+                    replenishCard();
+                }
+            } while (card.getAmount() < Order.getTotalCost());
             System.out.println("Paying " + paymentAmount + " using Credit Card");
-            card.setAmount(remainderByCC);
+            card.setAmount(card.getAmount() - paymentAmount);
         } else {
-            System.out.println("The purchase is not made. Low balance on the Credit Card: " + remainderByCC);
+            collectPaymentDetails();
+            pay(paymentAmount);
         }
+    }
+
+    private void replenishCard() {
+        try {
+            System.out.println("Balance on the credit card: " + card.getAmount() + "\n" +
+                    "Payment amount: " + Order.getTotalCost() + "\n" +
+                    "Replenish your balance.");
+            int replenish = Integer.parseInt(READER.readLine());
+            card.setAmount(replenish);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private boolean cardIsPresent() {
+        return card != null;
     }
 }
