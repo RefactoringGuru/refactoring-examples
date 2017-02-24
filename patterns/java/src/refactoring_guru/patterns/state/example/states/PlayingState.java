@@ -16,18 +16,17 @@ public class PlayingState extends State {
 
     @Override
     public String onPlay() {
-        String action = player.stopPlayback();
         player.changeState(new ReadyState(player));
-        return action;
+        return "Paused...";
     }
 
     @Override
     public String onNext() {
-        return player.nextSong();
+        return player.nextTrack();
     }
 
     @Override
     public String onPrevious() {
-        return player.previousSong();
+        return player.previousTrack();
     }
 }

@@ -1,5 +1,3 @@
-// TODO: Пример норм, но надо добавить кода в стейты, чтобы плеер работал более предсказуемо.
-
 package refactoring_guru.patterns.state.example;
 
 import refactoring_guru.patterns.state.example.ui.Player;

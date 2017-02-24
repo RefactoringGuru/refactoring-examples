@@ -1,7 +1,6 @@
 package refactoring_guru.patterns.state.example.ui;
 
-import refactoring_guru.patterns.state.example.states.ReadyState;
-import refactoring_guru.patterns.state.example.states.State;
+import refactoring_guru.patterns.state.example.states.*;
 
 public class Player {
     private State state;
@@ -29,18 +28,14 @@ public class Player {
     }
 
     public String startPlayback() {
-        return "Playing song...";
+        return "Playing track...";
     }
 
-    public String stopPlayback() {
-        return "Stop playing";
+    public String nextTrack() {
+        return "Playing next track...";
     }
 
-    public String nextSong() {
-        return "Next song";
-    }
-
-    public String previousSong() {
-        return "Previous song";
+    public String previousTrack() {
+        return "Playing previous track...";
     }
 }
