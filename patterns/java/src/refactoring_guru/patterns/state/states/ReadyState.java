@@ -1,6 +1,7 @@
 package refactoring_guru.patterns.state.states;
 
 import refactoring_guru.patterns.state.ui.Player;
+import refactoring_guru.patterns.state.ui.UI;
 
 public class ReadyState extends State {
 
@@ -23,11 +24,12 @@ public class ReadyState extends State {
 
     @Override
     public String onNext() {
-        return player.nextSong();
+        UI.getTextField().setText(player.nextTrack());
+        return player.startPlayback();
     }
 
     @Override
     public String onPrevious() {
-        return player.previousSong();
+        return player.previousTrack();
     }
 }
