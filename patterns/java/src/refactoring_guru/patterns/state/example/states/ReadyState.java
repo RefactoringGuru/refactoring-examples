@@ -1,7 +1,7 @@
-package refactoring_guru.patterns.state.states;
+package refactoring_guru.patterns.state.example.states;
 
-import refactoring_guru.patterns.state.ui.Player;
-import refactoring_guru.patterns.state.ui.UI;
+import refactoring_guru.patterns.state.example.ui.Player;
+import refactoring_guru.patterns.state.example.ui.UI;
 
 public class ReadyState extends State {
 
