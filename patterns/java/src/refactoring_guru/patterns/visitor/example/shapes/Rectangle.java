@@ -1,6 +1,6 @@
 package refactoring_guru.patterns.visitor.example.shapes;
 
-import refactoring_guru.patterns.visitor.example.Visitor;
+import refactoring_guru.patterns.visitor.example.visitor.Visitor;
 
 public class Rectangle implements Shape {
     public int id;
@@ -24,14 +24,12 @@ public class Rectangle implements Shape {
 
     @Override
     public void move(int x, int y) {
-        // TODO
- moving shape
+        // move shape
     }
 
     @Override
     public void draw() {
-        // TODO
- droving shape
+        // draw shape
     }
 
     public int getId() {

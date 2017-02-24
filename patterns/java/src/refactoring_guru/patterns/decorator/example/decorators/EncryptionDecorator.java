@@ -1,5 +1,7 @@
 package refactoring_guru.patterns.decorator.example.decorators;
 
+import java.util.Base64;
+
 public class EncryptionDecorator extends DataSourceDecorator {
 
     public EncryptionDecorator(DataSource source) {
@@ -13,7 +15,7 @@ public class EncryptionDecorator extends DataSourceDecorator {
 
     @Override
     public String readData() {
-        return super.readData();
+        return decode(super.readData());
     }
 
     public String readDecodedData() {
@@ -23,15 +25,15 @@ public class EncryptionDecorator extends DataSourceDecorator {
     public String encode(String data) {
         byte[] result = data.getBytes();
         for (int i = 0; i < result.length; i++) {
-            result[i] += (byte)1;
+            result[i] += (byte) 1;
         }
-        return new String(result);
+        return Base64.getEncoder().encodeToString(result);
     }
 
     public String decode(String data) {
-        byte[] result = data.getBytes();
+        byte[] result = Base64.getDecoder().decode(data);
         for (int i = 0; i < result.length; i++) {
-            result[i] -= (byte)1;
+            result[i] -= (byte) 1;
         }
         return new String(result);
     }

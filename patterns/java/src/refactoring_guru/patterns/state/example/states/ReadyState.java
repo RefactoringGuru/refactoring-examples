@@ -24,8 +24,7 @@ public class ReadyState extends State {
 
     @Override
     public String onNext() {
-        UI.getTextField().setText(player.nextTrack());
-        return player.startPlayback();
+        return player.nextTrack();
     }
 
     @Override

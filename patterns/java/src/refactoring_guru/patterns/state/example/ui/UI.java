@@ -35,8 +35,4 @@ public class UI {
         buttons.add(next);
         buttons.add(prev);
     }
-
-    public static JTextField getTextField() {
-        return textField;
-    }
 }

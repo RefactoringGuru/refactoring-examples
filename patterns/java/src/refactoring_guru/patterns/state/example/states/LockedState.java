@@ -17,7 +17,6 @@ public class LockedState extends State {
         } else {
             player.changeState(new ReadyState(player));
             return "Locked...";
-        }
     }
 
     @Override

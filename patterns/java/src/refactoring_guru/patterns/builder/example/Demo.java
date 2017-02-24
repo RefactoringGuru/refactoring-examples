@@ -4,6 +4,7 @@ import refactoring_guru.patterns.builder.example.builders.CarBuilder;
 import refactoring_guru.patterns.builder.example.builders.CarManualBuilder;
 import refactoring_guru.patterns.builder.example.cars.Car;
 import refactoring_guru.patterns.builder.example.cars.Manual;
+import refactoring_guru.patterns.builder.example.director.Director;
 
 /**
  * EN: Demo class. Everything comes together here.

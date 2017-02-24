@@ -1,5 +1,6 @@
 package refactoring_guru.patterns.composite.example;
 
+import refactoring_guru.patterns.composite.example.editor.ImageEditor;
 import refactoring_guru.patterns.composite.example.shapes.*;
 
 import java.awt.Color;

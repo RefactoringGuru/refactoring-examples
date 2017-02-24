@@ -4,19 +4,18 @@ import refactoring_guru.patterns.decorator.example.decorators.*;
 
 public class Demo {
     public static void main(String[] args) {
-        dumbUsageExample();
-        applicationExample();
-    }
+        String salaryRecords = "Name,Salary\nJohn Smith,100000\nSteven Jobs,912000";
+        DataSourceDecorator encoded = new CompressionDecorator(
+                                         new EncryptionDecorator(
+                                             new FileDataSource("out/OutputDemo.txt")));
+        encoded.writeData(salaryRecords);
+        DataSource plain = new FileDataSource("out/OutputDemo.txt");
 
-    public static void dumbUsageExample() {
-        String salaryRecords = "100500; 558899; 110215; 254755; 2556658;";
-        DataSourceDecorator source = new CompressionDecorator(new EncryptionDecorator(
-                new FileDataSource("D:/new file.dat")));
-        source.writeData(salaryRecords);
-    }
-
-    public static void applicationExample() {
-        Application app = new Application(true, false);
-        app.start();
+        System.out.println("- Input ----------------");
+        System.out.println(salaryRecords);
+        System.out.println("- Encoded --------------");
+        System.out.println(plain.readData());
+        System.out.println("- Decoded --------------");
+        System.out.println(encoded.readData());
     }
 }
