@@ -16,7 +16,6 @@ public class Server {
 
     public Server() {
         User admin = new User("admin", "admin.@example.com", "root");
-        admin.setAdmin(true);
         users.put("admin@example.com", admin);
         checkConfig();
     }
@@ -47,11 +46,10 @@ public class Server {
         try {
             boolean check = false;
             String email = null;
-            String password = null;
             User user;
             while (!check) {
                 // checker request here
-                check = checker.check(email, password);
+                check = checker.check(email);
                 if (check) {
                     System.out.println("Request limit exceeded!");
                     break;
@@ -59,22 +57,22 @@ public class Server {
                 System.out.print("Enter email: ");
                 email = READER.readLine();
                 System.out.print("Input password: ");
-                password = READER.readLine();
+                String password = READER.readLine();
 
                 // checker user here
-                if (checker.check(email, password) &&
+                if (checker.check(email) &&
                         password.equals(users.get(email).getPassword())) {
                     user = users.get(email);
                     System.out.println("LogIn is successful");
                 } else {
                     System.out.println("Wrong email or password!b");
                     email = null;
-                    password = null;
                     continue;
                 }
 
                 // checker admin here
-                if (user.isAdmin()) {
+                checker = new UserAdminChecker();
+                if (checker.check(email)) {
                     System.out.println("Hello, Admin!");
                 } else {
                     System.out.println("Hello, " + user.getName() + "!");

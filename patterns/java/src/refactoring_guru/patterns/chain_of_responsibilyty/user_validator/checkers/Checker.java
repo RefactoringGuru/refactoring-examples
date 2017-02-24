@@ -3,5 +3,5 @@ package refactoring_guru.patterns.chain_of_responsibilyty.user_validator.checker
 public abstract class Checker {
     public Checker next;
 
-    public abstract boolean check(String name, String password);
+    public abstract boolean check(String email);
 }

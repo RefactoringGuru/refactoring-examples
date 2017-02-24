@@ -5,11 +5,7 @@ import refactoring_guru.patterns.chain_of_responsibilyty.user_validator.*;
 public class UserExistChecker extends Checker {
 
     @Override
-    public boolean check(String email, String password) {
-        if (Server.users.containsKey(email)) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean check(String email) {
+        return Server.users.containsKey(email);
     }
 }
