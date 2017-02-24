@@ -1,12 +1,15 @@
 package refactoring_guru.patterns.chain_of_responsibilyty.user_validator.checkers;
 
+import refactoring_guru.patterns.chain_of_responsibilyty.user_validator.*;
+
 public class UserExistChecker extends Checker {
-    public UserExistChecker() {
-        this.config = 2;
-    }
 
     @Override
-    public boolean check() {
-        return false;
+    public boolean check(String email, String password) {
+        if (Server.users.containsKey(email)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

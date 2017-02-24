@@ -3,16 +3,13 @@ package refactoring_guru.patterns.chain_of_responsibilyty.user_validator.checker
 public class CountRequestChecker extends Checker {
     public int request;
 
-    public CountRequestChecker() {
-        this.config = 1;
-    }
-
     @Override
-    public boolean check() {
-        request++;
-        if (request > 3) {
-            return false;
+    public boolean check(String name, String password) {
+        if (name == null && password == null) {
+            request++;
+            return request > 3;
+        } else {
+            return next.check(name, password);
         }
-        return true;
     }
 }

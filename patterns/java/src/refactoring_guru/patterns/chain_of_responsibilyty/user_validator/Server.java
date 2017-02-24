@@ -5,32 +5,25 @@ import refactoring_guru.patterns.chain_of_responsibilyty.user_validator.checkers
 import java.io.*;
 import java.util.*;
 
+/**
+ * RU:
+ */
 public class Server {
     private final BufferedReader READER = new BufferedReader(new InputStreamReader(System.in));
     private Checker checker;
-    public Map<String, User> users = new HashMap<>();
+    public static Map<String, User> users = new HashMap<>();
 
 
     public Server() {
         User admin = new User("admin", "admin.@example.com", "root");
-        admin.setType("admin");
-        users.put("admin", admin);
-        checkConfig(3);
+        admin.setAdmin(true);
+        users.put("admin@example.com", admin);
+        checkConfig();
     }
 
-    public void checkConfig(int config) {
-        if (config == 1) {
-            checker = new CountRequestChecker();
-        } else if (config == 2) {
-            checker = new CountRequestChecker();
-            checker.next = new UserExistChecker();
-        } else if (config == 3) {
-            checker = new CountRequestChecker();
-            checker.next = new UserExistChecker();
-            checker.next.next = new UserAdminChecker();
-        } else {
-            checkConfig(3);
-        }
+    public void checkConfig() {
+        checker = new CountRequestChecker();
+        checker.next = new UserExistChecker();
     }
 
     public void register() {
@@ -41,7 +34,8 @@ public class Server {
             String email = READER.readLine();
             System.out.print("Enter password: ");
             String password = READER.readLine();
-            System.out.print("Confirm password: " + password.equals(READER.readLine()));
+            System.out.print("Confirm password: ");
+            password.equals(READER.readLine());
             User user = new User(name, email, password);
             users.put(password, user);
         } catch (IOException ex) {
@@ -51,20 +45,41 @@ public class Server {
 
     public void logIn() {
         try {
-            boolean check = true;
-            while (check) {
+            boolean check = false;
+            String email = null;
+            String password = null;
+            User user;
+            while (!check) {
                 // checker request here
+                check = checker.check(email, password);
+                if (check) {
+                    System.out.println("Request limit exceeded!");
+                    break;
+                }
                 System.out.print("Enter email: ");
-                String email = READER.readLine();
+                email = READER.readLine();
                 System.out.print("Input password: ");
-                String password = READER.readLine();
+                password = READER.readLine();
 
                 // checker user here
-                User user = users.get(password);
-                boolean bool = email.equals(user.getEmail());
+                if (checker.check(email, password) &&
+                        password.equals(users.get(email).getPassword())) {
+                    user = users.get(email);
+                    System.out.println("LogIn is successful");
+                } else {
+                    System.out.println("Wrong email or password!b");
+                    email = null;
+                    password = null;
+                    continue;
+                }
 
                 // checker admin here
-
+                if (user.isAdmin()) {
+                    System.out.println("Hello, Admin!");
+                } else {
+                    System.out.println("Hello, " + user.getName() + "!");
+                }
+                check = true;
             }
         } catch (IOException ex) {
             ex.printStackTrace();
