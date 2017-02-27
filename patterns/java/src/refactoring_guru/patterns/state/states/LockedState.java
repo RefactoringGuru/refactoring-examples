@@ -15,7 +15,6 @@ public class LockedState extends State {
             player.changeState(new ReadyState(player));
             return "Stop playing";
         } else {
-            player.changeState(new ReadyState(player));
             return "Locked...";
         }
     }
@@ -28,11 +27,11 @@ public class LockedState extends State {
 
     @Override
     public String onNext() {
-        return "Locked";
+        return "Locked...";
     }
 
     @Override
     public String onPrevious() {
-        return "Locked";
+        return "Locked...";
     }
 }

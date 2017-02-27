@@ -11,6 +11,7 @@ public class PlayingState extends State {
     @Override
     public String onLock() {
         player.changeState(new LockedState(player));
+        player.setCurrentTrackAfterStop();
         return "Stop playing";
     }
 
