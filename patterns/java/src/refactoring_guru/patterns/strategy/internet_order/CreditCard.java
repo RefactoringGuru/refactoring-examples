@@ -10,7 +10,7 @@ public class CreditCard {
     private String cvv;
 
     public CreditCard(String number, String date, String cvv) {
-        this.amount = 10_000;
+        this.amount = 100_000;
         this.number = number;
         this.date = date;
         this.cvv = cvv;

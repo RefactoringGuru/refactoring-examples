@@ -22,37 +22,40 @@ public class Application {
     public static void choiceProduct() throws IOException {
         while (!order.isClosed()) {
             int cost;
-            System.out.print("Select a product:" + "\n" +
-                    "1 - Mother board" + "\n" +
-                    "2 - CPU" + "\n" +
-                    "3 - HDD" + "\n" +
-                    "4 - Memory" + "\n");
-            int choice = Integer.parseInt(reader.readLine());
-            cost = priceOnProducts.get(choice);
-            System.out.print("Count: ");
-            int count = Integer.parseInt(reader.readLine());
-            order.setTotalCost(cost * count);
-            System.out.println("Total: " + order.getTotalCost() + "\n" +
-                    "Select a Payment Method" + "\n" +
-                    "1 - PalPay" + "\n" +
-                    "2 - Credit Card");
-            String paymentMethod = reader.readLine();
-            if (paymentMethod.equals("1")) {
-                if (strategy == null || strategy.getClass().getSimpleName().equals("PayByCreditCard")) {
+
+            String continueChoice;
+            do {
+                System.out.print("Select a product:" + "\n" +
+                        "1 - Mother board" + "\n" +
+                        "2 - CPU" + "\n" +
+                        "3 - HDD" + "\n" +
+                        "4 - Memory" + "\n");
+                int choice = Integer.parseInt(reader.readLine());
+                cost = priceOnProducts.get(choice);
+                System.out.print("Count: ");
+                int count = Integer.parseInt(reader.readLine());
+                order.setTotalCost(cost * count);
+                System.out.print("You wish to continue selection? Y/N: ");
+                continueChoice = reader.readLine();
+            } while (continueChoice.equalsIgnoreCase("Y"));
+
+            if (strategy == null) {
+                System.out.println("Select a Payment Method" + "\n" +
+                        "1 - PalPay" + "\n" +
+                        "2 - Credit Card");
+                String paymentMethod = reader.readLine();
+                if (paymentMethod.equals("1")) {
                     strategy = new PayByPayPal();
-                }
-            } else if (paymentMethod.equals("2")) {
-                if (strategy == null || strategy.getClass().getSimpleName().equals("PayByPayPal")) {
+                } else if (paymentMethod.equals("2")) {
                     strategy = new PayByCreditCard();
                 }
+                order.processOrder(strategy);
             }
-            order.processOrder(strategy);
 
-            System.out.print("Continue shopping? Yes/No:  ");
+            System.out.print("Pay " + Order.getTotalCost() + " units or Continue shopping?  P/C: ");
             String proceed = reader.readLine();
-            if (proceed.equals("Yes")) {
-                order.setToZero();
-            } else if (proceed.equals("No")) {
+            if (proceed.equalsIgnoreCase("P")) {
+                strategy.pay(Order.getTotalCost());
                 order.setClosed();
             }
         }

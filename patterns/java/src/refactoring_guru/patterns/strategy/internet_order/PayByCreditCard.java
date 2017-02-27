@@ -24,45 +24,24 @@ public class PayByCreditCard implements PayStrategy {
             System.out.print("Enter cvv code: ");
             String cvv = READER.readLine();
             card = new CreditCard(number, date, cvv);
-            do{
-                int remainderByCC = card.getAmount() - Order.getTotalCost();
-                if (remainderByCC < 0) {
-                    replenishCard();
-                }
-            } while (Order.getTotalCost() > card.getAmount());
+
+            // Ru: Валидируем номер карты
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
-    // RU: после проверки карты мы можем оплатить покипку,
-    // если клиент продолжает покипки, мы не запрашиваем нужную карту,
-    // а проверяем на наличие средств уже имеющуюся
+    // RU: После проверки карты мы можем оплатить покупку,
+    // если клиент продолжает покупки, мы не запрашиваем карту заново
     @Override
-    public void pay(int paymentAmount) {
+    public boolean pay(int paymentAmount) {
         if (cardIsPresent()) {
-            do {
-                if (card.getAmount() < Order.getTotalCost()) {
-                    replenishCard();
-                }
-            } while (card.getAmount() < Order.getTotalCost());
             System.out.println("Paying " + paymentAmount + " using Credit Card");
             card.setAmount(card.getAmount() - paymentAmount);
+            return true;
         } else {
-            collectPaymentDetails();
-            pay(paymentAmount);
-        }
-    }
-
-    private void replenishCard() {
-        try {
-            System.out.println("Balance on the credit card: " + card.getAmount() + "\n" +
-                    "Payment amount: " + Order.getTotalCost() + "\n" +
-                    "Replenish your balance.");
-            int replenish = Integer.parseInt(READER.readLine());
-            card.setAmount(replenish);
-        } catch (IOException ex) {
-            ex.printStackTrace();
+            return false;
         }
     }
 

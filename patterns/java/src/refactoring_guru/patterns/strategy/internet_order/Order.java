@@ -10,7 +10,7 @@ public class Order {
     private boolean isClosed = false;
 
     public void processOrder(PayStrategy strategy) {
-        strategy.pay(totalCost);
+        strategy.collectPaymentDetails();
     }
 
     public void setTotalCost(int cost) {
@@ -19,10 +19,6 @@ public class Order {
 
     public static int getTotalCost() {
         return totalCost;
-    }
-
-    public static void setToZero() {
-        totalCost = 0;
     }
 
     public boolean isClosed() {
