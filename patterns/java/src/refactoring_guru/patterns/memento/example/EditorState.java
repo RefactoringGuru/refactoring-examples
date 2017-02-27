@@ -1,6 +1,6 @@
 package refactoring_guru.patterns.memento.example;
 
-import refactoring_guru.patterns.command.example.Editor;
+import refactoring_guru.patterns.command.example.editor.Editor;
 
 public class EditorState {
     private Editor editor;

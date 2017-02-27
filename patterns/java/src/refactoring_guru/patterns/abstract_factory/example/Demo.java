@@ -1,5 +1,6 @@
 package refactoring_guru.patterns.abstract_factory.example;
 
+import refactoring_guru.patterns.abstract_factory.example.app.Application;
 import refactoring_guru.patterns.abstract_factory.example.factories.GUIFactory;
 import refactoring_guru.patterns.abstract_factory.example.factories.OSXFactory;
 import refactoring_guru.patterns.abstract_factory.example.factories.WindowsFactory;

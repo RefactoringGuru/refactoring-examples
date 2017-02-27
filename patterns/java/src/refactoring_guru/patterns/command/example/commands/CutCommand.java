@@ -1,25 +1,27 @@
 package refactoring_guru.patterns.command.example.commands;
 
-import refactoring_guru.patterns.command.example.Application;
-import refactoring_guru.patterns.command.example.Editor;
+import refactoring_guru.patterns.command.example.editor.Editor;
 
 public class CutCommand extends Command {
 
-    public CutCommand(Application app, Editor editor) {
-        super(app, editor);
+    public CutCommand(Editor editor) {
+        super(editor);
     }
 
     @Override
-    public void execute() {
+    public Boolean execute() {
+        if (editor.textField.getSelectedText().isEmpty()) return false;
+
         backup();
         String source = editor.textField.getText();
-        app.clipboard = editor.textField.getSelectedText();
-        editor.textField.setText(weedOutCuttingSymbols(source, app.clipboard));
+        editor.clipboard = editor.textField.getSelectedText();
+        editor.textField.setText(cutString(source, editor.clipboard));
+        return true;
     }
 
-    public String weedOutCuttingSymbols(String source, String cut) {
-        String result = source.substring(0, source.indexOf(cut));
-        result += source.substring(source.indexOf(cut) + cut.length(), source.length() - 1);
-        return result;
+    public String cutString(String source, String cut) {
+        String start = source.substring(0, editor.textField.getSelectionStart());
+        String end = source.substring(editor.textField.getSelectionEnd(), source.length());
+        return start + end;
     }
 }

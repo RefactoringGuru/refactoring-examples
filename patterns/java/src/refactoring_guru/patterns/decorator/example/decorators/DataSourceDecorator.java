@@ -1,7 +1,7 @@
 package refactoring_guru.patterns.decorator.example.decorators;
 
 public class DataSourceDecorator implements DataSource {
-    DataSource wrappee;
+    private DataSource wrappee;
 
     public DataSourceDecorator(DataSource source) {
         this.wrappee = source;

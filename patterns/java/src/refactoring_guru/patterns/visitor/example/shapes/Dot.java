@@ -1,13 +1,14 @@
 package refactoring_guru.patterns.visitor.example.shapes;
 
-import refactoring_guru.patterns.visitor.example.Visitor;
+import refactoring_guru.patterns.visitor.example.visitor.Visitor;
 
 public class Dot implements Shape {
     public int id;
     public int x;
     public int y;
 
-    public Dot() {}
+    public Dot() {
+    }
 
     public Dot(int id, int x, int y) {
         this.id = id;
@@ -17,14 +18,12 @@ public class Dot implements Shape {
 
     @Override
     public void move(int x, int y) {
-        // TODO
- moving shape
+        // move shape
     }
 
     @Override
     public void draw() {
-        // TODO
- droving shape
+        // draw shape
     }
 
     public String accept(Visitor visitor) {

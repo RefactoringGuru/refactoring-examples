@@ -1,3 +1,5 @@
+// TODO Придумать пример получше. Текущий пример может сбивать с толку, т.к. сильно напоминает устройство композита и наблюдателя.
+
 package refactoring_guru.patterns.chain_of_responsibilyty.example;
 
 public class Application {

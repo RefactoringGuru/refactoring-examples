@@ -1,4 +1,8 @@
+// TODO Придумать пример получше, в идеале - консольный. Сейчас пример выглядит слишком запутанным. Фейковые UI элементы сбивают с толку.
+
 package refactoring_guru.patterns.mediator.example;
+
+import refactoring_guru.patterns.mediator.example.mediator.AuthenticationDialog;
 
 import java.util.Scanner;
 

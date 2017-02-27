@@ -1,25 +1,22 @@
 package refactoring_guru.patterns.command.example.commands;
 
-import refactoring_guru.patterns.command.example.Application;
-import refactoring_guru.patterns.command.example.Editor;
+import refactoring_guru.patterns.command.example.editor.Editor;
 
 public abstract class Command {
-    public Application app;
     public Editor editor;
-    public String backup;
+    protected String backup;
 
-    public Command(Application app, Editor editor) {
-        this.app = app;
+    public Command(Editor editor) {
         this.editor = editor;
     }
 
-    public void backup() {
-        backup = app.clipboard;
+    protected void backup() {
+        backup = editor.textField.getText();
     }
 
     public void undo() {
         editor.textField.setText(backup);
     }
 
-    public abstract void execute();
+    public abstract Boolean execute();
 }
