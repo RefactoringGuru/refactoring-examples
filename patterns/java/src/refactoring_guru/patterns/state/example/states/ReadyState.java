@@ -1,6 +1,6 @@
-package refactoring_guru.patterns.state.states;
+package refactoring_guru.patterns.state.example.states;
 
-import refactoring_guru.patterns.state.ui.Player;
+import refactoring_guru.patterns.state.example.ui.Player;
 
 public class ReadyState extends State {
 
@@ -10,14 +10,14 @@ public class ReadyState extends State {
 
     @Override
     public String onLock() {
-        player.changeState(new LockedState(player));
+        player.changeState(new refactoring_guru.patterns.state.example.states.LockedState(player));
         return "Locked...";
     }
 
     @Override
     public String onPlay() {
         String action = player.startPlayback();
-        player.changeState(new PlayingState(player));
+        player.changeState(new refactoring_guru.patterns.state.example.states.PlayingState(player));
         return action;
     }
 

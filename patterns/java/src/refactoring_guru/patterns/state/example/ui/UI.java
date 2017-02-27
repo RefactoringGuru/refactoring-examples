@@ -1,13 +1,13 @@
-package refactoring_guru.patterns.state.ui;
+package refactoring_guru.patterns.state.example.ui;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class UI {
-    private Player player;
+    private refactoring_guru.patterns.state.example.ui.Player player;
     private static JTextField textField = new JTextField();
 
-    public UI(Player player) {
+    public UI(refactoring_guru.patterns.state.example.ui.Player player) {
         this.player = player;
     }
 

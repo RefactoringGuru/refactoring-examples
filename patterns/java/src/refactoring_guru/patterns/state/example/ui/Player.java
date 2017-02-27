@@ -1,6 +1,6 @@
-package refactoring_guru.patterns.state.ui;
+package refactoring_guru.patterns.state.example.ui;
 
-import refactoring_guru.patterns.state.states.*;
+import refactoring_guru.patterns.state.example.states.*;
 
 import java.util.ArrayList;
 import java.util.List;

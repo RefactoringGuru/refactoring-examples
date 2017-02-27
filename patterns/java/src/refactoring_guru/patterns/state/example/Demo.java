@@ -1,7 +1,6 @@
-package refactoring_guru.patterns.state;
+package refactoring_guru.patterns.state.example;
 
-import refactoring_guru.patterns.state.ui.Player;
-import refactoring_guru.patterns.state.ui.UI;
+import refactoring_guru.patterns.state.example.ui.*;
 
 public class Demo {
     public static void main(String[] args) {

@@ -1,6 +1,6 @@
-package refactoring_guru.patterns.state.states;
+package refactoring_guru.patterns.state.example.states;
 
-import refactoring_guru.patterns.state.ui.Player;
+import refactoring_guru.patterns.state.example.ui.Player;
 
 public class LockedState extends State {
 
