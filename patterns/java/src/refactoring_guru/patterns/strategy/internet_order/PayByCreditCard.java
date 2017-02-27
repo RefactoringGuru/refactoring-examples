@@ -1,8 +1,6 @@
 package refactoring_guru.patterns.strategy.internet_order;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 /**
  * RU: Конкретная стратегия, реализует оплату корзины интернет магазина
