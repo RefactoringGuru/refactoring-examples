@@ -6,6 +6,12 @@ public class UserExistChecker extends Checker {
 
     @Override
     public boolean check(String email) {
-        return Server.users.containsKey(email);
+        if (Server.users.containsKey(email)) {
+            System.out.println("LogIn is successful");
+            return true;
+        } else {
+            System.out.println("Wrong email or password!");
+            return false;
+        }
     }
 }

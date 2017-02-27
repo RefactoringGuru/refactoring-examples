@@ -4,12 +4,14 @@ public class CountRequestChecker extends Checker {
     public int request;
 
     @Override
-    public boolean check(String email) {
-        if (email == null) {
-            request++;
-            return request > 3;
+    public  boolean check(String email) {
+        request++;
+        if (request <= 3) {
+            return true;
         } else {
-            return next.check(email);
+            System.out.println("Request limit exceeded!");
+            Thread.currentThread().stop();
+            return false;
         }
     }
 }
