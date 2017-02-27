@@ -2,6 +2,11 @@ package refactoring_guru.patterns.state.example.states;
 
 import refactoring_guru.patterns.state.example.ui.Player;
 
+/**
+ * EN: They can also trigger state transitions in the context.
+ *
+ * RU: Они также могут переводить контекст в другие состояния.
+ */
 public class ReadyState extends State {
 
     public ReadyState(Player player) {
@@ -23,11 +28,11 @@ public class ReadyState extends State {
 
     @Override
     public String onNext() {
-        return player.nextSong();
+        return "Locked...";
     }
 
     @Override
     public String onPrevious() {
-        return player.previousSong();
+        return "Locked...";
     }
 }

@@ -1,9 +1,6 @@
-// TODO: Пример норм, но надо добавить кода в стейты, чтобы плеер работал более предсказуемо.
-
 package refactoring_guru.patterns.state.example;
 
-import refactoring_guru.patterns.state.example.ui.Player;
-import refactoring_guru.patterns.state.example.ui.UI;
+import refactoring_guru.patterns.state.example.ui.*;
 
 public class Demo {
     public static void main(String[] args) {
