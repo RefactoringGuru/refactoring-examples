@@ -4,10 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class UI {
-    private refactoring_guru.patterns.state.example.ui.Player player;
+    private Player player;
     private static JTextField textField = new JTextField();
 
-    public UI(refactoring_guru.patterns.state.example.ui.Player player) {
+    public UI(Player player) {
         this.player = player;
     }
 
