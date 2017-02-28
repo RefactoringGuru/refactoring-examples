@@ -13,7 +13,8 @@ public class Demo {
 
         // RU: Проверки должны быть связаны в цепь в конечном итоге.
         Middleware middleware = new ThrottlingMiddleware(2)
-                .linkWith(new UserExistsMiddleware().linkWith(new RoleCheckMiddleware()));
+                .linkWith(new UserExistsMiddleware())
+                .linkWith(new RoleCheckMiddleware());
 
         // RU: Сервер получает цепочку от клиента.
         server.setMiddleware(middleware);

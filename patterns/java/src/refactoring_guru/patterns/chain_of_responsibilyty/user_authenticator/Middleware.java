@@ -8,7 +8,7 @@ public abstract class Middleware {
 
     public Middleware linkWith(Middleware next) {
         this.next = next;
-        return this;
+        return next;
     }
 
     public boolean checkNext(String email, String password) {
