@@ -6,12 +6,9 @@ package refactoring_guru.patterns.chain_of_responsibilyty.user_authenticator;
 public abstract class Middleware {
     private Middleware next;
 
-    public void setNext(Middleware next) {
+    public Middleware linkWith(Middleware next) {
         this.next = next;
-    }
-
-    public Middleware getNext() {
-        return next;
+        return this;
     }
 
     public boolean checkNext(String email, String password) {

@@ -12,9 +12,8 @@ public class Demo {
         server.register("user@example.com", "user_pass");
 
         // RU: Проверки должны быть связаны в цепь в конечном итоге.
-        Middleware middleware = (new ThrottlingMiddleware(2));
-        middleware.setNext(new UserExistsMiddleware());
-        middleware.getNext().setNext(new RoleCheckMiddleware());
+        Middleware middleware = new ThrottlingMiddleware(2)
+                .linkWith(new UserExistsMiddleware().linkWith(new RoleCheckMiddleware()));
 
         // RU: Сервер получает цепочку от клиента.
         server.setMiddleware(middleware);
