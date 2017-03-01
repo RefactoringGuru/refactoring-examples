@@ -1,4 +1,4 @@
-package refactoring_guru.patterns.memento.drug_image.shapes;
+package refactoring_guru.patterns.memento.drag_image.shapes;
 
 import java.awt.*;
 

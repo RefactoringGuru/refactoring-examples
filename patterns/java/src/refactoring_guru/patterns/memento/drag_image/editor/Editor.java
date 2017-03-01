@@ -1,7 +1,7 @@
-package refactoring_guru.patterns.memento.drug_image.editor;
+package refactoring_guru.patterns.memento.drag_image.editor;
 
-import refactoring_guru.patterns.memento.drug_image.shapes.*;
-import refactoring_guru.patterns.memento.drug_image.shapes.Shape;
+import refactoring_guru.patterns.memento.drag_image.shapes.*;
+import refactoring_guru.patterns.memento.drag_image.shapes.Shape;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -106,7 +106,7 @@ public class Editor {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 backup.setBackup(shapes);
-                shapes.add(new refactoring_guru.patterns.memento.drug_image.shapes.Rectangle(20, 20, 50, 60));
+                shapes.add(new refactoring_guru.patterns.memento.drag_image.shapes.Rectangle(20, 20, 50, 60));
                 canvas.repaint();
             }
         });

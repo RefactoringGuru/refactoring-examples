@@ -1,4 +1,4 @@
-package refactoring_guru.patterns.memento.drug_image.editor;
+package refactoring_guru.patterns.memento.drag_image.editor;
 
 import java.util.List;
 
