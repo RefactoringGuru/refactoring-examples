@@ -1,4 +1,4 @@
-package refactoring_guru.patterns.strategy.internet_order;
+package refactoring_guru.patterns.strategy.internet_order.strategys;
 
 /**
  * RU: Общий интерфейс всех стратегий.
