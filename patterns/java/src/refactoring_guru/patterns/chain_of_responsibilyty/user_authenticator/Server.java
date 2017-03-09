@@ -1,5 +1,7 @@
 package refactoring_guru.patterns.chain_of_responsibilyty.user_authenticator;
 
+import refactoring_guru.patterns.chain_of_responsibilyty.user_authenticator.middleware.Middleware;
+
 import java.util.HashMap;
 import java.util.Map;
 
