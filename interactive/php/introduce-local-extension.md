@@ -129,7 +129,7 @@ Set step 3
 Select name of "__construct"
 
 #|ru| Теперь добавляется конвертирующий конструктор, принимающий оригинал в качестве аргумента.
-#|en| Now wee should add a converting constructor that accepts the original as an argument.
+#|en| Now we should add a converting constructor that accepts the original as an argument.
 #|uk| Тепер додається конвертируючий конструктор, який приймає оригінал як аргумент. В PHP нельзя создавать несколько конструкторов, поэтому мы просто расширим существующий.
 
 Select:
