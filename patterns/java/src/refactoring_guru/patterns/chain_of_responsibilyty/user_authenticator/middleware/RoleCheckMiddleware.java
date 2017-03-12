@@ -1,4 +1,4 @@
-package refactoring_guru.patterns.chain_of_responsibilyty.user_authenticator;
+package refactoring_guru.patterns.chain_of_responsibilyty.user_authenticator.middleware;
 
 /**
  * RU: Конкретный элемент цепи обрабатывает запрос по-своему.
