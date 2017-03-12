@@ -1,5 +1,9 @@
 package refactoring_guru.patterns.template_method.network_template_method;
 
+import refactoring_guru.patterns.template_method.network_template_method.networks.Facebook;
+import refactoring_guru.patterns.template_method.network_template_method.networks.Network;
+import refactoring_guru.patterns.template_method.network_template_method.networks.Twitter;
+
 import java.io.*;
 
 public class Demo {
