@@ -9,14 +9,14 @@ import java.util.List;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
-public class ShapesDragging extends JComponent {
+public class Editor extends JComponent {
     private Memento backup = new Memento();
     private double dx;
     private double dy;
     private double scale;
     public List<Item> items;
 
-    public ShapesDragging() {
+    public Editor() {
         items = new ArrayList<>();
         dx = 0.0;
         dy = 0.0;
@@ -135,14 +135,14 @@ public class ShapesDragging extends JComponent {
         }
     }
 
-    public static void main(String[] args) {
+    public void init() {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Shapes Dragging");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            ShapesDragging shapesDragging = new ShapesDragging();
-            shapesDragging.addItem(new Rectangle2D.Double(30, 30, 150, 100), Color.RED);
-            shapesDragging.addItem(new Rectangle2D.Double(20, 120, 40, 40), Color.BLUE);
-            frame.getContentPane().add(shapesDragging);
+            Editor editor = new Editor();
+            editor.addItem(new Rectangle2D.Double(30, 30, 150, 100), Color.RED);
+            editor.addItem(new Rectangle2D.Double(20, 120, 40, 40), Color.BLUE);
+            frame.getContentPane().add(editor);
             frame.setSize(600, 400);
             frame.setVisible(true);
         });
