@@ -1,4 +1,4 @@
-package refactoring_guru.patterns.strategy.internet_order;
+package refactoring_guru.patterns.strategy.internet_order.strategies;
 
 /**
  * RU: Класс кредитной карты для более наглядного примера.
