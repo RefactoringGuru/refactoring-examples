@@ -25,7 +25,8 @@ public class Demo {
         left.add(filterPanel);
 
         left.add(new JScrollPane(mediator.getList()));
-        left.add(mediator.getNoteButton());
+        left.add(mediator.getAddButton());
+        left.add(mediator.getDeleteButton());
 
         JPanel right = new JPanel();
         right.setLayout(new BoxLayout(right, BoxLayout.Y_AXIS));
@@ -36,7 +37,9 @@ public class Demo {
         right.add(new JLabel("Text:"));
         mediator.getTextBox().setColumns(20);
         mediator.getTextBox().setRows(10);
-        right.add(mediator.getTextBox());
+        mediator.getTextBox().setLineWrap(true);
+        mediator.getTextBox().setWrapStyleWord(true);
+        right.add(new JScrollPane(mediator.getTextBox()));
         right.add(mediator.getSaveButton());
 
         notes.setLayout(new GridLayout());

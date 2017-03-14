@@ -8,7 +8,8 @@ import javax.swing.event.ListSelectionListener;
 
 public class Editor implements Mediator {
     private Filter filter;
-    private NewNote note;
+    private AddNote add;
+    private DeleteNote delete;
     private Title title;
     private TextBox textBox;
     private Save save;
@@ -16,16 +17,18 @@ public class Editor implements Mediator {
 
     public Editor() {
         this.filter = new Filter();
-        this.note = new NewNote();
+        this.add = new AddNote();
+        this.delete = new DeleteNote();
         this.title = new Title();
         this.textBox = new TextBox();
         this.save = new Save();
         DefaultListModel listModel = new DefaultListModel();
         this.list = new List(listModel);
-        list.addElement(new Note());
+        //list.addElement(new Note());
 
         this.filter.setMediator(this);
-        this.note.setMediator(this);
+        this.add.setMediator(this);
+        this.delete.setMediator(this);
         this.title.setMediator(this);
         this.textBox.setMediator(this);
         this.save.setMediator(this);
@@ -36,7 +39,11 @@ public class Editor implements Mediator {
             @Override
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
                 Note note = (Note)list.getSelectedValue();
-                getInfoFromList(note);
+                if (note != null) {
+                    getInfoFromList(note);
+                } else {
+                    clear();
+                }
             }
         });
     }
@@ -45,6 +52,10 @@ public class Editor implements Mediator {
         title.setText("");
         textBox.setText("");
         list.addElement(note);
+    }
+
+    public void deleteNote() {
+        list.deleteElement();
     }
 
     public void getInfoFromList(Note note) {
@@ -59,6 +70,19 @@ public class Editor implements Mediator {
         list.repaint();
     }
 
+    public void markNote() {
+        Note note = list.getCurrentElement();
+        String name = note.getName();
+        if (!name.endsWith("*")) {
+            note.setName(note.getName() + "*");
+        }
+        list.repaint();
+    }
+
+    public void clear() {
+        title.setText("");
+        textBox.setText("");
+    }
 
     // getters
     public Filter getFilter() {
@@ -69,8 +93,12 @@ public class Editor implements Mediator {
         return list;
     }
 
-    public NewNote getNoteButton() {
-        return note;
+    public AddNote getAddButton() {
+        return add;
+    }
+
+    public DeleteNote getDeleteButton() {
+        return delete;
     }
 
     public Save getSaveButton() {

@@ -3,11 +3,8 @@ package refactoring_guru.patterns.mediator.example.components;
 import refactoring_guru.patterns.mediator.example.mediator.Editor;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import java.awt.event.MouseListener;
 
-public class List extends JList {
+public class List<N> extends JList {
     private Editor mediator;
     private DefaultListModel listModel;
 
@@ -26,5 +23,18 @@ public class List extends JList {
         int index = listModel.size() - 1;
         setSelectedIndex(index);
         ensureIndexIsVisible(index);
+    }
+
+    public void deleteElement() {
+        int index = this.getSelectedIndex();
+        try {
+            listModel.remove(index);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.err.println("java.lang.ArrayIndexOutOfBoundsException: -1; List.deleteElement(List.java:31)");
+        }
+    }
+
+    public Note getCurrentElement() {
+        return (Note)getSelectedValue();
     }
 }

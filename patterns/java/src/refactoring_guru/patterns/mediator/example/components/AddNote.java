@@ -3,19 +3,21 @@ package refactoring_guru.patterns.mediator.example.components;
 import refactoring_guru.patterns.mediator.example.mediator.Editor;
 
 import javax.swing.*;
-import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
 
-public class TextBox extends JTextArea {
+public class AddNote extends JButton {
     private Editor mediator;
 
-    public TextBox() {}
+    public AddNote() {
+        super("Add note");
+    }
 
     public void setMediator(Editor mediator) {
         this.mediator = mediator;
     }
 
     @Override
-    protected void processComponentKeyEvent(KeyEvent keyEvent) {
-        mediator.markNote();
+    protected void fireActionPerformed(ActionEvent actionEvent) {
+        mediator.addNewNote(new Note());
     }
 }

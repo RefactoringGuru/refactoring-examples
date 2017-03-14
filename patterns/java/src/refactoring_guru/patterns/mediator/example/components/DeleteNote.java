@@ -5,11 +5,11 @@ import refactoring_guru.patterns.mediator.example.mediator.Editor;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-public class NewNote extends JButton {
+public class DeleteNote extends JButton {
     private Editor mediator;
 
-    public NewNote() {
-        super("New note");
+    public DeleteNote() {
+        super("Delete note");
     }
 
     public void setMediator(Editor mediator) {
@@ -18,6 +18,6 @@ public class NewNote extends JButton {
 
     @Override
     protected void fireActionPerformed(ActionEvent actionEvent) {
-        mediator.addNewNote(new Note());
+        mediator.deleteNote();
     }
 }
