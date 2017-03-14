@@ -1,5 +1,7 @@
 package refactoring_guru.patterns.strategy.internet_order.strategies;
 
+import refactoring_guru.patterns.strategy.internet_order.CreditCard;
+
 import java.io.*;
 
 /**

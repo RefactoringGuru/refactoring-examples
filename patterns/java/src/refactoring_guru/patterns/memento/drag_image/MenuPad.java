@@ -7,11 +7,11 @@ import java.awt.geom.*;
 
 public class MenuPad extends MouseAdapter {
     private JPopupMenu menu = new JPopupMenu();
-    private ShapesDragging shapesDragging;
+    private Editor editor;
     private Memento backup;
 
-    public MenuPad(ShapesDragging shapesDragging, Memento backup) {
-        this.shapesDragging = shapesDragging;
+    public MenuPad(Editor editor, Memento backup) {
+        this.editor = editor;
         this.backup = backup;
         initMenu();
     }
@@ -26,24 +26,24 @@ public class MenuPad extends MouseAdapter {
     public void initMenu() {
         JMenuItem circle = new JMenuItem("Add circle");
         circle.addActionListener(actionEvent -> {
-            backup.setBackup(shapesDragging.items);
-            shapesDragging.addItem(new Ellipse2D.Double(80, 40, 80, 80), Color.CYAN);
-            shapesDragging.repaint();
+            backup.setBackup(editor.items);
+            editor.addItem(new Ellipse2D.Double(80, 40, 80, 80), Color.CYAN);
+            editor.repaint();
         });
         menu.add(circle);
 
         JMenuItem rectangle = new JMenuItem("Add rectangle");
         rectangle.addActionListener(actionEvent -> {
-            backup.setBackup(shapesDragging.items);
-            shapesDragging.addItem(new Rectangle2D.Double(40, 60, 50,50), Color.MAGENTA);
-            shapesDragging.repaint();
+            backup.setBackup(editor.items);
+            editor.addItem(new Rectangle2D.Double(40, 60, 50,50), Color.MAGENTA);
+            editor.repaint();
         });
         menu.add(rectangle);
 
         JMenuItem undo = new JMenuItem("Undo last added");
         undo.addActionListener(actionEvent -> {
-            shapesDragging.items = backup.restore();
-            shapesDragging.repaint();
+            editor.items = backup.restore();
+            editor.repaint();
         });
         menu.add(undo);
     }

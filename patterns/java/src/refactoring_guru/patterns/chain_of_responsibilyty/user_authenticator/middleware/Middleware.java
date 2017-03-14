@@ -1,4 +1,4 @@
-package refactoring_guru.patterns.chain_of_responsibilyty.user_authenticator;
+package refactoring_guru.patterns.chain_of_responsibilyty.user_authenticator.middleware;
 
 /**
  * RU: Базовый класс цепочки умеет строить цепь.
@@ -18,5 +18,5 @@ public abstract class Middleware {
         return true;
     }
 
-    abstract boolean check(String email, String password);
+    public abstract boolean check(String email, String password);
 }

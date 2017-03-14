@@ -1,5 +1,7 @@
 package refactoring_guru.patterns.chain_of_responsibilyty.user_authenticator;
 
+import refactoring_guru.patterns.chain_of_responsibilyty.user_authenticator.middleware.*;
+
 import java.io.*;
 
 public class Demo {

@@ -1,9 +1,0 @@
-Input first operand
-a:
-1
-Input second operand
-b:
-2
-Input action:
-+
-Result = 3
