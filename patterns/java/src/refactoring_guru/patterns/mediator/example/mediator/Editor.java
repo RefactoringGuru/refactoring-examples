@@ -24,7 +24,6 @@ public class Editor implements Mediator {
         this.save = new Save();
         DefaultListModel listModel = new DefaultListModel();
         this.list = new List(listModel);
-        //list.addElement(new Note());
 
         this.filter.setMediator(this);
         this.add.setMediator(this);
@@ -83,6 +82,7 @@ public class Editor implements Mediator {
         title.setText("");
         textBox.setText("");
     }
+
 
     // getters
     public Filter getFilter() {

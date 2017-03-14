@@ -4,13 +4,13 @@ import refactoring_guru.patterns.mediator.example.mediator.Editor;
 
 import javax.swing.*;
 
-public class List<N> extends JList {
+public class List extends JList {
     private Editor mediator;
     private DefaultListModel listModel;
 
     public List(DefaultListModel listModel) {
         super(listModel);
-        this.listModel = listModel;
+        setModel(listModel);
         this.setLayoutOrientation(JList.VERTICAL);
     }
 
@@ -36,5 +36,9 @@ public class List<N> extends JList {
 
     public Note getCurrentElement() {
         return (Note)getSelectedValue();
+    }
+
+    public ListModel getAllElements() {
+        return getModel();
     }
 }
