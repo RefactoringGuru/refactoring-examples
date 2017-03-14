@@ -1,6 +1,6 @@
 package refactoring_guru.patterns.strategy.internet_order;
 
-import refactoring_guru.patterns.strategy.internet_order.strategys.*;
+import refactoring_guru.patterns.strategy.internet_order.strategies.*;
 
 import java.io.*;
 import java.util.*;

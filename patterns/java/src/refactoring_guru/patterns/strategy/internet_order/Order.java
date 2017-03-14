@@ -1,6 +1,6 @@
 package refactoring_guru.patterns.strategy.internet_order;
 
-import refactoring_guru.patterns.strategy.internet_order.strategys.PayStrategy;
+import refactoring_guru.patterns.strategy.internet_order.strategies.PayStrategy;
 
 /**
  * RU: Класс заказа, он ничего не знает о том каким способом(стратегией)
