@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Filter extends JTextField {
     private Mediator mediator;
-    private List list;
+    private ListModel listModel;
 
     public Filter() {}
 
@@ -23,19 +23,14 @@ public class Filter extends JTextField {
     }
 
     public void setList(ListModel listModel) {
-        if (list == null) {
-            list = new List(new DefaultListModel());
-            list.setModel(listModel);
-        } else {
-            list.setModel(listModel);
-        }
+        this.listModel = listModel;
     }
 
     public void searchElements(String s) {
         if (!s.equals("")) {
             ArrayList<Note> notes = new ArrayList<>();
-            for (int i = 0; i < list.getModel().getSize(); i++) {
-                notes.add((Note)list.getModel().getElementAt(i));
+            for (int i = 0; i < listModel.getSize(); i++) {
+                notes.add((Note)listModel.getElementAt(i));
             }
             DefaultListModel listModel = new DefaultListModel();
             for (Note note : notes) {
@@ -43,10 +38,9 @@ public class Filter extends JTextField {
                     listModel.addElement(note);
                 }
             }
-            List tmp = new List(listModel);
-            mediator.setList(tmp);
+            mediator.setElementsList(listModel);
         } else {
-            mediator.setList(list);
+            mediator.setElementsList(listModel);
         }
     }
 }

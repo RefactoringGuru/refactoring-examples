@@ -3,8 +3,6 @@ package refactoring_guru.patterns.mediator.example.mediator;
 import refactoring_guru.patterns.mediator.example.components.*;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 public class Editor implements Mediator {
     private Filter filter;
@@ -85,8 +83,8 @@ public class Editor implements Mediator {
         filter.setList(listModel);
     }
 
-    public void setList(List list) {
-        this.list = list;
+    public void setElementsList(ListModel list) {
+        this.list.setModel(list);
         this.list.repaint();
     }
 

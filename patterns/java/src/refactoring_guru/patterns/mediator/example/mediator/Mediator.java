@@ -12,7 +12,7 @@ public interface Mediator {
     void markNote();
     void clear();
     void sendToFilter(ListModel listModel);
-    void setList(List list);
+    void setElementsList(ListModel list);
     Filter getFilter();
     List getList();
     AddNote getAddButton();

@@ -33,9 +33,7 @@ public class List extends JList {
         try {
             listModel.remove(index);
             mediator.sendToFilter(listModel);
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            //System.err.println("java.lang.ArrayIndexOutOfBoundsException: -1; List.deleteElement(List.java:31)");
-        }
+        } catch (ArrayIndexOutOfBoundsException ex) {}
     }
 
     public Note getCurrentElement() {
