@@ -32,17 +32,12 @@ public class Editor implements Mediator {
         this.textBox.setMediator(this);
         this.save.setMediator(this);
         this.list.setMediator(this);
-
-        // это перенесу в класс списка
-        this.list.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent listSelectionEvent) {
-                Note note = (Note)list.getSelectedValue();
-                if (note != null) {
-                    getInfoFromList(note);
-                } else {
-                    clear();
-                }
+        this.list.addListSelectionListener(listSelectionEvent -> {
+            Note note = (Note)list.getSelectedValue();
+            if (note != null) {
+                getInfoFromList(note);
+            } else {
+                clear();
             }
         });
     }
@@ -63,10 +58,13 @@ public class Editor implements Mediator {
     }
 
     public void saveChanges() {
-        Note note = (Note) list.getSelectedValue();
-        note.setName(title.getText());
-        note.setText(textBox.getText());
-        list.repaint();
+        try {
+            Note note = (Note) list.getSelectedValue();
+            note.setName(title.getText());
+            note.setText(textBox.getText());
+            list.repaint();
+        } catch (NullPointerException ex) {}
+
     }
 
     public void markNote() {
@@ -83,6 +81,14 @@ public class Editor implements Mediator {
         textBox.setText("");
     }
 
+    public void sendToFilter(ListModel listModel) {
+        filter.setList(listModel);
+    }
+
+    public void setList(List list) {
+        this.list = list;
+        this.list.repaint();
+    }
 
     // getters
     public Filter getFilter() {

@@ -1,16 +1,16 @@
 package refactoring_guru.patterns.mediator.example.components;
 
-import refactoring_guru.patterns.mediator.example.mediator.Editor;
+import refactoring_guru.patterns.mediator.example.mediator.Mediator;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 
 public class TextBox extends JTextArea {
-    private Editor mediator;
+    private Mediator mediator;
 
     public TextBox() {}
 
-    public void setMediator(Editor mediator) {
+    public void setMediator(Mediator mediator) {
         this.mediator = mediator;
     }
 

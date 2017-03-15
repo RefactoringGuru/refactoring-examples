@@ -1,20 +1,22 @@
 package refactoring_guru.patterns.mediator.example.components;
 
-import refactoring_guru.patterns.mediator.example.mediator.Editor;
+import refactoring_guru.patterns.mediator.example.mediator.Mediator;
 
 import javax.swing.*;
 
+@SuppressWarnings("unchecked")
 public class List extends JList {
-    private Editor mediator;
+    private Mediator mediator;
     private DefaultListModel listModel;
 
     public List(DefaultListModel listModel) {
         super(listModel);
+        this.listModel = listModel;
         setModel(listModel);
         this.setLayoutOrientation(JList.VERTICAL);
     }
 
-    public void setMediator(Editor mediator) {
+    public void setMediator(Mediator mediator) {
         this.mediator = mediator;
     }
 
@@ -23,22 +25,20 @@ public class List extends JList {
         int index = listModel.size() - 1;
         setSelectedIndex(index);
         ensureIndexIsVisible(index);
+        mediator.sendToFilter(listModel);
     }
 
     public void deleteElement() {
         int index = this.getSelectedIndex();
         try {
             listModel.remove(index);
+            mediator.sendToFilter(listModel);
         } catch (ArrayIndexOutOfBoundsException ex) {
-            System.err.println("java.lang.ArrayIndexOutOfBoundsException: -1; List.deleteElement(List.java:31)");
+            //System.err.println("java.lang.ArrayIndexOutOfBoundsException: -1; List.deleteElement(List.java:31)");
         }
     }
 
     public Note getCurrentElement() {
         return (Note)getSelectedValue();
-    }
-
-    public ListModel getAllElements() {
-        return getModel();
     }
 }
