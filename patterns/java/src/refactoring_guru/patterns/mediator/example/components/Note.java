@@ -1,5 +1,10 @@
 package refactoring_guru.patterns.mediator.example.components;
 
+/**
+ * EN: Note class.
+ *
+ * RU: Класс заматки.
+ */
 public class Note {
     private String name;
     private String text;

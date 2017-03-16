@@ -3,7 +3,7 @@ package refactoring_guru.patterns.mediator.example.components;
 import refactoring_guru.patterns.mediator.example.mediator.Mediator;
 
 import javax.swing.*;
-import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
 
 /**
  * EN: Concrete components don't talk with each other. They have only one
@@ -12,8 +12,12 @@ import java.awt.event.KeyEvent;
  * RU: Конкретные компоненты никак не связаны между собой. У них есть только
  *     один канал общения – через отправку уведомлений посреднику.
  */
-public class TextBox extends JTextArea implements Component {
+public class DeleteButton extends JButton  implements Component {
     private Mediator mediator;
+
+    public DeleteButton() {
+        super("Del");
+    }
 
     @Override
     public void setMediator(Mediator mediator) {
@@ -21,12 +25,12 @@ public class TextBox extends JTextArea implements Component {
     }
 
     @Override
-    protected void processComponentKeyEvent(KeyEvent keyEvent) {
-        mediator.markNote();
+    protected void fireActionPerformed(ActionEvent actionEvent) {
+        mediator.deleteNote();
     }
 
     @Override
     public String getName() {
-        return "TextBox";
+        return "DelButton";
     }
 }

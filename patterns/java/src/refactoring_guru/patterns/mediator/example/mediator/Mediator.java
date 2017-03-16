@@ -4,6 +4,11 @@ import refactoring_guru.patterns.mediator.example.components.*;
 
 import javax.swing.*;
 
+/**
+ * EN: Common mediator interface.
+ *
+ * RU: Общий интерфейс посредников.
+ */
 public interface Mediator {
     void addNewNote(Note note);
     void deleteNote();
@@ -13,11 +18,6 @@ public interface Mediator {
     void clear();
     void sendToFilter(ListModel listModel);
     void setElementsList(ListModel list);
-    Filter getFilter();
-    List getList();
-    AddNote getAddButton();
-    DeleteNote getDeleteButton();
-    Save getSaveButton();
-    TextBox getTextBox();
-    Title getTitle();
+    void registerComponent(Component component);
+    void createGUI();
 }

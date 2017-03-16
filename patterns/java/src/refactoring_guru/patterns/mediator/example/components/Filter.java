@@ -6,12 +6,20 @@ import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-public class Filter extends JTextField {
+/**
+ * EN: Concrete components don't talk with each other. They have only one
+ *     communication channel–sending requests to the mediator.
+ *
+ * RU: Конкретные компоненты никак не связаны между собой. У них есть только
+ *     один канал общения – через отправку уведомлений посреднику.
+ */
+public class Filter extends JTextField implements Component {
     private Mediator mediator;
     private ListModel listModel;
 
     public Filter() {}
 
+    @Override
     public void setMediator(Mediator mediator) {
         this.mediator = mediator;
     }
@@ -26,7 +34,8 @@ public class Filter extends JTextField {
         this.listModel = listModel;
     }
 
-    public void searchElements(String s) {
+    @SuppressWarnings("unchecked")
+    private void searchElements(String s) {
         if (!s.equals("")) {
             ArrayList<Note> notes = new ArrayList<>();
             for (int i = 0; i < listModel.getSize(); i++) {
@@ -42,5 +51,10 @@ public class Filter extends JTextField {
         } else {
             mediator.setElementsList(listModel);
         }
+    }
+
+    @Override
+    public String getName() {
+        return "Filter";
     }
 }
