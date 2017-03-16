@@ -1,27 +1,27 @@
-// TODO Придумать пример получше, в идеале - консольный. Сейчас пример выглядит слишком запутанным. Фейковые UI элементы сбивают с толку.
-
 package refactoring_guru.patterns.mediator.example;
 
-import refactoring_guru.patterns.mediator.example.mediator.AuthenticationDialog;
+import refactoring_guru.patterns.mediator.example.components.*;
+import refactoring_guru.patterns.mediator.example.mediator.*;
 
-import java.util.Scanner;
+import javax.swing.*;
 
+/**
+ * EN: Demo class.
+ *
+ * RU: Демо класс.
+ */
 public class Demo {
-    public static Scanner scanner = new Scanner(System.in);
-
     public static void main(String[] args) {
-        AuthenticationDialog dialog = new AuthenticationDialog();
-        dialog.putProfile("jack@ya.com", "qwerty");
-        dialog.putProfile("big.bob@bing.com", "Gyhjik4862");
+        Mediator mediator = new Editor();
 
-        System.out.print("Input user email: ");
-        String userEmail = scanner.nextLine();
-        dialog.loginUserEmail.setValue(userEmail);
-        System.out.print("Input password: ");
-        String password = scanner.nextLine();
-        dialog.loginPassword.setValue(password);
+        mediator.registerComponent(new Title());
+        mediator.registerComponent(new TextBox());
+        mediator.registerComponent(new AddButton());
+        mediator.registerComponent(new DeleteButton());
+        mediator.registerComponent(new SaveButton());
+        mediator.registerComponent(new List(new DefaultListModel()));
+        mediator.registerComponent(new Filter());
 
-        dialog.loginOrRegister.setChecked(true);
-        dialog.notify("click", dialog.ok);
+        mediator.createGUI();
     }
 }

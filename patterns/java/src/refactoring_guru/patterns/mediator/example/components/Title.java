@@ -12,7 +12,7 @@ import java.awt.event.KeyEvent;
  * RU: Конкретные компоненты никак не связаны между собой. У них есть только
  *     один канал общения – через отправку уведомлений посреднику.
  */
-public class TextBox extends JTextArea implements Component {
+public class Title extends JTextField implements Component {
     private Mediator mediator;
 
     @Override
@@ -27,6 +27,6 @@ public class TextBox extends JTextArea implements Component {
 
     @Override
     public String getName() {
-        return "TextBox";
+        return "Title";
     }
 }
