@@ -19,5 +19,6 @@ public interface Mediator {
     void sendToFilter(ListModel listModel);
     void setElementsList(ListModel list);
     void registerComponent(Component component);
+    void hideElements(boolean flag);
     void createGUI();
 }

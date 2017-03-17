@@ -43,13 +43,15 @@ public class Filter extends JTextField implements Component {
             }
             DefaultListModel listModel = new DefaultListModel();
             for (Note note : notes) {
-                if (note.getName().startsWith(s)) {
+                if (note.getName().contains(s)) {
                     listModel.addElement(note);
                 }
             }
             mediator.setElementsList(listModel);
         } else {
-            mediator.setElementsList(listModel);
+            if (listModel != null) {
+                mediator.setElementsList(listModel);
+            }
         }
     }
 

@@ -23,6 +23,7 @@ public class Editor implements Mediator {
     private SaveButton save;
     private List list;
     private Filter filter;
+    private Label label;
 
     /**
      * EN: Here the registration of components by the mediator.
@@ -62,6 +63,10 @@ public class Editor implements Mediator {
             case "Title":
                 title = (Title)component;
                 break;
+            case "Label":
+                label = (Label)component;
+                label.setVisible(true);
+                break;
         }
     }
 
@@ -79,7 +84,7 @@ public class Editor implements Mediator {
 
     @Override
     public void getInfoFromList(Note note) {
-        title.setText(note.getName());
+        title.setText(note.getName().replace('*', ' '));
         textBox.setText(note.getText());
     }
 
@@ -124,9 +129,17 @@ public class Editor implements Mediator {
     }
 
     @Override
+    public void hideElements(boolean flag) {
+        textBox.setVisible(!flag);
+        title.setVisible(!flag);
+        save.setVisible(!flag);
+        label.setVisible(flag);
+    }
+
+    @Override
     public void createGUI() {
         JFrame notes = new JFrame("Notes");
-        notes.setSize(900, 300);
+        notes.setSize(960, 600);
         notes.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         JPanel left = new JPanel();
@@ -186,6 +199,10 @@ public class Editor implements Mediator {
         textBoxPanel.setLocation(10, 55);
         save.setSize(80, 25);
         save.setLocation(510, 240);
+        label.setSize(600, 300);
+        label.setLocation(0, 0);
+        label.setBackground(Color.DARK_GRAY);
+        right.add(label);
         right.add(titlePanel);
         right.add(textBoxPanel);
         right.add(save);
