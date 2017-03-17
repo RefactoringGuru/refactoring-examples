@@ -1,10 +1,12 @@
 package refactoring_guru.patterns.mediator.example.mediator;
 
 import refactoring_guru.patterns.mediator.example.components.*;
+import refactoring_guru.patterns.mediator.example.components.Component;
+import refactoring_guru.patterns.mediator.example.components.List;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * EN: Concrete mediator. All chaotic communications between concrete components
@@ -23,7 +25,11 @@ public class Editor implements Mediator {
     private SaveButton save;
     private List list;
     private Filter filter;
-    private Label label;
+
+
+    private JLabel titleLabel = new JLabel("Title:");
+    private JLabel textLabel = new JLabel("Text:");
+    private JLabel label = new JLabel("Add or select existing note to procced...");
 
     /**
      * EN: Here the registration of components by the mediator.
@@ -62,10 +68,6 @@ public class Editor implements Mediator {
                 break;
             case "Title":
                 title = (Title)component;
-                break;
-            case "Label":
-                label = (Label)component;
-                label.setVisible(true);
                 break;
         }
     }
@@ -130,8 +132,10 @@ public class Editor implements Mediator {
 
     @Override
     public void hideElements(boolean flag) {
-        textBox.setVisible(!flag);
+        titleLabel.setVisible(!flag);
+        textLabel.setVisible(!flag);
         title.setVisible(!flag);
+        textBox.setVisible(!flag);
         save.setVisible(!flag);
         label.setVisible(flag);
     }
@@ -144,67 +148,47 @@ public class Editor implements Mediator {
 
         JPanel left = new JPanel();
         left.setBorder(new LineBorder(Color.BLACK));
-        left.setSize(300, 300);
-        left.setLocation(0, 0);
-        left.setLayout(null);
+        left.setSize(320, 600);
+        left.setLayout(new BoxLayout(left, BoxLayout.Y_AXIS));
         JPanel filterPanel = new JPanel();
-        filterPanel.setSize(290, 50);
         filterPanel.add(new JLabel("Filter:"));
         filter.setColumns(20);
         filterPanel.add(filter);
-        filterPanel.setSize(280, 30);
-        filterPanel.setLocation(10, 20);
+        filterPanel.setPreferredSize(new Dimension(280, 40));
         JPanel listPanel = new JPanel();
         list.setFixedCellWidth(260);
+        listPanel.setSize(320, 470);
         JScrollPane scrollPane = new JScrollPane(list);
-        scrollPane.setSize(230, 250);
+        scrollPane.setPreferredSize(new Dimension(275, 410));
         listPanel.add(scrollPane);
-        listPanel.setSize(290, 150);
-        listPanel.setLocation(5, 80);
-        add.setSize(80, 25);
-        add.setLocation(70, 240);
-        del.setSize(80, 25);
-        del.setLocation(155, 240);
+        JPanel buttonPanel = new JPanel();
+        add.setPreferredSize(new Dimension(85, 25));
+        buttonPanel.add(add);
+        del.setPreferredSize(new Dimension(85, 25));
+        buttonPanel.add(del);
+        buttonPanel.setLayout(new FlowLayout());
         left.add(filterPanel);
         left.add(listPanel);
-        left.add(add);
-        left.add(del);
+        left.add(buttonPanel);
 
         JPanel right = new JPanel();
         right.setLayout(null);
-        right.setSize(600, 300);
-        right.setLocation(300, 0);
+        right.setSize(640, 600);
+        right.setLocation(320, 0);
         right.setBorder(new LineBorder(Color.BLACK));
-        JPanel titlePanel = new JPanel();
-        titlePanel.setLayout(new BoxLayout(titlePanel, BoxLayout.Y_AXIS));
-        titlePanel.add(new JLabel("Title:"));
-        titlePanel.setSize(580, 35);
-        titlePanel.setLocation(10, 10);
-        titlePanel.add(title);
-        JPanel textBoxPanel = new JPanel();
-        textBoxPanel.setLayout(null);
-        JLabel text = new JLabel("Text:");
-        text.setSize(50, 20);
-        text.setLocation(32, 0);
-        textBoxPanel.add(text);
-        textBox.setColumns(20);
-        textBox.setRows(10);
-        textBox.setLineWrap(true);
-        textBox.setWrapStyleWord(true);
-        JScrollPane textScroll = new JScrollPane(textBox);
-        textScroll.setLocation(0, 30);
-        textScroll.setSize(580, 140);
-        textBoxPanel.add(textScroll);
-        textBoxPanel.setSize(580, 180);
-        textBoxPanel.setLocation(10, 55);
-        save.setSize(80, 25);
-        save.setLocation(510, 240);
-        label.setSize(600, 300);
-        label.setLocation(0, 0);
-        label.setBackground(Color.DARK_GRAY);
+        titleLabel.setBounds(20, 4, 50, 20);
+        title.setBounds(60, 5, 555, 20);
+        textLabel.setBounds(20, 4, 50, 130);
+        textBox.setBorder(new LineBorder(Color.DARK_GRAY));
+        textBox.setBounds(20, 80, 595, 410);
+        save.setBounds(270, 535, 80, 25);
+        label.setFont(new Font("Verdana", Font.PLAIN, 22));
+        label.setBounds(100, 240, 500, 100);
         right.add(label);
-        right.add(titlePanel);
-        right.add(textBoxPanel);
+        right.add(titleLabel);
+        right.add(title);
+        right.add(textLabel);
+        right.add(textBox);
         right.add(save);
 
         notes.setLayout(null);

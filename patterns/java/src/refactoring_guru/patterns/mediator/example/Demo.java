@@ -21,7 +21,6 @@ public class Demo {
         mediator.registerComponent(new SaveButton());
         mediator.registerComponent(new List(new DefaultListModel()));
         mediator.registerComponent(new Filter());
-        mediator.registerComponent(new Label());
 
         mediator.createGUI();
     }

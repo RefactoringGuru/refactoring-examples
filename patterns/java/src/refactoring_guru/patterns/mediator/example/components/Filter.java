@@ -36,6 +36,9 @@ public class Filter extends JTextField implements Component {
 
     @SuppressWarnings("unchecked")
     private void searchElements(String s) {
+        if(listModel == null) {
+            return;
+        }
         if (!s.equals("")) {
             ArrayList<Note> notes = new ArrayList<>();
             for (int i = 0; i < listModel.getSize(); i++) {
@@ -49,9 +52,7 @@ public class Filter extends JTextField implements Component {
             }
             mediator.setElementsList(listModel);
         } else {
-            if (listModel != null) {
-                mediator.setElementsList(listModel);
-            }
+            mediator.setElementsList(listModel);
         }
     }
 
