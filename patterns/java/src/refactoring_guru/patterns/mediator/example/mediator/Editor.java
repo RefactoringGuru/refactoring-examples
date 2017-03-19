@@ -145,7 +145,6 @@ public class Editor implements Mediator {
         JFrame notes = new JFrame("Notes");
         notes.setSize(960, 600);
         notes.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
         JPanel left = new JPanel();
         left.setBorder(new LineBorder(Color.BLACK));
         left.setSize(320, 600);
@@ -170,7 +169,6 @@ public class Editor implements Mediator {
         left.add(filterPanel);
         left.add(listPanel);
         left.add(buttonPanel);
-
         JPanel right = new JPanel();
         right.setLayout(null);
         right.setSize(640, 600);
@@ -190,7 +188,6 @@ public class Editor implements Mediator {
         right.add(textLabel);
         right.add(textBox);
         right.add(save);
-
         notes.setLayout(null);
         notes.getContentPane().add(left);
         notes.getContentPane().add(right);
