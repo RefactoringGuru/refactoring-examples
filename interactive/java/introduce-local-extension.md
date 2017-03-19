@@ -114,7 +114,7 @@ Print:
 Set step 3
 
 #|ru| Теперь добавляется конвертирующий конструктор, принимающий оригинал в качестве аргумента.
-#|en| Now wee should add a converting constructor that accepts the original as an argument.
+#|en| Now we should add a converting constructor that accepts the original as an argument.
 #|uk| Тепер додається конвертируючий конструктор, який приймає оригінал як аргумент.
 
 Go to the end of "MfDateSub"

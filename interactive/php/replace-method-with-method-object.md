@@ -238,6 +238,12 @@ Print:
   }
 ```
 
+Select 1st "$importantValue1" in "compute"
+
+#|ru| Избавимся от локальных переменных, заменив их на поля.
+#|en| It's time to replace local variables with fields.
+#|uk| Позбавимось від локальних змінних, замінивши їх на поля.
+
 Select "$importantValue1" in "compute"
 Replace "$this->importantValue1"
 Select "$importantValue2" in "compute"
@@ -250,7 +256,6 @@ Select "$quantity" in "compute"
 Replace "$this->quantity"
 Select "$yearToDate" in "compute"
 Replace "$this->yearToDate"
-
 
 Select "delta()" in "compute"
 

@@ -1,12 +1,10 @@
 package refactoring_guru.patterns.mediator.example.mediator;
 
 import refactoring_guru.patterns.mediator.example.components.*;
-import refactoring_guru.patterns.mediator.example.components.Component;
-import refactoring_guru.patterns.mediator.example.components.List;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * EN: Concrete mediator. All chaotic communications between concrete components
@@ -26,11 +24,10 @@ public class Editor implements Mediator {
     private List list;
     private Filter filter;
 
-
     private JLabel titleLabel = new JLabel("Title:");
     private JLabel textLabel = new JLabel("Text:");
     private JLabel label = new JLabel("Add or select existing note to procced...");
-
+  
     /**
      * EN: Here the registration of components by the mediator.
      *

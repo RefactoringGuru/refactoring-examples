@@ -3,27 +3,39 @@ replace-method-with-method-object:csharp
 ###
 
 1.ru. Создайте новый класс. Дайте ему название, основываясь на предназначении метода, который рефакторите.
+
 1.en. Create a new class. Name it based on the purpose of the method that you are refactoring.
+
 1.uk. Створіть новий клас. Дайте йому назву, ґрунтуючись на призначенні методу, над яким проводиться рефакторинг.
 
 2.ru. В новом классе создайте приватное поле для хранения ссылки на экземпляр класса, в котором раньше находился метод.
+
 2.en. In the new class, create a private field for storing a reference to an instance of the class in which the method was previously located.
+
 2.uk. У новому класі створіть приватне поле для зберігання посилання на екземпляр класу, в якому раніше знаходився метод.
 
 3.ru. Кроме того, создайте по приватному полю для каждой локальной переменной и параметра метода.
+
 3.en. In addition, create a private field for each local variable and parameter of the method.
+
 3.uk. Крім того, створіть по приватному полю для кожної локальної змінної і параметра методу.
 
 4.ru. Создайте конструктор, который принимает все параметры исходного метода и инициализирует соответствующие приватные поля.
+
 4.en. Create a constructor that accepts all parameters of the original method and initializes the relevant private fields.
+
 4.uk. Створіть конструктор, який приймає всі параметри вихідного методу та ініціалізує відповідні приватні поля.
 
 5.ru. Объявите основной метод и скопируйте в него код оригинального метода, заменив локальные переменные приватным полями.
+
 5.en. Declare the main method and copy the code of the original method to it, replacing the local variables with private fields.
+
 5.uk. Оголосіть основний метод і скопіюйте в нього код оригінального методу, замінивши локальні змінні приватними полями.
 
 6.ru. Замените тело оригинального метода в исходном классе созданием объекта-метода и вызовом его основного метода.
+
 6.en. Replace the body of the original method in the original class by creating a method object and calling its main method.
+
 6.uk. Замініть тіло оригінального методу в початковому класі створенням об'єкту-методу і викликом його основного методу.
 
 
@@ -83,13 +95,14 @@ public class Gamma
 
   public int Compute()
   {
-    int importantValue1 = (inputVal * quantity) + account.Delta();
-    int importantValue2 = (inputVal * yearToDate) + 100;
+    importantValue1 = (inputVal * quantity) + account.Delta();
+    importantValue2 = (inputVal * yearToDate) + 100;
     ImportantThing();
-    int importantValue3 = importantValue2 * 7;
+    importantValue3 = importantValue2 * 7;
     // and so on…
     return importantValue3 - 2 * importantValue1;
   }
+
   private void ImportantThing()
   {
     if ((yearToDate - importantValue1) > 100)
@@ -240,6 +253,25 @@ Print:
   }
 ```
 
+Select in "Compute":
+```
+    |||int |||importantValue1
+```
++Select in "Compute":
+```
+    |||int |||importantValue2
+```
++Select in "Compute":
+```
+    |||int |||importantValue3
+```
+
+#|ru| Избавимся от локальных переменных, заменив их на поля.
+#|en| It's time to replace local variables with fields.
+#|uk| Позбавимось від локальних змінних, замінивши їх на поля.
+
+Remove selected
+
 Select "Delta()" in "Compute"
 
 #|ru| При этом следует модифицировать любые вызовы методов <code>Account</code> так, чтобы они выполнялись через поле <code>account</code>.
@@ -286,6 +318,7 @@ Go to the end of "Gamma"
 
 Print:
 ```
+
 
   private void ImportantThing()
   {
