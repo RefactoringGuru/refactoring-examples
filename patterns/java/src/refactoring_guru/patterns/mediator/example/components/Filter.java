@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 /**
  * EN: Concrete components don't talk with each other. They have only one
- *     communication channel–sending requests to the mediator.
+ * communication channel–sending requests to the mediator.
  *
  * RU: Конкретные компоненты никак не связаны между собой. У них есть только
- *     один канал общения – через отправку уведомлений посреднику.
+ * один канал общения – через отправку уведомлений посреднику.
  */
 public class Filter extends JTextField implements Component {
     private Mediator mediator;
@@ -34,26 +34,27 @@ public class Filter extends JTextField implements Component {
         this.listModel = listModel;
     }
 
-    @SuppressWarnings("unchecked")
     private void searchElements(String s) {
-        if(listModel == null) {
+        if (listModel == null) {
             return;
         }
-        if (!s.equals("")) {
-            ArrayList<Note> notes = new ArrayList<>();
-            for (int i = 0; i < listModel.getSize(); i++) {
-                notes.add((Note)listModel.getElementAt(i));
-            }
-            DefaultListModel listModel = new DefaultListModel();
-            for (Note note : notes) {
-                if (note.getName().contains(s)) {
-                    listModel.addElement(note);
-                }
-            }
+
+        if (s.equals("")) {
             mediator.setElementsList(listModel);
-        } else {
-            mediator.setElementsList(listModel);
+            return;
         }
+
+        ArrayList<Note> notes = new ArrayList<>();
+        for (int i = 0; i < listModel.getSize(); i++) {
+            notes.add((Note) listModel.getElementAt(i));
+        }
+        DefaultListModel<Note> listModel = new DefaultListModel<>();
+        for (Note note : notes) {
+            if (note.getName().contains(s)) {
+                listModel.addElement(note);
+            }
+        }
+        mediator.setElementsList(listModel);
     }
 
     @Override
