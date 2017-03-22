@@ -1,11 +1,11 @@
 package refactoring_guru.patterns.strategy.internet_order.strategies;
 
-import refactoring_guru.patterns.strategy.internet_order.CreditCard;
-
 import java.io.*;
 
 /**
- * RU: Конкретная стратегия, реализует оплату корзины интернет магазина
+ * EN: Concrete strategy. Implements credit card payment method.
+ * 
+ * RU: Конкретная стратегия. Реализует оплату корзины интернет магазина
  * кредитной картой клиента.
  */
 public class PayByCreditCard implements PayStrategy {
@@ -13,7 +13,9 @@ public class PayByCreditCard implements PayStrategy {
     private CreditCard card;
 
     /**
-     * RU: Проверяем карту клиента.
+     * EN: Collect credit card data.
+     * 
+     * RU: Собираем данные карты клиента.
      */
     @Override
     public void collectPaymentDetails() {
@@ -34,8 +36,10 @@ public class PayByCreditCard implements PayStrategy {
     }
 
     /**
-     * RU: После проверки карты мы можем оплатить покупку,
-     * если клиент продолжает покупки, мы не запрашиваем карту заново.
+     * EN: After card validation we can charge customer's credit card.
+     * 
+     * RU: После проверки карты мы можем совершить оплату. Если клиент
+     * продолжает покупки, мы не запрашиваем карту заново.
      */
     @Override
     public boolean pay(int paymentAmount) {

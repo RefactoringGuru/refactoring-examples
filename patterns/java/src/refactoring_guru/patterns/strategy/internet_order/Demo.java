@@ -1,14 +1,17 @@
 package refactoring_guru.patterns.strategy.internet_order;
 
+import refactoring_guru.patterns.strategy.internet_order.order.Order;
 import refactoring_guru.patterns.strategy.internet_order.strategies.*;
 
 import java.io.*;
 import java.util.*;
 
 /**
- * RU: Приложение, где и происходит выбор стратегии и оплата заказа.
+ * EN: World first console e-commerce application.
+ * 
+ * RU: Первый в мире консольный интерет магазин.
  */
-public class Application {
+public class Demo {
     public static Map<Integer, Integer> priceOnProducts = new HashMap<>();
     public static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private static Order order = new Order();
@@ -46,17 +49,34 @@ public class Application {
                         "1 - PalPay" + "\n" +
                         "2 - Credit Card");
                 String paymentMethod = reader.readLine();
+
+                // EN: Client creates different strategies based on input from
+                // user, application configuration, etc.
+                // 
+                // RU: Клиент создаёт различные стратегии на основании
+                // пользовательских данных, конфигурации и прочих параметров.
                 if (paymentMethod.equals("1")) {
                     strategy = new PayByPayPal();
                 } else if (paymentMethod.equals("2")) {
                     strategy = new PayByCreditCard();
                 }
+
+                // EN: Order object delegates gathering payment data to strategy
+                // object, since only strategies know what data they need to
+                // process a payment.
+                // 
+                // RU: Объект заказа делегирует сбор платёжных данны стратегии,
+                // т.к. только стратегии знают какие данные им нужны для
+                // приёма оплаты.
                 order.processOrder(strategy);
             }
 
             System.out.print("Pay " + Order.getTotalCost() + " units or Continue shopping?  P/C: ");
             String proceed = reader.readLine();
             if (proceed.equalsIgnoreCase("P")) {
+                // EN: Finally, strategy handles the payment.
+                // 
+                // RU: И наконец, стратегия запускает приём платежа.
                 if (strategy.pay(Order.getTotalCost())) {
                     System.out.println("Payment has succeeded");
                 } else {

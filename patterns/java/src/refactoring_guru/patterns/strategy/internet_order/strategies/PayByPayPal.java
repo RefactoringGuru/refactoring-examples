@@ -4,8 +4,10 @@ import java.io.*;
 import java.util.*;
 
 /**
- * RU: Конкретная стратегия, реализует оплату корзины интернет магазина
- * через платежную систему PayPal.
+ * EN: Concrete strategy. Implements PayPal payment method.
+ * 
+ * RU: Конкретная стратегия. Реализует оплату корзины интернет магазина через
+ * платежную систему PayPal.
  */
 public class PayByPayPal implements PayStrategy {
     private static final Map<String, String> DATA_BASE = new HashMap<>();
@@ -20,8 +22,9 @@ public class PayByPayPal implements PayStrategy {
     }
 
     /**
-     * RU: Проверяем данные клиента в базе платежной системы,
-     * пример подразумевает что он зарегистрирован.
+     * EN: Collect customer's data.
+     * 
+     * RU: Собираем данные от клиента.
      */
     @Override
     public void collectPaymentDetails() {
@@ -48,8 +51,10 @@ public class PayByPayPal implements PayStrategy {
     }
 
     /**
-     * RU: Если клиент уже вошел в систему, то для следующей оплаты
-     * данные вводить не придется.
+     * EN: Save customer data for future shopping attempts.
+     * 
+     * RU: Если клиент уже вошел в систему, то для следующей оплаты данные
+     * вводить не придется.
      */
     @Override
     public boolean pay(int paymentAmount) {

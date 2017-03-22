@@ -1,7 +1,9 @@
-package refactoring_guru.patterns.strategy.internet_order;
+package refactoring_guru.patterns.strategy.internet_order.strategies;
 
 /**
- * RU: Класс кредитной карты для более наглядного примера.
+ * EN: Dummy credit card class.
+ * 
+ * RU: Очень наивная реализация кредитной карты.
  */
 public class CreditCard {
     private int amount;
