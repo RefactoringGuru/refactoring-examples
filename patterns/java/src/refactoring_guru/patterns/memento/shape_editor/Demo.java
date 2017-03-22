@@ -6,9 +6,6 @@ import refactoring_guru.patterns.memento.shape_editor.shapes.Rectangle;
 
 import java.awt.*;
 
-// TODO: Add labels on the form.
-// TODO: Add history list on the form.
-// TODO: Comments.
 public class Demo {
     public static void main(String[] args) {
         Editor editor = new Editor();
