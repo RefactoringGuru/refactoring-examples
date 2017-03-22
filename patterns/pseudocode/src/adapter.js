@@ -52,9 +52,6 @@ large_sqpeg = new SquarePeg(5)
 hole.fits(small_sqpeg) // EN: won't compile (incompatible types)
  // 
  // RU: не будет компилироваться из-за ошибки типов
-hole.fits(small_sqpeg) // EN: won't compile (incompatible types)
- // 
- // RU: не будет компилироваться из-за ошибки типов
 
 small_sqpeg_adapter = new SquarePegAdapter(small_sqpeg)
 large_sqpeg_adapter = new SquarePegAdapter(large_sqpeg)
