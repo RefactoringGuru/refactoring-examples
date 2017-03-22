@@ -1,9 +1,12 @@
 package refactoring_guru.patterns.adapter.example.square;
 
 /**
- * EN: SquarePegs are not compatible with RoundHoles (they were implemented by previous development team). But we have to integrate them into our program.
+ * EN: SquarePegs are not compatible with RoundHoles (they were implemented by
+ * previous development team). But we have to integrate them into our program.
  * 
- * RU: КвадратныеКолышки несовместимы с КруглымиОтверстиями (они остались в проекте после бывших разработчиков). Но мы должны как-то интегрировать их в нашу систему.
+ * RU: КвадратныеКолышки несовместимы с КруглымиОтверстиями (они остались в
+ * проекте после бывших разработчиков). Но мы должны как-то интегрировать их в
+ * нашу систему.
  */
 public class SquarePeg {
     private double width;

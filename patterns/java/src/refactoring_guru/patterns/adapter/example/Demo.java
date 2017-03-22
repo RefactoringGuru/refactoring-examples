@@ -7,14 +7,14 @@ import refactoring_guru.patterns.adapter.example.square.SquarePeg;
 
 /**
  * EN: Somewhere in client code...
- *
+ * 
  * RU: Где-то в клиентском коде...
  */
 public class Demo {
     public static void main(String[] args) {
         // EN: Round fits round, no surprise.
-        //
-        // RU: Круглое к круглому — всё работает.
+        // 
+        // RU: Круглое к круглому — всё работает.
         RoundHole hole = new RoundHole(5);
         RoundPeg rpeg = new RoundPeg(5);
         if (hole.fits(rpeg)) {
@@ -23,16 +23,12 @@ public class Demo {
 
         SquarePeg smallSqPeg = new SquarePeg(2);
         SquarePeg largeSqPeg = new SquarePeg(20);
-        // EN: This won't compile (incompatible types):
-        // hole.fits(smallSqPeg);
-        // hole.fits(largeSqPeg);
-        //
-        // RU: Но это не будет компилироваться из-за ошибки типов:
-        // hole.fits(smallSqPeg);
-        // hole.fits(largeSqPeg);
+        // EN: hole.fits(smallSqPeg); // Won't compile.
+        // 
+        // RU: hole.fits(smallSqPeg); // Не скомпилируется.
 
         // EN: Adapter solves the problem.
-        //
+        // 
         // RU: Адаптер решит проблему.
         SquarePegAdapter smallSqPegAdapter = new SquarePegAdapter(smallSqPeg);
         SquarePegAdapter largeSqPegAdapter = new SquarePegAdapter(largeSqPeg);
