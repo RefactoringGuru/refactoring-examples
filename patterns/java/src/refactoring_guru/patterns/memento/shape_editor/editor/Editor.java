@@ -1,8 +1,10 @@
 package refactoring_guru.patterns.memento.shape_editor.editor;
 
-import refactoring_guru.patterns.memento.shape_editor.shapes.Shape;
-import refactoring_guru.patterns.memento.shape_editor.shapes.CompoundShape;
 import refactoring_guru.patterns.memento.shape_editor.commands.Command;
+import refactoring_guru.patterns.memento.shape_editor.history.History;
+import refactoring_guru.patterns.memento.shape_editor.history.Memento;
+import refactoring_guru.patterns.memento.shape_editor.shapes.CompoundShape;
+import refactoring_guru.patterns.memento.shape_editor.shapes.Shape;
 
 import javax.swing.*;
 import java.io.*;
@@ -28,33 +30,18 @@ public class Editor extends JComponent {
         return allShapes;
     }
 
-    public void remember(Command c) {
-        history.push(c);
-    }
-
     public void execute(Command c) {
-        remember(c);
+        history.push(c, new Memento(this));
         c.execute();
     }
 
     public void undo() {
-        Command command = history.getUndo();
-        if (command == null) {
-            return;
-        }
-        System.out.println("Undoing: " + command.getName());
-        command.undo();
+        history.undo();
         canvas.repaint();
     }
 
     public void redo() {
-        Command command = history.getRedo();
-        if (command == null) {
-            return;
-        }
-        System.out.println("Redoing: " + command.getName());
-        command.undo();
-        command.execute();
+        history.redo();
         canvas.repaint();
     }
 

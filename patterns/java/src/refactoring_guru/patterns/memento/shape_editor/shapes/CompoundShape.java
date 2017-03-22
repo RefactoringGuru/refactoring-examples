@@ -105,16 +105,16 @@ public class CompoundShape extends BaseShape {
     }
 
     @Override
-    public void jump(int x, int y) {
+    public void moveTo(int x, int y) {
         for (Shape child : children) {
-            child.jump(x, y);
+            child.moveTo(x, y);
         }
     }
 
     @Override
-    public void move(int x, int y) {
+    public void moveBy(int x, int y) {
         for (Shape child : children) {
-            child.move(x, y);
+            child.moveBy(x, y);
         }
     }
 

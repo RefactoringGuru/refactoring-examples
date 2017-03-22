@@ -8,7 +8,6 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Random;
 
 class EditorCanvas extends Canvas {
     private Editor editor;
@@ -31,11 +30,15 @@ class EditorCanvas extends Canvas {
         JPanel contentPanel = new JPanel();
         Border padding = BorderFactory.createEmptyBorder(PADDING, PADDING, PADDING, PADDING);
         contentPanel.setBorder(padding);
+        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         frame.setContentPane(contentPanel);
 
-        frame.add(this);
+        contentPanel.add(new JLabel("Select and drag to move."),BorderLayout.PAGE_END);
+        contentPanel.add(new JLabel("Right click to change color."),BorderLayout.PAGE_END);
+        contentPanel.add(new JLabel("Undo: Ctrl+Z, Redo: Ctrl+R"),BorderLayout.PAGE_END);
+        contentPanel.add(this);
         frame.setVisible(true);
-        frame.getContentPane().setBackground(Color.LIGHT_GRAY);
+        contentPanel.setBackground(Color.LIGHT_GRAY);
     }
 
     private void attachKeyboardListeners() {
@@ -50,15 +53,6 @@ class EditorCanvas extends Canvas {
                         case KeyEvent.VK_R:
                             editor.redo();
                             break;
-                        /*case KeyEvent.VK_C:
-                            editor.copy();
-                            break;
-                        case KeyEvent.VK_X:
-                            editor.cut();
-                            break;
-                        case KeyEvent.VK_V:
-                            editor.paste();
-                            break;*/
                     }
                 }
             }
@@ -137,8 +131,8 @@ class EditorCanvas extends Canvas {
                 if (e.getButton() != MouseEvent.BUTTON1 || moveCommand == null) {
                     return;
                 }
-                moveCommand.finish(e.getX(), e.getY());
-                editor.remember(moveCommand);
+                moveCommand.stop(e.getX(), e.getY());
+                editor.execute(moveCommand);
                 this.moveCommand = null;
                 repaint();
             }

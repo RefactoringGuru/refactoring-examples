@@ -9,8 +9,8 @@ public interface Shape extends Serializable {
     public int getWidth();
     public int getHeight();
     public void drag();
-    public void jump(int x, int y);
-    public void move(int x, int y);
+    public void moveTo(int x, int y);
+    public void moveBy(int x, int y);
     public void drop();
     public Boolean isInsideBounds(int x, int y);
     public Color getColor();

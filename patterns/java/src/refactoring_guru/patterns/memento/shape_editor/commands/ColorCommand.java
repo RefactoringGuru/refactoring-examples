@@ -5,11 +5,12 @@ import refactoring_guru.patterns.memento.shape_editor.shapes.Shape;
 
 import java.awt.*;
 
-public class ColorCommand extends RevertableCommand {
+public class ColorCommand implements Command {
+    private Editor editor;
     private Color color;
 
     public ColorCommand(Editor editor, Color color) {
-        super(editor);
+        this.editor = editor;
         this.color = color;
     }
 

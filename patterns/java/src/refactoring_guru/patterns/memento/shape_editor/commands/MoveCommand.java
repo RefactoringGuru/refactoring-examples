@@ -3,12 +3,13 @@ package refactoring_guru.patterns.memento.shape_editor.commands;
 import refactoring_guru.patterns.memento.shape_editor.editor.Editor;
 import refactoring_guru.patterns.memento.shape_editor.shapes.Shape;
 
-public class MoveCommand extends RevertableCommand {
+public class MoveCommand implements Command {
+    private Editor editor;
     private int startX, startY;
     private int endX, endY;
 
     public MoveCommand(Editor editor) {
-        super(editor);
+        this.editor = editor;
     }
 
     @Override
@@ -26,11 +27,11 @@ public class MoveCommand extends RevertableCommand {
 
     public void move(int x, int y) {
         for (Shape child : editor.getShapes().getSelected()) {
-            child.jump(x - startX, y - startY);
+            child.moveTo(x - startX, y - startY);
         }
     }
 
-    public void finish(int x, int y) {
+    public void stop(int x, int y) {
         endX = x;
         endY = y;
         for (Shape child : editor.getShapes().getSelected()) {
@@ -41,7 +42,7 @@ public class MoveCommand extends RevertableCommand {
     @Override
     public void execute() {
         for (Shape child : editor.getShapes().getSelected()) {
-            child.move(endX - startX, endY - startY);
+            child.moveBy(endX - startX, endY - startY);
         }
     }
 }

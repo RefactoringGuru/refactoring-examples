@@ -41,21 +41,21 @@ public abstract class BaseShape implements Shape {
     }
 
     @Override
-    public void jump(int x, int y) {
+    public void moveTo(int x, int y) {
         this.x = dx + x;
         this.y = dy + y;
     }
 
     @Override
-    public void move(int x, int y) {
+    public void moveBy(int x, int y) {
         this.x += x;
         this.y += y;
     }
 
     @Override
     public void drop() {
-        dx = 0;
-        dy = 0;
+        this.x = dx;
+        this.y = dy;
     }
 
     @Override

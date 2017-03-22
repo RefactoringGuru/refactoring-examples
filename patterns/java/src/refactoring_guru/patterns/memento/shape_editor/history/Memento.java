@@ -1,4 +1,6 @@
-package refactoring_guru.patterns.memento.shape_editor.editor;
+package refactoring_guru.patterns.memento.shape_editor.history;
+
+import refactoring_guru.patterns.memento.shape_editor.editor.Editor;
 
 public class Memento {
     private String backup;
