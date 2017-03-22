@@ -2,7 +2,7 @@ package refactoring_guru.patterns.template_method.network_template_method.networ
 
 /**
  * EN: Class of social network
- *
+ * 
  * RU: Класс социальной сети.
  */
 public class Twitter extends Network {

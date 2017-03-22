@@ -2,7 +2,7 @@ package refactoring_guru.patterns.template_method.network_template_method.networ
 
 /**
  * EN: Base class of social network.
- *
+ * 
  * RU: Базовый класс социальной сети.
  */
 public abstract class Network {
@@ -13,16 +13,18 @@ public abstract class Network {
 
     /**
      * EN: Publish the data to whatever network.
-     *
+     * 
      * RU: Публикация данных в любой сети.
      */
     public boolean post(String message) {
         // EN: Authenticate before posting. Every network uses a different
         // authentication method.
-        // RU: Проверка данных пользователя перед постом в соцсеть.
-        // Каждая сеть для проверки использует разные методы.
+        // 
+        // RU: Проверка данных пользователя перед постом в соцсеть. Каждая сеть
+        // для проверки использует разные методы.
         if (logIn(this.userName, this.password)) {
             // EN: Send the post data.
+            // 
             // RU: Отправка данных.
             boolean result =  sendData(message.getBytes());
             logOut();

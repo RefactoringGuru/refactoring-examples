@@ -6,6 +6,11 @@ import refactoring_guru.patterns.template_method.network_template_method.network
 
 import java.io.*;
 
+/**
+ * EN: Demo class. Everything comes together here.
+ * 
+ * RU: Демо-класс. Здесь всё сводится воедино.
+ */
 public class Demo {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -15,7 +20,8 @@ public class Demo {
         System.out.print("Input password: ");
         String password = reader.readLine();
 
-        // EN: Build the message.
+        // EN: Enter the message.
+        // 
         // RU: Вводим сообщение.
         System.out.print("Input message: ");
         String message = reader.readLine();
@@ -25,7 +31,8 @@ public class Demo {
                 "2 - Twitter");
         int choice = Integer.parseInt(reader.readLine());
 
-        // EN: Instantiate the network objects and publish.
+        // EN: Create proper network object and send the message.
+        // 
         // RU: Создаем сетевые объекты и публикуем пост.
         if (choice == 1) {
             network = new Facebook(userName, password);
