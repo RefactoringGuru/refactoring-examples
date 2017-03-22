@@ -34,23 +34,25 @@ public class History {
         virtualSize = history.size();
     }
 
-    public void undo() {
+    public boolean undo() {
         Pair pair = getUndo();
         if (pair == null) {
-            return;
+            return false;
         }
         System.out.println("Undoing: " + pair.getCommand().getName());
         pair.getMemento().restore();
+        return true;
     }
 
-    public void redo() {
+    public boolean redo() {
         Pair pair = getRedo();
         if (pair == null) {
-            return;
+            return false;
         }
         System.out.println("Redoing: " + pair.getCommand().getName());
         pair.getMemento().restore();
         pair.getCommand().execute();
+        return true;
     }
 
     public Pair getUndo() {

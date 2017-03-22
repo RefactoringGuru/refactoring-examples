@@ -11,12 +11,12 @@ import java.io.*;
 import java.util.Base64;
 
 public class Editor extends JComponent {
-    private EditorCanvas canvas;
+    private Canvas canvas;
     private CompoundShape allShapes = new CompoundShape();
     private History history;
 
     public Editor() {
-        canvas = new EditorCanvas(this);
+        canvas = new Canvas(this);
         history = new History();
     }
 
@@ -36,13 +36,13 @@ public class Editor extends JComponent {
     }
 
     public void undo() {
-        history.undo();
-        canvas.repaint();
+        if (history.undo())
+            canvas.repaint();
     }
 
     public void redo() {
-        history.redo();
-        canvas.repaint();
+        if (history.redo())
+            canvas.repaint();
     }
 
     public String backup() {
