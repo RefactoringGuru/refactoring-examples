@@ -1,5 +1,10 @@
 package refactoring_guru.patterns.adapter.example.round;
 
+/**
+ * EN: RoundHoles are compatible with RoundPegs.
+ *
+ * RU: КруглоеОтверстие совместимо с КруглымиКолышками.
+ */
 public class RoundHole {
     private double radius;
 
