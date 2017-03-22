@@ -12,7 +12,7 @@ import java.awt.*;
  * EN: Concrete mediator. All chaotic communications between concrete components
  * have been extracted to the mediator. Now components only talk with the
  * mediator, which knows who has to handle a request.
- *
+ * 
  * RU: Конкретный посредник. Все связи между конкретными компонентами переехали
  * в код посредника. Он получает извещения от своих компонентов и знает как на
  * них реагировать.
@@ -32,7 +32,7 @@ public class Editor implements Mediator {
   
     /**
      * EN: Here the registration of components by the mediator.
-     *
+     * 
      * RU: Здесь происходит регистрация компонентов посредником.
      */
     @Override
@@ -71,6 +71,11 @@ public class Editor implements Mediator {
         }
     }
 
+    /**
+     * EN: Various methods to handle requests from particular components.
+     * 
+     * RU: Разнообразные методы общения с компонентами.
+     */
     @Override
     public void addNewNote(Note note) {
         title.setText("");

@@ -1,6 +1,7 @@
 package refactoring_guru.patterns.mediator.example.components;
 
 import refactoring_guru.patterns.mediator.example.mediator.Mediator;
+import refactoring_guru.patterns.mediator.example.mediator.Note;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

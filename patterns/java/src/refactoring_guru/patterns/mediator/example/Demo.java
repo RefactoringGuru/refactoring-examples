@@ -6,8 +6,13 @@ import refactoring_guru.patterns.mediator.example.mediator.*;
 import javax.swing.*;
 
 /**
+ * EN: Demo class. Everything comes together here.
+ * 
+ * RU: Демо-класс. Здесь всё сводится воедино.
+ */
+/**
  * EN: Demo class.
- *
+ * 
  * RU: Демо класс.
  */
 public class Demo {

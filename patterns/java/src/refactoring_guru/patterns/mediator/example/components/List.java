@@ -1,13 +1,14 @@
 package refactoring_guru.patterns.mediator.example.components;
 
 import refactoring_guru.patterns.mediator.example.mediator.Mediator;
+import refactoring_guru.patterns.mediator.example.mediator.Note;
 
 import javax.swing.*;
 
 /**
  * EN: Concrete components don't talk with each other. They have only one
  * communication channel–sending requests to the mediator.
- *
+ * 
  * RU: Конкретные компоненты никак не связаны между собой. У них есть только
  * один канал общения – через отправку уведомлений посреднику.
  */
