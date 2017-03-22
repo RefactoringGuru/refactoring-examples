@@ -10,6 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * EN: Demo class. Everything comes together here.
+ * 
+ * RU: Демо-класс. Здесь всё сводится воедино.
+ */
 public class Demo {
     public static Scanner scanner = new Scanner(System.in);
 

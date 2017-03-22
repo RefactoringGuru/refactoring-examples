@@ -19,22 +19,36 @@ public class LinkedIn implements SocialNetwork {
     }
 
     public Profile requestContactInfoFromLinkedInAPI(String profileEmail) {
-        // Here would be a POST request to one of the LinkedIn API endpoints.
-        // Instead, we emulates long network connection, which you would expect in the real life...
+        // EN: Here would be a POST request to one of the LinkedIn API
+        // endpoints. Instead, we emulates long network connection, which you
+        // would expect in the real life...
+        // 
+        // RU: Здесь бы был POST запрос к одному из адресов API LinkedIn. Но
+        // вместо этого мы эмулируем долгое сетевое соединение, прямо как в
+        // реальной жизни...
         simulateNetworkLatency();
         System.out.println("LinkedIn: Loading profile '" + profileEmail + "' over the network...");
 
-        // ...and return test data.
+        // EN: ...and return test data.
+        // 
+        // RU: ...и возвращаем тестовые данные.
         return findContact(profileEmail);
     }
 
     public List<String> requestRelatedContactsFromLinkedInAPI(String profileEmail, String contactType) {
-        // Here would be a POST request to one of the LinkedIn API endpoints.
-        // Instead, we emulates long network connection, which you would expect in the real life.
+        // EN: Here would be a POST request to one of the LinkedIn API
+        // endpoints. Instead, we emulates long network connection, which you
+        // would expect in the real life.
+        // 
+        // RU: Здесь бы был POST запрос к одному из адресов API LinkedIn. Но
+        // вместо этого мы эмулируем долгое сетевое соединение, прямо как в
+        // реальной жизни...
         simulateNetworkLatency();
         System.out.println("LinkedIn: Loading '" + contactType + "' list of '" + profileEmail + "' over the network...");
 
-        // ...and return test data.
+        // EN: ...and return test data.
+        // 
+        // RU: ...и возвращаем тестовые данные.
         Profile profile = findContact(profileEmail);
         if (profile != null) {
             return profile.getContacts(contactType);
