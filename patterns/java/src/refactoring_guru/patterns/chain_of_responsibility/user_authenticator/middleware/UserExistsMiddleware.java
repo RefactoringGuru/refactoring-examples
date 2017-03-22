@@ -1,6 +1,6 @@
-package refactoring_guru.patterns.chain_of_responsibilyty.user_authenticator.middleware;
+package refactoring_guru.patterns.chain_of_responsibility.user_authenticator.middleware;
 
-import refactoring_guru.patterns.chain_of_responsibilyty.user_authenticator.Server;
+import refactoring_guru.patterns.chain_of_responsibility.user_authenticator.server.Server;
 
 /**
  * RU: Конкретный элемент цепи обрабатывает запрос по-своему.
