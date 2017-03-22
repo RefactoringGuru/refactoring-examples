@@ -2,7 +2,7 @@ package refactoring_guru.patterns.abstract_factory.example;
 
 import refactoring_guru.patterns.abstract_factory.example.app.Application;
 import refactoring_guru.patterns.abstract_factory.example.factories.GUIFactory;
-import refactoring_guru.patterns.abstract_factory.example.factories.OSXFactory;
+import refactoring_guru.patterns.abstract_factory.example.factories.MacOSFactory;
 import refactoring_guru.patterns.abstract_factory.example.factories.WindowsFactory;
 
 /**
@@ -23,9 +23,9 @@ public class Demo {
     private static Application configureApplication() {
         Application app;
         GUIFactory factory;
-        String osName = System.getProperty("os.name");
-        if (osName.equals("Mac OS X")) {
-            factory = new OSXFactory();
+        String osName = System.getProperty("os.name").toLowerCase();
+        if (osName.contains("mac")) {
+            factory = new MacOSFactory();
             app = new Application(factory);
         } else {
             factory = new WindowsFactory();
