@@ -10,11 +10,6 @@ import javax.swing.*;
  * 
  * RU: Демо-класс. Здесь всё сводится воедино.
  */
-/**
- * EN: Demo class.
- * 
- * RU: Демо класс.
- */
 public class Demo {
     public static void main(String[] args) {
         Mediator mediator = new Editor();
