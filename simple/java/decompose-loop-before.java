@@ -4,6 +4,7 @@ void printProperties(List users) {
         result += users.get(i).getName();
         result += users.get(i).getage();
         System.out.println(result);
+
         // ...
     }
 }
