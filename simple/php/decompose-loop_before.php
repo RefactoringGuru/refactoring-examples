@@ -4,5 +4,7 @@ function printProperties($users) {
     $result += $users->get($i)->getName();
     $result += $users->get($i)->getAge();
     echo $result;
+	  
+	// ...
     }
 }

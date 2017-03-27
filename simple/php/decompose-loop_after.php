@@ -1,6 +1,8 @@
 function printProperties($users) {
   foreach ($users as $user) {
     echo $this->getProperties($user);
+
+    // ...
   }
 }
 
