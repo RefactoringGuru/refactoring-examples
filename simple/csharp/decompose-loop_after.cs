@@ -2,9 +2,9 @@ void printProperties(IList users)
 {
   for (User user : users) 
   {
-  Console.WriteLine(getProperties(user));
+    Console.WriteLine(getProperties(user));
 
-  // ...
+    // ...
   }
 }
 
