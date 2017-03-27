@@ -1,9 +1,9 @@
 void printProperties(List users) {
   for (User user : users) {
-      System.out.println(getProperties(user));
+    System.out.println(getProperties(user));
 
-      // ...
-    }
+    // ...
+  }
 }
 
 String getProperties(User user)  {
