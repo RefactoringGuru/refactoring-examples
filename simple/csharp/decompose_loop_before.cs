@@ -1,9 +1,9 @@
-    void printProperties(List users) {
+    void printProperties(IList users) {
         for (int i = 0; i < users.size(); i++) {
-            String result = null;
+            string result = null;
             result += users.get(i).getName();
             result += users.get(i).getage();
-            System.out.println(result);
+            Console.WriteLine(result);
 
             // ...
         }
