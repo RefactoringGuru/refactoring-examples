@@ -6,5 +6,5 @@ function printProperties($users) {
     echo $result;
 	  
     // ...
-    }
+  }
 }
