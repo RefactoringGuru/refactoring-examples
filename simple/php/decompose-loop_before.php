@@ -5,6 +5,6 @@ function printProperties($users) {
     $result += $users->get($i)->getAge();
     echo $result;
 	  
-	// ...
+    // ...
     }
 }
