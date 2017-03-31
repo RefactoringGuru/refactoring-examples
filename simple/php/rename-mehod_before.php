@@ -1,12 +1,12 @@
 class Customer {
-  $name = "name";
-  $surname = "surname";
+  private $name = "name";
+  private $lastName = "lastname";
 
   /**
-   * Method returns customer's surname
+   * Method returns customer's lastName.
    */
   function getsnm() {
-    return this->$surname;
+    return $this->lastName;
   }
 
   // other methods ...

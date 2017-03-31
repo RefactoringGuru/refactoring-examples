@@ -1,11 +1,11 @@
 void renderBanner() 
 {
-  boolean mustRdraw = (frame.isChanged() || target.isChanged()) 
-    || experiment.isRunning();
-  boolean isFullScreen = frame.getSize().equal(screen.getSize());
+  bool isChanged = frame.isChanged || target.isChanged;
+  bool mustRedraw = isChanged || experiment.isRunning();
+  bool isFullScreen = frame.getSize() == screen.getSize();
 
   if (isFullScreen && mustRedraw) 
   {
-    // print
+    // print banner
   }
 }

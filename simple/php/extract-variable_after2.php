@@ -1,9 +1,9 @@
 void renderBanner() {
-  boolean $mustRdraw = (frame.isChanged() or target.isChanged()) 
-    or experiment.isRunning();
-  boolean $isFullScreen = $frame->getSize()->equal($screen->getSize());
+  $isChanged = $frame->isChanged || $target->isChanged;
+  $mustRedraw = $isChanged || $experiment->isRunning();
+  $isFullScreen = $frame->getSize() == $screen->getSize();
 
-  if ($isFullScreen end $mustRedraw) {
-    // print
+  if ($isFullScreen && $mustRedraw) {
+    // print banner
   }
 }

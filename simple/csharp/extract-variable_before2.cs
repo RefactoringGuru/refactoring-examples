@@ -1,12 +1,12 @@
 void renderBanner() 
 {
-  // When all the parameters are set, counted 
-  // the boundaries of the frame, we print the 
-  // result on the screen.
-  if (((frame.isChanged() || target.isChanged()) || 
-        experiment.isRunning()) &&
-        frame.getSize().equal(screen.getSize())) 
+  // Render banner only if we're in fullscreen mode 
+  // and a change is requested either in frame or 
+  // target, or experiment is active.
+  if (((frame.isChanged || target.isChanged) || 
+         experiment.isRunning()) &&
+         (frame.getSize() == screen.getSize())) 
   {
-    // print
+    // print banner
   }
 }

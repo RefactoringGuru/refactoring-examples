@@ -1,9 +1,9 @@
 class Customer {
-  $name = "name";
-  $surname = "surname";
+  private $name = "name";
+  private $lastName = "lastname";
 
-  function getSurname() {
-    return this->$surname;
+  function getLastName() {
+    return $this->lastName;
   }
 
   // other methods ...

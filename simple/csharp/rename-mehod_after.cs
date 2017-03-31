@@ -1,11 +1,11 @@
 class Customer 
 {
-  String name = "name";
-  String surname = "surname";
+  private String name = "name";
+  private String lastName = "lastname";
 
-  String getSurname() 
+  String getLastName() 
   {
-    return surname;
+    return lastName;
   }
 
   // other methods ...
