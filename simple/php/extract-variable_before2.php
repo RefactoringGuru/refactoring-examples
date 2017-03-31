@@ -4,7 +4,7 @@ void renderBanner() {
   // target, or experiment is active.
   if ((($frame->isChanged || $target->isChanged) || 
         $experiment->isRunning()) &&
-        ($frame->getSize() == ($screen->getSize())) {
+        ($frame->getSize() == $screen->getSize())) {
     // print banner
   }
 }
