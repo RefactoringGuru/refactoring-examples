@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6D84D730-1F06-4574-A004-C2FC8E2381EA}</ProjectGuid>
+    <ProjectGuid>{A6F0C78F-5E1E-4295-8B16-5EED4ADE4E85}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FactoryMethod</RootNamespace>
-    <AssemblyName>FactoryMethod</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <RootNamespace>NonThreadSafeSingleton</RootNamespace>
+    <AssemblyName>NonThreadSafeSingleton</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
@@ -43,21 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationType.cs" />
-    <Compile Include="OnClickButtonArgs.cs" />
-    <Compile Include="Position.cs" />
-    <Compile Include="Button.cs" />
-    <Compile Include="Size.cs" />
-    <Compile Include="WebDialog.cs" />
-    <Compile Include="WindowsDialog.cs" />
-    <Compile Include="Dialog.cs" />
-    <Compile Include="WebButton.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Example\Program.cs" />
+    <Compile Include="Example\Singleton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WindowsButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Example\OutputDemo.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
