@@ -1,11 +1,13 @@
-﻿using Builder.Example.Cars;
+using Builder.Example.Cars;
 using Builder.Example.Components;
 
 namespace Builder.Example.Builders
 {
-    /// EN: Concrete builders implement steps defined in the common interface.
-	/// 
-	/// RU: Конкретные строители реализуют шаги, объявленные в общем интерфейсе.
+   /**
+    * EN: Concrete builders implement steps defined in the common interface.
+    * 
+    * RU: Конкретные строители реализуют шаги, объявленные в общем интерфейсе.
+    */
     public class CarBuilder : Builder
     {
         private Cars.Type type;
