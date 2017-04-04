@@ -1,0 +1,10 @@
+﻿Car built:
+SPORTS_CAR
+
+Car manual built:
+Type of car: SUV
+Count of seats: 4
+Engine: volume - 2.5; mileage - 0
+Transmission: MANUAL
+Trip Computer: Trip Computer
+GPS Navigator: GPS Navigator
