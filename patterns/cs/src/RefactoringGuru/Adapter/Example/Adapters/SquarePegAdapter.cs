@@ -19,13 +19,13 @@ namespace Adapter.Example.Adapters
             this.peg = peg;
         }
 
-        public double getRadius()
+        public double GetRadius()
         {
             double result;
             // EN: Calculate a minimum circle radius, which can fit this peg.
             // 
             // RU: Рассчитываем минимальный радиус, в который пролезет этот колышек.
-            result = (Math.Sqrt(Math.Pow((peg.getWidth() / 2), 2) * 2));
+            result = (Math.Sqrt(Math.Pow((peg.GetWidth() / 2), 2) * 2));
             return result;
         }
     }

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2F3B61F1-5CBE-49FC-995F-AF06E1B472B0}</ProjectGuid>
+    <ProjectGuid>{A6F0C78F-5E1E-4295-8B16-5EED4ADE4E85}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Adapter</RootNamespace>
-    <AssemblyName>Adapter</AssemblyName>
+    <RootNamespace>NonThreadSafeSingleton</RootNamespace>
+    <AssemblyName>NonThreadSafeSingleton</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,11 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Example\Adapters\SquarePegAdapter.cs" />
     <Compile Include="Example\Program.cs" />
-    <Compile Include="Example\Round\RoundHole.cs" />
-    <Compile Include="Example\Round\RoundPeg.cs" />
-    <Compile Include="Example\Square\SquarePeg.cs" />
+    <Compile Include="Example\Singleton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

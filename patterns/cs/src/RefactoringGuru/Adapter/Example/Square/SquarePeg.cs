@@ -19,12 +19,12 @@ namespace Adapter.Example.Square
             this.width = width;
         }
 
-        public double getWidth()
+        public double GetWidth()
         {
             return width;
         }
 
-        public double getSquare()
+        public double GetSquare()
         {
             double result;
             result = Math.Pow(this.width, 2);

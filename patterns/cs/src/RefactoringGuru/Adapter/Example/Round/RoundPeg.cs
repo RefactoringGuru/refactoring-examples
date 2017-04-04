@@ -16,7 +16,7 @@
             this.radius = radius;
         }
 
-        public double getRadius()
+        public double GetRadius()
         {
             return radius;
         }

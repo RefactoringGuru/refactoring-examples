@@ -14,15 +14,15 @@
             this.radius = radius;
         }
 
-        public double getRadius()
+        public double GetRadius()
         {
             return radius;
         }
 
-        public bool fits(RoundPeg peg)
+        public bool Fits(RoundPeg peg)
         {
             bool result;
-            result = this.getRadius() >= peg.getRadius();
+            result = this.GetRadius() >= peg.GetRadius();
             return result;
         }
     }

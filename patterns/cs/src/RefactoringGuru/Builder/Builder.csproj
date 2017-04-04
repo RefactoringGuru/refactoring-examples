@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2F3B61F1-5CBE-49FC-995F-AF06E1B472B0}</ProjectGuid>
+    <ProjectGuid>{FA9108CC-FE55-46FD-99ED-8E50E22B12D7}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Adapter</RootNamespace>
-    <AssemblyName>Adapter</AssemblyName>
+    <RootNamespace>Builder</RootNamespace>
+    <AssemblyName>Builder</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,11 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Example\Adapters\SquarePegAdapter.cs" />
+    <Compile Include="Example\Builders\Builder.cs" />
+    <Compile Include="Example\Builders\CarBuilder.cs" />
+    <Compile Include="Example\Builders\CarManualBuilder.cs" />
+    <Compile Include="Example\Cars\Car.cs" />
+    <Compile Include="Example\Cars\Manual.cs" />
+    <Compile Include="Example\Cars\Type.cs" />
+    <Compile Include="Example\Components\Engine.cs" />
+    <Compile Include="Example\Components\GPSNavigator.cs" />
+    <Compile Include="Example\Components\Transmission.cs" />
+    <Compile Include="Example\Components\TripComputer.cs" />
+    <Compile Include="Example\Director\Director.cs" />
     <Compile Include="Example\Program.cs" />
-    <Compile Include="Example\Round\RoundHole.cs" />
-    <Compile Include="Example\Round\RoundPeg.cs" />
-    <Compile Include="Example\Square\SquarePeg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

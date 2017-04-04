@@ -3,7 +3,7 @@ using Adapter.Example.Adapters;
 using Adapter.Example.Round;
 using Adapter.Example.Square;
 
-namespace Adapter.Example
+namespace Adapter
 {
     /**
     * EN: Somewhere in client code...
@@ -19,7 +19,7 @@ namespace Adapter.Example
             // RU: Круглое к круглому — всё работает.
             RoundHole hole = new RoundHole(5);
             RoundPeg rpeg = new RoundPeg(5);
-            if (hole.fits(rpeg))
+            if (hole.Fits(rpeg))
             {
                 Console.WriteLine("Round peg r5 fits round hole r5.");
             }
@@ -35,11 +35,11 @@ namespace Adapter.Example
             // RU: Адаптер решит проблему.
             SquarePegAdapter smallSqPegAdapter = new SquarePegAdapter(smallSqPeg);
             SquarePegAdapter largeSqPegAdapter = new SquarePegAdapter(largeSqPeg);
-            if (hole.fits(smallSqPegAdapter))
+            if (hole.Fits(smallSqPegAdapter))
             {
                 Console.WriteLine("Square peg w2 fits round hole r5.");
             }
-            if (hole.fits(largeSqPegAdapter))
+            if (hole.Fits(largeSqPegAdapter))
             {
                 Console.WriteLine("Square peg w20 does not fit into round hole r5.");
             }
