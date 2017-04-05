@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using RefactoringGuru.Builder.Example.Cars;
 
 namespace RefactoringGuru.Builder.Example.Components

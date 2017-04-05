@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using RefactoringGuru.Builder.Example.Builders;
 using RefactoringGuru.Builder.Example.Cars;
 using RefactoringGuru.Builder.Example.Director;

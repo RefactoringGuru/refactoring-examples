@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using RefactoringGuru.Adapter.Example.Adapters;
 using RefactoringGuru.Adapter.Example.Round;
 using RefactoringGuru.Adapter.Example.Square;

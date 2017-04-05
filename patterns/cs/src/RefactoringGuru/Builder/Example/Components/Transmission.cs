@@ -1,4 +1,4 @@
-﻿namespace RefactoringGuru.Builder.Example.Components
+namespace RefactoringGuru.Builder.Example.Components
 {
     /**
      * EN: Just another feature of a car.

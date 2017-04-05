@@ -1,4 +1,4 @@
-﻿using RefactoringGuru.Builder.Example.Cars;
+using RefactoringGuru.Builder.Example.Cars;
 using RefactoringGuru.Builder.Example.Components;
 
 namespace RefactoringGuru.Builder.Example.Builders

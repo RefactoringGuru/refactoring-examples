@@ -1,4 +1,4 @@
-﻿using RefactoringGuru.Builder.Example.Components;
+using RefactoringGuru.Builder.Example.Components;
 
 namespace RefactoringGuru.Builder.Example.Director
 {
