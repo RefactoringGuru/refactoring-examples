@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NonThreadSafeSingleton.Example
+namespace RefactoringGuru.NonThreadSafeSingleton.Example
 {
     class Singleton
     {

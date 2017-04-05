@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace NonThreadSafeSingleton.Example
+namespace RefactoringGuru.NonThreadSafeSingleton.Example
 {
     class Program
     {

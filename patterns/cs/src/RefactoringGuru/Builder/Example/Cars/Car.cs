@@ -1,6 +1,6 @@
-﻿using Builder.Example.Components;
+﻿using RefactoringGuru.Builder.Example.Components;
 
-namespace Builder.Example.Cars
+namespace RefactoringGuru.Builder.Example.Cars
 {
     /** 
      * EN: Car is a product class.

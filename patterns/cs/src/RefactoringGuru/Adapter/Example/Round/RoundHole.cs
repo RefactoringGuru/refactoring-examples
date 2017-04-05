@@ -1,4 +1,4 @@
-﻿namespace Adapter.Example.Round
+﻿namespace RefactoringGuru.Adapter.Example.Round
 {
     /**
      * EN: RoundHoles are compatible with RoundPegs.

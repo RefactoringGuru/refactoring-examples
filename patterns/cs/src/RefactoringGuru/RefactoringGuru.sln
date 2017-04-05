@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Patterns", "Patterns", "{83
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Singleton", "Singleton", "{BB613D7D-3CB3-460F-962C-089AE970B274}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NonThreadSafeSingleton", "NonThreadSafeSingleton\NonThreadSafeSingleton.csproj", "{A6F0C78F-5E1E-4295-8B16-5EED4ADE4E85}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NonThreadSafeSingleton", "Singleton\NonThreadSafeSingleton\NonThreadSafeSingleton.csproj", "{A6F0C78F-5E1E-4295-8B16-5EED4ADE4E85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadSafeSingleton", "ThreadSafeSingleton\ThreadSafeSingleton.csproj", "{18677C68-9286-451A-86D6-F5754071E96F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadSafeSingleton", "Singleton\ThreadSafeSingleton\ThreadSafeSingleton.csproj", "{18677C68-9286-451A-86D6-F5754071E96F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adapter", "Adapter\Adapter.csproj", "{2F3B61F1-5CBE-49FC-995F-AF06E1B472B0}"
 EndProject

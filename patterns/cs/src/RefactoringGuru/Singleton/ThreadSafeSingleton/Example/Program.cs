@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Threading;
+using RefactoringGuru.ThreadSafeSingleton.Example;
 
-namespace ThreadSafeSingleton.Example
+namespace RefactorigGuru.ThreadSafeSingleton.Example
 {
     class Program
     {
