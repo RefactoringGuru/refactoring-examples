@@ -1,9 +1,9 @@
-﻿using System;
-using Adapter.Example.Adapters;
-using Adapter.Example.Round;
-using Adapter.Example.Square;
+using System;
+using RefactoringGuru.Adapter.Example.Adapters;
+using RefactoringGuru.Adapter.Example.Round;
+using RefactoringGuru.Adapter.Example.Square;
 
-namespace Adapter
+namespace RefactoringGuru.Adapter
 {
     /**
     * EN: Somewhere in client code...

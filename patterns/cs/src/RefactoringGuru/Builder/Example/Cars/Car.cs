@@ -1,13 +1,13 @@
-﻿using Builder.Example.Components;
+using RefactoringGuru.Builder.Example.Components;
 
-namespace Builder.Example.Cars
+namespace RefactoringGuru.Builder.Example.Cars
 {
-    /** 
-     * EN: Car is a product class.
-	 * 
-	 * RU: Автомобиль — это класс продукта.
-     */
-	public class Car
+   /** 
+    * EN: Car is a product class.
+    * 
+    * RU: Автомобиль — это класс продукта.
+    */
+    public class Car
     {
         private Cars.Type type;
         private int seats;

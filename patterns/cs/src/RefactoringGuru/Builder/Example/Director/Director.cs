@@ -1,6 +1,6 @@
-﻿using Builder.Example.Components;
+using RefactoringGuru.Builder.Example.Components;
 
-namespace Builder.Example.Director
+namespace RefactoringGuru.Builder.Example.Director
 {
     /**
      * EN: Director defines the order of building steps. It works with a builder

@@ -1,7 +1,7 @@
-﻿using System.Text;
-using Builder.Example.Components;
+using System.Text;
+using RefactoringGuru.Builder.Example.Components;
 
-namespace Builder.Example.Cars
+namespace RefactoringGuru.Builder.Example.Cars
 {
     /**
      * EN: Car manual is another product. Note that it does not have the same

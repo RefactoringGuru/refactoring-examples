@@ -1,7 +1,7 @@
-﻿using System;
-using Builder.Example.Builders;
-using Builder.Example.Cars;
-using Builder.Example.Director;
+using System;
+using RefactoringGuru.Builder.Example.Builders;
+using RefactoringGuru.Builder.Example.Cars;
+using RefactoringGuru.Builder.Example.Director;
 
 namespace Builder
 {

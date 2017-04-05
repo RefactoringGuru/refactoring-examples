@@ -1,7 +1,7 @@
-﻿using System;
-using Builder.Example.Cars;
+using System;
+using RefactoringGuru.Builder.Example.Cars;
 
-namespace Builder.Example.Components
+namespace RefactoringGuru.Builder.Example.Components
 {
     /**
      * EN: Just another feature of a car.

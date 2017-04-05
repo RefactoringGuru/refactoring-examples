@@ -1,6 +1,6 @@
-﻿using Builder.Example.Components;
+using RefactoringGuru.Builder.Example.Components;
 
-namespace Builder.Example.Builders
+namespace RefactoringGuru.Builder.Example.Builders
 {
     /**
      * EN: Builder interface defines all possible ways to configure a product.

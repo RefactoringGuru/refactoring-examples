@@ -1,8 +1,8 @@
-﻿using System;
-using Adapter.Example.Round;
-using Adapter.Example.Square;
+using System;
+using RefactoringGuru.Adapter.Example.Round;
+using RefactoringGuru.Adapter.Example.Square;
 
-namespace Adapter.Example.Adapters
+namespace RefactoringGuru.Adapter.Example.Adapters
 {
     /**
      * EN: Adapter allows fitting square pegs into round holes.

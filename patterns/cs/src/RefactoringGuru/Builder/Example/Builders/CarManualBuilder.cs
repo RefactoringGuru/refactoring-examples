@@ -1,7 +1,7 @@
-﻿using Builder.Example.Cars;
-using Builder.Example.Components;
+using RefactoringGuru.Builder.Example.Cars;
+using RefactoringGuru.Builder.Example.Components;
 
-namespace Builder.Example.Builders
+namespace RefactoringGuru.Builder.Example.Builders
 {
     /**
      * EN: Unlike other creational patterns, Builder can construct unrelated

@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace Adapter.Example.Square
+namespace RefactoringGuru.Adapter.Example.Square
 {
     /**
      * EN: SquarePegs are not compatible with RoundHoles (they were implemented by
