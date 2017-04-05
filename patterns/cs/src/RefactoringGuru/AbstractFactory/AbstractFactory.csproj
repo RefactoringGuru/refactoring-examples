@@ -43,11 +43,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Example\App\Application.cs" />
+    <Compile Include="Example\Buttons\Button.cs" />
+    <Compile Include="Example\Buttons\MacOSButton.cs" />
+    <Compile Include="Example\Buttons\WindowsButton.cs" />
+    <Compile Include="Example\Checkboxes\Checkbox.cs" />
+    <Compile Include="Example\Checkboxes\MacOsCheckbox.cs" />
+    <Compile Include="Example\Checkboxes\WindowsCheckbox.cs" />
+    <Compile Include="Example\Factories\IGUIFactory.cs" />
+    <Compile Include="Example\Factories\MacOSFactory.cs" />
+    <Compile Include="Example\Factories\WindowsFactory.cs" />
+    <Compile Include="Example\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Example\OutoutDemo.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
