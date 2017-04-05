@@ -39,7 +39,12 @@ class Rectangle extends Shape is
     field height: int
 
     method Rectangle(target: Rectangle) is
-        Call parent constructor
+        // EN: Parent constructor call is mandatory in order to copy private
+        // fields defined in parent class.
+        // 
+        // RU: Вызов родительского конструктора нужен, чтобы скопировать
+        // потенциальные приватные поля, объявленные в родительском классе.
+        super(target)
         if (target != null) then
             this.width = target.width;
             this.height = target.height;
@@ -52,7 +57,7 @@ class Circle extends Shape is
     field radius: int
 
     method Circle(target: Circle) is
-        Call parent constructor
+        super(target)
         if (target != null) then
             this.radius = target.radius;
 
