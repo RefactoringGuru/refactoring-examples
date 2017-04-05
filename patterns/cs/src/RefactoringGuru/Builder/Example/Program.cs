@@ -26,12 +26,13 @@ namespace Builder
             CarBuilder builder = new CarBuilder();
             director.ConstructSportsCar(builder);
 
-            // EN: The final product is often retrieved from a builder object, since
-            // Director is not aware and not dependent on concrete builders
-            // and products.
+            // EN: The final product is often retrieved from a builder object,
+            // since Director is not aware and not dependent on concrete
+            // builders and products.
             // 
-            // RU: Готовый продукт возвращает строитель, так как Директор чаще всего
-            // не знает и не зависит от конкретных классов строителей и продуктов.
+            // RU: Готовый продукт возвращает строитель, так как Директор чаще
+            // всего не знает и не зависит от конкретных классов строителей
+            // и продуктов.
             Car car = builder.GetResult();
             Console.WriteLine("Car built:\n" + car.GetType());
 

@@ -3,12 +3,13 @@ using System;
 namespace RefactoringGuru.Adapter.Example.Square
 {
     /**
-     * EN: SquarePegs are not compatible with RoundHoles (they were implemented by
-     * previous development team). But we have to integrate them into our program.
+     * EN: SquarePegs are not compatible with RoundHoles (they were implemented
+     * by previous development team). But we have to integrate them into
+     * our program.
      * 
      * RU: КвадратныеКолышки несовместимы с КруглымиОтверстиями (они остались в
-     * проекте после бывших разработчиков). Но мы должны как-то интегрировать их в
-     * нашу систему.
+     * проекте после бывших разработчиков). Но мы должны как-то интегрировать их
+     * в нашу систему.
      */
     class SquarePeg
     {

@@ -6,10 +6,10 @@ using RefactoringGuru.Adapter.Example.Square;
 namespace RefactoringGuru.Adapter
 {
     /**
-    * EN: Somewhere in client code...
-    * 
-    * RU: Где-то в клиентском коде...
-    */
+     * EN: Somewhere in client code...
+     * 
+     * RU: Где-то в клиентском коде...
+     */
     class Program
     {
         static void Main()
