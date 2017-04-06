@@ -17,11 +17,11 @@ namespace RefactoringGuru.FactoryMethod.Example
         }
 
         /**
-         * EN: The concrete factory is usually chosen depending on configuration or
-         * environment options.
+         * EN: The concrete factory is usually chosen depending on configuration
+         * or environment options.
          * 
-         * RU: Приложение создаёт определённую фабрику в зависимости от конфигурации
-         * или окружения.
+         * RU: Приложение создаёт определённую фабрику в зависимости от
+         * конфигурации или окружения.
          */
         static void Configure()
         {
@@ -38,11 +38,11 @@ namespace RefactoringGuru.FactoryMethod.Example
 
         /**
          * EN: All of the client code should work with factories and products
-         * through abstract interfaces. This way it does not care which factory it
-         * works with and what kind of product it returns.
+         * through abstract interfaces. This way it does not care which factory
+         * it works with and what kind of product it returns.
          * 
-         * RU: Весь остальной клиентский код работает с фабрикой и продуктами только
-         * через общий интерфейс, поэтому для него неважно какая фабрика
+         * RU: Весь остальной клиентский код работает с фабрикой и продуктами
+         * только через общий интерфейс, поэтому для него неважно какая фабрика
          * была создана.
          */
         static void RunBusinessLogic()
