@@ -10,7 +10,7 @@ import java.util.Map;
 public class BundledShapeCache {
     private Map<String, Shape> cache = new HashMap<>();
 
-    public void PrototypeCache() {
+    public BundledShapeCache() {
         Circle circle = new Circle();
         circle.x = 5;
         circle.y = 7;
