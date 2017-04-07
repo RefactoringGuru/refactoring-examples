@@ -15,7 +15,7 @@ namespace RefactoringGuru.AbstractFactory.Example.Checkboxes
          */
         public void Paint()
         {
-            Console.WriteLine("You created MacOSCheckbox.");
+            Console.WriteLine("You have created MacOSCheckbox.");
         }
     }
 }
