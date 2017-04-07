@@ -43,11 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Example\Middleware\Middleware.cs" />
+    <Compile Include="Example\Middleware\RoleCheckMiddleware.cs" />
+    <Compile Include="Example\Middleware\ThrottlingMiddleware.cs" />
+    <Compile Include="Example\Middleware\UserExistsMiddleware.cs" />
+    <Compile Include="Example\Server\Server.cs" />
+    <Compile Include="Example\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Example\OutputDemo.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
