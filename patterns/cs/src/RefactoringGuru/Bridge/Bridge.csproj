@@ -43,12 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Example\Devices\IDevice.cs" />
+    <Compile Include="Example\Devices\Radio.cs" />
+    <Compile Include="Example\Devices\TV.cs" />
+    <Compile Include="Example\Program.cs" />
+    <Compile Include="Example\Remotes\AdvancedRemote.cs" />
+    <Compile Include="Example\Remotes\BasicRemote.cs" />
+    <Compile Include="Example\Remotes\IRemote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
