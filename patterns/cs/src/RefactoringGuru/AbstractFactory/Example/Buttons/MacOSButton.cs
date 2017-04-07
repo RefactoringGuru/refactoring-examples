@@ -15,7 +15,7 @@ namespace RefactoringGuru.AbstractFactory.Example.Buttons
     {
         public void Paint()
         {
-            Console.WriteLine("You created MacOSButton.");
+            Console.WriteLine("You have created MacOSButton.");
         }
     }
 }
