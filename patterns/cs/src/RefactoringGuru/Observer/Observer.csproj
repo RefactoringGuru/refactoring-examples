@@ -48,7 +48,7 @@
     <Compile Include="Example\Listeners\EventListener.cs" />
     <Compile Include="Example\Listeners\LogOpenListener.cs" />
     <Compile Include="Example\Publisher\EventManager.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Example\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
