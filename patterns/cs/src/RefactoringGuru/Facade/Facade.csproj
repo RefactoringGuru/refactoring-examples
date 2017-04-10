@@ -43,11 +43,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Example\Facade\VideoConversionFacade.cs" />
+    <Compile Include="Example\Program.cs" />
+    <Compile Include="Example\SomeComplexMediaLibrary\AudioMixer.cs" />
+    <Compile Include="Example\SomeComplexMediaLibrary\BitrateReader.cs" />
+    <Compile Include="Example\SomeComplexMediaLibrary\CodecFactory.cs" />
+    <Compile Include="Example\SomeComplexMediaLibrary\ICodec.cs" />
+    <Compile Include="Example\SomeComplexMediaLibrary\MPEG4CompressionCodec.cs" />
+    <Compile Include="Example\SomeComplexMediaLibrary\OggCompressionCodec.cs" />
+    <Compile Include="Example\SomeComplexMediaLibrary\VideoFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Example\OutputDemo.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
