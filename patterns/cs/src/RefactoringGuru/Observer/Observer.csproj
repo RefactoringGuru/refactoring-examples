@@ -43,11 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Example\Editor\Editor.cs" />
+    <Compile Include="Example\Listeners\EmailNotificationListener.cs" />
+    <Compile Include="Example\Listeners\EventListener.cs" />
+    <Compile Include="Example\Listeners\LogOpenListener.cs" />
+    <Compile Include="Example\Publisher\EventManager.cs" />
+    <Compile Include="Example\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Example\OutputDemo.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
