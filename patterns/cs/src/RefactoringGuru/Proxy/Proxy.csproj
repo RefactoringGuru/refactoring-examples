@@ -43,11 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Example\Downloader\YoutubeDownloader.cs" />
+    <Compile Include="Example\Program.cs" />
+    <Compile Include="Example\Proxy\YoutubeCacheProxy.cs" />
+    <Compile Include="Example\SomeCoolMediaLibrary\ThirdPartyYoutubeClass.cs" />
+    <Compile Include="Example\SomeCoolMediaLibrary\ThirdPartyYoutubeLib.cs" />
+    <Compile Include="Example\SomeCoolMediaLibrary\Video.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Example\OutputDemo.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
