@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dot>
+    <id>2</id>
+    <x>23</x>
+    <y>15</y>
+</dot>
+
+<?xml version="1.0" encoding="utf-8"?>
+<compound_graphic>
+   <id>4</id>
+    <dot>
+        <id>1</id>
+        <x>10</x>
+        <y>55</y>
+    </dot>
+    <dot>
+        <id>2</id>
+        <x>23</x>
+        <y>15</y>
+    </dot>
+    <rectangle>
+        <id>3</id>
+        <x>10</x>
+        <y>17</y>
+        <width>20</width>
+        <height>30</height>
+    </rectangle>
+    <compound_graphic>
+       <id>5</id>
+        <dot>
+            <id>1</id>
+            <x>10</x>
+            <y>55</y>
+        </dot>
+    </compound_graphic>
+</compound_graphic>
