@@ -43,11 +43,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Example\Iterators\FacebookIterator.cs" />
+    <Compile Include="Example\Iterators\LinkedInIterator.cs" />
+    <Compile Include="Example\Iterators\ProfileIterator.cs" />
+    <Compile Include="Example\Profile\Profile.cs" />
+    <Compile Include="Example\Program.cs" />
+    <Compile Include="Example\SocialNetworks\Facebook.cs" />
+    <Compile Include="Example\SocialNetworks\LinkedIn.cs" />
+    <Compile Include="Example\SocialNetworks\SocialNetwork.cs" />
+    <Compile Include="Example\Spammer\SocialSpammer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Example\OutputDemo.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
