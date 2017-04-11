@@ -43,11 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Example\Orders\Order.cs" />
+    <Compile Include="Example\Program.cs" />
+    <Compile Include="Example\Strategies\CreditCard.cs" />
+    <Compile Include="Example\Strategies\PayByCreditCard.cs" />
+    <Compile Include="Example\Strategies\PayByPayPal.cs" />
+    <Compile Include="Example\Strategies\PayStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Example\OutputDemo.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
