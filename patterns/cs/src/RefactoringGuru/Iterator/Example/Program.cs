@@ -37,18 +37,12 @@ namespace RefactoringGuru.Iterator
         public static List<Profile> CreateTestProfiles()
         {
             List<Profile> data = new List<Profile>();
-            String[] args = new String[] { "anna.smith@bing.com", "Anna Smith", "friends:mad_max@ya.com", "friends:catwoman@yahoo.com", "coworkers:sam@amazon.com" };
-            data.Add(new Profile("anna.smith@bing.com", "Anna Smith", args));
-            args = new String[] { "friends:anna.smith@bing.com", "coworkers:sam@amazon.com" };
-            data.Add(new Profile("mad_max@ya.com", "Maximilian", args));
-            args = new String[] { "coworkers:avanger@ukr.net" };
-            data.Add(new Profile("bill@microsoft.eu", "Billie", args));
-            args = new String[] { "coworkers:bill@microsoft.eu" };
-            data.Add(new Profile("avanger@ukr.net", "John Day", args));
-            args = new String[] { "coworkers:anna.smith@bing.com", "coworkers:mad_max@ya.com", "friends:catwoman@yahoo.com" };
-            data.Add(new Profile("sam@amazon.com", "Sam Kitting", args));
-            args = new String[] { "friends:anna.smith@bing.com", "friends:sam@amazon.com" };
-            data.Add(new Profile("catwoman@yahoo.com", "Liza", args));
+            data.Add(new Profile("anna.smith@bing.com", "Anna Smith", "anna.smith@bing.com", "Anna Smith", "friends:mad_max@ya.com", "friends:catwoman@yahoo.com", "coworkers:sam@amazon.com"));
+            data.Add(new Profile("mad_max@ya.com", "Maximilian", "friends:anna.smith@bing.com", "coworkers:sam@amazon.com"));
+            data.Add(new Profile("bill@microsoft.eu", "Billie", "coworkers:avanger@ukr.net"));
+            data.Add(new Profile("avanger@ukr.net", "John Day", "coworkers:bill@microsoft.eu"));
+            data.Add(new Profile("sam@amazon.com", "Sam Kitting", "coworkers:anna.smith@bing.com", "coworkers:mad_max@ya.com", "friends:catwoman@yahoo.com"));
+            data.Add(new Profile("catwoman@yahoo.com", "Liza", "friends:anna.smith@bing.com", "friends:sam@amazon.com"));
             return data;
         }
     }

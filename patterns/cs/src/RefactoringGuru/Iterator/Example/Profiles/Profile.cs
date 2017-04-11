@@ -9,7 +9,7 @@ namespace RefactoringGuru.Iterator.Example.Profiles
         private String email;
         private Dictionary<String, List<String>> contacts = new Dictionary<string, List<string>>();
 
-        public Profile(String email, String name, String[] contacts)
+        public Profile(String email, String name, params String[] contacts)
         {
             this.email = email;
             this.name = name;
