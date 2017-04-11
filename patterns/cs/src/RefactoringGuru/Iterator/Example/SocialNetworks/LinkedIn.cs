@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using RefactoringGuru.Iterator.Example.Iterators;
-using RefactoringGuru.Iterator.Example.Profile;
-using RefactoringGuru.Iterator.Example.SocialNetworks;
+using RefactoringGuru.Iterator.Example.Profiles;
 
-namespace Iterator.Example.SocialNetworks
+namespace RefactoringGuru.Iterator.Example.SocialNetworks
 {
     class LinkedIn : SocialNetwork
     {

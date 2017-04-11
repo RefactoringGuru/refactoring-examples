@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using RefactoringGuru.Iterator.Example.Profiles;
 using RefactoringGuru.Iterator.Example.SocialNetworks;
 
 namespace RefactoringGuru.Iterator.Example.Iterators
@@ -11,7 +12,7 @@ namespace RefactoringGuru.Iterator.Example.Iterators
         private String email;
         private int currentPosition = 0;
         private List<String> emails = new List<String>();
-        private List<Profile.Profile> profiles = new List<Profile.Profile>();
+        private List<Profile> profiles = new List<Profile>();
 
         public FacebookIterator(Facebook facebook, String type, String email)
         {
@@ -39,7 +40,7 @@ namespace RefactoringGuru.Iterator.Example.Iterators
             return currentPosition < emails.Count;
         }
 
-        public Profile.Profile GetNext()
+        public Profile GetNext()
         {
             if (!HasNext())
             {
@@ -47,7 +48,7 @@ namespace RefactoringGuru.Iterator.Example.Iterators
             }
 
             String friendEmail = emails[currentPosition];
-            Profile.Profile friendProfile = profiles[currentPosition];
+            Profile friendProfile = profiles[currentPosition];
             if (friendProfile == null)
             {
                 friendProfile = facebook.RequestProfileFromFacebook(friendEmail);

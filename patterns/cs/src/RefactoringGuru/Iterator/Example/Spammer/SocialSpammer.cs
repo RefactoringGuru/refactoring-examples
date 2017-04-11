@@ -1,9 +1,9 @@
 ﻿using System;
 using RefactoringGuru.Iterator.Example.Iterators;
-using RefactoringGuru.Iterator.Example.Profile;
+using RefactoringGuru.Iterator.Example.Profiles;
 using RefactoringGuru.Iterator.Example.SocialNetworks;
 
-namespace Iterator.Example.Spammer
+namespace RefactoringGuru.Iterator.Example.Spammer
 {
     class SocialSpammer
     {

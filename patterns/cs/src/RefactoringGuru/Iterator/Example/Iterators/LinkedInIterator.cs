@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Iterator.Example.SocialNetworks;
+using RefactoringGuru.Iterator.Example.Profiles;
+using RefactoringGuru.Iterator.Example.SocialNetworks;
 
 namespace RefactoringGuru.Iterator.Example.Iterators
 {
@@ -11,7 +12,7 @@ namespace RefactoringGuru.Iterator.Example.Iterators
         private String email;
         private int currentPosition = 0;
         private List<String> emails = new List<string>();
-        private List<Profile.Profile> contacts = new List<Profile.Profile>();
+        private List<Profile> contacts = new List<Profile>();
 
         public LinkedInIterator(LinkedIn linkedIn, String type, String email)
         {
@@ -39,15 +40,15 @@ namespace RefactoringGuru.Iterator.Example.Iterators
             return currentPosition < emails.Count;
         }
 
-        public Profile.Profile GetNext()
+        public Profile GetNext()
         {
-            if (HasNext())
+            if (!HasNext())
             {
                 return null;
             }
 
             String friendEmail = emails[currentPosition];
-            Profile.Profile friendContact = contacts[currentPosition];
+            Profile friendContact = contacts[currentPosition];
             if (friendContact == null)
             {
                 friendContact = linkedIn.RequestContactInfoFromLinkedInAPI(friendEmail);

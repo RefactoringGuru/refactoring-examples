@@ -1,10 +1,12 @@
-﻿namespace RefactoringGuru.Iterator.Example.Iterators
+﻿using RefactoringGuru.Iterator.Example.Profiles;
+
+namespace RefactoringGuru.Iterator.Example.Iterators
 {
     interface ProfileIterator
     {
         bool HasNext();
 
-        Profile.Profile GetNext();
+        Profile GetNext();
 
         void Reset();
     }

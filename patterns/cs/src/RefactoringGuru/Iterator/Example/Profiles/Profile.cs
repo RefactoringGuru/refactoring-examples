@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RefactoringGuru.Iterator.Example.Profile
+namespace RefactoringGuru.Iterator.Example.Profiles
 {
     class Profile
     {

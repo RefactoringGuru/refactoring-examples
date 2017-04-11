@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Iterator.Example.SocialNetworks;
-using Iterator.Example.Spammer;
-using RefactoringGuru.Iterator.Example.Profile;
+using RefactoringGuru.Iterator.Example.Profiles;
 using RefactoringGuru.Iterator.Example.SocialNetworks;
+using RefactoringGuru.Iterator.Example.Spammer;
 
 namespace RefactoringGuru.Iterator
 {

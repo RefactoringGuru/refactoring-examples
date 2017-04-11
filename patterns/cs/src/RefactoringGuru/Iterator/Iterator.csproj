@@ -46,7 +46,7 @@
     <Compile Include="Example\Iterators\FacebookIterator.cs" />
     <Compile Include="Example\Iterators\LinkedInIterator.cs" />
     <Compile Include="Example\Iterators\ProfileIterator.cs" />
-    <Compile Include="Example\Profile\Profile.cs" />
+    <Compile Include="Example\Profiles\Profile.cs" />
     <Compile Include="Example\Program.cs" />
     <Compile Include="Example\SocialNetworks\Facebook.cs" />
     <Compile Include="Example\SocialNetworks\LinkedIn.cs" />

@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Threading;
 using RefactoringGuru.Iterator.Example.Iterators;
+using RefactoringGuru.Iterator.Example.Profiles;
 
 namespace RefactoringGuru.Iterator.Example.SocialNetworks
 {
     class Facebook : SocialNetwork
     {
-        private List<Profile.Profile> profiles;
+        private List<Profile> profiles;
 
-        public Facebook(List<Profile.Profile> cache)
+        public Facebook(List<Profile> cache)
         {
             if (cache != null)
             {
@@ -17,11 +18,11 @@ namespace RefactoringGuru.Iterator.Example.SocialNetworks
             }
             else
             {
-                this.profiles = new List<Profile.Profile>();
+                this.profiles = new List<Profile>();
             }
         }
 
-        public Profile.Profile RequestProfileFromFacebook(String profileEmail)
+        public Profile RequestProfileFromFacebook(String profileEmail)
         {
             // EN: Here would be a POST request to one of the Facebook API
             // endpoints. Instead, we emulates long network connection, which you
@@ -54,7 +55,7 @@ namespace RefactoringGuru.Iterator.Example.SocialNetworks
             // EN: ...and return test data.
             // 
             // RU: ...и возвращаем тестовые данные.
-            Profile.Profile profile = FindProfile(profileEmail);
+            Profile profile = FindProfile(profileEmail);
             if (profile != null)
             {
                 return profile.GetContacts(contactType);
@@ -62,7 +63,7 @@ namespace RefactoringGuru.Iterator.Example.SocialNetworks
             return null;
         }
 
-        private Profile.Profile FindProfile(String profileEmail)
+        private Profile FindProfile(String profileEmail)
         {
             foreach (var profile in profiles)
             {
