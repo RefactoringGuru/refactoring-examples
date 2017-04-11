@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using RefactoringGuru.Strategy.Example.Orders;
 using RefactoringGuru.Strategy.Example.Strategies;
-using Strategy.Example.Orders;
 
 namespace RefactoringGuru.Strategy
 {

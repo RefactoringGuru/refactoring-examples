@@ -1,6 +1,6 @@
 ﻿using RefactoringGuru.Strategy.Example.Strategies;
 
-namespace Strategy.Example.Orders
+namespace RefactoringGuru.Strategy.Example.Orders
 {
     /**
      * EN: Order class. Doesn't know the concrete payment method (strategy) user has
