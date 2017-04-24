@@ -19,7 +19,7 @@ replace-array-with-object:java
 4.uk. Коли методи доступу будуть створені для усіх елементів, зробіть масив приватним.
 
 5.ru. Для каждого элемента массива, создайте приватное поле в классе и измените методы доступа так, чтобы они использовали это поле вместе массива.
-5.en. For each element of the array, create a private method in the class and then change the access methods so that they use this field instead of the array.
+5.en. For each element of the array, create a private field in the class and then change the access methods so that they use this field instead of the array.
 5.uk. Для кожного елементу масиву створіть приватне поле в класі, після чого зміните методи доступу так, щоб вони використовували це поле замість масиву.
 
 6.ru. Когда с этим покончено, удалите массив.
