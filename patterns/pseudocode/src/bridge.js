@@ -1,23 +1,13 @@
-// EN: Common interface for all remotes.
+// EN: All remote classes contain reference to the device they controls.
+// Remote's methods delegate most of the work to the device methods.
 // 
-// RU: Общий интерфейс для всех пультов управления.
-interface Remote is
-    method power()
-    method volumeDown()
-    method volumeUp()
-    method channelDown()
-    method channel()
-
-// EN: Each remote has a reference to the device it controls. Methods of the
-// remote call methods on the device.
-// 
-// RU: Каждая реализация пульта имеет ссылку на устройство, которым управляет.
-// Методы пульта вызывают методы устройства.
-class BasicRemote implements Remote is
+// RU: Каждый класс пульта имеет ссылку на устройство, которым управляет. Методы
+// пульта делегируют работу методам устройства.
+class Remote is
     field device: Device
     constructor BasicRemote(device: Device) is
         this.device = device
-    method power() is
+    method togglePower() is
         if device.isEnabled() then device.disable()
         else device.enable()
     method volumeDown() is
@@ -29,11 +19,11 @@ class BasicRemote implements Remote is
     method channelUp() is
         device.setChannel(device.getChannel() + 1)
 
-// EN: You can extend remotes independently from devices.
+// EN: You can extend remote hierarchy independently from device classes.
 // 
-// RU: Вы можете расширять пульт отдельно от устройства.
-class AdvancedRemote() extends BasicRemote is
-    method Mute() is
+// RU: Вы можете расширять классы пультов не трогая код устройств.
+class AdvancedRemote extends BasicRemote is
+    method mute() is
         device.setVolume(0)
 
 
