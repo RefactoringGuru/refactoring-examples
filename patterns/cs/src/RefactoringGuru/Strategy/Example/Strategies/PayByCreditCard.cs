@@ -28,7 +28,7 @@ namespace RefactoringGuru.Strategy.Example.Strategies
             card = new CreditCard(number, date, cvv);
 
             // EN: Validate the card number.
-            //
+            // 
             // RU: Валидируем номер карты.
         }
 

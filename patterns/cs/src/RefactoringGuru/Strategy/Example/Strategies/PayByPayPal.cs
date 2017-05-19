@@ -6,8 +6,8 @@ namespace RefactoringGuru.Strategy.Example.Strategies
     /**
      * EN: Concrete strategy. Implements PayPal payment method.
      * 
-     * RU: Конкретная стратегия. Реализует оплату корзины интернет магазина через
-     * платежную систему PayPal.
+     * RU: Конкретная стратегия. Реализует оплату корзины интернет магазина
+     * через платежную систему PayPal.
      */
     class PayByPayPal : PayStrategy
     {

@@ -19,7 +19,8 @@ namespace RefactoringGuru.Proxy.Example.SomeCoolMediaLibrary
         }
 
         // -----------------------------------------------------------------------
-        // Fake methods to simulate network activity. They as slow as a real life.
+        // Fake methods to simulate network activity. They as slow as a
+        // real life.
 
         private int Random(int min, int max)
         {

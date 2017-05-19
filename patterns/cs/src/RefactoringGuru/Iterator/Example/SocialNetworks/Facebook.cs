@@ -25,8 +25,8 @@ namespace RefactoringGuru.Iterator.Example.SocialNetworks
         public Profile RequestProfileFromFacebook(String profileEmail)
         {
             // EN: Here would be a POST request to one of the Facebook API
-            // endpoints. Instead, we emulates long network connection, which you
-            // would expect in the real life...
+            // endpoints. Instead, we emulates long network connection, which
+            // you would expect in the real life...
             // 
             // RU: Здесь бы был POST запрос к одному из адресов API Facebook. Но
             // вместо этого мы эмулируем долгое сетевое соединение, прямо как в
@@ -43,8 +43,8 @@ namespace RefactoringGuru.Iterator.Example.SocialNetworks
         public List<String> RequestProfileFriendsFromFacebook(String profileEmail, String contactType)
         {
             // EN: Here would be a POST request to one of the Facebook API
-            // endpoints. Instead, we emulates long network connection, which you
-            // would expect in the real life...
+            // endpoints. Instead, we emulates long network connection, which
+            // you would expect in the real life...
             // 
             // RU: Здесь бы был POST запрос к одному из адресов API Facebook. Но
             // вместо этого мы эмулируем долгое сетевое соединение, прямо как в

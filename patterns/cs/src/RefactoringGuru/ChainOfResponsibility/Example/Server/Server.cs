@@ -9,11 +9,11 @@ namespace RefactoringGuru.ChainOfResponsibility.Example
         private Middleware.Middleware middleware;
 
         /**
-         * EN: Client passes a chain of object to server. This improves flexibility
-         * and makes testing the server class easier.
+         * EN: Client passes a chain of object to server. This improves
+         * flexibility and makes testing the server class easier.
          * 
-         * RU: Клиент подаёт готовую цепочку в сервер. Это увеличивает гибкость и
-         * упрощает тестирование класса сервера.
+         * RU: Клиент подаёт готовую цепочку в сервер. Это увеличивает гибкость
+         * и упрощает тестирование класса сервера.
          */
         public void SetMiddleware(Middleware.Middleware middleware)
         {

@@ -38,8 +38,8 @@ namespace RefactoringGuru.ChainOfResponsibility
             server.Register("admin@example.com", "admin_pass");
             server.Register("user@example.com", "user_pass");
 
-            // EN: All checks are linked. Client can build various chains using the
-            // same components.
+            // EN: All checks are linked. Client can build various chains using
+            // the same components.
             // 
             // RU: Проверки связаны в одну цепь. Клиент может строить различные
             // цепи, используя одни и те же компоненты.

@@ -48,11 +48,12 @@ namespace RefactoringGuru.Strategy
                                       "2 - Credit Card");
                     String paymentMethod = Console.ReadLine();
 
-                    // EN: Client creates different strategies based on input from
-                    // user, application configuration, etc.
+                    // EN: Client creates different strategies based on input
+                    // from user, application configuration, etc.
                     // 
                     // RU: Клиент создаёт различные стратегии на основании
-                    // пользовательских данных, конфигурации и прочих параметров.
+                    // пользовательских данных, конфигурации и
+                    // прочих параметров.
                     if (paymentMethod.Equals("1"))
                     {
                         strategy = new PayByPayPal();
@@ -62,13 +63,13 @@ namespace RefactoringGuru.Strategy
                         strategy = new PayByCreditCard();
                     }
 
-                    // EN: Order object delegates gathering payment data to strategy
-                    // object, since only strategies know what data they need to
-                    // process a payment.
+                    // EN: Order object delegates gathering payment data to
+                    // strategy object, since only strategies know what data
+                    // they need to process a payment.
                     // 
-                    // RU: Объект заказа делегирует сбор платёжных данны стратегии,
-                    // т.к. только стратегии знают какие данные им нужны для
-                    // приёма оплаты.
+                    // RU: Объект заказа делегирует сбор платёжных данны
+                    // стратегии, т.к. только стратегии знают какие данные им
+                    // нужны для приёма оплаты.
                     order.ProcessOrder(strategy);
                 }
                 Console.WriteLine("Pay " + Order.GetTotalCost() + " units or Continue shopping?  P/C: ");

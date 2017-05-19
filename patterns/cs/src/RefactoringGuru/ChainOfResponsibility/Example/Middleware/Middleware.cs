@@ -30,11 +30,11 @@ namespace RefactoringGuru.ChainOfResponsibility.Example.Middleware
         public abstract bool Check(String email, String password);
 
         /**
-         * EN: Runs check on the next object in chain or ends traversing if we're in
-         * last object in chain.
+         * EN: Runs check on the next object in chain or ends traversing if
+         * we're in last object in chain.
          * 
-         * RU: Запускает проверку в следующем объекте или завершает проверку, если
-         * мы в последнем элементе цепи.
+         * RU: Запускает проверку в следующем объекте или завершает проверку,
+         * если мы в последнем элементе цепи.
          */
         protected bool CheckNext(String email, String password)
         {

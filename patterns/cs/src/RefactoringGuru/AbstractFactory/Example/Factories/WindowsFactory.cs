@@ -4,10 +4,11 @@ using RefactoringGuru.AbstractFactory.Example.Checkboxes;
 namespace RefactoringGuru.AbstractFactory.Example.Factories
 {
     /**
-     * EN: Each concrete factory extends basic factory and responsible for creating
-     * products of a single variety.
+     * EN: Each concrete factory extends basic factory and responsible for
+     * creating products of a single variety.
      * 
-     * RU: Каждая конкретная фабрика знает и создаёт только продукты своей вариации.
+     * RU: Каждая конкретная фабрика знает и создаёт только продукты
+     * своей вариации.
      */
     class WindowsFactory : IGuiFactory
     {

@@ -25,8 +25,8 @@ namespace RefactoringGuru.TemplateMethod.Example.Networks
             // EN: Authenticate before posting. Every network uses a different
             // authentication method.
             // 
-            // RU: Проверка данных пользователя перед постом в соцсеть. Каждая сеть
-            // для проверки использует разные методы.
+            // RU: Проверка данных пользователя перед постом в соцсеть. Каждая
+            // сеть для проверки использует разные методы.
             if (LogIn(this.userName, this.password))
             {
                 // EN: Send the post data.

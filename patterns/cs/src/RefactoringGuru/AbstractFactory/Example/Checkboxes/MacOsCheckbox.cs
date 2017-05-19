@@ -9,7 +9,8 @@ namespace RefactoringGuru.AbstractFactory.Example.Checkboxes
          * 
          * This is a variant of a checkbox.
          * 
-         * RU: Все семейства продуктов имеют одинаковые вариации (MacOS/Windows).
+         * RU: Все семейства продуктов имеют одинаковые вариации
+         * (MacOS/Windows).
          * 
          * Вариация чекбокса под MacOS.
          */
