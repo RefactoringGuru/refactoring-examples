@@ -1,25 +1,27 @@
-// EN: This pattern assumes that you have a products hierarchy.
+// EN: The Factory Method pattern is applicable only when there is a
+// products hierarchy.
 // 
-// RU: Паттерн предполагает, что у вас есть иерархия классов продуктов.
+// RU: Паттерн Фабричный Метод применим тогда, когда есть иерархия
+// классов продуктов.
 interface Button is
     method render()
     method onClick(f)
 
 class WindowsButton implements Button is
     method render(a, b) is
-        Draw a windows style button.
+        Create and render a Windows looking button.
     method onClick(f) is
-        Bind native click event.
+        Bind a native OS click event.
 
 class HTMLButton implements Button is
     method render(a, b) is
         Return an HTML representation of a button.
     method onClick(f) is
-        Bind click event in a web browser.
+        Bind a web browser click event.
 
-// EN: Base factory class. Note that "factory" is merely a role for the class.
-// It should have some core business logic which needs different products to
-// be created.
+// EN: Base factory class. Note that the "factory" is merely a role for the
+// class. It should have some core business logic which needs different products
+// to be created.
 // 
 // RU: Базовый класс фабрики. Заметьте, что "фабрика" – это всего лишь
 // дополнительная роль для класса. Он уже имеет какую-то бизнес-логику, в
@@ -33,12 +35,12 @@ class Dialog is
         okButton.render();
 
     // EN: Therefore we extract all product creation code to a special
-    // Factory method.
+    // factory method.
     // 
     // RU: Мы выносим весь код создания продуктов в особый Фабричный метод.
     abstract method createButton()
 
-// EN: Concrete factories can extend that method to produce different kinds
+// EN: Concrete factories extend that method to produce different kinds
 // of products.
 // 
 // RU: Конкретные фабрики переопределяют фабричный метод и возвращают из него
@@ -51,10 +53,10 @@ class WebDialog extends Dialog is
     method createButton() is
         return new HTMLButton()
 
-class ExampleApplication is
+class ClientApplication is
     field dialog: Dialog
 
-    // EN: Application creates picks a factory type depending on configuration
+    // EN: Application picks a factory type depending on configuration
     // or environment.
     // 
     // RU: Приложение создаёт определённую фабрику в зависимости от конфигурации
@@ -66,9 +68,9 @@ class ExampleApplication is
         if (we are in web environment) then
             dialog = new WebDialog()
 
-    // EN: All of the client code should work with factories and products
-    // through abstract interfaces. This way it does not care which factory it
-    // works with and what kind of product it returns.
+    // EN: The client code should work with factories and products through their
+    // abstract interfaces. This way it will remain functional even if you add
+    // new product types to the program.
     // 
     // RU: Весь остальной клиентский код работает с фабрикой и продуктами только
     // через общий интерфейс, поэтому для него неважно какая фабрика

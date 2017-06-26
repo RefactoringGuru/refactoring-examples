@@ -27,7 +27,7 @@ class CarBuilder implements Builder is
     method setSeats(number) is
         Tell the builder the number of seats.
     method setEngine(engine: Engine) is
-        Tell the builder the number of seats.
+        Install a given engine.
     method setTripComputer() is
         Install a trip computer.
     method setGPS() is
