@@ -256,9 +256,9 @@ Select 1st "lengthField"
 + Select 1st "startField"
 + Select 1st "endField"
 
-#|ru|< Окно состоит из трёх полей ввода: стартовое значение (Start), конечное значение (End) и результирующая длина (length). <br/><img src="/images/refactoring/gui-window.png">
-#|en|< The window consists of three parts: Start value, End value, and Length. <br/><img src="/images/refactoring/gui-window.png">
-#|uk|< Вікно складається з трьох полів: стартове значення (Start), кінцеве значення (End) і результуюча довжина (length).<br/><img src="/images/refactoring/gui-window.png">
+#|ru|< Окно состоит из трёх полей ввода: стартовое значение (Start), конечное значение (End) и результирующая длина (length). <br/><img src="/images/refactoring/diagrams/gui-window.png">
+#|en|< The window consists of three parts: Start value, End value, and Length. <br/><img src="/images/refactoring/diagrams/gui-window.png">
+#|uk|< Вікно складається з трьох полів: стартове значення (Start), кінцеве значення (End) і результуюча довжина (length).<br/><img src="/images/refactoring/diagrams/gui-window.png">
 
 Select name of "focusLost"
 

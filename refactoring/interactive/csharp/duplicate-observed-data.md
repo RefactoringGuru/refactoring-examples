@@ -228,9 +228,9 @@ Select name of "class IntervalWindow"
 
 Select name of "public IntervalWindow"
 
-#|ru|< Окно состоит из трёх полей ввода: стартовое значение (Start), конечное значение (End) и результирующая длина (Length). <br/><img src="/images/refactoring/gui-window_csharp.png">
-#|en|< The window consists of three parts: Start value, End value, and Length. <br/><img src="/images/refactoring/gui-window_csharp.png">
-#|uk|< Вікно складається з трьох полів: стартове значення (Start), кінцеве значення (End) і результуюча довжина (Length).<br/><img src="/images/refactoring/gui-window_csharp.png">
+#|ru|< Окно состоит из трёх полей ввода: стартовое значение (Start), конечное значение (End) и результирующая длина (Length). <br/><img src="/images/refactoring/diagrams/gui-window_csharp.png">
+#|en|< The window consists of three parts: Start value, End value, and Length. <br/><img src="/images/refactoring/diagrams/gui-window_csharp.png">
+#|uk|< Вікно складається з трьох полів: стартове значення (Start), кінцеве значення (End) і результуюча довжина (Length).<br/><img src="/images/refactoring/diagrams/gui-window_csharp.png">
 
 Select name of "OnTextBoxLeave"
 
