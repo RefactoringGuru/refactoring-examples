@@ -50,11 +50,11 @@ class EditorState is
         editor.setCursor(cursorX, cursorY)
         editor.selectionWidth(selectionWidth)
 
-// EN: Command object could act as a client of this pattern. In such case,
+// EN: Command object can act as a caretaker. In such case,
 // command gets a memento just before it changes the originator's state. When
 // undo is requested, it restores originator's state with a memento.
 // 
-// RU: Клиентом может выступать класс команд (см. паттерн Команда). В этом
+// RU: Опекуном может выступать класс команд (см. паттерн Команда). В этом
 // случае, команда сохраняет снимок получателя перед тем, как выполнить
 // действие. А при отмене, возвращает получателя в предыдущее состояние.
 class Command is
