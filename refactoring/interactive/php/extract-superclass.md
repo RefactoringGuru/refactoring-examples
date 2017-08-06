@@ -337,9 +337,9 @@ Select body of "getAnnualCost" in "Department"
 #|en| One of the clients of the classes is the <code>Department</code> class itself, which contains a collection of employee classes. The <code>getAnnualCost</code> method uses only the annual budget calculation method, which is now declared in <code>Party</code>.
 #|uk| Одним з клієнтів цих класів є сам клас <code>Department</code>, що містить колекцію класів службовців. Метод <code>getAnnualCost</code> використовує тільки метод підрахунку річного бюджету, який тепер оголошений в <code>Party</code>.
 
-#|ru| Такое поведение открывает новую возможность. Мы можем рассматривать применение паттерна <a href="http://sourcemaking.com/design_patterns/composite">Компоновщик</a> к <code>Department</code> и <code>Employee</code>.
-#|en| This behavior offers a new opportunity. We can consider using the <a href="http://sourcemaking.com/design_patterns/composite">Composite</a> pattern on <code>Department</code> and <code>Employee</code>. 
-#|uk| Така поведінка відкриває нову можливість. Ми можемо розглядати застосування патерну <a href="http://sourcemaking.com/design_patterns/composite">Компоновщик</a> до <code>Department</code> і <code>Employee</code>.
+#|ru| Такое поведение открывает новую возможность. Мы можем рассматривать применение паттерна <a href="https://refactoring.guru/ru/design-patterns/composite">Компоновщик</a> к <code>Department</code> и <code>Employee</code>.
+#|en| This behavior offers a new opportunity. We can consider using the <a href="https://refactoring.guru/design-patterns/composite">Composite</a> pattern on <code>Department</code> and <code>Employee</code>.
+#|uk| Така поведінка відкриває нову можливість. Ми можемо розглядати застосування патерну <a href="https://refactoring.guru/design-patterns/composite">Компоновщик</a> до <code>Department</code> і <code>Employee</code>.
 
 #|ru| Это позволит включать один отдел в другой. В результате создаётся новая функциональность, так что нельзя, строго говоря, называть эти действия рефакторингом.
 #|en| That allows including one department in another. The result is new functionality, so strictly speaking this goes beyond refactoring.
