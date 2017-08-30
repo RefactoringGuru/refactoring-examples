@@ -15,6 +15,7 @@ class Manual is
 // RU: Интерфейс Строителя объявляет все возможные этапы и шаги
 // конфигурации продукта.
 interface Builder is
+    method reset()
     method setSeats(number)
     method setEngine(engine: Engine)
     method setTripComputer()
@@ -24,16 +25,19 @@ interface Builder is
 // 
 // RU: Все конкретные строители реализуют общий интерфейс по-своему.
 class CarBuilder implements Builder is
+    private field car:Car
+    method reset()
+        Put a new Car instance into the "car" field.
     method setSeats(number) is
-        Tell the builder the number of seats.
+        Set the number of seats in car.
     method setEngine(engine: Engine) is
         Install a given engine.
     method setTripComputer() is
         Install a trip computer.
     method setGPS() is
         Install a global positioning system.
-    method getResult(): RealCar is
-        Construct and return a real car.
+    method getResult(): Car is
+        Return the current car object.
 
 // EN: Unlike other creational patterns, Builder can construct unrelated
 // products, which don't have the common interface.
@@ -41,6 +45,9 @@ class CarBuilder implements Builder is
 // RU: В отличие от других создающих паттернов, Строители могут создавать
 // совершенно разные продукты, не имеющие общего интерфейса.
 class CarManualBuilder implements Builder is
+    private field manual:Manual
+    method reset()
+        Put a new Manual instance into the "manual" field.
     method setSeats(number) is
         Document car seats features.
     method setEngine(engine: Engine) is
@@ -50,7 +57,7 @@ class CarManualBuilder implements Builder is
     method setGPS() is
         Add GPS instruction.
     method getResult(): Manual is
-        Get manual contents.
+        Return the current manual object.
 
 
 // EN: Director defines the order of building steps. It works with a builder
@@ -62,10 +69,11 @@ class CarManualBuilder implements Builder is
 // знать какой конкретно продукт сейчас строится.
 class Director is
     method constructSportsCar(builder: Builder) is
-        builder.setSeats(2)
-        builder.setEngine(new SportEngine())
-        builder.setTripComputer()
-        builder.setGPS()
+        builder.reset();
+        builder.setSeats(2);
+        builder.setEngine(new SportEngine());
+        builder.setTripComputer();
+        builder.setGPS();
 
 
 // EN: Director gets the concrete builder object from the client (application
