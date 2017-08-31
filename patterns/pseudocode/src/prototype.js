@@ -10,11 +10,11 @@ abstract class Shape is
     // the constructor.
     // 
     // RU: Копирование всех полей объекта происходит в конструкторе.
-    method Shape(target: Shape) is
-        if (target != null) then
-            this.X = target.X;
-            this.Y = target.Y;
-            this.color = target.color;
+    method Shape(source: Shape) is
+        if (source != null) then
+            this.X = source.X;
+            this.Y = source.Y;
+            this.color = source.color;
 
     // EN: Clone operation always returns one of the Shape subclasses.
     // 
@@ -38,16 +38,16 @@ class Rectangle extends Shape is
     field width: int
     field height: int
 
-    method Rectangle(target: Rectangle) is
+    method Rectangle(source: Rectangle) is
         // EN: Parent constructor call is mandatory in order to copy private
         // fields defined in parent class.
         // 
         // RU: Вызов родительского конструктора нужен, чтобы скопировать
         // потенциальные приватные поля, объявленные в родительском классе.
-        super(target)
-        if (target != null) then
-            this.width = target.width;
-            this.height = target.height;
+        super(source)
+        if (source != null) then
+            this.width = source.width;
+            this.height = source.height;
 
     method clone(): Shape is
         return new Rectangle(this)
@@ -56,10 +56,10 @@ class Rectangle extends Shape is
 class Circle extends Shape is
     field radius: int
 
-    method Circle(target: Circle) is
-        super(target)
-        if (target != null) then
-            this.radius = target.radius;
+    method Circle(source: Circle) is
+        super(source)
+        if (source != null) then
+            this.radius = source.radius;
 
     method clone(): Shape is
         return new Circle(this)
