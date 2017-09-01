@@ -4,6 +4,11 @@ class Database is
     static method getInstance() is
         if (this.instance == null) then
             acquireThreadLock() and then
+                // EN: Ensure that instance has not yet been initialized by
+                // other thread while this one was waiting for the lock release.
+                // 
+                // RU: На всякий случай ещё раз проверим не был ли объект создан
+                // другим потоком, пока текущий ждал освобождения блокировки.
                 if (this.instance == null) then
                     this.instance = new Database()
         return this.instance
