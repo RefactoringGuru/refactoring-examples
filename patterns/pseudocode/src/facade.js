@@ -65,4 +65,5 @@ class VideoConvertor is
 class Application is
     method main() is
         convertor = new VideoConvertor();
-        mp4video = convertor.convertVideo("youtubevideo.ogg", "mp4")
+        mp4video = convertor.convertVideo("youtubevideo.ogg", "mp4");
+        mp4video.save();
