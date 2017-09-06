@@ -40,26 +40,26 @@ class ThirdPartyYoutubeClass is
 // запросы к сервисному объекту, только если нужно непосредственно
 // выслать запрос.
 class CachedYoutubeClass implements ThirdPartyYoutubeLib is
-    field youtubeService: ThirdPartyYoutubeClass
-    field listCache, videoCache
+    private field service: ThirdPartyYoutubeClass
+    private field listCache, videoCache
     field needReset
 
-    constructor YoutubeCache() is
-        youtubeService = new ThirdPartyYoutubeClass()
+    constructor CachedYoutubeClass(service: ThirdPartyYoutubeLib) is
+        this.service = service
 
     method listVideos() is
-        if (listCache == null && !needReset)
-            listCache = youtubeService.listVideos()
+        if (listCache == null || needReset)
+            listCache = service.listVideos()
         return listCache
 
     method getVideoInfo(id) is
-        if (videoCache == null && !needReset)
-            videoCache = youtubeService.getVideoInfo(id)
+        if (videoCache == null || needReset)
+            videoCache = service.getVideoInfo(id)
         return videoCache
 
-    method downloadVideo(id is
-        if (!downloadExists(id) && !needReset)
-            youtubeService.listVideos()
+    method downloadVideo(id) is
+        if (!downloadExists(id) || needReset)
+            service.downloadVideo(id)
 
 // EN: The GUI class, which used to work with a service object stays unchanged.
 // But only as long as it works with the service object through an interface. We
@@ -70,9 +70,9 @@ class CachedYoutubeClass implements ThirdPartyYoutubeLib is
 // мы подсунем ему объект-заместитель. Клиент ничего не заметит, так как
 // заместитель имеет тот же интерфейс, что и сервис.
 class YoutubeManager is
-    field service: ThirdPartyYoutubeLib
+    protected field service: ThirdPartyYoutubeLib
 
-    constructor YoutubeManager(service: ThirdPartyYoutubeClass) is
+    constructor YoutubeManager(service: ThirdPartyYoutubeLib) is
         this.service = service
 
     method renderVideoPage() is
@@ -93,6 +93,7 @@ class YoutubeManager is
 // объект заместителя.
 class Application is
     method init() is
-        youtubeLib = new CachedYoutubeClass();
-        manager = new YoutubeManager(youtubeLib)
+        youtubeService = new ThirdPartyYoutubeClass()
+        youtubeProxy = new CachedYoutubeClass(youtubeService)
+        manager = new YoutubeManager(youtubeProxy)
         manager.reactOnUserInput()

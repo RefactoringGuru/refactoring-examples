@@ -41,16 +41,16 @@ class FacebookIterator implements ProfileIterator is
     // traverses through.
     // 
     // RU: Итератору нужна ссылка на коллекцию, которую он обходит.
-    field facebook: Facebook
-    field profileId, type: string
+    private field facebook: Facebook
+    private field profileId, type: string
 
     // EN: An iterator object traverses collection independently from other
     // iterators. Therefore it has to store the iteration state.
     // 
     // RU: Но каждый итератор обходит коллекцию независимо от остальных, поэтому
     // он содержит информацию о текущей позиции обхода.
-    field currentPosition
-    field cache: array of Profile
+    private field currentPosition
+    private field cache: array of Profile
 
     constructor FacebookIterator(facebook, profileId, type) is
         this.facebook = network

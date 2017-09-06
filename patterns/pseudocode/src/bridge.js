@@ -4,7 +4,7 @@
 // RU: Каждый класс пульта имеет ссылку на устройство, которым управляет. Методы
 // пульта делегируют работу методам устройства.
 class Remote is
-    field device: Device
+    protected field device: Device
     constructor BasicRemote(device: Device) is
         this.device = device
     method togglePower() is

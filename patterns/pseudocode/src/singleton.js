@@ -13,7 +13,7 @@ class Database is
                     this.instance = new Database()
         return this.instance
 
-    private method Database() is
+    private constructor Database() is
         // EN: Some initialization code, such as the actual connection to a
         // database server.
         // ...

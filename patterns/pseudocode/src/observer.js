@@ -4,7 +4,7 @@
 // RU: Базовый класс-издатель. Содержит код управления подписчиками и
 // их оповещения.
 class EventManager is
-    field listeners: hash map of eventTypes and EventListeners
+    private field listeners: hash map of eventTypes and EventListeners
 
     method subscribe(eventType, listener) is
         listeners.add(eventType, listener)
@@ -28,8 +28,8 @@ class EventManager is
 // подкласс). Поэтому здесь мы подключаем механизм подписки при
 // помощи композиции.
 class Editor is
-    field events: EventManager
-    field file: File
+    private field events: EventManager
+    private field file: File
 
     constructor Editor() is
         events = new EventManager()
@@ -64,16 +64,16 @@ interface EventListener is
 // RU: Набор конкретных слушателей. Они реализуют добавочную функциональность,
 // реагируя на извещения от издателя.
 class LogOpenListener is
-    field log: File
+    private field log: File
 
-    constructor LogOpenListener(filename) is
-        this.log = new File(filename)
+    constructor LogOpenListener(log_filename) is
+        this.log = new File(log_filename)
 
     method update(filename) is
         log.write("Opened: " + filename)
 
 class EmailNotificationListener is
-    field email: string
+    private field email: string
 
     constructor EmailNotificationListener(email) is
         this.email = email

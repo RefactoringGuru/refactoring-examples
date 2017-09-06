@@ -21,7 +21,7 @@ class FileDataSource implements DataSource is
 // 
 // RU: Родитель всех Декораторов содержит код обёртывания.
 class DataSourceDecorator implements DataSource is
-    field wrappee: DataSource
+    protected field wrappee: DataSource
 
     constructor DataEncyptionDecorator(source: DataSource) is
         wrappee = source

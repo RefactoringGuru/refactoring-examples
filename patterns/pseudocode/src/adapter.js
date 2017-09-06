@@ -29,7 +29,7 @@ class SquarePeg is
 // RU: Адаптер позволяет использовать квадратные колышки и круглые
 // отверстия вместе.
 class SquarePegAdapter extends RoundPeg is
-    field peg: SquarePeg
+    private field peg: SquarePeg
 
     constructor SquarePegAdapter(peg: SquarePeg) is
         this.peg = peg

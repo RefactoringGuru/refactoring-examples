@@ -58,7 +58,7 @@ class EditorState is
 // случае, команда сохраняет снимок получателя перед тем, как выполнить
 // действие. А при отмене, возвращает получателя в предыдущее состояние.
 class Command is
-    field backup: EditorState
+    private field backup: EditorState
 
     method backup() is
         backup = editor.saveState()

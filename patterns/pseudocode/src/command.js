@@ -2,9 +2,9 @@
 // 
 // RU: Абстрактная команда задаёт общий интерфейс для всех команд.
 abstract class Command is
-    field app: Application
-    field editor: Editor
-    field backup: text
+    protected field app: Application
+    protected field editor: Editor
+    protected field backup: text
 
     constructor Command(app: Application, editor: Editor) is
         this.app = app
@@ -63,7 +63,7 @@ class PasteCommand implements Command is
 // 
 // RU: Глобальная история команд — это стек.
 class CommandHistory is
-    history: array of Command
+    private field history: array of Command
 
     // EN: Last in...
     // 

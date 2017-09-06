@@ -2,7 +2,7 @@
 // 
 // RU: Абстрактный интерфейс обработчика.
 abstract class Component is
-    field onClick: function
+    protected field onClick: function
 
     // EN: Basic handling method. It will be called when no other handler is
     // capable of processing a click.
@@ -26,7 +26,7 @@ class ContainerComponent extends Component is
     // 
     // RU: Расширенный элемент цепочки, который имеет связи с
     // другими компонентами-обработчиками.
-    field children: array of Component
+    protected field children: array of Component
 
     method add(child) is
         children.add(child)

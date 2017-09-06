@@ -13,11 +13,11 @@ interface Mediator is
 // в код посредника. Он получает извещения от своих компонентов и знает как на
 // них реагировать.
 class AuthenticationDialog implements Mediator is
-    field title: string
-    field loginOrRegister: Checkbox
-    field loginUsername, loginPassword: Textbox
-    field registrationUsername, registrationPassword, registrationEmail: Textbox
-    field ok, cancel: Button
+    private field title: string
+    private field loginOrRegister: Checkbox
+    private field loginUsername, loginPassword: Textbox
+    private field registrationUsername, registrationPassword, registrationEmail: Textbox
+    private field ok, cancel: Button
 
     constructor AuthenticationDialog() is
         Create all component objects.

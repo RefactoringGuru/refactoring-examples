@@ -2,7 +2,7 @@
 // 
 // RU: Общий интерфейс всех состояний.
 abstract class State is
-    field player: Player
+    protected field player: Player
 
     // EN: Context passes itself through the state constructor. This may help a
     // state to fetch some useful context data if needed.
