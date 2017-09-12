@@ -6,25 +6,49 @@ abstract class Command is
     protected field editor: Editor
     protected field backup: text
 
+    // EN: Regular constructor.
+    // 
+    // RU: Обычный конструктор.
     constructor Command(app: Application, editor: Editor) is
         this.app = app
         this.editor = editor
 
-    // EN: This abstract command defines undo functionality. To save more
-    // complex editor state, you might need to use the Memento pattern.
+    // EN: Cloning contructor.
     // 
-    // RU: Эта абстрактная команда содержит простейший механизм отмены. Чтобы
-    // сохранять более сложное состояние редактора можно использовать
-    // паттерн Снимок.
+    // RU: Конструктор клонирования.
+    constructor Command(copy: Command) is
+        this.app = copy.app
+        this.editor = copy.editor
+        this.backup = copy.backup
+
+    // EN: This method produces a copy of the command, suitable for saving in
+    // history. It's actually the Prototype pattern in action.
+    // 
+    // RU: Этот метод производит копию команду, которую удобно сохранить в
+    // истории. В сущности, здесь мы применяем паттерн Прототип.
+    method clone() is
+        return new Command(this);
+
+    // EN: A command may backup editor's state prior to executing its action. We
+    // must store a copy of the command in history to preserve the backup kept
+    // inside. The copy may be used in future to revert editor's state.
+    // 
+    // RU: Этот метод будет выполнен перед основным действием команды. Он
+    // сохраняет состояние редактора внутри команды, а затем добавляет копию
+    // команды в историю. Если потребуется отмена, состояние редактора можно
+    // будет откатить к занчению, сохраненному в команде.
     method backup() is
         backup = editor.text
-        app.history.push(this)
+        app.history.push(this.clone())
 
+    // EN: Restore editor's state.
+    // 
+    // RU: Восстанавливаем состояние редактора.
     method undo() is
         editor.text = backup
 
     // EN: Main command method stays abstract so that each concrete command
-    // could provide its own implementation.
+    // provide its own implementation.
     // 
     // RU: Главный метод команды остаётся абстрактным, чтобы каждая конкретная
     // команда определила его по-своему.
@@ -57,6 +81,13 @@ class PasteCommand implements Command is
     method execute() is
         backup()
         editor.replaceSelection(app.clipboard)
+
+// EN: Undo is also a command.
+// 
+// RU: Отмена это тоже команда.
+class UndoCommand implements Command is
+    method execute() is
+        editor.undo()
 
 
 // EN: Global command history is just a stack.
@@ -108,25 +139,27 @@ class Application is
     field activeEditor: Editor
     field history: CommandHistory
 
-    method createUI() is
-        onKeyPress("Ctrl+C", this.getCopyCommand);
-        onKeyPress("Ctrl+X", this.getCutCommand);
-        onKeyPress("Ctrl+V", this.getPasteCommand);
-        onKeyPress("Ctrl+Z", this.undo);
-
-    // EN: Hotkeys handler creates new command object each time it fires. In
-    // this case, commands could work with multiple editors, but they have the
-    // common clipboard.
+    // EN: Code that assigns commands to UI objects may look like this.
     // 
-    // RU: При каждом нажатии горячей клавиши создаётся новая команда. Команды
-    // могут работать с несколькими редакторами одновременно, но имеют общий
-    // буфер обмена.
-    method getCopyCommand() is
-        return (new CopyCommand(this, activeEditor)).execute()
-    method getCutCommand() is
-        return (new CutCommand(this, activeEditor)).execute()
-    method getPasteCommand() is
-        return (new PasteCommand(this, activeEditor)).execute()
+    // RU: Код, привязывающий команды к элементам интефрейса может выглядеть
+    // примерно так.
+    method createUI() is
+        // ...
+        copy = new CopyCommand(this, activeEditor);
+        copyButton.setCommand(copy);
+        shortcuts.onKeyPress("Ctrl+C", copy);
+
+        cut = new CutCommand(this, activeEditor);
+        cutButton.setCommand(cut);
+        shortcuts.onKeyPress("Ctrl+X", cut);
+
+        paste = new PasteCommand(this, activeEditor);
+        pasteButton.setCommand(paste);
+        shortcuts.onKeyPress("Ctrl+V", paste);
+
+        undo = new UndoCommand(this, activeEditor);
+        undoButton.setCommand(undo);
+        shortcuts.onKeyPress("Ctrl+Z", undo);
 
     // EN: Take the last command from history and run its undo method. Note that
     // we don't know the type of that command. But we don't have to since
