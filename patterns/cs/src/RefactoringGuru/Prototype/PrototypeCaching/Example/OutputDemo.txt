@@ -1,3 +1,0 @@
-﻿Big green circle != Medium blue rectangle (yay!)
-Medium blue rectangles are two different objects (yay!)
-And they are identical (yay!)
