@@ -3,23 +3,33 @@ extract-subclass:php
 ###
 
 1.ru. Создайте новый подкласс из интересующего вас класса.
+
 1.en. Create a new subclass from the class of interest.
+
 1.uk. Створіть новий підклас з класу, що вас цікавить.
 
 2.ru. Если для создания объектов из подкласса будут нужны какие-то дополнительные данные, создайте конструктор и дополните его нужными параметрами. Не забудьте вызвать родительскую реализацию конструктора.
+
 2.en. If you need additional data to create objects from a subclass, create a constructor and add the necessary parameters to it. Do not forget to call the constructor's parent implementation.
+
 2.uk. Якщо для створення об'єктів підкласу будуть потрібні якісь додаткові дані, створіть конструктор і доповніть його потрібними параметрами. Не забудьте викликати батьківську реалізацію конструктора, використовуючи <code>parent</code>.
 
 3.ru. Найдите все вызовы конструктора родительского класса. В тех случаях, когда требуется функциональность подкласса, замените родительский конструктор конструктором подкласса.
+
 3.en. Find all calls to the constructor of the parent class. When the functionality of a subclass is necessary, replace the parent constructor with the subclass constructor.
+
 3.uk. Знайдіть усі виклики конструктора батьківського класу. У тих випадках, коли потрібна також функціональність підкласу, замініть батьківський конструктор конструктором підкласу.
 
 4.ru. Переместите нужные методы и поля из родительского класса в подкласс. Используйте для этого <a href="/ru/push-down-method">спуск метода</a> и <a href="/ru/push-down-field">спуск поля</a>. Проще всего начинать перенос с методов, т.к. тогда поля будут доступны для них все время: из родительского класса до переноса, и из самого подкласса после окончания переноса.
+
 4.en. Move the necessary methods and fields from the parent class to the subclass. Do this via <a href="/push-down-method">Push Down Method</a> and <a href="/push-down-field">Push Down Field</a>. It is simpler to start by moving the methods first. This way, the fields remain accessible throughout the whole process: from the parent class prior to the move, and from the subclass itself after the move is complete.
+
 4.uk. Перемістіть потрібні методи і поля з батьківського класу в підклас. Використайте для цього <a href="/uk/push-down-method">спуск методу</a> і <a href="/uk/push-down-field">спуск поля</a>. Найпростіше розпочинати перенесення з методів, тому тоді поля будуть доступні для них увесь час: з батьківського класу до перенесення, і з самого підкласу після закінчення перенесення.
 
 5.ru. После того как подкласс готов, найдите все старые поля, которые управляли тем, какой набор функций должен выполняться. Эти поля можно удалить, заменив полиморфизмом все условные операторы, в которых они использовались.
+
 5.en. After the subclass is ready, find all the old fields that controlled the choice of functionality. Delete these fields by using polymorphism to replace all the operators in which the fields had been used.
+
 5.uk. Після того, як підклас готовий, знайдіть усі старі поля, які управляли тим, який набір функцій повинен виконуватися. Ці поля можна видалити, замінивши поліморфізмом усі умовні оператори, в яких вони використовувалися.
 
 
@@ -427,7 +437,7 @@ Print:
 ```
 
   public function getUnitPrice() {
-    return $employee->getRate();
+    return $this->employee->getRate();
   }
 ```
 
