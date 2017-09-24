@@ -11,4 +11,4 @@ void printProperties(IList users)
 string getProperties(User user)  
 {
   return user.getName() + " " + user.getAge();
-} 
+}
