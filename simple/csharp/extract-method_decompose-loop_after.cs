@@ -1,6 +1,6 @@
 void printProperties(IList users) 
 {
-  for (User user : users) 
+  foreach (User user in users)
   {
     Console.WriteLine(getProperties(user));
 
