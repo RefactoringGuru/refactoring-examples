@@ -1,3 +1,4 @@
+<?php
 private $name;
 
 public getName() {

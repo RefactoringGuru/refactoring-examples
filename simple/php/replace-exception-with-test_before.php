@@ -1,3 +1,4 @@
+<?php
 function getValueForPeriod($periodNumber) {
   try {
     return $this->values[$periodNumber];

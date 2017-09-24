@@ -1,3 +1,4 @@
+<?php
 class Manager extends Employee {
   public __construct($name, $id, $grade) {
     $this->name = $name;

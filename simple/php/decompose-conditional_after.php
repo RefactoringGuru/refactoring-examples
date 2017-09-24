@@ -1,3 +1,4 @@
+<?php
 if (notSummer($date)) {
   $charge = winterCharge($quantity);
 }

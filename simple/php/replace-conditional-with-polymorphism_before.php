@@ -1,3 +1,4 @@
+<?php
 class Bird {
   ...
   function getSpeed() {

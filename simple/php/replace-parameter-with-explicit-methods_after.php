@@ -1,3 +1,4 @@
+<?php
 function setHeight($arg) {
   $this->height = $arg;
 }

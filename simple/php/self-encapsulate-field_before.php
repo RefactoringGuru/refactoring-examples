@@ -1,3 +1,4 @@
+<?php
 private $low;
 private $high;
 

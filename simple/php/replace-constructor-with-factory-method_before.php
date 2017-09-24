@@ -1,3 +1,4 @@
+<?php
 class Employee {
   ...
   function __construct($type) {

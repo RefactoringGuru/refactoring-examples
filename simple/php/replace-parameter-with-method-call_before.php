@@ -1,3 +1,4 @@
+<?php
 $basePrice = $this->quantity * $this->itemPrice;
 $seasonDiscount = $this->getSeasonalDiscount();
 $fees = $this->getFees();

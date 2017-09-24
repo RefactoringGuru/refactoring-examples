@@ -1,3 +1,4 @@
+<?php
 class Soldier {
   public $health; // int
   public $weapon; // Weapon class

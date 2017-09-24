@@ -1,3 +1,4 @@
+<?php
 function foundPerson(array $people){
   for ($i = 0; $i < count($people); $i++) {
     if ($people[$i] == "Don") {

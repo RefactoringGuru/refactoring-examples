@@ -1,3 +1,4 @@
+<?php
 function setValue($name, $value) {
   if ($name == "height") {
     $this->height = $value;

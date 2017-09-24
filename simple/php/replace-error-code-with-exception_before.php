@@ -1,3 +1,4 @@
+<?php
 function withdraw($amount) {
   if ($amount > $this->balance)
     return -1;

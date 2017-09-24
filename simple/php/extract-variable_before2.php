@@ -1,4 +1,5 @@
-void renderBanner() {
+<?php
+function renderBanner() {
   // Render banner only if we're in fullscreen mode 
   // and a change is requested either in frame or 
   // target, or experiment is active.

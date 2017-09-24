@@ -1,3 +1,4 @@
+<?php
 function getRating() {
   return ($this->moreThanFiveLateDeliveries()) ? 2 : 1;
 }

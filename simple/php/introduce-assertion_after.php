@@ -1,3 +1,4 @@
+<?php
 function getExpenseLimit() {
   assert($this->expenseLimit != NULL_EXPENSE || isset($this->primaryProject));
 

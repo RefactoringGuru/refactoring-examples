@@ -1,3 +1,4 @@
+<?php
 if ($this->basePrice() > 1000)
   return $this->basePrice() * 0.95;
 else

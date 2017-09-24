@@ -1,3 +1,4 @@
+<?php
 class NullCustomer extends Customer {
   function isNull() {
     return true;

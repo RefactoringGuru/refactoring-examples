@@ -1,3 +1,4 @@
+<?php
 /**
  * (Here you put some real function documentation.
  *  Note: the line below indicates that function

@@ -1,3 +1,4 @@
+<?php
 if (isSpecialDeal()) {
   $total = $price * 0.95;
   send();

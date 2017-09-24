@@ -1,3 +1,4 @@
+<?php
 class Employee {
   ...
   static function create($type) {

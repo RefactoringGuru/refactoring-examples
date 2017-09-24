@@ -1,3 +1,4 @@
+<?php
 class Customer {
   private $name = "name";
   private $lastName = "lastname";

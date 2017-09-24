@@ -1,3 +1,4 @@
+<?php
 public function getPayAmount() {
   if ($this->isDead)
     return $this->deadAmount();

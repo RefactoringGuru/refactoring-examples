@@ -1,3 +1,4 @@
+<?php
 abstract class Bird {
   ...
   abstract function getSpeed();

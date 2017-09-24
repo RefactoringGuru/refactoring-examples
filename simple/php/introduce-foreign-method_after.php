@@ -1,6 +1,7 @@
+<?php
 class Report {
   //...
-  void sendReport() {
+  function sendReport() {
     $paymentDate = $this->nextWeek($this->previousDate);
     //...
   }

@@ -1,3 +1,4 @@
+<?php
 function printOwing() {
   $this->printBanner();
   $this->printDetails($this->getOutstanding());
