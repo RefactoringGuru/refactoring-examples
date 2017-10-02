@@ -3,8 +3,8 @@ class Order {
 
   public double calculateTotal() {
     // ...
-    total = Discounts.applyRegionalDiscounts($total);
-    total = Discounts.applyCoupons($total);
+    total = Discounts.applyRegionalDiscounts(total, user.getCountry());
+    total = Discounts.applyCoupons(total);
     // ...
   }
 
@@ -12,9 +12,9 @@ class Order {
 class Discounts {
   // ...
 
-  public static double applyRegionalDiscounts(total) {
+  public static double applyRegionalDiscounts(double total, string country) {
     double result = total;
-    switch (user.getCountry()) {
+    switch (country) {
       case "US": result *= 0.85; break;
       case "RU": result *= 0.75; break;
       case "CN": result *= 0.9; break;
@@ -23,6 +23,6 @@ class Discounts {
     return result;
   }
 
-  public static double applyCoupons(total) {
+  public static double applyCoupons(double total) {
       // ...
   }

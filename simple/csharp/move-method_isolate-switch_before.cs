@@ -13,7 +13,7 @@ class Order
     return total;
   }
 
-  public double applyRegionalDiscounts(total)
+  public double applyRegionalDiscounts(double total)
   {
     double result = total;
     switch (user.getCountry())
