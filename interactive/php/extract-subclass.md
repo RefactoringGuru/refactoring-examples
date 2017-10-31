@@ -122,7 +122,7 @@ class LaborItem extends JobItem {
     return $this->employee;
   }
   public function getUnitPrice() {
-    return $employee->getRate();
+    return $this->employee->getRate();
   }
 }
 
