@@ -3,7 +3,7 @@ void printProperties(List users) {
     String result = "";
     result += users.get(i).getName();
     result += " ";
-    result += users.get(i).getage();
+    result += users.get(i).getAge();
     System.out.println(result);
 
     // ...
