@@ -4,6 +4,7 @@ void printProperties(IList users)
   {
     string result = "";
     result += users.get(i).getName();
+    result += " ";
     result += users.get(i).getage();
     Console.WriteLine(result);
 
