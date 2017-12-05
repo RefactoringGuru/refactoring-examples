@@ -217,9 +217,9 @@ Print:
     $previousDate = new MyNewDate($this->previousDate);
 ```
 
-Wait 1s
-
 Select "self::nextWeek($this->previousDate)"
+
+Wait 500ms
 
 Print "$previousDate->nextWeek()"
 
