@@ -2,7 +2,7 @@
 class Report {
   //...
   function sendReport() {
-    $paymentDate = $this->nextWeek($this->previousDate);
+    $paymentDate = self::nextWeek($this->previousDate);
     //...
   }
   /**

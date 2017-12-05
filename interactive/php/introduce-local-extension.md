@@ -40,13 +40,13 @@ introduce-local-extension:php
 class Account {
   // ...
   public function schedulePayment() {
-    $paymentDate = $this->nextWeek($this->previousDate);
+    $paymentDate = self::nextWeek($this->previousDate);
     // Issue a payment using paymentDate.
     // ...
   }
 
   /**
-   * Foreign method. Should be on Date.
+   * Foreign method. Should be in the DateTime class.
    */
   private static function nextWeek(DateTime $arg) {
   	$previousDate = clone $arg;
@@ -61,7 +61,8 @@ class Account {
 class Account {
   // ...
   public function schedulePayment() {
-    $paymentDate = (new MyNewDate($this->previousDate))->nextWeek();
+    $previousDate = new MyNewDate($this->previousDate);
+    $paymentDate = $previousDate->nextWeek();
     // Issue a payment using paymentDate.
     // ...
   }
@@ -72,12 +73,14 @@ class MyNewDate extends DateTime {
   public function __construct() {
   	$args = func_get_args();
   	if (isset($args[0]) && is_a($args[0], 'DateTime')) {
-      call_user_func_array(array($this, 'parent::__construct'), [$args[0]->format('Y-m-d H:i:s')]);
+      call_user_func_array([$this, 'parent::__construct'],
+        [$args[0]->format('Y-m-d H:i:s')]);
     }
     else {
-      call_user_func_array(array($this, 'parent::__construct'), $args);
+      call_user_func_array([$this, 'parent::__construct'], $args);
     }
   }
+
   public function nextWeek() {
   	return $this->modify('+7 days');
   }
@@ -120,7 +123,7 @@ Print:
 
   public function __construct() {
   	$args = func_get_args();
-  	call_user_func_array(array($this, 'parent::__construct'), $args);
+  	call_user_func_array([$this, 'parent::__construct'], $args);
   }
 ```
 
@@ -134,16 +137,17 @@ Select name of "__construct"
 
 Select:
 ```
-  	call_user_func_array(array($this, 'parent::__construct'), $args);
+  	call_user_func_array([$this, 'parent::__construct'], $args);
 ```
 
 Replace:
 ```
   	if (isset($args[0]) && is_a($args[0], 'DateTime')) {
-      call_user_func_array(array($this, 'parent::__construct'), [$args[0]->format('Y-m-d H:i:s')]);
+      call_user_func_array([$this, 'parent::__construct'],
+        [$args[0]->format('Y-m-d H:i:s')]);
     }
     else {
-      call_user_func_array(array($this, 'parent::__construct'), $args);
+      call_user_func_array([$this, 'parent::__construct'], $args);
     }
 ```
 
@@ -160,6 +164,7 @@ Go to the end of "MyNewDate"
 Print:
 ```
 
+
   private static function nextWeek(DateTime $arg) {
   	$previousDate = clone $arg;
   	return $previousDate->modify('+7 days');
@@ -174,7 +179,7 @@ Select parameters of "nextWeek" in "MyNewDate"
 
 Remove selected
 
-Select:
+Select in "nextWeek" of "MyNewDate":
 ```
   	$previousDate = clone $arg;
 
@@ -198,20 +203,32 @@ Wait 500ms
 
 Set step 5
 
-Select "$this->nextWeek($this->previousDate)"
+Select "self::nextWeek($this->previousDate)"
 
 #|ru| Изменим код, использующий внешний метод, чтобы вместо метода он использовал новый класс-расширение.
 #|en| Now we replace all usages of the old foreign method with our new extension class.
 #|uk| Змінимо код, що використовує зовнішній метод так, щоб він замість цього використовував новий клас-розширення.
 
-Print "(new MyNewDate($this->previousDate))->nextWeek()"
+Go to the start of "schedulePayment"
+
+Print:
+```
+
+    $previousDate = new MyNewDate($this->previousDate);
+```
+
+Wait 1s
+
+Select "self::nextWeek($this->previousDate)"
+
+Print "$previousDate->nextWeek()"
 
 Select whole "nextWeek" in "Account"
 + Select:
 ```
 
   /**
-   * Foreign method. Should be on Date.
+   * Foreign method. Should be in the DateTime class.
    */
 
 ```

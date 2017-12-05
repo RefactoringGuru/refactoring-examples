@@ -38,7 +38,7 @@ public class Account
     // ...
   }
 
-  //TODO: Foreign method. Should be on DateTime.
+  // TODO: Foreign method. Should be in the DateTime class.
   public static DateTime GetNearFirstDate(DateTime date)
   {
     if (date.Day == 1)
@@ -251,7 +251,7 @@ Select whole "GetNearFirstDate" in "Account"
 + Select:
 ```
 
-  //TODO: Foreign method. Should be on DateTime.
+  // TODO: Foreign method. Should be in the DateTime class.
 
 ```
 #|ru| После всех замен внешний метод можно удалить.

@@ -175,7 +175,7 @@ Go to before "GetNearFirstDate"
 Print:
 ```
 
-  //TODO: Foreign method. Should be on DateTime.
+  // TODO: Foreign method. Should be in the DateTime class.
 ```
 
 Go to after "Account"
@@ -219,7 +219,7 @@ Select in "Account":
 ```
 
 
-  //TODO: Foreign method. Should be on DateTime.
+  // TODO: Foreign method. Should be in the DateTime class.
   public static DateTime GetNearFirstDate(DateTime date)
   {
     if (date.Day == 1)

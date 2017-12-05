@@ -3,23 +3,33 @@ introduce-local-extension:java
 ###
 
 1.ru. Создайте новый класс-расширение и сделайте его наследником служебного класса.
+
 1.en. Create a new extension class and make it the inheritor of the utility class.
+
 1.uk. Створіть новий клас-розширення і зробіть його спадкоємцем службового класу.
 
 2.ru. Создайте конструктор, использующий параметры конструктора служебного класса.
+
 2.en. Create a constructor that uses the parameters of the constructor of the utility class.
+
 2.uk. Створіть конструктор, який використовує параметри конструктора службового класу.
 
 3.ru. Создайте альтернативный «конвертирующий» конструктор, который принимает в параметрах только объект оригинального класса.
+
 3.en. Create an alternative "converting" constructor that accepts only an object of the original class in its parameters.
+
 3.uk. Створіть альтернативний «конвертуючий» конструктор, який приймає в параметрах тільки об'єкт оригінального класу.
 
 4.ru. Создайте в классе новые расширенные методы. Переместите в него внешние методы из других классов, либо удалите их, если расширение уже имеет такой функционал.
+
 4.en. Create new extended methods in the class. Move foreign methods from other classes to this class or else delete the foreign methods if their functionality is already present in the extension.
+
 4.uk. Створіть в класі нові розширені методи. Перемістіть в нього зовнішні методи з інших класів, або видалите їх, якщо розширення вже має такий функціонал.
 
 5.ru. Замените использование служебного класса новым классом-расширением в тех местах, где нужна расширенная функциональность.
+
 5.en. Replace use of the utility class with the new extension class in places where its functionality is needed.
+
 5.uk. Замініть використання службового класу новим класом-розширенням в тих місцях, де потрібна розширена функціональність.
 
 
@@ -37,7 +47,7 @@ class Account {
   }
 
   /**
-   * Foreign method. Should be on Date.
+   * Foreign method. Should be on Date class.
    */
   private static Date nextWeek(Date arg) {
     return new Date(arg.getYear(), arg.getMonth(), arg.getDate() + 7);
@@ -182,7 +192,7 @@ Select whole "nextWeek" in "Account"
 ```
 
   /**
-   * Foreign method. Should be on Date.
+   * Foreign method. Should be on Date class.
    */
 
 ```

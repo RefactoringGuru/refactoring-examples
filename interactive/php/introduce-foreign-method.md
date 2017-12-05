@@ -55,7 +55,7 @@ class Account {
   }
 
   /**
-   * Foreign method. Should be on DateTime class.
+   * Foreign method. Should be in the DateTime class.
    */
   private static function nextWeek(DateTime $arg) {
   	$previousDate = clone $arg;
@@ -152,7 +152,7 @@ Print:
 ```
 
   /**
-   * Foreign method. Should be on DateTime class.
+   * Foreign method. Should be in the DateTime class.
    */
 ```
 

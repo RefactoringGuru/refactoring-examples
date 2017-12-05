@@ -47,7 +47,7 @@ class Account {
   }
 
   /**
-   * Foreign method. Should be on Date.
+   * Foreign method. Should be in the Date class.
    */
   public static Date nextWeek(Date arg) {
     return new Date(arg.getYear(), arg.getMonth(), arg.getDate() + 7);
@@ -132,7 +132,7 @@ Print:
 ```
 
   /**
-   * Foreign method. Should be on Date.
+   * Foreign method. Should be in the Date class.
    */
 ```
 
