@@ -49,13 +49,13 @@ class Account {
 class Account {
   // ...
   public function schedulePayment() {
-    $paymentDate = $this->nextWeek($this->previousDate);
+    $paymentDate = self::nextWeek($this->previousDate);
     // Issue a payment using paymentDate.
     // ...
   }
 
   /**
-   * Foreign method. Should be on Date.
+   * Foreign method. Should be on DateTime class.
    */
   private static function nextWeek(DateTime $arg) {
   	$previousDate = clone $arg;
@@ -83,9 +83,9 @@ Select:
 #|en| This class has code that opens a new billing period one week in the future from the current time.
 #|uk| В цьому класі є якийсь код, який відкриває новий період виставлення рахунків через тиждень від поточного часу.
 
-#|ru| Было бы идеально, если бы класс <code>DateTime</code> имел метод получения даты через семь дней (например, <code>previousDate.nextWeek()</code>), но он его не имеет, да и к тому же, мы не можем его изменить, т.к. он стандартный.
-#|en| Ideally, the <code>DateTime</code> class would have a method for getting a date seven days in the future (something resembling <code>previousDate->nextWeek()</code>) but it does not, and what's more, it is standard so we cannot change it.
-#|uk| Було б ідеально, якби клас <code>DateTime</code> мав метод отримання дати через сім днів (наприклад, <code>previousDate.nextWeek()</code>), але він його не має, та й до того ж , ми не можемо його змінити, бо він стандартний.
+#|ru| Было бы идеально, если бы класс <code>DateTime</code> имел метод получения даты через семь дней (например, <code>$previousDate.nextWeek()</code>), но он его не имеет, да и к тому же, мы не можем его изменить, т.к. он стандартный.
+#|en| Ideally, the <code>DateTime</code> class would have a method for getting a date seven days in the future (something resembling <code>$previousDate->nextWeek()</code>) but it does not, and what's more, it is standard so we cannot change it.
+#|uk| Було б ідеально, якби клас <code>DateTime</code> мав метод отримання дати через сім днів (наприклад, <code>$previousDate.nextWeek()</code>), але він його не має, та й до того ж , ми не можемо його змінити, бо він стандартний.
 
 Go to the end of "Account"
 
@@ -107,9 +107,9 @@ Set step 2
 
 Go to parameters of "nextWeek"
 
-#|ru| Чтобы метод был более универсальным, в него следует добавить параметр класса <code>Date</code>. По сути, мы будем расширять функциональность объекта, который подаётся в этом параметре.
-#|en| To make the method more universal, we will add a parameter of the <code>Date</code> class to it. Essentially, we are extending the functionality of the object passed in this parameter.
-#|uk| Щоб метод був більш універсальним, в нього слід додати параметр класу <code>Date</code>. По суті, ми будемо розширювати функціональність об'єкта, який подається в цьому параметрі.
+#|ru| Чтобы метод был более универсальным, в него следует добавить параметр класса <code>DateTime</code>. По сути, мы будем расширять функциональность объекта, который подаётся в этом параметре.
+#|en| To make the method more universal, we will add a parameter of the <code>DateTime</code> class to it. Essentially, we are extending the functionality of the object passed in this parameter.
+#|uk| Щоб метод був більш універсальним, в нього слід додати параметр класу <code>DateTime</code>. По суті, ми будемо розширювати функціональність об'єкта, який подається в цьому параметрі.
 
 Print "DateTime $arg"
 
@@ -138,7 +138,7 @@ Select:
 #|en| The method can now be used in the other code.
 #|uk| Тепер метод можна використовувати в іншому коді.
 
-Print "    $paymentDate = $this->nextWeek($this->previousDate);"
+Print "    $paymentDate = self::nextWeek($this->previousDate);"
 
 Set step 4
 
@@ -152,7 +152,7 @@ Print:
 ```
 
   /**
-   * Foreign method. Should be on Date.
+   * Foreign method. Should be on DateTime class.
    */
 ```
 
