@@ -7,7 +7,7 @@ class Order
     double total = 0;
     foreach (Product product in getProducts())
     {
-      total = product.quantity * product.price;
+      total += product.quantity * product.price;
     }
 
     // Apply regional discounts.

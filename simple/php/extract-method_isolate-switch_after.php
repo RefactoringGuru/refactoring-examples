@@ -5,7 +5,7 @@ class Order {
   public function calculateTotal() {
     $total = 0;
     foreach ($this->getProducts() as $product) {
-      $total = $product->quantity * $product->price;
+      $total += $product->quantity * $product->price;
     }
     $total = $this->applyRegionalDiscounts($total);
     return $total;
