@@ -1,4 +1,4 @@
-double HasDiscount(Order order) 
+bool HasDiscount(Order order)
 {
-  return (order.BasePrice() > 1000);
+  return order.BasePrice() > 1000;
 }

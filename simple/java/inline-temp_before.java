@@ -1,4 +1,4 @@
-double hasDiscount(Order order) {
+bool hasDiscount(Order order) {
   double basePrice = order.basePrice();
-  return (basePrice > 1000);
+  return basePrice > 1000;
 }
