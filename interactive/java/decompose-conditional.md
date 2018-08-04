@@ -3,11 +3,15 @@ decompose-conditional:java
 ###
 
 1.ru. Выделите условие в отдельный метод с помощью <a href="/extract-method">выделения метода</a>.
+
 1.en. Extract the conditional to a separate method via <a href="/extract-method">Extract Method</a>.
+
 1.uk. Виділіть умову в окремий метод за допомогою <a href="/extract-method">відокремлення методу</a>.
 
 2.ru. Повторите выделение для <code>then</code> и <code>else</code> части оператора.
+
 2.en. Repeat the process for the <code>then</code> and <code>else</code> blocks.
+
 2.uk. Повторіть видокремлення для частин оператора then і else.
 
 
@@ -23,11 +27,11 @@ class Stadium {
 
   public double getTicketPrice(Date date, int quantity) {
     double charge;
-    if (date.before(SUMMER_START) || date.after(SUMMER_END)) {
-      charge = quantity * winterRate + winterServiceCharge;
+    if (date.before(WINTER_START) || date.after(WINTER_END)) {
+      charge = quantity * summerRate;
     }
     else {
-      charge = quantity * summerRate;
+      charge = quantity * winterRate + winterServiceCharge;
     }
     return charge;
   }
@@ -45,23 +49,23 @@ class Stadium {
 
   public double getTicketPrice(Date date, int quantity) {
     double charge;
-    if (notSummer(date)) {
-      charge = winterCharge(quantity);
+    if (isSummer(date)) {
+      charge = summerCharge(quantity);
     }
     else {
-      charge = summerCharge(quantity);
+      charge = winterCharge(quantity);
     }
     return charge;
   }
 
-  private boolean notSummer(Date date) {
-    return date.before(SUMMER_START) || date.after(SUMMER_END);
-  }
-  private double winterCharge(int quantity) {
-    return quantity * winterRate + winterServiceCharge;
+  private boolean isSummer(Date date) {
+    return date.before(WINTER_START) || date.after(WINTER_END);
   }
   private double summerCharge(int quantity) {
     return quantity * summerRate;
+  }
+  private double winterCharge(int quantity) {
+    return quantity * winterRate + winterServiceCharge;
   }
 }
 ```
@@ -75,12 +79,12 @@ Set step 1
 #|uk| Давайте розглянемо <i>Розбиття умовного оператора<i> на прикладі обчислення вартості вхідного квитка на стадіон.
 
 Select name of "getTicketPrice"
-+ Select "SUMMER_START"
-+ Select "SUMMER_END"
++ Select "WINTER_START"
++ Select "WINTER_END"
 
-#|ru| Стоимость отличается в зависимости от сезона: есть отдельный зимний и летний тариф.
-#|en| The cost depends on the season (winter or summer).
-#|uk| Вартість відрізняється в залежності від сезону – є окремий зимовий та літній тариф.
+#|ru| Стоимость отличается в зависимости от сезона: есть отдельный летний и зимнийтариф.
+#|en| The cost depends on the season (summer or winter).
+#|uk| Вартість відрізняється в залежності від сезону – є окремий літній та зимовий тариф.
 
 #|ru| Наша задача — сделать этот условный оператор проще для понимания. Начнём с выделения условия в новый метод с более очевидным названием.
 #|en| Our task is to make this conditional easier to understand. We can start by extracting the condition to a new method with a more obvious name.
@@ -92,29 +96,29 @@ Print:
 ```
 
 
-  private boolean notSummer(Date date) {
+  private boolean isSummer(Date date) {
   }
 ```
 
-Select "date.before(SUMMER_START) || date.after(SUMMER_END)"
+Select "date.before(WINTER_START) || date.after(WINTER_END)"
 
 Wait 500ms
 
-Go to the end of "notSummer"
+Go to the end of "isSummer"
 
 Print:
 ```
 
-    return date.before(SUMMER_START) || date.after(SUMMER_END);
+    return date.before(WINTER_START) || date.after(WINTER_END);
 ```
 
 Wait 500ms
 
-Select "date.before(SUMMER_START) || date.after(SUMMER_END)" in "getTicketPrice"
+Select "date.before(WINTER_START) || date.after(WINTER_END)" in "getTicketPrice"
 
 Remove selected
 
-Print "notSummer(date)"
+Print "isSummer(date)"
 
 
 #C|ru| Запускаем компиляцию и тестирование, чтобы убедиться в отсутствии ошибок.
@@ -126,7 +130,7 @@ Print "notSummer(date)"
 #C|uk| Запускаємо компіляцію і тестування, щоб переконатися у відсутності помилок.
 #S Супер, все працює.
 
-Select "notSummer(date)" in "getTicketPrice"
+Select "isSummer(date)" in "getTicketPrice"
 
 #|ru| Условие стало очевидней, не правда ли? Многие программисты в таких ситуациях не выделяют части, образующие условие. Часто условия кажутся короткими и не стоящими такого труда.
 #|en| The condition became much clearer now. However, many programmers in such situations do not extract the components of the conditional, thinking about conditions as short and not worth the effort.
@@ -138,33 +142,11 @@ Select "notSummer(date)" in "getTicketPrice"
 
 Set step 2
 
-Select "charge = quantity * winterRate + winterServiceCharge;"
+Select "charge = quantity * summerRate;"
 
 #|ru| Теперь возьмёмся за тело условного оператора. Сначала выделим в новый метод всё, что находится внутри <code>then</code>
 #|en| Now we turn to the body of the conditional. First we extract everything inside <code>then</code> to a new method.
 #|uk| Тепер візьмемося за тіло умовного оператора. Спочатку виділимо в новий метод все, що знаходиться всередині <code>then</code>
-
-Go to the end of "Stadium"
-
-Print:
-```
-
-  private double winterCharge(int quantity) {
-    return quantity * winterRate + winterServiceCharge;
-  }
-```
-
-Select "charge = quantity * winterRate + winterServiceCharge;"
-
-Replace "charge = winterCharge(quantity);"
-
-
-Select "charge = quantity * summerRate;"
-
-#|ru| После этого возьмёмся за <code>else</code>
-#|en| Then we turn our attention to <code>else</code>.
-#|uk| Після цього візьмемося за <code>else</code>
-
 
 Go to the end of "Stadium"
 
@@ -179,6 +161,26 @@ Print:
 Select "charge = quantity * summerRate;"
 
 Replace "charge = summerCharge(quantity);"
+
+Select "charge = quantity * winterRate + winterServiceCharge;"
+
+#|ru| После этого возьмёмся за <code>else</code>
+#|en| Then we turn our attention to <code>else</code>.
+#|uk| Після цього візьмемося за <code>else</code>
+
+Go to the end of "Stadium"
+
+Print:
+```
+
+  private double winterCharge(int quantity) {
+    return quantity * winterRate + winterServiceCharge;
+  }
+```
+
+Select "charge = quantity * winterRate + winterServiceCharge;"
+
+Replace "charge = winterCharge(quantity);"
 
 #C|ru| Запускаем финальную компиляцию.
 #S Отлично, все работает!

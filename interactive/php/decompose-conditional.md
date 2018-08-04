@@ -3,11 +3,15 @@ decompose-conditional:php
 ###
 
 1.ru. Выделите условие в отдельный метод с помощью <a href="/extract-method">выделения метода</a>.
+
 1.en. Extract the conditional to a separate method via <a href="/extract-method">Extract Method</a>.
+
 1.uk. Виділіть умову в окремий метод за допомогою <a href="/extract-method">відокремлення методу</a>.
 
 2.ru. Повторите выделение для <code>then</code> и <code>else</code> части оператора.
+
 2.en. Repeat the process for the <code>then</code> and <code>else</code> blocks.
+
 2.uk. Повторіть видокремлення для частин оператора then і else.
 
 
@@ -22,11 +26,11 @@ class Stadium {
   public $winterServiceCharge;
 
   public function getTicketPrice(DateTime $date, $quantity) {
-    if ($date->format("m") < "06" || $date->format("m") > "08") {
-      $charge = $quantity * $this->winterRate + $this->winterServiceCharge;
+    if ($date->format("m") > "05" && $date->format("m") < "09") {
+      $charge = $quantity * $this->summerRate;
     }
     else {
-      $charge = $quantity * $this->summerRate;
+      $charge = $quantity * $this->winterRate + $this->winterServiceCharge;
     }
     return $charge;
   }
@@ -43,23 +47,23 @@ class Stadium {
   public $winterServiceCharge;
 
   public function getTicketPrice(DateTime $date, $quantity) {
-    if ($this->notSummer($date)) {
-      $charge = $this->winterCharge($quantity);
+    if ($this->isSummer($date)) {
+      $charge = $this->summerCharge($quantity);
     }
     else {
-      $charge = $this->summerCharge($quantity);
+      $charge = $this->winterCharge($quantity);
     }
     return $charge;
   }
 
-  private function notSummer(DateTime $date) {
-    return $date->format("m") < "06" || $date->format("m") > "08";
-  }
-  private function winterCharge($quantity) {
-    return $quantity * $this->winterRate + $this->winterServiceCharge;
+  private function isSummer(DateTime $date) {
+    return $date->format("m") > "05" && $date->format("m") < "09";
   }
   private function summerCharge($quantity) {
     return $quantity * $this->summerRate;
+  }
+  private function winterCharge($quantity) {
+    return $quantity * $this->winterRate + $this->winterServiceCharge;
   }
 }
 ```
@@ -74,9 +78,9 @@ Set step 1
 
 Select name of "getTicketPrice"
 
-#|ru| Стоимость отличается в зависимости от сезона: есть отдельный зимний и летний тариф.
-#|en| The cost depends on the season (winter or summer).
-#|uk| Вартість відрізняється в залежності від сезону – є окремий зимовий та літній тариф.
+#|ru| Стоимость отличается в зависимости от сезона: есть отдельный летний и зимнийтариф.
+#|en| The cost depends on the season (summer or winter).
+#|uk| Вартість відрізняється в залежності від сезону – є окремий літній та зимовий тариф.
 
 #|ru| Наша задача — сделать этот условный оператор проще для понимания. Начнём с выделения условия в новый метод с более очевидным названием.
 #|en| Our task is to make this conditional easier to understand. We can start by extracting the condition to a new method with a more obvious name.
@@ -88,29 +92,29 @@ Print:
 ```
 
 
-  private function notSummer(DateTime $date) {
+  private function isSummer(DateTime $date) {
   }
 ```
 
-Select "$date->format("m") < "06" || $date->format("m") > "08""
+Select "$date->format("m") > "05" && $date->format("m") < "09""
 
 Wait 500ms
 
-Go to the end of "notSummer"
+Go to the end of "isSummer"
 
 Print:
 ```
 
-    return $date->format("m") < "06" || $date->format("m") > "08";
+    return $date->format("m") > "05" && $date->format("m") < "09";
 ```
 
 Wait 500ms
 
-Select "$date->format("m") < "06" || $date->format("m") > "08"" in "getTicketPrice"
+Select "$date->format("m") > "05" && $date->format("m") < "09"" in "getTicketPrice"
 
 Remove selected
 
-Print "$this->notSummer($date)"
+Print "$this->isSummer($date)"
 
 
 #C|ru| Запускаем тестирование, чтобы убедиться в отсутствии ошибок.
@@ -122,7 +126,7 @@ Print "$this->notSummer($date)"
 #C|uk| Запускаємо тестування, щоб переконатися у відсутності помилок.
 #S Супер, все працює.
 
-Select "$this->notSummer($date)" in "getTicketPrice"
+Select "$this->isSummer($date)" in "getTicketPrice"
 
 #|ru| Условие стало очевидней, не правда ли? Многие программисты в таких ситуациях не выделяют части, образующие условие. Часто условия кажутся короткими и не стоящими такого труда.
 #|en| The condition became much clearer now. However, many programmers in such situations do not extract the components of the conditional, thinking about conditions as short and not worth the effort.
@@ -134,33 +138,11 @@ Select "$this->notSummer($date)" in "getTicketPrice"
 
 Set step 2
 
-Select "$charge = $quantity * $this->winterRate + $this->winterServiceCharge;"
+Select "$charge = $quantity * $this->summerRate;"
 
 #|ru| Теперь возьмёмся за тело условного оператора. Сначала выделим в новый метод всё, что находится внутри <code>then</code>
 #|en| Now we turn to the body of the conditional. First we extract everything inside <code>then</code> to a new method.
 #|uk| Тепер візьмемося за тіло умовного оператора. Спочатку виділимо в новий метод все, що знаходиться всередині <code>then</code>
-
-Go to the end of "Stadium"
-
-Print:
-```
-
-  private function winterCharge($quantity) {
-    return $quantity * $this->winterRate + $this->winterServiceCharge;
-  }
-```
-
-Select "$charge = $quantity * $this->winterRate + $this->winterServiceCharge;"
-
-Replace "$charge = $this->winterCharge($quantity);"
-
-
-Select "$charge = $quantity * $this->summerRate;"
-
-#|ru| После этого возьмёмся за <code>else</code>
-#|en| Then we turn our attention to <code>else</code>.
-#|uk| Після цього візьмемося за <code>else</code>
-
 
 Go to the end of "Stadium"
 
@@ -175,6 +157,26 @@ Print:
 Select "$charge = $quantity * $this->summerRate;"
 
 Replace "$charge = $this->summerCharge($quantity);"
+
+Select "$charge = $quantity * $this->winterRate + $this->winterServiceCharge;"
+
+#|ru| После этого возьмёмся за <code>else</code>
+#|en| Then we turn our attention to <code>else</code>.
+#|uk| Після цього візьмемося за <code>else</code>
+
+Go to the end of "Stadium"
+
+Print:
+```
+
+  private function winterCharge($quantity) {
+    return $quantity * $this->winterRate + $this->winterServiceCharge;
+  }
+```
+
+Select "$charge = $quantity * $this->winterRate + $this->winterServiceCharge;"
+
+Replace "$charge = $this->winterCharge($quantity);"
 
 #C|ru| Запускаем финальное тестирование.
 #S Отлично, все работает!

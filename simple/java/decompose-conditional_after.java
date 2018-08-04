@@ -1,6 +1,6 @@
-if (notSummer(date)) {
-  charge = winterCharge(quantity);
+if (isSummer(date)) {
+  charge = summerCharge(quantity);
 }
 else {
-  charge = summerCharge(quantity);
+  charge = winterCharge(quantity);
 }
