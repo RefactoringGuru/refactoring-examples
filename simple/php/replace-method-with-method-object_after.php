@@ -2,7 +2,7 @@
 class Order {
   ...
   public function price() {
-    return new PriceCalculator($this)->compute();
+    return (new PriceCalculator($this))->compute();
   }
 }
 

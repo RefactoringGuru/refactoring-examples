@@ -65,7 +65,7 @@ class Account {
 class Account {
   // ...
   function gamma($inputVal, $quantity, $yearToDate) {
-    return new Gamma($this, $inputVal, $quantity, $yearToDate)->compute();
+    return (new Gamma($this, $inputVal, $quantity, $yearToDate))->compute();
   }
   // ...
 }
@@ -275,7 +275,7 @@ Select body of "gamma" in "Account"
 
 Print:
 ```
-    return new Gamma($this, $inputVal, $quantity, $yearToDate)->compute();
+    return (new Gamma($this, $inputVal, $quantity, $yearToDate))->compute();
 ```
 
 #C|ru| Запустим тесты, чтобы проверить код на наличие ошибок.
