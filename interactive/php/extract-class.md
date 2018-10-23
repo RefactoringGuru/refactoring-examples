@@ -88,7 +88,7 @@ class TelephoneNumber {
     $this->number = $arg;
   }
   public function getTelephoneNumber() {
-    return ("(" + $this->areaCode + ") " + $this->number);
+    return ("(" . $this->areaCode . ") " . $this->number);
   }
 }
 ```
@@ -263,7 +263,7 @@ Print:
 ```
 
   public function getTelephoneNumber() {
-    return ("(" + $this->areaCode + ") " + $this->number);
+    return ("(" . $this->areaCode . ") " . $this->number);
   }
 ```
 

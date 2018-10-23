@@ -8,5 +8,5 @@ function printProperties($users) {
 }
 
 function getProperties($user) {
-  return $user->getName() + " " + $user->getAge(); 
+  return $user->getName() . " " . $user->getAge();
 }

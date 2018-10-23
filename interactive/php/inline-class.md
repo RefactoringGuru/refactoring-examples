@@ -59,7 +59,7 @@ class TelephoneNumber {
     $this->number = $arg;
   }
   public function getTelephoneNumber() {
-    return ("(" + $this->areaCode + ") " + $this->number);
+    return ("(" . $this->areaCode . ") " . $this->number);
   }
 }
 
@@ -80,7 +80,7 @@ class Person {
     return $this->name;
   }
   public function getTelephoneNumber() {
-    return ("(" + $this->areaCode + ") " + $this->number);
+    return ("(" . $this->areaCode . ") " . $this->number);
   }
   public function getAreaCode() {
     return $this->areaCode;
@@ -278,7 +278,7 @@ Select body of "getTelephoneNumber" in "Person"
 
 Replace:
 ```
-    return ("(" + $this->areaCode + ") " + $this->number);
+    return ("(" . $this->areaCode . ") " . $this->number);
 ```
 
 Select whole of "getTelephoneNumber" in "TelephoneNumber"
