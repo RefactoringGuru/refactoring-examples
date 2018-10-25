@@ -1,0 +1,3 @@
+class Person {
+  name: string;
+}
