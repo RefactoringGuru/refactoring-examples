@@ -7,5 +7,5 @@ printProperties(users: User[]): void {
 }
 
 getProperties(user: User): string  {
-  return user.getName() + ' ' + user.getAge();
+  return user.getName() + " " + user.getAge();
 }
