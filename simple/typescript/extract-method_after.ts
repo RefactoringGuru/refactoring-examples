@@ -4,6 +4,6 @@ printOwing(): void {
 }
 
 printDetails(outstanding: number): void {
-  console.log('name: ' + name);
-  console.log('amount: ' + outstanding);  
+  console.log("name: " + name);
+  console.log("amount: " + outstanding);
 }

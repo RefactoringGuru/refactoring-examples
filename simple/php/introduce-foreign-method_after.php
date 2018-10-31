@@ -10,6 +10,6 @@ class Report {
    */
   private static function nextWeek(DateTime $arg) {
     $previousDate = clone $arg;
-    return $previousDate->modify('+7 days');
+    return $previousDate->modify("+7 days");
   }
 }

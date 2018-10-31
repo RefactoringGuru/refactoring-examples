@@ -1,4 +1,4 @@
-int basePrice = quantity * itemPrice;
-double seasonDiscount = this.getSeasonalDiscount();
-double fees = this.getFees();
-double finalPrice = discountedPrice(basePrice, seasonDiscount, fees);
+let basePrice = quantity * itemPrice;
+const seasonDiscount = this.getSeasonalDiscount();
+const fees = this.getFees();
+const finalPrice = discountedPrice(basePrice, seasonDiscount, fees);
