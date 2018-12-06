@@ -3,31 +3,45 @@ replace-type-code-with-state-strategy:php
 ###
 
 1.ru. Используйте <a href="/self-encapsulate-field">самоинкапсуляцию поля</a> для создания геттера для поля, которое содержит кодирование типа.
+
 1.en. Use <a href="/self-encapsulate-field">Self Encapsulate Field</a> to create a getter for the field that contains type code.
+
 1.uk. Використайте <a href="/self-encapsulate-field">самоінкапсуляцію поля</a> для створення геттера для поля, яке містить кодування типу.
 
 2.ru. Создайте новый класс, который будет играть роль <i>состояния</i> (или <i>стратегии</i>). Создайте в нем абстрактный геттер закодированного поля.
+
 2.en. Create a new class that will play the role of <i>state</i> (or <i>strategy</i>). Create an abstract getter of the coded field in it.
+
 2.uk. Створіть новий клас, який гратиме роль <i>стану</i> (або <i>стратегії</i>). Створіть у ньому абстрактний геттер закодованого поля.
 
 3.ru. Создайте подклассы состояния для каждого значения закодированного типа.
+
 3.en. Create state subclasses for each value of the coded type.
+
 3.uk. Створіть підкласи стану для кожного значення закодованого типу.
 
 4.ru. В абстрактном классе состояния создайте статический фабричный метод, принимающий в параметре значение закодированного типа. В зависимости от этого параметра фабричный метод будет создавать объекты различных состояний. Для этого в его коде придётся создать большой условный оператор, но он будет единственным по завершению рефакторинга.
+
 4.en. In the abstract state class, create a static factory method that accepts the value of the coded type as a parameter. Depending on this parameter, the factory method will create objects of various states. For this, in its code create a large conditional; it will be the only one when refactoring is complete.
+
 4.uk. У абстрактному класі стану створіть статичний фабричний метод, що набуває в параметрі значення закодованого типу. Залежно від цього параметра фабричний метод створюватиме об'єкти різних станів. Для цього в його коді доведеться створити великий умовний оператор, але він буде єдиним після завершення рефакторингу.
 
 5.ru. В исходном классе поменяйте тип закодированного поля на класс-состояние. В сеттере этого поля вызывайте фабричный метод состояния для получения новых объектов состояний.
+
 5.en. In the original class, change the type of the coded field to the state class. In the field's setter, call the factory state method for getting new state objects.
+
 5.uk. У початковому класі поміняйте тип закодованого поля на клас-стан. У сетерові цього поля викликайте фабричний метод стану для отримання нових об'єктів станів.
 
 6.ru. Переместите поля и методы из суперкласса в соответствующие подклассы-состояния.
+
 6.en. Move the fields and methods from the superclass to the corresponding state subclasses.
+
 6.uk. Перемістіть поля та методи з суперкласу у відповідні підкласи-стану.
 
 7.ru. Когда все что можно перемещено, используйте <a href="/replace-conditional-with-polymorphism">замену условных операторов полиморфизмом</a>, чтобы окончательно избавиться от условных операторов, использующий закодированный тип.
+
 7.en. When everything movable has been moved, use <a href="/replace-conditional-with-polymorphism">Replace Conditional with Polymorphism</a> in order to get rid of conditionals that use type code once and for all.
+
 7.uk. Коли усі потрібні дані будуть перенесені, використайте <a href="/replace-conditional-with-polymorphism">заміну умовних операторів поліморфізмом</a>, щоб остаточно позбавитися від умовних операторів, які використовують закодований тип.
 
 
@@ -86,7 +100,7 @@ class Employee {
   public $commission;
   public $bonus;
   public function payAmount() {
-    return $type->payAmount($this);
+    return $this->type->payAmount($this);
   }
 }
 
@@ -424,7 +438,7 @@ Select body of "payAmount"
 #|en| After these actions, we can set up delegation from the <code>Employee</code> class.
 #|uk| Після цих дій ми можемо налаштувати делегування з класу <code>Employee</code>.
 
-Print "    return $type->payAmount($this);"
+Print "    return $this->type->payAmount($this);"
 
 #|ru| После этого займёмся перемещением кода в подклассы. Создадим методы <code>payAmount</code> в каждом из подклассов и переместим туда расчёты зарплат для соответствующих типов служащих.
 #|en| Then start moving code to subclasses. Create <code>payAmount</code> methods in each of the subclasses and move payroll calculations there for the relevant employee types.

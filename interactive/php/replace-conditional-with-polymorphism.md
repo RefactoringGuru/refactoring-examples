@@ -3,19 +3,27 @@ replace-conditional-with-polymorphism:php
 ###
 
 1.ru. Если условный оператор находится в методе, который выполняет ещё какие-то действия, <a href="/extract-method">извлеките его в новый метод</a>.
+
 1.en. If the conditional is in a method that performs other actions as well, perform <a href="/extract-method">Extract Method</a>.
+
 1.uk. Якщо умовний оператор знаходиться в методі, який виконує ще якісь дії, <a href="/extract-method">витягніть його в новий метод</a>.
 
 2.ru. Для каждого подкласса иерархии, переопределите метод, содержащий условный оператор, и скопируйте туда код соответствующей ветки оператора.
+
 2.en. For each hierarchy subclass, redefine the method that contains the conditional and copy the code of the corresponding conditional branch to that location.
+
 2.uk. Для кожного підкласу ієрархії потібно перевизначити метод, ща містить умовний оператор, і скопіювати туди код відповідної гілки оператора.
 
 3.ru. Удалите эту ветку из условного оператора.
+
 3.en. Delete this branch from the conditional.
+
 3.uk. Видаліть цю гілку з умовного оператора.
 
 4.ru. Повторяйте замену, пока условный оператор не опустеет. Затем удалите условный оператор и объявите метод абстрактным.
+
 4.en. Repeat replacement until the conditional is empty. Then delete the conditional and declare the method abstract.
+
 4.uk. Повторюйте заміну, поки умовний оператор не спорожніє. Потім видалите умовний оператор і оголосите метод абстрактним.
 
 
@@ -97,7 +105,7 @@ class Employee {
   public $commission;
   public $bonus;
   public function payAmount() {
-    return $type->payAmount($this);
+    return $this->type->payAmount($this);
   }
 }
 
@@ -216,7 +224,7 @@ Select body of "payAmount"
 #|en| After these actions, we can set up delegation from the <code>Employee</code> class.
 #|uk| Після цих дій ми можемо налаштувати делегування з класу <code>Employee</code>.
 
-Print "    return $type->payAmount($this);"
+Print "    return $this->type->payAmount($this);"
 
 #|ru| После этого займёмся перемещением кода в подклассы. Создадим методы <code>payAmount</code> в каждом из подклассов и переместим туда расчёты зарплат для соответствующих типов служащих.
 #|en| Then start moving code to subclasses. Create <code>payAmount</code> methods in each of the subclasses and move payroll calculations there for the relevant employee types.
