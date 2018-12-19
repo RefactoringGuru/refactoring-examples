@@ -1,7 +1,7 @@
 <?php
 class Employee {
   ...
-  function __construct($type) {
+  function public __construct($type) {
    $this->type = $type;
   }
   ...

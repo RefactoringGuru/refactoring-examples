@@ -1,5 +1,5 @@
 <?php
 $temp = 2 * ($this->height + $this->width);
-print($temp);
+echo $temp;
 $temp = $this->height * $this->width;
-print($temp);
+echo $temp;

@@ -1,10 +1,10 @@
 <?php
 function setValue($name, $value) {
-  if ($name == "height") {
+  if ($name === "height") {
     $this->height = $value;
     return;
   }
-  if ($name == "width")) {
+  if ($name === "width")) {
     $this->width = $value;
     return;
   }

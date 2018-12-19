@@ -1,7 +1,7 @@
 <?php
 class Employee {
   ...
-  static function create($type) {
+  static public function create($type) {
     $employee = new Employee($type);
     // do some heavy lifting.
     return $employee;

@@ -1,9 +1,9 @@
 <?php
 class NullCustomer extends Customer {
-  function isNull() {
+  public function isNull() {
     return true;
   }
-  function getPlan() {
+  public function getPlan() {
     return new NullPlan();
   }
   // Some other NULL functionality.
@@ -12,7 +12,7 @@ class NullCustomer extends Customer {
 // Replace null values with Null-object.
 $customer = ($order->customer != null) ?
   $order->customer :
-  new NullCustomer();
+  new NullCustomer;
 
 // Use Null-object as if it's normal subclass.
 $plan = $customer->getPlan();
