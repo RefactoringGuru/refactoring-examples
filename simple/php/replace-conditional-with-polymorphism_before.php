@@ -1,7 +1,7 @@
 <?php
 class Bird {
   ...
-  function getSpeed() {
+  public function getSpeed() {
     switch ($this->type) {
       case EUROPEAN:
         return $this->getBaseSpeed();

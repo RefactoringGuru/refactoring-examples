@@ -1,5 +1,5 @@
 <?php
-if ($customer == null)
+if ($customer === null)
   $plan = BillingPlan::basic();
 else
   $plan = $customer->getPlan();

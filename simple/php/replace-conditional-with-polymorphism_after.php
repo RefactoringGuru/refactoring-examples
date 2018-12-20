@@ -6,17 +6,17 @@ abstract class Bird {
 }
 
 class European extends Bird {
-  function getSpeed() {
+  public function getSpeed() {
     return $this->getBaseSpeed();
   }
 }
 class African extends Bird {
-  function getSpeed() {
+  public function getSpeed() {
     return $this->getBaseSpeed() - $this->getLoadFactor() * $this->numberOfCoconuts;
   }
 }
 class NorwegianBlue extends Bird {
-  function getSpeed() {
+  public function getSpeed() {
     return ($this->isNailed) ? 0 : $this->getBaseSpeed($this->voltage);
   }
 }

@@ -1,7 +1,6 @@
 <?php
 if (isSummer($date)) {
   $charge = summerCharge($quantity);
-}
-else {
+} else {
   $charge = winterCharge($quantity);
 }
