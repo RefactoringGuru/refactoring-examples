@@ -1,10 +1,13 @@
 <?php
-public function getPayAmount() {
-  if ($this->isDead)
+function getPayAmount() {
+  if ($this->isDead) {
     return $this->deadAmount();
-  if ($this->isSeparated)
+  }
+  if ($this->isSeparated) {
     return $this->separatedAmount();
-  if ($this->isRetired)
+  }
+  if ($this->isRetired) {
     return $this->retiredAmount();
+  }
   return $this->normalPayAmount();
 }
