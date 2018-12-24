@@ -7,5 +7,5 @@ class Customer {
     return $this->lastName;
   }
 
-  // other methods ...
+  // other methods...
 }

@@ -5,5 +5,5 @@ class Manager extends Employee {
     $this->id = $id;
     $this->grade = $grade;
   }
-  ...
+  // ...
 }

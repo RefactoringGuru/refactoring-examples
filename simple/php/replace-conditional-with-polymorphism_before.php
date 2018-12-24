@@ -1,6 +1,6 @@
 <?php
 class Bird {
-  ...
+  // ...
   public function getSpeed() {
     switch ($this->type) {
       case EUROPEAN:
@@ -12,5 +12,5 @@ class Bird {
     }
     throw new Exception("Should be unreachable");
   }
-  ...
+  // ...
 }

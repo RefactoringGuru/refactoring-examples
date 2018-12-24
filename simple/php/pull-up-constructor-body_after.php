@@ -4,5 +4,5 @@ class Manager extends Employee {
     parent::__construct($name, $id);
     $this->grade = $grade;
   }
-  ...
+  // ...
 }
