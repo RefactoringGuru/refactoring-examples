@@ -1,8 +1,9 @@
 <?php
-if ($this->basePrice() > 1000)
+if ($this->basePrice() > 1000) {
   return $this->basePrice() * 0.95;
-else
+} else {
   return $this->basePrice() * 0.98;
+}
 
 ...
 
