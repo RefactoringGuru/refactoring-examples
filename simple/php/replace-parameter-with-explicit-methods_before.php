@@ -4,7 +4,7 @@ function setValue($name, $value) {
     $this->height = $value;
     return;
   }
-  if ($name === "width")) {
+  if ($name === "width") {
     $this->width = $value;
     return;
   }

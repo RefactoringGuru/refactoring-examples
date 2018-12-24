@@ -4,7 +4,7 @@ function printOwing() {
   $this->printDetails($this->getOutstanding());
 }
 
-function printDetails ($outstanding) {
+function printDetails($outstanding) {
   print("name:  " . $this->name);
   print("amount " . $outstanding);
 }

@@ -11,7 +11,7 @@ class PriceCalculator {
   private $secondaryBasePrice;
   private $tertiaryBasePrice;
   
-  public __construct(Order $order) {
+  public function __construct(Order $order) {
     // copy relevant information from order object.
     ...
   }

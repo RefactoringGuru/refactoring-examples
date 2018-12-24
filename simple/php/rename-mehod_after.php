@@ -3,7 +3,7 @@ class Customer {
   private $name = "name";
   private $lastName = "lastname";
 
-  function getLastName() {
+  public function getLastName() {
     return $this->lastName;
   }
 

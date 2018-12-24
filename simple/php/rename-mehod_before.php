@@ -6,7 +6,7 @@ class Customer {
   /**
    * Method returns customer's lastName.
    */
-  function getsnm() {
+  public function getsnm() {
     return $this->lastName;
   }
 

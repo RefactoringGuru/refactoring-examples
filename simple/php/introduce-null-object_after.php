@@ -10,7 +10,7 @@ class NullCustomer extends Customer {
 }
 
 // Replace null values with Null-object.
-$customer = ($order->customer != null) ?
+$customer = ($order->customer !== null) ?
   $order->customer :
   new NullCustomer;
 
