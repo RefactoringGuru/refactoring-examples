@@ -162,7 +162,7 @@ Set step 1
 
 #|ru| Этот рефакторинг мы рассмотрим на примере кода классов расчёта зарплаты для разных типов служащих (см. <a href="/replace-type-code-with-state-strategy">замены кодирования типом состоянием/стратегией</a>).
 #|en| Let's take a look at this refactoring in the context of code for calculating payroll for different types of employees (see <a href="/replace-type-code-with-state-strategy">Replace Type Code with State/Strategy</a>).
-#|uk| Цей рефакторинг ми розглянемо на прикладі коду класів розрахунку зарплати для різних типів службовців (см. <a Href="/replace-type-code-with-state-strategy">заміни кодування типом станом / стратегією</a>).
+#|uk| Цей рефакторинг ми розглянемо на прикладі коду класів розрахунку зарплати для різних типів службовців (див. <a Href="/replace-type-code-with-state-strategy">заміни кодування типом станом / стратегією</a>).
 
 Select body of "payAmount"
 

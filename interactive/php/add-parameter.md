@@ -98,7 +98,7 @@ Go to the end of "Calendar"
 
 #|ru| Так как в PHP отсутствует механизм перегрузки (overload) функций, мы даём методу новое имя.
 #|en| Since PHP does not support function overloading, we give the method a new name.
-#|uk| Так як в PHP відсутній механізм перевантаження (overload) функцій, ми даємо методу нове ім'я.
+#|uk| Оскільки в PHP відсутній механізм перевантаження (overload) функцій, ми даємо методу нове ім'я.
 
 Print:
 ```
@@ -150,7 +150,7 @@ Select "$calendar->findAppointment($today);"
 
 #|ru| Вот одно из них. Так как нам нечего подать в новый параметр, впишем значение <code>null</code>.
 #|en| Here is one of them. Since we have nothing to pass to the new parameter, we use the <code>null</code> value.
-#|uk| Ось одне з них. Так як нам нема чого подавати в новий параметр, використаємо значення <code>null</code>.
+#|uk| Ось одне з них. Оскільки нам нема чого подавати в новий параметр, використаємо значення <code>null</code>.
 
 Select "$calendar->|||findAppointment|||($today);"
 

@@ -131,7 +131,7 @@ Select name of "Customer"
 
 #|ru| Итак, начнём рефакторинг с добавления поля заказов в класс <code>Покупатель</code>. Так как покупатель может иметь несколько заказов, сделаем поле коллекцией.
 #|en| Let's start refactoring by adding order fields to the <code>Customer</code> class. Since a customer can have multiple orders, we should make the field a collection.
-#|uk| Отже, почнемо рефакторинг з додавання поля замовлень в клас <code>Покупець</code>. Так як покупець може мати кілька замовлень, зробимо поле колекцією.
+#|uk| Отже, почнемо рефакторинг з додавання поля замовлень в клас <code>Покупець</code>. Оскільки покупець може мати кілька замовлень, зробимо поле колекцією.
 
 Go to the end of "Customer"
 

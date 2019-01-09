@@ -330,7 +330,7 @@ Select name of "markdownView" in "ArticleMarkdown"
 
 #|ru| Так как методы теперь находятся в разных классах, мы можем дать им одинаковые имена.
 #|en| Since the methods are now located in different classes, we can give them identical names.
-#|uk| Так як методи тепер знаходяться в різних класах, ми можемо дати їм однакові імена.
+#|uk| Оскільки методи тепер знаходяться в різних класах, ми можемо дати їм однакові імена.
 
 Replace "view"
 

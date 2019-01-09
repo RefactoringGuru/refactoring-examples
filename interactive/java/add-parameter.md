@@ -152,7 +152,7 @@ Select "calendar.findAppointments(today);"
 
 #|ru| Вот одно из них. Так как нам нечего подать в новый параметр, впишем значение <code>null</code>.
 #|en| Here is one of them. Since we have nothing to pass to the new parameter, we use the <code>null</code> value.
-#|uk| Ось одне з них. Так як нам нема чого подавати в новий параметр, використаємо значення <code>null</code>.
+#|uk| Ось одне з них. Оскільки нам нема чого подавати в новий параметр, використаємо значення <code>null</code>.
 
 Go to "calendar.findAppointments(today|||);"
 

@@ -174,7 +174,7 @@ Select "private" in "DateRange"
 
 #|ru| Заметьте, что класс сделан неизменяемым, т.е. поменять даты диапазона после его создания невозможно, так как поля дат объявлены как приватные, а сеттеров для них мы не создали.
 #|en| The class will be immutable: the dates of the range cannot be changed after it is created, since the date fields are declared as private and we did not create setters for them.
-#|uk| Зауважте, що клас є незмінним, тобто поміняти дати діапазону після його створення неможливо, так як поля дат оголошені приватними, а сеттерів для них ми не створили.
+#|uk| Зауважте, що клас є незмінним, тобто поміняти дати діапазону після його створення неможливо, оскільки поля дат оголошені приватними, а сеттерів для них ми не створили.
 
 #|ru| Этот шаг позволит избежать многих ошибок, связанных с передачей объектов в параметрах по ссылкам.
 #|en| This way you could avoid many errors related to passing objects in method parameters via references.

@@ -218,7 +218,7 @@ foreach (Customer customer in Customer.GetInstances())
 
 Select parameters of "GetDiscountedPrice"
 
-#|ru| Предыдущее введение параметра в метод теперь можно убрать, т.к. геттер свойства <code>this.Customer</code> будет возвращать корректный объект.
+#|ru| Предыдущее введение параметра в метод теперь можно убрать, так как геттер свойства <code>this.Customer</code> будет возвращать корректный объект.
 #|en| The previous insertion of the parameter in the method can now be removed, since the getter of the <code>this.Customer</code> property will return the correct object.
 #|uk| Попереднє введення параметра в метод тепер можна прибрати, тому що геттер властивості <code>this.Customer</code> повертатиме коректний об'єкт.
 

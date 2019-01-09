@@ -2,7 +2,7 @@ replace-parameter-with-method-call:php
 
 ###
 
-1.ru. Убедитесь, что код получения значения не использует параметров из текущего метода, т.к. они будут недоступны внутри другого метода, из-за чего перенос будет невозможен.
+1.ru. Убедитесь, что код получения значения не использует параметров из текущего метода, так как они будут недоступны внутри другого метода, из-за чего перенос будет невозможен.
 1.en. Make sure that the value-getting code does not use parameters from the current method, since they will be unavailable from inside another method. If so, moving the code is not possible.
 1.uk. Переконайтеся, що код отримання значення не використовує параметрів з поточного методу, оскільки вони будуть недоступні усередині іншого методу, через що перенесення буде неможливе.
 
@@ -88,9 +88,9 @@ Set step 1
 Select name of "getPrice"
 +Select name of "discountedPrice"
 
-#|ru|^ Метод получения скидки (<code>discountedPrice</code>) сейчас практически нельзя использовать в отрыве от метода получения цены (<code>getPrice</code>), т.к. перед этим нужно получить значения всех параметров.
+#|ru|^ Метод получения скидки (<code>discountedPrice</code>) сейчас практически нельзя использовать в отрыве от метода получения цены (<code>getPrice</code>), так как перед этим нужно получить значения всех параметров.
 #|en|^ The method for getting the discount (<code>discountedPrice</code>) is currently nearly impossible to use separately from the method for getting the price (<code>getPrice</code>), since you must get the values of all parameters prior to it.
-#|uk|^ Метод отримання знижки (<code>discountedPrice</code>) зараз практично не можна використовувати у відриві від методу отримання ціни (<code>getPrice</code>), так як перед цим потрібно отримати значення всіх параметрів.
+#|uk|^ Метод отримання знижки (<code>discountedPrice</code>) зараз практично не можна використовувати у відриві від методу отримання ціни (<code>getPrice</code>), оскільки перед цим потрібно отримати значення всіх параметрів.
 
 Select parameters of "discountedPrice"
 

@@ -91,7 +91,7 @@ Set step 1
 
 #|ru| Здесь наследование было бы уместнее, так как классу служащих необходимы практически все данные из <code>Person</code>.
 #|en| Inheritance would be more appropriate here since the employee class needs practically all data from <code>Person</code>.
-#|uk| Тут успадкування було б доречніше, так як класу службовців необхідні практично всі дані з <code>Person</code>.
+#|uk| Тут успадкування було б доречніше, оскільки класу службовців необхідні практично всі дані з <code>Person</code>.
 
 #|ru| Начинаем рефакторинг с объявления наследования в классе <code>Employee</code>
 #|en| Let's start refactoring by declaring the <code>Employee</code> as a subclass of <code>Person</code>.

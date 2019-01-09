@@ -215,7 +215,7 @@ Print:
 
 Select parameters of "GetNearFirstDate" in "MfDateTimeWrap"
 
-#|ru| Параметр метода нам теперь не нужен, т.к. метод находится внутри класса-обёртки, и нужные данные можно получить непосредственно из поля <code>date</code>.
+#|ru| Параметр метода нам теперь не нужен, так как метод находится внутри класса-обёртки, и нужные данные можно получить непосредственно из поля <code>date</code>.
 #|en| The method parameter is no longer needed since the method is inside the <code>DateTime</code> wrapper. Thus, the required data can be taken from its own object.
 #|uk| Параметр методу нам тепер не потрібен, тому що метод знаходиться всередині класу-обгортки, і потрібні дані можна отримати безпосередньо з поля <code>date</code>.
 

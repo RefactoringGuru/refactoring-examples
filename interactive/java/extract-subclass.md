@@ -14,7 +14,7 @@ extract-subclass:java
 3.en. Find all calls to the constructor of the parent class. When the functionality of a subclass is necessary, replace the parent constructor with the subclass constructor.
 3.uk. Знайдіть усі виклики конструктора батьківського класу. У тих випадках, коли потрібна також функціональність підкласу, замініть батьківський конструктор конструктором підкласу.
 
-4.ru. Переместите нужные методы и поля из родительского класса в подкласс. Используйте для этого <a href="/ru/push-down-method">спуск метода</a> и <a href="/ru/push-down-field">спуск поля</a>. Проще всего начинать перенос с методов, т.к. тогда поля будут доступны для них все время: из родительского класса до переноса, и из самого подкласса после окончания переноса.
+4.ru. Переместите нужные методы и поля из родительского класса в подкласс. Используйте для этого <a href="/ru/push-down-method">спуск метода</a> и <a href="/ru/push-down-field">спуск поля</a>. Проще всего начинать перенос с методов, так как тогда поля будут доступны для них все время: из родительского класса до переноса, и из самого подкласса после окончания переноса.
 4.en. Move the necessary methods and fields from the parent class to the subclass. Do this via <a href="/push-down-method">Push Down Method</a> and <a href="/push-down-field">Push Down Field</a>. It is simpler to start by moving the methods first. This way, the fields remain accessible throughout the whole process: from the parent class prior to the move, and from the subclass itself after the move is complete.
 4.uk. Перемістіть потрібні методи і поля з батьківського класу в підклас. Використайте для цього <a href="/uk/push-down-method">спуск методу</a> і <a href="/uk/push-down-field">спуск поля</a>. Найпростіше розпочинати перенесення з методів, тому тоді поля будуть доступні для них увесь час: з батьківського класу до перенесення, і з самого підкласу після закінчення перенесення.
 
@@ -464,7 +464,7 @@ Select name of "JobItem"
 
 #|ru| После того как группа методов, использующих некоторые данные, перемещена в подкласс, к этим данным можно применить <a href="/ru/push-down-field">Спуск поля</a>. В некоторых случаях это невозможно, так как данные используются некоторым методом.
 #|en| After pushing methods down to a subclass, you can consider moving some of the fields as well. We can apply <a href="/push-down-field">Push Down Field</a> to these fields. In some cases, this is impossible because the fields are still used in the context of superclass.
-#|uk| Після того як група методів, що використовують деякі дані, переміщена в підклас, до цих даних можна застосувати <a href="/uk/push-down-field">Спуск поля</a>. В деяких випадках це неможливо, так як дані використовуються деяким методом.
+#|uk| Після того як група методів, що використовують деякі дані, переміщена в підклас, до цих даних можна застосувати <a href="/uk/push-down-field">Спуск поля</a>. В деяких випадках це неможливо, оскільки дані використовуються деяким методом.
 
 #|ru| В нашем случае все готово, чтобы переместить поле <code>employee</code> в <code>LaborItem</code>.
 #|en| In our case, everything is ready for us to move the <code>employee</code> field to <code>LaborItem</code>.

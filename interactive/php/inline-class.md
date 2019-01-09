@@ -114,7 +114,7 @@ Select name of "TelephoneNumber"
 
 #|ru| Мы хотим включить класс <code>TelephoneNumber</code> обратно в класс <code>Person</code>, так как он потерял свою актуальность для наших задач.
 #|en| We want to include the <code>TelephoneNumber</code> class back in the <code>Person</code> class, since it become unnecessary complex for our needs.
-#|uk| Ми хочемо включити клас <code>TelephoneNumber</code> назад в клас <code>Person</code>, так як він втратив свою актуальність для наших задач.
+#|uk| Ми хочемо включити клас <code>TelephoneNumber</code> назад в клас <code>Person</code>, оскільки він втратив свою актуальність для наших задач.
 
 Go to the end of "Person"
 

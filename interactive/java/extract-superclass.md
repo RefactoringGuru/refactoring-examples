@@ -6,7 +6,7 @@ extract-superclass:java
 1.en. Create an abstract superclass.
 1.uk. Створіть абстрактний суперклас.
 
-2.ru. Используйте <a href="/ru/pull-up-field">Подъём поля</a>, <a href="/ru/pull-up-method">Подъём метода</a> и <a href="/ru/pull-up-constructor-body">Подъём тела конструктора</a> для перемещения общей функциональности в суперкласс. Лучше начинать с полей, т.к. помимо общих полей, вам нужно будет перенести те из них, которые используются в общих методах.
+2.ru. Используйте <a href="/ru/pull-up-field">Подъём поля</a>, <a href="/ru/pull-up-method">Подъём метода</a> и <a href="/ru/pull-up-constructor-body">Подъём тела конструктора</a> для перемещения общей функциональности в суперкласс. Лучше начинать с полей, так как помимо общих полей, вам нужно будет перенести те из них, которые используются в общих методах.
 2.en. Use <a href="/pull-up-field">Pull Up Field</a>, <a href="/pull-up-method">Pull Up Method</a>, and <a href="/pull-up-constructor-body">Pull Up Constructor Body</a> to move the common functionality to a superclass. Start with the fields, since in addition to the common fields you will need to move the fields that are used in the common methods.
 2.uk. Використайте <a href="/uk/pull-up-field">Підйом поля</a>, <a href="/uk/pull-up-method">Підйом методу</a> і <a href="/uk/pull-up-constructor-body">Підйом тіла конструктора</a> для переміщення загальної функціональності в суперклас. Краще розпочинати з полів, оскільки окрім загальних полів, вам треба буде перенести ті з них, які використовуються в загальних методах.
 

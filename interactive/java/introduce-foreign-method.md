@@ -69,7 +69,7 @@ Select "Date paymentDate = new Date(previousDate.getYear(), previousDate.getMont
 #|en| This class has code that opens a new billing period one week in the future from the current time.
 #|uk| В цьому класі є якийсь код, який відкриває новий період виставлення рахунків через тиждень від поточного часу.
 
-#|ru| Было бы идеально, если бы класс <code>Date</code> имел метод получения даты через семь дней (например, <code>previousDate.nextWeek()</code>), но он его не имеет, да и к тому же, мы не можем его изменить, т.к. он стандартный.
+#|ru| Было бы идеально, если бы класс <code>Date</code> имел метод получения даты через семь дней (например, <code>previousDate.nextWeek()</code>), но он его не имеет, да и к тому же, мы не можем его изменить, так как он стандартный.
 #|en| Ideally, the <code>Date</code> class would have a method for getting a date seven days in the future (something resembling <code>previousDate.nextWeek()</code>) but it does not, and, what's pretty sad, it is standard so we cannot change it.
 #|uk| Було б ідеально, якби клас <code>Date</code> мав метод отримання дати через сім днів (наприклад, <code>previousDate.nextWeek()</code>), але він його не має, та й до того ж , ми не можемо його змінити, бо він стандартний.
 

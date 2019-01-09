@@ -131,9 +131,9 @@ public class Manager: Employee
 
 Select "new Employee"
 
-#|ru| Что случилось бы с этим кодом? Его пришлось бы переписать, т.к. мы не можем возвращать ничего другого из конструктора <code>Employee</code>, кроме объектов <code>Employee</code> (а нам нужен <code>Engineer</code>).
+#|ru| Что случилось бы с этим кодом? Его пришлось бы переписать, так как мы не можем возвращать ничего другого из конструктора <code>Employee</code>, кроме объектов <code>Employee</code> (а нам нужен <code>Engineer</code>).
 #|en| We would have to rewrite it, since we cannot return anything from the <code>Employee</code> constructor other than <code>Employee</code> objects (and we need <code>Engineer</code>).
-#|uk| Що сталося б з цим кодом? Його довелося б переписати, так як ми не можемо повертати нічого іншого з конструктора <code>Employee</code>, крім об'єктів <code>Employee</code> (а нам потрібен <code>Engineer</code>).
+#|uk| Що сталося б з цим кодом? Його довелося б переписати, оскільки ми не можемо повертати нічого іншого з конструктора <code>Employee</code>, крім об'єктів <code>Employee</code> (а нам потрібен <code>Engineer</code>).
 
 #|ru| Но если потом что-то снова поменяется, нам придется создавать ещё больше подклассов, и, вполне возможно, что вызовы конструкторов снова придётся править.
 #|en| And if something changes again later, we will have to create even more subclasses and may well have to adjust the constructor calls… again.
@@ -147,7 +147,7 @@ Go to before "public Employee"
 
 #|ru| Класс <code>Employee</code> является лучшим местом для хранения фабричного метода, так как он, скорее всего, переживёт любые изменения подклассов.
 #|en| The <code>Employee</code> class is the best place to store the factory method because it will probably survive any changes in the subclasses.
-#|uk| Клас <code>Employee</code> є кращим місцем для зберігання фабричного методу, так як він, швидше за все, переживе будь-які зміни підкласів.
+#|uk| Клас <code>Employee</code> є кращим місцем для зберігання фабричного методу, оскільки він, швидше за все, переживе будь-які зміни підкласів.
 
 Print:
 ```

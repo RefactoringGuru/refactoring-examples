@@ -6,7 +6,7 @@ extract-superclass:csharp
 1.en. Create an abstract base class.
 1.uk. Створіть абстрактний базовий клас.
 
-2.ru. Используйте <a href="/ru/pull-up-field">Подъём поля</a>, <a href="/ru/pull-up-method">Подъём метода</a> и <a href="/ru/pull-up-constructor-body">Подъём тела конструктора</a> для перемещения общей функциональности в базовый класс. Лучше начинать со свойств(полей), т.к. помимо самостоятельных свойств, вам нужно будет перенести те из них, которые используются в общих методах.
+2.ru. Используйте <a href="/ru/pull-up-field">Подъём поля</a>, <a href="/ru/pull-up-method">Подъём метода</a> и <a href="/ru/pull-up-constructor-body">Подъём тела конструктора</a> для перемещения общей функциональности в базовый класс. Лучше начинать со свойств(полей), так как помимо самостоятельных свойств, вам нужно будет перенести те из них, которые используются в общих методах.
 2.en. Use <a href="/pull-up-field">Pull Up Field</a>, <a href="/pull-up-method">Pull Up Method</a>, and <a href="/pull-up-constructor-body">Pull Up Constructor Body</a> to move the common functionality to the base class. Start with the properties(fields), since in addition to the common properties you will need to move the properties that are used in the common methods.
 2.uk. Використайте <a href="/uk/pull-up-field">Підйом поля</a>, <a href="/uk/pull-up-method">Підйом методу</a> і <a href="/uk/pull-up-constructor-body">Підйом тіла конструктора</a> для переміщення загальної функціональності в базовий клас. Краще починати зі властивостей (полів), оскільки окрім самостійних властивостей, вам треба буде перенести ті з них, які використовуються в загальних методах.
 

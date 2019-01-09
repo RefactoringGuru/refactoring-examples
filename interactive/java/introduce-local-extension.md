@@ -157,7 +157,7 @@ Print:
 
 Select parameters of "nextWeek" in "MfDateSub"
 
-#|ru| Параметр метода нам теперь не нужен, т.к. метод находится внутри наследника <code>Date</code>. Соответственно, нужные данные можно взять из собственного объекта.
+#|ru| Параметр метода нам теперь не нужен, так как метод находится внутри наследника <code>Date</code>. Соответственно, нужные данные можно взять из собственного объекта.
 #|en| The method parameter is no longer needed since the method is inside the <code>Date</code> subclass. Thus, the needed data can be taken from its own object.
 #|uk| Параметр методу нам тепер не потрібен, тому що метод знаходиться всередині спадкоємця <code>Date</code>. Відповідно, потрібні дані можна взяти з власного об'єкта.
 

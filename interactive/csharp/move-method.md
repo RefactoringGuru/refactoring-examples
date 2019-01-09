@@ -145,7 +145,7 @@ Select "private int |||daysOverdrawn|||"
 
 #|ru| Поле <code>daysOverdrawn</code> тоже не стоит переносить, так как оно будет разным для отдельных счетов.
 #|en| Moving the <code>daysOverdrawn</code> field would not make sense either, since its value will be different in every other account.
-#|uk| Поле <code>daysOverdrawn</code> теж не варто переносити, так як воно буде відрізнятися для окремих рахунків.
+#|uk| Поле <code>daysOverdrawn</code> теж не варто переносити, оскільки воно буде відрізнятися для окремих рахунків.
 
 Select name of "OverdraftCharge"
 
@@ -192,9 +192,9 @@ Select name of "OverdraftCharge" in "AccountType"
 
 Select "type." in "OverdraftCharge" of "AccountType"
 
-#|ru|^= Первым делом удалим из метода поле <code>type</code>, т.к. мы теперь находимся внутри класса, реализующего тип счета, и все методы можно вызывать из него напрямую.
+#|ru|^= Первым делом удалим из метода поле <code>type</code>, так как мы теперь находимся внутри класса, реализующего тип счета, и все методы можно вызывать из него напрямую.
 #|en|^= First remove the <code>type</code> field from the method, since the method is inside the class that implements the account type and, therefore, all methods could be called from it directly.
-#|uk|^= Першим ділом видалимо з методу поле <code>type</code>, так як ми тепер перебуваємо всередині класу, що реалізовує тип рахунку, і всі методи можна викликати з нього безпосередньо.
+#|uk|^= Першим ділом видалимо з методу поле <code>type</code>, оскільки ми тепер перебуваємо всередині класу, що реалізовує тип рахунку, і всі методи можна викликати з нього безпосередньо.
 
 Remove selected
 

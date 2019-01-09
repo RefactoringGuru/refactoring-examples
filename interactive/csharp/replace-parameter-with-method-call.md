@@ -2,7 +2,7 @@ replace-parameter-with-method-call:csharp
 
 ###
 
-1.ru. Убедитесь, что код получения значения не использует параметров из текущего метода, т.к. они будут недоступны внутри другого метода, из-за чего перенос будет невозможен.
+1.ru. Убедитесь, что код получения значения не использует параметров из текущего метода, так как они будут недоступны внутри другого метода, из-за чего перенос будет невозможен.
 1.en. Make sure that the value-getting code does not use parameters from the current method, since they will be unavailable from inside another method. If so, moving the code is not possible.
 1.uk. Переконайтеся, що код отримання значення не використовує параметрів з поточного методу, оскільки вони будуть недоступні усередині іншого методу, через що перенесення буде неможливе.
 
@@ -91,9 +91,9 @@ Set step 1
 Select name of "GetPrice"
 +Select name of "DiscountedPrice"
 
-#|ru|^ Метод получения скидки <code>DiscountedPrice()</code> сейчас практически нельзя использовать в отрыве от метода получения цены <code>GetPrice()</code>, т.к. перед этим нужно получить значения всех параметров.
+#|ru|^ Метод получения скидки <code>DiscountedPrice()</code> сейчас практически нельзя использовать в отрыве от метода получения цены <code>GetPrice()</code>, так как перед этим нужно получить значения всех параметров.
 #|en|^ The method for getting the discount <code>DiscountedPrice()</code> is currently nearly impossible to use separately from the method for getting the price <code>GetPrice()</code>, since you must get the values of all parameters prior to it.
-#|uk|^ Метод отримання знижки <code>DiscountedPrice()</code> зараз практично не можна використовувати у відриві від методу отримання ціни <code>GetPrice()</code>, так як перед цим потрібно отримати значення всіх параметрів.
+#|uk|^ Метод отримання знижки <code>DiscountedPrice()</code> зараз практично не можна використовувати у відриві від методу отримання ціни <code>GetPrice()</code>, бо перед цим потрібно отримати значення всіх параметрів.
 
 Select parameters of "DiscountedPrice"
 
