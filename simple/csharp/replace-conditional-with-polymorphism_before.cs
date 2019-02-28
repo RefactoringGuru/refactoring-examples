@@ -1,6 +1,6 @@
 public class Bird 
 {
-  //...
+  // ...
   public double GetSpeed() 
   {
     switch (type) 

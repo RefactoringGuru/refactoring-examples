@@ -7,7 +7,7 @@ class Soldier
   
   public void Attack() 
   {
-    //...
+    // ...
   }
 }
 
@@ -19,6 +19,6 @@ class Weapon {
   
   public int GetDamage() 
   {
-    //...
+    // ...
   }
 }

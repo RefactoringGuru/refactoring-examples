@@ -1,5 +1,5 @@
 class PizzaDelivery {
-  //...
+  // ...
   getRating(): number {
     return moreThanFiveLateDeliveries() ? 2 : 1;
   }

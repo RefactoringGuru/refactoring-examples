@@ -1,5 +1,5 @@
 class Bird:
-    #...
+    # ...
     def getSpeed(self):
         if self.type == EUROPEAN:
             return self.getBaseSpeed();

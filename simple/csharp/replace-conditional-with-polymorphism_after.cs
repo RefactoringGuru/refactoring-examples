@@ -1,6 +1,6 @@
 public abstract class Bird 
 {
-  //...
+  // ...
   public abstract double GetSpeed();
 }
 

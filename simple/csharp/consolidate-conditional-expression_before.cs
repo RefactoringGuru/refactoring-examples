@@ -12,6 +12,6 @@ double DisabilityAmount()
   {
     return 0;
   }
-  // compute the disability amount
-  //...
+  // Compute the disability amount.
+  // ...
 }

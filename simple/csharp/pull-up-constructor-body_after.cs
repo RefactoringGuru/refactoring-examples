@@ -4,5 +4,5 @@ public class Manager: Employee
   {
     this.grade = grade;
   }
-  //...
+  // ...
 }

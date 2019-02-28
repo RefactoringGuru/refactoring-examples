@@ -3,5 +3,5 @@ discount(inputVal: number, quantity: number): number {
   if (inputVal > 50) {
     result -= 2;
   }
-  //...
+  // ...
 }

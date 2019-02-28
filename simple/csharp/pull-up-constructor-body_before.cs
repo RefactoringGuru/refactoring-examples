@@ -6,5 +6,5 @@ public class Manager: Employee
     this.id = id;
     this.grade = grade;
   }
-  //...
+  // ...
 }

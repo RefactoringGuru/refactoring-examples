@@ -5,7 +5,6 @@ class Order {
     $primaryBasePrice = 10;
     $secondaryBasePrice = 20;
     $tertiaryBasePrice = 30;
-    // long computation.
-    //...
+    // Perform long computation.
   }
 }

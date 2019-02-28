@@ -1,7 +1,7 @@
 printOwing(): void {
   printBanner();
 
-  //print details
+  // Print details.
   console.log("name: " + name);
   console.log("amount: " + getOutstanding());
 }

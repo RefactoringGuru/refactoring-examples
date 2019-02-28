@@ -1,6 +1,6 @@
 public class Order 
 {
-  //...
+  // ...
   public double Price() 
   {
     return new PriceCalculator(this).Compute();
@@ -15,13 +15,12 @@ public class PriceCalculator
   
   public PriceCalculator(Order order) 
   {
-    // copy relevant information from order object.
-    //...
+    // Copy relevant information from the
+    // order object.
   }
   
   public double Compute() 
   {
-    // long computation.
-    //...
+    // Perform long computation.
   }
 }

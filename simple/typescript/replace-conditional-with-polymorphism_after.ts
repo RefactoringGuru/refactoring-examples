@@ -1,5 +1,5 @@
 abstract class Bird {
-  //...
+  // ...
   abstract getSpeed(): number;
 }
 

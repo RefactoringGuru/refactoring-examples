@@ -2,7 +2,7 @@
 function printOwing() {
   $this->printBanner();
 
-  //print details
+  // Print details.
   print("name:  " . $this->name);
   print("amount " . $this->getOutstanding());
 }

@@ -4,5 +4,5 @@ class Employee {
     // do some heavy lifting.
     return employee;
   }
-  //...
+  // ...
 }

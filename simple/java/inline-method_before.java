@@ -1,5 +1,5 @@
 class PizzaDelivery {
-  //...
+  // ...
   int getRating() {
     return moreThanFiveLateDeliveries() ? 2 : 1;
   }

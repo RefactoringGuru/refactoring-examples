@@ -1,5 +1,5 @@
 class Order {
-  //...
+  // ...
   price(): number {
     return new PriceCalculator(this).compute();
   }
@@ -11,12 +11,11 @@ class PriceCalculator {
   private _tertiaryBasePrice: number;
   
   constructor(order: Order) {
-    // copy relevant information from order object.
-    //...
+    // Copy relevant information from the
+    // order object.
   }
   
   compute(): number {
-    // long computation.
-    //...
+    // Perform long computation.
   }
 }

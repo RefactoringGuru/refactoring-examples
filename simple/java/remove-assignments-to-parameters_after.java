@@ -3,5 +3,5 @@ int discount(int inputVal, int quantity) {
   if (inputVal > 50) {
     result -= 2;
   }
-  //...
+  // ...
 }

@@ -3,5 +3,5 @@ class Manager extends Employee {
     super(name, id);
     this.grade = grade;
   }
-  //...
+  // ...
 }

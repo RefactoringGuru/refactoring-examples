@@ -1,5 +1,5 @@
 class Bird {
-  //...
+  // ...
   getSpeed(): number {
     switch (type) {
       case EUROPEAN:

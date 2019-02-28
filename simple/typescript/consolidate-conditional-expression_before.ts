@@ -8,6 +8,6 @@ disabilityAmount(): number {
   if (isPartTime) {
     return 0;
   }
-  // compute the disability amount
-  //...
+  // Compute the disability amount.
+  // ...
 }

@@ -4,5 +4,5 @@ int Discount(int inputVal, int quantity)
   {
     inputVal -= 2;
   }
-  //...
+  // ...
 }
