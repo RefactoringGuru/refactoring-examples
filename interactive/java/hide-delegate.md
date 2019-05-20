@@ -86,7 +86,7 @@ Set step 1
 
 #|ru| Давайте рассмотрим <i>Сокрытие делегирования</i> на примере классов, представляющих работника и его отдел.
 #|en| Let's look at <i>Hide Delegate</i> using the classes representing an employee and the employee's department as an example.
-#|uk| Давайте розглянемо <i>Приховування делегування<i> на прикладі класів, що представляють працівника та його відділ.
+#|uk| Давайте розглянемо <i>Приховування делегування</i> на прикладі класів, що представляють працівника та його відділ.
 
 Select "manager = john.getDepartment().getManager();"
 

@@ -76,7 +76,7 @@ Set step 1
 
 #|ru| Давайте рассмотрим <i>Разбиение условного оператора</i> на примере вычисления стоимости входного билета на стадион.
 #|en| Let's look at <i>Decompose Conditional</i> using a simple class, that calculates the cost of a stadium ticket.
-#|uk| Давайте розглянемо <i>Розбиття умовного оператора<i> на прикладі обчислення вартості вхідного квитка на стадіон.
+#|uk| Давайте розглянемо <i>Розбиття умовного оператора</i> на прикладі обчислення вартості вхідного квитка на стадіон.
 
 Select name of "getTicketPrice"
 + Select "WINTER_START"

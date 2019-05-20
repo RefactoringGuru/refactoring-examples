@@ -63,7 +63,7 @@ Set step 1
 
 #|ru| Рассмотрим <i>Замену переменной вызовом метода</i> на примере этого простого метода.
 #|en| Let's look at <i>Replace Temp with Query</i> using a simple method as an example.
-#|uk| Розглянемо <i>Заміну змінної викликом методу<i> на прикладі цього простого методу.
+#|uk| Розглянемо <i>Заміну змінної викликом методу</i> на прикладі цього простого методу.
 
 Select "int |||basePrice|||"
 +Select "double |||discountFactor|||"

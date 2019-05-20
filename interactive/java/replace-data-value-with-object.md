@@ -101,7 +101,7 @@ Set step 1
 
 #|ru| Давайте рассмотрим рефакторинг <i>Замена простого поля объектом</i> на примере класса заказа.
 #|en| Let's look at the <i>Replace Data Value with Object</i> refactoring, using an order class as an example.
-#|uk| Давайте розглянемо рефакторинг <i>Заміна простого поля об'єктом<i> на прикладі класу замовлення.
+#|uk| Давайте розглянемо рефакторинг <i>Заміна простого поля об'єктом</i> на прикладі класу замовлення.
 
 Select "private String |||customer|||"
 

@@ -112,7 +112,7 @@ Set step 1
 
 #|ru| Давайте рассмотрим <i>Замену ссылки значением</i> на примере класса покупателя.
 #|en| Let's look at <i>Change Reference to Value</i> using a customer class as an example.
-#|uk| Давайте розглянемо <i>Заміну посилання значенням<i> на прикладі класу покупця.
+#|uk| Давайте розглянемо <i>Заміну посилання значенням</i> на прикладі класу покупця.
 
 Select "public string |||Name|||"
 + Select "public DateTime |||BirthDate|||"

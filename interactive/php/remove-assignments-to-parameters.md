@@ -53,7 +53,7 @@ Set step 1
 
 #|ru| Давайте рассмотрим <i>Удаление присваиваний параметрам</i> на примере небольшого метода расчёта скидки.
 #|en| Let's look at <i>Remove Assignments to Parameters</i> using a small discount calculation method as an example.
-#|uk| Давайте розглянемо <i>Видалення присвоювань параметрам<i> на прикладі невеличкого методу розрахунку знижки.
+#|uk| Давайте розглянемо <i>Видалення присвоювань параметрам</i> на прикладі невеличкого методу розрахунку знижки.
 
 Select "$inputVal" in parameters of "discount"
 

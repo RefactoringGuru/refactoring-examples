@@ -61,7 +61,7 @@ Set step 1
 
 #|ru| Давайте рассмотрим <i>Введение внешнего метода</i> на примере класса банковского счета.
 #|en| Let's look at <i>Introduce Foreign Method</i> using the example of a bank account class.
-#|uk| Давайте розглянемо <i>Запровадження зовнішнього методу<i> на прикладі класу банківського рахунку.
+#|uk| Давайте розглянемо <i>Запровадження зовнішнього методу</i> на прикладі класу банківського рахунку.
 
 Select "Date paymentDate = new Date(previousDate.getYear(), previousDate.getMonth(), previousDate.getDate() + 7)"
 

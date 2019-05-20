@@ -116,7 +116,7 @@ Set step 1
 
 #|ru| Давайте рассмотрим <i>Замену значения ссылкой</i> на примере класса заказа и покупателя. Мы продолжим с того места, где закончили пример <a href="/replace-data-value-with-object">Замена простого поля объектом</a>.
 #|en| Let's look at <i>Replace Data Value with Object</i> using the customer/order class example. We will pick up where we finished the <i>Replace Data Value with Object</i> refactoring.
-#|uk| Давайте розглянемо <i>Заміну значення посиланням<i> на прикладі класу замовлення та покупця. Ми продовжимо з того місця, де закінчили приклад <a href="/uk/replace-data-value-with-object">Заміна простого поля об'єктом</a>.
+#|uk| Давайте розглянемо <i>Заміну значення посиланням</i> на прикладі класу замовлення та покупця. Ми продовжимо з того місця, де закінчили приклад <a href="/uk/replace-data-value-with-object">Заміна простого поля об'єктом</a>.
 
 Select name of "Customer"
 

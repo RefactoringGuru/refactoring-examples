@@ -97,7 +97,7 @@ Set step 1
 
 #|ru| Давайте рассмотрим <i>Извлечение класса</i> на примере простого класса, описывающего личность.
 #|en| Let's look at <i>Extract Class</i> using the example of a simple class that describes a person.
-#|uk| Давайте розглянемо <i>Відокремлення  класу<i> на прикладі простого класу, що описує особистість.
+#|uk| Давайте розглянемо <i>Відокремлення  класу</i> на прикладі простого класу, що описує особистість.
 
 Select "string |||OfficeAreaCode|||"
 + Select "string |||OfficeNumber|||"

@@ -42,7 +42,7 @@ Set step 1
 
 #|ru| Давайте рассмотрим <i>Извлечение переменной</i> на примере этого простого метода.
 #|en| Let's look at <i>Extract Variable</i> using this simple method as an example.
-#|uk| Давайте розглянемо <i>Відокремлення змінної<i> на прикладі цього простого методу.
+#|uk| Давайте розглянемо <i>Відокремлення змінної</i> на прикладі цього простого методу.
 
 #|ru| Как видите, метод состоит из одного громадного выражения, в котором сам черт ногу сломит.
 #|en| As you see, the method contains a single enormous expression capable of throwing off both police dogs and the most determined programmers.

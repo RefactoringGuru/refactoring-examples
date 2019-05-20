@@ -96,7 +96,7 @@ Set step 1
 
 #|ru| В предыдущем примере <a href="/ru/introduce-foreign-method">Введение внешнего метода</a> мы использовали <i>методы-расширения</i>, чтобы добавить требуемую функциональность структуре <code>DateTime</code>.
 #|en| In the previous example <a href="/introduce-foreign-method">Introduce Foreign Method</a>, we used <i>extension methods</i> to add necessary functionality to the <code>DateTime</code> structure.
-#|uk| У попередньому прикладі <a href="/uk/introduce-foreign-method">Введення зовнішнього методу</a> ми використовували <i> методи-розширення</i>, щоб додати необхідну функціональність структурі <code>DateTime</code>.
+#|uk| У попередньому прикладі <a href="/uk/introduce-foreign-method">Введення зовнішнього методу</a> ми використовували <i>методи-розширення</i>, щоб додати необхідну функціональність структурі <code>DateTime</code>.
 
 #|ru| Этот способ хорош, если задача ограничивается добавлением методов. Однако если необходимо расширить функционал класса добавлением свойств, или же переопределить у него какой-нибудь из имеющихся методов, то следует воспользоваться рефакторингом <i>Введение локального расширения</i>, который мы сейчас и рассмотрим.
 #|en| This choice is good if the task is limited to just adding methods. If you need to extend the functionality of a class by adding properties or redefining any of its existing methods, then use <i>Introduce Local Extension</i>, which we will now examine in greater detail.

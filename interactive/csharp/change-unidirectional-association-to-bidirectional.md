@@ -103,7 +103,7 @@ Set step 1
 
 #|ru| Давайте рассмотрим <i>Замену однонаправленной связи двунаправленной</i> на примере двух классов — <code>Покупателя</code> и <code>Заказа</code>.
 #|en| Let's consider <i>Replace Unidirectional Association with Bidirectional</i> using the example of two classes: <code>Customer</code> and <code>Order</code>.
-#|uk| Давайте розглянемо <i>Заміну однонаправленого зв'язку двонаправленим<i> на прикладі двох класів – <code>Покупця</code> і <code>Замовлення</code>.
+#|uk| Давайте розглянемо <i>Заміну однонаправленого зв'язку двонаправленим</i> на прикладі двох класів – <code>Покупця</code> і <code>Замовлення</code>.
 
 Select:
 ```

@@ -106,7 +106,7 @@ Set step 1
 
 #|ru| <i>Замену двунаправленной связи однонаправленной</i> мы продолжим с того места, на котором закончили в обратном рефакторинге.
 #|en| We will start <i>Change Bidirectional Association to Unidirectional</i> from the place where we have stopped in the inverse refactoring.
-#|uk| <i>Заміну двонаправленного зв'язку однонаправленим<i> ми продовжимо з того ж місця, на якому закінчили в зворотньому рефакторингу.
+#|uk| <i>Заміну двонаправленного зв'язку однонаправленим</i> ми продовжимо з того ж місця, на якому закінчили в зворотньому рефакторингу.
 
 Select name of "Order"
 + Select name of "Customer"

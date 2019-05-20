@@ -82,7 +82,7 @@ Select name of "findCriminalAndAlert"
 
 #|ru| Рассмотрим рефакторинг <i>Разделение запроса и модификатора</i> на примере класса системы безопасности. В этом классе есть метод, который сообщает имя злоумышленника и посылает предупреждение.
 #|en| Let's look at <i>Separate Query from Modifier</i> refactoring using a security system class as our example. The class has a method that tells us the name of a violator and sends a warning.
-#|uk| Розглянемо рефакторинг <i>Поділ запиту та модифікатора<i> на прикладі класу системи безпеки. В цьому класі є метод, який повідомляє ім'я зловмисника і посилає попередження.
+#|uk| Розглянемо рефакторинг <i>Поділ запиту та модифікатора</i> на прикладі класу системи безпеки. В цьому класі є метод, який повідомляє ім'я зловмисника і посилає попередження.
 
 #|ru| Основной проблемой данного метода является то, что он используется для двух разных целей.
 #|en| The main problem with this method is that it is used for two different purposes.
