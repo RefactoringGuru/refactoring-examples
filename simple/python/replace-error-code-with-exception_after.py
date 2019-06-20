@@ -1,4 +1,4 @@
 def withdraw(self, amount):
     if amount > self.balance:
-        raize BalanceException()
+        raise BalanceException()
     self.balance -= amount
