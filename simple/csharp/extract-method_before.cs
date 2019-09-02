@@ -1,8 +1,8 @@
 void PrintOwing() 
 {
-  PrintBanner();
+  this.PrintBanner();
 
   // Print details.
-  Console.WriteLine("name: " + name);
-  Console.WriteLine("amount: " + GetOutstanding());
+  Console.WriteLine("name: " + this.name);
+  Console.WriteLine("amount: " + this.GetOutstanding());
 }
