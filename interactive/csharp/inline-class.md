@@ -122,7 +122,7 @@ get;
 
 #|ru| Начнём с объявления в классе <code>Person</code> всех видимых свойств класса телефонного номера.
 #|en| Start by declaring all visible properties of the phone number class in the <code>Person</code> class.
-#|uk| Почнемо з оголошення в класі <code>Person</code> всіх видимих ​​властивостей класу телефонного номера.
+#|uk| Почнемо з оголошення в класі <code>Person</code> всіх видимих властивостей класу телефонного номера.
 
 Print:
 ```

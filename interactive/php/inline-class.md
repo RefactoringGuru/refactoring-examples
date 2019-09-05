@@ -120,7 +120,7 @@ Go to the end of "Person"
 
 #|ru| Начнём с объявления в классе <code>Person</code> всех видимых методов класса телефонного номера.
 #|en| We start by declaring all visible methods of the phone number class in the <code>Person</code> class.
-#|uk| Почнемо з оголошення в класі <code>Person</code> всіх видимих ​​методів класу телефонного номера.
+#|uk| Почнемо з оголошення в класі <code>Person</code> всіх видимих методів класу телефонного номера.
 
 Print:
 ```

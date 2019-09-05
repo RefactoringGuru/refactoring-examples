@@ -250,7 +250,7 @@ Select name of "class IntervalWindow"
 
 #|ru| Давайте рассмотрим <i>Дублирование видимых данных</i> на примере класса для создания окна редактирования интервала чисел.
 #|en| Let's look at <i>Duplicate Observed Data</i> using the class that creates a window for editing numeric intervals.
-#|uk| Давайте розглянемо <i>Дублювання видимих ​​даних</i> на прикладі класу для створення вікна редагування інтервалу чисел.
+#|uk| Давайте розглянемо <i>Дублювання видимих даних</i> на прикладі класу для створення вікна редагування інтервалу чисел.
 
 Select 1st "lengthField"
 + Select 1st "startField"
