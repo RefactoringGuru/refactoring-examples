@@ -196,7 +196,7 @@ Print:
 ```
 
 
-  public Gamma(Account $source, $inputValArg, $quantityArg, $yearToDateArg) {
+  public function __construct(Account $source, $inputValArg, $quantityArg, $yearToDateArg) {
     $this->account = $source;
     $this->inputVal = $inputValArg;
     $this->quantity = $quantityArg;
