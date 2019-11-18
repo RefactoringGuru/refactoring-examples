@@ -6,6 +6,6 @@ class Bird:
         elif self.type == AFRICAN:
             return self.getBaseSpeed() - self.getLoadFactor() * self.numberOfCoconuts
         elif self.type == NORWEGIAN_BLUE:
-            return 0 if isNailed else self.getBaseSpeed(self.voltage)
+            return 0 if self.isNailed else self.getBaseSpeed(self.voltage)
         else:
             raise Exception("Should be unreachable")

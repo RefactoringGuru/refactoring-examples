@@ -14,7 +14,7 @@ class African(Bird):
 
 
 class NorwegianBlue(Bird):
-    def getSpeed():
+    def getSpeed(self):
         return 0 if self.isNailed else self.getBaseSpeed(self.voltage)
 
 # Somewhere in client code
