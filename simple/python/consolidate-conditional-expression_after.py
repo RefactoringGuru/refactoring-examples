@@ -1,5 +1,5 @@
 def disabilityAmount():
-    if isNotEligableForDisability():
+    if isNotEligibleForDisability():
         return 0
     # Compute the disability amount.
     # ...

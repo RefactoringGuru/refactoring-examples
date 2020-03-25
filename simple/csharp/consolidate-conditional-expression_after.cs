@@ -1,6 +1,6 @@
-double DisabilityAmount() 
+double DisabilityAmount()
 {
-  if (IsNotEligableForDisability()) 
+  if (IsNotEligibleForDisability())
   {
     return 0;
   }
