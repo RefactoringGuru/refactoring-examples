@@ -3,15 +3,21 @@ change-reference-to-value:java
 ###
 
 1.ru. Обеспечьте неизменяемость объекта. Объект не должен иметь сеттеров или других методов, меняющих его состояние и данные (в этом может помочь <a href="/remove-setting-method">удаление сеттера</a>). Единственное место, где полям объекта-значения присваиваются какие-то данные, должен быть конструктор.
+
 1.en. Make the object unchangeable. The object should not have any setters or other methods that change its state and data (<a href="/remove-setting-method">Remove Setting Method</a> may help here). The only place where data should be assigned to the fields of a value object is a constructor.
+
 1.uk. Забезпечте незмінність об'єкту. Об'єкт не повинен мати сетерів або інших методів, що міняють його стан і дані (у цьому може допомогти <a href="/remove-setting-method">видалення сетера</a>). Єдиним місцем, де полям об'єкту-значення привласнюються якісь дані, має бути конструктор.
 
 2.ru. Создайте метод сравнения для сравнения двух объектов-значений.
+
 2.en. Create a comparison method for comparing two value objects.
+
 2.uk. Створіть метод порівняння для порівняння двох об'єктів-значень.
 
 3.ru. Проверьте, возможно ли удалить фабричный метод и сделать конструктор объекта публичным.
+
 3.en. Check whether you can delete the factory method and make the object constructor public.
+
 3.uk. Перевірте, чи можливо видалити фабричний метод і зробити конструктор об'єкту публічним.
 
 
@@ -65,7 +71,8 @@ class Customer {
       return false;
     }
     Customer other = (Customer) arg;
-    return (name.equals(other.name));
+    return (name.equals(other.name) &&
+        birthDate.compareTo(other.birthDate) == 0);
   }
   @Override public int hashCode() {
     return name.hashCode();
@@ -180,7 +187,8 @@ Print:
       return false;
     }
     Customer other = (Customer) arg;
-    return (name.equals(other.name));
+    return (name.equals(other.name) &&
+        birthDate.compareTo(other.birthDate) == 0);
   }
   @Override public int hashCode() {
     return name.hashCode();
