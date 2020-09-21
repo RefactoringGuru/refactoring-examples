@@ -1,11 +1,11 @@
 void PrintOwing()
 {
   this.PrintBanner();
-  this.PrintDetails(this.GetOutstanding());
+  this.PrintDetails();
 }
 
-void PrintDetails(double outstanding)
+void PrintDetails()
 {
   Console.WriteLine("name: " + this.name);
-  Console.WriteLine("amount: " + this.outstanding);
+  Console.WriteLine("amount: " + this.GetOutstanding());
 }
