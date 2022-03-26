@@ -1,6 +1,6 @@
 getValueForPeriod(periodNumber: number): number {
   if (periodNumber >= values.length) {
-    return 0;
+    throw new Error();
   }
   return values[periodNumber];
 }
