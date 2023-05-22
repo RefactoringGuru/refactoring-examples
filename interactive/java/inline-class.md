@@ -11,7 +11,7 @@ inline-class:java
 2.uk. Замініть усі звернення до класу-донору зверненнями до полів і методів класу-приймача.
 
 3.ru. Используйте <a href="/move-method">перемещение метода</a> и <a href="/move-field">перемещение поля</a> для перемещения функциональности в класс-приёмник из исходного класса. Продолжаем делать это, пока в исходном классе ничего не останется.
-3.en. Use <a href="/move-field">move field</a> and <a href="/move-method">move field</a> for moving functionality from the original class to the recipient class. Continue doing so until nothing remains in the original class.
+3.en. Use <a href="/move-field">Move Field</a> and <a href="/move-method">Move Method</a> for moving functionality from the original class to the recipient class. Continue doing so until nothing remains in the original class.
 3.uk. Використовуйте <a href="/move-method"> переміщення методу</a> і <a href="/move-field"> переміщення поля</a> для переміщення функціональності в клас-приймач з вихідного класу. Продовжуємо робити це, поки у вихідному класі нічого не залишиться.
 
 4.ru. Удалите исходный класс.
