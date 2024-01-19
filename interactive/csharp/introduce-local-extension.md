@@ -156,7 +156,7 @@ Set step 3
 
 #|ru| Теперь добавим конвертирующий конструктор, принимающий в качестве параметра объект <code>DateTime</code>.
 #|en| Now add a converting constructor that accepts the original <code>DateTime</code> object as an argument.
-#|uk| Тепер додамо конвертуючий конструктор, який приймає як параметр об'єкт <code>DateTime</code>.
+#|uk| Тепер додамо конвертуючий конструктор, що приймає як параметр об'єкт <code>DateTime</code>.
 
 Go to the end of "MfDateTimeWrap"
 
