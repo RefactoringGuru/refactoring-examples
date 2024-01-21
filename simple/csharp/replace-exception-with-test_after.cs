@@ -1,6 +1,6 @@
 double GetValueForPeriod(int periodNumber) 
 {
-  if (periodNumber >= values.Length) 
+  if (periodNumber >= values.Length || periodNumber < 0) 
   {
     return 0;
   }
