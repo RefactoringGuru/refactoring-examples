@@ -1,4 +1,4 @@
-def output(self, type):
+def output(self, name):
     if name == "banner"
         # Print the banner.
         # ...
